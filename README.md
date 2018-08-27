@@ -17,6 +17,7 @@ First, clone the repository:
 
 Then navigate to your detector and use scons:
 
-- to compile: ```scons```
+- to create the PDF: ```scons```
 - to clean:  ```scons -c```
+
 
