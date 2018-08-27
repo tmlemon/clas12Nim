@@ -15,4 +15,8 @@ First, clone the repository:
 
 ```git clone https://github.com/JeffersonLab/clas12Nim.git```
 
-Then navigate to your detector
+Then navigate to your detector and use scons:
+
+- to compile: ```scons```
+- to clean:  ```scons -c```
+
