@@ -1,0 +1,92 @@
+%% 
+%% Copyright 2007-2018 Elsevier Ltd
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%%
+%% $Id: elsdoc.tex 128 2018-06-29 05:20:50Z rishi $
+%%
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[xcolor,qtwo]{rvdtx}
+\usepackage{multicol}
+\usepackage{color}
+\usepackage{xspace}
+\usepackage{pdfwidgets}
+\usepackage{enumerate}
+
+\def\ttdefault{cmtt}
+
+\headsep4pc
+
+\makeatletter
+\def\bs{\expandafter\@gobble\string\\}
+\def\lb{\expandafter\@gobble\string\{}
+\def\rb{\expandafter\@gobble\string\}}
+\def\@pdfauthor{C.V.Radhakrishnan}
+\def\@pdftitle{elsarticle.cls -- A documentation}
+\def\@pdfsubject{Document formatting with elsarticle.cls}
+\def\@pdfkeywords{LaTeX, Elsevier Ltd, document class}
+\def\file#1{\textsf{#1}\xspace}
+
+%\def\LastPage{19}
+
+\DeclareRobustCommand{\LaTeX}{L\kern-.26em%
+        {\sbox\z@ T%
+         \vbox to\ht\z@{\hbox{\check@mathfonts
+           \fontsize\sf@size\z@
+           \math@fontsfalse\selectfont
+          A\,}%
+         \vss}%
+        }%
+     \kern-.15em%
+    \TeX}
+\makeatother
+
+\def\figurename{Clip}
+
+\setcounter{tocdepth}{1}
+
+\begin{document}
+
+\def\testa{This is a specimen document. }
+\def\testc{\testa\testa\testa\testa}
+\def\testb{\testc\testc\testc\testc\testc}
+\long\def\test{\testb\par\testb\par\testb\par}
+
+\pinclude{\copy\contbox\printSq{\LastPage}}
+
+\title{elsarticle.cls -- A better way to format your document}
+
+\author{Elsevier Ltd}
+\contact{elsarticle@stmdocs.in}
+
+\version{2.1}
+\date{\today}
+\maketitle
+
+
+\include{overview}
+\include{requirements}
+\include{design}
+\include{bib}
+
+\end{document}
+
+
+
+
+
+
+
+
