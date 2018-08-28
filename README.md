@@ -6,6 +6,7 @@ Pre-requisites:
 -----------------
 
 - scons
+- latex (for mac: http://www.tug.org/mactex/)
 
 
 How to use
