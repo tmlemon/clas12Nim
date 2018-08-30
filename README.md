@@ -21,7 +21,7 @@ Then navigate to your detector and use scons:
 - to create the PDF: ```scons```
 - to clean:  ```scons -c```
 
-Alternatively (on an Apple computer with latex installed) you can use MacTex to open the main file, which has the same name as the system (for example: svt.tex for sct).
+Alternatively (on an Apple computer with latex installed) you can use MacTex to open the main file, which has the same name as the system (for example: svt.tex for svt).
 
 What to edit
 ------------
