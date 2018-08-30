@@ -29,17 +29,17 @@ What to edit
 Edit these files:
 
 - `titleAndAuthors.tex`: include the titles, list of authors and their addresses
-- abstract.tex: 
-- overview.tex
-- requirements.tex
-- design.tex
-- hardware.tex
-- electronics.tex
-- readout.tex
-- calibration.tex
-- reconstruction.tex
-- simulation.tex
-- performance.tex
-- conclusions.tex
-- acknowledgmentAndBib.tex
+- `abstract.tex`: paper abstract 
+- `overview.tex`: introduction and overview
+- `requirements.tex`: system requirements
+- `design.tex`: system design
+- `hardware.tex`: hardware components and construction
+- `electronics.tex`: electronics
+- `readout.tex`: signal and readout
+- `calibration.tex`: calibration software suite and results
+- `reconstruction.tex`: reconstruction algorithms and results
+- `simulation.tex`: simulation geometry, digitization, results
+- `performance.tex`: detector performance
+- `conclusions.tex`: paper conclusion
+- `acknowledgmentAndBib.tex`" aknowledgements and bibliography
 
