@@ -1,9 +1,9 @@
 # clas12Nim
 
-This is a collection of clas12 detector nim papers, that collect into a nim volume
+This repo contains a collection of clas12 detector nim papers
 
-Pre-requisites:
------------------
+Pre-requisites to compile:
+--------------------------
 
 - scons or MacTex
 - latex (for mac: http://www.tug.org/mactex/)
