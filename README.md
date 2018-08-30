@@ -28,7 +28,7 @@ What to edit
 
 Edit these files:
 
-- titleAndAuthors.tex: include the titles, list of authors and their addresses
+* titleAndAuthors.tex: include the titles, list of authors and their addresses
 - abstract.tex: 
 - overview.tex
 - requirements.tex
