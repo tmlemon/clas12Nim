@@ -40,6 +40,13 @@ Edit these files:
 - `reconstruction.tex`: reconstruction algorithms and results
 - `simulation.tex`: simulation geometry, digitization, results
 - `performance.tex`: detector performance
-- `conclusions.tex`: paper conclusion
-- `acknowledgmentAndBib.tex`" aknowledgements and bibliography
+- `conclusionsAndAcknowledgement.tex`: paper conclusion and aknowledgements
+- `bibfile.bib`: article in the bibliography
+
+
+Bibliography
+------------
+
+Collect the article reference in the file bibfile.bib. You can use SPIRES to look for the article and use the bibtex link to add the "official" format to bibfile.bib.
+Note: only the articles that are mentioned with `\cite` will appear in the references.
 
