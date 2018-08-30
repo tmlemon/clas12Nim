@@ -4,7 +4,10 @@
 set detectors = (svt)
 set currentDir = `pwd`
 
+
 foreach d ($detectors)
+	# make sure the style files are common
+	cp *.sty $d
 	echo
 	echo Detector: $d
 	cd $currentDir/$d
