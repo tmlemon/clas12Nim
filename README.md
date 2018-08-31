@@ -47,7 +47,7 @@ Edit these files:
 Bibliography
 ------------
 
-Collect the article reference in the file bibfile.bib. You can use SPIRES to look for the article and use the bibtex link to add the "official" format to bibfile.bib.
+Collect the references in the file bibfile.bib. You can use SPIRES to look for the article and use the bibtex link to add the "official" format to bibfile.bib.
 
-Note: only the articles that are mentioned with `\cite` will appear in the references.
+Note: only the articles that are mentioned in the text with `\cite` will appear in the references.
 

@@ -5,16 +5,18 @@ set detectors = (mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb 
 set currentDir = `pwd`
 
 
+# all commented out as the dirs are created
+# DO NOT run this file uncommented
 foreach d ($detectors)
-	cd $currentDir
-	rm -rf $d
-	cp -r svt $d
-	echo
+#	cd $currentDir
+#	rm -rf $d
+#	cp -r svt $d
+#	echo
 	echo Detector: $d
-	cd $currentDir/$d
-	mv svt.tex $d".tex"
-	foreach f (`\ls *.tex`)
-		sed -i '' -e "s/svt/$d/g" $f
-	end
-	sed -i '' -e "s/svt/$d/g" SConstruct
+#	cd $currentDir/$d
+#	mv svt.tex $d".tex"
+#	foreach f (`\ls *.tex`)
+#		sed -i '' -e "s/svt/$d/g" $f
+#	end
+#	sed -i '' -e "s/svt/$d/g" SConstruct
 end
