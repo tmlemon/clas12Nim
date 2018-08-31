@@ -1,12 +1,13 @@
 #!/bin/csh -f
 
 
-set detectors = (mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets overview)
+set detectors = (svt mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets overview)
 set currentDir = `pwd`
 
 
 foreach d ($detectors)
 	# make sure the style files are common
+	cd $currentDir
 	cp *.sty $d
 	echo
 	echo Detector: $d

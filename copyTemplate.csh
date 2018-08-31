@@ -1,7 +1,7 @@
 #!/bin/csh -f
 
 
-set detectors = (mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets overview)
+set detectors = (mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets clas12)
 set currentDir = `pwd`
 
 
@@ -16,4 +16,5 @@ foreach d ($detectors)
 	foreach f (`\ls *.tex`)
 		sed -i '' -e "s/svt/$d/g" $f
 	end
+	sed -i '' -e "s/svt/$d/g" SConstruct
 end
