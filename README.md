@@ -9,8 +9,8 @@ Pre-requisites to compile:
 - latex (for mac: http://www.tug.org/mactex/)
 
 
-How to use
-----------
+How to get the tex files and created a pdf
+-----------------------------------------------
 
 First, clone the repository: 
 
@@ -42,6 +42,22 @@ Edit these files:
 - `performance.tex`: detector performance
 - `conclusionsAndAcknowledgement.tex`: paper conclusion and aknowledgements
 - `bibfile.bib`: article in the bibliography
+
+
+How to commit to the repository
+-------------------------------------
+
+First, make sure you changed only the files relevant to your detector. You can find out which files you changed with the command
+
+`git status`
+
+To commit, use a nice comment:
+
+`git commit -a -m"nice comment"`
+
+Finally, push to the github repo:
+
+`git push`
 
 
 Bibliography

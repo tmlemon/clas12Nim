@@ -1,10 +1,12 @@
 #!/bin/csh -f
 
 # DO NOT RUN THIS FILE
+# It's a cronjob that check if a repo has changed, and compile the PDF in case
+#
 
 set detectors = (svt mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets clas12 slowcontrol)
 set currentDir = /opt/projects/clas12Nim
-
+rm $currentDir/log
 
 foreach d ($detectors)
 	# make sure the style files are common
@@ -18,7 +20,7 @@ foreach d ($detectors)
 	if(`echo $gcheck` == "") then
 		echo No changes
 	else
-		echo $d needs update
+		echo $d Needs update
 		git pull
 		echo Compiling $d"..."
 		scons
