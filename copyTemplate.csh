@@ -1,7 +1,7 @@
 #!/bin/csh -f
 
 
-set detectors = (mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets clas12)
+set detectors = (mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets clas12 slowcontrol)
 set currentDir = `pwd`
 
 
