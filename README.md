@@ -1,6 +1,6 @@
 # clas12Nim
 
-This repo contains a collection of clas12 detector nim papers
+This repo contains a collection of clas12 detector NIM papers LATEX sources.
 
 Pre-requisites to compile:
 --------------------------
@@ -16,7 +16,7 @@ First, clone the repository:
 
 ```git clone https://github.com/JeffersonLab/clas12Nim.git```
 
-Then navigate to your detector and use scons:
+This will create a directory "clas12Nim". Inside that dir, change dir to your detector and use scons to create the PDF:
 
 - to create the PDF: ```scons```
 - to clean:  ```scons -c```
