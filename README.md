@@ -1,6 +1,6 @@
 # clas12Nim
 
-This repo contains a collection of clas12 detector nim papers
+This repo contains a collection of clas12 detector NIM papers LATEX sources.
 
 Pre-requisites to compile:
 --------------------------
@@ -9,14 +9,14 @@ Pre-requisites to compile:
 - latex (for mac: http://www.tug.org/mactex/)
 
 
-How to use
-----------
+How to get the tex files and created a pdf
+-----------------------------------------------
 
 First, clone the repository: 
 
 ```git clone https://github.com/JeffersonLab/clas12Nim.git```
 
-Then navigate to your detector and use scons:
+This will create a directory "clas12Nim". Inside that dir, change dir to your detector and use scons to create the PDF:
 
 - to create the PDF: ```scons```
 - to clean:  ```scons -c```
@@ -42,6 +42,22 @@ Edit these files:
 - `performance.tex`: detector performance
 - `conclusionsAndAcknowledgement.tex`: paper conclusion and aknowledgements
 - `bibfile.bib`: article in the bibliography
+
+
+How to commit to the repository
+-------------------------------------
+
+First, make sure you changed only the files relevant to your detector. You can find out which files you changed with the command
+
+`git status`
+
+To commit, use a nice comment:
+
+`git commit -a -m"nice comment"`
+
+Finally, push to the github repo:
+
+`git push`
 
 
 Bibliography
