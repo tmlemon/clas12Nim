@@ -4,7 +4,7 @@
 # It's a cronjob that check if a repo has changed, and compile the PDF in case
 #
 
-set detectors = (svt mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets clas12 slowcontrol)
+set detectors = (svt mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets clas12 slowcontrol cvt)
 set currentDir = /opt/projects/clas12Nim
 rm $currentDir/log
 
