@@ -45,21 +45,48 @@ Edit these files:
 - `bibfile.bib`: article in the bibliography
 
 
-How to commit to the repository
--------------------------------------
+Keeping the repo up-to-date
+---------------------------
+
+You should make sure your copy of the repository is up-to-date. Do this often:
+
+`git pull`
+
+How to add or remove a file to the repository
+---------------------------------------------
+
+Use `add` or `rm` to add or remove files from the repo:
+
+`git add filename`
+
+or
+
+`git rm filename`
+
+When you check the status with `git pull` you will see an `A` for "added" and a `D` for "deleted" files.
+
+
+How to commit changes to the repository
+---------------------------------------
 
 First, make sure you changed only the files relevant to your detector. You can find out which files you changed with the command
 
 `git status`
 
-To commit, use a nice comment:
+To commit changes to a particular file, don't forget a nice comment:
+
+`git commit filename -m"nice comment"`
+
+To commit changes to all the files use the `-a` flag:
 
 `git commit -a -m"nice comment"`
 
-Finally, push to the github repo:
+
+To push to the repository:
 
 `git push`
 
+This will upload your changes and trigger (within 10 minutes) the PDF file creation [here](http://clasweb.jlab.org/12gev/nims/?C=M;O=D).
 
 Bibliography
 ------------
