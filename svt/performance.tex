@@ -1,4 +1,51 @@
 \section{Performance}
 
-svt performance description
+\subsection{Module testing (QA, full chain, r/a sources, beam)}
 
+\begin{wrapfigure}{l}{0.5\columnwidth}
+\includegraphics[width=0.5\columnwidth]{gain-chip.png}
+\caption{Gain vs. channel.}
+\label{fig:gain-chip}
+\end{wrapfigure}
+
+\begin{wrapfigure}{l}{0.5\columnwidth}
+\includegraphics[width=0.5\columnwidth]{enc-chip.png}
+\caption{Equivalent Noise Charge vs. channel.}
+\label{fig:enc-chip}
+\end{wrapfigure}
+
+\subsection{Integration and system checkout}
+
+\begin{wrapfigure}{l}{0.5\columnwidth}
+\includegraphics[width=0.5\columnwidth]{svt-hall.png}
+\caption{SVT detector installed in the experimental hall.}
+\label{fig:svt-hall}
+\end{wrapfigure}
+
+\subsection{Commissioning with cosmic rays}
+
+\begin{wrapfigure}{l}{0.5\columnwidth}
+\includegraphics[width=0.5\columnwidth]{cosmic-hitmap-svt.png}
+\caption{Monitoring SVT hit map during cosmic run.}
+\label{fig:cosmic-hitmap-svt}
+\end{wrapfigure}
+
+Cosmic ray tests of the SVT have been used to test track reconstruction routines for the SVT, as well as establish correct readout, good noise performance, and full response for the entire detector. Cosmic data were taken in the standalone mode using the self triggering feature of the readout in coincidence logic. Angular distribution of the cosmic muons reconstructed in the SVT is shown in Fig.~\ref{fig:track-phi-theta}.
+
+\begin{wrapfigure}{l}{0.5\columnwidth}
+\includegraphics[width=0.5\columnwidth]{track-phi-theta.png}
+\caption{Angular distribution of the cosmic muons reconstructed in the SVT}
+\label{fig:track-phi-theta}
+\end{wrapfigure}
+
+\subsection{Commissioning with beam}
+
+The impact of the shield on the SVT occupancy is shown in Figure~\ref{fig:hit-occupancy-shielding}. Occupancies in all SVT layers are substantially lower which results in better tracking performance due to reduced combinatorics. The effect of the shield on tracking performance is negligible~\cite{SHIELDNOTE}.
+
+\begin{wrapfigure}{l}{0.45\columnwidth}
+\includegraphics[width=0.45\columnwidth]{hit-occupancy-shielding.png}
+\caption{Hit occupancies with and without the shield.}
+\label{fig:hit-occupancy-shielding}
+\end{wrapfigure}
+
+%\subsection{Tracking performance, resolution, efficiency}
