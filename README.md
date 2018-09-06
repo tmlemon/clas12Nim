@@ -10,8 +10,8 @@ Pre-requisites to compile:
 - latex (for mac: http://www.tug.org/mactex/)
 
 
-How to get the tex files and created a pdf
------------------------------------------------
+How to get the tex files and create a pdf
+------------------------------------------
 
 First, clone the repository: 
 
