@@ -8,7 +8,7 @@ Project mailing list: <clas12nim@jlab.org>
 Pre-requisites to compile:
 --------------------------
 
-- scons or MacTex
+- scons (not necessary but does simplify things quite a bit)
 - mac latex:  http://www.tug.org/mactex/. 
 - linux latex: you may need to `sudo apt-get install texlive-publishers`
 
