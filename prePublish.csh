@@ -3,12 +3,30 @@
 # DO NOT RUN THIS FILE
 # It's a cronjob that check if a repo has changed, and compile the PDF in case
 #
+# possible util: 	set gcheck = `git whatchanged -n 1 | grep "\t$d\/"`
+
 
 set detectors = (svt mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets clas12 slowcontrol cvt)
 set currentDir = /opt/projects/clas12Nim
-rm $currentDir/log
 
+git pull
+
+
+# chacking which detector was changed
+cd $currentDir
+rm -f detectorChanged.txt ; touch detectorChanged.txt
 foreach d ($detectors)
+	set gcheck = `git whatchanged -n 1 | grep "\t$d\/"`
+	if(`echo $gcheck` != "") then
+		echo $d >> detectorChanged.txt
+	endif
+end
+
+echo
+set detChanged = `cat detectorChanged.txt`
+echo "List of detector changed: "$detChanged
+
+foreach d ($detChanged)
 	# make sure the style files are common
 	cd $currentDir
 	cp *.sty $d
@@ -16,16 +34,9 @@ foreach d ($detectors)
 	echo Detector: $d
 	cd $currentDir/$d
 	# chacking if repo has changed on the master. Using tab and det name, i.e. svt/
-	set gcheck = `git whatchanged -n 1 | grep "\t$d\/"`
-	if(`echo $gcheck` == "") then
-		echo No changes
-	else
-		echo $d Needs update
-		git pull
-		echo Compiling $d"..."
-		scons
-		scp $d.pdf ftp:/group/clas/www/clasweb/html/12gev/nims
-		echo $d published
-		scons -c
-	endif
+	echo Compiling $d"..."
+	/usr/local/bin/scons
+	scp $d.pdf ftp:/group/clas/www/clasweb/html/12gev/nims
+	echo $d published
+	scons -c
 end
