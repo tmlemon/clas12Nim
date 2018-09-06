@@ -9,7 +9,8 @@ Pre-requisites to compile:
 --------------------------
 
 - scons or MacTex
-- latex (for mac: http://www.tug.org/mactex/. For linux you may need to `sudo apt-get install texlive-publishers`)
+- mac latex:  http://www.tug.org/mactex/. 
+- linux latex: you may need to `sudo apt-get install texlive-publishers`
 
 
 How to get the tex files and create a pdf
@@ -29,7 +30,7 @@ Alternatively (on an Apple computer with latex installed) you can use MacTex to 
 What to edit
 ------------
 
-Edit these files:
+These are the default files in each sub-directory. You can change this list in the main tex file (same name as the detector name, i.e. "svt.tex" inside "svt").
 
 - `titleAndAuthors.tex`: include the titles, list of authors and their addresses
 - `abstract.tex`: paper abstract 
