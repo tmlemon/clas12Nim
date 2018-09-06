@@ -9,7 +9,8 @@ Pre-requisites to compile:
 --------------------------
 
 - scons or MacTex
-- latex (for mac: http://www.tug.org/mactex/. For linux you may need to `sudo apt-get install texlive-publishers`)
+- mac latex:  http://www.tug.org/mactex/. 
+- linux latex: you may need to `sudo apt-get install texlive-publishers`
 
 
 How to get the tex files and create a pdf
