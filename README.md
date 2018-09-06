@@ -1,7 +1,7 @@
 # clas12Nim
 
 This repo contains a collection of clas12 detector NIM papers LATEX sources.
-The changes are automatically compiled into PDFs files, collected [http://clasweb.jlab.org/12gev/nims/?C=M;O=D here]
+The changes are automatically compiled into PDFs files, collected [here](http://clasweb.jlab.org/12gev/nims/?C=M;O=D)
 
 Pre-requisites to compile:
 --------------------------
