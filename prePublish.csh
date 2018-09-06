@@ -42,7 +42,9 @@ foreach d ($detChanged)
 	cd $currentDir/$d
 	# chacking if repo has changed on the master. Using tab and det name, i.e. svt/
 	echo Compiling $d"..."
-	/usr/local/bin/scons
+	rm compile.log
+	/usr/local/bin/scons > compile.log
+	ls -lrt
 	scp $d.pdf ftp:/group/clas/www/clasweb/html/12gev/nims
 	echo $d published
 	scons -c
