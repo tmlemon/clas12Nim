@@ -1,5 +1,12 @@
 \section{Electronics}
 
 \subsection{Grounding and shielding}
+
+Figure ... shows a schematic of a single channel in a sensor. The signal from the aluminum readout strip is input to the FSSR2 ASIC. The returns of the floating high and low voltage supplies are isolated from the Hall B ground. To maintain the reference voltage level of the carbon fiber, the copper mesh on one side of the bus cable is connected at the hybrid area of the HFCB to the return line of the low voltage. Module connections are shown in Fig. ... Modules are read out by the FSSR2 ASICs located on the hybrid area of the HFCB. Power and readout connections are made at the L1C. There is no coupling of power or return lines of different modules?each module is independent of other modules. All modules are electrically isolated from the detector support structure. 
+Each crate in the system will have a safety ground?achieved on purchased power supply crates by the UL-rated power plug that plugs into a common isolation transformer, Fig. ... To shield against EMI, the cable shields?signal, power, slow control, and pulser?of each module will be connected together at that module?s L1C, ... The L1C of all the modules are located at the entrance of the Faraday cage, and from each of the L1C a cable will connect the shields to the Faraday cage, which in turn are connected by a single cable directly to the Hall B central ground, Fig. ... To minimize voltage offsets on the shield lines, the impedance of the shield connections will be as low as possible. To shield against electromagnetic interference, the SVT is located inside a Faraday cage that comprises the cold plate, a forward disk, and a cylindrical carbon shell.
+
 \subsection{Power supplies}
+
+Each side of a module has a high voltage channel, 80 V (40 $\mu$A), and two low voltage channels, 2.5 V (0.3 A). To power the FSSR2 ASICs and to bias the modules, WIENERs Universal Multichannel Low and High Voltage System (MPOD) crates, Fig. ..., are used. The crates are 19 inches tall, rack-mountable, and capable of housing 10 low voltage WIENER cards or 10 high voltage ISEG cards, or a combination of the two. Output voltage channels of the cards are floating. All power supply channels have programmable voltages, ramp rates, and limits. Hardware limits on voltage and current can be set on each card. Local control of the crate and cards is available on the LCD front panel; remote control is facilitated by a 10/100 Ethernet connection.
+
 \subsection{Crates (VXS, VME, MPOD)}
