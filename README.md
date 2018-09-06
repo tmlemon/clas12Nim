@@ -3,6 +3,8 @@
 This repo contains a collection of clas12 detector NIM papers LATEX sources.
 The changes are automatically compiled into PDFs files, collected [here](http://clasweb.jlab.org/12gev/nims/?C=M;O=D).
 
+Mailing list: [email](clas12nim@jlab.org)
+
 Pre-requisites to compile:
 --------------------------
 
