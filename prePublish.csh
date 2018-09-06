@@ -8,15 +8,17 @@
 
 set detectors = (svt mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets clas12 slowcontrol cvt)
 set currentDir = /opt/projects/clas12Nim
+cd $currentDir
 
-git pull
 
 
 # chacking which detector was changed
-cd $currentDir
+rm pull.log
+git pull > pull.log
+
 rm -f detectorChanged.txt ; touch detectorChanged.txt
 foreach d ($detectors)
-	set gcheck = `git whatchanged -n 1 | grep "\t$d\/"`
+	set gcheck = `cat pull.log | grep " $d\/"`
 	if(`echo $gcheck` != "") then
 		echo $d >> detectorChanged.txt
 	endif
@@ -25,6 +27,11 @@ end
 echo
 set detChanged = `cat detectorChanged.txt`
 echo "List of detector changed: "$detChanged
+echo
+
+if($1 != "") then
+	set detChanged = $1
+endif
 
 foreach d ($detChanged)
 	# make sure the style files are common
