@@ -5,6 +5,12 @@ The changes are automatically compiled into PDFs files, collected [here](http://
 
 Project mailing list: <clas12nim@jlab.org>
 
+Online Editing
+--------------
+
+You can edit individual tex files on your browser, for example by pasting some tex code. Upon committing, the PDF file will be produced within 10 minutes. However it is recommended to edit the files directly on your computer by cloning the repo, see below.
+
+
 Pre-requisites to compile:
 --------------------------
 
