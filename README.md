@@ -15,6 +15,7 @@ Pre-requisites to compile:
 --------------------------
 
 - scons (not necessary but does simplify things quite a bit)
+- on Mac you can also use [Tex Studio](https://www.texstudio.org) 
 - mac latex:  http://www.tug.org/mactex/. 
 - linux latex: you may need to `sudo apt-get install texlive-publishers`
 
