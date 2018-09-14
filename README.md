@@ -14,7 +14,11 @@ You can edit individual tex files on your browser, for example by pasting some t
 Pre-requisites to compile:
 --------------------------
 
-- scons (not necessary but does simplify things quite a bit)
+- scons (not necessary but does simplify things quite a bit). To install scons: 
+  1. download [scons](https://sourceforge.net/projects/scons/files/scons/2.5.1/scons-2.5.1.tar.gz/download)
+  2. untar / unzip with tar -zxpvf scons-2.5.1.tar.gz
+  3. 
+
 - on Mac you can also use [Tex Studio](https://www.texstudio.org) 
 - mac latex:  http://www.tug.org/mactex/. 
 - linux latex: you may need to `sudo apt-get install texlive-publishers`
