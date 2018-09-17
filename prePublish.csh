@@ -43,11 +43,10 @@ foreach d ($detChanged)
 	echo Detector: $d
 	cd $currentDir/$d
 	# chacking if repo has changed on the master. Using tab and det name, i.e. svt/
-	echo Compiling $d"..."
 	rm -f compile.log
 	/usr/local/bin/scons  > compile.log
 	ls -lrt              >> compile.log
-	scp $d.pdf ftp:/group/clas/www/clasweb/html/12gev/nims
+	scp $d.pdf ftp:/group/clas/www/clasweb/html/12gev/nims >> compile.log
 	echo $d published
 	scons -c             >> compile.log
 end
