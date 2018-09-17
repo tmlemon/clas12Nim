@@ -8,11 +8,11 @@
 set path = (/usr/local/bin /usr/bin /bin /usr/sbin /sbin /Library/TeX/texbin /opt/X11/bin /Library/Frameworks/Mono.framework/Versions/Current/Commands /Users/ungaro/myenv)
 echo $path
 
-set detectors = (svt mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets clas12 slowcontrol cvt)
+set allDetectors = (`ls | grep -v \.csh | grep -v \.sty | grep -v \.md | grep -v \.txt | grep -v \.log | grep -v template `)
+echo $allDetectors
+
 set currentDir = /opt/projects/clas12Nim
 cd $currentDir
-
-
 
 # chacking which detector was changed
 rm pull.log
