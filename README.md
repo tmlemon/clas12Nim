@@ -106,7 +106,8 @@ This will upload your changes and trigger (within 10 minutes) the PDF file creat
 Bibliography
 ------------
 
-Collect the references in the file bibfile.bib. You can use SPIRES to look for the article and use the bibtex link to add the "official" format to bibfile.bib.
+We use bibtex for references so we do not have to worry about sizes, capitalization, italic, etc. Everything is standardized and used by SPIRES.
 
-Note: only the articles that are mentioned in the text with `\cite` will appear in the references.
+Collect the references in the file bibfile.bib. Use SPIRES to look for the article then click the **BibTex** link. Copy and past to the file bibfile.bib.
+
 
