@@ -1,17 +1,32 @@
 # clas12Nim
 
 This repo contains a collection of clas12 detector NIM papers LATEX sources.
-The changes are automatically compiled into PDFs files, collected [http://clasweb.jlab.org/12gev/nims/?C=M;O=D here]
+The changes are automatically compiled into PDFs files, collected [here](http://clasweb.jlab.org/12gev/nims/?C=M;O=D).
+
+Project mailing list: <clas12nim@jlab.org>
+
+Online Editing
+--------------
+
+You can edit individual tex files on your browser, for example by pasting some tex code. Upon committing, the PDF file will be produced within 10 minutes. However it is recommended to edit the files directly on your computer by cloning the repo, see below.
+
 
 Pre-requisites to compile:
 --------------------------
 
-- scons or MacTex
-- latex (for mac: http://www.tug.org/mactex/)
+- scons (not necessary but does simplify things quite a bit). To install scons: 
+  
+  1. click [this link](https://sourceforge.net/projects/scons/files/scons/2.5.1/scons-2.5.1.tar.gz/download) to start an automatic download of scons
+  2. untar / unzip with tar -zxpvf scons-2.5.1.tar.gz, or double click the file from Finder
+  3. install scons: run (sudo) python setup.py install
+
+- on Mac you can use [Tex Studio](https://www.texstudio.org) instead of scons 
+- mac latex:  http://www.tug.org/mactex/. 
+- linux latex: you may need to `sudo apt-get install texlive-publishers`
 
 
-How to get the tex files and created a pdf
------------------------------------------------
+How to get the tex files and create a pdf
+------------------------------------------
 
 First, clone the repository: 
 
@@ -27,7 +42,7 @@ Alternatively (on an Apple computer with latex installed) you can use MacTex to 
 What to edit
 ------------
 
-Edit these files:
+These are the default files in each sub-directory. You can change this list in the main tex file (same name as the detector name, i.e. "svt.tex" inside "svt").
 
 - `titleAndAuthors.tex`: include the titles, list of authors and their addresses
 - `abstract.tex`: paper abstract 
@@ -45,21 +60,48 @@ Edit these files:
 - `bibfile.bib`: article in the bibliography
 
 
-How to commit to the repository
--------------------------------------
+Keeping the repo up-to-date
+---------------------------
+
+You should make sure your copy of the repository is up-to-date. Do this often:
+
+`git pull`
+
+How to add or remove a file to the repository
+---------------------------------------------
+
+Use `add` or `rm` to add or remove files from the repo:
+
+`git add filename`
+
+or
+
+`git rm filename`
+
+When you check the status with `git pull` you will see an `A` for "added" and a `D` for "deleted" files.
+
+
+How to commit changes to the repository
+---------------------------------------
 
 First, make sure you changed only the files relevant to your detector. You can find out which files you changed with the command
 
 `git status`
 
-To commit, use a nice comment:
+To commit changes to a particular file, don't forget a nice comment:
+
+`git commit filename -m"nice comment"`
+
+To commit changes to all the files use the `-a` flag:
 
 `git commit -a -m"nice comment"`
 
-Finally, push to the github repo:
+
+To push to the repository:
 
 `git push`
 
+This will upload your changes and trigger (within 10 minutes) the PDF file creation [here](http://clasweb.jlab.org/12gev/nims/?C=M;O=D).
 
 Bibliography
 ------------

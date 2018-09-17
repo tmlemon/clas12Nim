@@ -1,22 +1,24 @@
 #!/bin/csh -f
 
 
-set detectors = (mm ctof cnd htcc dc ltcc rich ftof ec ft beamline online hallb simulations offline magnets clas12 slowcontrol)
+set sourceT     = template
+set destination = (torus solenoid trigger)
+
 set currentDir = `pwd`
 
 
 # all commented out as the dirs are created
 # DO NOT run this file uncommented
-foreach d ($detectors)
-#	cd $currentDir
-#	rm -rf $d
-#	cp -r svt $d
-#	echo
+foreach d ($destination)
+	cd $currentDir
+	rm -rf $d
+	cp -r $sourceT $d
+	echo
 	echo Detector: $d
-#	cd $currentDir/$d
-#	mv svt.tex $d".tex"
-#	foreach f (`\ls *.tex`)
-#		sed -i '' -e "s/svt/$d/g" $f
-#	end
-#	sed -i '' -e "s/svt/$d/g" SConstruct
+	cd $currentDir/$d
+	mv template.tex $d".tex"
+	foreach f (`\ls *.tex`)
+		sed -i '' -e "s/template/$d/g" $f
+	end
+	sed -i '' -e "s/template/$d/g" SConstruct
 end
