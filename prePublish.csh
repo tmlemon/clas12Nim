@@ -15,7 +15,7 @@ set currentDir = /opt/projects/clas12Nim
 cd $currentDir
 
 # chacking which detector was changed
-rm pull.log
+rm -f pull.log
 git pull > pull.log
 
 rm -f detectorChanged.txt ; touch detectorChanged.txt
