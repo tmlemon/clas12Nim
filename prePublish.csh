@@ -6,7 +6,7 @@
 # possible util: 	set gcheck = `git whatchanged -n 1 | grep "\t$d\/"`
 
 set path = (/usr/local/bin /usr/bin /bin /usr/sbin /sbin /Library/TeX/texbin /opt/X11/bin /Library/Frameworks/Mono.framework/Versions/Current/Commands /Users/ungaro/myenv)
-echo $path
+# echo $path
 
 set detectors = (`ls | grep -v \.csh | grep -v \.sty | grep -v \.md | grep -v \.txt | grep -v \.log | grep -v template `)
 echo $detectors
