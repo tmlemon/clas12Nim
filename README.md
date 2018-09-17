@@ -108,6 +108,27 @@ Bibliography
 
 We use bibtex for references so we do not have to worry about sizes, capitalization, italic, etc. Everything is standardized and used by SPIRES.
 
-Collect the references in the file bibfile.bib. Use SPIRES to look for the article then click the **BibTex** link. Copy and past to the file bibfile.bib.
+How to do it: use SPIRES to look for the article then click the **BibTex** link. Copy and paste the result to the file bibfile.bib. 
 
+It will look like this:
+
+```
+@article{Ungaro:2006df,
+      author         = "Ungaro, M. and others",
+      title          = "{Measurement of the N ---> Delta+(1232) transition at
+                        high momentum transfer by pi0 electroproduction}",
+      collaboration  = "CLAS",
+      journal        = "Phys. Rev. Lett.",
+      volume         = "97",
+      year           = "2006",
+      pages          = "112003",
+      doi            = "10.1103/PhysRevLett.97.112003",
+      eprint         = "hep-ex/0606042",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ex",
+      reportNumber   = "JLAB-PHY-06-543",
+      SLACcitation   = "%%CITATION = HEP-EX/0606042;%%"
+}
+
+```
 
