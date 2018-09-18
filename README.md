@@ -20,9 +20,11 @@ Pre-requisites to compile:
   2. untar / unzip with tar -zxpvf scons-2.5.1.tar.gz, or double click the file from Finder
   3. install scons: run (sudo) python setup.py install
 
-- on Mac you can use [Tex Studio](https://www.texstudio.org) instead of scons 
+- on Mac you can use [Tex Studio](https://www.texstudio.org) instead of scons
 - mac latex:  http://www.tug.org/mactex/. 
 - linux latex: you may need to `sudo apt-get install texlive-publishers`
+
+If you do not use scons, see the notes on bibliography below.
 
 
 How to get the tex files and create a pdf
@@ -131,4 +133,13 @@ It will look like this:
 }
 
 ```
+
+**Note:** if you do not use scons, you have to take care of the bibliography items using latex. You have to run these commands. Notice that ```latex``` is ran *three times*. Assuming the detector name is *svt*:
+
+1. latex svt
+2. bibtex svt
+3. latex svt
+4. latex svt
+
+
 
