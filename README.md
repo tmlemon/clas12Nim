@@ -134,12 +134,12 @@ It will look like this:
 
 ```
 
-**Note:** if you do not use scons, you have to take care of the bibliography items using latex. You have to run these commands. Notice that ```latex``` is ran *three times*. Assuming the detector name is *svt*:
+**Note:** if you do not use scons, you have to take care of the bibliography items using latex. You have to run these commands. Notice that ```latex``` is ran *three times*. Given your systemname (*svt*, *trigger*, etc):
 
-1. latex svt
-2. bibtex svt
-3. latex svt
-4. latex svt
+1. latex systemname
+2. bibtex systemname
+3. latex systemname
+4. latex systemname
 
 
 
