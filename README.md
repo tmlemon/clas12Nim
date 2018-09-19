@@ -133,6 +133,10 @@ It will look like this:
 }
 
 ```
+**Bibtex Formatting Notes:** 
+
+ - To capitalize a word use curly braces, for example ```{CLAS}```.
+ - Use "and others" if you want "et al" to appear in the document.
 
 **Note:** if you do not use scons, you have to take care of the bibliography items using latex. You have to run these commands. Notice that ```latex``` is ran *three times*. Given your systemname (*svt*, *trigger*, etc):
 

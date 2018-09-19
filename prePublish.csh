@@ -8,11 +8,13 @@
 set path = (/usr/local/bin /usr/bin /bin /usr/sbin /sbin /Library/TeX/texbin /opt/X11/bin /Library/Frameworks/Mono.framework/Versions/Current/Commands /Users/ungaro/myenv)
 # echo $path
 
-set detectors = (`ls | grep -v \.csh | grep -v \.sty | grep -v \.md | grep -v \.txt | grep -v \.log | grep -v template `)
-echo $detectors
-
 set currentDir = /opt/projects/clas12Nim
 cd $currentDir
+
+set detectors = (`ls | grep -v \.csh | grep -v \.sty | grep -v \.md | grep -v \.txt | grep -v \.log | grep -v template `)
+echo
+echo All detectors: $detectors
+echo
 
 # chacking which detector was changed
 rm -f pull.log
