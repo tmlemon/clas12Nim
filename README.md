@@ -20,9 +20,11 @@ Pre-requisites to compile:
   2. untar / unzip with tar -zxpvf scons-2.5.1.tar.gz, or double click the file from Finder
   3. install scons: run (sudo) python setup.py install
 
-- on Mac you can use [Tex Studio](https://www.texstudio.org) instead of scons 
+- on Mac you can use [Tex Studio](https://www.texstudio.org) instead of scons
 - mac latex:  http://www.tug.org/mactex/. 
 - linux latex: you may need to `sudo apt-get install texlive-publishers`
+
+If you do not use scons, see the notes on bibliography below.
 
 
 How to get the tex files and create a pdf
@@ -106,7 +108,38 @@ This will upload your changes and trigger (within 10 minutes) the PDF file creat
 Bibliography
 ------------
 
-Collect the references in the file bibfile.bib. You can use SPIRES to look for the article and use the bibtex link to add the "official" format to bibfile.bib.
+We use bibtex for references so we do not have to worry about sizes, capitalization, italic, etc. Everything is standardized and used by SPIRES.
 
-Note: only the articles that are mentioned in the text with `\cite` will appear in the references.
+How to do it: use SPIRES to look for the article then click the **BibTex** link. Copy and paste the result to the file bibfile.bib. 
+
+It will look like this:
+
+```
+@article{Ungaro:2006df,
+      author         = "Ungaro, M. and others",
+      title          = "{Measurement of the N ---> Delta+(1232) transition at
+                        high momentum transfer by pi0 electroproduction}",
+      collaboration  = "CLAS",
+      journal        = "Phys. Rev. Lett.",
+      volume         = "97",
+      year           = "2006",
+      pages          = "112003",
+      doi            = "10.1103/PhysRevLett.97.112003",
+      eprint         = "hep-ex/0606042",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ex",
+      reportNumber   = "JLAB-PHY-06-543",
+      SLACcitation   = "%%CITATION = HEP-EX/0606042;%%"
+}
+
+```
+
+**Note:** if you do not use scons, you have to take care of the bibliography items using latex. You have to run these commands. Notice that ```latex``` is ran *three times*. Given your systemname (*svt*, *trigger*, etc):
+
+1. latex systemname
+2. bibtex systemname
+3. latex systemname
+4. latex systemname
+
+
 
