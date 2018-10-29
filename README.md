@@ -67,9 +67,14 @@ These are the default files in each sub-directory. You can change this list in t
 Keeping the repo up-to-date
 ---------------------------
 
-You should make sure your copy of the repository is up-to-date. Do this often:
+If the repository is newer than your local version you will not be able to push your changes to it (you will get a log telling you to merge the new changes). 
+
+Keeping the repo up to date is easy: 
 
 `git pull`
+
+This will open an editor with a merge message, which you don't need to edit. 
+Just exit the editor: If it's "vi" type ```:q```. If it's "nano", type ```CTRL-x```
 
 How to add or remove a file to the repository
 ---------------------------------------------
