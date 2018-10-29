@@ -20,7 +20,7 @@ Pre-requisites to compile:
   2. untar / unzip with tar -zxpvf scons-2.5.1.tar.gz, or double click the file from Finder
   3. install scons run:
   
-   ```sudo python setup.py install```
+   `sudo python setup.py install`
 
 - on Mac you can use [Tex Studio](https://www.texstudio.org) instead of scons
 - mac latex:  http://www.tug.org/mactex/. 
@@ -111,6 +111,25 @@ To push to the repository:
 `git push`
 
 This will upload your changes and trigger (within 10 minutes) the PDF file creation [here](http://clasweb.jlab.org/12gev/nims/?C=M;O=D).
+
+
+Pictures
+--------
+
+I suggest you add all the pictures in a "img" directory. To add to the repository:
+
+`git add pictureFileName`
+
+To include a picture "examplePic.png" use the following code:
+
+```
+\begin{wrapfigure}{l}{0.5\columnwidth}
+  \includegraphics[width=0.5\columnwidth]{examplePic.png}
+  \caption{Example of a picture}
+  \label{fig:examplePic}
+\end{wrapfigure}
+```
+
 
 Bibliography
 ------------
