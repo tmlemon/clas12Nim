@@ -18,7 +18,7 @@ Pre-requisites to compile:
   
   1. click [this link](https://sourceforge.net/projects/scons/files/scons/2.5.1/scons-2.5.1.tar.gz/download) to start an automatic download of scons
   2. untar / unzip with tar -zxpvf scons-2.5.1.tar.gz, or double click the file from Finder
-  3. install scons run:
+  3. to install scons cd to the scons unpacked directory and type:
   
    `sudo python setup.py install`
 
