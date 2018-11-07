@@ -41,6 +41,7 @@ This will create a directory "clas12Nim". Inside that dir, change dir to your de
 For example, to create the ftof pdf:
 
    `cd ftof`
+   
    `scons`
    
 Alternatively (on an Apple computer with latex installed) you can use MacTex to open the main file, which has the same name as the system (for example: svt.tex for svt).
