@@ -36,11 +36,13 @@ First, clone the repository:
 
 ```git clone https://github.com/JeffersonLab/clas12Nim.git```
 
-This will create a directory "clas12Nim". Inside that dir, change dir to your detector and use scons to create the PDF:
+This will create a directory "clas12Nim". Inside that dir, change dir to your detector and type scons to create the PDF:
 
-- to create the PDF: ```scons```
-- to clean:  ```scons -c```
+For example, to create the ftof pdf:
 
+   `cd ftof`
+   `scons`
+   
 Alternatively (on an Apple computer with latex installed) you can use MacTex to open the main file, which has the same name as the system (for example: svt.tex for svt).
 
 What to edit
