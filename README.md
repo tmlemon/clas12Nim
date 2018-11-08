@@ -18,7 +18,9 @@ Pre-requisites to compile:
   
   1. click [this link](https://sourceforge.net/projects/scons/files/scons/2.5.1/scons-2.5.1.tar.gz/download) to start an automatic download of scons
   2. untar / unzip with tar -zxpvf scons-2.5.1.tar.gz, or double click the file from Finder
-  3. install scons: run (sudo) python setup.py install
+  3. to install scons cd to the scons unpacked directory and type:
+  
+   `sudo python setup.py install`
 
 - on Mac you can use [Tex Studio](https://www.texstudio.org) instead of scons
 - mac latex:  http://www.tug.org/mactex/. 
@@ -34,11 +36,14 @@ First, clone the repository:
 
 ```git clone https://github.com/JeffersonLab/clas12Nim.git```
 
-This will create a directory "clas12Nim". Inside that dir, change dir to your detector and use scons to create the PDF:
+This will create a directory "clas12Nim". Inside that dir, change dir to your detector and type scons to create the PDF:
 
-- to create the PDF: ```scons```
-- to clean:  ```scons -c```
+For example, to create the ftof pdf:
 
+   `cd ftof`
+   
+   `scons`
+   
 Alternatively (on an Apple computer with latex installed) you can use MacTex to open the main file, which has the same name as the system (for example: svt.tex for svt).
 
 What to edit
@@ -65,9 +70,14 @@ These are the default files in each sub-directory. You can change this list in t
 Keeping the repo up-to-date
 ---------------------------
 
-You should make sure your copy of the repository is up-to-date. Do this often:
+If the repository is newer than your local version you will not be able to push your changes to it (you will get a log telling you to merge the new changes). 
+
+Keeping the repo up to date is easy: 
 
 `git pull`
+
+This will open an editor with a merge message, which you don't need to edit. 
+Just exit the editor: If it's "vi" type ```:q```. If it's "nano", type ```CTRL-x```
 
 How to add or remove a file to the repository
 ---------------------------------------------
@@ -104,6 +114,25 @@ To push to the repository:
 `git push`
 
 This will upload your changes and trigger (within 10 minutes) the PDF file creation [here](http://clasweb.jlab.org/12gev/nims/?C=M;O=D).
+
+
+Pictures
+--------
+
+I suggest you add all the pictures in a "img" directory. To add to the repository:
+
+`git add pictureFileName`
+
+To include a picture "examplePic.png" use the following code:
+
+```
+\begin{wrapfigure}{l}{0.5\columnwidth}
+  \includegraphics[width=0.5\columnwidth]{examplePic.png}
+  \caption{Example of a picture}
+  \label{fig:examplePic}
+\end{wrapfigure}
+```
+
 
 Bibliography
 ------------
