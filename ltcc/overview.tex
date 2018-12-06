@@ -1,11 +1,16 @@
 \section{Overview}
 
-\subsection{Overview and Original Design}
 
-The LTCC consists of six identical sectors, each containing:
+
+\subsection{Original Design, Performance}
+
+The CLAS Cherenkov detector~\cite{Adams:2001kk} has beemn instrumental in the electron identification during the CLAS6 era.
+It provided eletron/pions discrimination up to the pion threshold of $2.6 Gev/c$ with $~90\%$ efficiency.
+
+It consists of six identical sectors, each containing:
 
 \begin{itemize}
-	\item 108 lightway adjustable mirrors
+	\item 108 Lightway adjustable mirrors
 	\item 36 Winston light collecting Cones
 	\item 36 5’’ Photonis X4500B PMT
 	\item 36 Magnetic Shields
@@ -13,7 +18,7 @@ The LTCC consists of six identical sectors, each containing:
 \end{itemize}
 
 
-The optics of each y module was designed to focus the light onto a photomultiplier tube (PMT) associated with that module and located in the region obscured by the coils.
+The optics of each module is designed to focus the light onto a photomultiplier tube (PMT) associated with that module and located in the region obscured by the coils.
 Fig.~\ref{fig:optics} shows the optical arrangement of one module. The array of the modules in one sector is shown in Fig.~\ref{fig:ltccArray}.
 
 \begin{figure}[hbt]
@@ -30,3 +35,35 @@ Fig.~\ref{fig:optics} shows the optical arrangement of one module. The array of 
 	\label{fig:ltccArray}
 \end{figure}
 
+The detector was operational for $~17$ years. The typical number of photo-electrons detected, coming from electrons, was between 10 and 20.
+The PMT gain was low and a $x10$ multiplier was necessary. The signal was also split to provide both ADC and TDC outputs.
+
+The detector also presented a few problems. It was leaking gas at a rate of about $\$50K$ / year and the mirrors alignment had malfunctions that affected
+the signal strength.
+
+
+\subsection{Upgrade}
+
+With the higher beam energy of the upgraded accelerator~\cite{TDR12} the pion discrimination is being addressed
+by the High Threshold Cherenkov counter with a $CO_2$ gas sytem that provides good electron discrimination up to momenta of $~6 GeV/c$.
+
+The heavier $C_4F_{10}$ gas can still be used to discriminate pions from kaons, see Fig. ~\ref{fig:newScope} thus the detector was refusbished
+to a Low Threshold Cherenkov Counter (LTCC).
+
+The box had to be modified so the
+
+\begin{itemize}
+	\item Support the new scope of pion/kaon discrimination
+	\item .
+	\item Address various problems with the original design.
+\end{itemize}
+
+
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/newScope.png}
+	\caption{With the accelerator and CLAS12 upgrade, the momentum range of the detected particles has been extended significantly. While the HTCC
+            provides the new electron/pion identification, the LTCC has been refusbished to provide a pion/kaon discrimination.}
+	\label{fig:newScope}
+\end{figure}
