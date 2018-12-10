@@ -1,0 +1,22 @@
+\section{Validation}
+
+CLAS12 Trigger System Validation was initially performed on data samples simulated by GEANT when system was in design stage. When system was installed cosmic data were used. Finally when beam operation started, validation was compelte and part of entire CLAS12 detector commissioning. Details discussed below.
+
+\subsection{Validation during design phase}
+
+Validation process consists of several methods and depends on the nature of validated trigger component. For stage1 components written on C++ for HLS/VIVADO implementation, GEANT-simulated data were processed directly by c++ code and compared with initial similation parameters. In addition, the same samples were processed by offline reconstruction software and results compared with the trigger output. That double check method practicaly guarantees bug-free implementation. It was no single case when c++ implementation passed validation on simulated data and failed on final validation stage. Most complicated stage1 components were validated using this method.
+
+Some stage1, as well as all stage2 and stage3 components were implemented using VHDL. Fof those, VIVADO tools were used for validation diring design phase, in particular ...
+
+\section{Validation of the installed system using cosmic runs}
+
+\section{Validation on beam during CLAS12 detector commissioning}
+
+.. random trigger runs ..
+
+.. gain check ..
+
+
+\section{Validation for different experiments}
+
+After CLAS12 detector was commissioned and trigger system was validated, we still have to repeat validation process occasionally. It is needed because different experiments requesting configuration changes in trigger syste, taking advantage of it's flexibility.

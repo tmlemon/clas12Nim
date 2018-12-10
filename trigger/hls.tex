@@ -1,0 +1,46 @@
+\section{High Level Synthesis in CLAS12 Trigger System development}
+
+\subsection{Our motivation to use HLS}
+
+HLS makes it easier to incorporate well-established data processing algorithms, typically written in C++ or other high-level language, into FPGA-based projects.It allows to involve programmers who developed algorithms for offline data processing but with limited FPGA programming experience. It also makes it possible to validate code inside offline processing framework.
+
+\subsection{Trigger components implemented with HLS}
+
+HLS was used to develop most of stage 1 components of CLAS12 trigger:
+
+High Threshold Cherenkov Counter (cluster energy reconstruction)
+Forward and Central Time-of-Flight Counters (clustering and left-right correction)
+Electromagnetic and Preshower Calorimeters (cluster energy and position reconstruction)
+
+Time-of-Flight and Cherenkov counters implementation was rather trivial, it would typically takes less then 10-15% of the Virtex 7 chip and timing requirements were easily met.
+
+Calorimeter trigger implementations required much more effort because of its complex nature which requires significant FPGA resources. Details are further explained in the next sections using Electromagnetic Calorimeters as the example.
+
+
+\subsection{CLAS12 Electromagnetic Calorimeters}
+
+Among all trigger system elements, the most challenging for FPGA implementation was trigger component serving two CLAS12 electromagnetic calorimeters. Due to its structure, those calorimeters do not provide cluster coordinates or energies without significant event reconstruction. Both calorimeters consists of three sets of scintillation strip layers with PMT readout on one side of strip. To reconstruct clusters it is needed to find peaks in all three layers, find crosses of those peaks, apply attenuation length corrections to individual scintillation strips, correct peaks energies, correct clusters energies, and finally report clusters coordinates and energies to the following stage of the trigger system. Cluster reconstruction procedure was developed before as part of offline analysis and was well established, so we decided to use it as starting point for trigger component design.
+
+Event with single cluster is shown inCLAS12 PCAL (preshower calorimeter); corrected energies are shown for individual strips
+
+\subsection{HLS Settings}
+
+Clock uncertainty is set as 30% of main clock, we found that it forces HLS to produce more realistic timing estimates. A single HLS project often cannot exceed several percent of FF and LUT budget, otherwise it may be a problem to meet timing requirement on VIVDO implementation step. Typical project from Calorimeter trigger is shown below.
+
+\subsection{VIVADO Settings}
+
+Common settings were used as shown on picture below. It usually takes 3+ hours to compile Calorimeter project on Dell R730 server under RHEL7. For some firmware versions, we were able to utilize 100% of LUTs and still meet timing – if clock domain was 125MHz or lower.
+
+\subsection{Firmware validation}
+
+The ability to validate firmware using C++ implementation is the one of the biggest advantages of HLS. During the course of development and commissioning we ran HLS C++ code on simulated and real data from CLAS12 detectors, implementing required features and fixing bugs. During data taking we were able to find and fix observed problems or add new features in several hours, which was very important to save beam time.
+
+\subsection{Our conclusion about HLS Usage}
+
+CLAS12 Calorimeters and other detectors were successfully implemented into trigger system using HLS to produce core part of the firmware. This trigger was used in the first physics run and worked as expected. We were able to select events based on individual cluster energy, something which was possible before only during offline data processing.
+HLS in general appears to be a useful tool, especially to implement smaller trigger components like Cherenkov or time-of-flight counters. For components utilizing significant portion of the FPGA, it will be great to improve HLS in following directions:
+
+Support multi-clock domains
+Improve subroutine calls by allowing option to fully registered paths between modules. 
+Improve state machine logic, for example support streams between routines inside the project and be able to generate separate state machines for separate routines. It will allows to avoid splitting project manually and use HDL as top interface as we are currently forced to do.
+
