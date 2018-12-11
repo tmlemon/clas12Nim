@@ -2,7 +2,8 @@
 
 \subsection{Our motivation to use HLS}
 
-HLS makes it easier to incorporate well-established data processing algorithms, typically written in C++ or other high-level language, into FPGA-based projects.It allows to involve programmers who developed algorithms for offline data processing but with limited FPGA programming experience. It also makes it possible to validate code inside offline processing framework.
+HLS makes it easier to incorporate well-established data processing algorithms, typically written in C++ or other high-level language, into FPGA-based projects.
+It allows to involve programmers who developed algorithms for offline data processing but with limited FPGA programming experience. It also makes it possible to validate code inside offline processing framework.
 
 \subsection{Trigger components implemented with HLS}
 
@@ -21,17 +22,18 @@ Calorimeter trigger implementations required much more effort because of its com
 
 Among all trigger system elements, the most challenging for FPGA implementation was trigger component serving two CLAS12 electromagnetic calorimeters. Due to its structure, those calorimeters do not provide cluster coordinates or energies without significant event reconstruction. Both calorimeters consists of three sets of scintillation strip layers with PMT readout on one side of strip. To reconstruct clusters it is needed to find peaks in all three layers, find crosses of those peaks, apply attenuation length corrections to individual scintillation strips, correct peaks energies, correct clusters energies, and finally report clusters coordinates and energies to the following stage of the trigger system. Cluster reconstruction procedure was developed before as part of offline analysis and was well established, so we decided to use it as starting point for trigger component design.
 
-Event with single cluster is shown inCLAS12 PCAL (preshower calorimeter); corrected energies are shown for individual strips
+Event with single cluster is shown in
+CLAS12 PCAL (preshower calorimeter); corrected energies are shown for individual strips
 
 \subsection{HLS Settings}
 
-Clock uncertainty is set as 30% of main clock, we found that it forces HLS to produce more realistic timing estimates. A single HLS project often cannot exceed several percent of FF and LUT budget, otherwise it may be a problem to meet timing requirement on VIVDO implementation step. Typical project from Calorimeter trigger is shown below.
+Clock uncertainty is set as 30\% of main clock, we found that it forces HLS to produce more realistic timing estimates. A single HLS project often cannot exceed several percent of FF and LUT budget, otherwise it may be a problem to meet timing requirement on VIVDO implementation step. Typical project from Calorimeter trigger is shown below.
 
 \subsection{VIVADO Settings}
 
-Common settings were used as shown on picture below. It usually takes 3+ hours to compile Calorimeter project on Dell R730 server under RHEL7. For some firmware versions, we were able to utilize 100% of LUTs and still meet timing – if clock domain was 125MHz or lower.
+Common settings were used as shown on picture below. It usually takes 3+ hours to compile Calorimeter project on Dell R730 server under RHEL7. For some firmware versions, we were able to utilize 100\% of LUTs and still meet timing – if clock domain was 125MHz or lower.
 
-\subsection{Firmware validation}
+\subsection{Firmware validation for HLS-based projects}
 
 The ability to validate firmware using C++ implementation is the one of the biggest advantages of HLS. During the course of development and commissioning we ran HLS C++ code on simulated and real data from CLAS12 detectors, implementing required features and fixing bugs. During data taking we were able to find and fix observed problems or add new features in several hours, which was very important to save beam time.
 
