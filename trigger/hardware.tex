@@ -1,11 +1,11 @@
-\section{Hardware Implementation}
+\section{Hardware Implementation} Chris
 
 The CLAS12 Level 1 Trigger System is implemented using High Speed Serial (VXS) techniques for a complete fully pipelined multi-crate trigger system that takes advantage of the elegant high speed VXS serial extensions for VME.  This trigger system includes three sections starting with the front end VXS crate Trigger Processor (VTP), a global Sub-System Processor (SSP) and a Trigger Supervisor that manages the timing, synchronization and front end event readout.  
 Within a front end crate, trigger information is gathered from each 16 Channel, 12bit Flash ADC module at 4nS intervals via the VXS backplane, to a Trigger Processor (VTP).  Each Trigger Processor is capable of handling these 500MBps VXS links from the 16 FADC modules, and then performs real time crate level trigger algorithms.  The crate trigger processor transmits the Level 1 trigger information through multiple Gigabit transceivers that are combined into a fiber link.  The VTP uses a multi-fiber link to increase the aggregate trigger data transfer rate to the global trigger to 10Gbps.
 The front end crate trigger data is transmitted on the VXS backplane, and on the multi-fiber link using the Aurora protocol from Xilinx.  The front end modules use Virtex-V devices with Gigabit Transceivers operating at 2.5Gbps. The VXS Trigger Processor collects these serial streams with a Virtex7 device and works with a Zynq7 processor to manage the network interface and on-board Linux operating system.
 The entire trigger system is synchronous and operates at 250Mhz with the Trigger Supervisor managing not only the front end event readout, but also the distribution of the critical timing clocks, synchronization signals, and the global trigger signals to each front end readout crate.  These signals are distributed to the front end crates on a separate fiber link and each crate is synchronized using a unique encoding scheme to guarantee that each front end crate is synchronous with a fixed latency, independent of the distance between each crate.  The overall trigger signal latency is <3uS, and the proposed 12GeV experiments at Jefferson Lab require up to 200KHz Level 1 trigger rate.
 
-\subsection{VTP board}
+\subsection{VTP board} Ben
 
 
-\subsection{SSP board}
+\subsection{SSP board} Ben
