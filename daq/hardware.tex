@@ -14,7 +14,22 @@
 
 \subsection{TDC modiles (v1190/v1290)(Sergey)}
 
-\subsection{Drift Chamber Discriminator/TDC module (DCRB)(Ben)}
+\subsection{Drift Chamber Readout Board(DCRB)}
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/dcrb_board.png}
+	\caption{Drift Chamber Readout Board (DCRB)}
+	\label{fig:dcrb_board}
+\end{figure}
+
+The Drift Chamber Readout Board (DCRB) Fig.~\ref{fig:dcrb_board} is a 96 channel amplifier, discriminator, time-to-digital converter VXS module used to digitize and readout hits from the CLAS12 Drift Chambers. A single VXS crate of DCRB modules can readout a full region of the drift chambers for a single sector resulting in 18 VXS crates of DCRBs to instrument 6 sectors each having 3 regions of drift chamber.
+
+Each DCRB receives 96 differential analog signal pairs using twisted pair cabling from the drift chamber pre-amplifiers. The pre-amplfiers are located on the detector providing a gain of ~2.3mV/$\mu$A. On the DCRB each analog input channel is amplified by a voltage gain of 30 and then discriminated by a programmable threshold (common to all channels on the board with an effective chamber wire threshold range of 0 to 3.5/$\mu$A).
+
+All discriminated channels go to a Xilinx Spartan 6 FPGA where a 96 channel 1ns resolution time-to-digital converter (TDC) is implemented in firmware. The TDC is based on the ISERDES2 shift register FPGA primitive that directly sample of the digital input with a single-data-rate (SDR) input register clocked at 1GHz. The TDC sampling clock is synchronized to the CLAS12 master oscillator making it easy to relate hit times in the drift chamber other detectors in CLAS12. TDC inputs are buffered supporting multiple hits allowing for an average hit rate of 4MHz per input before loss of data, which exceed the hits rates the chamber is designed for by a few orders of magnitude. Hits from groups of 16 channels are written into a large buffer that a linked-list content addressable memory (CAM) tracks for 16$\mu$s. When a L1A trigger signal is received a time window of hits is extracted from the TDC hit buffer. The readout time window times are supplied to the CAM, and the CAM provides the address of the last hit matching each readout time bin. The hit buffer is then read to extract the hit and also the address of the next hit in the buffer matching the time bin (this is the linked list behavior). The result is an extremely fast event builder with natural zero suppression that doesn't require time sorted data. Cleanup is accomplished by a timer that invalidates CAM entries after time bins are 16$\mu$s old. Hits for an event are assembled and buffered in a 2MByte external RAM which is readout through the VME bus using the 2eSST protocol at 200MB/s.
+
+A programmable amplitude pulse generator is implemented that can inject test pulses directly to the DCRB differential amplifier inputs as well as to the pre-amplfiers that are on the detector. This provides a way to test points of failure, check channel gain, and check channel delays without any extra equipment. A scaler is implemented on each channel for slow control monitoring of all chamber wires.
 
 \subsection{VXS Silicon Readout Module (VSCM)}
 
@@ -40,7 +55,7 @@ The main features of the VSCM include:
 	\item FSSR2 synchronization, status, and control
 \end{itemize}
 
-The VSCM deserializes the FSSR2 streams checking for errors and decoding the hits, which are stored in an 8$\mu$s circular memory. The hits are not guaranteed to be time ordered, so the timestamp and channel number are used to form the circular memory address (rather than storing in the order received). The VSCM also implements an 8 channel 1ns time-to-digital converter (TDC) which measures the logic OR of hits from each FSSR2 ASIC. This high time resolution is significantly better than the FSSR2 serial stream hit time resolution and is required for improved out-of-time hit rejection. The L1A trigger signal time is used to look back a fixed amount of time and extract a time window of hits from the circular memory, which correspond to the physics event. Non-zero hits are as assembled as an event and buffered in an 2MByte external RAM which is readout through the VME bus using the 2eSST protocol at 200MB/s.
+The VSCM deserializes the FSSR2 streams checking for errors and decoding the hits, which are stored in an 8$\mu$s circular memory. The hits are not guaranteed to be time ordered, so the timestamp and channel number are used to form the circular memory address (rather than storing in the order received). The VSCM also implements an 8 channel 1ns time-to-digital converter (TDC) which measures the logic OR of hits from each FSSR2 ASIC. This high time resolution is significantly better than the FSSR2 serial stream hit time resolution and is required for improved out-of-time hit rejection. The L1A trigger signal time is used to look back a fixed amount of time and extract a time window of hits from the circular memory, which correspond to the physics event. Non-zero hits are as assembled as an event and buffered in a 2MByte external RAM which is readout through the VME bus using the 2eSST protocol at 200MB/s.
 
 The event data contains primarily two hit word types that together provide high time resolution and spatial hit resolution while keeping the front-end complexity low.
 
