@@ -5,14 +5,21 @@ CLAS12 Trigger System Validation was initially performed on data samples simulat
 \subsection{Validation during design phase}
 
 sergey
-Validation process consists of several methods and depends on the nature of validated trigger component. For stage1 components written on C++ for HLS/VIVADO implementation, GEANT-simulated data were processed directly by c++ code and compared with initial similation parameters. In addition, the same samples were processed by offline reconstruction software and results compared with the trigger output. That double check method practicaly guarantees bug-free implementation. It was no single case when c++ implementation passed validation on simulated data and failed on final validation stage. Most complicated stage1 components were validated using this method.
+Validation process consists of several methods and depends on the nature of validated trigger component. For stage1 components written on C++ for HLS/VIVADO implementation,
+GEANT-simulated data were processed directly by c++ code and compared with initial similation parameters. 
+In addition, the same samples were processed by offline reconstruction software and results compared with the trigger output. 
+That double check method practicaly guarantees bug-free implementation. It was no single case when c++ implementation passed validation on
+simulated data and failed on final validation stage. Most complicated stage1 components were validated using this method.
 
 ben
 Some stage1, as well as all stage2 and stage3 components were implemented using VHDL. For those, VIVADO tools were used for validation diring design phase, in particular ...
 
 \section{Validation of the installed system using cosmic runs} Cole
 
-\section{Validation on beam during CLAS12 detector commissioning} Rafo
+\section{Validation on beam during CLAS12 detector commissioning - no FT} Rafo\\
+Almost all of stage one trigger components, before deploying to the production firmware, were tested on GEANT4 simulated data.
+
+\section{Validation on beam during CLAS12 detector commissioning - FT} Andrea
 
 .. running c++ code, using VTP banks ..
 
