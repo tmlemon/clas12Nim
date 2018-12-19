@@ -1,14 +1,52 @@
 \subsection{Frontend Libraries}
 
+Just an outline ATM
+
 GEFANUC driver:
-  Customized Kernel Driver and Userspace Interface
-  API provides:
-  - Setup of VME inbound and outbound windows
-  - - Permanent windows: A16, A24, A32
-  - - Map of these windows into userspace
-  - Allocate of Physical Memory for DMA
-  - - Map of this memory into userspace
+\begin{itemize}
+\item Customized Kernel Driver and Userspace Interface
+\item C API provides:
+   \begin{itemize}
+   \item Setup of VME inbound and outbound windows
+      \begin{itemize}
+      \item Permanent windows: CRCSR, A16, A24, A32
+      \item Map of these windows into userspace
+      \end{itemize}
+   \item Allocate of Physical Memory for DMA
+      \begin{itemize}
+      \item Map of this memory into userspace
+      \end{itemize}
+   \end{itemize}
+\end{itemize}
 
 JVME Userspace Driver:
-  - Provides a common userspace API interface to GEFANUC and others.
-  -
+\begin{itemize}
+\item C API provides
+  \begin{itemize}
+  \item common userspace interface to GEFANUC driver and others.
+  \item Initialization of kernel driver and default VME windows
+  \item Maps VME bridge registers into userspace
+    \begin{itemize}
+    \item Provides userspace configuration and operation of DMA
+    \end{itemize}
+  \item Initialization of and access to shared memory mutex for intra-process cooperation during DMA
+  \end{itemize}
+\end{itemize}
+
+Frontend Libraries
+\begin{itemize}
+\item C APIs provide
+  \begin{itemize}
+  \item module register mapping in VME windows to memory structures.
+  \item configures modules for readout via
+    \begin{itemize}
+    \item programmed i/o
+    \item Single module DMA
+    \item Multiple module DMA
+       \begin{itemize}
+       \item Token passing (P0/VXS and CBLT) with common A32 address range
+       \item Linked List DMA
+       \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
