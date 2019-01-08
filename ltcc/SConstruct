@@ -1,5 +1,6 @@
 import os
 
-env = Environment(PDFLATEXFLAGS = "-halt-on-error")
+env = Environment(PDFLATEXFLAGS = "-halt-on-error")  # stops log where error occurs
+env['ENV']['max_print_line']='1048576'               # makes log output longer
 env['ENV']['TEXINPUTS']='..:'
 pdf = env.PDF(target  = 'ltcc.pdf',  source = 'ltcc.tex')
