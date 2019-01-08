@@ -22,8 +22,7 @@ Due to the material, assembly and dimension of the different type of mirrors, tw
 The cylindrical mirrors range from 6 to 12 inches in length. Each mirror is made by a single piece of aluminum or plastic.
 Due to the small size, it can fit in most vacuum chambers used to coat mirrors by evaporation of aluminum with magnesium fluoride
 ($AlMg_2$). After successful testing a re-coating of $AlMg_2$ onto the existing substrate, the work of recoating 216 cylindrical mirrors
-was awared to ECI~\cite{ECI}. The re-coated mirrors shows a $\sim 90\%$ reflectivity in the visible spectrum and an exceptional $\sim 80\%$
-reflectivity in the UV spectrum, see Fig.~\ref{fig:reflectivityAfter} for typical curves.
+was awared to ECI~\cite{ECI}. See Fig.~\ref{fig:reflectivityAfter} for typical reflectivity values after recoating.
 
 
 \subsubsection{Re-coating of Elliptical and Hyperbolic mirrors}
@@ -65,28 +64,37 @@ The segment with long elliptical mirrors presented several gaps between them, so
 additional 120 micron thick lexan extension coated with $AlMg_2$ were glued to cover the gaps. The strips were manufactured by ECI~\cite{ECI}.
 
 
-\subsubsection{Mirrors re-coating summary and results}
-
-In Fig.~\ref{fig:reflectivityAfter} spectrum of 
-
 \begin{figure}[h]
 \centering
-	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/mirrorsReflectivityAfter.png}
-	\caption{Average number of reflections calculated from simulations studies.}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/mirrorsReflectivityAfter.png}
+	\caption{Typical mirror reflectivity measure after re-coating the mirrors or glueing the lexan strips. Note the very high value of reflectivity
+            in the UV region, where most of the Cherenkov light is produced. In the visible spectrum, the reflectivity is about $\sim 90\%$.}
 	\label{fig:reflectivityAfter}
 \end{figure}
 
 
+\subsubsection{Mirrors re-coating summary and results}
 
+In Fig.~\ref{fig:reflectivityAfter} a typical spectrum of reflectivity that applies to all cylindrical, elliptical and hyperbolic mirrors is shown.
+The re-coated mirrors shows a $\sim 90\%$ reflectivity in the visible spectrum and an exceptional $\sim 80\%$
+reflectivity in the UV spectrum,
 
 \subsection{Mirrors Alignment}
 
+A new procedure was developed to align the mirrors that takes advantage of their focusing capabilities. The elliptical mirrors focal points are 1. the target
+(origin of the lab coordinate system)
+and 2. a point behind the hyperbolic mirror. The focal points if the hyperbolic mirrors are 1. a point near the focal point of the elliptical mirrors and
+2. above the face of the PMTs.
+
+This mathematical model of the mirrors has been build in the geant4 simulation, see Fig.~\ref{fig:alignmentSimulation}. When a laser line is directed at the mirror,
+it is focused on the hyperbolic focal point, this directed at the PMT.
 
 
 \begin{figure}[h]
 \centering
-	\includegraphics[width=1.0\columnwidth, height=0.5\textheight]{img/mirrorAlignmentSimulation.png}
-	\caption{Average number of reflections calculated from simulations studies.}
+	\includegraphics[width=1.0\columnwidth, keepaspectratio]{img/mirrorAlignmentSimulationZoomed.png}
+	\caption{The simulation of a laser line (white tracks are photons) originating from the target and directed at the elliptical mirrors. The photons are directed
+		      at the second ellipse focal point, and the hyperbolic mirror reflects them on its focal point. This picture illustrate the procedure used to align the mirrors.}
 	\label{fig:alignmentSimulation}
 \end{figure}
 
