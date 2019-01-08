@@ -1,6 +1,8 @@
 import os
+from util import scanFiles
 
 env = Environment(PDFLATEXFLAGS = "-halt-on-error")  # stops log where error occurs
 env['ENV']['max_print_line']='1048576'               # log output does not break single lines into multiples
 env.Command('ltcc.pdf', 'ltcc.tex', "pdflatex $SOURCE > /dev/null; bibtex ltcc ; pdflatex $SOURCE > /dev/null; pdflatex $SOURCE")
-cleans = scanFiles('.', accept=["ltcc*", "*.aux"], reject=[".tex"])
+cleans = scanFiles('.', accept=["ltcc.*", "*.aux"], reject=[".tex"])
+Clean('ltcc.pdf', cleans)
