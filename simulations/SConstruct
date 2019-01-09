@@ -6,3 +6,18 @@ env['ENV']['max_print_line']='1048576'               # log output does not break
 env.Command('simulations.pdf', 'simulations.tex', "pdflatex $SOURCE > /dev/null; bibtex simulations ; pdflatex $SOURCE > /dev/null; pdflatex $SOURCE")
 cleans = scanFiles('.', accept=["simulations.*", "*.aux"], reject=[".tex"])
 Clean('simulations.pdf', cleans)
+
+
+# Presentations:
+# /Users/ungaro/Dropbox/presentations/gemc/full/gemc updates Coll Meeting Nov 2016.key
+# /Users/ungaro/Dropbox/presentations/gemc/full/clas12reviewSept2017.key
+# /Users/ungaro/Dropbox/presentations/gemc/full/gemcUpdatesHallBCollMeeting6-2016.key
+
+
+# Additional TODOs:
+# - RF
+# - FADC Output
+# - Geometry sources and table of geometry summary
+# - Two configurations
+# - Documentation
+# - All output possibilities see slide
