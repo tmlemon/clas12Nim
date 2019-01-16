@@ -1,10 +1,10 @@
 \begin{abstract}
 
 The Geant4 Monte-Carlo (GEMC) package is used simulate the passage of particles thrugh the various CLAS12 detectors.
-The CLAS12 geometry is implemented through a database of geant4 volumes created through the program API or by the CLAS12
-COATJAVA geometry service. Several hardware components are imported from the CAD engineering model.
-The true inormation is digitized by routines specific to each detectors and include the use of the CLAS12 CCDB
-calibration constants to produce both ADC and Flash ADC (FADC) response functions.
+The geometry is implemented through a database of geant4 volumes created either through the GEMC native API, by the CLAS12
+COATJAVA geometry service or imported from the CAD engineering model.
+The true information is digitized with a plugin mechanism by routines specific to each detectors and include the use of the CLAS12 CCDB
+calibration constants to produce both ADC, TDC and Flash ADC (FADC) response functions.
 Theoretical models producing generated events interface with GEMC through the LUND format.
 The merging of simulated data with real random trigger data provides a mechanism to includes both beam
 and electronic background into the simulation of generated events.
