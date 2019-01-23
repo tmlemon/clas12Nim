@@ -98,7 +98,7 @@ In \F{reflectivityAfter} a typical spectrum of reflectivity that applies to all 
 The re-coated mirrors shows a $\sim 90\%$ reflectivity in the visible spectrum and an exceptional $\sim 80\%$
 reflectivity in the UV spectrum,
 
-\begin{figure}[b]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/mirrorsReflectivityAfter.png}
 	\caption{Typical mirror reflectivity measure after re-coating the mirrors or glueing the lexan strips. Note the very high value of reflectivity
@@ -108,25 +108,22 @@ reflectivity in the UV spectrum,
 
 \subsection{Mirrors Alignment}
 
-A new procedure was developed to align the mirrors that takes advantage of their focusing capabilities. The elliptical mirrors focal points are 1. the target
+A new procedure was developed to align the mirrors that takes advantage of their focusing capabilities. The elliptical mirrors focal points (see \F{alignmentSimulation}) are 1. the target
 (origin of the lab coordinate system)
 and 2. a point behind the hyperbolic mirror. The focal points if the hyperbolic mirrors are 1. a point near the focal point of the elliptical mirrors and
 2. above the face of the PMTs.
 
-The mathematical shape of the mirrors has been build in the geant4 simulation, see \F{alignmentSimulation}. When a laser line is directed at the mirror,
-it is focused on the hyperbolic focal point, then directed at the PMT.
+The mathematical shape of the mirrors has been build in the geant4 simulation. When a laser line is directed at the mirror,
+it is focused on the hyperbolic focal point, then directed at the PMT, see \F{alignmentSimulation}.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-	\includegraphics[width=1.0\columnwidth, keepaspectratio]{img/mirrorAlignmentSimulationZoomed.png}
+	\includegraphics[width=0.95\columnwidth, keepaspectratio]{img/mirrorAlignmentSimulationZoomed.png}
 	\caption{The simulation of a laser line (white tracks are photons) originating from the target and directed at the elliptical mirrors. The photons are directed
 		      at the second ellipse focal point, and the hyperbolic mirror reflects them on its focal point. This picture illustrate the procedure used to align the mirrors.}
 	\label{fig:alignmentSimulation}
 \end{figure}
 
-The laser setup for the mirror alignment is shown in \F{laserAlignment}. A 3 mW, $635 nm$ laser was placed, relative to the detector,
-in the lab center of coordinate system. The position was accurate at the 0.5 mm level. The laser was spread through two cylindrical lenses onto a laser line and shone
-onto each elliptical mirror. Both the elliptical and hyperbolic mirrors were rotated to focus the light onto the face of the PMT.
 
 \begin{figure}
 \centering
@@ -136,4 +133,11 @@ onto each elliptical mirror. Both the elliptical and hyperbolic mirrors were rot
          Bottom: zoomed in view of the laser line focused on the center of the PMT after the mirrors were aligned.}
 	\label{fig:laserAlignment}
 \end{figure}
+
+The laser setup for the mirror alignment is shown in \F{laserAlignment} (top). A 3 mW, $635 nm$ laser was placed, relative to the detector,
+in the lab center of coordinate system. The laser was mounted on a structure that allowed to move the beam direction and line angle with respect to floor while keeping
+the origin of the laser at the coordinate system origin.
+This position was accurate at the 0.5 mm level. The laser was spread through two cylindrical lenses onto a laser line and shone
+longitudinally along the center line of each elliptical mirror. Both the elliptical and hyperbolic mirrors were then adjusted in pitch, roll and yaw to minimize the light spot
+dimensions and to center it in the middle of the face of the PMT, see  \F{laserAlignment} (bottom).
 
