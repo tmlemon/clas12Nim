@@ -28,6 +28,16 @@ shows a degraded reflectivity compared to the values at installation, probably d
 
 A study of refurbishment of the mirrors and winston cones surfaces
 involved re-coating samples of surfaces and mirrors using several companies.
+
+\begin{equation} \label{eq:cerenkov}
+	\frac{d^2n}{dxd\lambda} = \frac{2\pi z^2\alpha}{\lambda^2}\sin^2{\theta_C(v)},
+\end{equation}
+
+with the fine structure constant $\alpha$ and the \u{C}erenkov cone half-angle
+$\theta_C$.
+
+In the study the gas refraction index, gas transparency mirror reflectivity and pmts response function as a function of wavelength
+were plugged in eq.~\ref{eq:cerenkov}.
 All scenarios resulted in a dramatic increase of reflectivity. The original versus refurbished projected
 reflectivity is shown in \F{reflectivityGain}.
 
@@ -110,12 +120,11 @@ The design changes of the LTCC are summarized below:
 \end{enumerate}
 
 \input{box}
-
 \input{mirrors}
-
 \input{wc}
-
 \input{pmts}
+
+\input{pmtBase}
 
 \input{windows}
 
