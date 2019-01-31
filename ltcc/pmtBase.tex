@@ -31,20 +31,33 @@ The following tests were performed successfully:
 	\item FADC spectrum
 \end{itemize}
 
-In \F{dividerTests} the
-
-
-
+In \F{dividerTests} (top) an empirical comparison of the two signals shows the similarity between the two output.
+During testing of the modified PMT bases, the output has been processed by a Flash ADC electronic and acquired with a data
+acquisition software using the PMT itself as trigger.
+The corresponding SPE spectrum has been analyzed. The shape of the SPE signal is very similar to the original signal
+coming from the external dedicated splitter and amplifier through the ADC electronics, see  \F{dividerTests} (bottom).
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.87\columnwidth,keepaspectratio]{img/doubleSignal.png}
 	\includegraphics[width=0.97\columnwidth,keepaspectratio]{img/fadcOutput.png}
-	\caption{Average number of reflections calculated from simulations studies.}
+	\caption{Top: qualitetively comparison of the two outputs from the base modifications as seen on an oscilloscope.
+				The analysis of the adc spectra histograms confirmed quantitevily that the signals are identical. Bottom:
+				The single photo-electron ADC spectrum of one of the output compared with the PMT output in the original
+            configuration of a dedicated external splitter and amplifier.
+    }
 	\label{fig:dividerTests}
 \end{figure}
 
+
+
+
 dsg work
+
+advantage: much less HV! Comparison plot excel of HV?
+
+
 
 final implementation: 200 modules
 
+choice of
