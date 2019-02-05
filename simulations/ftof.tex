@@ -1,13 +1,11 @@
-
 \section{Forward Time-Of-Flight (FTOF)}
-
 
 \subsection{Geometry}
 
 The FTOF geometry is implemented through the COATJAVA geometry service.
 The service provides the geant4 definitions that are read by the GEMC perl api to build the geometry database.
 
-All scintillators are geant4 volumes.
+All scintillators are geant4 volumes. The paddles are assigned the scintillator material and associated with the ftof hit process routine.
 Each scintillator is a G4Box embedded in a G4Trapezoid mother volume made of air, see \F{ftofGeometry}.
 
 \begin{figure}
@@ -21,7 +19,6 @@ Each scintillator is a G4Box embedded in a G4Trapezoid mother volume made of air
 
 \subsubsection{Geometry Git Location}
 The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/ftof}.
-
 The geometry service definitions in coatjava is \url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/FTOFGeant4Factory.java}
 
 \subsection{Process ID}
@@ -37,6 +34,17 @@ to account for the fact that the HV are adjusted so that the geometeric mean sqr
 
 The corrected energy is converted to the theoretical number of photos $N_{th}$ using the constant $500 \gamma / MeV $. A poissonian is used to
 calculate the actual number of photons $N_{actual}$ and the resulting ``smeared`` energy is the converted to adc using the FADC conversion factor.
+
+An example of the smeared ADC for the right paddles as a function of position is shown in \F{ftofAtten}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ftofAtten.png}
+	\caption{The ADC of the right paddles PMTs as a function of the relative paddle position of the hit in the paddle. The effects of attenuation
+				length and smearing using realistic constant from the CCDB database makes the FTOF simulation response very similar to the real data.}
+	\label{fig:ftofAtten}
+\end{figure}
+
 
 \subsubsection{TDC}
 
@@ -91,7 +99,7 @@ The digitized output bank has $ID=1000$, and the variables are summarized in Tab
 
 \subsubsection{Time Window}
 
-The timewindow of the
+The timewindow of the FTOF is set to 400 ns.
 
 \subsubsection{Process Routine Git Repository Location}
 The FTOF hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ftof_hitprocess.cc}
