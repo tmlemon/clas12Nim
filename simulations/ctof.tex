@@ -8,7 +8,7 @@ The paddles are assigned the scintillator material and associated with the ctof 
 The light guides are also associated to the scintillator material, but they are treated as passive material and not associated with a sensitive detector.
 
 Each volume is typically tessellated by about 1,000 faucets. The simulation geometry captures complicated details such as the shape of the scintillator/light guides
-junction, see \F{ftofGeometry} bottom.
+junction, see \F{ctofGeometry} bottom.
 
 \begin{figure}
 	\centering
@@ -17,7 +17,7 @@ junction, see \F{ftofGeometry} bottom.
 	\caption{Top: the GEMC implementation of the CTOF geometry. The paddles and light guides imported directly from the enginerring model.
 			   The orange line shows a 2 GeV proton leaving a hit (red dot) in one of the paddles.
 				Bottom: a zoom-in of the implementation shows the details of scintillator/light guides junction. }
-	\label{fig:ftofGeometry}
+	\label{fig:ctofGeometry}
 \end{figure}
 
 
@@ -75,7 +75,7 @@ The time is then smeared by a $\sigma$ resolution read from CCDB using a gaussia
 
 \subsection{Digitized Bank}
 
-The digitized output bank has $ID=400$, and the variables are summarized in Table \ref{tab:ftofBank}
+The digitized output bank has $ID=400$, and the variables are summarized in Table \ref{tab:ctofBank}
 
 \begin{table}[h]
 	\begin{center}
@@ -95,7 +95,7 @@ The digitized output bank has $ID=400$, and the variables are summarized in Tabl
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{Summary of LTCC Electronics}\label{tab:ltccChannels}
+	\caption{Summary of LTCC Electronics}\label{tab:ctofBank}
 \end{table}
 
 
