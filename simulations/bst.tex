@@ -84,7 +84,8 @@ is reproduced in the GEMC simulation using the hit sharing algorithm described i
 The BST digitization provides a 3 bit ADC, using the total energy deposited (after hit sharing) between 26 and 117 KeV.
 
 \subsubsection{TDC}
-There is no time associated with the hit, but a BCO quantity is provided to reproduce the BST.
+The Bunch Cross Oscillator quantity (BCO), a random number between 0 and 255,
+provides the timing info associated with the hit.
 
 \subsection{Digitized Bank}
 The digitized output bank has $ID=100$, and the variables are summarized in Table \ref{tab:bstBank}
@@ -111,8 +112,42 @@ The digitized output bank has $ID=100$, and the variables are summarized in Tabl
 
 
 \subsubsection{Time Window}
+The timewindow of the BST is set to to 132 ns.
 
 \subsubsection{Process Routine Git Repository Location}
 
-
 The BST hit process routines are located in the repository: \url{https://github.com/gemc/source/tree/master/hitprocess/clas12/svt}
+
+\subsubsection{Radiation dose and background rates}
+A detailed study of the backgrond rates coming from beam interacting with the target was done to ensure that the silicon sensor
+could operate in the high radiation conditions of the target proximity.
+
+Given the nominal operating luminosity $L=10^{35} cm^{-2}s^{-1}$, and the liquid hydrogen target of $5 cm$, the beam electron rates
+is $R=4.7 \times 10^{11} Hz$. This correspond to around 62,000 electrons in the BST 132ns time window.
+
+Simulations using 62,000 11 GeV electrons per event impinging on the liquid hydrogen target were analyzed.
+
+
+The rates were calculated for the various region and for different detector threshold.
+The radiation dose and the neutron equivalent damage was estimated. Most of the radiation
+is released in the first two layers of the BST.
+The 370 rad / year are low enough to grant the BST operation for 15 years. The results of the study
+are summarized in \F{radStudy}
+
+In addition a thin layer of tungsten was added after an analyis aimed at reducing the electromagnetic
+background \cite{bstDose}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bstHitDisplay.png}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bstRates.png}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bstRadSummary.png}
+	\caption{Summary of radiation doses and background rates on the BST. Top: a display shows the occupancy of the various BST layers
+            for different thresholds. Middle: the rate breakdown for different particles for a threshold of $20 KeV$.
+            The current hardware threshold is $30 KeV$. Bottom: table showing the fluences and radiation doses in different BST
+            layers. }
+	\label{fig:bstHitSharing}
+\end{figure}
+
+
+
