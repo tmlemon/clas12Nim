@@ -10,13 +10,49 @@ TCS (TRIGGER, CLOCK, SYNC, and BUSY) distribution system [1] is the hardware int
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TCSdiagram.pdf}
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TCSdiagram.jpg}
 	\caption{Diagram of the trigger and TCS distribution}
 	\label{fig:TCSdiagram}
 \end{figure}
 
 
-The main hardware of TCS distribution system includes a Trigger Supervisor (TS)[2] board, Signal Distribution (SD) boards, Trigger Distribution (TD)[3] boards, Trigger Interface (TI)[3] boards, VXS crates, and optic fibres.  The TS board, one SD board, and up to sixteen TD boards are located in the global TCS distribution VXS crate.  One TI board and one SD board and/or one FANIO board are located in each frontend crate.  The electronics boards are custom designed and produced for the 12 GeV upgrade.  Field Programmable Gate Arrays (FPGA) are used for TCS generation, control and decoding.  Optical Fibres and high-speed differential backplane connections are used to transmit signals at high speed and long distance.  
+The main hardware of TCS distribution system includes a Trigger Supervisor (TS)[2] board (Fig.~\ref{fig:TSused}, Fig.~\ref{fig:TSdiagram}), Signal Distribution (SD) boards, Trigger Distribution (TD)[3] boards  (Fig.~\ref{fig:TDused}), Trigger Interface (TI)[3] boards  (Fig.~\ref{fig:TIused}, Fig.~\ref{fig:TIdiagram}), VXS crates, and optic fibres.  The TS board, one SD board, and up to sixteen TD boards are located in the global TCS distribution VXS crate.  One TI board and one SD board and/or one FANIO board are located in each frontend crate.  The electronics boards are custom designed and produced for the 12 GeV upgrade.  Field Programmable Gate Arrays (FPGA) are used for TCS generation, control and decoding.  Optical Fibres and high-speed differential backplane connections are used to transmit signals at high speed and long distance.  
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TSused.jpg}
+	\caption{TS board}
+	\label{fig:TSused}
+\end{figure}
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TSdiagram.jpg}
+	\caption{TS board diagram}
+	\label{fig:TSdiagram}
+\end{figure}
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TDused.jpg}
+	\caption{TD board}
+	\label{fig:TDused}
+\end{figure}
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TIused.jpg}
+	\caption{TI board}
+	\label{fig:TIused}
+\end{figure}
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TIdiagram.jpg}
+	\caption{TI board diagram}
+	\label{fig:TIdiagram}
+\end{figure}
+
 
 A.	Clock distribution
 
@@ -51,7 +87,7 @@ Both the fibre latency and trigger word serializer/ deserializer are compensated
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TIsync.pdf}
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TrgSync.jpg}
 	\caption{Trigger synchronization between TIs}
 	\label{fig:TIsync}
 \end{figure}
@@ -64,7 +100,7 @@ Because of the finite memory size and the randomness of the triggers, it is poss
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TDdiagram.pdf}
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TDdiagram.jpg}
 	\caption{DAQ synchronization}
 	\label{fig:DAQ_synchronization}
 \end{figure}
