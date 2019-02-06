@@ -71,17 +71,24 @@ The trigger words, which include readout trigger signals and event information (
 
 
 
-Table 1 Trigger word definition
+\begin{center}
+	Trigger word definition\\
+	\begin{tabular}{| l | l |}
+		\hline \hline
+		Bit 15:12		& 	Bit11:10	Bit 9-0	Comment		\\
+		\hline
+	1001	& Quadrant timing	Event type	GTP major trigger \\
+	1010	& Quadrant timing	Event type	Ext major trigger \\
+	1011	& Four TS partitions’ event types 	TS partitioning (4, 3, 2, 1) \\
+	0110	& Quadrant timing	Trigger source 	TImaster legacy Trigger \\
+		{\bf Event type	(TS) VME trigger} &     \\
+	0101	& Trigger command/Control	VME command \\
+	0100	& TS timer (TS time bit(13:2))	TI Sync check \\
+	0111	& Trigger content	Additional trigger info \\
+		\hline \hline
+	\end{tabular}
+\end{center}
 
-Bit 15:12	Bit11:10	Bit 9-0	Comment
-1001	Quadrant timing	Event type	GTP major trigger
-1010	Quadrant timing	Event type	Ext major trigger
-1011	Four TS partitions’ event types 	TS partitioning (4, 3, 2, 1)
-0110	Quadrant timing	Trigger source 	TImaster legacy Trigger
-		Event type	(TS) VME trigger
-0101	Trigger command/Control	VME command
-0100	TS timer (TS time bit(13:2))	TI Sync check
-0111	Trigger content	Additional trigger info
 
 Both the fibre latency and trigger word serializer/ deserializer are compensated so that all the TI boards send the readout trigger at the same time to the frontend data acquisition electronics.  The SYNC is used in conjunction with a synchronous FIFO to enforce a fixed latency on the trigger distribution. Fig.~\ref{fig:TIsync} shows the diagram of the compensated trigger distribution.
 
