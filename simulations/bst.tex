@@ -1,24 +1,114 @@
 \section{Barrel Silicon Vertex Tracker (BST)}
 
-The CLAS12 BST geometry is created using the geometry service (location?)
-The geometry directory is "bst".
-
 
 \subsection{Geometry}
 
+
+The BST geometry is implemented through the COATJAVA geometry service.
+The service provides the geant4 definitions that are read by the GEMC perl api to build the geometry database.
+
+There are three BST regions, with 10, 14 and 18 sectors for region 1, 2, and 3 respectively, see \F{bstGeometry}.
+Each sectors contains a module with three sensors, two readout chips, and several layers of material,
+including (length of line represents depth level):
+
+\begin{itemize}
+	\item -- wirebond
+	\item ---- silicon
+	\item ------ epoxy
+	\item -------- rail
+	\item ---------- bus cable
+	\item ------------ carbon fiber
+	\item -------------- rohacell
+	\item ------------ carbon fiber
+	\item ---------- bus cable
+	\item -------- rail
+	\item ------ epoxy
+	\item ---- silicon
+	\item -- wirebond
+\end{itemize}
+
+The strip identification is performed in the Process ID routine.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bstGeometry.png}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bstDetail.png}
+	\caption{Top: the GEMC implementation of the BST geometry. The three regions are shown in the sliced view. The silicon sensors are
+           in cyan color. The red track is a 2 GeV proton, leaving hits in each module crossed. Bottom: detail of a module shows
+           the various material inside. The $300 \mu m$ silicon sensor is on top and bottom of the module.
+           The material inside includes epoxy glue, the bus cable and support material. }
+	\label{fig:bstGeometry}
+\end{figure}
+
+
 \subsubsection{Geometry Git Location}
+The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/bst}.
+The geometry service definitions in coatjava is \url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/SVTGeant4Factory.java}
+
 
 \subsection{Process ID}
 
+At each geant4 step, the local coordinate in the sensor volume are used to calculate the strip id.
+The algorithm includes the dead zone around the sensor, the pitch between the strips ($156 \mu m$) and the angle
+between the strips, that varies from 0 (strip n. 1) and 3 degrees (for strip n. 256). A showcase of the strip id assignment
+is summarized in \F{processID}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bstHit.png}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bstStrip.png}
+	\caption{Top: process ID algorithm cartoon for BST. The strip ID is assigned based on the local position of the track
+            step within the sensitive module. If a step of a primary or a secondary particle happens between the boundary
+            of strip that was already hit, it will be assigned to that strip. Bottom: actual hit position of selected
+            strips in the top and bottom silicon sensors of a module shows the fan-like distribution of the strips,
+            with increasing angle. The top layer angle is the opposite of the bottom layer angle. }
+	\label{fig:processID}
+\end{figure}
+
+Due to the thickness of the silicon sensor, the electrons avalanche produced can end up in more than one strip. This
+is reproduced in the GEMC simulation using the hit sharing algorithm described in \F{bstHitSharing}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bstHitSharing.png}
+	\caption{The BST hit sharing algorithm. If a step in a given strip happens within $39 \mu m$ of another strip, then
+            $90\%$ of the energy deposited will be shared equally between them ($45\%$ each), with a $10\%$ energy loss due
+	         to capacitance between strip and backplane.}
+	\label{fig:bstHitSharing}
+\end{figure}
+
+
 \subsection{Digitization}
 
-
 \subsubsection{ADC}
-\subsubsection{TDC}
+The BST digitization provides a 3 bit ADC, using the total energy deposited (after hit sharing) between 26 and 117 KeV.
 
-\subsubsection{Summary of CCDB Table used}
+\subsubsection{TDC}
+There is no time associated with the hit, but a BCO quantity is provided to reproduce the BST.
 
 \subsection{Digitized Bank}
+The digitized output bank has $ID=100$, and the variables are summarized in Table \ref{tab:bstBank}
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| c | c | c |}
+			\hline \hline
+			Variable         & Description  & Tag  \\
+			\hline
+               layer  &                                      layer number  &    1   \\
+              sector  &                                     sector number  &    2   \\
+               strip  &                                      strip number  &    3   \\
+                 ADC  &                                         3 bit ADC  &    4   \\
+                 bco  &                                   8 bit time info  &    5   \\
+               ADCHD  &                                        13 bit ADC  &    6   \\
+                time  &                                  Time information  &    7   \\
+                hitn  &                                        hit number  &   99   \\
+			\hline \hline
+		\end{tabular}
+	\end{center}
+	\caption{Summary of LTCC Electronics}\label{tab:bstBank}
+\end{table}
+
 
 \subsubsection{Time Window}
 

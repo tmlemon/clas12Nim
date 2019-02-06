@@ -2,7 +2,7 @@
 
 \subsection{Geometry}
 
-The FTOF geometry is implemented through the COATJAVA geometry service.
+The DC geometry is implemented through the COATJAVA geometry service.
 The service provides the geant4 definitions that are read by the GEMC perl api to build the geometry database.
 
 Each layer is a generic G4Trapezoid, tilted by $+6^O$ or $-6^O$ depending if they are part of a stereo superlayer or not.
@@ -13,8 +13,8 @@ The wire identifications is performed in the Process ID routine.
 	\centering
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/dcGeometry.png}
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/dcDetail.png}
-	\caption{Top: the GEMC implementation of the FTOF geometry. The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
-            Bottom: a zoom-in of the implementation shows the details of the individual paddles for Panel 1B (green) and Panel 1A (purple) }
+	\caption{Top: the GEMC implementation of the DC geometry. The red trapezoids are the mother volumes corresponding to DC regions 1, 2 and 3. The cyan track is an electron, hitting the various
+		      layers inside each region (a red dot / layer is a hit). Bottom: a zoom in near the beamline shows the Stereo angle layers. Six layers represent a DC superlayer.}
 	\label{fig:dcGeometry}
 \end{figure}
 
@@ -28,7 +28,6 @@ The geometry service definitions in coatjava is \url{https://github.com/Jefferso
 At each geant4 step, the local vertical position $y$ in the tilted g4Trap is computed. Knowing the distance
 between each wire $\delta Y$ (given by the total height of the trapozoid divided by the number of wires, $112$), which is a constant as we're not taking into
 account wire sagging, the wire ID is given by $n_i = y / \delta y$.
-
 
 \subsection{Digitization}
 
@@ -64,7 +63,16 @@ The resulting $T_w$ is then used in a landau-function to mimic the detector resp
 An intrinsic random time walks correction $\sigma_{TW}$ due to multiple scattering is calculated and the time is smeared with
 a gaussian function using $\sigma_{TW}$ as the resolution.
 
+An example of the resolution function that represents real LTCC data is shown in \F{dcResolution}.
+
 Finally, a random number is thrown and if it's above the efficiency function, calculated based on $DOCA$, the hit is rejected.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/dcResolution.png}
+	\caption{The fit to the data resolution provides parameters that are put in the CCDB database and read by the digitization routine at simulation run time.}
+	\label{fig:dcResolution}
+\end{figure}
 
 
 \subsubsection{Summary of CCDB Table used}
@@ -78,9 +86,36 @@ Finally, a random number is thrown and if it's above the efficiency function, ca
 
 \subsection{Digitized Bank}
 
+The digitized output bank has $ID=1300$, and the variables are summarized in Table \ref{tab:dcBank}
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| c | c | c |}
+			\hline \hline
+			Variable         & Description  & Tag  \\
+			\hline
+               sector  &                                      sector index  &    1   \\
+                layer  &                                       layer index  &    2   \\
+                 wire  &                                        wire index  &    3   \\
+                  tdc  &                                         tdc value  &    4   \\
+                   LR  & Left/Right ambiguity                               &    5   \\
+                 doca  & 2D distance of closest approach                    &    6   \\
+                sdoca  &                                      smeared doca  &    7   \\
+                 time  &              doca / drift velocity                 &    8   \\
+                stime  &             sdoca / drift velocity                 &    9   \\
+                 hitn  &                                        hit number  &   99   \\
+			\hline \hline
+		\end{tabular}
+	\end{center}
+	\caption{Summary of LTCC Electronics}\label{tab:dcBank}
+\end{table}
+
+
 \subsubsection{Time Window}
 
-\subsubsection{Process Routine Git Repository Location}
+The timewindow of the DC is set to 500 ns.
 
+
+\subsubsection{Process Routine Git Repository Location}
 
 The DC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/dc_hitprocess.cc}
