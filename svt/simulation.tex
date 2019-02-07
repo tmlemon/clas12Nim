@@ -5,17 +5,20 @@
 %A series MC simulation have been used to calculate the acceptance of the central detector and have reconstructed physics parameters for types of events that are of interest. Fig. ... shows the missing mass resolution expected for MC simulation studies for a number of different reactions. For all cases studied, the results show that it is possible to identify the missing particle for each reaction.
 %Figure ... shows the missing mass spectrum expected when pion is detected in the central tracker. There is sufficient resolution to study resonant production and to compare, for example, s, t, and u channel processes.
 
-\subsection{Backgrounds, Energy deposition, Dose rates}
-Simulations of beam-related backgrounds were performed for several thicknesses of tungsten shielding cylinder around the CLAS12 target covering the first SVT layer. Rates, fluences, radiation doses, and 1 MeV neutron damage rates in the SVT were calculated for different particles. For each event, 124,000 electrons going through the target within a 248.5-ns time window were simulated. This corresponds to full CLAS12 10$^{35} cm^{-2}s^{-1}$ luminosity on a 5 cm liquid hydrogen target at 10.6 GeV beam energy. 
-Energy deposited in layer 1 for the electromagnetic and the hadronic particles is shown in Figure~\ref{fig:energy-deposited-l1}. At a threshold of 30 KeV, 92$\%$ of the electromagnetic background is rejected while preserving  99.5$\%$ of the signals coming from the hadrons~\cite{TDRSVT}.
-While the gamma fluences / doses show a dramatic decrease with the introduction of shielding, the total fluences and doses decrease significantly for the thinner configuration and do not vary much for thicker tungsten. The photon radiation dose become negligible for 50 microns or more of tungsten with total 1 MeV equivalent radiation dose about 65 krad per year on a liquid hydrogen target. For 15 years of running the experiment on carbon target the estimated radiation dose for the sensors is 2.5~Mrad \cite{TDRSVT}. 
+\subsection{Detector simulation}
+
+A realistic model of the SVT has been developed, describing location and composition of all modules, with material description based on the engineering drawings and assembly procedures, confirmed by the survey measurements during integration. Implementation of the geometry in GEMC is described in the CLAS12 Geant4 Simulation paper (add link). SVT design and module layout were validated by simulated detector performance studies demonstrating compliance with technical requirements and engineering models.   
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{energy-deposited-l1.png}
-\caption{Energy deposited in layer 1 for electromagnetic and hadronic particles.}
-\label{fig:energy-deposited-l1}
+\includegraphics[width=0.6\columnwidth,keepaspectratio]{svt3dview.png}
+\caption{3D view of the simulated SVT detector geometry}
+\label{fig:svt3dview}
 \end{figure}
+
+\subsection{Backgrounds, Energy deposition, Dose rates}
+
+Simulations of beam-related backgrounds were performed for several thicknesses of tungsten shielding cylinder around the CLAS12 target covering the first SVT layer. Rates, fluences, radiation doses, and 1 MeV neutron damage rates in the SVT were calculated for different particles. For each event, 124,000 electrons going through the target within a 248.5-ns time window were simulated. This corresponds to full CLAS12 10$^{35} cm^{-2}s^{-1}$ luminosity on a 5 cm liquid hydrogen target at 10.6 GeV beam energy. Rates in the first SVT layer for liquid hydrogen target are shown in Fig.~\ref{fig:rates-lh2}.
 
 \begin{figure}[hbt] 
 \centering 
@@ -24,6 +27,19 @@ While the gamma fluences / doses show a dramatic decrease with the introduction 
 \label{fig:rates-lh2}
 \end{figure}
 
+Energy deposited in layer 1 for the electromagnetic and the hadronic particles is shown in Fig.~\ref{fig:energy-deposited-l1}. At a threshold of 30 KeV, 92$\%$ of the electromagnetic background is rejected while preserving  99.5$\%$ of the signals coming from the hadrons~\cite{TDRSVT}.
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{energy-deposited-l1.png}
+\caption{Energy deposited in layer 1 for electromagnetic and hadronic particles.}
+\label{fig:energy-deposited-l1}
+\end{figure}
+
+A tungsten shield 51~$\mu$m thick is installed on the target scattering chamber. The shield consists of 2 sheets mounted over the top and bottom halves of the foam cylinder referenced to the SVT common ground. The rates and radiation damage benefit from tungsten shield. The rates have been compared with physics run data at several beam currents. There is a good agreement between the real and the simulated data.
+
+While the gamma fluences / doses show a dramatic decrease with the introduction of shielding, the total fluences and doses decrease significantly for the thinner configuration and do not vary much for thicker tungsten (Fig.~\ref{fig:rates-l1}). The photon radiation dose become negligible for 50 microns or more of tungsten with total 1 MeV equivalent radiation dose about 65 krad per year on a liquid hydrogen target. For 15 years of running the experiment on carbon target the estimated radiation dose for the sensors is 2.5~Mrad \cite{TDRSVT}. 
+
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{rates-l1.png}
@@ -31,9 +47,7 @@ While the gamma fluences / doses show a dramatic decrease with the introduction 
 \label{fig:rates-l1}
 \end{figure}
 
-A tungsten shield 51~$\mu$m thick is installed on the target scattering chamber. The shield consists of 2 sheets mounted over the top and bottom halves of the foam cylinder referenced to the SVT common ground. The rates and radiation damage benefit from tungsten shield. The rates have been compared with physics run data at several beam currents. There is a good agreement between the real and the simulated data.
-
-\subsection{Occupancies}
+%\subsection{Occupancies}
 
 %\subsection{Alignment}
 

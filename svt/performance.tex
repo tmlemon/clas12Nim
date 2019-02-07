@@ -1,57 +1,153 @@
 \section{Performance}
 
-\subsection{Module testing (QA, full chain, r/a sources, beam)}
+\subsection{Module testing}
+
+Detailed quality assurance procedures were developed for testing the modules during assembly at FNAL, reception tests at JLab, tracker integration, and commissioning. At each stage the results were compared with previous measurements. Module performance was tested by calibration procedures. 
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{gain-chip.png}
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{enc-chip.png}
+\caption{Typical input noise on a single chip of an SVT module.}
+\label{fig:enc-chip}
+\end{figure}
+
+No significant correlated noise has been observed between the channels of the same chip, chips of the same module or closely placed modules. Measured average channel noise (see Fig.~\ref{fig:enc-chip}) is comparable with estimated contributions of different noise sources. 
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{gain-chip.png}
 \caption{Gain vs. channel.}
 \label{fig:gain-chip}
 \end{figure}
 
+Gain dispersion measured on the channels is within the specs of the readout chip (Fig.~\ref{fig:gain-chip}).
+
+\begin{figure}[hbt] 
+	\centering 
+	\includegraphics[width=0.8\columnwidth,keepaspectratio]{encstriplength.png}
+	\caption{Input noise vs. strip length.}
+	\label{fig:encstriplength}
+\end{figure}
+
+Longer silicon strips have higher capacitance and thus a higher input noise (see Fig.~\ref{fig:encstriplength}). Noise calibration accounts for the different strip lengths and pitch adapter layouts that affect the input capacitance of the preamplifier. The mean noise values scale linearly with strip length which confirms that the noise is dominated by the strip capacitance and not by coherent noise pickup of the system. Channel noise has linear dependence on the strip length from 400 electrons for the shortest strips.  
+
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{enc-chip.png}
-\caption{Equivalent Noise Charge vs. channel.}
-\label{fig:enc-chip}
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{occ_thr.png}
+\caption{Channel noise occupancy vs. DAC hit/no-hit threshold (in DAC bins, one DAC bin corresponds to 3.5~mV).}
+\label{fig:noiseocc}
 \end{figure}
+
+Noise occupancy histogram with no charge injection is shown in Fig.~\ref{fig:noiseocc}. It probes the tail of the noise distribution, which can show effects masked by the higher occupancy at low thresholds. Channel noise allows setting a 3~$\sigma$ threshold at 30~keV level. 
+
+\begin{figure}[hbt] 
+	\centering 
+	\includegraphics[width=0.8\columnwidth,keepaspectratio]{enc.png}
+	\caption{SVT channel noise.}
+	\label{fig:enc}
+\end{figure}
+
+Equivalent Noise Charge (ENC) of the SVT channels is shown in  Fig.~\ref{fig:enc}. The peak is $\sim$1600 electrons, the shoulder on the left side corresponds to the shorter strips. Channel noise allows setting a 3$\sigma$ threshold at 20~keV level. Noise is found to be stable and the the dependence of the noise on the environmental temperature and humidity is small. Noise performance in the experimental hall was comparable with results taken in the clean room. 
+
+Detector response and full readout chain calibration was done with $\gamma$ and $\beta$ sources, cosmic muons and using the proton beam. Results of absolute gain calibration with $\gamma$ source are shown in Fig.~\ref{fig:signal-gamma}. Signal peak is in good agreement with expected position. Detector response to Minimum Ionizing Particles was about 24000 electrons which is what is expected for the 320 $\mu$m thick sensor.
+
+\begin{figure}[hbt] 
+	\centering 
+	\includegraphics[width=0.8\columnwidth,keepaspectratio]{signal-gamma.png}
+	\caption{Signal from Am$^{241}$ $\gamma$ source.}
+	\label{fig:signal-gamma}
+\end{figure}
+
+%
+%\begin{wrapfigure}{l}{0.5\columnwidth}
+%\includegraphics[width=1.0\columnwidth]{encstriplength.png}
+%\caption{Input noise vs. strip length.}
+%\label{fig:encstriplength}
+%\end{wrapfigure}
+%Longer silicon strips have higher capacitance and thus a higher expected value for the input noise. 
+%(see Fig.~\ref{fig:encstriplength}).
+%
+
+%\begin{wrapfigure}{l}{0.5\columnwidth}
+%\includegraphics[width=1.0\columnwidth]{currents.png}
+%\caption{Leakage currents}
+%\label{fig:currents}
+%\end{wrapfigure}
+%
+%\begin{wrapfigure}{l}{0.5\columnwidth}
+%\includegraphics[width=1.0\columnwidth]{signal-muons.png}
+%\caption{Signal muons}
+%\label{fig:signal-muons}
+%\end{wrapfigure}
 
 \subsection{Integration and system checkout}
 
+To verify performance of the integrated detector, data acquisition chain, power services, and cooling system, as well as detector control and data acquisition software, the final detector system was installed in the clean room and used at all stages of tracker integration and commissioning. SVT was operated for several months under environment conditions close to the ones in the experimental hall. Defects known before the integration of the system were reestablished. 99.9$\%$ of channels were operational after detector integration. Noise behavior is found to be very good and well understood. No significant correlated noise has been observed between the channels of the same chip, between the chips of the same module or between the closely placed modules. Fig.~\ref{fig:svt-hall} shows SVT detector after installation in the experimental hall. 
+ 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{svt-hall.png}
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{svt-hall.png}
 \caption{SVT detector installed in the experimental hall.}
 \label{fig:svt-hall}
 \end{figure}
 
-\subsection{Commissioning with cosmic rays}
+Sensor leakage currents remained at the same levels after installation (Fig.~\ref{fig:currents}).
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{cosmic-hitmap-svt.png}
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{currents.png}
+\caption{Sensor leakage currents after detector integration}
+\label{fig:currents}
+\end{figure}
+
+\subsection{Commissioning with cosmic rays}
+
+Cosmic ray tests of the SVT have been used to test track reconstruction routines for the SVT, as well as establish correct readout, good noise performance, and full response for the entire detector. Cosmic data during detector integration in the clean room were taken in the standalone mode using the self triggering feature of the readout in coincidence logic. After installation of the SVT in the hall, a trigger from CTOF was used to collect cosmic data for CLAS central detector. A cosmic muon reconstructed in the central detector is shown in Fig.~\ref{fig:cd-cosmic-event}.
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=0.6\columnwidth,keepaspectratio]{cd-cosmic-event.png}
+\caption{Cosmic muon reconstructed in the CLAS central detector}
+\label{fig:cd-cosmic-event}
+\end{figure}
+
+A hit map for the SVT channels during the cosmic run is shown in Fig.~\ref{fig:cosmic-hitmap-svt}. Response of the channels was uniform, performance results obtained during tracker integration were confirmed.
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{cosmic-hitmap-svt.png}
 \caption{Monitoring SVT hit map during cosmic run.}
 \label{fig:cosmic-hitmap-svt}
 \end{figure}
 
-Cosmic ray tests of the SVT have been used to test track reconstruction routines for the SVT, as well as establish correct readout, good noise performance, and full response for the entire detector. Cosmic data were taken in the standalone mode using the self triggering feature of the readout in coincidence logic. Angular distribution of the cosmic muons reconstructed in the SVT is shown in Fig.~\ref{fig:track-phi-theta}.
+Angular distribution of the cosmic muons reconstructed in the SVT is shown in Fig.~\ref{fig:track-phi-theta}.
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{track-phi-theta.png}
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{track-phi-theta.png}
 \caption{Angular distribution of the cosmic muons reconstructed in the SVT}
 \label{fig:track-phi-theta}
 \end{figure}
 
 \subsection{Commissioning with beam}
 
-The impact of the shield on the SVT occupancy is shown in Figure~\ref{fig:hit-occupancy-shielding}. Occupancies in all SVT layers are substantially lower which results in better tracking performance due to reduced combinatorics. The effect of the shield on tracking performance is negligible~\cite{SHIELDNOTE}.
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=0.6\columnwidth,keepaspectratio]{cd-tracks.png}
+\caption{Tracks reconstructed in the CLAS central detector during physics run}
+\label{fig:cd-tracks}
+\end{figure}
+
+The front-end electronics performance and noise occupancy of the detector were studied during physics data taking. No interference with other CLAS subsystems were found. The data quality and detector operational stability  was verified with online and offline monitoring packages. Tracks reconstructed in the CLAS central detector during physics run are shown in Fig.~\ref{fig:cd-tracks}.
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{hit-occupancy-shielding.png}
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{hit-occupancy-shielding.png}
 \caption{Hit occupancies with and without the shield.}
 \label{fig:hit-occupancy-shielding}
 \end{figure}
+
+The impact of the shield on the SVT occupancy is shown in Figure~\ref{fig:hit-occupancy-shielding}. Occupancies in all SVT layers are substantially lower which results in better tracking performance due to reduced combinatorics. The effect of the shield on tracking performance is negligible~\cite{SHIELDNOTE}.
+
 
 %\subsection{Tracking performance, resolution, efficiency}
