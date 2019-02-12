@@ -1,19 +1,27 @@
 \section{High Threshold Cerenkov Counter (HTCC)}
 
-The CLAS12 HTCC geometry is created using the native gemc geometry API.
-The geometry directory is "micromegas"
-
-
 \subsection{Geometry}
+
+The CND geometry is implemented through the native gemc geometry API. The elliptical mirrors are made through a subtraction of
+two G4Ellipsoid. They are contained inside an HTCC mother volume made with a G4Polycone. The faces of the PMT are the sensitive volumes,
+associated with the quartz-glass material and associated with the htcc digitization routine.
+
+The mirror and winston cones reflectivities and the pmts quantum efficiencies are associated with the mirror and the pmt faces optical
+properties and are taken into account in the digitization routine.
+
+
 
 \subsubsection{Geometry Git Location}
 The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/htcc}.
 
-\subsection{Process ID}
+
+
+\subsection{Digitization}
+Photons that impinged on the PMT faces are processed. The 
+
 \subsubsection{ADC}
 \subsubsection{TDC}
 
-\subsection{Digitization}
 
 
 \subsubsection{Summary of CCDB Table used}
@@ -21,6 +29,8 @@ The github location of the gemc perl api script is \url{https://github.com/gemc/
 \subsection{Digitized Bank}
 
 \subsubsection{Time Window}
+
+\subsubsection{Background merging algorithm}
 
 \subsubsection{Process Routine Git Repository Location}
 
