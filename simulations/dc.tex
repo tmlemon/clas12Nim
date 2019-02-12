@@ -7,6 +7,7 @@ The service provides the geant4 definitions that are read by the GEMC perl api t
 
 Each layer is a generic G4Trapezoid, tilted by $+6^O$ or $-6^O$ depending if they are part of a stereo superlayer or not.
 The 12 layers in each region (6 per superlayer) are placed in a region mother volume made of air, see \F{dcGeometry}.
+The layers are assigned the $CO_2$ material and associated with the dc hit process routine.
 The wire identifications is performed in the Process ID routine.
 
 \begin{figure}
@@ -20,7 +21,6 @@ The wire identifications is performed in the Process ID routine.
 
 
 \subsubsection{Geometry Git Location}
-
 The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/dc}.
 The geometry service definitions in coatjava is \url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/DCGeant4Factory.java}
 
@@ -107,7 +107,7 @@ The digitized output bank has $ID=1300$, and the variables are summarized in Tab
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{Summary of LTCC Electronics}\label{tab:dcBank}
+	\caption{The digitized DC bank}\label{tab:dcBank}
 \end{table}
 
 

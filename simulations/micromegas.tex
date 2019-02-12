@@ -1,27 +1,71 @@
 \section{Barrel Micromegas Tracker (BMT)}
 
-The CLAS12 Micromegas geometry is created using the native gemc geometry API.
-The geometry directory is "micromegas"
-
 \subsection{Geometry}
 
+The Micromegas geometry is implemented through the native gemc geometry API.
+
+
+The strip identification is performed in the Process ID routine.
+
 \subsubsection{Geometry Git Location}
+The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/micromegas}.
+
 
 \subsection{Process ID}
+At each geant4 step, the local coordinate in the sensor volume are used to calculate the strip id.
+The algorithm includes the lorentz angle based on the magnetic field strength, the angula, pitch between the strips,
+the dead zones of the sensitive parts. A virtual electron avalanche is simulated based the energy deposited. The avalanche
+is deposited onto one strip or distributed among several to account for the energy sharing.
+
+
 
 \subsection{Digitization}
 
-
 \subsubsection{ADC}
+The Micromegas digitization provides the ADC value calculated using the total energy deposited (after hit sharing).
+
+
 \subsubsection{TDC}
+There is no timing information in the output.
 
 \subsubsection{Summary of CCDB Table used}
 
+\begin{itemize}
+	\item /geometry/cvt/mvt/bmt\_layer\_noshim
+	\item /geometry/cvt/mvt/bmt\_strip\_L1
+	\item /geometry/cvt/mvt/bmt\_strip\_L2
+	\item /geometry/cvt/mvt/bmt\_strip\_L3
+	\item /geometry/cvt/mvt/bmt\_strip\_L4
+	\item /geometry/cvt/mvt/bmt\_strip\_L5
+	\item /geometry/cvt/mvt/bmt\_strip\_L6
+\end{itemize}
+
+
 \subsection{Digitized Bank}
+The digitized output bank has $ID=500$, and the variables are summarized in Table \ref{tab:mmBank}
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| c | c | c |}
+			\hline \hline
+			Variable         & Description  & Tag  \\
+			\hline
+              layer  &                                      layer number  &    1   \\
+             sector  &                                     sector number  &    2   \\
+              strip  &                                      strip number  &    3   \\
+               Edep  &                                  energy deposited  &    4   \\
+                ADC  &                                               ADC  &    5   \\
+			\hline \hline
+		\end{tabular}
+	\end{center}
+	\caption{The digitized micromegas bank}\label{tab:mmBank}
+\end{table}
 
 \subsubsection{Time Window}
+The timewindow of the Micromegas is set to to 132 ns.
+
+\subsubsection{Background merging algorithm}
 
 \subsubsection{Process Routine Git Repository Location}
+The BST hit process routines are located in the repository: \url{https://github.com/gemc/source/tree/master/hitprocess/clas12/micromegas}
 
-
-The BMT hit process routines are located in the repository: \url{https://github.com/gemc/source/tree/master/hitprocess/clas12/micromegas}

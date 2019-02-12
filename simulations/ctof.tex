@@ -22,7 +22,7 @@ junction, see \F{ctofGeometry} bottom.
 
 
 \subsubsection{Geometry Git Location}
-
+The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/ctof}.
 The coatjava geometry service is \url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/CTOFGeant4Factory.java}
 
 \subsection{Process ID}
@@ -54,7 +54,6 @@ The absolute hit time is corrected by:
 \end{itemize}
 
 The time is then smeared by a $\sigma$ resolution read from CCDB using a gaussian function and then digitized using a TDC conversion factor.
-
 
 
 
@@ -95,14 +94,14 @@ The digitized output bank has $ID=400$, and the variables are summarized in Tabl
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{Summary of LTCC Electronics}\label{tab:ctofBank}
+	\caption{The digitized CTOF bank}\label{tab:ctofBank}
 \end{table}
 
 
 \subsubsection{Time Window}
-
 The timewindow of the CTOF is set to 400 ns.
 
-\subsubsection{Process Routine Git Repository Location}
+\subsubsection{Background merging algorithm}
 
+\subsubsection{Process Routine Git Repository Location}
 The CTOF hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ctof_hitprocess.cc}
