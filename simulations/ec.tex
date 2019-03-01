@@ -2,26 +2,99 @@
 
 \subsection{Geometry}
 
-\subsubsection{Geometry Git Location}
-The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/ec}.
+Both EC and PCAL calorimeters geometry is implemented through the COATJAVA geometry service.
+The service provides the geant4 definitions that are read by the GEMC perl api to build the geometry database.
 
-\subsection{Process ID}
+All scintillators are geant4 volumes. The paddles are assigned the scintillator material and associated with the ftof hit process routine.
+Each scintillator is a G4Trap embedded in a G4Trapezoid mother volume made of air, see \F{ecGeometry} and  \F{pcalGeometry}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ecGeometry.png}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ecDetail.png}
+	\caption{Top: the GEMC implementation of the EC geometry. The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
+            Bottom: a zoom-in of the implementation shows the details of the individual paddles for Panel 1B (green) and Panel 1A (purple) }
+	\label{fig:ecGeometry}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/pcalGeometry.png}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/pcalDetail.png}
+	\caption{Top: the GEMC implementation of the EC geometry. The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
+            Bottom: a zoom-in of the implementation shows the details of the individual paddles for Panel 1B (green) and Panel 1A (purple) }
+	\label{fig:ecGeometry}
+\end{figure}
+
+
+
+
+\subsubsection{Geometry Git Location}
+The github location of the gemc perl api script for ec is \url{https://github.com/gemc/detectors/tree/master/clas12/ec} and
+for pcal is \url{https://github.com/gemc/detectors/tree/master/clas12/pcal}
+The coatjava geometry service are
+\url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/ECGeant4Factory.java} and
+\url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/PCALGeant4Factory.java} for
+ec and pcal respectively.
+
+
 
 \subsection{Digitization}
-
+The digitization is the same for both the EC and the PCAL calorimeters.
 
 \subsubsection{ADC}
+
+The energy deposited is reduced based on the position on the paddle using the calibration attenuation length.
+A number of photoelectrons is generated using a poissonian distributuion based on the attenuated energy.
+After a paddle resolution $\sigma_{res}$ is calculated from the calibration constants, fluctuations in PMT gain
+are taking into account using a Gaussian form with $\sigma_{res}$. A conversion factor is used to produce an ADC output.
+
 \subsubsection{TDC}
+The absolute hit time is corrected using the attenuation length and an additional factor accounts for the time-walk correction.
 
 \subsubsection{Summary of CCDB Table used}
 
+\begin{itemize}
+	\item /calibration/ec/gain
+	\item /calibration/ec/attenuation
+	\item /calibration/ec/timing
+	\item /calibration/ec/effective\_velocity
+	\item /daq/tt/ec
+\end{itemize}
+
+
 \subsection{Digitized Bank}
+The EC digitized output bank has $ID=1600$.
+The PCAL digitized output bank has $ID=1500$.
+
+For both systems the variables are summarized in Table \ref{tab:ecBank}
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| c | c | c |}
+			\hline \hline
+			Variable         & Description  & Tag  \\
+			\hline
+             sector  &                                     sector number  &    1
+              stack  &                                      stack number  &    2
+               view  &                                              view  &    3
+              strip  &                                      strip number  &    4
+                ADC  &                                          ADC Left  &    5
+                TDC  &                                         TDC Right  &    6
+               hitn  &                                        hit number  &   99
+			\hline \hline
+		\end{tabular}
+	\end{center}
+	\caption{The digitized EC bank}\label{tab:ecBank}
+\end{table}
+
 
 \subsubsection{Time Window}
+The timewindow of both PCAL and EC is set to 400 ns.
 
 \subsubsection{Background merging algorithm}
 
 \subsubsection{Process Routine Git Repository Location}
 The calorimeter hit process routines are \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ec_hitprocess.cc} and
-\url{https://github.com/gemc/source/blob/master/hitprocess/clas12/pcal_hitprocess.cc}
+\url{https://github.com/gemc/source/blob/master/hitprocess/clas12/pcal_hitprocess.cc}.
 

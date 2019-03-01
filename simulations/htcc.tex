@@ -32,8 +32,8 @@ The github location of the gemc perl api script is \url{https://github.com/gemc/
 
 
 \subsection{Digitization}
-Photons that impinged on the PMT faces are processed. For each photon collected undergoes the quantum efficiency algorithm at its
-wavelength to decided if it's finally detected.
+Photons that impinged on the PMT faces are processed with the digitization routine.
+For each photon collected undergoes the quantum efficiency algorithm at its wavelength to decided if it's finally detected.
 
 \subsubsection{Timing}
 
@@ -44,7 +44,7 @@ The time average of all the photons is saved in the output after a time shift co
 \begin{itemize}
 	\item /calibration/htcc/status
 	\item /calibration/htcc/time
-	\item /daq/tt/htcc:
+	\item /daq/tt/htcc
 \end{itemize}
 
 \subsection{Digitized Bank}
@@ -56,12 +56,12 @@ The digitized output bank has $ID=600$, and the variables are summarized in Tabl
 			\hline \hline
 			Variable         & Description  & Tag  \\
 			\hline
-           sector  &                                     clas12 sector  &    1   \\
-             ring  &                                       theta index  &    2   \\
-             half  &                                       half-sector  &    3   \\
-             nphe  &                          number of photoelectrons  &    4   \\
-             time  &                           average time of the hit  &    5   \\
-             hitn  &                                        hit number  &   99   \\
+             sector &                                     clas12 sector  &    1   \\
+             ring   &                                       theta index  &    2   \\
+             half   &                                       half-sector  &    3   \\
+             nphe   &                          number of photoelectrons  &    4   \\
+             time   &                           average time of the hit  &    5   \\
+             hitn   &                                        hit number  &   99   \\
 			\hline \hline
 		\end{tabular}
 	\end{center}
