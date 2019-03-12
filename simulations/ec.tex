@@ -12,8 +12,10 @@ Each scintillator is a G4Trap embedded in a G4Trapezoid mother volume made of ai
 	\centering
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ecGeometry.png}
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ecDetail.png}
-	\caption{Top: the GEMC implementation of the EC geometry. The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
-            Bottom: a zoom-in of the implementation shows the details of the individual paddles for Panel 1B (green) and Panel 1A (purple) }
+	\caption{Top: a 4 GeV electron (cyan track) showering in the GEMC implementation of the EC geometry.
+            The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
+            The paddles layers are alternating with trapezoid made of lead, for a sampling fraction of about 0.3.
+            Bottom: a zoom-in transverse view of electron shower.}
 	\label{fig:ecGeometry}
 \end{figure}
 
@@ -21,8 +23,10 @@ Each scintillator is a G4Trap embedded in a G4Trapezoid mother volume made of ai
 	\centering
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/pcalGeometry.png}
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/pcalDetail.png}
-	\caption{Top: the GEMC implementation of the EC geometry. The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
-            Bottom: a zoom-in of the implementation shows the details of the individual paddles for Panel 1B (green) and Panel 1A (purple) }
+	\caption{Top: a 4 GeV $\pi^0$ decayed in two photons hitting the GEMC implementation of the PCAL geometry.
+            The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
+            The paddles layers are alternating with trapezoid made of lead, for a sampling fraction of about 0.3.
+            Bottom: a zoom-in transverse view of showers.}
 	\label{fig:ecGeometry}
 \end{figure}
 
@@ -75,13 +79,13 @@ For both systems the variables are summarized in Table \ref{tab:ecBank}
 			\hline \hline
 			Variable         & Description  & Tag  \\
 			\hline
-             sector  &                                     sector number  &    1
-              stack  &                                      stack number  &    2
-               view  &                                              view  &    3
-              strip  &                                      strip number  &    4
-                ADC  &                                          ADC Left  &    5
-                TDC  &                                         TDC Right  &    6
-               hitn  &                                        hit number  &   99
+             sector  &                                     sector number  &    1 \\
+              stack  &                                      stack number  &    2 \\
+               view  &                                              view  &    3 \\
+              strip  &                                      strip number  &    4 \\
+                ADC  &                                          ADC Left  &    5 \\
+                TDC  &                                         TDC Right  &    6 \\
+               hitn  &                                        hit number  &   99 \\
 			\hline \hline
 		\end{tabular}
 	\end{center}
