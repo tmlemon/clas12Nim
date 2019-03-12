@@ -16,8 +16,10 @@ The \F{ltccGeometry} shows details of the geometry implementation.
 	\centering
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ltccGeometry.png}
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ltccDetail.png}
-	\caption{Top: the GEMC implementation of the EC geometry. The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
-            Bottom: a zoom-in of the implementation shows the details of the individual paddles for Panel 1B (green) and Panel 1A (purple) }
+	\caption{Top: a 6 GeV pion passing through the TCC gas volume and emitting Cherenkov photons. The light cone
+            bounces from the elliptical to the hyperbolic to the winston cone and finally reaches the PMT. The
+            frame of the LTCC, imported from the CAD engineering model, is visible.
+            Bottom: details of the light path through the mirrors. }
 	\label{fig:ecGeometry}
 \end{figure}
 
@@ -55,7 +57,7 @@ The time average of all the photons is saved in the output.
 
 The digitized output bank has $ID=1400$, and the variables are summarized in Table \ref{tab:ltccBank}
 
-\begin{table}
+\begin{table}[h]
 	\begin{center}
 		\begin{tabular}{| c | c | c |}
 			\hline \hline
