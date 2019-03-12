@@ -4,7 +4,7 @@
 
 \subsection{VXS/VME crates and CPU units (Abbott)}
 
-\subsection{Trigger Disctribution system modules (TS, TD. TI)(William)}
+\subsection{Trigger Disctribution system modules (TS, TD, TI)(William)}
 	
 TCS (TRIGGER, CLOCK, SYNC, and BUSY) distribution system [1] is the hardware interface to bridge the trigger and the DAQ.  The TCS system receives trigger decision from trigger system, and initiate data readout for the DAQ system by distributing the readout trigger (TRIGGER) signal.  Additionally, it distributes a 250 MHz system clock (CLOCK) to pipeline the system.  It distributes an encoded synchronous signal (SYNC) for the system synchronization.  It monitors the frontend electronics’ status (BUSY) and makes sure of the smooth data readout of the experiments. Fig.~\ref{fig:TCSdiagram} shows a diagram of the trigger and TCS distribution.
 
@@ -121,6 +121,18 @@ Because of the finite memory size and the randomness of the triggers, it is poss
 	
 \subsection{Signal Distribution module (SD)(Cody)}
 
+The Signal Distribution Board (SD) Fig.~\ref{fig:SDpic} module occupies the “B” switch card slot as specified in VITA 41. The main purpose of this module is to distribute signals received from payload slot 18 (Trigger Interface board) of a VXS crate to 16 other payload slots (ADC boards).
+
+The Signal Distribution (SD) module distributes the 4 differential pair LVPECL signals from payload slot 18 to 16 VXS payload slots within the crate. This is done using the high speed point to point connections from the switch slot to each payload slot. The four signals distributed are length matched to minimize output jitter seen on all the payload slots. Three of the four remaining pairs are LVDS signals routed from the each payload module to the FPGA on the SD module. The last pair is an LVDS signal routed from the FPGA on the SD module to each payload module. Each of the 16 payload modules has a single-ended signal to the SD module and one from the SD module back to the payload module.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/sd_board.jpg}
+	\caption{Signal Distribution module (SD)}
+	\label{fig:SDpic}
+\end{figure}
+
+
 \subsection{Flash ADC module (FADC250)(Hai)}
 
 A 16-channel 250 MSPS pipelined flash ADC Fig.~\ref{fig:FADC250pic} with 12-bit precision was designed to digitize and process detector pulses for experiments at Jefferson Lab.  The FADC250 module Fig.~\ref{fig:FADC250_board} conforms to the VITA-41 VME64x switched serial (VXS) standard.  Each channel of the module accepts input signals on a LEMO style coaxial connector and has three user-selectable ranges (0.5 V, 1.0 V, 2.0 V).  Differential signal conditioning scales the input signals to within the dynamic range of the ADC and a single-pole low pass filter limits the signal bandwidth to the Nyquist band of the converter (125 MHz). Individual channel offsets are accomplished by means of DACs under VME control.  Each channel has its own dedicated ADC chip (Analog Devices AD9230). Both positive and negative polarity input signals are supported. The 250 MHz clock is distributed to the ADC chips through a low jitter (< 2 ps) network.  
@@ -202,6 +214,15 @@ A Xilinx Spartan 3A FPGA is used to implement the VME interface, scalers, discri
 
 
 \subsection{TDC modiles (v1190/v1290)(Sergey)}
+
+Commercial CAEN V1190/V1290/V1290N TDC boards are used for timing measurements in PMT-based CLAS12 detectors (Fig.~\ref{fig:v1190_board}). V1190 has timing resolution about 100ps and V1290 about 35ps. All boards installed in CLAS12 DAQ are running on external 250/6=41.666 MHz clock rather then internal 40MHz clock. Different clock required compensation table remeasuring and reloading which was successfully complete.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=0.2\columnwidth,keepaspectratio]{img/v1190_board.jpg}
+	\caption{CAEN V1190 TDC module (V1190)}
+	\label{fig:v1190_board}
+\end{figure}
 
 \subsection{Drift Chamber Readout Board (DCRB)}
 
@@ -287,3 +308,5 @@ Fig.~\ref{fig:vscm_blockdiagram} shows the hardware block diagram of the module.
 
 
 \subsection{SSP board as fiber readout module(Ben)}
+
+SSP (SubSystem Processor) was originally designed to work as part of CLAS12 trigger system. It is used to readout some front end electronics in DAQ system as well. Board description can be found in {ref CLAS12 Trigger}.
