@@ -41,8 +41,7 @@ The databases can be defined using the following factories:
 	\item gemc native api (perl or python)
 	\item geometry service
 	\item cad (stl, ply, obj formats)
-	\item gdml
-	\item c++ plugins
+	\item gdml, c++ plugins (not used in CLAS12)
 \end{itemize}
 
 The gemc native api repository is \url{https://github.com/gemc/api}. The geometry service code repository is
@@ -75,10 +74,8 @@ print_det(\%configuration, \%detector);
 
 \subsubsection{Importing CAD volumes from the engineering model}
 
-
-The Hall-B model is designed with 3D CAD software. This includes a reference system and the
+The Hall-B detectors and their supports are designed with 3D CAD software. This includes a reference system and the
 hierarchy of all detector elements, down to details like nuts and bolts.
-
 
 The CAD models are exported into STP files \cite{stepFiles}.
 In order to import them into a geant4 simulation, first the volumes relevant to the simulation are selected, see \F{cadSelection}.
@@ -90,7 +87,6 @@ In order to import them into a geant4 simulation, first the volumes relevant to 
              This typically involves filtering out unnecessary volumes that are not in the active region.}
 	\label{fig:cadSelection}
 \end{figure}
-
 
 The elements in the STP file are then ``tessellated'': several polygon shapes are created to define a geant4 volume.
 The software used to do this is FreeCad \cite{freeCad}. An example of tessellation showing the polygon shapes
@@ -125,18 +121,31 @@ An example of the cad validation is shown in \F{cadValidationExample}.
 	\label{fig:cadValidationExample}
 \end{figure}
 
-\subsubsection{Importing volumes using GDML}
 
 
 \subsection{Magnetic Fields}
+The magnetic fields are loaded from ascii files. The following geant4 parameters are loaded from
+command line options or configuration files at run time:
 
-\subsection{Database Constants}
+\begin{itemize}
+	\item minStep: minimum step in the magnetic field
+	\item integralAlgorithm: compute the field value from the closest cell or using a linear interpolation
+	\item interpolationMethod: interpolation algorithm, such as G4ClassicalRK4, G4SimpleRunge, etc
+\end{itemize}
+
+The implementation of the CLAS12 magnetic fields is described in \ref{clas12FieldMaps}.
+
+\subsection{Detectors and Hit Process Plugins}
+The detector are associated with c++ digitization routines at run time. This allows the routines to
+be developed independently from the core code, and have 
 
 \subsection{Event Time Window}
 
 \subsection{Hit Definition}
 
 \subsection{True Information}
+
+\subsection{Database Constants}
 
 \subsection{Process ID}
 
