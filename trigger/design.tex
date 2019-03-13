@@ -42,11 +42,23 @@ After segment search complete and six 112-bit masks are ready second step is per
 
 \subsubsection{High Threshold Cherenkov Counter} sergey
 
+CLAS12 High Threshold Cherenkov Counter (HTCC, ref) detects electrons and serves as one of primary elements of electron trigger logic. It consists of 48 sections readout by PMTs connected to FADCs (Fig.~\ref{fig:multihitHTCC}). For trigger purposes 2x2 section sliding window is used to identify clusters. Configuration parameters includes single channel energy threshold, cluster multiplicity threshold and cluster energy threshold. Resilts are reported to Stage 2 as 48-bit masks every 4 ns.
+
+
 \subsubsection{Forward Time-Of-Flight Counter} sergey
+
+CLAS12 Forward Time-Of-Flight Counter (FTOF, ref) contains several layers of scintillating slabs, but only one layer is used by trigger logic. It contains 64 counters with PMT readout from both ends. When both end PMTs reports signal trigger system consider it as hit. 64-bit hit mask reported to the Stage 2 every 4 ns. Trigger logic configuration includes single channel energy threshold and threshold for SQRT(EleftxEright). FTOF participates in non-electron triggers such as muon trigger.
+
 
 \subsubsection{Central Time-Of-Flight Counter} sergey
 
+CLAS12 Central Time-Of-Flight Counter (CTOF, ref) consists of 48 scintillation slabs, surrounding target as barrel, with PMT readout from both ends. Its trigger logic is similar to FTOF one, with 48-bit mask reported every 4 ns.
+
+
 \subsubsection{Neutron Detector} sergey
+
+CLAS12 Neutron Detector (CND, ref) consists of three layers of scintillation slabs, installed behind CTOF, with 24 slabs per layer and 72 counters total. Its trigger logic is similar to FTOF/CTOF one, with 24-bit mask reported every 4 ns (usually inner layer only).
+
 
 \subsubsection{Forward Calorimeter and Hodoscope} andrea,ben
 
