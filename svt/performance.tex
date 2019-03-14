@@ -29,7 +29,7 @@ Gain dispersion measured on the channels is within the specs of the readout chip
 	\label{fig:encstriplength}
 \end{figure}
 
-Longer silicon strips have higher capacitance and thus a higher input noise (see Fig.~\ref{fig:encstriplength}). Noise calibration accounts for the different strip lengths and pitch adapter layouts that affect the input capacitance of the preamplifier. The mean noise values scale linearly with strip length which confirms that the noise is dominated by the strip capacitance and not by coherent noise pickup of the system. Channel noise has linear dependence on the strip length from 400 electrons for the shortest strips.  
+Longer silicon strips have higher capacitance and thus a higher input noise (see Fig.~\ref{fig:encstriplength}). Noise calibration accounts for the different strip lengths and pitch adapter layouts that affect the input capacitance of the preamplifier. The mean noise values scale linearly with strip length which confirms that the noise is dominated by the strip capacitance and not by coherent noise pickup of the system. Channel noise has linear dependence on the strip length from 400 electrons for the shortest strips. The slope is consistent with expected FSSR2 noise performance at comparable capacitive load (see Fig.~\ref{fig:fssr2-enc-c}).
 
 \begin{figure}[hbt] 
 \centering 
@@ -47,9 +47,9 @@ Noise occupancy histogram with no charge injection is shown in Fig.~\ref{fig:noi
 	\label{fig:enc}
 \end{figure}
 
-Equivalent Noise Charge (ENC) of the SVT channels is shown in  Fig.~\ref{fig:enc}. The peak is $\sim$1600 electrons, the shoulder on the left side corresponds to the shorter strips. Channel noise allows setting a 3$\sigma$ threshold at 20~keV level. Noise is found to be stable and the the dependence of the noise on the environmental temperature and humidity is small. Noise performance in the experimental hall was comparable with results taken in the clean room. 
+Equivalent Noise Charge (ENC) of the SVT channels is shown in  Fig.~\ref{fig:enc}. The peak is $\sim$1600 electrons, the shoulder on the left side corresponds to the shorter strips. Channel noise allows setting a 3$\sigma$ threshold at 20~keV level. 
 
-Detector response and full readout chain calibration was done with $\gamma$ and $\beta$ sources, cosmic muons and using the proton beam. Results of absolute gain calibration with $\gamma$ source are shown in Fig.~\ref{fig:signal-gamma}. Signal peak is in good agreement with expected position. Detector response to Minimum Ionizing Particles was about 24000 electrons which is what is expected for the 320 $\mu$m thick sensor.
+Detector response and full readout chain calibration was done with $\gamma$ and $\beta$ sources, cosmic muons, and the proton beam. Results of absolute gain calibration with $\gamma$ source are shown in Fig.~\ref{fig:signal-gamma}. Signal peak is in good agreement with expected position. Detector response to Minimum Ionizing Particles was about 24000 electrons which is what is expected for the 320 $\mu$m thick sensor.
 
 \begin{figure}[hbt] 
 	\centering 
@@ -82,7 +82,16 @@ Detector response and full readout chain calibration was done with $\gamma$ and 
 
 \subsection{Integration and system checkout}
 
-To verify performance of the integrated detector, data acquisition chain, power services, and cooling system, as well as detector control and data acquisition software, the final detector system was installed in the clean room and used at all stages of tracker integration and commissioning. SVT was operated for several months under environment conditions close to the ones in the experimental hall. Defects known before the integration of the system were reestablished. 99.9$\%$ of channels were operational after detector integration. Noise behavior is found to be very good and well understood. No significant correlated noise has been observed between the channels of the same chip, between the chips of the same module or between the closely placed modules. Fig.~\ref{fig:svt-hall} shows SVT detector after installation in the experimental hall. 
+To verify performance of the integrated detector, data acquisition chain, power services, and cooling system, as well as detector control and data acquisition software, the final detector system was installed in the clean room and used at all stages of tracker integration and commissioning. SVT was operated for several months under environment conditions close to the ones in the experimental hall. Defects known before the integration of the system were reestablished. 99.9$\%$ of channels were operational after detector integration. 
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=0.6\columnwidth,keepaspectratio]{svt_gain.png}
+\caption{Distribution of gain for the SVT channels.}
+\label{fig:svt_gain}
+\end{figure}
+
+Noise behavior is found to be within expectations and well understood.The dependence of the noise on the environmental temperature and humidity is small. Noise performance in the experimental hall was comparable with results taken in the clean room during integration. No significant correlated noise has been observed between the channels of the same chip, between the chips of the same module or between the closely placed modules. Front-end electronics performed reliably, no chip failures were observed. Distribution of gain was uniform and stable for all channels (Fig.~\ref{fig:svt_gain}). Fig.~\ref{fig:svt-hall} shows SVT detector after installation in the experimental hall. 
  
 \begin{figure}[hbt] 
 \centering 
@@ -91,7 +100,7 @@ To verify performance of the integrated detector, data acquisition chain, power 
 \label{fig:svt-hall}
 \end{figure}
 
-Sensor leakage currents remained at the same levels after installation (Fig.~\ref{fig:currents}).
+Sensor leakage currents remained at the same low levels after installation (Fig.~\ref{fig:currents}).
 
 \begin{figure}[hbt] 
 \centering 
@@ -102,7 +111,10 @@ Sensor leakage currents remained at the same levels after installation (Fig.~\re
 
 \subsection{Commissioning with cosmic rays}
 
-Cosmic ray tests of the SVT have been used to test track reconstruction routines for the SVT, as well as establish correct readout, good noise performance, and full response for the entire detector. Cosmic data during detector integration in the clean room were taken in the standalone mode using the self triggering feature of the readout in coincidence logic. After installation of the SVT in the hall, a trigger from CTOF was used to collect cosmic data for CLAS central detector. A cosmic muon reconstructed in the central detector is shown in Fig.~\ref{fig:cd-cosmic-event}.
+Cosmic ray tests of the SVT have been used to test track reconstruction routines for the SVT, as well as establish correct readout, good noise performance, and full response for the entire detector. Cosmic data during detector integration in the clean room were taken in the standalone mode using the self triggering feature of the FSSR2 readout chip in coincidence logic. VSCM boards reading the SVT modules located at the top and bottom halves of horizontally placed barrel provided the trigger signals via signal distribution of two VXS crates. The coincidence of  signals from the trigger interface boards of both crates was taken as cosmic trigger. 
+
+
+After installation of the SVT in the hall, a trigger from CTOF was used to collect cosmic data for CLAS central detector. A cosmic muon reconstructed in the central detector is shown in Fig.~\ref{fig:cd-cosmic-event}.
 
 \begin{figure}[hbt] 
 \centering 
@@ -118,6 +130,15 @@ A hit map for the SVT channels during the cosmic run is shown in Fig.~\ref{fig:c
 \includegraphics[width=0.8\columnwidth,keepaspectratio]{cosmic-hitmap-svt.png}
 \caption{Monitoring SVT hit map during cosmic run.}
 \label{fig:cosmic-hitmap-svt}
+\end{figure}
+
+A preliminary alignment of the SVT was done using the sample of the cosmic muon tracks taken without magnetic field. The spacial residuals before (blue) and after (red) alignment procedure (Fig.~\ref{fig:alignment}) are expected to provide designed momentum resolution.
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=0.6\columnwidth,keepaspectratio]{alignment.png}
+\caption{Residuals for one of the SVT sensors before (blue) and after (red) alignment.}
+\label{fig:alignment}
 \end{figure}
 
 Angular distribution of the cosmic muons reconstructed in the SVT is shown in Fig.~\ref{fig:track-phi-theta}.
@@ -138,7 +159,9 @@ Angular distribution of the cosmic muons reconstructed in the SVT is shown in Fi
 \label{fig:cd-tracks}
 \end{figure}
 
-The front-end electronics performance and noise occupancy of the detector were studied during physics data taking. No interference with other CLAS subsystems were found. The data quality and detector operational stability  was verified with online and offline monitoring packages. Tracks reconstructed in the CLAS central detector during physics run are shown in Fig.~\ref{fig:cd-tracks}.
+The front-end electronics performance and noise occupancy of the detector were studied during physics data taking. No interference with other CLAS subsystems were found. The data quality and detector operational stability  was verified with online and offline monitoring packages. There were occasional FSSR2 chip latch-ups observed after start of a new run. These latch-ups were traced by improper configuration of the chips and fixed by adding additional resets to the run start sequence.
+
+Tracks reconstructed in the CLAS central detector during physics run are shown in Fig.~\ref{fig:cd-tracks}. 
 
 \begin{figure}[hbt] 
 \centering 

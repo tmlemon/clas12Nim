@@ -5,7 +5,7 @@ Since the SVT modules are designed with a binary readout system, the analog chan
 \begin{figure}[hbt] 
 	\centering 
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{threshold-scan.png}
-	\caption{Threshold scan on single channel}
+	\caption{Threshold scan on a single channel}
 	\label{fig:threshold-scan}
 \end{figure}
 
@@ -20,7 +20,7 @@ The occupancy plots are measured setting the pulser amplitude at fixed values an
 	\label{fig:thrdisp}
 \end{figure}
 
-Threshold dispersion is defined to be a standard deviation of the distribution of means obtained from the parameters of the complementary error function fit. The noise and threshold dispersion constants for each individual detector channel are measured and the values are used by the zero-suppression algorithms implemented in the core logic of the FSSR2 and by calibration procedures to identify defective channels. A comparison of the noise for 33~cm strips with the threshold spread demonstrates that the threshold spread is negligible compared to noise and does not affect efficiency and noise occupancy (see Fig.~\ref{fig:thrdisp}).
+Threshold dispersion is defined to be a standard deviation of the distribution of means obtained from the parameters of the complementary error function fit. The noise and threshold dispersion constants for each individual detector channel are measured and the values are used by the zero-suppression algorithms implemented in the core logic of the FSSR2 and by calibration procedures to identify defective channels. A comparison of the noise for 33~cm strips with the threshold spread demonstrates that the threshold spread is negligible compared to noise and does not affect efficiency and noise occupancy (see Fig.~\ref{fig:thrdisp}). The threshold dispersion agrees with expectations for the FSSR2 chip for the chosen settings.
 
 SVT calibration data are stored in CLAS database. Channel calibration table has columns corresponding to sector, layer, chip ID, mean, channel status (good, noisy, open, dead, or masked), ENC (electrons), gain (mV/fC), offset (mV), Vt50 (mV), and threshold in electrons. There are 21504 rows in the channel calibration table. ENC and gain are calculated using calibration amplitude equal to 100 DAC.
 Chip calibration table has columns corresponding to layer, sector, chip ID, ENC (electrons), gain (mV/fC), offset (mV), the threshold at 50$\%$ occupancy (Vt50, mV), threshold dispersion (electrons), chip gain (low, high), BLR mode (off, on), BCO time (ns), shaper time (ns), 8 ADC thresholds in DAC. There are 168 rows in the chip calibration table. 
