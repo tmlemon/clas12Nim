@@ -157,8 +157,8 @@ It will look like this:
 
 
 
-Compiling pdflatex with scons, mactex, pdflatex
------------------------------------------------
+Compiling using scons, mactex, pdflatex
+---------------------------------------
 
 - scons (not necessary but does simplify things quite a bit). To install scons: 
   
