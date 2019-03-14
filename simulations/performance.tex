@@ -84,7 +84,8 @@ The particles generated are:
 	\item one 2 GeV proton at 90 degrees in theta
 \end{itemize}
 
-The results are shown in table \ref{tab:benchmarks}. The 
+The results are shown in table \ref{tab:benchmarks}. The final rate for the 3 particles in the
+complete CLAS12 setup is 1.9 Hz.
 
 \begin{table}[h]
 	\begin{center}
@@ -108,6 +109,11 @@ Torus    &  1.9    &   34.7  & 6.6  \\
 	\end{center}
 	\caption{Drift Chambers rates comparison between simulation and real data for the FT Off configuration}\label{tab:benchmarks}
 \end{table}
+
+Background rate can be estimated by setting a time window to define the time length of one event, and
+generating a number of electrons proportional to the proposed beam current. For the nominal luminosity of $10^{35} s{-1}cm{-2}$
+this correspond to 124,000 electrons in a 250 ns time window. In this case the time to complete one event varies
+between one and two minutes depending on CPU flavor and available memory.
 
 
 
