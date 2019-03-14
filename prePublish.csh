@@ -48,7 +48,7 @@ foreach d ($detChanged)
 	rm -f compile.log
 	/usr/local/bin/scons  > compile.log
 	ls -lrt              >> compile.log
-	scp $d.pdf ftp:/group/clas/www/clasweb/html/12gev/nims >> compile.log
+	scp $d.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims >> compile.log
 	echo $d published
 	scons -c             >> compile.log
 end

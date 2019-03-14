@@ -13,10 +13,19 @@ using c/c++ programs.
 
 \input{operating_systems}
 
+
 \subsection{Configuration Software}
 
-..config files.. sergey
+\subsubsection{Configuration Files} sergey
 
-..time coinsidence tool.. ben
+CLAS12 Trigger system has large amount of parameters controlling its logic. Those parameters are set by writing values to hadrware registers, and controlled by reading those registers back. System is using ascii files, example is shown on (Fig.). Every line contains key word and the number of corresponding parameter values. Directive 'include' allows to use hierarhical set of configuration files. Normally main configuration file is selected during run startup procedure, and run control software resolves all 'include' directives creating one big configuration file. That file is used to program all trigger harwdare registers, and it is also written to the data stream for bookkeeping purposes. Register contents are read back and results recorded into data stream as well, providing full control of trigger system settings. Normally the same configuration files contains DAQ settings as well, makeing it complete source for entire DAQ/Trigger system settings.
 
-.. gain calibration and threshold settings .. ben
+
+\subsubsection{Timing Setting} ben
+
+One of the important components of the trigger setting process is delay curves measurements. For that purpose software procedure was developed. It includes special trigger configuration file and software tools to change individual subsystem latencies, record set of rate-related scalers, and produce corresponding delay plots (Fig). In a process, most time-precise trigger components latency was set, and all other components latencies were change step by step scanning area around expected latency values. That procedure was repeated every time trigger logic was changed.
+
+
+\subsubsection{Gain calibration and Threshold settings} ben
+
+One of the important settings in trigger system is FADC ones. As it stated above FADC boards serves as initial stage of the most of the Stage 1 trigger components (except Drift Chamber), and correct pedestal and gain calibration is critical for correct trigger system performance. Pedestal and gain measurements were conducted before run startup, and values were loaded using configuration files. As result, all thresholds in configuration files were set using understandable units such as MeV for calorimeters and the number of photoelectrons for cherenkov counter.
