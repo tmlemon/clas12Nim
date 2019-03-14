@@ -18,6 +18,7 @@
 * cron
   * log rotate
   * procServMgr
+* Mya Archiver
 
 ## Alarm System
 * RHEL7 services
