@@ -21,7 +21,11 @@ echo
 # keeping all pulls log.
 set nlogs = `ls pull_*.log | wc | awk '{print $1}'`
 @ nlogs += 1
-set newLog = pull_$nlogs".log"
+
+set newLog = pull.log
+
+# uncomment to activate histpry
+#set newLog = pull_$nlogs".log"
 
 rm -f $newLog
 git pull > $newLog
