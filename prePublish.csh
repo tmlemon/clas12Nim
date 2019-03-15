@@ -52,11 +52,11 @@ foreach d ($detChanged)
 	echo                 >> compile.log
 	echo Compiling with `which scons` >> compile.log
 	echo                 >> compile.log
-	scons                >> compile.log
+	/usr/local/bin/scons     >> compile.log
 	echo Result: `ls $d.pdf` >> compile.log
 	ls -lrt              >> compile.log
 	echo                 >> compile.log
-	scp -v $d.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims >> compile.log
+	scp $d.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims >> compile.log
 	echo $d published    >> compile.log
-	scons -c             >> compile.log
+#	scons -c             >> compile.log
 end
