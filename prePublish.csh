@@ -18,7 +18,8 @@ echo
 # chacking which detector was changed
 # keeping all pulls log.
 set nlogs = `ls pull*.log | wc | awk '{print $1}'`
-set newLog = pull_$nlog".txt"
+@ nlogs += 1
+set newLog = pull_$nlogs".txt"
 
 rm -f $newLog
 git pull > $newLog
@@ -42,8 +43,8 @@ endif
 
 foreach d ($detChanged)
 	# make sure the style files are common
-	rm -f compile.log
 	cd $currentDir
+	rm -f compile.log
 	cp *.sty $d
 	echo                  > compile.log
 	echo Detector: $d    >> compile.log
@@ -52,7 +53,7 @@ foreach d ($detChanged)
 	# chacking if repo has changed on the master. Using tab and det name, i.e. svt/
 	scons                >> compile.log
 	ls -lrt              >> compile.log
-	scp $d.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims >> compile.log
+	scp -v $d.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims >> compile.log
 	echo $d published    >> compile.log
 	scons -c             >> compile.log
 end
