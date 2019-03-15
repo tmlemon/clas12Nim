@@ -17,9 +17,9 @@ echo
 
 # chacking which detector was changed
 # keeping all pulls log.
-set nlogs = `ls pull*.log | wc | awk '{print $1}'`
+set nlogs = `ls pull_*.log | wc | awk '{print $1}'`
 @ nlogs += 1
-set newLog = pull_$nlogs".txt"
+set newLog = pull_$nlogs".log"
 
 rm -f $newLog
 git pull > $newLog
@@ -50,8 +50,7 @@ foreach d ($detChanged)
 	echo                  > compile.log
 	echo Detector: $d    >> compile.log
 	echo                 >> compile.log
-	# chacking if repo has changed on the master. Using tab and det name, i.e. svt/
-	scons                >> compile.log
+	scons                
 	ls -lrt              >> compile.log
 	scp -v $d.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims >> compile.log
 	echo $d published    >> compile.log

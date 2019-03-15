@@ -3,7 +3,7 @@ from util import scanFiles
 
 env = Environment(PDFLATEXFLAGS = "-halt-on-error")  # stops log where error occurs
 env['ENV']['max_print_line']='1048576'               # log output does not break single lines into multiples
-env.Command('simulations.pdf', 'simulations.tex', "pdflatex $SOURCE > /dev/null; bibtex simulations ; pdflatex $SOURCE > /dev/null; pdflatex $SOURCE")
+env.Command('simulations.pdf', 'simulations.tex', "pdflatex $SOURCE; bibtex simulations ; pdflatex $SOURCE; pdflatex $SOURCE")
 cleans = scanFiles('.', accept=["simulations.*", "*.aux"], reject=[".tex"])
 Clean('simulations.pdf', cleans)
 
