@@ -1,22 +1,16 @@
 \section{Overview}
 
-The CLAS12 slow controls system is based on Experimental Physics Industrial Control System (EPICS), currently version 3.14.12.5 \cite{epics-website}.  We run about 90 EPICS input-output controllers (IOCs) interfacing with approximately 50 different types of hardware via various protocols.
+The CLAS12 slow controls system is based on Experimental Physics Industrial Control System (EPICS), currently version 3.14.12.5 \cite{epics-website}, and includes about 90 EPICS input-output controllers (IOCs) interfacing with approximately 50 different types of hardware via various communication protocols.
 
-Most of the IOCs run on Red Hat Enterprise 7 (RHEL7) rack-mounted Dell servers in the control room.  A few IOCs run in VxWorks 5.X real-time operating systems on Motorolla VME controllers, primarily for high-rate, synchronous beam monitoring and support of legacy systems.
+One objective of upgrading the controls system for the 12 GeV era at JLab was incorporating legacy hardware and standalone controls systems into full EPICS integration, such that everything is accessible from a single interface and on any computer in the CLAS12 system.  Another was leveraging standard infrastructure tools supported by central JLab computing resources.
 
-One objective of upgrading the controls system for the 12 GeV era at JLab was incorporating legacy hardware from standalone systems into full EPICS integration, such that everything is accessible from a single interface and on any computer in the CLAS12 system.  Another was leveraging standard infrastructure tools supported by central JLab computing resources.
+Most of the IOCs run on Red Hat Enterprise 7 (RHEL7) rack-mounted Dell servers in the control room.  A few IOCs run in more speciazed systems in the experimental hall, such VxWorks 5.X real-time operating systems on Motorolla VME controllers, primarily for high-rate, synchronous beam monitoring and support of legacy components.
 
-For the graphical user interface we chose CS-Studio, developed at Oak Ridge National Laboratory, an Eclipse-based system with various features supporting quick interface development \cite{css-website}.
+For the graphical user interface we chose the modern Control Systems Studio (CS-Studio) developed at Oak Ridge National Laboratory \cite{css-website}.   CS-Studio is an Eclipse-based java system with various features supporting quick interface development such as templating and dynamic generation \cite{css-website}.  We also use CS-Studio's alarm system, which is based on a mysql database for storing alarm configuration and status and message history, and a server monitoring the IOCs, updating the database, and communicating with clients.  The clients include a graphical interface integrated with the rest of the user interfaces, with visible feedback and heirarchical view of the alarm system, an annuciator service running in the background in the control room, and a notifier service sending emails to on-call experts on particular alarm conditions.
 
-We also use the associated alarm system BEAST, which is based on a mysql database for alarm configuration and status and message history, and a server monitoring the IOCs, updating the database, and communicating with clients.  The clients include a graphical interface for users, with visible feedback and heirarchical view of the alarm system, an annuciator service running in the background in the control room, and a notifier service sending emails to on-call experts on particular alarm conditions.
+The operators of the controls system run directly on desktop PCs running RHEL7.  Full remote access is also provided, via 2-factor authentication and X-forwarding or VNC as well as VMWare virtual machines supported by JLab.  Read-only access in a web browser is provided via WebOPI, another product affiliated with CS-Studio.
 
-The operators of the controls system run directly on desktop PCs running RHEL7.  Full remote access is provided via 2-factor authentication and X-forwarding, VNC, and VMWare virtual machines supported by JLab.  Read-only access in a web browser is provided via Web-OPI, another product affiliated with CS-Studio.
-
-We utilize two internal channel access gateways, one read-only for the web interface, and the other for minimizing connections to superconducting magnet controls systems.
-
-Wherever appropriate, the standard autosave feature of EPICS is utilized to automatically preserve settings across IOC reboots, and the standard burt save/restore mechanisms.
-
-The controls system utilizes many custom hardware and software interlocks.
+We utilize two internal EPICS channel access gateways, one read-only for the web interface, and the other for minimizing connections to superconducting magnet controls systems.  Wherever appropriate, the standard autosave feature of EPICS is utilized to automatically preserve settings across IOC reboots, and the standard burt save/restore mechanisms.  The controls system also utilizes many custom hardware and software interlocks.
 
 Installation and configuration of the associated desktop and server machines, including custom service daemons, cron jobs, IOCs, network disk mounting, and deployment of upgrades and software changes, is managed via puppet and a central server maintained by Jefferson Lab \cite{puppet-website}.  Resulting maintainence is almost hands-free, and recovery from hardware failures or power outages is largely automated.  Monitoring of the servers is performed with Nagios, also provided by Jefferson Lab, which provides email notifications on system errors \cite{nagios-website}.
 
