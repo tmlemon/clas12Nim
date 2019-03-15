@@ -8,8 +8,6 @@
 # #*/10 * * * * /opt/projects/clas12Nim/prePublish.csh >& ~/error.log
 #
 set path = (/usr/local/bin /usr/bin /bin /usr/sbin /sbin /Library/TeX/texbin /opt/X11/bin /Library/Frameworks/Mono.framework/Versions/Current/Commands /Users/ungaro/myenv)
-set PYTHONPATH = /opt/jlab_software/2.3/scons_bm
-# echo $path
 
 set currentDir = /opt/projects/clas12Nim
 cd $currentDir

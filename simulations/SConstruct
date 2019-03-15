@@ -1,11 +1,15 @@
 import os
 from util import scanFiles
+import sys; sys.path.append('/opt/jlab_software/2.3/scons_bm')
 
-env = Environment(PDFLATEXFLAGS = "-halt-on-error")  # stops log where error occurs
-env['ENV']['max_print_line']='1048576'               # log output does not break single lines into multiples
-env.Command('simulations.pdf', 'simulations.tex', "pdflatex $SOURCE; bibtex simulations ; pdflatex $SOURCE; pdflatex $SOURCE")
-cleans = scanFiles('.', accept=["simulations.*", "*.aux"], reject=[".tex"])
-Clean('simulations.pdf', cleans)
+# this to limit screen log, uncomment when necessary.
+# to use this in cronjob we need to add the pythonpath
+
+#env = Environment(PDFLATEXFLAGS = "-halt-on-error")  # stops log where error occurs
+#env['ENV']['max_print_line']='1048576'               # log output does not break single lines into multiples
+#env.Command('simulations.pdf', 'simulations.tex', "pdflatex $SOURCE; bibtex simulations ; pdflatex $SOURCE; pdflatex $SOURCE")
+#cleans = scanFiles('.', accept=["simulations.*", "*.aux"], reject=[".tex"])
+#Clean('simulations.pdf', cleans)
 
 
 # Presentations:
@@ -24,3 +28,7 @@ Clean('simulations.pdf', cleans)
 # - Two configurations
 # - Documentation
 # - All output possibilities see slide
+
+env = Environment(ENV=os.environ)
+env['ENV']['TEXINPUTS']='..:'
+pdf = env.PDF(target  = 'simulations.pdf',  source = 'simulations.tex')
