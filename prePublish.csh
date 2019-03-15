@@ -44,12 +44,12 @@ endif
 foreach d ($detChanged)
 	# make sure the style files are common
 	cd $currentDir
-	rm -f compile.log
 	cp *.sty $d
+	cd $currentDir/$d
+	rm -f compile.log
 	echo                  > compile.log
 	echo Detector: $d    >> compile.log
 	echo                 >> compile.log
-	cd $currentDir/$d
 	# chacking if repo has changed on the master. Using tab and det name, i.e. svt/
 	scons                >> compile.log
 	ls -lrt              >> compile.log
