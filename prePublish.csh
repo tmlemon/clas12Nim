@@ -1,6 +1,5 @@
 #!/bin/csh -f
 
-# DO NOT RUN THIS FILE
 # It's a cronjob that check if a repo has changed, and compile the PDF in case
 #
 # possible util: 	set gcheck = `git whatchanged -n 1 | grep "\t$d\/"`
@@ -39,16 +38,17 @@ endif
 
 foreach d ($detChanged)
 	# make sure the style files are common
+	rm -f compile.log
 	cd $currentDir
 	cp *.sty $d
-	echo
-	echo Detector: $d
+	echo                  > compile.log
+	echo Detector: $d    >> compile.log
+	echo                 >> compile.log
 	cd $currentDir/$d
 	# chacking if repo has changed on the master. Using tab and det name, i.e. svt/
-	rm -f compile.log
-	/usr/local/bin/scons  > compile.log
+	scons                >> compile.log
 	ls -lrt              >> compile.log
 	scp $d.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims >> compile.log
-	echo $d published
+	echo $d published    >> compile.log
 	scons -c             >> compile.log
 end
