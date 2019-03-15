@@ -16,12 +16,16 @@ echo All detectors: $detectors
 echo
 
 # chacking which detector was changed
-rm -f pull.log
-git pull > pull.log
+# keeping all pulls log.
+set nlogs = `ls pull*.log | wc | awk '{print $1}'`
+set newLog = pull_$nlog".txt"
+
+rm -f $newLog
+git pull > $newLog
 
 rm -f detectorChanged.txt ; touch detectorChanged.txt
 foreach d ($detectors)
-	set gcheck = `cat pull.log | grep " $d\/"`
+	set gcheck = `cat $newLog | grep " $d\/"`
 	if(`echo $gcheck` != "" || $1 == "all") then
 		echo $d >> detectorChanged.txt
 	endif
