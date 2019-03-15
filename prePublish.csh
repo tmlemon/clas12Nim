@@ -3,8 +3,12 @@
 # It's a cronjob that check if a repo has changed, and compile the PDF in case
 #
 # possible util: 	set gcheck = `git whatchanged -n 1 | grep "\t$d\/"`
-
+#
+# Crontab command for every 10 minutes compilation:
+# #*/10 * * * * /opt/projects/clas12Nim/prePublish.csh >& ~/error.log
+#
 set path = (/usr/local/bin /usr/bin /bin /usr/sbin /sbin /Library/TeX/texbin /opt/X11/bin /Library/Frameworks/Mono.framework/Versions/Current/Commands /Users/ungaro/myenv)
+set PYTHONPATH = /opt/jlab_software/2.3/scons_bm
 # echo $path
 
 set currentDir = /opt/projects/clas12Nim
@@ -45,18 +49,22 @@ foreach d ($detChanged)
 	# make sure the style files are common
 	cd $currentDir
 	cp *.sty $d
-	cd $currentDir/$d
+	cd $d
 	rm -f compile.log
 	echo                  > compile.log
 	echo Detector: $d    >> compile.log
 	echo                 >> compile.log
 	echo Compiling with `which scons` >> compile.log
 	echo                 >> compile.log
-	/usr/local/bin/scons     >> compile.log
+	scons                >> compile.log
 	echo Result: `ls $d.pdf` >> compile.log
 	ls -lrt              >> compile.log
 	echo                 >> compile.log
 	scp $d.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims >> compile.log
 	echo $d published    >> compile.log
-#	scons -c             >> compile.log
+	scons -c             >> compile.log
+	echo                 >> compile.log
+	echo "Done. Check ~/error.log for cronjob errors."  >> compile.log
+	echo                 >> compile.log
+
 end
