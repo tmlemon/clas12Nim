@@ -4,12 +4,36 @@
 The gemc framework is documented on the gemc website \cite{gemc}. This includes the latest news and releases,
 examples, procedure details and all options documentation.
 
-The software is distributed in two ways: by downloading the source from the its public repository, or by using docker.
+The software is distributed in two ways: with docker, or by downloading the source from the its public repository.
+
+
+\subsubsection{Docker}
+
+A docker container with the necessary libraries to run GEMC and the reconstruction software
+is created in the JeffersonLab hub repository \cite{jlabDocker}
+
+
+The container is tagged, and every tag contains a set version of these libraries:
+
+\begin{itemize}
+	\item event generators such as generate-dis, dvcsgen generator executables
+	\item gemc with the clas12 geometry
+	\item CLARA
+	\item Coatjava
+\end{itemize}
+
+Collaborators access these containers and all the software inside by using the command:
+
+\begin{lstlisting}[language=Python]
+docker run -it --rm jeffersonlab/clas12simulations:iprod bash
+\end{lstlisting}
+
+The only requirement is the docker app, avaialble in Windows, Mac and Linux OS flavors.
+
 
 \subsubsection{Source Code Dowload}
 
 The code repository is \url{https://github.com/gemc/source}. To compile GEMC several libraries are needed:
-
 
 \begin{itemize}
 	\item clhep: Class Library for High Energy Physics \cite{clhep}
@@ -21,14 +45,17 @@ The code repository is \url{https://github.com/gemc/source}. To compile GEMC sev
 \end{itemize}
 
 
-\subsubsection{Docker}
+
 
 
 
 repository code handling (fork and pull)
 
-\subsection{clas12tags} 
 
+\subsubsection{Clas12tags repository}
+
+
+\subsubsection{Contribution to code and geometry}
 
 
 
