@@ -25,7 +25,7 @@ set nlogs = `ls pull_*.log | wc | awk '{print $1}'`
 set newLog = pull.log
 
 # uncomment to activate histpry
-#set newLog = pull_$nlogs".log"
+# set newLog = pull_$nlogs".log"
 
 rm -f $newLog
 git pull > $newLog
@@ -58,15 +58,15 @@ foreach d ($detChanged)
 	echo                 >> compile.log
 	echo Compiling with `which scons` >> compile.log
 	echo                 >> compile.log
-	scons                >> compile.log
+	scons                
 	echo Result: `ls $d.pdf` >> compile.log
 	ls -lrt              >> compile.log
 	echo                 >> compile.log
-	scp $d.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims >> compile.log
+	scp $d.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims
 	echo $d published    >> compile.log
-	scons -c             >> compile.log
+	scons -c
 	echo                 >> compile.log
-	echo "Done. Check ~/error.log for cronjob errors."  >> compile.log
+	echo "Done. Check ~/error.log for cronjob errors."  >> compile.log
 	echo                 >> compile.log
 
 end
