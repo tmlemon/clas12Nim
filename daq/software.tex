@@ -25,16 +25,22 @@ The supervisor in addition monitors the health and operation of the CODA compone
 
 \subsection{Readout Controller(Abbott)}
 
-Readout Controller (ROC) software component is the program running on front-end controllers such as Intel-based VME/VXS crate controllers, VTP trigger boards or regular Linux servers - any hardware receiving data from front-end electronics. On the startup ROC starts three threads, after that it jst controlls thread health and communicates with run control process. Three threads (readout, process and network) build a chin passing data from one to another communicating over circular buffers.
+Readout Controller (ROC, Fig.~\ref{fig:roc_diagram}) software component is the program running on front-end controllers such as Intel-based VME/VXS crate controllers, VTP trigger boards or regular Linux servers - any hardware receiving data from front-end electronics. On the DAQ startup ROC main program starts three threads, after that it just controlls thread health and communicates with run control process. Three threads (readout, processing and network) are passing data from one to another communicating over circular buffers. Typical number of buffers in each circle is 8 and size of every buffer is 4 MBytes, which defines how long front-end electronics will be read out before feeling effect of the back-end busy conditions.
 
 First (readout) thread receives data from front-end electronics and places them into first circular buffer. That thread can run in pooling mode occupying entire cpu core, or in interrupt mode. CLAS12 are using mostly pooling mode which has adequate performance on multi-core controllers.
 
-Second (process) thread reads data from first circular buffer and perform needed data processing, in particular it does so-called disentangling and data sanity check. Results placed into second circular buffer. That component can create its own threads to burst processing power.
+Second (processing) thread reads data from first circular buffer and perform needed data processing, in particular it does so-called disentangling and data sanity check. Results placed into second circular buffer. That component can create its own threads to burst processing power.
 
 Third (network) thread reads data from second circular buffer and send it over network to the Event Builder.
 
-First and second threads have user part which compiled separately and downloaded dynamically, it allows users to develop experiment-depemdent code without touching CODA framework.
+First and second threads have user part which compiled separately and downloaded dynamically, it allows users to develop experiment-dependent code without recompiling CODA framework.
 
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/roc_diagram.pdf}
+	\caption{Readout Controller Diagram}
+	\label{fig:roc_diagram}
+\end{figure}
 
 
 \subsection{Event Builder (Graham)}
