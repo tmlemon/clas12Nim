@@ -45,12 +45,19 @@ First and second threads have user part which compiled separately and downloaded
 
 \subsection{Event Builder (Graham)}
 
-Event Builder is the program receiving data from all readout controllers and glueing it into events. Building process is based on event number, event type and timestamp of the data fragments: for every particular event all three values have to be identical for all data from all readout controllers. In case of any difference DAQ will be stopped and error reported.
+Event Builder (EB, Fig.~\ref{fig:eb_diagram}) is the program receiving data fragments from all readout controllers and glueing it into events. Building process is based on event number, event type and timestamp of the data fragments: for every particular event all three values have to be identical for all data from all readout controllers. In case of any difference DAQ will be stopped and error reported.
 
-Event Builder consists of receiving and building parts. Receiving part contains set of independent threads, one per readout controller connected to it by TCP protocol. Every thread receives data and place it into internal buffer. If buffer becomed full thread stops receiving data, effectively propagating busy condition back to readout controller.
-Building part has the number of identical building threads, which takes turns by getting data from receiving part internal buffers, building events and placing them into Event Transfer system.
+Event Builder consists of receiving and building parts. Receiving part contains set of independent threads, one per readout controller connected to it by TCP protocol. Every thread receives data and place it into internal buffer. If buffer becomes full thread stops receiving data, effectively propagating busy condition back to readout controller.
+Building part has the number of identical building threads, which takes turns by getting data from receiving part internal buffers, building events and placing them into Event Transfer System.
 
-Total number of Event Builder threads in CLAS12 DAQ exceeds hundred, so the number of network connections from readout controllers. Because of that it have to run on powerful server, usually the one with many cpu cores, big memory and high bandwidth network card. CLAS12 is using DELL R730 server with 32 cores, 64GByte memory and 40Gbit network card. That server is adequate for CLAS12 DAQ requirements.
+Total number of Event Builder threads in CLAS12 DAQ is currently 118, so the number of network connections from readout controllers. Because of that it have to run on powerful server, usually the one with many cpu cores, big memory and high bandwidth network card. CLAS12 is using DELL R730 server with 32 cores, 64GByte memory and 40Gbit network card. That server is adequate for CLAS12 DAQ requirements.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/eb_diagram.pdf}
+	\caption{Event Builder Diagram}
+	\label{fig:eb_diagram}
+\end{figure}
 
 
 \subsection{Event Transfer (Carl)}
