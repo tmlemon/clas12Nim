@@ -156,6 +156,17 @@ are part of the same gemc hit. The algorithm is illustrated in \F{hitDefinition}
 
 \subsection{Process ID}
 
+A "processID" method can be implemented by some digitization algorithm to modify or add gemc identifiers to each geant4 step. For CLAS12 this happens in two
+cases, detailed for each detector:
+
+\begin{itemize}
+	\item a paddle is hit but two outputs are produced because there is one PMT at each end of the scintillator. This
+          is the case for CTOF, CND, FTOF.
+    \item some hardware elements are not present in the simulation. This is the case for Drift Chambers, where the volumes do not contain
+          the individual wires. In this case a wire id is calculated based on the position of the hit in the mother volume. 
+\end{itemize}
+
+
 
 
 \subsection{Detectors and Hit Process Plugins}
@@ -164,22 +175,68 @@ The detector are associated with c++ digitization routines at run time, see \F{p
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/pluginsAssociation.png}
-	\caption{Hit Prcess Digitization Plugin association.}
+	\caption{Hit Prcess Digitization Plugin association. The detector are associated by name with the hit process routine plugins at run time:
+			 The routine are registered in the hit process map and are called during digitization.}
 	\label{fig:pluginsAssociation}
 \end{figure}
-
 
 This allows the routines to
 be developed independently from the core code. Abstract methods can be derived in the individual detectors hit processes
 to define the treatment of the geant4 steps within the detector time window to provide three kind of outputs:
+
 \begin{itemize}
-	\item a single bank for each hit
+	\item a bank with digitized variables for each hit
+	\item a bank with digitized variables for geant4 step
+	\item a bank with an analog voltage versus time signal for each geant4 hit
 \end{itemize}
 
-
-
+The digitized banks are detailed in each detector subsitem, for example in \ref{tab:bstBank}.
 
 \subsection{True Information}
+
+The true information is saved in the output when requested, per detector. The true information can
+be integrated (one variable entry per gemc hit) or verbose (one variable entry per geant4 step).
+The true information variables are summarized in Table \ref{tab:trueInformation}.
+
+\begin{table}[h]
+	\small
+	\begin{center}
+		\begin{tabular}{| c | c |}
+			\hline \hline
+			Variable    & Description  \\
+			\hline
+				pid         &   ID of the FP                     \\
+				mpid        &   ID of the mother of the FP \\
+				tid         &   Track ID of the FP\\
+				mtid        &   Track ID of the mother of the FP  \\
+				otid        &   Track ID of the ancestor of the FP \\
+				trackE      &   Total energy of the FP \\
+				totEdep     &   Total energy deposited (in MeV) \\
+				avg\_x      &   Average X position  (in mm) \\
+				avg\_y      &   Average Y position  \\
+				avg\_z      &   Average Z position  \\
+				avg\_lx     &   Average local X position \\
+				avg\_ly     &   Average local Y position \\
+				avg\_lz     &   Average local Z position \\
+				px          &   x  of momentum of the FP (in MeV) \\
+				py          &   y  of momentum of the FP \\
+				pz          &   z  of momentum of the FP \\
+				vx          &   x  of the FP's origin (in mm) \\
+				vy          &   y  of the FP's origin \\
+				vz          &   z  of the FP's origin \\
+				mvx         &   x  of the FP mother's origin\\
+				mvy         &   y  of the FP mother's origin \\
+				mvz         &   z  of the FP mother's origin \\
+				avg\_t      &   Average time \\
+				nsteps      &   Number of geant4 steps \\
+				procID      &   Process that created the FP.  \\
+				hitn        &   Hit ID \\
+			\hline \hline
+		\end{tabular}
+	\end{center}
+	\caption{The digitized BST bank}\label{tab:trueInformation}
+\end{table}
+
 
 \subsection{Database Constants}
 
