@@ -163,13 +163,12 @@ cases, detailed for each detector:
 	\item a paddle is hit but two outputs are produced because there is one PMT at each end of the scintillator. This
           is the case for CTOF, CND, FTOF.
     \item some hardware elements are not present in the simulation. This is the case for Drift Chambers, where the volumes do not contain
-          the individual wires. In this case a wire id is calculated based on the position of the hit in the mother volume. 
+          the individual wires. In this case the wire id is calculated based on the position of the hit in the mother volume. In CLAS12 this mechanism
+          is adopted by the DC, BST and Micromegas.
 \end{itemize}
 
 
-
-
-\subsection{Detectors and Hit Process Plugins}
+\subsection{Detectors and Hit Process Plugin Mechanism}
 The detector are associated with c++ digitization routines at run time, see \F{pluginsAssociation}
 
 \begin{figure}
@@ -234,14 +233,66 @@ The true information variables are summarized in Table \ref{tab:trueInformation}
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{The digitized BST bank}\label{tab:trueInformation}
+	\caption{The true information bank. Quantities like totEdep integrates the information within one hit, but some
+             variables only record the First Particle (FP) entering the sensitve volume.}\label{tab:trueInformation}
 \end{table}
 
 
 \subsection{Database Constants}
 
+The mechanism to read, store and make available the CCDB \cite{ccdb} calibration constants is
+run automatically at the start of the run and every time the run number changes.
+Individual detector add their constants by implementing the corresponding abstract method.
+
+The list of constants loaded is detailed in each detector implementation section.
 
 \subsection{Digitization}
 
+The digitization routines are called at the end of each event, after the geant4 navigation
+has propagated all tracks and gema has collected all the steps into hits.
+
+The process routine digitize each hit by iterating through all the steps in it and collecting a
+a number of variables onto the detector bank.
+
+There are four different flavor of digitization that gives different outputs:
+
+\begin{itemize}
+	\item integrated (one bank per hit): this is implemented for all CLAS12 detectors.
+	\item step-by-step (one bank per geant4 step): used for debugging.
+	\item voltage: the analog signal versus time calculated as response of the detector to tracks passing through it
+    \item fadc: the same FADC bank from crate/slot/channel as written by the CLAS12 data acquisition.
+          This is implemented for the calorimeters and the time-of-flight detectors
+\end{itemize}
+
+
+The digitization is detailed in each detector implementation section.
+
+
 \subsection{Output}
 
+The output is available in two formats, identical in content: text (ascii) and evio \cite{evio}, the Jefferson Lab
+data acquisition format.
+Utilities were used to convert the evio format onto ROOT \cite{root}.
+
+The various output banks include:
+
+\begin{itemize}
+	\item header: timestamp, event number, run number, etc.
+	\item generated: generated particle information as seen by geant4. This bank includes a summarized information of the interaction of
+                     the particles with each detector such as number of hits, total energy deposited, etc. This summary includes
+                     the interactions of all the primary particle secondaries.
+	\item user header: a copy of the generator
+	\item beam radio-frequency signal: mimics the accelerator bank, a 248 MHz signal.
+	\item detector true info, per hit or per step
+	\item detector digitized info, per hit or per step
+	\item detector voltage vs time
+	\item detector fadc signal
+\item ancestor: the complete hierarchy of the primary and secondary particles.
+\end{itemize}
+
+The various banks are ogranized using an unique integer identifier.
+
+
+\section{CLAS12 Geometry Implementation}
+
+The following sections describe the implementation of the individual CLAS12 components into the simulation.
