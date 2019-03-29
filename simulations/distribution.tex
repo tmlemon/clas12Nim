@@ -43,17 +43,33 @@ The code repository is \url{https://github.com/gemc/source}. To compile GEMC sev
 \end{itemize}
 
 
+\subsubsection{Documentation and code repository}
 
+The main documentation is on the gemc website \cite{gemc}. It includes example on how to create and run custom geometry
+and use various features like generators, geometry factories, hit definitions, output, etc.
 
+The code is kept on the guthub repository \url{https://github.com/gemc/source}. Gemc is released on a semi-annual cycle.
 
-
-repository code handling (fork and pull)
-
-
-\subsubsection{Clas12tags repository}
+\subsubsection{Clas12 Tags}
+The CLAS12 development of both hit process routines and geometry is kept in a separate repository, \url{https://github.com/gemc/clas12Tags},
+that also contains documentation on how to run with configurations corresponding to the various experiment, how to change the
+beamline configuration, and switch between code and geometry releases.
 
 
 \subsubsection{Contribution to code and geometry}
+
+The code repository is public. The development contributions mechanism is illustrated in \F{github}: collaborators fork the repository
+and make pull request that are validated by the code author.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/github.png}
+	\caption{Typical workflow of contribution to the code: the main repository is forked and worked on. During the process comments
+             can be made part of the development process. When the users make the pull request, the changes are validated and then merged
+             to the master repository, or sent back with comments if there were problems.}
+	\label{fig:github}
+\end{figure}
+
 
 
 
