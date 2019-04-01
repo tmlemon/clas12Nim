@@ -62,11 +62,29 @@ Total number of Event Builder threads in CLAS12 DAQ is currently 118, so the num
 
 \subsection{Event Transfer (Carl)}
 
-Event Transfer (ET) system allows multiple connections to the data stream, needed for online data monitoring and possibly data or/and event reduction. It consists of ring of buffers, one per event, filled by Event Builder and accessed by one or several processing programs. Every processing program can request to see every event or subset of events based on selecting algorithm. There is a possibility to access ET system remotely, as well as create a chain of ET systems running on different servers effectively increasing processing power. Last program attached to ET system usually Event Recorder.
+The Event Transfer (ET, Fig.~\ref{fig:et_diagram}) system provides the user with an efficient method for moving bulk data between processes. ET was not designed as a messaging system, it can rather be visualized as data containers moving around a circular railway track. In this metaphor a producer of data (Event Builder) requests an empty container, fills it with data, tags it with metadata describing the contents and places it at the start of the track. Stations along the track are assigned algorithms for testing the metadata and selecting containers of interest. The user has the option of making a station blocking or non-blocking. A container stopped at a blocking station holds up all of the other containers behind it on the track. A data consumer attached to the station processes the data in the container and has the option of either putting the container back on the track, where it proceeds to the next station, or returning the container to the station at the start of the track, effectively discarding the data. In the simple example diagram on Fig.~\ref{fig:et_diagram}, a data monitoring consumer attaches to a non-blocking station which samples data of interest. Event Recorder attaches to a blocking station and records the content of every container to disk. The container is then returned to the start of the track.
+
+Using these simple concepts complicated data pathways can be constructed. The ET package supports remote consumers connecting to stations over the network allowing load sharing between multiple machines. 
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/et_diagram.png}
+	\caption{Event Transfer System Diagram}
+	\label{fig:et_diagram}
+\end{figure}
 
 \subsection{Event Recorder (Sergey)}
 
-Event Recorder (ER) is the program receiving data from ET system and recording data files into the disk. It can write data in one or several files in parallel (so-called multi-stream mode). If multi-stream mode is used event order is preserved, but it requires the allocated memory size to be bigger then the number of streams multiplied by the file size.
+Event Recorder (ER, Fig.~\ref{fig:er_diagram}) is the program receiving data from ET system and recording data files into the disk. It can write data in one or several files in parallel (so-called multi-stream mode). If multi-stream mode is used event order is preserved, but it requires the allocated memory size to be bigger then the number of streams multiplied by the file size.
+
+The ER structure in multi-stream more is shown on Fig.~\ref{fig:er_diagram}. Distribution thread receives data from Event Transfer System, search for the free writing thread and grab its mutex. It starts filling up thread's buffer with data until it becomes full. After that it signals writing thread to start writing entire buffer to the separate file using specified file name and extension. Writing thread marks it self 'busy' and writes data to the file, after that becoming 'free' again. While writing process is happening distribution thread grabs another free writing thread and process repeats. ER writing performance can be increased by increasing the number of writing threads.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/er_diagram.pdf}
+	\caption{Event Recorder Diagram}
+	\label{fig:er_diagram}
+\end{figure}
 
 
 \subsection{Messaging System (ActiveMQ) (Sergey)}
