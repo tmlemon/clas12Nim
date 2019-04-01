@@ -292,6 +292,16 @@ The various output banks include:
 
 The various banks are ogranized using an unique integer identifier.
 
+\subsection{Background Merging}
+
+Real data can be merged with simulated events, typically from random trigger to emulate physics and electronic background in
+the various detectors.
+The data is un\-digitized using the inverse digitization to calculate the energy and real timing from ADC and TDC values.
+It is then saved in text files indexed by event number and detector ID. This makes also easy to scale the background luminosity by grouping
+several events into one; for example, grouping two events at 50 nA beam current give one event with background from 100 nA current.
+The energy information is re-digitized using the same algorithm used for the geant4 steps, producing additional hits to the ones coming from simulation.
+
+
 
 \section{CLAS12 Geometry Implementation}
 
