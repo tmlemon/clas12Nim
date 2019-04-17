@@ -3,14 +3,13 @@
 
 \subsection{Geometry}
 
+
+
 \subsubsection{Geometry Git Location}
 The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/ft}.
 
-\subsection{Process ID}
-For each hit in the FTCal and FTHodo components, a hit is produced and processed independently through the corresponding detector hit process routine.
 
 \subsection{Digitization}
-
 
 \subsubsection{ADC}
 For FTCal hits, the energy deposited is converted first to the charge produced at the end of the electronics chain composed by the photosensor (APD) and pre-amplifier, and then to adc. The first conversion is based on the measured charge for cosmic rays that deposit a known energy in the crystals, while the second conversion is based on the FADC conversion factor. A smearing on the final adc values is added, accounting for the Poisson distribution of photo-electrons produced by the photosensor, the Gaussian noise of the photosensor and of the preamplifier. All parameters, number of photo-electrons per MeV of energy deposited, RMS of the APD noise and of the preamplifier input noise, have been tuned to experimental data.
@@ -43,6 +42,43 @@ Similarly, the TDC of FTHodo hits is derived from the time of a given energy dep
 
 
 \subsection{Digitized Bank}
+The digitized output bank has $ID=700$, $800$ and $900$ for the FT tracker, the FT hodoscope and the FT calorimeter respectively.
+The variables are summarized in Table \ref{tab:ftBank}
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| c | c | c |}
+			\hline \hline
+			Variable         & Description  & Tag  \\
+			\hline
+		         & FT Tracker  &   \\
+                       bankid  |                                    ft_trk bank ID  |  700   \\
+                       sector  |                                     sector number  |    1   \\
+                        layer  |                                      layer number  |    2   \\
+                    component  |                                  component number  |    3   \\
+                          adc  |                                               adc  |    4   \\
+                         hitn  |                                        hit number  |   99   \\
+		         & FT Tracker  &   \\
+                       bankid  |                                   ft_hodo bank ID  |  800   \\
+                       sector  |                                     sector number  |    1   \\
+                        layer  |                                      layer number  |    2   \\
+                    component  |                                  component number  |    3   \\
+                          adc  |                                               adc  |    4   \\
+                          tdc  |                                               tdc  |    5   \\
+                         hitn  |                                        hit number  |   99   \\
+ 		         & FT Tracker  &   \\
+                      bankid  |                                    ft_cal bank ID  |  900   \\
+					  sector  |                                     sector number  |    1   \\
+				   	   layer  |                                      layer number  |    2   \\
+				   component  |                                  component number  |    3   \\
+						 adc  |                                               adc  |    4   \\
+						 tdc  |                                               tdc  |    5   \\
+						hitn  |                                        hit number  |   99   \\
+			\hline \hline
+		\end{tabular}
+	\end{center}
+	\caption{The digitized HTCC bank}\label{tab:ftBank}
+\end{table}
 
 \subsubsection{Time Window}
 
