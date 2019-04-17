@@ -7,12 +7,20 @@
 The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/ft}.
 
 \subsection{Process ID}
+For each hit in the FTCal and FTHodo components, a hit is produced and processed independently through the corresponding detector hit process routine.
 
 \subsection{Digitization}
 
 
 \subsubsection{ADC}
+For FTCal hits, the energy deposited is converted first to the charge produced at the end of the electronics chain composed by the photosensor (APD) and pre-amplifier, and then to adc. The first conversion is based on the measured charge for cosmic rays that deposit a known energy in the crystals, while the second conversion is based on the FADC conversion factor. A smearing on the final adc values is added, accounting for the Poisson distribution of photo-electrons produced by the photosensor, the Gaussian noise of the photosensor and of the preamplifier. All parameters, number of photo-electrons per MeV of energy deposited, RMS of the APD noise and of the preamplifier input noise, have been tuned to experimental data.
+
+The same approach is adopted to process FTHodo hits, in which the deposited energy is first convereted to charge and then to adc. The smearing in this case accounts only for the Poisson distribution of the measured number of photo-electrons, which dominates over other sources because of the relatively small number of photo-electrons per MeV of energy deposition.
+
 \subsubsection{TDC}
+The TDC of FTCal hits is computed from the time of the energy deposition, accounting for the speed of the scintillation light in the crystal and the distance to the photosensor, assuming a known time-to-TDC conversion factor. A Gaussian smearing on the resulting TDC is added based on a fixed RMS derived from the experimental measurements.
+
+Similarly, the TDC of FTHodo hits is derived from the time of a given energy deposition, adding a fixed offset before the conversion from time to TDC and a Gaussian smearing. As in previous cases, all relevant parameters have been tuned to the observed detector response.
 
 \subsubsection{Summary of CCDB Table used}
 \paragraph(Calorimeter)
