@@ -62,9 +62,87 @@ CLAS12 Neutron Detector (CND, ref) consists of three layers of scintillation sla
 
 \subsubsection{Forward Calorimeter and Hodoscope} andrea,ben
 
+CLAS12 Forward Tagger Calorimeter and Hodoscope trigger is designed to trigger on electrons at small forward angles. The calorimeters is a stack of 332 lead tunstage cystals connected to APDs which are readout by FADCs. The hodoscope consists of two layers each having 116 pixels (of two sizes) which matches the geometry of the calorimeter. The calorimeter trigger finds clusters by looking for a seed hit at each crystal location. If the deposited energy in a crystal is greater than the seed threshold and it is a local maximum in space (using 3x3 view) and time then it is considered a seed hit. For each seed hit a cluster is formed by summing all of the energies centered on the seed hit in a 3x3 view is for all hits time coincident with the seed hit (up to +/-16ns). The seed hit time, which due to timewalk is the earliest hit in the cluster, is used for the cluster timestamp providing 4ns resolution. The geometrically matched hodoscope pixels for both layers are checked for time coincident hits with the calorimeter seed hit and the cluster is tagged as having none, layer 1, layer 2, or both layers of hodoscope present. Found clusters are serialized and streamed over fiber links to the 2nd trigger stage where several programmable trigger cuts can discriminate clusters based on energy, charge, and multiplicty.
 
-\subsection{Stage 2} ben
+\subsection{Stage 2}
+
+The stage 2 trigger collects data from stage 1 crates using fiber optics. Multiple SSP modules are used to collect stage 1 trigger streams and form subsystem coincidences for 6 identical forward detectors and central detectors (all separately). Each subsystem trigger stream goes through a programmable delay that provides 4ns resolution when deskewing to optimize the time coincidence. Next follows a programmable coincident window for each subsystem trigger stream, also 4ns step resolution, to ensure that different subdetector signals will remain stable long enough to form a time coincidence regardless of jitter due to particle time-of-flight, detector, and trigger jitter.
+
+\begin{center}
+	Stage 2 Specs\\
+	\begin{tabular}{| l | l |}
+		\hline \hline
+		Name				& Specification	\\
+		\hline
+		Latency (Stage 1+2)		& 5$\mu$s	\\
+		Jitter				& 4ns		\\
+		Stage 2 trigger bits		& 8		\\
+		Deskew range			& 4$\mu$s	\\
+		Deskew step size		& 4ns	\\
+		Coincidence window range	& 2$\mu$s	\\
+		Deskew step size		& 4ns	\\
+		\hline \hline
+	\end{tabular}
+\end{center}
+
+The forward detectors in the trigger consist of FTOF, ECAL, PCAL, HTCC, and DC. A single SSP collects all forward dector trigger streams from a single sector of CLAS12. After the delay and concidence widths are applied to each input stream the input streams are copied to 8 programmable sector trigger bits. Each sector trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be taylored for a particular trigger type. Sector trigger bits are computed and sent to the final trigger stage 3.
+
+\begin{center}
+	Forward Detector Trigger Primitives\\
+	\begin{tabular}{| l | l |}
+		\hline \hline
+		Primitive Name			& Trigger Bit Parameters	\\
+		\hline
+		PCU     			& Mask				\\
+		FTOF    			& Mask				\\
+		PCAL				& Cluster Emin, Emax		\\
+		ECAL				& Cluster Emin, Emax		\\
+		PCAL+ECAL			& Cluster Emin			\\
+		HTCC				& Mask				\\
+		{\bf Geometry Matched}		&				\\
+		PCUxFTOF			& Bar match tolerance		\\
+		PCALxDC				& Cluster Emin			\\
+		\hline \hline
+	\end{tabular}
+\end{center}
+
+The central detectors participating in the trigger consist of CTOF, CND, and FT. A single SSP collects all central detector trigger streams. After the delay and concidence widths are applied to each input stream the input streams are copied to 8 programmable central trigger bits. Each central trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be taylored for a particular trigger type. Central trigger bits are computed and sent to the final trigger stage 3 where all sector and central trigger bits arrive at the GTP to compute the global trigger bits.
+
+\begin{center}
+	Central Detector Trigger Primitives\\
+	\begin{tabular}{| l | l |}
+		\hline \hline
+		Primitive Name			& Trigger Bit Parameters	\\
+		\hline
+		CND     			& Mask				\\
+		CTOF    			& Mask				\\
+		FT				& Cluster Emin, Emax, 		\\
+						& Cluster Size, Hodoscope	\\
+		{\bf Geometry Matched}		&				\\
+		CNDxCTOF			& Bar match tolerance		\\
+		\hline \hline
+	\end{tabular}
+\end{center}
 
 
 \subsection{Stage 3} ben
 
+The stage 3 trigger is the final stage and collects all sector and central trigger bit streams in a single module where they can be combined in a variety of ways to generate the global trigger bits used for reading out the DAQ. There are 32 independent trigger bits that can form a trigger based on any combination of sector and/or central trigger bits. Each trigger bit contains two sector trigger bit conditions (required to both be true) and a signle central trigger bit condition. Additionally each trigger bit contains 16bit prescaler, final pulse width, and scaler.
+
+\begin{center}
+	Stage 3 Specs\\
+	\begin{tabular}{| l | l |}
+		\hline \hline
+		Name				& Specification	\\
+		\hline
+		Latency (Stage 1+2+3)		& 7$\mu$s	\\
+		Jitter				& 4ns		\\
+		Stage 3 trigger bits		& 32		\\
+		Prescaler			& 0-65535	\\
+		Trigger bit width		& 4ns-1$\mu$s	\\
+		Pulse rate			& 0.05Hz-125MHz	\\
+		\hline \hline
+	\end{tabular}
+\end{center}
+
+An important part of stage 3 is the event builder allowing it to participate in event-by-event readout like front-end crates. Each time the CLAS12 DAQ is triggered the stage 3 GTP component will also build an event which contains the trigger bit decisions for all 32bit for a given programmable window related to the readout trigger time. This allows trigger bits to be run in ``tagging mode'' and is a powerful way to test trigger efficiency (using either a loose trigger or random trigger).

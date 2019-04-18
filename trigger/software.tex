@@ -2,7 +2,16 @@
 
 
 
-\subsection{Development Software} Ben
+\subsection{Development Software}
+
+Several software packages were used to implement and test the trigger logic developed for CLAS12. These were the FPGA synthesis and implementation, FPGA high level synthesizer, and FPGA simulation software packages.
+
+For FPGA synthesis and implemenation Xilinx ISE/Planahead and Vivado were used. Most of the front-end boards were developed years ago and use Virtex 5 and Spartan 6 FPGAs, which are not supported by Xilinx Vivado, so we relied on Xilinx ISE/Planahead for synthesis and implementation. Even though these tools are no longer updated by Xilinx they have proved to be stable, reliable, and deliver consistent results. Newer design use Xilinx 7-series parts (we used Artix, Kintex, and Virtex) so we used the Vivado tools, which had far better support than ISE/Planahead.
+
+Vivado HLS was used to implement a variety of trigger algorithms, event builder logic, and general purpose logic. HLS components were able to be verified with C/C++ test benches on their own without anything more than GNU GCC and associated C/C++ header files from the HLS toolchain. This tool often allowed for faster implementation for FPGA implemenation, but many components still were implemented in HDL were resource and/or timing requirements become critical.
+
+A cycle accurate simulation was setup to model, test, and debug the full trigger system was setup using Aldec Riviera. Using this tool we were able to perform simulations using the full trigger system in a mixed language environment (VHDL, Verilog, C/C++) for all FPGA componenets (Xilinx series 5, 6,and 7 components). VHPI was used to interface external C/C++ programs from the DAQ to the VHDL testbench. Using VHPI, calls to the DAQ EVIO C/C++ libraries were possible from VHDL making it possible to feed detector waveform data into the trigger simulation directly from monte-carlo and beam data files. Simulation intensive components, such as SerDes components, were replaced with fast and simple models once verified to improve the performance. The simulator is single-threaded and requires a license for each running instance, making it cost prohibitive to parallelize. Even so, it was capable processing 1 event every ~30 seconds on a typical desktop PC simulating the forward and central trigger system comprised of 24,192 drift chamber wires and ~3400 FADC250 channels.
+
 
 \subsection{Operating Systems} Moffit
 
@@ -21,11 +30,18 @@ using c/c++ programs.
 CLAS12 Trigger system has large amount of parameters controlling its logic. Those parameters are set by writing values to hadrware registers, and controlled by reading those registers back. System is using ascii files, example is shown on (Fig.). Every line contains key word and the number of corresponding parameter values. Directive 'include' allows to use hierarhical set of configuration files. Normally main configuration file is selected during run startup procedure, and run control software resolves all 'include' directives creating one big configuration file. That file is used to program all trigger harwdare registers, and it is also written to the data stream for bookkeeping purposes. Register contents are read back and results recorded into data stream as well, providing full control of trigger system settings. Normally the same configuration files contains DAQ settings as well, makeing it complete source for entire DAQ/Trigger system settings.
 
 
-\subsubsection{Timing Setting} ben
+\subsubsection{Timing Setting}
 
-One of the important components of the trigger setting process is delay curves measurements. For that purpose software procedure was developed. It includes special trigger configuration file and software tools to change individual subsystem latencies, record set of rate-related scalers, and produce corresponding delay plots (Fig). In a process, most time-precise trigger components latency was set, and all other components latencies were change step by step scanning area around expected latency values. That procedure was repeated every time trigger logic was changed.
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/delay_scan_ctof_ft.png}
+	\caption{CTOFxFT Delay Scan}
+	\label{fig:delay_scan_ctof_ft}
+\end{figure}
+
+One of the important components of the trigger setting process is delay curves measurements. For that purpose software procedure was developed. It includes special trigger configuration file and software tools to sweep individual subsystem latencies, record set of beam current normalized scalers, and produce corresponding delay plots Fig.~\ref{fig:delay_scan_ctof_ft}. Time trigger time setting detector was kept at a constant value, which determined the DAQ readout window timing, while the other subsystems were changed step by step to monitor the delay curve. Delays and coincidence widths were adjusted to account for known jitter sources to ensure no events are lost due poor timing alignment. This procedure was repeated every time trigger logic was changed.
 
 
-\subsubsection{Gain calibration and Threshold settings} ben
+\subsubsection{Gain calibration and Threshold settings}
 
 One of the important settings in trigger system is FADC ones. As it stated above FADC boards serves as initial stage of the most of the Stage 1 trigger components (except Drift Chamber), and correct pedestal and gain calibration is critical for correct trigger system performance. Pedestal and gain measurements were conducted before run startup, and values were loaded using configuration files. As result, all thresholds in configuration files were set using understandable units such as MeV for calorimeters and the number of photoelectrons for cherenkov counter.
