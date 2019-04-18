@@ -118,11 +118,30 @@ I suggest you add all the pictures in a "img" directory. To add to the repositor
 To include a picture "examplePic.png" use the following code:
 
 ```
-\begin{wrapfigure}{l}{0.5\columnwidth}
-  \includegraphics[width=0.5\columnwidth]{examplePic.png}
-  \caption{Example of a picture}
-  \label{fig:examplePic}
-\end{wrapfigure}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ftGeometry.png}
+	\caption{The three detectors in the FT geometry }
+	\label{fig:ftGeometry}
+\end{figure}
+```
+
+
+Pictures and tables across two columns
+--------------------------------------
+
+Some pictures or tables are too big to fit in one column. 
+
+You can add a "*" at the end of the begin directive to span the picture or table across two columns.
+For example:
+
+```
+\begin{figure*}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ftGeometry.png}
+	\caption{The three detectors in the FT geometry }
+	\label{fig:ftGeometry}
+\end{figure*}
 ```
 
 
