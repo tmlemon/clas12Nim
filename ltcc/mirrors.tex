@@ -12,7 +12,7 @@ reflective surfaces.
 \begin{figure}
 \centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/mirrorsReflectivityBefore.png}
-	\caption{Reflectivity measurement of a sample of 8 mirrors before re-coating, each sampled at two different places (front and back). The reflectivity
+	\caption{Reflectivity measurement as a a function of wavelength of a sample of 8 mirrors before re-coating, each sampled at two different places (front and back). The reflectivity
 				was measured using a monochromator (Newport model CS260-USB-1-FH-A) with a deuterium light source with a reach
             between 200 nm and 400 nm. The reflectivity showed a degraded quality of about 65$\%$ instead of an optimal 90$\%$.}
 	\label{fig:reflectivityBefore}
@@ -29,8 +29,9 @@ was awarded to ECI~\cite{ECI}. See \F{reflectivityAfter} for typical reflectivit
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/mirrorsReflectivityAfter.png}
-	\caption{Typical mirror reflectivity measure after re-coating the mirrors or glueing the Lexan strips. Note the very high value of reflectivity
-		     in the UV region, where most of the Cherenkov light is produced. In the visible spectrum, the reflectivity is about 90$\%$.}
+	\caption{Reflectivity measurement as a function of wavelength of a sample of 5 mirrors measured after gluing the Lexan strips (see text for detail).
+            Note the very high value of reflectivity in the UV region, where most of the Cherenkov light is produced. In the visible spectrum,
+            the reflectivity is about 90$\%$.}
 	\label{fig:reflectivityAfter}
 \end{figure}
 
@@ -56,9 +57,9 @@ A working chain was setup to:
 	\item test reflectivity
 \end{enumerate}
 
-An example of unwrapping the film off the Lexan strip is shown in \F{filmOnStrip} (top). Several companies produced various test samples. In the end the
-job was awarded to ECI~\cite{ECI}.
-The setup to glue the coated Lexan strip onto the existing mirrors is shown in \F{filmOnStrip} (bottom).
+An example of unwrapping the film off the Lexan strip is shown in \F{filmOnStrip} (top). Several companies produced various test samples with
+various protective material films. The job was eventually awarded to ECI \cite{ECI}.
+%The setup to glue the coated Lexan strip onto the existing mirrors is shown in \F{filmOnStrip} (bottom).
 After 24 hours of curing time the film was removed.
 The typical reflectivity of the refurbished mirrors is shown in \F{reflectivityAfter}.
 
@@ -66,12 +67,11 @@ The typical reflectivity of the refurbished mirrors is shown in \F{reflectivityA
 \begin{figure}[t]
 \centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/filmOnStrip.png}
-	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/mirrorSetup.png}
-	\caption{Top: For the elliptical and hyperbolic mirrors Lexan strips were coated with AlMgF$_2$
-             then glued on top of the mirrors. The photo shows the process of removign the
-             protecting film from one such strip. Bottom: Mirror setup. The mirrors were
-             vacuum-holded on a custom structure. The glue was sprayed on the mirror and
-             vented out by a custom suction system.}
+	\caption{The protective film. For the elliptical and hyperbolic mirrors the Lexan strips were coated with AlMgF$_2$
+				and covered with films to protect the handling and the
+				gluing on top of the mirrors. The photo shows the process of removing the
+            protecting film from one such strip. The surface reflectivity was tested immediately after the installation on the subtrate and again
+            48 hours after that. Only the samples from ECI \cite{ECI} resulted in a consistent high reflectivity. }
 	\label{fig:filmOnStrip}
 \end{figure}
 
@@ -119,32 +119,34 @@ The elliptical mirror focal points (see \F{alignmentSimulation}) are 1. the targ
 and 2. a point behind the hyperbolic mirror. The focal points if the hyperbolic mirrors are 1. a point near the focal point of the elliptical mirrors and
 2. above the face of the PMTs.
 
-The geometrical shape of the mirrors has been built into the Geant4 simulation. When a laser line is directed at the mirror,
+The geometrical shape of the mirrors has been built into the Geant4 simulation. When a laser line coming from the target is directed at the mirror,
 it is focused on the hyperbolic focal point, then directed at the PMT, see \F{alignmentSimulation}.
-The laser setup for the mirror alignment is shown in \F{laserAlignment} (top). A 3 mW, 635 nm laser was placed, relative to the detector,
-in center of the CLAS coordinate system, the location of the liquid hydrogen target.
+This geometrical focusing was used during the mirror alignment: a 3 mW, 635 nm laser was placed, relative to the detector,
+in center of the CLAS coordinate system, the location of the liquid hydrogen target and first ellipse focal point.
 The laser was mounted on a structure that allowed the beam direction and line angle to move with respect to the floor, while keeping
 the origin of the laser at the coordinate system origin.
 This position was accurate at the 0.5 mm level. The laser was spread through two cylindrical lenses onto a laser line and shone
 longitudinally along the center line of each elliptical mirror. Both the elliptical and hyperbolic mirrors were then adjusted in pitch, roll, and yaw to minimize the light spot
-dimensions and to center it in the middle of the face of the PMT, see  \F{laserAlignment} (bottom).
+dimensions and to center it in the middle of the face of the PMT.
 
 
 \begin{figure}[h]
 \centering
 	\includegraphics[width=0.95\columnwidth, keepaspectratio]{img/mirrorAlignmentSimulationZoomed.png}
-	\caption{The simulation of a laser line (white tracks are photons) originating from the target and directed at the elliptical mirrors. The photons are directed
-		      at the second ellipse focal point, and the hyperbolic mirror reflects them on its focal point. This picture illustrate the procedure used to align the mirrors.}
+	\caption{The simulation of a laser line (white tracks are photons) originating from the target (first ellipse focal point) and directed at the elliptical mirrors. The photons are reflected
+		      to the second ellipse focal point. The hyperbolii first focal point is near the ellipse focal point so the hyperbolic mirror
+			   reflects the incoming photons to its second focal point, located above the face of the PMTs.
+	         This picture illustrate the procedure used to align the mirrors: a laser line originating from the target is focused on the face of the PMT.}
 	\label{fig:alignmentSimulation}
 \end{figure}
 
 
-\begin{figure}
-\centering
-	\includegraphics[width=0.95\columnwidth, keepaspectratio]{img/laserAlignment1.png}
-	\includegraphics[width=0.95\columnwidth, keepaspectratio]{img/laserAlignment2.png}
-\caption{The laser aligment setup. Top: the laser was placed, relative to the detector, in the lab coordinate system. The laser line was shined on each elliptical mirror.
-         Bottom: zoomed in view of the laser line focused on the center of the PMT after the mirrors were aligned.}
-	\label{fig:laserAlignment}
-\end{figure}
+%\begin{figure}
+%\centering
+%	\includegraphics[width=0.95\columnwidth, keepaspectratio]{img/laserAlignment1.png}
+%	\includegraphics[width=0.95\columnwidth, keepaspectratio]{img/laserAlignment2.png}
+%	\caption{The laser aligment setup. Top: the laser was placed, relative to the detector, in the lab coordinate system. The laser line was shined on each elliptical mirror.
+%         Bottom: zoomed in view of the laser line focused on the center of the PMT after the mirrors were aligned.}
+%	\label{fig:laserAlignment}
+%\end{figure}
 
