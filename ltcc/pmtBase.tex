@@ -10,8 +10,8 @@ signal to noise ratio: the high voltage needed to detect the single photo-electr
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/pmtHVImprovement.png}
-	\caption{Comparison of sector 5 gain matched PMT high voltages that provide a SPE peak at about ADC channel 200.
-            The PMTs with the modified bases could produce the same response function of the original base but at about 360 HV less voltage (1666 V vs 1292 V)}
+	\caption{Comparison of the PMT high voltages in sector 5 gain-matched to provide a SPE peak at about ADC channel 200.
+            The PMTs with the modified bases produce the same response function of the original base but at an average voltage 360 HV less (1666 V vs 1292 V).}
 	\label{fig:pmtHVImprovement}
 \end{figure}
 
@@ -20,9 +20,13 @@ amplification and a split signal directly from the PMT base.
 
 \begin{figure}
 	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/dividerSchematic.png}
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/pmtWithDivider.png}
-	\caption{The prototype module installed in the XP4500B PMT base. The bottom of the base has been modified to contain the HV
-				BNC input and two output signals BNC. }
+	\caption{Top: schematic of the board, shown as a resistor chain for simplicity. The amplifier, designed to operate at current from 0.7 to 1.5 mA,
+            provides amplification in the first stage using a common base amplifier, made on a fast NPN transistor NE68033 by California Eastern Laboratories.
+            In the output stage a PNP-NPN transistors is used.
+            Bottom: the prototype module installed in the XP4500B PMT base.
+            The bottom of the base has been modified to contain the HV SHV input and two output signals. }
 	\label{fig:pmtWithDivider}
 \end{figure}
 
@@ -34,13 +38,11 @@ coming from the external dedicated splitter and amplifier through the ADC electr
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.87\columnwidth,keepaspectratio]{img/doubleSignal.png}
-	\includegraphics[width=0.97\columnwidth,keepaspectratio]{img/fadcOutput.png}
-	\caption{Top: qualitetively comparison of the two outputs from the base modifications as seen on an oscilloscope.
-				The analysis of the adc spectra histograms confirmed quantitevily that the signals are identical. Bottom:
-				The single photo-electron ADC spectrum of one of the output compared with the PMT output in the original
-            configuration of a dedicated external splitter and amplifier.
-    }
+%	\includegraphics[width=0.87\columnwidth,keepaspectratio]{img/doubleSignal.png}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/fadcOutput.png}
+	\includegraphics[width=0.97\columnwidth,keepaspectratio]{img/cc_signal.png}
+	\caption{The single photo-electron FADC spectrum of one of the PMTs with the modified base (top) compared with the original ADC output in the
+            configuration of a dedicated external splitter and amplifier. }
 	\label{fig:dividerTests}
 \end{figure}
 
