@@ -14,8 +14,33 @@ simulated data and failed on final validation stage. Most complicated stage1 com
 ben
 Some stage1, as well as all stage2 and stage3 components were implemented using VHDL. For those, VIVADO tools were used for validation diring design phase, in particular ...
 
-\section{Validation of the installed system using cosmic runs} Cole
+\section{Validation of special purpose FPGA triggers using cosmic runs} 
 
+Efficiency and spatial uniformity of cluster finding trigger described in Section 5.3 requires already calibrated calorimeters with pre-determined PMT gain and light attenuation constants loaded into the VTP/FPGA trigger firmware.  Calibration runs using a special purpose MIP trigger were used to obtain these constants.  This so-called "pixel trigger" used a simple multiplicity condition on 1D cluster size for each U,V,W view to reject undesirable muon trajectories and select normally incident tracks.  This reduced the trigger and data rate by 95$\%$ and ensured the same MIP energy was deposited for all possible triple intersections of single strips.  
+
+The pixel trigger pipeline executes these steps in parallel, with user configurable parameters in bold:
+  1) If FADC hit energy $>$ \textbf{EMIN}, make a pulse \textbf{HITWIDTH}*4ns for that strip.
+  2) Look for coincidence of U,V,W pixel strip candidates from step 1.
+  3) Evaluate multiplicity \textbf{EVALDELAY}*4ns clock cycles after the leading edge of a candidate pixel from step 2.
+  4) Generate pixel trigger if multiplicity requirement is met and we still have a hit on U,V,and W. 
+
+Additional configurable trigger elements were introduced, including a total energy sum threshold \textbf{ESUM} and a lookup table for triplets of strips which satisfy the geometrical constraint $dU+dV+dW=2.0$, where $d$ is the normalized distance to the hit strip indicated by the arrows in Fig. 6.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% F I G U R E %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[!htb]
+ \centering
+  \includegraphics[width=0.95\columnwidth,keepaspectratio]{img/TwoClusters.png}
+ \caption{Examples of clusters from cosmic muon triggers.  Desired trajectory (left) is normally incident on face of PCAL and satisfies single pixel multiplicity condition (N$_u$=N$_v$=N$_w$=1) in FPGA trigger.  Event at right shows more vertical trajectory rejected by pixel trigger.}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% F I G U R E %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% F I G U R E %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[!htb]
+ \centering
+  \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/PixelFraction.png}
+ \caption{Offline analysis of events which satisfied the pixel trigger on ECINNER calorimeter.  Left plot shows 89$\%$ of ECINNER triggers satisfied the pixel test $dU+dV+dW=2$.  Right plot shows only 14$\%$ of the ECINNER triggers found an ECOUTER event that satisfied both the $N=3$ and pixel test. }
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% F I G U R E %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Validation on beam during CLAS12 detector commissioning - no FT} Rafo\\
 \input{Validation_Rafo}
 \input{Validation_Andrea}
