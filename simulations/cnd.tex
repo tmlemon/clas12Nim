@@ -2,9 +2,9 @@
 
 \subsection{Geometry}
 
-The CND geometry is implemented through the native gemc geometry API.
+The CND geometry is implemented through the native GEMC geometry API.
 The paddles are Geant4 generic trapezoids, see \F{cndGeometry}. The scintillator junctions are G4Polycons.
-The paddles are assigned the scintillator material and associated with the cnd hit process routine.
+The paddles are assigned the scintillator material and associated with the CND hit process routine.
 
 \begin{figure}
 	\centering
@@ -17,7 +17,7 @@ The paddles are assigned the scintillator material and associated with the cnd h
 
 
 \subsubsection{Geometry Git Location}
-The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/cnd}.
+The github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/cnd}.
 
 
 \subsection{Digitization}
@@ -27,7 +27,7 @@ The github location of the gemc perl api script is \url{https://github.com/gemc/
 The energy deposited is reduced based on the position on the paddle using the calibration attenuation length. Two signals are then propagated, one directly
 to the PMT and one through the scintillator junction. A $30\%$ factor takes into account losses at junctions.
 
-The corrected energy is converted to the theoretical number of photos $N_{th}$ using the constant $1210 \gamma / MeV $. A poissonian is used to
+The corrected energy is converted to the theoretical number of photos $N_{th}$ using the constant $1210 \gamma / MeV $. A Poissonian is used to
 calculate the actual number of photons $N_{actual}$ and the resulting ``smeared`` energy is the converted to adc using the FADC conversion factor.
 
 \subsubsection{TDC}
@@ -40,10 +40,10 @@ The absolute hit time is corrected by:
 	\item the Birks Attenuation factor
 \end{itemize}
 
-The time is then smeared by a $\sigma$ resolution read from CCDB using a gaussian function and then digitized using a TDC conversion factor.
+The time is then smeared by a $\sigma$ resolution read from CCDB using a Gaussian function and then digitized using a TDC conversion factor.
 
 
-\subsubsection{Summary of CCDB Table used}
+\subsubsection{Summary of CCDB Table Used}
 \begin{itemize}
 	\item /calibration/cnd/Status\_LR
 	\item /calibration/cnd/TDC\_conv
@@ -58,7 +58,7 @@ The time is then smeared by a $\sigma$ resolution read from CCDB using a gaussia
 
 
 \subsection{Digitized Bank}
-The digitized output bank has $ID=300$, and the variables are summarized in Table \ref{tab:cndBank}
+The digitized output bank has $ID=300$, and the variables are summarized in Table \ref{tab:cndBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -77,7 +77,7 @@ The digitized output bank has $ID=300$, and the variables are summarized in Tabl
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{The digitized CND bank}\label{tab:cndBank}
+	\caption{The digitized CND bank.}\label{tab:cndBank}
 \end{table}
 
 

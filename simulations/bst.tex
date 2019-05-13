@@ -5,7 +5,7 @@
 
 
 The BST geometry is implemented through the COATJAVA geometry service.
-The service provides the geant4 definitions that are read by the GEMC perl api to build the geometry database.
+The service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
 
 There are three BST regions, with 10, 14 and 18 sectors for region 1, 2, and 3 respectively, see \F{bstGeometry}.
 Each sectors contains a module with three sensors, two readout chips, and several layers of material,
@@ -27,7 +27,7 @@ including (length of line represents depth level):
 	\item -- wirebond
 \end{itemize}
 
-The sensitive sensor are assigned the silicon material and associated with the bst hit process routine.
+The sensitive sensor are assigned the silicon material and associated with the BST hit process routine.
 The strip identification is performed in the Process ID routine.
 
 \begin{figure}
@@ -43,13 +43,13 @@ The strip identification is performed in the Process ID routine.
 
 
 \subsubsection{Geometry Git Location}
-The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/bst}.
+The github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/bst}.
 The geometry service definitions in coatjava is \url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/SVTGeant4Factory.java}
 
 
 \subsection{Process ID}
 
-At each geant4 step, the local coordinate in the sensor volume are used to calculate the strip id.
+At each Geant4 step, the local coordinate in the sensor volume are used to calculate the strip id.
 The algorithm includes the dead zone around the sensor, the pitch between the strips ($156 \mu m$) and the angle
 between the strips, that varies from 0 (strip n. 1) and 3 degrees (for strip n. 256). A showcase of the strip id assignment
 is summarized in \F{processID}.
@@ -89,7 +89,7 @@ The Bunch Cross Oscillator quantity (BCO), a random number between 0 and 255,
 provides the timing info associated with the hit.
 
 \subsection{Digitized Bank}
-The digitized output bank has $ID=100$, and the variables are summarized in Table \ref{tab:bstBank}
+The digitized output bank has $ID=100$, and the variables are summarized in Table \ref{tab:bstBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -108,7 +108,7 @@ The digitized output bank has $ID=100$, and the variables are summarized in Tabl
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{The digitized BST bank}\label{tab:bstBank}
+	\caption{The digitized BST bank.}\label{tab:bstBank}
 \end{table}
 
 

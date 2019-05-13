@@ -2,7 +2,7 @@
 
 \subsection{Geometry}
 
-The Micromegas geometry is implemented through the native gemc geometry API.
+The Micromegas geometry is implemented through the native GEMC geometry API.
 There are three micromegas regions, divided azimutally in three idential sectors. Each sector contain a cover layer with copper ground,
 the PCB with the readout strips, the kapton support, the mesh layer and the ionizing gas:
 
@@ -16,7 +16,7 @@ the PCB with the readout strips, the kapton support, the mesh layer and the ioni
 	\item -------------- mesh
 \end{itemize}
 
-The sensitive volume containing the gas is assigned the argon isobutan gas and associated with the bmt hit process routine.
+The sensitive volume containing the gas is assigned the argon isobutan gas and associated with the BMT hit process routine.
 The geometry is summarized in \F{bmtGeometry}
 
 The strip identification is performed in the Process ID routine.
@@ -33,11 +33,11 @@ The strip identification is performed in the Process ID routine.
 
 
 \subsubsection{Geometry Git Location}
-The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/micromegas}.
+The github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/micromegas}.
 
 
 \subsection{Process ID}
-At each geant4 step, the local coordinate in the sensor volume are used to calculate the strip id.
+At each Geant4 step, the local coordinate in the sensor volume are used to calculate the strip id.
 The algorithm includes the lorentz angle based on the magnetic field strength, the angula, pitch between the strips,
 the dead zones of the sensitive parts. A virtual electron avalanche is simulated based the energy deposited. The avalanche
 is deposited onto one strip or distributed among several to account for the energy sharing.
@@ -53,7 +53,7 @@ The Micromegas digitization provides the ADC value calculated using the total en
 \subsubsection{TDC}
 There is no timing information in the output.
 
-\subsubsection{Summary of CCDB Table used}
+\subsubsection{Summary of CCDB Table Used}
 
 \begin{itemize}
 	\item /geometry/cvt/mvt/bmt\_layer\_noshim
@@ -67,7 +67,7 @@ There is no timing information in the output.
 
 
 \subsection{Digitized Bank}
-The digitized output bank has $ID=500$, and the variables are summarized in Table \ref{tab:mmBank}
+The digitized output bank has $ID=500$, and the variables are summarized in Table \ref{tab:mmBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -83,7 +83,7 @@ The digitized output bank has $ID=500$, and the variables are summarized in Tabl
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{The digitized micromegas bank}\label{tab:mmBank}
+	\caption{The digitized micromegas bank.}\label{tab:mmBank}
 \end{table}
 
 \subsubsection{Time Window}

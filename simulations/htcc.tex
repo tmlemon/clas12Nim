@@ -2,15 +2,15 @@
 
 \subsection{Geometry}
 
-The HTCC geometry is implemented through the native gemc geometry API. The elliptical mirrors are made through a subtraction of
+The HTCC geometry is implemented through the native GEMC geometry API. The elliptical mirrors are made through a subtraction of
 two G4Ellipsoid. They are contained inside an HTCC mother volume made with a G4Polycone, see \F{htccGeometry}.
-The faces of the PMT are the sensitive volumes, associated with the quartz-glass material and associated with the htcc digitization routine.
+The faces of the PMT are the sensitive volumes, associated with the quartz-glass material and associated with the HTCC digitization routine.
 
 The refractive index of the $CO_2$ and its transparency is included in the material optical properties and taken
-into account during the geant4 transportation of the phtotons.
+into account during the Geant4 transportation of the phtotons.
 
 The mirror and winston cones reflectivities are associated with the mirror optical properties and are taken into
-account and taken into account during the geant4 transportation of the phtotons.
+account and taken into account during the Geant4 transportation of the phtotons.
 
 The quartz window PMT quantum efficiency are associated with the PMT face optical properties and are taken into account in
 the digitization routine.
@@ -22,14 +22,14 @@ the digitization routine.
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/htccDetail.png}
 	\caption{Top: an electron passing through the HTCC gas volume and emitting Cherenkov photons. The light cone
             hits two mirrors and it is re-directed to the corresponding PMTs.
-            Bottom: details of the mirrors implementation. These are subtractions of ellipsoid geant4 volumes intersected
+            Bottom: details of the mirrors implementation. These are subtractions of ellipsoid Geant4 volumes intersected
             with planes to cut the sides. }
 	\label{fig:htccGeometry}
 \end{figure}
 
 
 \subsubsection{Geometry Git Location}
-The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/htcc}.
+The github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/htcc}.
 
 
 
@@ -42,7 +42,7 @@ For each photon collected undergoes the quantum efficiency algorithm at its wave
 The time average of all the photons is saved in the output after a time shift coming from the calibration database.
 
 
-\subsubsection{Summary of CCDB Table used}
+\subsubsection{Summary of CCDB Table Used}
 \begin{itemize}
 	\item /calibration/htcc/status
 	\item /calibration/htcc/time
@@ -50,7 +50,7 @@ The time average of all the photons is saved in the output after a time shift co
 \end{itemize}
 
 \subsection{Digitized Bank}
-The digitized output bank has $ID=600$, and the variables are summarized in Table \ref{tab:htccBank}
+The digitized output bank has $ID=600$, and the variables are summarized in Table \ref{tab:htccBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -67,7 +67,7 @@ The digitized output bank has $ID=600$, and the variables are summarized in Tabl
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{The digitized HTCC bank}\label{tab:htccBank}
+	\caption{The digitized HTCC bank.}\label{tab:htccBank}
 \end{table}
 
 \subsubsection{Time Window}

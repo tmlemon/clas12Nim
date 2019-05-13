@@ -1,8 +1,8 @@
 \section{Low Threshold Cherenkov Counter}
 
 \subsection{Geometry}
-The LTCC mirror geometry is implemented through the native gemc geometry API. The elliptical mirrors are made through a subtraction of
-two G4Ellipsoid. The hyperbolic mirror are built using geant4 polycon approximating the mathematical shape using about 30 segments.
+The LTCC mirror geometry is implemented through the native GEMC geometry API. The elliptical mirrors are made through a subtraction of
+two G4Ellipsoid. The hyperbolic mirror are built using Geant4 polycon approximating the mathematical shape using about 30 segments.
 The cylindrical mirrors are made of G4Tubs.
 
 The LTCC winston cones are of three types: small, medium and large. Three CAD models are tessellated and imported in the simulation, and
@@ -23,16 +23,16 @@ The \F{ltccGeometry} shows details of the geometry implementation.
 \end{figure}
 
 The refractive index of the $C_4F_10$ and its transparency is included in the material optical properties and taken
-into account during the geant4 transportation of the phtotons.
+into account during the Geant4 transportation of the phtotons.
 
 The mirror and winston cones reflectivities are associated with the mirror optical properties and are taken into
-account and taken into account during the geant4 transportation of the phtotons.
+account and taken into account during the Geant4 transportation of the phtotons.
 
 The quartz window PMT quantum efficiency are associated with the PMT face optical properties and are taken into account in
 the digitization routine.
 
 \subsubsection{Geometry Git Location}
-The github location of the gemc perl api script is  \url{https://github.com/gemc/detectors/tree/master/clas12/ltcc}.
+The github location of the GEMC perl API script is  \url{https://github.com/gemc/detectors/tree/master/clas12/ltcc}.
 
 
 \subsection{Digitization}
@@ -46,7 +46,7 @@ The adc is calculated and smeared using the single photo-electron peak position 
 
 The time average of all the photons is saved in the output.
 
-\subsubsection{Summary of CCDB Table used}
+\subsubsection{Summary of CCDB Table Used}
 
 \begin{itemize}
 	\item /calibration/ltcc/spe
@@ -54,7 +54,7 @@ The time average of all the photons is saved in the output.
 
 \subsection{Digitized Bank}
 
-The digitized output bank has $ID=1400$, and the variables are summarized in Table \ref{tab:ltccBank}
+The digitized output bank has $ID=1400$, and the variables are summarized in Table \ref{tab:ltccBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -73,7 +73,7 @@ The digitized output bank has $ID=1400$, and the variables are summarized in Tab
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{The digitized LTCC bank}\label{tab:ltccBank}
+	\caption{The digitized LTCC bank.}\label{tab:ltccBank}
 \end{table}
 
 \subsubsection{Time Window}

@@ -3,11 +3,11 @@
 \subsection{Geometry}
 
 The DC geometry is implemented through the COATJAVA geometry service.
-The service provides the geant4 definitions that are read by the GEMC perl api to build the geometry database.
+The service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
 
 Each layer is a generic G4Trapezoid, tilted by $+6^O$ or $-6^O$ depending if they are part of a stereo superlayer or not.
 The 12 layers in each region (6 per superlayer) are placed in a region mother volume made of air, see \F{dcGeometry}.
-The layers are assigned the $CO_2$ material and associated with the dc hit process routine.
+The layers are assigned the $CO_2$ material and associated with the DC hit process routine.
 The wire identifications is performed in the Process ID routine.
 
 \begin{figure}
@@ -21,11 +21,11 @@ The wire identifications is performed in the Process ID routine.
 
 
 \subsubsection{Geometry Git Location}
-The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/dc}.
+The github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/dc}.
 The geometry service definitions in coatjava is \url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/DCGeant4Factory.java}.
 
 \subsection{Process ID}
-At each geant4 step, the local vertical position $y$ in the tilted g4Trap is computed. Knowing the distance
+At each Geant4 step, the local vertical position $y$ in the tilted g4Trap is computed. Knowing the distance
 between each wire $\delta Y$ (given by the total height of the trapozoid divided by the number of wires, $112$), which is a constant as we're not taking into
 account wire sagging, the wire ID is given by $n_i = y / \delta y$.
 
@@ -35,7 +35,7 @@ account wire sagging, the wire ID is given by $n_i = y / \delta y$.
 There is no ADC calculation.
 
 \subsubsection{TDC}
-First, the distance of closest approach $DOCA$ is extrapolated for the hit. At each geant4 step, the distance of the track from the wire is calculated.
+First, the distance of closest approach $DOCA$ is extrapolated for the hit. At each Geant4 step, the distance of the track from the wire is calculated.
 The $DOCA$ is extracted among the points with energy deposited greatr than $50 eV$, for which the sum of the step time + $DOCA / DV$ (where DV is the drift velocity) is minimal.
 
 An initial time $T_i$ is calculated with a time to distance function which is the inverse of what extrapolated in calibration and used in reconstruction to go from TDC to $DOCA$.
@@ -61,7 +61,7 @@ A time walk correction function is applied to $T_i$ that includes discrete ionis
 The resulting $T_w$ is then used in a landau-function to mimic the detector response function.
 
 An intrinsic random time walks correction $\sigma_{TW}$ due to multiple scattering is calculated and the time is smeared with
-a gaussian function using $\sigma_{TW}$ as the resolution.
+a Gaussian function using $\sigma_{TW}$ as the resolution.
 
 An example of the resolution function that represents real LTCC data is shown in \F{dcResolution}.
 
@@ -75,7 +75,7 @@ Finally, a random number is thrown and if it's above the efficiency function, ca
 \end{figure}
 
 
-\subsubsection{Summary of CCDB Table used}
+\subsubsection{Summary of CCDB Table Used}
 \begin{itemize}
 	\item /calibration/dc/signal\_generation/intrinsic\_inefficiency
 	\item /calibration/dc/signal\_generation/dc\_resolution
@@ -86,7 +86,7 @@ Finally, a random number is thrown and if it's above the efficiency function, ca
 
 \subsection{Digitized Bank}
 
-The digitized output bank has $ID=1300$, and the variables are summarized in Table \ref{tab:dcBank}
+The digitized output bank has $ID=1300$, and the variables are summarized in Table \ref{tab:dcBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -106,7 +106,7 @@ The digitized output bank has $ID=1300$, and the variables are summarized in Tab
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{The digitized DC bank}\label{tab:dcBank}
+	\caption{The digitized DC bank.}\label{tab:dcBank}
 \end{table}
 
 

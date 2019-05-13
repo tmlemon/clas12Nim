@@ -1,13 +1,13 @@
 \section{Overview}
 
-GEMC \cite{gemc} is a c++ framework that uses geant4 \cite{geant4} to simulate the passage of particles through matter. It provides:
+GEMC \cite{gemc} is a c++ framework that uses Geant4 \cite{geant4} to simulate the passage of particles through matter. It provides:
 \begin{itemize}
 	\item application independent geometry description
 	\item easy interface to build / run experiments
 	\item cad/gdml imports
 \end{itemize}
 
-The simulation parameters are stored in external databases and are used to define the geant4 objects at run time. This includes:
+The simulation parameters are stored in external databases and are used to define the Geant4 objects at run time. This includes:
 \begin{itemize}
 	\item geometry
 	\item materials
@@ -19,13 +19,13 @@ The simulation parameters are stored in external databases and are used to defin
 \end{itemize}
 
 Particles are transported through matters and produce radiation, hits, secondaries.
-gemc then collects the geant4 results and produce the output specified by the user.
+gemc then collects the Geant4 results and produce the output specified by the user.
 The design of the framework is summarized in \F{gemcDesign}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/gemcDesign.png}
-	\caption{The architecture of GEMC. The geant4 objects are defined in external database. geant4 is used to simulate the
+	\caption{The architecture of GEMC. The Geant4 objects are defined in external database. Geant4 is used to simulate the
              passage of particles through materials, and hits are digitized with plugins defined by users
              and collected in user-defined outputs. }
 	\label{fig:gemcDesign}
@@ -38,19 +38,19 @@ The geometry and material are stored extrnal databases that can be mysql tables 
 The databases can be defined using the following factories:
 
 \begin{itemize}
-	\item gemc native api (perl or python)
+	\item GEMC native API (perl or python)
 	\item geometry service
 	\item cad (stl, ply, obj formats)
 	\item gdml, c++ plugins (not used in CLAS12)
 \end{itemize}
 
-The gemc native api repository is \url{https://github.com/gemc/api}. The geometry service code repository is
+The GEMC native API repository is \url{https://github.com/gemc/api}. The geometry service code repository is
 \url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/}
 
 
-\subsubsection{Geometry database using native api or geometry service}
+\subsubsection{Geometry database using native API or geometry service}
 
-An example of the code to define and store a geant4 volume in external databases is shown below. The
+An example of the code to define and store a Geant4 volume in external databases is shown below. The
 numbers are typically hardcoded, come from a calibration databases or are defined in the geometry service. The material
 has a similar interface.
 
@@ -78,17 +78,17 @@ The Hall-B detectors and their supports are designed with 3D CAD software. This 
 hierarchy of all detector elements, down to details like nuts and bolts.
 
 The CAD models are exported into STP files \cite{stepFiles}.
-In order to import them into a geant4 simulation, first the volumes relevant to the simulation are selected, see \F{cadSelection}.
+In order to import them into a Geant4 simulation, first the volumes relevant to the simulation are selected, see \F{cadSelection}.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/cadSelection.png}
-	\caption{The selection of the volumes that will be used in the GEMC geant4 simulation.
+	\caption{The selection of the volumes that will be used in the GEMC Geant4 simulation.
              This typically involves filtering out unnecessary volumes that are not in the active region.}
 	\label{fig:cadSelection}
 \end{figure}
 
-The elements in the STP file are then ``tessellated'': several polygon shapes are created to define a geant4 volume.
+The elements in the STP file are then ``tessellated'': several polygon shapes are created to define a Geant4 volume.
 The software used to do this is FreeCad \cite{freeCad}. An example of tessellation showing the polygon shapes
 is shown in \F{targetScatteringChamber}.
 
@@ -114,17 +114,17 @@ An example of the cad validation is shown in \F{cadValidationExample}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/cadValidationExample.png}
-	\caption{An example of comparing the gemc simulation to the drawings. Top: engineering drawings of
+	\caption{An example of comparing the GEMC simulation to the drawings. Top: engineering drawings of
              the CLAS12 beamline and shielding. The start of the Moeller shielding is 87.77 cm downstream
              of the target center. Bottom: a geantino is shot vertically at z=87.77 cm, showing that the
-             geant4 cone position agrees with the drawings.}
+             Geant4 cone position agrees with the drawings.}
 	\label{fig:cadValidationExample}
 \end{figure}
 
 
 
 \subsection{Magnetic Fields}
-The magnetic fields are loaded from ascii files. The following geant4 parameters are loaded from
+The magnetic fields are loaded from ascii files. The following Geant4 parameters are loaded from
 command line options or configuration files at run time:
 
 \begin{itemize}
@@ -136,27 +136,27 @@ command line options or configuration files at run time:
 The implementation of the CLAS12 magnetic fields is described in \ref{clas12FieldMaps}.
 
 \subsection{Event Time Window and Hit definition}
-The geant4 sensitive volumes are associated with a gemc identifier that contains hierarchical information such as mother volumes
+The Geant4 sensitive volumes are associated with a GEMC identifier that contains hierarchical information such as mother volumes
 and volume copy number.
 
 Each detector is associated with a time quantity to mimic the readout electronic time window.
 
-The time window and identifier define a gemc hit from a series of geant4 steps: all the steps in a given identifier that are within the time window
-are part of the same gemc hit. The algorithm is illustrated in \F{hitDefinition}.
+The time window and identifier define a GEMC hit from a series of Geant4 steps: all the steps in a given identifier that are within the time window
+are part of the same GEMC hit. The algorithm is illustrated in \F{hitDefinition}.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/hitDefinition.png}
 	\caption{The GEMC Hit definition algorithm. Two sensitive cells, in red and yellow, are hit by four particles, two primaries and two secondaries.
-             The geant4 steps in the yellow sensitive cell are drawn explicitely. The circle steps generated by both the primary track $\#2$ and the secondary
-             from track $\#1$ are within the time window and therefore are all part of the same gemc hit. The single square step generated by the secondary
-             from track $\#1$ comes after and does not fall in the circle time window, therefore it is part of a new gemc hit.}
+             The Geant4 steps in the yellow sensitive cell are drawn explicitely. The circle steps generated by both the primary track $\#2$ and the secondary
+             from track $\#1$ are within the time window and therefore are all part of the same GEMC hit. The single square step generated by the secondary
+             from track $\#1$ comes after and does not fall in the circle time window, therefore it is part of a new GEMC hit.}
 	\label{fig:hitDefinition}
 \end{figure}
 
 \subsection{Process ID}
 
-A "processID" method can be implemented by some digitization algorithm to modify or add gemc identifiers to each geant4 step. For CLAS12 this happens in two
+A "processID" method can be implemented by some digitization algorithm to modify or add GEMC identifiers to each Geant4 step. For CLAS12 this happens in two
 cases, detailed for each detector:
 
 \begin{itemize}
@@ -181,12 +181,12 @@ The detector are associated with c++ digitization routines at run time, see \F{p
 
 This allows the routines to
 be developed independently from the core code. Abstract methods can be derived in the individual detectors hit processes
-to define the treatment of the geant4 steps within the detector time window to provide three kind of outputs:
+to define the treatment of the Geant4 steps within the detector time window to provide three kind of outputs:
 
 \begin{itemize}
 	\item a bank with digitized variables for each hit
-	\item a bank with digitized variables for geant4 step
-	\item a bank with an analog voltage versus time signal for each geant4 hit
+	\item a bank with digitized variables for Geant4 step
+	\item a bank with an analog voltage versus time signal for each Geant4 hit
 \end{itemize}
 
 The digitized banks are detailed in each detector subsitem, for example in \ref{tab:bstBank}.
@@ -194,7 +194,7 @@ The digitized banks are detailed in each detector subsitem, for example in \ref{
 \subsection{True Information}
 
 The true information is saved in the output when requested, per detector. The true information can
-be integrated (one variable entry per gemc hit) or verbose (one variable entry per geant4 step).
+be integrated (one variable entry per GEMC hit) or verbose (one variable entry per Geant4 step).
 The true information variables are summarized in Table \ref{tab:trueInformation}.
 
 \begin{table}[h]
@@ -227,7 +227,7 @@ The true information variables are summarized in Table \ref{tab:trueInformation}
 				mvy         &   y  of the FP mother's origin \\
 				mvz         &   z  of the FP mother's origin \\
 				avg\_t      &   Average time \\
-				nsteps      &   Number of geant4 steps \\
+				nsteps      &   Number of Geant4 steps \\
 				procID      &   Process that created the FP.  \\
 				hitn        &   Hit ID \\
 			\hline \hline
@@ -248,7 +248,7 @@ The list of constants loaded is detailed in each detector implementation section
 
 \subsection{Digitization}
 
-The digitization routines are called at the end of each event, after the geant4 navigation
+The digitization routines are called at the end of each event, after the Geant4 navigation
 has propagated all tracks and gema has collected all the steps into hits.
 
 The process routine digitize each hit by iterating through all the steps in it and collecting a
@@ -258,7 +258,7 @@ There are four different flavor of digitization that gives different outputs:
 
 \begin{itemize}
 	\item integrated (one bank per hit): this is implemented for all CLAS12 detectors.
-	\item step-by-step (one bank per geant4 step): used for debugging.
+	\item step-by-step (one bank per Geant4 step): used for debugging.
 	\item voltage: the analog signal versus time calculated as response of the detector to tracks passing through it
     \item fadc: the same FADC bank from crate/slot/channel as written by the CLAS12 data acquisition.
           This is implemented for the calorimeters and the time-of-flight detectors
@@ -299,7 +299,7 @@ the various detectors.
 The data is un\-digitized using the inverse digitization to calculate the energy and real timing from ADC and TDC values.
 It is then saved in text files indexed by event number and detector ID. This makes also easy to scale the background luminosity by grouping
 several events into one; for example, grouping two events at 50 nA beam current give one event with background from 100 nA current.
-The energy information is re-digitized using the same algorithm used for the geant4 steps, producing additional hits to the ones coming from simulation.
+The energy information is re-digitized using the same algorithm used for the Geant4 steps, producing additional hits to the ones coming from simulation.
 
 
 

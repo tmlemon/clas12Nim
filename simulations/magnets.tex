@@ -48,7 +48,7 @@ Both fields are defined in the Hall-B coordinate system and both can be shifted 
 
 \subsubsection{Solenoid}
 The solenoid field map has cylindrical symmetry around the z- axis, so the map is defined in the transverse / longitudinal plane
-and then rotated when requested by the geant4 navigation. The integration method used in the simulation is the Range Kutta 4.
+and then rotated when requested by the Geant4 navigation. The integration method used in the simulation is the Range Kutta 4.
 
 The solenoid field near the target points along the z direction and its uniformity is $\Delta B / B < 10^{-4}$.
 
@@ -79,7 +79,7 @@ Table \ref{tab:solMap} shows the field map ascii data structure.
 \subsubsection{Torus}
 The torus field can be imported using a synmetric map or a full 3D map.
 The symmetric map is defined in half the CLAS12 sector. It is symmetric around the sector midplane and copied in each sector
-when requested by the geant4 navigation. The 3D map covers the entire cartesian space and accounts for field deviations due to coil
+when requested by the Geant4 navigation. The 3D map covers the entire cartesian space and accounts for field deviations due to coil
 movements or imperfections.
 
 
@@ -109,5 +109,5 @@ Table \ref{tab:torMap} shows the field map ascii data structure.
 
 
 \subsubsection{Geometry Git Location}
-The github location of the gemc perl api script for the solenoid and the torus CAD volumes is \url{https://github.com/gemc/detectors/tree/master/clas12/magnets}.
+The github location of the GEMC perl API script for the solenoid and the torus CAD volumes is \url{https://github.com/gemc/detectors/tree/master/clas12/magnets}.
 
