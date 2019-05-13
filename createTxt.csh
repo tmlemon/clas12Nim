@@ -1,5 +1,8 @@
 #!/bin/csh -f
 
-rm test.txt ; cat *.tex > test.txt
+rm -f test.txt ; cat *.tex > test.txt
+
+open test.txt
+
 
 

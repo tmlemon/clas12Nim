@@ -17,7 +17,7 @@ The paddles are assigned the scintillator material and associated with the CND h
 
 
 \subsubsection{Geometry Git Location}
-The github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/cnd}.
+The Github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/cnd}.
 
 
 \subsection{Digitization}
@@ -28,7 +28,7 @@ The energy deposited is reduced based on the position on the paddle using the ca
 to the PMT and one through the scintillator junction. A $30\%$ factor takes into account losses at junctions.
 
 The corrected energy is converted to the theoretical number of photos $N_{th}$ using the constant $1210 \gamma / MeV $. A Poissonian is used to
-calculate the actual number of photons $N_{actual}$ and the resulting ``smeared`` energy is the converted to adc using the FADC conversion factor.
+calculate the actual number of photons $N_{actual}$ and the resulting ``smeared`` energy is the converted to ADC using the FADC conversion factor.
 
 \subsubsection{TDC}
 
@@ -36,7 +36,7 @@ The absolute hit time is corrected by:
 
 \begin{itemize}
 	\item the effective velocity (from CCDB)
-	\item a left/rigth time offset factor (from CCDB)
+	\item a left/right time offset factor (from CCDB)
 	\item the Birks Attenuation factor
 \end{itemize}
 
@@ -82,7 +82,7 @@ The digitized output bank has $ID=300$, and the variables are summarized in Tabl
 
 
 \subsubsection{Time Window}
-The timewindow of the CND is set to 5 ns.
+The time window  of the CND is set to 5 ns.
 
 
 \subsubsection{Process Routine Git Repository Location}

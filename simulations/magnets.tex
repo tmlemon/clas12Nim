@@ -9,7 +9,7 @@ in a section view with the target and an 11 GeV electron beam.
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/solenoid.png}
    \caption{An 11 GeV electron beam is impinging on a 5 cm liquid hydrogen target. At the full $10^{35} cm-2s-1$ luminosity, this correspond to
-            124,000 electrons in a 250 ns window. Normally this would produce a storm of moeller electrons that would saturate any detector in the forward or central
+            124,000 electrons in a 250 ns window. Normally this would produce a storm of Moeller electrons that would saturate any detector in the forward or central
 				region. However the solenoid focus all of them along the beam line, providing the most effective shield to CLAS12.
             }
 	\label{fig:solenoid}
@@ -48,7 +48,7 @@ Both fields are defined in the Hall-B coordinate system and both can be shifted 
 
 \subsubsection{Solenoid}
 The solenoid field map has cylindrical symmetry around the z- axis, so the map is defined in the transverse / longitudinal plane
-and then rotated when requested by the Geant4 navigation. The integration method used in the simulation is the Range Kutta 4.
+and then rotated when requested by the Geant4 navigation. The integration method used in the simulation is the Range-Kutta 4.
 
 The solenoid field near the target points along the z direction and its uniformity is $\Delta B / B < 10^{-4}$.
 
@@ -86,7 +86,7 @@ movements or imperfections.
 The field map has 251 points along the z-axis, from 1m to 3m. It has 2501 points in the transverse coordinate, from 0 to 5m.
 It has 16 azimuthal points from $0$ to $30^0$. The field grid values are linearly interpolated to the (x,y,z) coordinate requested by geant4.
 
-The torus field in mid sector is perpendicular to the z-axis and is typically $2.5$ tesla.
+The torus field in mid sector is perpendicular to the z-axis and is typically $2.5$ Tesla.
 Table \ref{tab:torMap} shows the field map ascii data structure.
 
 \begin{table}[h]
@@ -109,5 +109,5 @@ Table \ref{tab:torMap} shows the field map ascii data structure.
 
 
 \subsubsection{Geometry Git Location}
-The github location of the GEMC perl API script for the solenoid and the torus CAD volumes is \url{https://github.com/gemc/detectors/tree/master/clas12/magnets}.
+The Github location of the GEMC perl API script for the solenoid and the torus CAD volumes is \url{https://github.com/gemc/detectors/tree/master/clas12/magnets}.
 

@@ -21,12 +21,12 @@ The wire identifications is performed in the Process ID routine.
 
 
 \subsubsection{Geometry Git Location}
-The github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/dc}.
+The Github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/dc}.
 The geometry service definitions in coatjava is \url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/DCGeant4Factory.java}.
 
 \subsection{Process ID}
 At each Geant4 step, the local vertical position $y$ in the tilted g4Trap is computed. Knowing the distance
-between each wire $\delta Y$ (given by the total height of the trapozoid divided by the number of wires, $112$), which is a constant as we're not taking into
+between each wire $\delta Y$ (given by the total height of the trapezoid divided by the number of wires, $112$), which is a constant as we're not taking into
 account wire sagging, the wire ID is given by $n_i = y / \delta y$.
 
 \subsection{Digitization}
@@ -36,7 +36,7 @@ There is no ADC calculation.
 
 \subsubsection{TDC}
 First, the distance of closest approach $DOCA$ is extrapolated for the hit. At each Geant4 step, the distance of the track from the wire is calculated.
-The $DOCA$ is extracted among the points with energy deposited greatr than $50 eV$, for which the sum of the step time + $DOCA / DV$ (where DV is the drift velocity) is minimal.
+The $DOCA$ is extracted among the points with energy deposited larger than $50 eV$, for which the sum of the step time + $DOCA / DV$ (where DV is the drift velocity) is minimal.
 
 An initial time $T_i$ is calculated with a time to distance function which is the inverse of what extrapolated in calibration and used in reconstruction to go from TDC to $DOCA$.
 The function takes into account:
@@ -45,7 +45,7 @@ The function takes into account:
 	\item the distance from the wire, in cm
 	\item the cell size in superlayer
 	\item the polar angle of the track
-	\item magnitude of field in tesla
+	\item magnitude of field in Tesla
 \end{itemize}
 
 A time walk correction function is applied to $T_i$ that includes discrete ionisation effects based on the following input:
@@ -112,7 +112,7 @@ The digitized output bank has $ID=1300$, and the variables are summarized in Tab
 
 \subsubsection{Time Window}
 
-The timewindow of the DC is set to 500 ns.
+The time window  of the DC is set to 500 ns.
 
 \subsubsection{Process Routine Git Repository Location}
 The DC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/dc_hitprocess.cc}
@@ -120,7 +120,7 @@ The DC hit process routine location in git is \url{https://github.com/gemc/sourc
 
 \subsubsection{Background Rates}
 
-A detailed study of the backgrond rates coming from beam interacting with the target was done to ensure that the DC occupancy stays
+A detailed study of the background rates coming from beam interacting with the target was done to ensure that the DC occupancy stays
 within limits that do not affect the reconstruction efficency, typically below $3\%$.
 
 Given the nominal operating luminosity $L=10^{35} cm^{-2}s^{-1}$, and the liquid hydrogen target of $5 cm$, the beam electron rates
