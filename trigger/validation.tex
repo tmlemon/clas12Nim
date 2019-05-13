@@ -24,13 +24,12 @@ The pixel trigger pipeline executes these steps in parallel, with user configura
   3) Evaluate multiplicity \textbf{EVALDELAY}*4ns clock cycles after the leading edge of a candidate pixel from step 2.
   4) Generate pixel trigger if multiplicity requirement is met and we still have a hit on U,V,and W. 
 
-Additional configurable trigger elements were introduced, including a total energy sum threshold \textbf{ESUM} and a lookup table for triplets of strips which satisfy the geometrical constraint $dU+dV+dW=2.0$, where $d$ is the normalized distance to the hit strip indicated by the arrows in Fig. 6.
-
+Additional configurable trigger elements were introduced, including a total energy sum threshold \textbf{ESUM} and a lookup table for triplets of strips which satisfy the geometrical constraint $dU+dV+dW=\textbf{DALITZ}$, where $d$ is the normalized distance to the hit strip indicated by the arrows in Fig. 6 and $\textbf{DALITZ}=2$ for perfect pixels.  The latter test was sometimes necessary to prevent noisy PMTs from saturating the multiplicity (N=3) trigger condition.  Offline analysis showed that about $90\%$ of pixel triggers satisfied the Dalitz test (Fig. 7), while adjacent calorimeter elements which did not use the trigger had a much smaller pixel fraction.  This suggests the pixel trigger helps to suppress events which undergo multiple scattering, which would trigger adjacent strips and violate the multiplicity requirement.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% F I G U R E %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[!htb]
  \centering
   \includegraphics[width=0.95\columnwidth,keepaspectratio]{img/TwoClusters.png}
- \caption{Examples of clusters from cosmic muon triggers.  Desired trajectory (left) is normally incident on face of PCAL and satisfies single pixel multiplicity condition (N$_u$=N$_v$=N$_w$=1) in FPGA trigger.  Event at right shows more vertical trajectory rejected by pixel trigger.}
+ \caption{Examples of clusters from cosmic muon triggers.  Desired trajectory (left) is normally incident on the face of PCAL and satisfies the single pixel multiplicity condition (N$_u$=N$_v$=N$_w$=1) in the FPGA pixel trigger.  Event at right shows a more vertical trajectory rejected by this trigger.}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% F I G U R E %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
