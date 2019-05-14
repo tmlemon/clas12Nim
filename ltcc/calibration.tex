@@ -1,7 +1,7 @@
 \section{Calibration}
 
 The calibration of the LTCC detector consisted of matching the gains of the 216 PMTs.
-The main reason for this is that the FADC250 threshold and sampling acquisition parameters are the same for all channels.
+The main reason for this is that the FADC250 thresholds and sampling acquisition parameters are the same for all channels.
 
 \begin{figure*}[ht]
 	\centering
@@ -12,11 +12,11 @@ The main reason for this is that the FADC250 threshold and sampling acquisition 
 \end{figure*}
 
 This was accomplished by using normal the experiment production dataset.
-A random trigger was saved in the datastream using a prescale factor of 100.
+A random trigger was saved in the data-stream using a pre-scale factor of 100.
 This data subset has the LTCC events with PMT noise above the FADC trigger, containing the Single Photo-electron signal (SPE).
 
-The SPE spectra were fitted (see for \F{speCalibration} for typical histograms).
-At the beginning of each experiment the PMT high voltage was modified to aligns the peak positions
+The spectra (see for \F{speCalibration} for typical histograms) were fitted to identify the SPE peak positions.
+At the beginning of each experiment the PMT high voltage were modified to align the peak positions
 to a particular ADC value of $ADC_M = 200$. An example of gain matching is shown in \F{gainMatching}.
 
 
@@ -29,7 +29,7 @@ to a particular ADC value of $ADC_M = 200$. An example of gain matching is shown
 	\label{fig:gainMatching}
 \end{figure}
 
-The reconstructed number of photo-electrons for the digitized ADC value is ADC / $ADC_M$.
+During analysis of physics events, the reconstructed number of photo-electrons for the digitized ADC value calculated to be ADC / $ADC_M$.
 
 It was found that the gains of several of the phototubes drifted with time, so the calibration procedure was repeated every week to ensure that
 the values of $ADC_M$ reflects the latest gains and that these variation do not affect the LTCC response.
