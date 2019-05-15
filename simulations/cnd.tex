@@ -3,7 +3,7 @@
 \subsection{Geometry}
 
 The CND geometry is implemented through the native GEMC geometry API.
-The paddles are Geant4 generic trapezoids, see \F{cndGeometry}. The scintillator junctions are G4Polycons.
+The paddles are Geant4 generic trapezoids, see \F{cndGeometry}. The u-turn light guides are G4Polycons.
 The paddles are assigned the scintillator material and associated with the CND hit process routine.
 
 \begin{figure}
@@ -25,9 +25,13 @@ The Github location of the GEMC perl API script is \url{https://github.com/gemc/
 \subsubsection{ADC}
 
 The energy deposited is reduced based on the position on the paddle using the calibration attenuation length. Two signals are then propagated, one directly
-to the PMT and one through the scintillator junction. A $30\%$ factor takes into account losses at junctions.
+to the PMT and one through the scintillator junction.
+A layer-dependent factor ranging from 35$\%$ to 50$\%$, which was empirically
+determined during cosmic-rays tests, accounts for light losses in the u-turns.
 
-The corrected energy is converted to the theoretical number of photos $N_{th}$ using the constant $1210 \gamma / MeV $. A Poissonian is used to
+The corrected energy is converted to the theoretical number of photons $N_{th}$ using the constant $\gamma$ / MeV which accounts for light
+propagation in the 1.4 m long light guides, for losses at the junctions and for the quantum efficiency of the photomultiplier.
+A Poissonian is used to
 calculate the actual number of photons $N_{actual}$ and the resulting ``smeared`` energy is the converted to ADC using the FADC conversion factor.
 
 \subsubsection{TDC}
@@ -38,10 +42,16 @@ The absolute hit time is corrected by:
 	\item the effective velocity (from CCDB)
 	\item a left/right time offset factor (from CCDB)
 	\item the Birks Attenuation factor
+	\item the position and corresponding paddle length of the indirect hit
 \end{itemize}
 
 The time is then smeared by a $\sigma$ resolution read from CCDB using a Gaussian function and then digitized using a TDC conversion factor.
-
+The Birks factor, reducing the deposited
+energy depending on the particle type, enters in the timing calculation as
+follows: the direct and indirect times are smeared with a gaussian
+function having a width directly proportional to an empirically determined
+constant, and inversely proportional to the square root of the measured
+light (which is, in turn, proportional to the attenuated energy).
 
 \subsubsection{Summary of CCDB Table Used}
 \begin{itemize}
