@@ -26,10 +26,10 @@ The Github location of the GEMC perl API script is \url{https://github.com/gemc/
 
 The energy deposited is reduced based on the position on the paddle using the calibration attenuation length. Two signals are then propagated, one directly
 to the PMT and one through the scintillator junction.
-A layer-dependent factor ranging from 35$\%$ to 50$\%$, which was empirically
-determined during cosmic-rays tests, accounts for light losses in the u-turns.
+Layer-dependent factors, applied to the two  signals, account for the light loss in the u-turn and in the neighbouring paddle.
+These factors were determined during cosmics-ray tests.
 
-The corrected energy is converted to the theoretical number of photons $N_{th}$ using the constant $\gamma$ / MeV which accounts for light
+The corrected energy is converted to the theoretical number of photons $N_{th}$ using the constant 1210 $\gamma$ / MeV which accounts for light
 propagation in the 1.4 m long light guides, for losses at the junctions and for the quantum efficiency of the photomultiplier.
 A Poissonian is used to
 calculate the actual number of photons $N_{actual}$ and the resulting ``smeared`` energy is the converted to ADC using the FADC conversion factor.
