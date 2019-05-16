@@ -29,6 +29,10 @@ As shown in the Fig.~\ref{fig:hardwarediagram}, the digital sum value from each 
 
 \subsubsection{VXS/VME crates} (Chris)
 
+Previous 6GeV CLAS experiments used the VXI standard which was a new extension of the original VME standard. VXI offered a method to distribute clock and other timing signals with low skews via the back-plane. 9U circuit boards were used that offered a large number of front panel input/output connections to handle the six sectors of the CLAS detectors that contributed to the level 1 trigger. Detector signals were acquired with FastBus ADC and TDC or in some instances, from VME or even CAMAC modules. 
+
+During the initial design phase of the 12GeV experiments the requirements of a 200KHz sustained trigger rate demanded that the front end modules adopt a new method of handling precision timing and synchronization over dozens of front end crates. The latest technology at the 12GeV inception included FPGA devices with high speed serial transceivers built into the silicon fabric. A new VME extension was also emerging at the same time, which was labeled VXS, and defined a new high speed Gigabit connector with links between the VME slots and eight serial links to common switch slots. The VXS standard was declared as VITA 41 and several new standards have emerged in the past decade that expand the use of Gigabit serial transmission via a crate back-plane. For the 12GeV experiment era, we now have thousands of custom VXS payload and switch slot modules and hundreds of VXS front end crates. Complex experiments and high channel count detectors make use of these custom VXS boards  designs for all four experimental areas at Jefferson Lab.
+
 \subsubsection{VME Crate Controllers} (Abbott)
 
 The physics high speed data acquistion and trigger systems for 12GeV experiments have standardized on the VME64X and VXS
