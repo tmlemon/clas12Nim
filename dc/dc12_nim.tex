@@ -1,34 +1,25 @@
-\documentclass[3p,times,twocolumn]{elsarticle}
-\usepackage[lineno,hyperref,multicol,color,xspace,pdfwidgets,enumerate,amssymb]
-\modulolinenumbers[5]
+\documentclass{elsart}
+\usepackage[dvips]{color,graphics}
+\usepackage[pdftex]{graphicx}
+\usepackage{lineno}
 \linenumbers
-\journal{Nuclear Instruments and Methods A}
 %
 % macro definitions
 %
-\setcounter{bottomnumber} {1}
+%\setcounter{bottomnumber} {1}
 %
-\pagenumbering{arabic}
+%\pagenumbering{arabic}
 %
 \begin{document}
 
 % -------------------------------------------------
 %  title page
 % -------------------------------------------------
-
+\begin{frontmatter}
+  
 \title{The CLAS12 Drift Chamber System}
 
-\author{M.D. Mestayer$^a$, et al.}
-
-\maketitle
-
-
-
-\renewcommand{\thesection}{\Roman{section}}
-\renewcommand{\thesubsection}{\thesection-\Alph{subsection}}
-\renewcommand{\textfraction}{0.1}
-\renewcommand{\topfraction}{0.9}
-\renewcommand{\bottomfraction}{0.9}
+\author{M.D. Mestayer$^a$ et al.}
 
 % -------------------------------------------------
 %abstract
@@ -36,13 +27,13 @@
 
 \input{dc12_abstract}
 
+\end{frontmatter}
 
 \input{dc12_overview}
 
 % -------------------------------------------------
 % physics goals -> tech. specs. -> conceptual design
 % -------------------------------------------------
-
 
 \input{dc12_design}
 
@@ -56,7 +47,6 @@
 % construction: box assembly, stringing, board installation & cabling, gas manifolds
 % -------------------------------------------------
 
-
 \input{dc12_electronics}
 
 % -------------------------------------------------
@@ -69,15 +59,12 @@
 % gas, lv, hv systems
 % -------------------------------------------------
 
-
-
 \input{dc12_commissioning}
 
 % -------------------------------------------------
 % commissioning: ``burn-in and pre-testing'', installation and survey, lv, hv & gas hookup, signal connection
 % turn-on, early failures and repair
 % -------------------------------------------------
-
 
 \input{dc12_operations}
 
@@ -90,7 +77,6 @@
 % -------------------------------------------------
 %  tracking, calibration and simulation
 % -------------------------------------------------
-
 
 \input{dc12_performance}
 
