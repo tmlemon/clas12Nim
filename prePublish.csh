@@ -15,21 +15,23 @@ cd $currentDir
 set detectors = (`ls | grep -v \.csh | grep -v \.sty | grep -v \.md | grep -v \.txt | grep -v \.log | grep -v template `)
 echo
 echo All detectors: $detectors
-echo
-
-# chacking which detector was changed
-# keeping all pulls log.
-set nlogs = `ls pull_*.log | wc | awk '{print $1}'`
-@ nlogs += 1
 
 set newLog = pull.log
 
-# uncomment to activate histpry
+# keeping all pulls log.
+set nlogs = 0
+if ( -f pull_1.log) then
+
+	set nlogs = `ls pull_*.log | wc | awk '{print $1}'`
+	@ nlogs += 1
+endif
+# uncomment to activate history
 # set newLog = pull_$nlogs".log"
 
 rm -f $newLog
 git pull > $newLog
 
+# chacking which detector was changed
 rm -f detectorChanged.txt ; touch detectorChanged.txt
 foreach d ($detectors)
 	set gcheck = `cat $newLog | grep " $d\/"`
@@ -38,33 +40,39 @@ foreach d ($detectors)
 	endif
 end
 
-echo
 set detChanged = `cat detectorChanged.txt`
-echo "List of detector changed: "$detChanged
-echo
 
 if($1 != "" && $1 != "all") then
 	set detChanged = $1
 endif
 
+echo
+echo "List of detector to publish: "$detChanged
+echo
+
+
 foreach d ($detChanged)
-	# make sure the style files are common
 	cd $currentDir
-	cp *.sty $d
 	cd $d
 	rm -f compile.log
 	echo                  > compile.log
 	echo Detector: $d    >> compile.log
 	echo                 >> compile.log
-	echo Compiling with `which scons` >> compile.log
-	echo                 >> compile.log
-	scons                
-	echo Result: `ls *.pdf` >> compile.log
-	ls -lrt              >> compile.log
-	echo                 >> compile.log
+	if ($d != "magnets") then
+		# make sure the style files are common
+		cp ../*.sty $d
+		echo Compiling with `which scons` >> compile.log
+		echo                 >> compile.log
+		scons
+		echo Result: `ls *.pdf` >> compile.log
+		ls -lrt              >> compile.log
+		echo                 >> compile.log
+	endif
 	scp *.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims
 	echo $d published    >> compile.log
-	scons -c
+	if ($d != "magnets") then
+		scons -c
+	endif
 	echo                 >> compile.log
 	echo "Done. Check ~/error.log for cronjob errors."  >> compile.log
 	echo                 >> compile.log
