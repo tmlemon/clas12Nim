@@ -1,0 +1,283 @@
+\section{Calibration Procedures}
+
+\subsection{Track Reconstruction Overview}
+
+\hskip 0.15 in
+The reconstruction of charged-particle tracks is performed in several stages.  In 
+the first stage, individual tracks are fit only to hit-wire positions in a 
+procedure known as ``hit-based'' tracking.  Hit-based tracking proceeds
+in the following steps:
+\begin{itemize}
+\item in each superlayer, ``clusters'' of hits which are consistent with
+being part of a track are identified
+\item a ``noise rejection algorithm'' is then applied to the clusters, 
+with one of the more efficient algorithms being the removal of the
+interior hits from horizontal ``strings'' of hits along a layer.
+The effectiveness of this cut follows from the observation that
+high-momentum tracks from hadrons typically cross the superlayers
+at a large angle, while ``curlers'' from low-momentum background
+follow curling trajectories with a significant part of the pattern
+being along layers
+\item the resulting trimmed clusters are then fit to a straight-line hypothesis,
+and those hits with acceptable residuals are kept and identified collectively
+as a ``track segment''
+\item because the ``hits'' in a track segment are 2-dimensional objects (we
+do not know their location along the wire direction) a track segment is not
+a line but a plane.  Thus pairs of segments in neighboring superlayers within
+one chamber (with superlayers of +/- 6deg stereo angle) represent the
+intersection of two planes; that is a line.  This line's coordinates 
+are evaluated midway between the two superlayers, and is a 6-dimensional
+object (x,y,z and 3 angles) which we call a ``cross''.
+\item in the first pattern-recognition step to find a track candidate,
+the positions of 3 crosses (1 each in R1, R2 and R3) are fit to a
+parabolic functional form to give us a ``track candidate''.
+\item the track candidate is actually the ``state vector'' of our
+Kalman filter tracking program
+\item the state vector's ``member coordinates'' are the following
+\begin{itemize}
+\item x and y at a specified z-location, and
+\item the two angles, thetax and thetay and
+\item the inverse momentum of the track candidate
+\end{itemize} 
+
+\end{itemize} 
+
+Due to the comparatively small size of the drift cells and the large 
+number of wire layers, the track momenta can already be reconstructed 
+at the ``hit-based'' level with a 
+resolution of 3$\%$ to 5$\%$.  Additional information on these tracks, derived
+from the {\v C}erenkov, time-of-flight, and electromagnetic calorimeter 
+detectors, allows for determination of the identities and speeds of the 
+charged particles.  In the second stage of the analysis, flight-time 
+information of the particles from the target to the outer scintillators is 
+used to correct the measured drift times.  A pre-determined table is then used
+to convert the corrected drift times to drift distances (see section~\ref{tdistcal} 
+for details of the function). These corrected 
+track positions in each drift cell are input data to our Kalman filter
+fit to determine the final track parameters.  This is colloquially referred
+to as ``time-based tracking''.
+
+The drift time is given by the following expression:
+
+\begin{equation} 
+\label{drift}
+t_{drift} = t_{tdc} - t_{start} - t_{0} - t_{flight} - t_{prop} - t_{walk},
+\end{equation}
+
+\noindent
+where $t_{TDC}$ is the raw time measured by the TDC, $t_{start}$ is the event start time, 
+$t_0$ is the fixed-time (cable) delay for the wire, $t_{flight}$ is the 
+flight time of the particle from the interaction vertex to the wire, $t_{prop}$ 
+is the signal propagation time along the wire, and $t_{walk}$ is a time-walk 
+correction made for short drift times due to different ionizations for slow 
+and fast particles.  
+
+With a trigger based on detecting an electron in the CLAS12 detector, the event start time is 
+given by the time-of-flight counter time for the primary scattered electron 
+corrected for the calculated flight time of this electron from the beam-target vertex.
+
+Through the use of an appropriate function, the drift time determines the 
+distance-of-closest-approach (DOCA) of the charged-particle track to the sense 
+wire.  However, there remains an ambiguity regarding which side of the sense 
+wire the track passed by.  This ``left-right ambiguity'' is resolved within 
+the individual superlayers by comparing the $\chi^2$ values for the track fit 
+for all different combinations of drift-distance signs.  After selection of 
+the full set of drift-distance signs within each superlayer, a final fit 
+results in improved track parameters.
+
+\subsection{Alignment Procedures}
+\label{align}
+
+\hskip 0.15in
+As described in section~\ref{survey}, each of the 18 drift chambers was 
+surveyed after installation into CLAS.  The survey procedures had sub-millimeter
+accuracy, but we wanted an independent check of the chambers' positions.  For 
+this reason, the survey values for the chamber geometry were viewed only as 
+a reasonable starting point to be refined by comparisons with data.
+
+---------(more needed here)----------------
+To adjust the chamber geometry parameters to improve the tracking resolution,
+``straight-track'' data with the torus magnetic field off were analyzed.  The 
+results of this procedure indicated that the best-fit position of the chambers 
+along the three coordinate axes varied by up to several millimeters relative 
+to the surveyed positions.  These studies of the absolute and relative chamber 
+positioning are still ongoing, and should ultimately allow for the best-fit 
+determination of more complex degrees of freedom such as chamber pitch, yaw, 
+and roll.  In addition we have functions to correct for  wire sag due to 
+gravitational forces and chamber distortions, which can cause 1 - 2 millimeter
+changes in hit position.
+
+\subsection{Time-Delay Calibration}
+\label{tdlycal}
+
+\hskip 0.15 in
+As indicated in eq(\ref{drift}), the fixed-time delays (mainly fixed cable delays) 
+for each wire must be known in order to determine the drift times.   To determine
+this t$_0$ value, we produced a histogram of the following quantity for all hits
+used on tracks:$ ( t_{tdc} - t_{start} - t_{flight} - t_{prop} - t_{walk} )$.
+This produced a characteristic plot of a drift chamber signal on a flat
+background from out-of-time tracks.  Our 24,192 drift chamber signals are carried
+on individually made multi-conductor cables which each carred 16 signals.  We thus
+produced and analysed 24,192/16 = 1512 histograms to determine that many values of
+t$_0$. We occasionally re-do this analysis whenever we have a new trigger condition
+or new configuration of readout boards.
+
+
+\subsection{Time-to-Distance Calibration}
+\label{tdistcal}
+
+\hskip 0.15in
+Each hit on a track is characterized by two variables, the measured drift 
+time from the sense wire and the distance-of-closest-approach (DOCA) to the 
+sense wire resulting from the track fit.  
+A best fit to the dependence of DOCA on time defines the 
+drift-velocity function of the drift cells. However, several factors 
+complicate this analysis. For example, the DOCAs obtained from the fitted 
+tracks are biased quantities since an initial estimate of the drift-velocity 
+function is used in the track determination.  Moreover, the drift cells are 
+not circular, as the analysis implicitly assumes, but are hexagonal, leading 
+to angle-dependent corrections.   The R2 chambers, in particular, are in a 
+region of high and spatially varying magnetic field.  Finally, the different 
+ionization densities of the tracks from particles with different velocities 
+leads to substantial time-walk corrections for tracks near the wire.  Each of 
+these points is briefly discussed in this section.
+
+The effect of the DOCA bias was reduced by fitting data from a selected single
+layer in each superlayer that was excluded from the original track fit.  
+However, excluding a layer from the track fit is not enough to entirely 
+eliminate all bias.  Because of the regular brick-wall cell layout, tracks at 
+entrance angles of 0$^{\circ}$ or 30$^{\circ}$ yield biased values for DOCA, 
+even from the excluded layer, because the times in the included layers are 
+strongly correlated with the value of the time in the excluded layer.
+
+%%%%%%%%%%%%%%%%%%%%%% Figure : Garfield Picture %%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htpb]
+\vspace{4.5cm} 
+\special{psfile=garfield.eps hscale=49 vscale=49 hoffset=-15 voffset=-130}
+\caption{\small{Plot of electric-field lines and equal-time isochrone contours
+(100 ns interval) for a 90$\%$ argon - 10$\%$ CO$_2$ gas mixture for (a) an R3
+drift cell where two rays are drawn highlighting two different track entrance 
+angles of $\alpha$ = 0$^{\circ}$ and 30$^{\circ}$, and (b) an R2 cell that 
+was assumed to be located within a uniform 1~T magnetic field along the z 
+direction.}}
+\label{garfield}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Fig.~\ref{garfield} shows the isochrone contours and electric-field lines for 
+a representative R3 and R2 cell.  Note that the contours are circular close 
+to the wire but become hexagonal near the outer boundaries of the cell.  This 
+illustrates the necessity of knowing the entry angle of the track in order to 
+determine the drift distance to the sense wire from the measured drift time.
+
+\subsubsection{Function Parameterization}
+\label{funcpar} 
+
+\hskip 0.15 in
+The drift time to drift distance function for R3 at a given track entrance 
+angle is parameterized in terms of a power law~\cite{mdm95} as:
+
+\begin{equation}
+x(t) = v_0 t + \eta \left( {t \over t_{max}} \right)^p
++ \kappa \left( { t \over t_{max}} \right)^q,
+\end{equation}
+
+\noindent
+where $v_0$ is the value of the saturated drift velocity near $t$=0, and the 
+coefficients $\eta$ and $\kappa$, and the exponents $p$ and $q$, are 
+determined by fitting the time-to-distance correlation.  Polynomial forms give
+comparable results and, in fact, are used for R1 and R2.
+
+Inspection of  Fig.~\ref{garfield}a reveals that for tracks near the outer
+edge of the cell, the first arriving ions follow the electric-field line from 
+the field wire to the sense wire, independent of track entrance angle.  Their 
+corresponding drift time is referred to as $t_{max}$.  A reduced or normalized 
+drift time $\hat{t}=t/t_{max}$ is used as an argument of the time-to-distance
+function that satisfies the cell boundary constraint,
+
+\begin{equation} 
+\label{eq-xtmax}
+x(\hat{t}=1,\alpha)=C \cdot \cos(30^\circ-\alpha).
+\end{equation}
+
+\noindent
+The angle $\alpha$ is the track entrance angle and $C$ represents the cell 
+size.  At any given entrance angle, as shown in Fig.~\ref{xvst}a, the 
+time-to-distance function can be deduced using a correction function 
+$f(\hat{t})$:
+
+\begin{equation} 
+\label{eq-xtang}
+x(\hat{t},\alpha) = x_0(\hat{t},\alpha_0) +C \left (\cos \left(30^\circ-\alpha\right)
+-\cos\left(30^\circ-\alpha_0\right)\right) f(\hat{t}).
+\end{equation}
+
+\noindent
+In this expression, $x_0$ represents the drift distance expected for a given
+normalized drift time assuming an entrance angle $\alpha_0$.  This entrance
+angle represents the average entrance angle for the full fitted data sample.
+The function $f(\hat{t})$ is used to correct the extracted drift distance for 
+the true entrance angle of the track.
+
+Since the R2 chambers are located between the torus cryostats, the 
+inhomogeneous magnetic field affects the drift velocity as shown in 
+Fig.~\ref{xvst}b.  In particular, the field rotates and shrinks the isochrones
+as shown in Fig.~\ref{garfield}b.  These effects can be modeled by a 
+modification to the effective entrance angle of the track and by an increase 
+in $t_{max}$.  Both of these corrections are assumed to depend only on the 
+magnitude of the magnetic field, and not its direction, following a study 
+described in Ref~\cite{MM-IEEE}.  
+
+The rotation of the isochrones is parameterized as a shift in the effective
+entrance angle.  This correction term $\alpha_c$ is determined from a 
+GARFIELD simulation to be:
+
+\begin{equation} 
+\label{eq-bang}
+\alpha_c = \cos^{-1}(1 - a B), 
+\end{equation}
+
+\noindent
+where $a$ is a constant and $B$ is the magnetic field strength.
+
+%%%%%%%%% Figure : DOCA vs. Drift Time -- Angle and Field Dependence %%%%%%%%%%
+\begin{figure}[htpb]
+\vspace{9.8cm} 
+\special{psfile=xvst.eps hscale=60 vscale=60 hoffset=-70 voffset=-80}
+\caption{\small{Scatterplot of DOCA versus the corrected drift time for (a) R3
+axial wires showing the track local-angle dependence, and (b) R2 axial wires
+showing the magnetic-field dependence where the local angle range is between 
+23$^{\circ}$ and 25$^{\circ}$.  The overlaid curves represent the fitted 
+time-to-distance function.}}
+\label{xvst}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+The maximum drift time used in the time-to-distance function was extracted 
+directly from the data.  For R2 the maximum drift time was parameterized as:
+
+\begin{equation} 
+\label{eq-bmax}
+t_{max}(B) = t_{max}(0) + b B^2,
+\end{equation}
+
+\noindent
+where $b$ is a constant and $B$ is the magnetic field strength.
+
+At any given local magnetic field point, the time-to-distance function 
+included an additional linear correction term $\beta(\hat{t})$ to describe 
+the magnetic field dependence~\cite{qin96}, 
+
+\begin{equation}
+\label{XTB}
+x(\hat{t},\alpha,B) = x(\hat{t},\alpha-\alpha_c,B_0) + (B-B_0) \beta(\hat{t}).
+\end{equation}
+
+\noindent
+In this expression, $B_0$ represents the average magnetic field value for the 
+full fitted data sample.  For the R1 and R3 functions, no magnetic field 
+dependence is included, as the chambers are located outside the torus 
+cryostats in regions that are relatively field-free.
+
+
