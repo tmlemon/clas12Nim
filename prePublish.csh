@@ -60,13 +60,13 @@ foreach d ($detChanged)
 	echo                 >> compile.log
 	if ($d != "magnets") then
 		# make sure the style files are common
-		cp ../*.sty $d
+		cp ../*.sty .
 		echo Compiling with `which scons` >> compile.log
-		echo                 >> compile.log
+		echo                              >> compile.log
 		scons
-		echo Result: `ls *.pdf` >> compile.log
-		ls -lrt              >> compile.log
-		echo                 >> compile.log
+		echo Result: `ls *.pdf`           >> compile.log
+		ls -lrt                           >> compile.log
+		echo                              >> compile.log
 	endif
 	scp *.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims
 	echo $d published    >> compile.log
