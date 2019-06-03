@@ -1,4 +1,4 @@
-\section{Slow Controls}
+\section{Slow Controls (Nathan)}
 
 The CLAS12 slow controls system was heavily upgraded for the 12 GeV era at JLab.  It incorporates legacy and modern hardware and standalone controls systems into full EPICS integration, such that everything is accessible from a single interface and on any computer in the CLAS12 system.  Another important aspect is leveraging standard infrastructure tools supported by central JLab computing resources, for a manageable and reliable controls system.
 
@@ -7,14 +7,14 @@ The CLAS12 slow controls system is based on Experimental Physics Industrial Cont
 The controls system monitors and controls all aspects of the CLAS12 detector, beamline, and magnet systems, with monitoring on the data-acquisition system.  This includes voltage supplies from a variety of manufacturers, programmable logic controllers, cryogenic and gas systems, multiple scaler hardwares, flasher sytems, all of the VXS crates, trigger system performance, beamline motors, with sequencing for more complex operations like polarimetry and magnet hystereses.  An example of the superconducting torus magnet's nitrogen system and 10 kHz EPICS monitoring is shown in Figure \ref{fig:tordaq}, and one of the scaler displays covering multiple CLAS12 detector systems is shown in \ref{fig:jlabscalers}.
 
 \begin{figure}[htbp]\centering
-\includegraphics[angle=270,width=8cm]{img/fd-scalers}
+\includegraphics[width=8cm]{img/fd-scalers}
 \caption{And example of the JLab FADC250 scalers for CLAS12 PMT-based detector systems.\label{fig:jlabscalers}}
 \end{figure}
 
-\begin{figure}[htbp]\centering
-\includegraphics[angle=270,width=8cm]{img/tordaq}
+\begin{figure*}[t]\centering
+\includegraphics[width=0.9\textwidth]{img/tordaq}
 \caption{The 10 kHz EPICS-based readout of superconducting magnet's quench detection system.\label{fig:tordaq}}
-\end{figure}
+\end{figure*}
 
 Most of the IOCs run on standard rack-mounted servers running Red Hat Enterprise 7 (RHEL7) in the control room.  A few IOCs run in more speciazed systems in the experimental hall, such VxWorks 5.X real-time operating systems on Motorolla VME controllers, primarily for high-rate, synchronous beam monitoring and support of legacy components.  All IOCs and associated processes are managed with procServ for interactive access when necessary and cronjobs for automatic startup and recovery \cite{procserv-website}.
 
