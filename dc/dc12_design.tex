@@ -1,0 +1,178 @@
+\section{Drift Chamber System Conceptual Design}
+
+The overall tracking requirements (0.5 -  1\% fractional momentum resolution 
+at 5~GeV and efficient tracking at a luminosity of 
+10$^{35}$~cm$^{-2}$s$^{-1}$) are the main drivers for drift chamber design.  
+
+Because the {\tt CLAS} drift chamber system~\cite{dcnim} operated 
+successfully for 8~years, we re-used many of the design concepts and 
+most of the utility infrastructure.  In addition, we re-used some
+parts of the gas mixing and handling system, and also the high-voltage 
+and low-voltage systems and many of the high voltage and signal cables. 
+
+The forward tracking system consists of three regions divided into six
+sectors as shown in Fig.~\ref{umbrella}; located just before, inside, 
+and just outside the torus field volume, and referred to as Regions~1, 2, 
+and 3, respectively.  Each chamber has its wires arranged in two superlayers of
+six layers each, with the wires in the two superlayers strung with 
+$\pm$6$^\circ$ stereo angles, respectively.  The cell structure is 
+hexagonal, that is, each sense wire is surrounded by six field wires.  This 
+arrangement is similar to the previous {\tt CLAS} design and offers good 
+resolution with very good pattern recognition properties.  Refer to our 
+article on the previous {\tt CLAS} detector~\cite{clasnim} and our article 
+on the previous drift chambers themselves~\cite{dcnim} for details of the 
+previous detector and chambers.  
+
+The groups responsible for the {\tt CLAS12} drift
+chamber construction include Old Dominion University, Idaho State
+University, and Jefferson Laboratory.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[hb]
+\vspace{10.6cm}
+\special{psfile=umbrella.ps hscale=60 vscale=60 hoffset=60 voffset=0}
+\caption{\small{Layout of the {\tt CLAS12} Forward Drift Chambers: 
+Regions~1, 2, and 3.}}
+\label{umbrella}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The major difference in the drift chambers for {\tt CLAS12} is that the 
+cells cover a smaller solid angle than those in the previous {\tt CLAS} 
+chambers, allowing efficient tracking at higher luminosities because the 
+accidental occupancy from particles not associated with the event is smaller.  
+Table~\ref{fwd-dc-design-parms} lists the main design parameters for each 
+region of the {\tt CLAS12} drift chambers.  For the purposes of simulating 
+track resolutions, we assumed that the position resolution of the individual 
+drift cells would be 250~$\mu$m.  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\small{
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{||c|c|c|c||} \hline \hline
+            &{\bf Region 1}&{\bf Region 2}&{\bf Region 3}\\ \hline
+Distance from target & 2.3 m    & 3.5 m        & 4.7 m    \\ \hline
+Num. of superlayers  & 2        & 2            & 2        \\ \hline
+Layers/superlayer    & 6        & 6            & 6        \\ \hline
+Wires/layer          & 112      & 112          & 112      \\ \hline
+Cell size            & 0.75 cm  & 1.18 cm      & 2.07 cm  \\ \hline
+Active time window   & 150 ns   & 325 - 750 ns & 700 ns   \\ \hline
+Drift distance resolution   & 250~$\mu$m   & 250~$\mu$m &250~$\mu$m  \\ \hline
+Layer efficiency   & > 95\%   & > 95\% & > 95\%   \\ \hline
+\end{tabular}
+\caption{\small{Design parameters for the {\tt CLAS12} drift chambers.}}
+\label{fwd-dc-design-parms}
+\end{center}
+\end{table}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[ht]
+\begin{center}
+\begin{tabular} {||c|c|c||} \hline \hline
+{\bf Design Feature  }       &{\bf Advantages} &{\bf Disadvantages}\\ \hline
+``All-wire design'' & Little cathode emission & \\ \hline
+Small Cells & Robust track-finding  & Many wires to string \\ \hline
+Hexagonal Cells & Minimum number of wires  & Angle-dependence of time to distance  \\ \hline
+30-Micron diameter sense wire & Resistant to wire breakage & Higher operating voltage \\ \hline
+80-Micron diameter field wire & Lower total wire tension & Higher fields on cathode wires \\ \hline
+Shared, opposite voltage for sense and field & Identical fields for all layers & More HV channels required \\ \hline
+Self-supporting design & Easier maintenance and replacement & 1 - 2 mm bowing of endplates \\ \hline
+\end{tabular}
+\caption{\small{Design features of the {\tt CLAS12} drift chambers.}}
+\label{fwd-dc-design-features}
+\end{center}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Drift Chamber Design}
+The CLAS12 drift chambers share some design characteristics with the
+previous CLAS chambers:
+\begin{itemize}
+\item ``brick-wall'' wire layout resulting in individual hexagonally-shaped
+drift cells
+\item sense wire layers are grouped into two ``superlayers'' of 6 layers each
+\item the ``endplates'' on the two sides of the chamber are tilted 
+at approximately 60 deg. with respect to each other
+\item to maximize the active volume of the chamber, the ``dead areas'', e.g.
+the endplates and electronics boards are kept as thin as possible
+\item because of the possibility of large eddy currents and resultant
+force on the endplates in case of the quench of our torus magnet, we
+use non-conducting G10 endplates for our R2 chambers
+\item The choice of gas; a 90:10 Argon:CO$_2$ mixture is the same
+as for the previous chambers.  We plan to run with a gas gain of 
+$5 \times 10^4$.
+\end{itemize}
+
+To improve the chambers' peformance we made some important changes to the design:
+\begin{itemize}
+\item all chambers have the same, roughly equilateral triangular, shape
+\item thus the regions are isomorphic with R2 approx. 1.5 times larger
+in all dimensions than R1, and R3 is approx. 2 times larger than R1
+\item For the previous CLAS detector, the $\phi$ resolution times $\sin \theta$ is about two 
+times larger than the $\theta$ resolution.  To have more equal resolution in 
+the two angles, we doubled our stereo angle from 0 and 6$^\circ$ to 
+$\pm$6$^\circ$.
+\item all chambers are planar, with the first ``superlayer'' (of 6 layers)
+tilted at 6$^\circ$ stereo angle, and the second superlayer at -6$^\circ$ stereo
+angle
+\item all wires within one superlayer are parallel to each other, thus
+every cell in the superlayer is identical, making it easier to model
+and fit the distance to time response
+\item all chambers are strung with 30 micron gold-plated Tungsten wire,
+considerably tougher and easier to handle than our previous choice 
+of 20 micron wire
+\item the choice of the cathode (``field'') wire is 80 micron gold-plated
+Cu-Be wire, tougher and with better surface properties than our previous
+choice of 140 micron gold-plated Aluminum wire
+\item  Our choice of guard wire is 140-$\mu$m diameter, gold-plated
+copper-beryllium   
+\item all chambers are independent and self-supporting, allowing easy
+maintenance and repair
+\item all chambers are attached to the torus cryostat using 6 independent
+rods with ``ball and socket'' ends, meaning that the chambers can be
+moved out to maintenance position and moved back to the operating 
+postion by turning one precision turn-buckle assembly
+\item In the present chambers, all of the wire tension
+is borne by the endplates.  The key to this improvement is the use of  
+ultra-stiff endplate assemblies that obtain their stiffness 
+by a flanged design.  
+\end{itemize}
+
+One of the most significant design changes is the decision 
+to use 30-$\mu$m diameter sense wire rather than the previously-used 
+20~$\mu$m wire. 
+This should make the chambers more resistant to wire 
+breakage.  The larger radius of the sense wires means that higher 
+voltages will be required to achieve the same gas gain, 
+and the resulting higher electric field in the drift cells will result in 
+a more nearly constant drift velocity that should be easier to calibrate.
+Prototypes were built to study possible negative side-effects of the 
+higher voltage operation, such as leakage currents on the circuit boards 
+and/or higher rates of cathode emission from the field wire surfaces.
+
+Fig.~\ref{garfield} shows GARFIELD calculations for a Region~3 drift cell
+with both a 20-$\mu$m and a 30-$\mu$m diameter sense wire.  Here the
+cells with the thicker sense wire will have a significantly higher drift 
+velocity, which is desirable to reduce the time window, and hence the 
+chamber occupancy.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[ht]
+\vspace{12.0cm}
+\special{psfile=garfield1.eps hscale=30 vscale=27 hoffset=40 voffset=165}
+\special{psfile=garfield2.eps hscale=30 vscale=27 hoffset=40 voffset=-5}
+\special{psfile=garfield3.eps hscale=30 vscale=27 hoffset=230 voffset=165}
+\special{psfile=garfield4.eps hscale=30 vscale=27 hoffset=230 voffset=-5}
+\caption{\small{GARFIELD calculations of the electric field lines (top)
+and drift time vs. drift distance (bottom) for a Region~3 drift cell.  The 
+left plots show the configuration with a 20-$\mu$m diameter sense wire and 
+the right plots show the configuration with a 30-$\mu$m diameter sense wire.
+The high voltages were set to provide the same gas gain for each
+configuration.}}
+\label{garfield}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 

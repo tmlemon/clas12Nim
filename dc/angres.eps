@@ -1,0 +1,2188 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Title: /users/carman/angres.eps
+%%Creator: IslandDraw for carman
+%%CreationDate: Mon Apr 26 15:39:35 1999
+%%Pages: 1
+%%BoundingBox: 0 0 612 792
+%%DocumentNeededResources: (atend)
+%%DocumentSuppliedResources: (atend)
+%%EndComments
+save /d_sv_obj exch def
+
+userdict /IslandDrawDict 300 dict dup begin put
+
+/bdef	{bind def} bind def
+/E	{exch} bdef
+/FF	{findfont} bdef
+/MF	{makefont} bdef
+/RO	{rotate} bdef
+/SC	{scale} bdef
+/SF	{setfont} bdef
+/SG	{setgray} bdef
+/TR	{translate} bdef
+/bp	{lj lw rgb} bdef
+/bpbw	{lj lw setgray} bdef
+/c	{curveto} bdef
+/cl	{closepath} bdef
+/fi	{eofill} bdef
+/g	{setgray} bdef
+/gr	{grestore} bdef
+/gs	{gsave} bdef
+/l	{lineto} bdef
+/lj	{setlinejoin} bdef
+/lw	{setlinewidth} bdef
+/m	{moveto} bdef
+/n	{newpath} bdef
+/nx	{/x E def} bdef
+/r	{rmoveto} bdef
+/rl	{rlineto} bdef
+/rgb	{setrgbcolor} bdef
+/s	{show} bdef
+/sd	{setdash} bdef
+/sp	{x 0 rmoveto} bdef
+/ss	{currentpoint pop E m} bdef
+/st	{stroke} bdef
+%% pattern stuff
+/BPSIDE	32 def	%% pixels per pattern side
+/PATFREQ 3.0 def	%% pattern pixels per mm
+/dp_mat [PATFREQ 0 0 PATFREQ 0 0] def
+/dp_pw	BPSIDE def	%% pattern pixel width
+/dp_ph	BPSIDE def	%% pattern pixel height
+/dp_w	dp_pw PATFREQ div def	%% pattern mm width
+/dp_h	dp_ph PATFREQ div def	%% pattern mm height
+/savemat matrix def
+/topmat matrix def
+/patmat matrix def
+
+%%	catch nocurrentpoint error for:		pathbbox
+/ncpoint errordict /nocurrentpoint get def
+errordict begin
+/nocurrentpoint	{
+	dup /pathbbox load eq
+	{pop 0 0 1 1}
+	{ncpoint}
+	ifelse
+} bdef
+end
+/ar	{ %% sa ea sx sy rot tx ty
+	matrix currentmatrix 8 1 roll TR RO SC
+	n 0 0 1 5 3 roll arc setmatrix
+} bdef
+/arn	{ %% sa ea sx sy rot tx ty
+ TR RO SC
+	matrix currentmatrix 8 1 roll
+	n 0 0 1 5 3 roll arcn setmatrix
+} bdef
+/el	{ %% sx sy rot tx ty
+	matrix currentmatrix 6 1 roll TR RO SC
+	n 0 0 1 0 360 arc setmatrix cl
+} bdef
+/image_raster	{ %% sw sh sd dw dh xs ys
+	TR SC /sd E def /sh E def /sw E def
+	/imagebuf sw sd mul 7 add 8 idiv string def
+	sw sh sd [sw 0 0 sh 0 0] { currentfile imagebuf readhexstring pop}
+	image
+} bdef
+/imagemask_raster	{
+	TR SC /sh E def /sw E def
+	/imagebuf sw 7 add 8 idiv string def
+	sw sh false [sw 0 0 sh 0 0]
+	{currentfile imagebuf readhexstring pop}
+	imagemask
+} bdef
+/dither_color_raster    { % bool sw sh sd dw dh xs ys
+	TR SC /sd E def /sh E def /sw E def
+	sd 8 eq and
+	{
+	  /imagebuf 3 string def
+	  /grayval 1 string def
+	  sw sh sd [sw 0 0 sh 0 0]
+	  {
+	    currentfile imagebuf readhexstring pop pop
+	    imagebuf 0 get 0.299 mul
+	    imagebuf 1 get 0.587 mul add
+	    imagebuf 2 get 0.114 mul add cvi grayval exch 0 exch put grayval
+	  }
+	  image
+	}
+	{
+	  /imagebuf sw 3 mul sd mul 7 add 8 idiv string def
+	  sh { currentfile imagebuf readhexstring pop pop } repeat
+	} ifelse
+} bdef
+/image_color_raster	{ % bool sw sh sd dw dh xs ys
+	/colorimage where not
+	{ dither_color_raster }
+	{
+	  pop
+	  TR SC /sd E def /sh E def /sw E def pop
+	  /imagebuf sw 3 mul sd mul 7 add 8 idiv string def
+	  sw sh sd [sw 0 0 sh 0 0] { currentfile imagebuf readhexstring pop}
+	  false 3 colorimage
+	} ifelse
+} bdef
+/patpath	{
+	/inv E def
+	topmat setmatrix
+	pathbbox	%% get lo - hi indecies
+	/hy E dp_h div floor cvi def
+	/hx E dp_w div floor cvi def
+	/ly E dp_h div floor cvi def
+	/lx E dp_w div floor cvi def
+	lx 1 hx	{
+	    dp_w mul
+	    ly 1 hy {
+		dp_h mul
+		E dup 3 1 roll E
+		patmat currentmatrix pop
+		TR
+		dp_pw dp_ph inv
+		dp_mat dp_proc imagemask
+		patmat setmatrix
+	    } for
+	    pop
+	} for
+} bdef
+% setpattern brush of patterns instead of gray
+/setpattern	{
+	/blue E def /green E def /red E def
+	/freq E def /bwidth E def /bpside E def
+	/bstring E def
+	/onbits 0 def /offbits 0 def
+	freq 0 {/y E def /x E def
+		/xindex x 1 add 2 div bpside mul cvi def
+		/yindex y 1 add 2 div bpside mul cvi def
+		bstring yindex bwidth mul xindex 8 idiv add get not
+		1 7 xindex 8 mod sub bitshift and 0 ne
+		{/onbits onbits 1 add def 1}
+		{/offbits offbits 1 add def 0}
+		ifelse
+	} setscreen {} settransfer
+	systemdict /setcmykcolor known
+	{ /fact 1 onbits offbits onbits add div sub def
+	1 red sub fact mul 1 green sub fact mul 1 blue sub fact mul 0
+		setcmykcolor
+	}
+	{ offbits offbits onbits add div setgray}
+	ifelse
+} bdef
+/dmatrix matrix def
+/dpi 72 0 dmatrix defaultmatrix dtransform
+	dup mul E dup mul add sqrt
+def
+
+/B	{gs bp st gr} bdef %% brush: gr lw lj
+/Bbw	{gs bpbw st gr} bdef %% brush: gr lw lj
+/F	{gs rgb eofill gr} bdef %% fill: gr
+/Fbw	{gs setgray eofill gr} bdef %% fill: gr
+/PB	{gs lj lw setpattern st gr} bdef
+/PF	{gs eoclip patpath gr} bdef
+/BB	{gs rgb lj lw strokepath clip patpath gr} bdef
+/xdef {exch def} bdef
+/clip_region {
+  /ht xdef
+  /wd xdef
+  /bm xdef
+  /lm xdef
+  newpath
+      lm bm moveto
+      0 ht rlineto
+      wd 0 rlineto
+      0 ht neg rlineto
+  closepath clip
+} bdef
+%! Island text prolog Version 3.1
+%%
+%%BeginProlog
+/reencode_small_dict 12 dict def
+/ReencodeSmall {
+reencode_small_dict begin
+/new_codes_and_names exch def
+/new_font_name exch def
+/base_font_name exch def
+/base_font_dict base_font_name findfont def
+/newfont base_font_dict maxlength dict def
+base_font_dict {
+exch dup /FID ne
+{ dup /Encoding eq
+{ exch dup length array copy newfont 3 1 roll put }
+{ exch newfont 3 1 roll put }
+ifelse
+}
+{ pop pop }
+ifelse
+} forall
+newfont /FontName new_font_name put
+new_codes_and_names aload pop
+new_codes_and_names length 2 idiv
+{ newfont /Encoding get 3 1 roll put }
+repeat
+new_font_name newfont definefont pop
+end     %reencode_small_dict
+} def
+/extended_Zapf [
+8#223 /a89
+8#224 /a90
+8#225 /a93
+8#226 /a94
+8#227 /a91
+8#230 /a92
+8#231 /a205
+8#232 /a85
+8#233 /a206
+8#234 /a86
+8#235 /a87
+8#236 /a88
+8#237 /a95
+8#240 /a96
+] def
+/extended_Standard [
+29 /thorn
+30 /yacute
+31 /divide
+128 /Acircumflex
+129 /Adieresis
+130 /Agrave
+131 /Aring
+132 /Atilde
+133 /Ccedilla
+134 /Eacute
+135 /Ecircumflex
+136 /Edieresis
+137 /Egrave
+138 /Iacute
+139 /Icircumflex
+140 /Idieresis
+141 /Igrave
+142 /Ntilde
+143 /Oacute
+144 /Ocircumflex
+145 /Odieresis
+146 /Ograve
+147 /Otilde
+148 /Scaron
+149 /Uacute
+150 /Ucircumflex
+151 /Udieresis
+152 /Ugrave
+153 /Ydieresis
+154 /Zcaron
+155 /aacute
+156 /acircumflex
+157 /adieresis
+158 /agrave
+159 /aring
+160 /atilde
+161 /exclamdown
+162 /cent
+163 /sterling
+164 /fraction
+165 /yen
+166 /florin
+167 /section
+168 /currency
+169 /quotesingle
+170 /quotedblleft
+171 /guillemotleft
+172 /guilsinglleft
+173 /guilsinglright
+174 /fi
+175 /fl
+176 /plusminus
+177 /endash
+178 /dagger
+179 /daggerdbl
+180 /periodcentered
+181 /twosuperior
+182 /paragraph
+183 /bullet
+184 /quotesinglbase
+185 /quotedblbase
+186 /quotedblright
+187 /guillemotright
+188 /ellipsis
+189 /perthousand
+190 /threesuperior
+191 /questiondown
+192 /mu
+193 /grave
+194 /acute
+195 /circumflex
+196 /tilde
+197 /macron
+198 /breve
+199 /dotaccent
+200 /dieresis
+201 /onesuperior
+202 /ring
+203 /cedilla
+204 /onequarter
+205 /hungarumlaut
+206 /ogonek
+207 /caron
+208 /emdash
+209 /ccedilla
+210 /copyright
+211 /eacute
+212 /ecircumflex
+213 /edieresis
+214 /egrave
+215 /iacute
+216 /icircumflex
+217 /idieresis
+218 /igrave
+219 /logicalnot
+220 /minus
+221 /ntilde
+222 /oacute
+223 /ocircumflex
+224 /odieresis
+225 /AE
+226 /onehalf
+227 /ordfeminine
+228 /ograve
+229 /otilde
+230 /registered
+231 /scaron
+232 /Lslash
+233 /Oslash
+234 /OE
+235 /ordmasculine
+236 /trademark
+237 /uacute
+238 /ucircumflex
+239 /udieresis
+240 /ugrave
+241 /ae
+242 /ydieresis
+243 /zcaron
+244 /Aacute
+245 /dotlessi
+246 /threequarters
+247 /Eth
+248 /lslash
+249 /oslash
+250 /oe
+251 /germandbls
+252 /multiply
+253 /Yacute
+254 /Thorn
+255 /eth
+] def
+/extended_Symbol [
+] def
+/extend_font {  % stack: fontname newfontname
+exch dup (ZapfDingbats) eq
+{ cvn exch cvn extended_Zapf ReencodeSmall }
+{ dup (Symbol) eq
+{ cvn exch cvn extended_Symbol ReencodeSmall }
+{ cvn exch cvn extended_Standard ReencodeSmall }
+ifelse
+}
+ifelse
+} bind def
+/extend_font_name { % stack: font_name_string
+dup length 1 add string /extended_font_name exch def
+extended_font_name 0 (_) putinterval
+extended_font_name 1 3 -1 roll putinterval
+extended_font_name
+} bind def
+/gf {
+/f exch def f cvn where
+{ f exch begin cvn load exec setfont end }
+{ f 0 f length 8 sub getinterval dup
+/localfont exch extend_font_name def
+localfont extend_font
+localfont findfont
+/xsz f f length 4 sub 4 getinterval cvi def
+/ysz f f length 8 sub 4 getinterval cvi def
+[ xsz 0 0 ysz neg 0 0 ] makefont dup f cvn exch def
+setfont
+}
+ifelse
+} bind def
+/gfns {
+/f exch def f cvn where
+{ f exch begin cvn load exec setfont end }
+{ f 0 f length 8 sub getinterval cvn findfont
+/xsz f f length 4 sub 4 getinterval cvi def
+/ysz f f length 8 sub 4 getinterval cvi def
+[ xsz 0 0 ysz neg 0 0 ] makefont dup f cvn exch def
+setfont
+}
+ifelse
+} bind def
+/ul { % space drop thickness
+gs currentpoint currentlinewidth 
+currentpoint n m 6 -3 roll 
+lw 0 exch r
+0 rl st lw m
+gr 
+} bind def
+/nxtab { currentpoint pop 1000.0 mul cvi tab mod
+	tab exch sub 1000.0 div 0 rmoveto } bind def
+/nx { /x exch def } bind def
+0. nx
+%%EndProlog
+gsave
+2.83465 -2.83465 scale 0 -279.4 translate
+topmat currentmatrix pop
+n savemat currentmatrix pop [0 -1 1 0 54.394 74.304] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+savemat setmatrix
+n savemat currentmatrix pop [0 -1 1 0 54.394 74.304] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Symbol03800380) gf
+0.00 0.00 0.00 rgb 
+() s(Symbol03800380) gf
+0 0 m 0 ss 
+(DQ) s
+savemat setmatrix
+n savemat currentmatrix pop [0 -1 1 0 56.364 65.649] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02200220) gf
+0.00 0.00 0.00 rgb 
+(c-m) s
+savemat setmatrix
+n savemat currentmatrix pop [0 -1 1 0 53.822 55.759] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02200220) gf
+0.00 0.00 0.00 rgb 
+(\(mrad\)) s
+savemat setmatrix
+n savemat currentmatrix pop [0 -1 1 0 54.267 118.431] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+savemat setmatrix
+n savemat currentmatrix pop [0 -1 1 0 54.267 118.431] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Symbol03800380) gf
+0.00 0.00 0.00 rgb 
+() s(Symbol03800380) gf
+0 0 m 0 ss 
+(Dj) s
+savemat setmatrix
+n savemat currentmatrix pop [0 -1 1 0 56.545 110.583] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02200220) gf
+0.00 0.00 0.00 rgb 
+(c-m) s
+savemat setmatrix
+n savemat currentmatrix pop [0 -1 1 0 53.836 99.844] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02200220) gf
+0.00 0.00 0.00 rgb 
+(\(mrad\)) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 58.794 83.016] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(-20) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 58.794 72.521] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(-10) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 62.891 62.534] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(0) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 60.235 51.912] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(10) s
+savemat setmatrix
+n 67.665 84.966 m 67.665 35.714 l
+156.97 35.714 l
+156.97 84.966 l
+67.665 84.966 l
+cl gsave
+0 0 0 0.352 0 B
+grestore
+n 67.825 84.966 m 67.825 35.714 l
+156.97 35.714 l
+156.97 84.966 l
+67.825 84.966 l
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 69.263 85.066 m 67.764 85.066 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 82.946 m 67.764 82.946 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.763 80.836 m 67.764 80.836 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 78.806 m 67.764 78.806 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 76.686 m 67.764 76.686 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 74.576 m 67.764 74.576 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 72.456 m 67.764 72.456 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.763 70.336 m 67.764 70.336 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 68.226 m 67.764 68.226 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 66.196 m 67.764 66.196 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 64.076 m 67.764 64.076 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 61.956 m 67.764 61.956 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.763 59.846 m 67.764 59.846 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 57.726 m 67.764 57.726 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 55.696 m 67.764 55.696 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 53.586 m 67.764 53.586 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.263 51.466 m 67.764 51.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.763 49.346 m 67.764 49.346 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.848 49.216 m 67.849 49.216 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 47.096 m 67.849 47.096 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 45.066 m 67.849 45.066 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 42.951 m 67.849 42.951 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 40.835 m 67.849 40.835 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.848 38.718 m 67.849 38.718 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n savemat currentmatrix pop [1 0 0 1 60.235 41.901] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(20) s
+savemat setmatrix
+n 69.12 82.966 m 69.12 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 71.765 81.466 m 71.765 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 74.411 82.966 m 74.411 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 76.969 82.966 m 76.969 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 79.615 82.966 m 79.615 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 82.261 81.466 m 82.261 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 84.906 82.966 m 84.906 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 87.464 82.966 m 87.464 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 90.11 82.966 m 90.11 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 92.756 81.466 m 92.756 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 95.402 82.966 m 95.402 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 98.047 82.966 m 98.047 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 100.6 82.966 m 100.6 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 103.25 81.466 m 103.25 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 105.9 82.966 m 105.9 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 108.54 82.966 m 108.54 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 111.1 82.966 m 111.1 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 113.75 81.466 m 113.75 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 116.39 82.966 m 116.39 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 119.04 82.966 m 119.04 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 121.59 82.966 m 121.59 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 124.24 81.466 m 124.24 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 126.89 82.966 m 126.89 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 129.53 82.966 m 129.53 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 132.18 82.966 m 132.18 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 134.74 81.466 m 134.74 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 137.38 82.966 m 137.38 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 140.03 82.966 m 140.03 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 142.67 82.966 m 142.67 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 145.23 81.466 m 145.23 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 147.88 82.966 m 147.88 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 150.52 82.966 m 150.52 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 153.17 82.966 m 153.17 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 155.81 81.466 m 155.81 84.466 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n savemat currentmatrix pop [1 0 0 1 77.159 196.657] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica03200320) gf
+0.00 0.00 0.00 rgb 
+(Proton Momentum   \(GeV/c\)) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 70.329 189.012] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(0.4) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 90.695 189.012] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(0.8) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 111.372 189.012] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(1.2) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 132.362 189.012] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(1.6) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 153.497 189.012] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(2.0) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 58.794 131.958] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(-20) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 58.794 121.463] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(-10) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 62.764 111.095] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(0) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 60.235 101.108] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(10) s
+savemat setmatrix
+n 67.75 133.92 m 67.75 84.656 l
+157.06 84.656 l
+157.06 133.92 l
+67.75 133.92 l
+cl gsave
+0 0 0 0.352 0 B
+grestore
+n 67.585 133.92 m 67.585 84.656 l
+157.06 84.656 l
+157.06 133.92 l
+67.585 133.92 l
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 69.348 134.01 m 67.849 134.01 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 131.9 m 67.849 131.9 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.848 129.78 m 67.849 129.78 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 127.75 m 67.849 127.75 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 125.63 m 67.849 125.63 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 123.52 m 67.849 123.52 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 121.4 m 67.849 121.4 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.848 119.28 m 67.849 119.28 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 117.17 m 67.849 117.17 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 115.14 m 67.849 115.14 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 113.02 m 67.849 113.02 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 110.91 m 67.849 110.91 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.848 108.79 m 67.849 108.79 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 106.67 m 67.849 106.67 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 104.64 m 67.849 104.64 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 102.53 m 67.849 102.53 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.348 100.41 m 67.849 100.41 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.848 98.286 m 67.849 98.286 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.932 98.156 m 67.933 98.156 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.432 96.036 m 67.933 96.036 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.432 94.006 m 67.933 94.006 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.432 91.896 m 67.933 91.896 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 69.432 89.776 m 67.933 89.776 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.932 87.656 m 67.933 87.656 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n savemat currentmatrix pop [1 0 0 1 60.235 91.097] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02400240) gf
+0.00 0.00 0.00 rgb 
+(20) s
+savemat setmatrix
+n 69.205 132.84 m 69.205 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 71.85 131.34 m 71.85 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 74.496 132.84 m 74.496 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 77.054 132.84 m 77.054 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 79.7 132.84 m 79.7 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 82.346 131.34 m 82.346 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 84.991 132.84 m 84.991 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 87.549 132.84 m 87.549 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 90.195 132.84 m 90.195 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 92.841 131.34 m 92.841 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 95.487 132.84 m 95.487 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 98.132 132.84 m 98.132 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 100.69 132.84 m 100.69 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 103.34 131.34 m 103.34 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 105.99 132.84 m 105.99 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 108.63 132.84 m 108.63 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 111.19 132.84 m 111.19 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 113.84 131.34 m 113.84 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 116.48 132.84 m 116.48 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 119.13 132.84 m 119.13 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 121.68 132.84 m 121.68 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 124.33 131.34 m 124.33 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 126.98 132.84 m 126.98 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 129.62 132.84 m 129.62 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 132.27 132.84 m 132.27 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 134.83 131.34 m 134.83 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 137.47 132.84 m 137.47 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 140.12 132.84 m 140.12 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 142.76 132.84 m 142.76 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 145.32 131.34 m 145.32 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 147.97 132.84 m 147.97 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 150.61 132.84 m 150.61 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 153.26 132.84 m 153.26 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 155.9 131.34 m 155.9 134.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 78.125 119.97 m 78.125 108.68 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 78.125 108.59 m 78.125 97.296 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 88.62 119.44 m 88.62 109.56 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 88.62 109.39 m 88.62 99.506 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 99.203 117.77 m 99.203 107.45 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 99.203 107.36 m 99.203 97.036 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 109.7 122.35 m 109.7 107.8 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 109.7 107.71 m 109.7 93.156 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 120.2 119.62 m 120.2 107.27 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 120.2 107.18 m 120.2 94.916 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 130.69 118.21 m 130.69 106.48 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 130.69 106.39 m 130.69 94.656 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 141.19 120.68 m 141.19 107.71 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 141.19 107.62 m 141.19 94.656 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 151.68 122.17 m 151.68 107.45 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 151.68 107.36 m 151.68 92.626 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 79.122 108.87 m 79.122 109.37 78.718 109.77 78.219 109.77 c
+77.72 109.77 77.316 109.37 77.316 108.87 c
+77.316 108.37 77.72 107.97 78.219 107.97 c
+78.718 107.97 79.122 108.37 79.122 108.87 c
+cl 0 0 0 F
+n 79.122 108.87 m 79.122 109.37 78.718 109.77 78.219 109.77 c
+77.72 109.77 77.316 109.37 77.316 108.87 c
+77.316 108.37 77.72 107.97 78.219 107.97 c
+78.718 107.97 79.122 108.37 79.122 108.87 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 89.522 109.43 m 89.522 109.93 89.118 110.33 88.619 110.33 c
+88.12 110.33 87.716 109.93 87.716 109.43 c
+87.716 108.93 88.12 108.53 88.619 108.53 c
+89.118 108.53 89.522 108.93 89.522 109.43 c
+cl 0 0 0 F
+n 89.522 109.43 m 89.522 109.93 89.118 110.33 88.619 110.33 c
+88.12 110.33 87.716 109.93 87.716 109.43 c
+87.716 108.93 88.12 108.53 88.619 108.53 c
+89.118 108.53 89.522 108.93 89.522 109.43 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 131.59 106.56 m 131.59 107.06 131.19 107.46 130.69 107.46 c
+130.19 107.46 129.79 107.06 129.79 106.56 c
+129.79 106.06 130.19 105.66 130.69 105.66 c
+131.19 105.66 131.59 106.06 131.59 106.56 c
+cl 0 0 0 F
+n 131.59 106.56 m 131.59 107.06 131.19 107.46 130.69 107.46 c
+130.19 107.46 129.79 107.06 129.79 106.56 c
+129.79 106.06 130.19 105.66 130.69 105.66 c
+131.19 105.66 131.59 106.06 131.59 106.56 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 141.99 107.68 m 141.99 108.18 141.59 108.58 141.09 108.58 c
+140.59 108.58 140.19 108.18 140.19 107.68 c
+140.19 107.18 140.59 106.78 141.09 106.78 c
+141.59 106.78 141.99 107.18 141.99 107.68 c
+cl 0 0 0 F
+n 141.99 107.68 m 141.99 108.18 141.59 108.58 141.09 108.58 c
+140.59 108.58 140.19 108.18 140.19 107.68 c
+140.19 107.18 140.59 106.78 141.09 106.78 c
+141.59 106.78 141.99 107.18 141.99 107.68 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 152.63 107.21 m 152.63 107.7 152.23 108.11 151.73 108.11 c
+151.23 108.11 150.83 107.7 150.83 107.21 c
+150.83 106.7 151.23 106.31 151.73 106.31 c
+152.23 106.31 152.63 106.7 152.63 107.21 c
+cl 0 0 0 F
+n 152.63 107.21 m 152.63 107.7 152.23 108.11 151.73 108.11 c
+151.23 108.11 150.83 107.7 150.83 107.21 c
+150.83 106.7 151.23 106.31 151.73 106.31 c
+152.23 106.31 152.63 106.7 152.63 107.21 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 100.08 107.35 m 100.08 107.85 99.677 108.25 99.174 108.25 c
+98.676 108.25 98.271 107.85 98.271 107.35 c
+98.271 106.85 98.676 106.45 99.174 106.45 c
+99.677 106.45 100.08 106.85 100.08 107.35 c
+cl 0 0 0 F
+n 100.08 107.35 m 100.08 107.85 99.677 108.25 99.174 108.25 c
+98.676 108.25 98.271 107.85 98.271 107.35 c
+98.271 106.85 98.676 106.45 99.174 106.45 c
+99.677 106.45 100.08 106.85 100.08 107.35 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 110.64 107.84 m 110.64 108.34 110.24 108.74 109.74 108.74 c
+109.24 108.74 108.84 108.34 108.84 107.84 c
+108.84 107.34 109.24 106.94 109.74 106.94 c
+110.24 106.94 110.64 107.34 110.64 107.84 c
+cl 0 0 0 F
+n 110.64 107.84 m 110.64 108.34 110.24 108.74 109.74 108.74 c
+109.24 108.74 108.84 108.34 108.84 107.84 c
+108.84 107.34 109.24 106.94 109.74 106.94 c
+110.24 106.94 110.64 107.34 110.64 107.84 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 121.12 107.28 m 121.12 107.78 120.72 108.18 120.22 108.18 c
+119.72 108.18 119.32 107.78 119.32 107.28 c
+119.32 106.78 119.72 106.38 120.22 106.38 c
+120.72 106.38 121.12 106.78 121.12 107.28 c
+cl 0 0 0 F
+n 121.12 107.28 m 121.12 107.78 120.72 108.18 120.22 108.18 c
+119.72 108.18 119.32 107.78 119.32 107.28 c
+119.32 106.78 119.72 106.38 120.22 106.38 c
+120.72 106.38 121.12 106.78 121.12 107.28 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 77.324 120.07 m 79.043 120.07 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 98.359 117.91 m 100.08 117.91 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 87.724 119.59 m 89.443 119.59 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 119.4 119.76 m 121.12 119.76 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 108.84 122.4 m 110.56 122.4 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 140.35 120.72 m 142.07 120.72 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 129.8 118.24 m 131.52 118.24 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 150.83 122.32 m 152.55 122.32 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 77.329 97.196 m 79.048 97.196 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 98.444 97.046 m 100.17 97.046 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 87.809 99.526 m 89.528 99.526 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 119.32 94.566 m 121.04 94.566 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 108.93 93.286 m 110.65 93.286 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 140.28 94.576 m 142 94.576 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 129.88 94.656 m 131.6 94.656 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 150.92 92.416 m 152.64 92.416 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 68.145 60.026 m 157.07 60.026 l
+gsave
+    [1 1 1 1] 0 setdash
+0 0 0 0.176 0 B
+grestore
+n 68.23 108.73 m 157.15 108.73 l
+gsave
+    [1 1 1 1] 0 setdash
+0 0 0 0.176 0 B
+grestore
+n 78.589 71.706 m 78.589 62.276 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 78.589 62.186 m 78.589 52.746 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 89.084 72.236 m 89.084 62.446 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 89.084 62.356 m 89.084 52.486 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 99.667 72.596 m 99.667 63.506 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 99.667 63.416 m 99.667 54.336 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 110.17 73.566 m 110.17 63.066 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 110.17 62.976 m 110.17 52.486 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 120.66 73.036 m 120.66 62.276 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 120.66 62.186 m 120.66 51.336 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 131.16 73.476 m 131.16 61.746 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 131.16 61.656 m 131.16 49.926 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 141.65 70.386 m 141.65 61.386 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 141.65 61.306 m 141.65 52.306 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 152.15 70.476 m 152.15 61.656 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 152.15 61.566 m 152.15 52.746 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 79.649 62.196 m 79.649 62.686 79.245 63.096 78.746 63.096 c
+78.247 63.096 77.843 62.686 77.843 62.196 c
+77.843 61.686 78.247 61.296 78.746 61.296 c
+79.245 61.296 79.649 61.686 79.649 62.196 c
+cl 0 0 0 F
+n 79.649 62.196 m 79.649 62.686 79.245 63.096 78.746 63.096 c
+78.247 63.096 77.843 62.686 77.843 62.196 c
+77.843 61.686 78.247 61.296 78.746 61.296 c
+79.245 61.296 79.649 61.686 79.649 62.196 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 90.038 62.566 m 90.038 63.056 89.634 63.466 89.135 63.466 c
+88.636 63.466 88.232 63.056 88.232 62.566 c
+88.232 62.056 88.636 61.666 89.135 61.666 c
+89.634 61.666 90.038 62.056 90.038 62.566 c
+cl 0 0 0 F
+n 90.038 62.566 m 90.038 63.056 89.634 63.466 89.135 63.466 c
+88.636 63.466 88.232 63.056 88.232 62.566 c
+88.232 62.056 88.636 61.666 89.135 61.666 c
+89.634 61.666 90.038 62.056 90.038 62.566 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 100.58 63.546 m 100.58 64.036 100.18 64.446 99.677 64.446 c
+99.18 64.446 98.776 64.036 98.776 63.546 c
+98.776 63.036 99.18 62.646 99.677 62.646 c
+100.18 62.646 100.58 63.036 100.58 63.546 c
+cl 0 0 0 F
+n 100.58 63.546 m 100.58 64.036 100.18 64.446 99.677 64.446 c
+99.18 64.446 98.776 64.036 98.776 63.546 c
+98.776 63.036 99.18 62.646 99.677 62.646 c
+100.18 62.646 100.58 63.036 100.58 63.546 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 110.97 63.136 m 110.97 63.626 110.57 64.036 110.07 64.036 c
+109.57 64.036 109.17 63.626 109.17 63.136 c
+109.17 62.626 109.57 62.236 110.07 62.236 c
+110.57 62.236 110.97 62.626 110.97 63.136 c
+cl 0 0 0 F
+n 110.97 63.136 m 110.97 63.626 110.57 64.036 110.07 64.036 c
+109.57 64.036 109.17 63.626 109.17 63.136 c
+109.17 62.626 109.57 62.236 110.07 62.236 c
+110.57 62.236 110.97 62.626 110.97 63.136 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 121.59 62.186 m 121.59 62.676 121.19 63.086 120.69 63.086 c
+120.19 63.086 119.79 62.676 119.79 62.186 c
+119.79 61.676 120.19 61.286 120.69 61.286 c
+121.19 61.286 121.59 61.676 121.59 62.186 c
+cl 0 0 0 F
+n 121.59 62.186 m 121.59 62.676 121.19 63.086 120.69 63.086 c
+120.19 63.086 119.79 62.676 119.79 62.186 c
+119.79 61.676 120.19 61.286 120.69 61.286 c
+121.19 61.286 121.59 61.676 121.59 62.186 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 131.98 61.696 m 131.98 62.186 131.58 62.596 131.08 62.596 c
+130.58 62.596 130.18 62.186 130.18 61.696 c
+130.18 61.186 130.58 60.796 131.08 60.796 c
+131.58 60.796 131.98 61.186 131.98 61.696 c
+cl 0 0 0 F
+n 131.98 61.696 m 131.98 62.186 131.58 62.596 131.08 62.596 c
+130.58 62.596 130.18 62.186 130.18 61.696 c
+130.18 61.186 130.58 60.796 131.08 60.796 c
+131.58 60.796 131.98 61.186 131.98 61.696 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 142.6 61.516 m 142.6 62.006 142.2 62.416 141.7 62.416 c
+141.2 62.416 140.8 62.006 140.8 61.516 c
+140.8 61.006 141.2 60.616 141.7 60.616 c
+142.2 60.616 142.6 61.006 142.6 61.516 c
+cl 0 0 0 F
+n 142.6 61.516 m 142.6 62.006 142.2 62.416 141.7 62.416 c
+141.2 62.416 140.8 62.006 140.8 61.516 c
+140.8 61.006 141.2 60.616 141.7 60.616 c
+142.2 60.616 142.6 61.006 142.6 61.516 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 152.99 61.646 m 152.99 62.136 152.59 62.546 152.09 62.546 c
+151.59 62.546 151.19 62.136 151.19 61.646 c
+151.19 61.136 151.59 60.746 152.09 60.746 c
+152.59 60.746 152.99 61.136 152.99 61.646 c
+cl 0 0 0 F
+n 152.99 61.646 m 152.99 62.136 152.59 62.546 152.09 62.546 c
+151.59 62.546 151.19 62.136 151.19 61.646 c
+151.19 61.136 151.59 60.746 152.09 60.746 c
+152.59 60.746 152.99 61.136 152.99 61.646 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 77.768 71.786 m 79.488 71.786 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 88.235 72.236 m 89.955 72.236 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 130.27 73.476 m 131.99 73.476 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 119.68 73.066 m 121.4 73.066 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 98.779 72.756 m 100.5 72.756 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 109.25 73.586 m 110.97 73.586 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 88.266 52.606 m 89.986 52.606 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 77.754 52.816 m 79.474 52.816 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 98.888 54.216 m 100.61 54.216 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 109.36 52.636 m 111.08 52.636 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 119.75 51.446 m 121.47 51.446 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 130.29 50.026 m 132.01 50.026 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 140.76 52.256 m 142.48 52.256 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 151.22 52.626 m 152.94 52.626 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 140.72 70.396 m 142.44 70.396 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 151.26 70.376 m 152.98 70.376 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n savemat currentmatrix pop [1 0 0 1 57.423 184.175] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02200220) gf
+0.00 0.00 0.00 rgb 
+(-0.04) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 57.423 170.348] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02200220) gf
+0.00 0.00 0.00 rgb 
+(-0.02) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 63.284 156.522] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02200220) gf
+0.00 0.00 0.00 rgb 
+(0) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 58.669 142.696] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02200220) gf
+0.00 0.00 0.00 rgb 
+(0.02) s
+savemat setmatrix
+n 70.385 134.05 m 67.706 134.05 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 86.772 176.83 m 86.772 164.6 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 86.772 164.54 m 86.772 152.31 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 96.128 176.83 m 96.128 165.24 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 96.128 165.18 m 96.128 153.65 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 105.56 175.43 m 105.56 164.72 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 105.56 164.66 m 105.56 154 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 114.92 174.5 m 114.92 165.42 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 114.92 165.36 m 114.92 156.27 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 124.28 174.56 m 124.28 164.89 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 124.28 164.83 m 124.28 155.17 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 133.63 171.36 m 133.63 163.49 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 133.63 163.38 m 133.63 155.52 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 142.99 170.37 m 142.99 163.14 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 142.99 163.09 m 142.99 155.81 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 152.35 170.13 m 152.35 163.55 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 152.35 163.49 m 152.35 156.91 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 69.198 181.37 m 67.862 181.37 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 179.97 m 67.862 179.97 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 178.58 m 67.862 178.58 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 177.18 m 67.862 177.18 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 70.536 175.84 m 67.862 175.84 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 174.44 m 67.862 174.44 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 173.04 m 67.862 173.04 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 171.65 m 67.862 171.65 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 170.25 m 67.862 170.25 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 70.536 168.85 m 67.862 168.85 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 167.51 m 67.862 167.51 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 166.11 m 67.862 166.11 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 164.72 m 67.862 164.72 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 163.32 m 67.862 163.32 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 70.536 161.92 m 67.862 161.92 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 160.52 m 67.862 160.52 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 159.18 m 67.862 159.18 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 157.79 m 67.862 157.79 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 156.39 m 67.862 156.39 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 70.536 154.99 m 67.862 154.99 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 153.59 m 67.862 153.59 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 152.25 m 67.862 152.25 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 150.86 m 67.862 150.86 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 149.46 m 67.862 149.46 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 70.536 148.06 m 67.862 148.06 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 146.66 m 67.862 146.66 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 145.27 m 67.862 145.27 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 143.93 m 67.862 143.93 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 142.53 m 67.862 142.53 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 70.536 141.13 m 67.862 141.13 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 139.73 m 67.862 139.73 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 138.34 m 67.862 138.34 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 137 m 67.862 137 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 69.198 135.6 m 67.862 135.6 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 70.536 134.2 m 67.862 134.2 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 68.058 181.72 m 68.058 182.71 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 67.747 182.76 m 67.747 134.17 l
+157.07 134.17 l
+157.07 182.76 l
+67.747 182.76 l
+cl gsave
+0 0 0 0.352 0 B
+grestore
+n 69.858 181.12 m 69.858 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 72.498 179.43 m 72.498 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 75.139 181.12 m 75.139 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 77.693 181.12 m 77.693 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 80.334 181.12 m 80.334 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 82.976 179.43 m 82.976 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 85.616 181.12 m 85.616 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 88.17 181.12 m 88.17 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 90.811 181.12 m 90.811 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 93.453 179.43 m 93.453 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 96.094 181.12 m 96.094 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 98.734 181.12 m 98.734 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 101.28 181.12 m 101.28 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 103.93 179.43 m 103.93 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 106.58 181.12 m 106.58 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 109.21 181.12 m 109.21 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 111.77 181.12 m 111.77 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 114.41 179.43 m 114.41 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 117.05 181.12 m 117.05 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 119.69 181.12 m 119.69 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 122.24 181.12 m 122.24 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 124.88 179.43 m 124.88 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 127.53 181.12 m 127.53 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 130.16 181.12 m 130.16 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 132.81 181.12 m 132.81 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 135.37 179.43 m 135.37 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 138 181.12 m 138 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 140.65 181.12 m 140.65 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 143.28 181.12 m 143.28 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 145.84 179.43 m 145.84 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 148.48 181.12 m 148.48 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 151.12 181.12 m 151.12 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 153.76 181.12 m 153.76 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 156.4 179.43 m 156.4 182.81 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 87.65 164.69 m 87.65 165.19 87.25 165.59 86.747 165.59 c
+86.249 165.59 85.844 165.19 85.844 164.69 c
+85.844 164.19 86.249 163.79 86.747 163.79 c
+87.25 163.79 87.65 164.19 87.65 164.69 c
+cl 0 0 0 F
+n 87.65 164.69 m 87.65 165.19 87.25 165.59 86.747 165.59 c
+86.249 165.59 85.844 165.19 85.844 164.69 c
+85.844 164.19 86.249 163.79 86.747 163.79 c
+87.25 163.79 87.65 164.19 87.65 164.69 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 97.066 165.19 m 97.066 165.69 96.666 166.09 96.163 166.09 c
+95.665 166.09 95.26 165.69 95.26 165.19 c
+95.26 164.69 95.665 164.29 96.163 164.29 c
+96.666 164.29 97.066 164.69 97.066 165.19 c
+cl 0 0 0 F
+n 97.066 165.19 m 97.066 165.69 96.666 166.09 96.163 166.09 c
+95.665 166.09 95.26 165.69 95.26 165.19 c
+95.26 164.69 95.665 164.29 96.163 164.29 c
+96.666 164.29 97.066 164.69 97.066 165.19 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 106.44 164.83 m 106.44 165.33 106.04 165.73 105.54 165.73 c
+105.04 165.73 104.64 165.33 104.64 164.83 c
+104.64 164.33 105.04 163.93 105.54 163.93 c
+106.04 163.93 106.44 164.33 106.44 164.83 c
+cl 0 0 0 F
+n 106.44 164.83 m 106.44 165.33 106.04 165.73 105.54 165.73 c
+105.04 165.73 104.64 165.33 104.64 164.83 c
+104.64 164.33 105.04 163.93 105.54 163.93 c
+106.04 163.93 106.44 164.33 106.44 164.83 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 115.78 165.37 m 115.78 165.87 115.38 166.27 114.88 166.27 c
+114.38 166.27 113.98 165.87 113.98 165.37 c
+113.98 164.87 114.38 164.47 114.88 164.47 c
+115.38 164.47 115.78 164.87 115.78 165.37 c
+cl 0 0 0 F
+n 115.78 165.37 m 115.78 165.87 115.38 166.27 114.88 166.27 c
+114.38 166.27 113.98 165.87 113.98 165.37 c
+113.98 164.87 114.38 164.47 114.88 164.47 c
+115.38 164.47 115.78 164.87 115.78 165.37 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 125.16 164.86 m 125.16 165.36 124.76 165.76 124.26 165.76 c
+123.76 165.76 123.35 165.36 123.35 164.86 c
+123.35 164.36 123.76 163.96 124.26 163.96 c
+124.76 163.96 125.16 164.36 125.16 164.86 c
+cl 0 0 0 F
+n 125.16 164.86 m 125.16 165.36 124.76 165.76 124.26 165.76 c
+123.76 165.76 123.35 165.36 123.35 164.86 c
+123.35 164.36 123.76 163.96 124.26 163.96 c
+124.76 163.96 125.16 164.36 125.16 164.86 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 134.54 163.41 m 134.54 163.91 134.14 164.31 133.63 164.31 c
+133.13 164.31 132.73 163.91 132.73 163.41 c
+132.73 162.91 133.13 162.51 133.63 162.51 c
+134.14 162.51 134.54 162.91 134.54 163.41 c
+cl 0 0 0 F
+n 134.54 163.41 m 134.54 163.91 134.14 164.31 133.63 164.31 c
+133.13 164.31 132.73 163.91 132.73 163.41 c
+132.73 162.91 133.13 162.51 133.63 162.51 c
+134.14 162.51 134.54 162.91 134.54 163.41 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 143.91 163.1 m 143.91 163.6 143.51 164 143.01 164 c
+142.51 164 142.11 163.6 142.11 163.1 c
+142.11 162.6 142.51 162.2 143.01 162.2 c
+143.51 162.2 143.91 162.6 143.91 163.1 c
+cl 0 0 0 F
+n 143.91 163.1 m 143.91 163.6 143.51 164 143.01 164 c
+142.51 164 142.11 163.6 142.11 163.1 c
+142.11 162.6 142.51 162.2 143.01 162.2 c
+143.51 162.2 143.91 162.6 143.91 163.1 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 153.29 163.56 m 153.29 164.06 152.89 164.46 152.39 164.46 c
+151.89 164.46 151.48 164.06 151.48 163.56 c
+151.48 163.06 151.89 162.66 152.39 162.66 c
+152.89 162.66 153.29 163.06 153.29 163.56 c
+cl 0 0 0 F
+n 153.29 163.56 m 153.29 164.06 152.89 164.46 152.39 164.46 c
+151.89 164.46 151.48 164.06 151.48 163.56 c
+151.48 163.06 151.89 162.66 152.39 162.66 c
+152.89 162.66 153.29 163.06 153.29 163.56 c
+cl gsave
+0 0 0 0.176 0 B
+grestore
+n 85.922 152.3 m 87.641 152.3 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 104.7 153.99 m 106.42 153.99 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 95.31 153.65 m 97.029 153.65 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 123.48 155.18 m 125.2 155.18 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 114.05 156.3 m 115.77 156.3 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 142.13 155.79 m 143.85 155.79 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 132.83 155.53 m 134.55 155.53 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 151.56 156.92 m 153.28 156.92 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 85.916 176.82 m 87.635 176.82 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 104.65 175.48 m 106.37 175.48 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 95.265 176.77 m 96.984 176.77 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 123.43 174.6 m 125.15 174.6 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 114.04 174.52 m 115.76 174.52 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 142.09 170.38 m 143.81 170.38 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 132.78 171.45 m 134.5 171.45 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 151.52 170.15 m 153.24 170.15 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n 68.263 155.01 m 157.18 155.01 l
+gsave
+    [1 1 1 1] 0 setdash
+0 0 0 0.176 0 B
+grestore
+n savemat currentmatrix pop [0 -1 1 0 54.678 165.075] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+savemat setmatrix
+n savemat currentmatrix pop [0 -1 1 0 54.678 165.075] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Symbol03200320) gf
+0.00 0.00 0.00 rgb 
+() s(Symbol03200320) gf
+0 0 m 0 ss 
+(D) s
+savemat setmatrix
+n savemat currentmatrix pop [0 -1 1 0 54.678 161.635] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica03200320) gf
+0.00 0.00 0.00 rgb 
+(p       p) s
+savemat setmatrix
+n savemat currentmatrix pop [0 -1 1 0 57.17 158.222] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02200220) gf
+0.00 0.00 0.00 rgb 
+(c-m) s
+savemat setmatrix
+n 49.383 147.32 m 58.727 151.68 l
+gsave
+0 0 0 0.176 0 B
+grestore
+n savemat currentmatrix pop [1 0 0 1 75.604 42.0888] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica03200320) gf
+0.00 0.00 0.00 rgb 
+(\(a\)) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 75.604 91.5821] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica03200320) gf
+0.00 0.00 0.00 rgb 
+(\(b\)) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 75.604 142.634] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica03200320) gf
+0.00 0.00 0.00 rgb 
+(\(c\)) s
+savemat setmatrix
+userdict /#copies 1 put
+grestore
+
+%%Trailer
+%%DocumentNeededResources: font Helvetica Symbol
+%%DocumentSuppliedResources: 
+end d_sv_obj restore
+

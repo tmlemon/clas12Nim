@@ -1,0 +1,9884 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Title: /users/carman/xvst.eps
+%%Creator: IslandDraw for carman
+%%CreationDate: Tue Apr 13 10:11:20 1999
+%%Pages: 1
+%%BoundingBox: 0 0 612 792
+%%DocumentNeededResources: (atend)
+%%DocumentSuppliedResources: (atend)
+%%EndComments
+save /d_sv_obj exch def
+
+userdict /IslandDrawDict 300 dict dup begin put
+
+/bdef	{bind def} bind def
+/E	{exch} bdef
+/FF	{findfont} bdef
+/MF	{makefont} bdef
+/RO	{rotate} bdef
+/SC	{scale} bdef
+/SF	{setfont} bdef
+/SG	{setgray} bdef
+/TR	{translate} bdef
+/bp	{lj lw rgb} bdef
+/bpbw	{lj lw setgray} bdef
+/c	{curveto} bdef
+/cl	{closepath} bdef
+/fi	{eofill} bdef
+/g	{setgray} bdef
+/gr	{grestore} bdef
+/gs	{gsave} bdef
+/l	{lineto} bdef
+/lj	{setlinejoin} bdef
+/lw	{setlinewidth} bdef
+/m	{moveto} bdef
+/n	{newpath} bdef
+/nx	{/x E def} bdef
+/r	{rmoveto} bdef
+/rl	{rlineto} bdef
+/rgb	{setrgbcolor} bdef
+/s	{show} bdef
+/sd	{setdash} bdef
+/sp	{x 0 rmoveto} bdef
+/ss	{currentpoint pop E m} bdef
+/st	{stroke} bdef
+%% pattern stuff
+/BPSIDE	32 def	%% pixels per pattern side
+/PATFREQ 3.0 def	%% pattern pixels per mm
+/dp_mat [PATFREQ 0 0 PATFREQ 0 0] def
+/dp_pw	BPSIDE def	%% pattern pixel width
+/dp_ph	BPSIDE def	%% pattern pixel height
+/dp_w	dp_pw PATFREQ div def	%% pattern mm width
+/dp_h	dp_ph PATFREQ div def	%% pattern mm height
+/savemat matrix def
+/topmat matrix def
+/patmat matrix def
+
+%%	catch nocurrentpoint error for:		pathbbox
+/ncpoint errordict /nocurrentpoint get def
+errordict begin
+/nocurrentpoint	{
+	dup /pathbbox load eq
+	{pop 0 0 1 1}
+	{ncpoint}
+	ifelse
+} bdef
+end
+/ar	{ %% sa ea sx sy rot tx ty
+	matrix currentmatrix 8 1 roll TR RO SC
+	n 0 0 1 5 3 roll arc setmatrix
+} bdef
+/arn	{ %% sa ea sx sy rot tx ty
+ TR RO SC
+	matrix currentmatrix 8 1 roll
+	n 0 0 1 5 3 roll arcn setmatrix
+} bdef
+/el	{ %% sx sy rot tx ty
+	matrix currentmatrix 6 1 roll TR RO SC
+	n 0 0 1 0 360 arc setmatrix cl
+} bdef
+/image_raster	{ %% sw sh sd dw dh xs ys
+	TR SC /sd E def /sh E def /sw E def
+	/imagebuf sw sd mul 7 add 8 idiv string def
+	sw sh sd [sw 0 0 sh 0 0] { currentfile imagebuf readhexstring pop}
+	image
+} bdef
+/imagemask_raster	{
+	TR SC /sh E def /sw E def
+	/imagebuf sw 7 add 8 idiv string def
+	sw sh false [sw 0 0 sh 0 0]
+	{currentfile imagebuf readhexstring pop}
+	imagemask
+} bdef
+/dither_color_raster    { % bool sw sh sd dw dh xs ys
+	TR SC /sd E def /sh E def /sw E def
+	sd 8 eq and
+	{
+	  /imagebuf 3 string def
+	  /grayval 1 string def
+	  sw sh sd [sw 0 0 sh 0 0]
+	  {
+	    currentfile imagebuf readhexstring pop pop
+	    imagebuf 0 get 0.299 mul
+	    imagebuf 1 get 0.587 mul add
+	    imagebuf 2 get 0.114 mul add cvi grayval exch 0 exch put grayval
+	  }
+	  image
+	}
+	{
+	  /imagebuf sw 3 mul sd mul 7 add 8 idiv string def
+	  sh { currentfile imagebuf readhexstring pop pop } repeat
+	} ifelse
+} bdef
+/image_color_raster	{ % bool sw sh sd dw dh xs ys
+	/colorimage where not
+	{ dither_color_raster }
+	{
+	  pop
+	  TR SC /sd E def /sh E def /sw E def pop
+	  /imagebuf sw 3 mul sd mul 7 add 8 idiv string def
+	  sw sh sd [sw 0 0 sh 0 0] { currentfile imagebuf readhexstring pop}
+	  false 3 colorimage
+	} ifelse
+} bdef
+/patpath	{
+	/inv E def
+	topmat setmatrix
+	pathbbox	%% get lo - hi indecies
+	/hy E dp_h div floor cvi def
+	/hx E dp_w div floor cvi def
+	/ly E dp_h div floor cvi def
+	/lx E dp_w div floor cvi def
+	lx 1 hx	{
+	    dp_w mul
+	    ly 1 hy {
+		dp_h mul
+		E dup 3 1 roll E
+		patmat currentmatrix pop
+		TR
+		dp_pw dp_ph inv
+		dp_mat dp_proc imagemask
+		patmat setmatrix
+	    } for
+	    pop
+	} for
+} bdef
+% setpattern brush of patterns instead of gray
+/setpattern	{
+	/blue E def /green E def /red E def
+	/freq E def /bwidth E def /bpside E def
+	/bstring E def
+	/onbits 0 def /offbits 0 def
+	freq 0 {/y E def /x E def
+		/xindex x 1 add 2 div bpside mul cvi def
+		/yindex y 1 add 2 div bpside mul cvi def
+		bstring yindex bwidth mul xindex 8 idiv add get not
+		1 7 xindex 8 mod sub bitshift and 0 ne
+		{/onbits onbits 1 add def 1}
+		{/offbits offbits 1 add def 0}
+		ifelse
+	} setscreen {} settransfer
+	systemdict /setcmykcolor known
+	{ /fact 1 onbits offbits onbits add div sub def
+	1 red sub fact mul 1 green sub fact mul 1 blue sub fact mul 0
+		setcmykcolor
+	}
+	{ offbits offbits onbits add div setgray}
+	ifelse
+} bdef
+/dmatrix matrix def
+/dpi 72 0 dmatrix defaultmatrix dtransform
+	dup mul E dup mul add sqrt
+def
+
+/B	{gs bp st gr} bdef %% brush: gr lw lj
+/Bbw	{gs bpbw st gr} bdef %% brush: gr lw lj
+/F	{gs rgb eofill gr} bdef %% fill: gr
+/Fbw	{gs setgray eofill gr} bdef %% fill: gr
+/PB	{gs lj lw setpattern st gr} bdef
+/PF	{gs eoclip patpath gr} bdef
+/BB	{gs rgb lj lw strokepath clip patpath gr} bdef
+/xdef {exch def} bdef
+/clip_region {
+  /ht xdef
+  /wd xdef
+  /bm xdef
+  /lm xdef
+  newpath
+      lm bm moveto
+      0 ht rlineto
+      wd 0 rlineto
+      0 ht neg rlineto
+  closepath clip
+} bdef
+%! Island text prolog Version 3.1
+%%
+%%BeginProlog
+/reencode_small_dict 12 dict def
+/ReencodeSmall {
+reencode_small_dict begin
+/new_codes_and_names exch def
+/new_font_name exch def
+/base_font_name exch def
+/base_font_dict base_font_name findfont def
+/newfont base_font_dict maxlength dict def
+base_font_dict {
+exch dup /FID ne
+{ dup /Encoding eq
+{ exch dup length array copy newfont 3 1 roll put }
+{ exch newfont 3 1 roll put }
+ifelse
+}
+{ pop pop }
+ifelse
+} forall
+newfont /FontName new_font_name put
+new_codes_and_names aload pop
+new_codes_and_names length 2 idiv
+{ newfont /Encoding get 3 1 roll put }
+repeat
+new_font_name newfont definefont pop
+end     %reencode_small_dict
+} def
+/extended_Zapf [
+8#223 /a89
+8#224 /a90
+8#225 /a93
+8#226 /a94
+8#227 /a91
+8#230 /a92
+8#231 /a205
+8#232 /a85
+8#233 /a206
+8#234 /a86
+8#235 /a87
+8#236 /a88
+8#237 /a95
+8#240 /a96
+] def
+/extended_Standard [
+29 /thorn
+30 /yacute
+31 /divide
+128 /Acircumflex
+129 /Adieresis
+130 /Agrave
+131 /Aring
+132 /Atilde
+133 /Ccedilla
+134 /Eacute
+135 /Ecircumflex
+136 /Edieresis
+137 /Egrave
+138 /Iacute
+139 /Icircumflex
+140 /Idieresis
+141 /Igrave
+142 /Ntilde
+143 /Oacute
+144 /Ocircumflex
+145 /Odieresis
+146 /Ograve
+147 /Otilde
+148 /Scaron
+149 /Uacute
+150 /Ucircumflex
+151 /Udieresis
+152 /Ugrave
+153 /Ydieresis
+154 /Zcaron
+155 /aacute
+156 /acircumflex
+157 /adieresis
+158 /agrave
+159 /aring
+160 /atilde
+161 /exclamdown
+162 /cent
+163 /sterling
+164 /fraction
+165 /yen
+166 /florin
+167 /section
+168 /currency
+169 /quotesingle
+170 /quotedblleft
+171 /guillemotleft
+172 /guilsinglleft
+173 /guilsinglright
+174 /fi
+175 /fl
+176 /plusminus
+177 /endash
+178 /dagger
+179 /daggerdbl
+180 /periodcentered
+181 /twosuperior
+182 /paragraph
+183 /bullet
+184 /quotesinglbase
+185 /quotedblbase
+186 /quotedblright
+187 /guillemotright
+188 /ellipsis
+189 /perthousand
+190 /threesuperior
+191 /questiondown
+192 /mu
+193 /grave
+194 /acute
+195 /circumflex
+196 /tilde
+197 /macron
+198 /breve
+199 /dotaccent
+200 /dieresis
+201 /onesuperior
+202 /ring
+203 /cedilla
+204 /onequarter
+205 /hungarumlaut
+206 /ogonek
+207 /caron
+208 /emdash
+209 /ccedilla
+210 /copyright
+211 /eacute
+212 /ecircumflex
+213 /edieresis
+214 /egrave
+215 /iacute
+216 /icircumflex
+217 /idieresis
+218 /igrave
+219 /logicalnot
+220 /minus
+221 /ntilde
+222 /oacute
+223 /ocircumflex
+224 /odieresis
+225 /AE
+226 /onehalf
+227 /ordfeminine
+228 /ograve
+229 /otilde
+230 /registered
+231 /scaron
+232 /Lslash
+233 /Oslash
+234 /OE
+235 /ordmasculine
+236 /trademark
+237 /uacute
+238 /ucircumflex
+239 /udieresis
+240 /ugrave
+241 /ae
+242 /ydieresis
+243 /zcaron
+244 /Aacute
+245 /dotlessi
+246 /threequarters
+247 /Eth
+248 /lslash
+249 /oslash
+250 /oe
+251 /germandbls
+252 /multiply
+253 /Yacute
+254 /Thorn
+255 /eth
+] def
+/extended_Symbol [
+] def
+/extend_font {  % stack: fontname newfontname
+exch dup (ZapfDingbats) eq
+{ cvn exch cvn extended_Zapf ReencodeSmall }
+{ dup (Symbol) eq
+{ cvn exch cvn extended_Symbol ReencodeSmall }
+{ cvn exch cvn extended_Standard ReencodeSmall }
+ifelse
+}
+ifelse
+} bind def
+/extend_font_name { % stack: font_name_string
+dup length 1 add string /extended_font_name exch def
+extended_font_name 0 (_) putinterval
+extended_font_name 1 3 -1 roll putinterval
+extended_font_name
+} bind def
+/gf {
+/f exch def f cvn where
+{ f exch begin cvn load exec setfont end }
+{ f 0 f length 8 sub getinterval dup
+/localfont exch extend_font_name def
+localfont extend_font
+localfont findfont
+/xsz f f length 4 sub 4 getinterval cvi def
+/ysz f f length 8 sub 4 getinterval cvi def
+[ xsz 0 0 ysz neg 0 0 ] makefont dup f cvn exch def
+setfont
+}
+ifelse
+} bind def
+/gfns {
+/f exch def f cvn where
+{ f exch begin cvn load exec setfont end }
+{ f 0 f length 8 sub getinterval cvn findfont
+/xsz f f length 4 sub 4 getinterval cvi def
+/ysz f f length 8 sub 4 getinterval cvi def
+[ xsz 0 0 ysz neg 0 0 ] makefont dup f cvn exch def
+setfont
+}
+ifelse
+} bind def
+/ul { % space drop thickness
+gs currentpoint currentlinewidth 
+currentpoint n m 6 -3 roll 
+lw 0 exch r
+0 rl st lw m
+gr 
+} bind def
+/nxtab { currentpoint pop 1000.0 mul cvi tab mod
+	tab exch sub 1000.0 div 0 rmoveto } bind def
+/nx { /x exch def } bind def
+0. nx
+%%EndProlog
+gsave
+2.83465 -2.83465 scale 0 -279.4 translate
+topmat currentmatrix pop
+n savemat currentmatrix pop [1 0 0 1 54.24 141.03] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(0) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 50.719 124.361] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(0.5) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 54.24 107.693] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(1) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 50.719 91.024] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(1.5) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 54.24 74.355] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(2) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 62.359 145.645] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(0) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 95.046 145.965] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(400) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 131.618 145.81] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(800) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 163.525 145.654] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(1200) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 54.029 219.911] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(0) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 50.508 199.891] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(0.4) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 50.508 179.915] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(0.8) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 50.508 159.895] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(1.2) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 66.515 224.207] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(0) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 95.423 223.254] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(200) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 127.959 223.09] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(400) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 160.186 223.566] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(600) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 152.606 131.473] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica04400440) gf
+0.00 0.00 0.00 rgb 
+(R3) s
+savemat setmatrix
+n 150.89 123.2 m 163.98 123.2 l
+163.98 133.89 l
+150.89 133.89 l
+150.89 123.2 l
+cl gsave
+0 0 0 0.212 0 B
+grestore
+n savemat currentmatrix pop [1 0 0 1 152.334 207.872] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica04400440) gf
+0.00 0.00 0.00 rgb 
+(R2) s
+savemat setmatrix
+n 150.96 199.6 m 164.39 199.6 l
+164.39 210.28 l
+150.96 210.28 l
+150.96 199.6 l
+cl gsave
+0 0 0 0.212 0 B
+grestore
+n savemat currentmatrix pop [1 0 0 1 91.316 230.981] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica03600360) gf
+0.00 0.00 0.00 rgb 
+(Drift Time  \(ns\)) s
+savemat setmatrix
+n savemat currentmatrix pop [0 -1 1 0 46.971 194.475] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica03600360) gf
+0.00 0.00 0.00 rgb 
+(Distance of Closest Approach  \(cm\)) s
+savemat setmatrix
+n 61.586 139.94 m 61.586 138.44 l
+64.102 138.44 l
+64.102 139.94 l
+61.586 139.94 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 65.32 139.37 m 65.32 139.02 l
+65.854 139.02 l
+65.854 139.37 l
+65.32 139.37 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 61.892 138.13 m 61.892 137.08 l
+63.721 137.08 l
+63.721 138.13 l
+61.892 138.13 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 64.864 138 m 64.864 137.16 l
+66.313 137.16 l
+66.313 138 l
+64.864 138 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 62.577 136.15 m 62.577 135.84 l
+63.111 135.84 l
+63.111 136.15 l
+62.577 136.15 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 64.329 136.72 m 64.329 135.27 l
+66.846 135.27 l
+66.846 136.72 l
+64.329 136.72 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 62.73 134.43 m 62.73 134.34 l
+62.882 134.34 l
+62.882 134.43 l
+62.73 134.43 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 64.178 135.18 m 64.178 133.59 l
+66.997 133.59 l
+66.997 135.18 l
+64.178 135.18 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 68.293 134.43 m 68.293 134.39 l
+68.368 134.39 l
+68.368 134.43 l
+68.293 134.43 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 64.254 133.55 m 64.254 132.05 l
+66.921 132.05 l
+66.921 133.55 l
+64.254 133.55 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 67.834 133.06 m 67.834 132.49 l
+68.827 132.49 l
+68.827 133.06 l
+67.834 133.06 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 64.788 131.65 m 64.788 130.73 l
+66.387 130.73 l
+66.387 131.65 l
+64.788 131.65 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 67.226 131.87 m 67.226 130.5 l
+69.512 130.5 l
+69.512 131.87 l
+67.226 131.87 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 65.397 129.67 m 65.397 129.49 l
+65.779 129.49 l
+65.779 129.67 l
+65.397 129.67 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 66.997 130.37 m 66.997 128.79 l
+69.74 128.79 l
+69.74 130.37 l
+66.997 130.37 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 71.036 129.62 m 71.036 129.53 l
+71.188 129.53 l
+71.188 129.62 l
+71.036 129.62 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 67.072 128.7 m 67.072 127.29 l
+69.589 127.29 l
+69.589 128.7 l
+67.072 128.7 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 70.578 128.3 m 70.578 127.68 l
+71.644 127.68 l
+71.644 128.3 l
+70.578 128.3 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 67.683 126.8 m 67.683 126.01 l
+69.056 126.01 l
+69.056 126.8 l
+67.683 126.8 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 69.894 127.11 m 69.894 125.7 l
+72.332 125.7 l
+72.332 127.11 l
+69.894 127.11 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 68.216 124.86 m 68.216 124.73 l
+68.445 124.73 l
+68.445 124.86 l
+68.216 124.86 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 69.816 125.57 m 69.816 124.02 l
+72.483 124.02 l
+72.483 125.57 l
+69.816 125.57 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 73.55 124.95 m 73.55 124.64 l
+74.161 124.64 l
+74.161 124.95 l
+73.55 124.95 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 70.197 123.71 m 70.197 122.66 l
+72.026 122.66 l
+72.026 123.71 l
+70.197 123.71 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 72.865 123.8 m 72.865 122.61 l
+74.923 122.61 l
+74.923 123.8 l
+72.865 123.8 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 70.884 121.73 m 70.884 121.46 l
+71.341 121.46 l
+71.341 121.73 l
+70.884 121.73 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 72.637 122.35 m 72.637 120.85 l
+75.151 120.85 l
+75.151 122.35 l
+72.637 122.35 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 76.293 121.82 m 76.293 121.38 l
+77.056 121.38 l
+77.056 121.82 l
+76.293 121.82 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 73.094 120.41 m 73.094 119.57 l
+74.617 119.57 l
+74.617 120.41 l
+73.094 120.41 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 75.531 120.63 m 75.531 119.35 l
+77.742 119.35 l
+77.742 120.63 l
+75.531 120.63 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 79.266 120.1 m 79.266 119.92 l
+79.57 119.92 l
+79.57 120.1 l
+79.266 120.1 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 73.779 118.47 m 73.779 118.33 l
+74.008 118.33 l
+74.008 118.47 l
+73.779 118.47 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 75.456 119.08 m 75.456 117.72 l
+77.818 117.72 l
+77.818 119.08 l
+75.456 119.08 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 78.656 118.82 m 78.656 117.94 l
+80.18 117.94 l
+80.18 118.82 l
+78.656 118.82 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 82.161 118.42 m 82.161 118.38 l
+82.238 118.38 l
+82.238 118.42 l
+82.161 118.42 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 76.293 117.01 m 76.293 116.57 l
+76.98 116.57 l
+76.98 117.01 l
+76.293 117.01 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 78.199 117.5 m 78.199 116.09 l
+80.637 116.09 l
+80.637 117.5 l
+78.199 117.5 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 81.705 117.1 m 81.705 116.53 l
+82.694 116.53 l
+82.694 117.1 l
+81.705 117.1 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 78.733 115.6 m 78.733 114.81 l
+80.103 114.81 l
+80.103 115.6 l
+78.733 115.6 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 81.018 115.86 m 81.018 114.54 l
+83.305 114.54 l
+83.305 115.86 l
+81.018 115.86 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 84.675 115.38 m 84.675 115.03 l
+85.209 115.03 l
+85.209 115.38 l
+84.675 115.38 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 79.266 113.66 m 79.266 113.53 l
+79.495 113.53 l
+79.495 113.66 l
+79.266 113.66 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 81.324 114.06 m 81.324 113.13 l
+82.999 113.13 l
+82.999 114.06 l
+81.324 114.06 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 83.913 114.19 m 83.913 112.95 l
+86.048 112.95 l
+86.048 114.19 l
+83.913 114.19 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 87.418 113.75 m 87.418 113.44 l
+87.952 113.44 l
+87.952 113.75 l
+87.418 113.75 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 82.009 112.07 m 82.009 111.9 l
+82.39 111.9 l
+82.39 112.07 l
+82.009 112.07 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 83.99 112.51 m 83.99 111.45 l
+85.896 111.45 l
+85.896 112.51 l
+83.99 112.51 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 86.733 112.56 m 86.733 111.41 l
+88.714 111.41 l
+88.714 112.56 l
+86.733 112.56 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 90.238 112.16 m 90.238 111.85 l
+90.772 111.85 l
+90.772 112.16 l
+90.238 112.16 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 84.752 110.48 m 84.752 110.26 l
+85.134 110.26 l
+85.134 110.48 l
+84.752 110.48 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 86.81 110.88 m 86.81 109.87 l
+88.562 109.87 l
+88.562 110.88 l
+86.81 110.88 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 89.476 110.97 m 89.476 109.82 l
+91.458 109.82 l
+91.458 110.97 l
+89.476 110.97 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 92.982 110.57 m 92.982 110.22 l
+93.516 110.22 l
+93.516 110.57 l
+92.982 110.57 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 87.495 108.9 m 87.495 108.68 l
+87.877 108.68 l
+87.877 108.9 l
+87.495 108.9 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 89.706 109.25 m 89.706 108.32 l
+91.305 108.32 l
+91.305 109.25 l
+89.706 109.25 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 92.22 109.38 m 92.22 108.19 l
+94.278 108.19 l
+94.278 109.38 l
+92.22 109.38 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 95.572 109.03 m 95.572 108.54 l
+96.41 108.54 l
+96.41 109.03 l
+95.572 109.03 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 90.314 107.27 m 90.314 107.09 l
+90.62 107.09 l
+90.62 107.27 l
+90.314 107.27 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 92.449 107.66 m 92.449 106.74 l
+94.048 106.74 l
+94.048 107.66 l
+92.449 107.66 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 94.963 107.79 m 94.963 106.6 l
+97.021 106.6 l
+97.021 107.79 l
+94.963 107.79 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 98.239 107.49 m 98.239 106.91 l
+99.306 106.91 l
+99.306 107.49 l
+98.239 107.49 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 101.44 107.22 m 101.44 107.13 l
+101.59 107.13 l
+101.59 107.22 l
+101.44 107.22 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 93.134 105.63 m 93.134 105.55 l
+93.363 105.55 l
+93.363 105.63 l
+93.134 105.63 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 95.421 105.94 m 95.421 105.24 l
+96.639 105.24 l
+96.639 105.94 l
+95.421 105.94 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 97.706 106.21 m 97.706 104.97 l
+99.84 104.97 l
+99.84 106.21 l
+97.706 106.21 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 100.83 105.99 m 100.83 105.19 l
+102.2 105.19 l
+102.2 105.99 l
+100.83 105.99 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 104.18 105.68 m 104.18 105.5 l
+104.41 105.5 l
+104.41 105.68 l
+104.18 105.68 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 95.877 104.05 m 95.877 103.91 l
+96.106 103.91 l
+96.106 104.05 l
+95.877 104.05 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 98.239 104.27 m 98.239 103.69 l
+99.306 103.69 l
+99.306 104.27 l
+98.239 104.27 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 100.6 104.53 m 100.6 103.43 l
+102.51 103.43 l
+102.51 104.53 l
+100.6 104.53 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 103.42 104.49 m 103.42 103.52 l
+105.17 103.52 l
+105.17 104.49 l
+103.42 104.49 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 106.77 104.18 m 106.77 103.83 l
+107.38 103.83 l
+107.38 104.18 l
+106.77 104.18 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 109.82 104 m 109.82 103.96 l
+109.89 103.96 l
+109.89 104 l
+109.82 104 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 98.697 102.41 m 98.697 102.37 l
+98.85 102.37 l
+98.85 102.41 l
+98.697 102.41 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 101.21 102.59 m 101.21 102.19 l
+101.9 102.19 l
+101.9 102.59 l
+101.21 102.59 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 103.42 102.9 m 103.42 101.89 l
+105.17 101.89 l
+105.17 102.9 l
+103.42 102.9 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 106.16 102.9 m 106.16 101.89 l
+107.92 101.89 l
+107.92 102.9 l
+106.16 102.9 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 109.28 102.68 m 109.28 102.11 l
+110.35 102.11 l
+110.35 102.68 l
+109.28 102.68 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 112.56 102.41 m 112.56 102.37 l
+112.64 102.37 l
+112.64 102.41 l
+112.56 102.41 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 104.11 100.91 m 104.11 100.65 l
+104.56 100.65 l
+104.56 100.91 l
+104.11 100.91 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 106.32 101.22 m 106.32 100.38 l
+107.76 100.38 l
+107.76 101.22 l
+106.32 101.22 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 108.83 101.36 m 108.83 100.2 l
+110.82 100.2 l
+110.82 101.36 l
+108.83 101.36 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 111.96 101.18 m 111.96 100.38 l
+113.25 100.38 l
+113.25 101.18 l
+111.96 101.18 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 115.15 100.91 m 115.15 100.65 l
+115.61 100.65 l
+115.61 100.91 l
+115.15 100.91 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 106.93 99.279 m 106.93 99.103 l
+107.23 99.103 l
+107.23 99.279 l
+106.93 99.279 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 109.37 99.455 m 109.37 98.926 l
+110.28 98.926 l
+110.28 99.455 l
+109.37 99.455 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 111.65 99.72 m 111.65 98.662 l
+113.55 98.662 l
+113.55 99.72 l
+111.65 99.72 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 114.55 99.676 m 114.55 98.706 l
+116.15 98.706 l
+116.15 99.676 l
+114.55 99.676 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 117.83 99.367 m 117.83 99.014 l
+118.43 99.014 l
+118.43 99.367 l
+117.83 99.367 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 120.79 99.235 m 120.79 99.147 l
+120.95 99.147 l
+120.95 99.235 l
+120.79 99.235 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 109.82 97.603 m 109.82 97.559 l
+109.89 97.559 l
+109.89 97.603 l
+109.82 97.603 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 112.26 97.78 m 112.26 97.383 l
+112.94 97.383 l
+112.94 97.78 l
+112.26 97.78 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 114.55 98.044 m 114.55 97.118 l
+116.15 97.118 l
+116.15 98.044 l
+114.55 98.044 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 117.21 98.132 m 117.21 97.03 l
+119.05 97.03 l
+119.05 98.132 l
+117.21 98.132 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 120.35 97.912 m 120.35 97.251 l
+121.47 97.251 l
+121.47 97.912 l
+120.35 97.912 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 123.47 97.692 m 123.47 97.471 l
+123.84 97.471 l
+123.84 97.692 l
+123.47 97.692 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 115.15 96.104 m 115.15 95.839 l
+115.53 95.839 l
+115.53 96.104 l
+115.15 96.104 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 117.51 96.325 m 117.51 95.619 l
+118.73 95.619 l
+118.73 96.325 l
+117.51 96.325 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 119.95 96.545 m 119.95 95.443 l
+121.86 95.443 l
+121.86 96.545 l
+119.95 96.545 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 122.94 96.413 m 122.94 95.531 l
+124.38 95.531 l
+124.38 96.413 l
+122.94 96.413 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 126.13 96.148 m 126.13 95.795 l
+126.73 95.795 l
+126.73 96.148 l
+126.13 96.148 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 129.09 96.016 m 129.09 95.928 l
+129.25 95.928 l
+129.25 96.016 l
+129.09 96.016 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 118.05 94.428 m 118.05 94.34 l
+118.2 94.34 l
+118.2 94.428 l
+118.05 94.428 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 120.49 94.605 m 120.49 94.164 l
+121.25 94.164 l
+121.25 94.605 l
+120.49 94.605 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 122.84 94.869 m 122.84 93.899 l
+124.45 93.899 l
+124.45 94.869 l
+122.84 94.869 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 125.51 94.913 m 125.51 93.855 l
+127.34 93.855 l
+127.34 94.913 l
+125.51 94.913 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 128.64 94.693 m 128.64 94.076 l
+129.71 94.076 l
+129.71 94.693 l
+128.64 94.693 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 131.84 94.472 m 131.84 94.296 l
+132.08 94.296 l
+132.08 94.472 l
+131.84 94.472 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 120.87 92.797 m 120.87 92.753 l
+120.95 92.753 l
+120.95 92.797 l
+120.87 92.797 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 123.38 92.929 m 123.38 92.62 l
+123.91 92.62 l
+123.91 92.929 l
+123.38 92.929 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 125.75 93.15 m 125.75 92.4 l
+127.04 92.4 l
+127.04 93.15 l
+125.75 93.15 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 128.27 93.326 m 128.27 92.268 l
+130.09 92.268 l
+130.09 93.326 l
+128.27 93.326 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 131.31 93.15 m 131.31 92.444 l
+132.53 92.444 l
+132.53 93.15 l
+131.31 93.15 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 134.51 92.885 m 134.51 92.664 l
+134.97 92.664 l
+134.97 92.885 l
+134.51 92.885 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 126.27 91.253 m 126.27 91.121 l
+126.59 91.121 l
+126.59 91.253 l
+126.27 91.253 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 128.72 91.474 m 128.72 90.901 l
+129.63 90.901 l
+129.63 91.474 l
+128.72 91.474 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 131.09 91.694 m 131.09 90.68 l
+132.83 90.68 l
+132.83 91.694 l
+131.09 91.694 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 133.91 91.65 m 133.91 90.724 l
+135.5 90.724 l
+135.5 91.65 l
+133.91 91.65 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 137.17 91.386 m 137.17 90.989 l
+137.78 90.989 l
+137.78 91.386 l
+137.17 91.386 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 140.15 91.209 m 140.15 91.165 l
+140.3 91.165 l
+140.3 91.209 l
+140.15 91.209 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 129.17 89.622 m 129.17 89.578 l
+129.25 89.578 l
+129.25 89.622 l
+129.17 89.622 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 131.61 89.798 m 131.61 89.401 l
+132.3 89.401 l
+132.3 89.798 l
+131.61 89.798 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 133.91 90.063 m 133.91 89.137 l
+135.5 89.137 l
+135.5 90.063 l
+133.91 90.063 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 136.64 90.063 m 136.64 89.093 l
+138.31 89.093 l
+138.31 90.063 l
+136.64 90.063 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 139.83 89.842 m 139.83 89.357 l
+140.67 89.357 l
+140.67 89.842 l
+139.83 89.842 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 142.89 89.666 m 142.89 89.534 l
+143.12 89.534 l
+143.12 89.666 l
+142.89 89.666 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 134.43 88.122 m 134.43 87.814 l
+134.97 87.814 l
+134.97 88.122 l
+134.43 88.122 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 136.87 88.343 m 136.87 87.593 l
+138.09 87.593 l
+138.09 88.343 l
+136.87 88.343 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 139.39 88.475 m 139.39 87.505 l
+141.06 87.505 l
+141.06 88.475 l
+139.39 88.475 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 142.5 88.255 m 142.5 87.726 l
+143.49 87.726 l
+143.49 88.255 l
+142.5 88.255 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 145.63 88.078 m 145.63 87.902 l
+145.94 87.902 l
+145.94 88.078 l
+145.63 88.078 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 139.69 86.711 m 139.69 86.05 l
+140.83 86.05 l
+140.83 86.711 l
+139.69 86.711 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 142.2 86.844 m 142.2 85.918 l
+143.79 85.918 l
+143.79 86.844 l
+142.2 86.844 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 145.26 86.667 m 145.26 86.094 l
+146.24 86.094 l
+146.24 86.667 l
+145.26 86.667 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 148.38 86.491 m 148.38 86.27 l
+148.75 86.27 l
+148.75 86.491 l
+148.38 86.491 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 140.15 84.859 m 140.15 84.727 l
+140.37 84.727 l
+140.37 84.859 l
+140.15 84.859 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 142.59 84.992 m 142.59 84.551 l
+143.42 84.551 l
+143.42 84.992 l
+142.59 84.992 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 145.02 85.212 m 145.02 84.374 l
+146.48 84.374 l
+146.48 85.212 l
+145.02 85.212 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 148.08 85.08 m 148.08 84.506 l
+149.07 84.506 l
+149.07 85.08 l
+148.08 85.08 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 151.11 84.903 m 151.11 84.683 l
+151.5 84.683 l
+151.5 84.903 l
+151.11 84.903 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 154.02 84.815 m 154.02 84.771 l
+154.09 84.771 l
+154.09 84.815 l
+154.02 84.815 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 142.89 83.228 m 142.89 83.139 l
+143.12 83.139 l
+143.12 83.228 l
+142.89 83.228 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 145.49 83.36 m 145.49 83.007 l
+146.09 83.007 l
+146.09 83.36 l
+145.49 83.36 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 147.92 83.536 m 147.92 82.831 l
+149.15 82.831 l
+149.15 83.536 l
+147.92 83.536 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 150.81 83.448 m 150.81 82.919 l
+151.81 82.919 l
+151.81 83.448 l
+150.81 83.448 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 153.86 83.316 m 153.86 83.051 l
+154.33 83.051 l
+154.33 83.316 l
+153.86 83.316 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 145.71 81.64 m 145.71 81.552 l
+145.86 81.552 l
+145.86 81.64 l
+145.71 81.64 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 148.31 81.728 m 148.31 81.464 l
+148.75 81.464 l
+148.75 81.728 l
+148.31 81.728 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 150.81 81.861 m 150.81 81.287 l
+151.81 81.287 l
+151.81 81.861 l
+150.81 81.861 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 153.71 81.817 m 153.71 81.376 l
+154.47 81.376 l
+154.47 81.817 l
+153.71 81.817 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 156.68 81.684 m 156.68 81.464 l
+156.99 81.464 l
+156.99 81.684 l
+156.68 81.684 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 148.53 80.009 m 148.53 79.964 l
+148.61 79.964 l
+148.61 80.009 l
+148.53 80.009 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 151.04 80.097 m 151.04 79.832 l
+151.5 79.832 l
+151.5 80.097 l
+151.04 80.097 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 153.71 80.229 m 153.71 79.744 l
+154.47 79.744 l
+154.47 80.229 l
+153.71 80.229 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 156.45 80.185 m 156.45 79.788 l
+157.22 79.788 l
+157.22 80.185 l
+156.45 80.185 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 159.51 80.053 m 159.51 79.92 l
+159.73 79.92 l
+159.73 80.053 l
+159.51 80.053 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 162.32 80.009 m 162.32 79.964 l
+162.41 79.964 l
+162.41 80.009 l
+162.32 80.009 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 153.86 78.509 m 153.86 78.245 l
+154.23 78.245 l
+154.23 78.509 l
+153.86 78.509 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 156.53 78.597 m 156.53 78.201 l
+157.22 78.201 l
+157.22 78.597 l
+156.53 78.597 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 159.27 78.554 m 159.27 78.201 l
+159.89 78.201 l
+159.89 78.554 l
+159.27 78.554 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 162.32 78.422 m 162.32 78.333 l
+162.41 78.333 l
+162.41 78.422 l
+162.32 78.422 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 156.75 76.834 m 156.75 76.701 l
+156.99 76.701 l
+156.99 76.834 l
+156.75 76.834 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 159.35 76.922 m 159.35 76.613 l
+159.89 76.613 l
+159.89 76.922 l
+159.35 76.922 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 162.18 76.922 m 162.18 76.658 l
+162.55 76.658 l
+162.55 76.922 l
+162.18 76.922 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 165.07 76.834 m 165.07 76.745 l
+165.21 76.745 l
+165.21 76.834 l
+165.07 76.834 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 159.59 75.202 m 159.59 75.158 l
+159.66 75.158 l
+159.66 75.202 l
+159.59 75.202 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 162.18 75.29 m 162.18 75.07 l
+162.55 75.07 l
+162.55 75.29 l
+162.18 75.29 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 165 75.29 m 165 75.114 l
+165.3 75.114 l
+165.3 75.29 l
+165 75.29 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 167.81 75.246 m 167.81 75.114 l
+168.03 75.114 l
+168.03 75.246 l
+167.81 75.246 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 162.32 73.614 m 162.32 73.57 l
+162.41 73.57 l
+162.41 73.614 l
+162.32 73.614 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 165 73.659 m 165 73.526 l
+165.21 73.526 l
+165.21 73.659 l
+165 73.659 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 167.81 73.614 m 167.81 73.526 l
+167.96 73.526 l
+167.96 73.614 l
+167.81 73.614 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 167.89 72.027 m 167.89 71.939 l
+167.96 71.939 l
+167.96 72.027 l
+167.89 72.027 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 139.99 m 58.692 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 138.31 m 58.692 138.31 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 136.68 m 58.692 136.68 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 135 m 58.692 135 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 133.33 m 58.692 133.33 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 131.65 m 58.692 131.65 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 129.98 m 58.692 129.98 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 128.34 m 58.692 128.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 126.67 m 58.692 126.67 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 124.99 m 58.692 124.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 123.32 m 58.692 123.32 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 121.64 m 58.692 121.64 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 120.01 m 58.692 120.01 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 118.33 m 58.692 118.33 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 116.66 m 58.692 116.66 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 114.98 m 58.692 114.98 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 113.31 m 58.692 113.31 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 111.68 m 58.692 111.68 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 110 m 58.692 110 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 108.32 m 58.692 108.32 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 106.65 m 58.692 106.65 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 104.97 m 58.692 104.97 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 103.34 m 58.692 103.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 101.67 m 58.692 101.67 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 99.985 m 58.692 99.985 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 98.309 m 58.692 98.309 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 96.633 m 58.692 96.633 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 95.002 m 58.692 95.002 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 93.326 m 58.692 93.326 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 91.65 m 58.692 91.65 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 89.975 m 58.692 89.975 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 88.299 m 58.692 88.299 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 86.667 m 58.692 86.667 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 84.992 m 58.692 84.992 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 83.316 m 58.692 83.316 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 81.64 m 58.692 81.64 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 79.964 m 58.692 79.964 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 78.333 m 58.692 78.333 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 76.657 m 58.692 76.657 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 74.981 m 58.692 74.981 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 73.306 m 58.692 73.306 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 71.63 m 58.692 71.63 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 69.999 m 58.692 69.999 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 68.323 m 58.692 68.323 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 58.692 139.99 m 172.77 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.111 138.49 m 63.111 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 67.608 139.24 m 67.608 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 72.026 139.24 m 72.026 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 76.522 139.24 m 76.522 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 80.942 138.49 m 80.942 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 85.437 139.24 m 85.437 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 89.935 139.24 m 89.935 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 94.353 139.24 m 94.353 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 98.85 138.49 m 98.85 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 103.27 139.24 m 103.27 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 107.76 139.24 m 107.76 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 112.19 139.24 m 112.19 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 116.67 138.49 m 116.67 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 121.1 139.24 m 121.1 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 125.6 139.24 m 125.6 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 130.02 139.24 m 130.02 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 134.51 138.49 m 134.51 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 138.93 139.24 m 138.93 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 143.42 139.24 m 143.42 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 147.85 139.24 m 147.85 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 152.34 138.49 m 152.34 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 156.75 139.24 m 156.75 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 161.25 139.24 m 161.25 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 165.67 139.24 m 165.67 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 170.17 138.49 m 170.17 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.111 138.49 m 63.111 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.796 138 m 64.483 136.41 l
+65.169 134.87 l
+65.931 133.37 l
+66.464 132.27 l
+67.378 130.64 l
+67.834 130.02 l
+68.901 128.39 l
+69.13 127.99 l
+70.503 126.14 l
+71.799 124.46 l
+73.17 122.96 l
+74.542 121.51 l
+75.837 120.19 l
+77.208 118.95 l
+78.504 117.76 l
+79.874 116.66 l
+81.17 115.64 l
+82.543 114.63 l
+83.838 113.7 l
+85.209 112.82 l
+86.581 111.98 l
+87.877 111.15 l
+89.247 110.35 l
+90.543 109.6 l
+91.915 108.9 l
+93.211 108.19 l
+94.582 107.49 l
+95.954 106.82 l
+97.248 106.21 l
+98.62 105.55 l
+99.915 104.97 l
+101.29 104.36 l
+102.58 103.78 l
+103.95 103.16 l
+105.25 102.64 l
+106.62 102.06 l
+107.99 101.49 l
+109.28 100.96 l
+110.66 100.38 l
+111.96 99.852 l
+113.33 99.323 l
+114.62 98.794 l
+115.99 98.265 l
+117.29 97.692 l
+118.65 97.162 l
+120.02 96.633 l
+121.32 96.104 l
+122.7 95.531 l
+123.99 95.002 l
+125.36 94.429 l
+126.66 93.899 l
+128.03 93.326 l
+129.32 92.753 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.796 138 m 64.483 136.41 l
+65.169 134.87 l
+65.931 133.37 l
+66.464 132.27 l
+67.378 130.64 l
+67.834 130.02 l
+68.901 128.39 l
+69.13 127.99 l
+70.503 126.14 l
+71.799 124.46 l
+73.17 122.96 l
+74.542 121.51 l
+75.837 120.19 l
+77.208 118.95 l
+78.504 117.76 l
+79.874 116.66 l
+81.17 115.64 l
+82.543 114.63 l
+83.838 113.7 l
+85.209 112.82 l
+86.581 111.98 l
+87.877 111.15 l
+89.247 110.35 l
+90.543 109.6 l
+91.915 108.9 l
+93.211 108.19 l
+94.582 107.49 l
+95.954 106.82 l
+97.248 106.21 l
+98.62 105.55 l
+99.915 104.97 l
+101.29 104.36 l
+102.58 103.78 l
+103.95 103.16 l
+105.25 102.64 l
+106.62 102.06 l
+107.99 101.49 l
+109.28 100.96 l
+110.66 100.38 l
+111.96 99.852 l
+113.33 99.323 l
+114.62 98.794 l
+115.99 98.265 l
+117.29 97.692 l
+118.65 97.162 l
+120.02 96.633 l
+121.32 96.104 l
+122.7 95.531 l
+123.99 95.002 l
+125.36 94.429 l
+126.66 93.899 l
+128.03 93.326 l
+129.32 92.753 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.796 138 m 64.483 136.41 l
+65.169 134.87 l
+65.931 133.37 l
+66.464 132.27 l
+67.378 130.64 l
+67.834 130.02 l
+68.901 128.39 l
+69.13 127.99 l
+70.503 126.14 l
+71.799 124.46 l
+73.17 122.96 l
+74.542 121.51 l
+75.837 120.19 l
+77.208 118.95 l
+78.504 117.76 l
+79.874 116.66 l
+81.17 115.64 l
+82.543 114.63 l
+83.838 113.7 l
+85.209 112.82 l
+86.581 111.98 l
+87.877 111.15 l
+89.247 110.35 l
+90.543 109.6 l
+91.915 108.9 l
+93.211 108.19 l
+94.582 107.49 l
+95.954 106.82 l
+97.248 106.21 l
+98.62 105.55 l
+99.915 104.97 l
+101.29 104.36 l
+102.58 103.78 l
+103.95 103.16 l
+105.25 102.64 l
+106.62 102.06 l
+107.99 101.49 l
+109.28 100.96 l
+110.66 100.38 l
+111.96 99.852 l
+113.33 99.323 l
+114.62 98.794 l
+115.99 98.265 l
+117.29 97.692 l
+118.65 97.162 l
+120.02 96.633 l
+121.32 96.104 l
+122.7 95.531 l
+123.99 95.002 l
+125.36 94.429 l
+126.66 93.899 l
+128.03 93.326 l
+129.32 92.753 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.586 139.9 m 61.586 138.49 l
+64.026 138.49 l
+64.026 139.9 l
+61.586 139.9 l
+cl 1 0 0 F
+n 61.586 139.9 m 61.586 138.49 l
+64.026 138.49 l
+64.026 139.9 l
+61.586 139.9 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 65.246 139.41 m 65.246 138.97 l
+65.931 138.97 l
+65.931 139.41 l
+65.246 139.41 l
+cl 1 0 0 F
+n 65.246 139.41 m 65.246 138.97 l
+65.931 138.97 l
+65.931 139.41 l
+65.246 139.41 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 61.892 138.13 m 61.892 137.08 l
+63.721 137.08 l
+63.721 138.13 l
+61.892 138.13 l
+cl 1 0 0 F
+n 61.892 138.13 m 61.892 137.08 l
+63.721 137.08 l
+63.721 138.13 l
+61.892 138.13 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 64.711 138.09 m 64.711 137.08 l
+66.464 137.08 l
+66.464 138.09 l
+64.711 138.09 l
+cl 1 0 0 F
+n 64.711 138.09 m 64.711 137.08 l
+66.464 137.08 l
+66.464 138.09 l
+64.711 138.09 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 62.426 136.24 m 62.426 135.75 l
+63.264 135.75 l
+63.264 136.24 l
+62.426 136.24 l
+cl 1 0 0 F
+n 62.426 136.24 m 62.426 135.75 l
+63.264 135.75 l
+63.264 136.24 l
+62.426 136.24 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 64.329 136.72 m 64.329 135.27 l
+66.846 135.27 l
+66.846 136.72 l
+64.329 136.72 l
+cl 1 0 0 F
+n 64.329 136.72 m 64.329 135.27 l
+66.846 135.27 l
+66.846 136.72 l
+64.329 136.72 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 62.73 134.47 m 62.73 134.34 l
+62.959 134.34 l
+62.959 134.47 l
+62.73 134.47 l
+cl 1 0 0 F
+n 62.73 134.47 m 62.73 134.34 l
+62.959 134.34 l
+62.959 134.47 l
+62.73 134.47 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 64.178 135.18 m 64.178 133.59 l
+66.997 133.59 l
+66.997 135.18 l
+64.178 135.18 l
+cl 1 0 0 F
+n 64.178 135.18 m 64.178 133.59 l
+66.997 133.59 l
+66.997 135.18 l
+64.178 135.18 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 68.14 134.52 m 68.14 134.3 l
+68.522 134.3 l
+68.522 134.52 l
+68.14 134.52 l
+cl 1 0 0 F
+n 68.14 134.52 m 68.14 134.3 l
+68.522 134.3 l
+68.522 134.52 l
+68.14 134.52 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 64.329 133.5 m 64.329 132.09 l
+66.846 132.09 l
+66.846 133.5 l
+64.329 133.5 l
+cl 1 0 0 F
+n 64.329 133.5 m 64.329 132.09 l
+66.846 132.09 l
+66.846 133.5 l
+64.329 133.5 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 67.834 133.11 m 67.834 132.49 l
+68.901 132.49 l
+68.901 133.11 l
+67.834 133.11 l
+cl 1 0 0 F
+n 67.834 133.11 m 67.834 132.49 l
+68.901 132.49 l
+68.901 133.11 l
+67.834 133.11 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 64.864 131.61 m 64.864 130.77 l
+66.313 130.77 l
+66.313 131.61 l
+64.864 131.61 l
+cl 1 0 0 F
+n 64.864 131.61 m 64.864 130.77 l
+66.313 130.77 l
+66.313 131.61 l
+64.864 131.61 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 67.302 131.78 m 67.302 130.59 l
+69.36 130.59 l
+69.36 131.78 l
+67.302 131.78 l
+cl 1 0 0 F
+n 67.302 131.78 m 67.302 130.59 l
+69.36 130.59 l
+69.36 131.78 l
+67.302 131.78 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 65.397 129.71 m 65.397 129.49 l
+65.779 129.49 l
+65.779 129.71 l
+65.397 129.71 l
+cl 1 0 0 F
+n 65.397 129.71 m 65.397 129.49 l
+65.779 129.49 l
+65.779 129.71 l
+65.397 129.71 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 67.15 130.28 m 67.15 128.87 l
+69.589 128.87 l
+69.589 130.28 l
+67.15 130.28 l
+cl 1 0 0 F
+n 67.15 130.28 m 67.15 128.87 l
+69.589 128.87 l
+69.589 130.28 l
+67.15 130.28 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 70.959 129.67 m 70.959 129.53 l
+71.265 129.53 l
+71.265 129.67 l
+70.959 129.67 l
+cl 1 0 0 F
+n 70.959 129.67 m 70.959 129.53 l
+71.265 129.53 l
+71.265 129.67 l
+70.959 129.67 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 67.302 128.61 m 67.302 127.37 l
+69.436 127.37 l
+69.436 128.61 l
+67.302 128.61 l
+cl 1 0 0 F
+n 67.302 128.61 m 67.302 127.37 l
+69.436 127.37 l
+69.436 128.61 l
+67.302 128.61 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 70.578 128.3 m 70.578 127.68 l
+71.644 127.68 l
+71.644 128.3 l
+70.578 128.3 l
+cl 1 0 0 F
+n 70.578 128.3 m 70.578 127.68 l
+71.644 127.68 l
+71.644 128.3 l
+70.578 128.3 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 67.834 126.71 m 67.834 126.05 l
+68.901 126.05 l
+68.901 126.71 l
+67.834 126.71 l
+cl 1 0 0 F
+n 67.834 126.71 m 67.834 126.05 l
+68.901 126.05 l
+68.901 126.71 l
+67.834 126.71 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 70.045 127.02 m 70.045 125.79 l
+72.18 125.79 l
+72.18 127.02 l
+70.045 127.02 l
+cl 1 0 0 F
+n 70.045 127.02 m 70.045 125.79 l
+72.18 125.79 l
+72.18 127.02 l
+70.045 127.02 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 68.216 124.86 m 68.216 124.73 l
+68.445 124.73 l
+68.445 124.86 l
+68.216 124.86 l
+cl 1 0 0 F
+n 68.216 124.86 m 68.216 124.73 l
+68.445 124.73 l
+68.445 124.86 l
+68.216 124.86 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 69.894 125.48 m 69.894 124.11 l
+72.332 124.11 l
+72.332 125.48 l
+69.894 125.48 l
+cl 1 0 0 F
+n 69.894 125.48 m 69.894 124.11 l
+72.332 124.11 l
+72.332 125.48 l
+69.894 125.48 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 73.55 124.99 m 73.55 124.6 l
+74.236 124.6 l
+74.236 124.99 l
+73.55 124.99 l
+cl 1 0 0 F
+n 73.55 124.99 m 73.55 124.6 l
+74.236 124.6 l
+74.236 124.99 l
+73.55 124.99 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 70.274 123.67 m 70.274 122.7 l
+71.95 122.7 l
+71.95 123.67 l
+70.274 123.67 l
+cl 1 0 0 F
+n 70.274 123.67 m 70.274 122.7 l
+71.95 122.7 l
+71.95 123.67 l
+70.274 123.67 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 72.788 123.8 m 72.788 122.57 l
+74.998 122.57 l
+74.998 123.8 l
+72.788 123.8 l
+cl 1 0 0 F
+n 72.788 123.8 m 72.788 122.57 l
+74.998 122.57 l
+74.998 123.8 l
+72.788 123.8 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 76.522 123.27 m 76.522 123.14 l
+76.752 123.14 l
+76.752 123.27 l
+76.522 123.27 l
+cl 1 0 0 F
+n 76.522 123.27 m 76.522 123.14 l
+76.752 123.14 l
+76.752 123.27 l
+76.522 123.27 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 70.959 121.69 m 70.959 121.51 l
+71.265 121.51 l
+71.265 121.69 l
+70.959 121.69 l
+cl 1 0 0 F
+n 70.959 121.69 m 70.959 121.51 l
+71.265 121.51 l
+71.265 121.69 l
+70.959 121.69 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 72.712 122.3 m 72.712 120.89 l
+75.075 120.89 l
+75.075 122.3 l
+72.712 122.3 l
+cl 1 0 0 F
+n 72.712 122.3 m 72.712 120.89 l
+75.075 120.89 l
+75.075 122.3 l
+72.712 122.3 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 76.142 121.86 m 76.142 121.33 l
+77.131 121.33 l
+77.131 121.86 l
+76.142 121.86 l
+cl 1 0 0 F
+n 76.142 121.86 m 76.142 121.33 l
+77.131 121.33 l
+77.131 121.86 l
+76.142 121.86 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 73.246 120.36 m 73.246 119.61 l
+74.542 119.61 l
+74.542 120.36 l
+73.246 120.36 l
+cl 1 0 0 F
+n 73.246 120.36 m 73.246 119.61 l
+74.542 119.61 l
+74.542 120.36 l
+73.246 120.36 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 75.456 120.67 m 75.456 119.3 l
+77.818 119.3 l
+77.818 120.67 l
+75.456 120.67 l
+cl 1 0 0 F
+n 75.456 120.67 m 75.456 119.3 l
+77.818 119.3 l
+77.818 120.67 l
+75.456 120.67 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 79.266 120.1 m 79.266 119.92 l
+79.57 119.92 l
+79.57 120.1 l
+79.266 120.1 l
+cl 1 0 0 F
+n 79.266 120.1 m 79.266 119.92 l
+79.57 119.92 l
+79.57 120.1 l
+79.266 120.1 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 73.779 118.47 m 73.779 118.33 l
+74.008 118.33 l
+74.008 118.47 l
+73.779 118.47 l
+cl 1 0 0 F
+n 73.779 118.47 m 73.779 118.33 l
+74.008 118.33 l
+74.008 118.47 l
+73.779 118.47 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 75.608 119 m 75.608 117.76 l
+77.742 117.76 l
+77.742 119 l
+75.608 119 l
+cl 1 0 0 F
+n 75.608 119 m 75.608 117.76 l
+77.742 117.76 l
+77.742 119 l
+75.608 119 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 78.58 118.86 m 78.58 117.94 l
+80.256 117.94 l
+80.256 118.86 l
+78.58 118.86 l
+cl 1 0 0 F
+n 78.58 118.86 m 78.58 117.94 l
+80.256 117.94 l
+80.256 118.86 l
+78.58 118.86 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 76.293 116.97 m 76.293 116.61 l
+76.98 116.61 l
+76.98 116.97 l
+76.293 116.97 l
+cl 1 0 0 F
+n 76.293 116.97 m 76.293 116.61 l
+76.98 116.61 l
+76.98 116.97 l
+76.293 116.97 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 78.199 117.5 m 78.199 116.09 l
+80.637 116.09 l
+80.637 117.5 l
+78.199 117.5 l
+cl 1 0 0 F
+n 78.199 117.5 m 78.199 116.09 l
+80.637 116.09 l
+80.637 117.5 l
+78.199 117.5 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 81.628 117.1 m 81.628 116.48 l
+82.694 116.48 l
+82.694 117.1 l
+81.628 117.1 l
+cl 1 0 0 F
+n 81.628 117.1 m 81.628 116.48 l
+82.694 116.48 l
+82.694 117.1 l
+81.628 117.1 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 78.885 115.47 m 78.885 114.89 l
+79.951 114.89 l
+79.951 115.47 l
+78.885 115.47 l
+cl 1 0 0 F
+n 78.885 115.47 m 78.885 114.89 l
+79.951 114.89 l
+79.951 115.47 l
+78.885 115.47 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 81.018 115.86 m 81.018 114.54 l
+83.305 114.54 l
+83.305 115.86 l
+81.018 115.86 l
+cl 1 0 0 F
+n 81.018 115.86 m 81.018 114.54 l
+83.305 114.54 l
+83.305 115.86 l
+81.018 115.86 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 84.6 115.38 m 84.6 114.98 l
+85.286 114.98 l
+85.286 115.38 l
+84.6 115.38 l
+cl 1 0 0 F
+n 84.6 115.38 m 84.6 114.98 l
+85.286 114.98 l
+85.286 115.38 l
+84.6 115.38 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 79.341 113.62 m 79.341 113.57 l
+79.495 113.57 l
+79.495 113.62 l
+79.341 113.62 l
+cl 1 0 0 F
+n 79.341 113.62 m 79.341 113.57 l
+79.495 113.57 l
+79.495 113.62 l
+79.341 113.62 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 81.399 114.06 m 81.399 113.13 l
+82.923 113.13 l
+82.923 114.06 l
+81.399 114.06 l
+cl 1 0 0 F
+n 81.399 114.06 m 81.399 113.13 l
+82.923 113.13 l
+82.923 114.06 l
+81.399 114.06 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 83.99 114.14 m 83.99 113.04 l
+85.896 113.04 l
+85.896 114.14 l
+83.99 114.14 l
+cl 1 0 0 F
+n 83.99 114.14 m 83.99 113.04 l
+85.896 113.04 l
+85.896 114.14 l
+83.99 114.14 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 87.495 113.75 m 87.495 113.44 l
+87.952 113.44 l
+87.952 113.75 l
+87.495 113.75 l
+cl 1 0 0 F
+n 87.495 113.75 m 87.495 113.44 l
+87.952 113.44 l
+87.952 113.75 l
+87.495 113.75 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 82.009 112.07 m 82.009 111.9 l
+82.314 111.9 l
+82.314 112.07 l
+82.009 112.07 l
+cl 1 0 0 F
+n 82.009 112.07 m 82.009 111.9 l
+82.314 111.9 l
+82.314 112.07 l
+82.009 112.07 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 84.142 112.47 m 84.142 111.5 l
+85.819 111.5 l
+85.819 112.47 l
+84.142 112.47 l
+cl 1 0 0 F
+n 84.142 112.47 m 84.142 111.5 l
+85.819 111.5 l
+85.819 112.47 l
+84.142 112.47 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 86.733 112.56 m 86.733 111.45 l
+88.639 111.45 l
+88.639 112.56 l
+86.733 112.56 l
+cl 1 0 0 F
+n 86.733 112.56 m 86.733 111.45 l
+88.639 111.45 l
+88.639 112.56 l
+86.733 112.56 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 90.238 112.12 m 90.238 111.85 l
+90.696 111.85 l
+90.696 112.12 l
+90.238 112.12 l
+cl 1 0 0 F
+n 90.238 112.12 m 90.238 111.85 l
+90.696 111.85 l
+90.696 112.12 l
+90.238 112.12 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 84.752 110.48 m 84.752 110.31 l
+85.134 110.31 l
+85.134 110.48 l
+84.752 110.48 l
+cl 1 0 0 F
+n 84.752 110.48 m 84.752 110.31 l
+85.134 110.31 l
+85.134 110.48 l
+84.752 110.48 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 86.886 110.84 m 86.886 109.91 l
+88.485 109.91 l
+88.485 110.84 l
+86.886 110.84 l
+cl 1 0 0 F
+n 86.886 110.84 m 86.886 109.91 l
+88.485 109.91 l
+88.485 110.84 l
+86.886 110.84 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 89.553 110.93 m 89.553 109.82 l
+91.458 109.82 l
+91.458 110.93 l
+89.553 110.93 l
+cl 1 0 0 F
+n 89.553 110.93 m 89.553 109.82 l
+91.458 109.82 l
+91.458 110.93 l
+89.553 110.93 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 92.982 110.53 m 92.982 110.22 l
+93.516 110.22 l
+93.516 110.53 l
+92.982 110.53 l
+cl 1 0 0 F
+n 92.982 110.53 m 92.982 110.22 l
+93.516 110.22 l
+93.516 110.53 l
+92.982 110.53 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 87.495 108.9 m 87.495 108.68 l
+87.877 108.68 l
+87.877 108.9 l
+87.495 108.9 l
+cl 1 0 0 F
+n 87.495 108.9 m 87.495 108.68 l
+87.877 108.68 l
+87.877 108.9 l
+87.495 108.9 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 89.706 109.25 m 89.706 108.32 l
+91.305 108.32 l
+91.305 109.25 l
+89.706 109.25 l
+cl 1 0 0 F
+n 89.706 109.25 m 89.706 108.32 l
+91.305 108.32 l
+91.305 109.25 l
+89.706 109.25 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 92.296 109.34 m 92.296 108.24 l
+94.125 108.24 l
+94.125 109.34 l
+92.296 109.34 l
+cl 1 0 0 F
+n 92.296 109.34 m 92.296 108.24 l
+94.125 108.24 l
+94.125 109.34 l
+92.296 109.34 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 95.648 109.03 m 95.648 108.54 l
+96.41 108.54 l
+96.41 109.03 l
+95.648 109.03 l
+cl 1 0 0 F
+n 95.648 109.03 m 95.648 108.54 l
+96.41 108.54 l
+96.41 109.03 l
+95.648 109.03 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 90.314 107.27 m 90.314 107.13 l
+90.62 107.13 l
+90.62 107.27 l
+90.314 107.27 l
+cl 1 0 0 F
+n 90.314 107.27 m 90.314 107.13 l
+90.62 107.13 l
+90.62 107.27 l
+90.314 107.27 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 92.601 107.57 m 92.601 106.82 l
+93.896 106.82 l
+93.896 107.57 l
+92.601 107.57 l
+cl 1 0 0 F
+n 92.601 107.57 m 92.601 106.82 l
+93.896 106.82 l
+93.896 107.57 l
+92.601 107.57 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 95.04 107.75 m 95.04 106.65 l
+96.944 106.65 l
+96.944 107.75 l
+95.04 107.75 l
+cl 1 0 0 F
+n 95.04 107.75 m 95.04 106.65 l
+96.944 106.65 l
+96.944 107.75 l
+95.04 107.75 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 98.316 107.49 m 98.316 106.91 l
+99.23 106.91 l
+99.23 107.49 l
+98.316 107.49 l
+cl 1 0 0 F
+n 98.316 107.49 m 98.316 106.91 l
+99.23 106.91 l
+99.23 107.49 l
+98.316 107.49 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 101.44 107.22 m 101.44 107.13 l
+101.59 107.13 l
+101.59 107.22 l
+101.44 107.22 l
+cl 1 0 0 F
+n 101.44 107.22 m 101.44 107.13 l
+101.59 107.13 l
+101.59 107.22 l
+101.44 107.22 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 93.134 105.63 m 93.134 105.55 l
+93.363 105.55 l
+93.363 105.63 l
+93.134 105.63 l
+cl 1 0 0 F
+n 93.134 105.63 m 93.134 105.55 l
+93.363 105.55 l
+93.363 105.63 l
+93.134 105.63 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 95.496 105.85 m 95.496 105.33 l
+96.487 105.33 l
+96.487 105.85 l
+95.496 105.85 l
+cl 1 0 0 F
+n 95.496 105.85 m 95.496 105.33 l
+96.487 105.33 l
+96.487 105.85 l
+95.496 105.85 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 97.858 106.12 m 97.858 105.06 l
+99.687 105.06 l
+99.687 106.12 l
+97.858 106.12 l
+cl 1 0 0 F
+n 97.858 106.12 m 97.858 105.06 l
+99.687 105.06 l
+99.687 106.12 l
+97.858 106.12 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 100.83 106.03 m 100.83 105.15 l
+102.28 105.15 l
+102.28 106.03 l
+100.83 106.03 l
+cl 1 0 0 F
+n 100.83 106.03 m 100.83 105.15 l
+102.28 105.15 l
+102.28 106.03 l
+100.83 106.03 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 104.11 105.68 m 104.11 105.5 l
+104.49 105.5 l
+104.49 105.68 l
+104.11 105.68 l
+cl 1 0 0 F
+n 104.11 105.68 m 104.11 105.5 l
+104.49 105.5 l
+104.49 105.68 l
+104.11 105.68 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 95.954 104.05 m 95.954 103.96 l
+96.106 103.96 l
+96.106 104.05 l
+95.954 104.05 l
+cl 1 0 0 F
+n 95.954 104.05 m 95.954 103.96 l
+96.106 103.96 l
+96.106 104.05 l
+95.954 104.05 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 98.468 104.18 m 98.468 103.83 l
+99.076 103.83 l
+99.076 104.18 l
+98.468 104.18 l
+cl 1 0 0 F
+n 98.468 104.18 m 98.468 103.83 l
+99.076 103.83 l
+99.076 104.18 l
+98.468 104.18 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 100.83 104.4 m 100.83 103.56 l
+102.28 103.56 l
+102.28 104.4 l
+100.83 104.4 l
+cl 1 0 0 F
+n 100.83 104.4 m 100.83 103.56 l
+102.28 103.56 l
+102.28 104.4 l
+100.83 104.4 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 103.42 104.49 m 103.42 103.47 l
+105.17 103.47 l
+105.17 104.49 l
+103.42 104.49 l
+cl 1 0 0 F
+n 103.42 104.49 m 103.42 103.47 l
+105.17 103.47 l
+105.17 104.49 l
+103.42 104.49 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 106.55 104.27 m 106.55 103.69 l
+107.54 103.69 l
+107.54 104.27 l
+106.55 104.27 l
+cl 1 0 0 F
+n 106.55 104.27 m 106.55 103.69 l
+107.54 103.69 l
+107.54 104.27 l
+106.55 104.27 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 109.75 104.05 m 109.75 103.96 l
+109.89 103.96 l
+109.89 104.05 l
+109.75 104.05 l
+cl 1 0 0 F
+n 109.75 104.05 m 109.75 103.96 l
+109.89 103.96 l
+109.89 104.05 l
+109.75 104.05 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 101.44 102.46 m 101.44 102.33 l
+101.67 102.33 l
+101.67 102.46 l
+101.44 102.46 l
+cl 1 0 0 F
+n 101.44 102.46 m 101.44 102.33 l
+101.67 102.33 l
+101.67 102.46 l
+101.44 102.46 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 103.73 102.72 m 103.73 102.06 l
+104.87 102.06 l
+104.87 102.72 l
+103.73 102.72 l
+cl 1 0 0 F
+n 103.73 102.72 m 103.73 102.06 l
+104.87 102.06 l
+104.87 102.72 l
+103.73 102.72 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 106.16 102.9 m 106.16 101.89 l
+107.92 101.89 l
+107.92 102.9 l
+106.16 102.9 l
+cl 1 0 0 F
+n 106.16 102.9 m 106.16 101.89 l
+107.92 101.89 l
+107.92 102.9 l
+106.16 102.9 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 109.14 102.81 m 109.14 101.97 l
+110.51 101.97 l
+110.51 102.81 l
+109.14 102.81 l
+cl 1 0 0 F
+n 109.14 102.81 m 109.14 101.97 l
+110.51 101.97 l
+110.51 102.81 l
+109.14 102.81 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 112.26 102.59 m 112.26 102.19 l
+112.94 102.19 l
+112.94 102.59 l
+112.26 102.59 l
+cl 1 0 0 F
+n 112.26 102.59 m 112.26 102.19 l
+112.94 102.19 l
+112.94 102.59 l
+112.26 102.59 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 115.31 102.46 m 115.31 102.33 l
+115.46 102.33 l
+115.46 102.46 l
+115.31 102.46 l
+cl 1 0 0 F
+n 115.31 102.46 m 115.31 102.33 l
+115.46 102.33 l
+115.46 102.46 l
+115.31 102.46 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 106.7 101 m 106.7 100.6 l
+107.38 100.6 l
+107.38 101 l
+106.7 101 l
+cl 1 0 0 F
+n 106.7 101 m 106.7 100.6 l
+107.38 100.6 l
+107.38 101 l
+106.7 101 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 109.14 101.18 m 109.14 100.38 l
+110.51 100.38 l
+110.51 101.18 l
+109.14 101.18 l
+cl 1 0 0 F
+n 109.14 101.18 m 109.14 100.38 l
+110.51 100.38 l
+110.51 101.18 l
+109.14 101.18 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 111.8 101.22 m 111.8 100.34 l
+113.4 100.34 l
+113.4 101.22 l
+111.8 101.22 l
+cl 1 0 0 F
+n 111.8 101.22 m 111.8 100.34 l
+113.4 100.34 l
+113.4 101.22 l
+111.8 101.22 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 114.78 101.13 m 114.78 100.43 l
+115.92 100.43 l
+115.92 101.13 l
+114.78 101.13 l
+cl 1 0 0 F
+n 114.78 101.13 m 114.78 100.43 l
+115.92 100.43 l
+115.92 101.13 l
+114.78 101.13 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 117.9 100.91 m 117.9 100.69 l
+118.35 100.69 l
+118.35 100.91 l
+117.9 100.91 l
+cl 1 0 0 F
+n 117.9 100.91 m 117.9 100.69 l
+118.35 100.69 l
+118.35 100.91 l
+117.9 100.91 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 109.67 99.279 m 109.67 99.103 l
+109.98 99.103 l
+109.98 99.279 l
+109.67 99.279 l
+cl 1 0 0 F
+n 109.67 99.279 m 109.67 99.103 l
+109.98 99.103 l
+109.98 99.279 l
+109.67 99.279 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 112.19 99.455 m 112.19 98.926 l
+113.03 98.926 l
+113.03 99.455 l
+112.19 99.455 l
+cl 1 0 0 F
+n 112.19 99.455 m 112.19 98.926 l
+113.03 98.926 l
+113.03 99.455 l
+112.19 99.455 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 114.62 99.632 m 114.62 98.75 l
+116.07 98.75 l
+116.07 99.632 l
+114.62 99.632 l
+cl 1 0 0 F
+n 114.62 99.632 m 114.62 98.75 l
+116.07 98.75 l
+116.07 99.632 l
+114.62 99.632 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 117.36 99.632 m 117.36 98.706 l
+118.88 98.706 l
+118.88 99.632 l
+117.36 99.632 l
+cl 1 0 0 F
+n 117.36 99.632 m 117.36 98.706 l
+118.88 98.706 l
+118.88 99.632 l
+117.36 99.632 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 120.42 99.455 m 120.42 98.926 l
+121.4 98.926 l
+121.4 99.455 l
+120.42 99.455 l
+cl 1 0 0 F
+n 120.42 99.455 m 120.42 98.926 l
+121.4 98.926 l
+121.4 99.455 l
+120.42 99.455 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 123.54 99.279 m 123.54 99.103 l
+123.77 99.103 l
+123.77 99.279 l
+123.54 99.279 l
+cl 1 0 0 F
+n 123.54 99.279 m 123.54 99.103 l
+123.77 99.103 l
+123.77 99.279 l
+123.54 99.279 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 115.08 97.736 m 115.08 97.427 l
+115.61 97.427 l
+115.61 97.736 l
+115.08 97.736 l
+cl 1 0 0 F
+n 115.08 97.736 m 115.08 97.427 l
+115.61 97.427 l
+115.61 97.736 l
+115.08 97.736 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 117.51 97.912 m 117.51 97.251 l
+118.73 97.251 l
+118.73 97.912 l
+117.51 97.912 l
+cl 1 0 0 F
+n 117.51 97.912 m 117.51 97.251 l
+118.73 97.251 l
+118.73 97.912 l
+117.51 97.912 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 120.11 98.044 m 120.11 97.118 l
+121.71 97.118 l
+121.71 98.044 l
+120.11 98.044 l
+cl 1 0 0 F
+n 120.11 98.044 m 120.11 97.118 l
+121.71 97.118 l
+121.71 98.044 l
+120.11 98.044 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 122.84 98.044 m 122.84 97.118 l
+124.45 97.118 l
+124.45 98.044 l
+122.84 98.044 l
+cl 1 0 0 F
+n 122.84 98.044 m 122.84 97.118 l
+124.45 97.118 l
+124.45 98.044 l
+122.84 98.044 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 126.05 97.78 m 126.05 97.383 l
+126.73 97.383 l
+126.73 97.78 l
+126.05 97.78 l
+cl 1 0 0 F
+n 126.05 97.78 m 126.05 97.383 l
+126.73 97.383 l
+126.73 97.78 l
+126.05 97.78 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 129.09 97.647 m 129.09 97.515 l
+129.32 97.515 l
+129.32 97.647 l
+129.09 97.647 l
+cl 1 0 0 F
+n 129.09 97.647 m 129.09 97.515 l
+129.32 97.515 l
+129.32 97.647 l
+129.09 97.647 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 117.98 96.06 m 117.98 95.928 l
+118.28 95.928 l
+118.28 96.06 l
+117.98 96.06 l
+cl 1 0 0 F
+n 117.98 96.06 m 117.98 95.928 l
+118.28 95.928 l
+118.28 96.06 l
+117.98 96.06 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 120.56 96.192 m 120.56 95.795 l
+121.25 95.795 l
+121.25 96.192 l
+120.56 96.192 l
+cl 1 0 0 F
+n 120.56 96.192 m 120.56 95.795 l
+121.25 95.795 l
+121.25 96.192 l
+120.56 96.192 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 122.94 96.369 m 122.94 95.575 l
+124.38 95.575 l
+124.38 96.369 l
+122.94 96.369 l
+cl 1 0 0 F
+n 122.94 96.369 m 122.94 95.575 l
+124.38 95.575 l
+124.38 96.369 l
+122.94 96.369 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 125.6 96.457 m 125.6 95.487 l
+127.27 95.487 l
+127.27 96.457 l
+125.6 96.457 l
+cl 1 0 0 F
+n 125.6 96.457 m 125.6 95.487 l
+127.27 95.487 l
+127.27 96.457 l
+125.6 96.457 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 128.57 96.369 m 128.57 95.619 l
+129.86 95.619 l
+129.86 96.369 l
+128.57 96.369 l
+cl 1 0 0 F
+n 128.57 96.369 m 128.57 95.619 l
+129.86 95.619 l
+129.86 96.369 l
+128.57 96.369 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 131.69 96.148 m 131.69 95.839 l
+132.23 95.839 l
+132.23 96.148 l
+131.69 96.148 l
+cl 1 0 0 F
+n 131.69 96.148 m 131.69 95.839 l
+132.23 95.839 l
+132.23 96.148 l
+131.69 96.148 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 123.47 94.517 m 123.47 94.252 l
+123.84 94.252 l
+123.84 94.517 l
+123.47 94.517 l
+cl 1 0 0 F
+n 123.47 94.517 m 123.47 94.252 l
+123.84 94.252 l
+123.84 94.517 l
+123.47 94.517 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 125.97 94.649 m 125.97 94.12 l
+126.9 94.12 l
+126.9 94.649 l
+125.97 94.649 l
+cl 1 0 0 F
+n 125.97 94.649 m 125.97 94.12 l
+126.9 94.12 l
+126.9 94.649 l
+125.97 94.649 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 128.42 94.825 m 128.42 93.943 l
+130.02 93.943 l
+130.02 94.825 l
+128.42 94.825 l
+cl 1 0 0 F
+n 128.42 94.825 m 128.42 93.943 l
+130.02 93.943 l
+130.02 94.825 l
+128.42 94.825 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 131.16 94.825 m 131.16 93.943 l
+132.75 93.943 l
+132.75 94.825 l
+131.16 94.825 l
+cl 1 0 0 F
+n 131.16 94.825 m 131.16 93.943 l
+132.75 93.943 l
+132.75 94.825 l
+131.16 94.825 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 134.28 94.649 m 134.28 94.12 l
+135.19 94.12 l
+135.19 94.649 l
+134.28 94.649 l
+cl 1 0 0 F
+n 134.28 94.649 m 134.28 94.12 l
+135.19 94.12 l
+135.19 94.649 l
+134.28 94.649 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 137.24 94.517 m 137.24 94.252 l
+137.71 94.252 l
+137.71 94.517 l
+137.24 94.517 l
+cl 1 0 0 F
+n 137.24 94.517 m 137.24 94.252 l
+137.71 94.252 l
+137.71 94.517 l
+137.24 94.517 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 126.27 92.841 m 126.27 92.709 l
+126.5 92.709 l
+126.5 92.841 l
+126.27 92.841 l
+cl 1 0 0 F
+n 126.27 92.841 m 126.27 92.709 l
+126.5 92.709 l
+126.5 92.841 l
+126.27 92.841 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 128.95 92.929 m 128.95 92.62 l
+129.49 92.62 l
+129.49 92.929 l
+128.95 92.929 l
+cl 1 0 0 F
+n 128.95 92.929 m 128.95 92.62 l
+129.49 92.62 l
+129.49 92.929 l
+128.95 92.929 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 131.39 93.15 m 131.39 92.444 l
+132.53 92.444 l
+132.53 93.15 l
+131.39 93.15 l
+cl 1 0 0 F
+n 131.39 93.15 m 131.39 92.444 l
+132.53 92.444 l
+132.53 93.15 l
+131.39 93.15 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 133.91 93.238 m 133.91 92.312 l
+135.5 92.312 l
+135.5 93.238 l
+133.91 93.238 l
+cl 1 0 0 F
+n 133.91 93.238 m 133.91 92.312 l
+135.5 92.312 l
+135.5 93.238 l
+133.91 93.238 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 136.8 93.194 m 136.8 92.356 l
+138.17 92.356 l
+138.17 93.194 l
+136.8 93.194 l
+cl 1 0 0 F
+n 136.8 93.194 m 136.8 92.356 l
+138.17 92.356 l
+138.17 93.194 l
+136.8 93.194 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 139.93 92.973 m 139.93 92.62 l
+140.53 92.62 l
+140.53 92.973 l
+139.93 92.973 l
+cl 1 0 0 F
+n 139.93 92.973 m 139.93 92.62 l
+140.53 92.62 l
+140.53 92.973 l
+139.93 92.973 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 131.76 91.297 m 131.76 91.077 l
+132.15 91.077 l
+132.15 91.297 l
+131.76 91.297 l
+cl 1 0 0 F
+n 131.76 91.297 m 131.76 91.077 l
+132.15 91.077 l
+132.15 91.297 l
+131.76 91.297 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 134.21 91.474 m 134.21 90.901 l
+135.19 90.901 l
+135.19 91.474 l
+134.21 91.474 l
+cl 1 0 0 F
+n 134.21 91.474 m 134.21 90.901 l
+135.19 90.901 l
+135.19 91.474 l
+134.21 91.474 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 136.71 91.65 m 136.71 90.724 l
+138.24 90.724 l
+138.24 91.65 l
+136.71 91.65 l
+cl 1 0 0 F
+n 136.71 91.65 m 136.71 90.724 l
+138.24 90.724 l
+138.24 91.65 l
+136.71 91.65 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 139.53 91.606 m 139.53 90.768 l
+140.9 90.768 l
+140.9 91.606 l
+139.53 91.606 l
+cl 1 0 0 F
+n 139.53 91.606 m 139.53 90.768 l
+140.9 90.768 l
+140.9 91.606 l
+139.53 91.606 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 142.59 91.43 m 142.59 90.945 l
+143.42 90.945 l
+143.42 91.43 l
+142.59 91.43 l
+cl 1 0 0 F
+n 142.59 91.43 m 142.59 90.945 l
+143.42 90.945 l
+143.42 91.43 l
+142.59 91.43 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 145.63 91.297 m 145.63 91.077 l
+145.94 91.077 l
+145.94 91.297 l
+145.63 91.297 l
+cl 1 0 0 F
+n 145.63 91.297 m 145.63 91.077 l
+145.94 91.077 l
+145.94 91.297 l
+145.63 91.297 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 134.58 89.666 m 134.58 89.534 l
+134.82 89.534 l
+134.82 89.666 l
+134.58 89.666 l
+cl 1 0 0 F
+n 134.58 89.666 m 134.58 89.534 l
+134.82 89.534 l
+134.82 89.666 l
+134.58 89.666 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 137.01 89.842 m 137.01 89.357 l
+137.94 89.357 l
+137.94 89.842 l
+137.01 89.842 l
+cl 1 0 0 F
+n 137.01 89.842 m 137.01 89.357 l
+137.94 89.357 l
+137.94 89.842 l
+137.01 89.842 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 139.46 90.019 m 139.46 89.137 l
+140.99 89.137 l
+140.99 90.019 l
+139.46 90.019 l
+cl 1 0 0 F
+n 139.46 90.019 m 139.46 89.137 l
+140.99 89.137 l
+140.99 90.019 l
+139.46 90.019 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 142.28 90.019 m 142.28 89.137 l
+143.79 89.137 l
+143.79 90.019 l
+142.28 90.019 l
+cl 1 0 0 F
+n 142.28 90.019 m 142.28 89.137 l
+143.79 89.137 l
+143.79 90.019 l
+142.28 90.019 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 145.19 89.93 m 145.19 89.225 l
+146.39 89.225 l
+146.39 89.93 l
+145.19 89.93 l
+cl 1 0 0 F
+n 145.19 89.93 m 145.19 89.225 l
+146.39 89.225 l
+146.39 89.93 l
+145.19 89.93 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 148.31 89.754 m 148.31 89.445 l
+148.83 89.445 l
+148.83 89.754 l
+148.31 89.754 l
+cl 1 0 0 F
+n 148.31 89.754 m 148.31 89.445 l
+148.83 89.445 l
+148.83 89.754 l
+148.31 89.754 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 140 88.122 m 140 87.858 l
+140.46 87.858 l
+140.46 88.122 l
+140 88.122 l
+cl 1 0 0 F
+n 140 88.122 m 140 87.858 l
+140.46 87.858 l
+140.46 88.122 l
+140 88.122 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 142.28 88.387 m 142.28 87.549 l
+143.72 87.549 l
+143.72 88.387 l
+142.28 88.387 l
+cl 1 0 0 F
+n 142.28 88.387 m 142.28 87.549 l
+143.72 87.549 l
+143.72 88.387 l
+142.28 88.387 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 144.87 88.475 m 144.87 87.461 l
+146.63 87.461 l
+146.63 88.475 l
+144.87 88.475 l
+cl 1 0 0 F
+n 144.87 88.475 m 144.87 87.461 l
+146.63 87.461 l
+146.63 88.475 l
+144.87 88.475 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 147.85 88.387 m 147.85 87.593 l
+149.22 87.593 l
+149.22 88.387 l
+147.85 88.387 l
+cl 1 0 0 F
+n 147.85 88.387 m 147.85 87.593 l
+149.22 87.593 l
+149.22 88.387 l
+147.85 88.387 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 150.97 88.211 m 150.97 87.77 l
+151.64 87.77 l
+151.64 88.211 l
+150.97 88.211 l
+cl 1 0 0 F
+n 150.97 88.211 m 150.97 87.77 l
+151.64 87.77 l
+151.64 88.211 l
+150.97 88.211 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 153.93 88.034 m 153.93 87.902 l
+154.16 87.902 l
+154.16 88.034 l
+153.93 88.034 l
+cl 1 0 0 F
+n 153.93 88.034 m 153.93 87.902 l
+154.16 87.902 l
+154.16 88.034 l
+153.93 88.034 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 142.89 86.491 m 142.89 86.314 l
+143.19 86.314 l
+143.19 86.491 l
+142.89 86.491 l
+cl 1 0 0 F
+n 142.89 86.491 m 142.89 86.314 l
+143.19 86.314 l
+143.19 86.491 l
+142.89 86.491 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 145.26 86.711 m 145.26 86.05 l
+146.31 86.05 l
+146.31 86.711 l
+145.26 86.711 l
+cl 1 0 0 F
+n 145.26 86.711 m 145.26 86.05 l
+146.31 86.05 l
+146.31 86.711 l
+145.26 86.711 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 147.78 86.844 m 147.78 85.918 l
+149.29 85.918 l
+149.29 86.844 l
+147.78 86.844 l
+cl 1 0 0 F
+n 147.78 86.844 m 147.78 85.918 l
+149.29 85.918 l
+149.29 86.844 l
+147.78 86.844 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 150.67 86.755 m 150.67 86.006 l
+151.97 86.006 l
+151.97 86.755 l
+150.67 86.755 l
+cl 1 0 0 F
+n 150.67 86.755 m 150.67 86.006 l
+151.97 86.006 l
+151.97 86.755 l
+150.67 86.755 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 153.63 86.623 m 153.63 86.138 l
+154.47 86.138 l
+154.47 86.623 l
+153.63 86.623 l
+cl 1 0 0 F
+n 153.63 86.623 m 153.63 86.138 l
+154.47 86.138 l
+154.47 86.623 l
+153.63 86.623 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 156.75 86.447 m 156.75 86.314 l
+156.92 86.314 l
+156.92 86.447 l
+156.75 86.447 l
+cl 1 0 0 F
+n 156.75 86.447 m 156.75 86.314 l
+156.92 86.314 l
+156.92 86.447 l
+156.75 86.447 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 145.63 84.859 m 145.63 84.727 l
+145.94 84.727 l
+145.94 84.859 l
+145.63 84.859 l
+cl 1 0 0 F
+n 145.63 84.859 m 145.63 84.727 l
+145.94 84.727 l
+145.94 84.859 l
+145.63 84.859 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 148.08 85.08 m 148.08 84.506 l
+149.07 84.506 l
+149.07 85.08 l
+148.08 85.08 l
+cl 1 0 0 F
+n 148.08 85.08 m 148.08 84.506 l
+149.07 84.506 l
+149.07 85.08 l
+148.08 85.08 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 150.59 85.212 m 150.59 84.374 l
+152.04 84.374 l
+152.04 85.212 l
+150.59 85.212 l
+cl 1 0 0 F
+n 150.59 85.212 m 150.59 84.374 l
+152.04 84.374 l
+152.04 85.212 l
+150.59 85.212 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 153.41 85.168 m 153.41 84.374 l
+154.77 84.374 l
+154.77 85.168 l
+153.41 85.168 l
+cl 1 0 0 F
+n 153.41 85.168 m 153.41 84.374 l
+154.77 84.374 l
+154.77 85.168 l
+153.41 85.168 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 156.38 85.036 m 156.38 84.506 l
+157.29 84.506 l
+157.29 85.036 l
+156.38 85.036 l
+cl 1 0 0 F
+n 156.38 85.036 m 156.38 84.506 l
+157.29 84.506 l
+157.29 85.036 l
+156.38 85.036 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 159.42 84.859 m 159.42 84.683 l
+159.73 84.683 l
+159.73 84.859 l
+159.42 84.859 l
+cl 1 0 0 F
+n 159.42 84.859 m 159.42 84.683 l
+159.73 84.683 l
+159.73 84.859 l
+159.42 84.859 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 148.45 83.228 m 148.45 83.139 l
+148.68 83.139 l
+148.68 83.228 l
+148.45 83.228 l
+cl 1 0 0 F
+n 148.45 83.228 m 148.45 83.139 l
+148.68 83.139 l
+148.68 83.228 l
+148.45 83.228 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 150.9 83.448 m 150.9 82.919 l
+151.74 82.919 l
+151.74 83.448 l
+150.9 83.448 l
+cl 1 0 0 F
+n 150.9 83.448 m 150.9 82.919 l
+151.74 82.919 l
+151.74 83.448 l
+150.9 83.448 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 153.48 83.492 m 153.48 82.875 l
+154.63 82.875 l
+154.63 83.492 l
+153.48 83.492 l
+cl 1 0 0 F
+n 153.48 83.492 m 153.48 82.875 l
+154.63 82.875 l
+154.63 83.492 l
+153.48 83.492 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 156.3 83.492 m 156.3 82.831 l
+157.45 82.831 l
+157.45 83.492 l
+156.3 83.492 l
+cl 1 0 0 F
+n 156.3 83.492 m 156.3 82.831 l
+157.45 82.831 l
+157.45 83.492 l
+156.3 83.492 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 159.27 83.36 m 159.27 83.007 l
+159.89 83.007 l
+159.89 83.36 l
+159.27 83.36 l
+cl 1 0 0 F
+n 159.27 83.36 m 159.27 83.007 l
+159.89 83.007 l
+159.89 83.36 l
+159.27 83.36 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 162.32 83.228 m 162.32 83.139 l
+162.41 83.139 l
+162.41 83.228 l
+162.32 83.228 l
+cl 1 0 0 F
+n 162.32 83.228 m 162.32 83.139 l
+162.41 83.139 l
+162.41 83.228 l
+162.32 83.228 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 153.86 81.684 m 153.86 81.464 l
+154.23 81.464 l
+154.23 81.684 l
+153.86 81.684 l
+cl 1 0 0 F
+n 153.86 81.684 m 153.86 81.464 l
+154.23 81.464 l
+154.23 81.684 l
+153.86 81.684 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 156.38 81.817 m 156.38 81.331 l
+157.29 81.331 l
+157.29 81.817 l
+156.38 81.817 l
+cl 1 0 0 F
+n 156.38 81.817 m 156.38 81.331 l
+157.29 81.331 l
+157.29 81.817 l
+156.38 81.817 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 159.19 81.817 m 159.19 81.331 l
+160.04 81.331 l
+160.04 81.817 l
+159.19 81.817 l
+cl 1 0 0 F
+n 159.19 81.817 m 159.19 81.331 l
+160.04 81.331 l
+160.04 81.817 l
+159.19 81.817 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 162.08 81.728 m 162.08 81.42 l
+162.62 81.42 l
+162.62 81.728 l
+162.08 81.728 l
+cl 1 0 0 F
+n 162.08 81.728 m 162.08 81.42 l
+162.62 81.42 l
+162.62 81.728 l
+162.08 81.728 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 165.07 81.64 m 165.07 81.552 l
+165.21 81.552 l
+165.21 81.64 l
+165.07 81.64 l
+cl 1 0 0 F
+n 165.07 81.64 m 165.07 81.552 l
+165.21 81.552 l
+165.21 81.64 l
+165.07 81.64 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 156.68 80.053 m 156.68 79.92 l
+156.99 79.92 l
+156.99 80.053 l
+156.68 80.053 l
+cl 1 0 0 F
+n 156.68 80.053 m 156.68 79.92 l
+156.99 79.92 l
+156.99 80.053 l
+156.68 80.053 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 159.42 80.097 m 159.42 79.877 l
+159.81 79.877 l
+159.81 80.097 l
+159.42 80.097 l
+cl 1 0 0 F
+n 159.42 80.097 m 159.42 79.877 l
+159.81 79.877 l
+159.81 80.097 l
+159.42 80.097 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 162.08 80.141 m 162.08 79.832 l
+162.62 79.832 l
+162.62 80.141 l
+162.08 80.141 l
+cl 1 0 0 F
+n 162.08 80.141 m 162.08 79.832 l
+162.62 79.832 l
+162.62 80.141 l
+162.08 80.141 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 164.91 80.141 m 164.91 79.832 l
+165.37 79.832 l
+165.37 80.141 l
+164.91 80.141 l
+cl 1 0 0 F
+n 164.91 80.141 m 164.91 79.832 l
+165.37 79.832 l
+165.37 80.141 l
+164.91 80.141 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 162.25 78.465 m 162.25 78.333 l
+162.48 78.333 l
+162.48 78.465 l
+162.25 78.465 l
+cl 1 0 0 F
+n 162.25 78.465 m 162.25 78.333 l
+162.48 78.333 l
+162.48 78.465 l
+162.25 78.465 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 165 78.465 m 165 78.289 l
+165.3 78.289 l
+165.3 78.465 l
+165 78.465 l
+cl 1 0 0 F
+n 165 78.465 m 165 78.289 l
+165.3 78.289 l
+165.3 78.465 l
+165 78.465 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 167.81 78.465 m 167.81 78.289 l
+168.03 78.289 l
+168.03 78.465 l
+167.81 78.465 l
+cl 1 0 0 F
+n 167.81 78.465 m 167.81 78.289 l
+168.03 78.289 l
+168.03 78.465 l
+167.81 78.465 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 165.07 76.834 m 165.07 76.745 l
+165.21 76.745 l
+165.21 76.834 l
+165.07 76.834 l
+cl 1 0 0 F
+n 165.07 76.834 m 165.07 76.745 l
+165.21 76.745 l
+165.21 76.834 l
+165.07 76.834 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 167.81 76.834 m 167.81 76.745 l
+167.96 76.745 l
+167.96 76.834 l
+167.81 76.834 l
+cl 1 0 0 F
+n 167.81 76.834 m 167.81 76.745 l
+167.96 76.745 l
+167.96 76.834 l
+167.81 76.834 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 63.796 138.09 m 64.483 136.5 l
+65.169 135.05 l
+65.931 133.5 l
+66.464 132.49 l
+67.454 130.86 l
+67.834 130.2 l
+68.901 128.56 l
+69.13 128.17 l
+70.503 126.32 l
+71.799 124.64 l
+73.17 123.05 l
+74.542 121.6 l
+75.837 120.27 l
+77.208 119 l
+78.504 117.81 l
+79.874 116.7 l
+81.17 115.64 l
+82.543 114.67 l
+83.838 113.75 l
+85.209 112.82 l
+86.581 111.98 l
+87.877 111.19 l
+89.247 110.44 l
+90.543 109.69 l
+91.915 108.99 l
+93.211 108.32 l
+94.582 107.66 l
+95.954 107.05 l
+97.248 106.43 l
+98.62 105.85 l
+99.915 105.28 l
+101.29 104.75 l
+102.58 104.22 l
+103.95 103.69 l
+105.25 103.16 l
+106.62 102.68 l
+107.99 102.19 l
+109.28 101.71 l
+110.66 101.22 l
+111.96 100.73 l
+113.33 100.29 l
+114.62 99.808 l
+115.99 99.367 l
+117.29 98.882 l
+118.65 98.441 l
+120.02 97.956 l
+121.32 97.515 l
+122.7 97.074 l
+123.99 96.589 l
+125.36 96.148 l
+126.66 95.663 l
+128.03 95.178 l
+129.32 94.738 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 139.99 m 58.692 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 138.31 m 58.692 138.31 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 136.68 m 58.692 136.68 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 135 m 58.692 135 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 133.33 m 58.692 133.33 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 131.65 m 58.692 131.65 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 129.98 m 58.692 129.98 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 128.34 m 58.692 128.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 126.67 m 58.692 126.67 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 124.99 m 58.692 124.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 123.32 m 58.692 123.32 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 121.64 m 58.692 121.64 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 120.01 m 58.692 120.01 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 118.33 m 58.692 118.33 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 116.66 m 58.692 116.66 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 114.98 m 58.692 114.98 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 113.31 m 58.692 113.31 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 111.68 m 58.692 111.68 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 110 m 58.692 110 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 108.32 m 58.692 108.32 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 106.65 m 58.692 106.65 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 104.97 m 58.692 104.97 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 103.34 m 58.692 103.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 101.67 m 58.692 101.67 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 99.985 m 58.692 99.985 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 98.309 m 58.692 98.309 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 96.633 m 58.692 96.633 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 95.002 m 58.692 95.002 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 93.326 m 58.692 93.326 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 91.65 m 58.692 91.65 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 89.975 m 58.692 89.975 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 88.299 m 58.692 88.299 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 86.667 m 58.692 86.667 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 84.992 m 58.692 84.992 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 83.316 m 58.692 83.316 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 81.64 m 58.692 81.64 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 79.964 m 58.692 79.964 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 78.333 m 58.692 78.333 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 76.657 m 58.692 76.657 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 74.981 m 58.692 74.981 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 73.306 m 58.692 73.306 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 71.63 m 58.692 71.63 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 69.999 m 58.692 69.999 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 68.323 m 58.692 68.323 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 58.692 139.99 m 172.99 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.111 138.49 m 63.111 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 67.608 139.24 m 67.608 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 72.026 139.24 m 72.026 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 76.522 139.24 m 76.522 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 80.942 138.49 m 80.942 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 85.437 139.24 m 85.437 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 89.935 139.24 m 89.935 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 94.353 139.24 m 94.353 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 98.85 138.49 m 98.85 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 103.27 139.24 m 103.27 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 107.76 139.24 m 107.76 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 112.19 139.24 m 112.19 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 116.67 138.49 m 116.67 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 121.1 139.24 m 121.1 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 125.6 139.24 m 125.6 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 130.02 139.24 m 130.02 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 134.51 138.49 m 134.51 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 138.93 139.24 m 138.93 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 143.42 139.24 m 143.42 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 147.85 139.24 m 147.85 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 152.34 138.49 m 152.34 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 156.75 139.24 m 156.75 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 161.25 139.24 m 161.25 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 165.67 139.24 m 165.67 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 170.17 138.49 m 170.17 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.111 138.49 m 63.111 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.796 138.09 m 64.483 136.5 l
+65.169 135.05 l
+65.931 133.5 l
+66.464 132.49 l
+67.454 130.86 l
+67.834 130.2 l
+68.901 128.56 l
+69.13 128.17 l
+70.503 126.32 l
+71.799 124.64 l
+73.17 123.05 l
+74.542 121.6 l
+75.837 120.27 l
+77.208 119 l
+78.504 117.81 l
+79.874 116.7 l
+81.17 115.64 l
+82.543 114.67 l
+83.838 113.75 l
+85.209 112.82 l
+86.581 111.98 l
+87.877 111.19 l
+89.247 110.44 l
+90.543 109.69 l
+91.915 108.99 l
+93.211 108.32 l
+94.582 107.66 l
+95.954 107.05 l
+97.248 106.43 l
+98.62 105.85 l
+99.915 105.28 l
+101.29 104.75 l
+102.58 104.22 l
+103.95 103.69 l
+105.25 103.16 l
+106.62 102.68 l
+107.99 102.19 l
+109.28 101.71 l
+110.66 101.22 l
+111.96 100.73 l
+113.33 100.29 l
+114.62 99.808 l
+115.99 99.367 l
+117.29 98.882 l
+118.65 98.441 l
+120.02 97.956 l
+121.32 97.515 l
+122.7 97.074 l
+123.99 96.589 l
+125.36 96.148 l
+126.66 95.663 l
+128.03 95.178 l
+129.32 94.738 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 139.99 m 58.692 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 138.31 m 58.692 138.31 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 136.68 m 58.692 136.68 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 135 m 58.692 135 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 133.33 m 58.692 133.33 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 131.65 m 58.692 131.65 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 129.98 m 58.692 129.98 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 128.34 m 58.692 128.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 126.67 m 58.692 126.67 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 124.99 m 58.692 124.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 123.32 m 58.692 123.32 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 121.64 m 58.692 121.64 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 120.01 m 58.692 120.01 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 118.33 m 58.692 118.33 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 116.66 m 58.692 116.66 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 114.98 m 58.692 114.98 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 113.31 m 58.692 113.31 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 111.68 m 58.692 111.68 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 110 m 58.692 110 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 108.32 m 58.692 108.32 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 106.65 m 58.692 106.65 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 104.97 m 58.692 104.97 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 103.34 m 58.692 103.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 101.67 m 58.692 101.67 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 99.985 m 58.692 99.985 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 98.309 m 58.692 98.309 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 96.633 m 58.692 96.633 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 95.002 m 58.692 95.002 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 93.326 m 58.692 93.326 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 91.65 m 58.692 91.65 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 89.975 m 58.692 89.975 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 88.299 m 58.692 88.299 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 86.667 m 58.692 86.667 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 84.992 m 58.692 84.992 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 83.316 m 58.692 83.316 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 81.64 m 58.692 81.64 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 79.964 m 58.692 79.964 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 78.333 m 58.692 78.333 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 76.657 m 58.692 76.657 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 74.981 m 58.692 74.981 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 73.306 m 58.692 73.306 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 71.63 m 58.692 71.63 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 69.999 m 58.692 69.999 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 68.323 m 58.692 68.323 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 58.692 139.99 m 172.99 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.111 138.49 m 63.111 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 67.608 139.24 m 67.608 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 72.026 139.24 m 72.026 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 76.522 139.24 m 76.522 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 80.942 138.49 m 80.942 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 85.437 139.24 m 85.437 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 89.935 139.24 m 89.935 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 94.353 139.24 m 94.353 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 98.85 138.49 m 98.85 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 103.27 139.24 m 103.27 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 107.76 139.24 m 107.76 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 112.19 139.24 m 112.19 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 116.67 138.49 m 116.67 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 121.1 139.24 m 121.1 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 125.6 139.24 m 125.6 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 130.02 139.24 m 130.02 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 134.51 138.49 m 134.51 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 138.93 139.24 m 138.93 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 143.42 139.24 m 143.42 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 147.85 139.24 m 147.85 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 152.34 138.49 m 152.34 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 156.75 139.24 m 156.75 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 161.25 139.24 m 161.25 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 165.67 139.24 m 165.67 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 170.17 138.49 m 170.17 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.111 138.49 m 63.111 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.796 138.09 m 64.483 136.5 l
+65.169 135.05 l
+65.931 133.5 l
+66.464 132.49 l
+67.454 130.86 l
+67.834 130.2 l
+68.901 128.56 l
+69.13 128.17 l
+70.503 126.32 l
+71.799 124.64 l
+73.17 123.05 l
+74.542 121.6 l
+75.837 120.27 l
+77.208 119 l
+78.504 117.81 l
+79.874 116.7 l
+81.17 115.64 l
+82.543 114.67 l
+83.838 113.75 l
+85.209 112.82 l
+86.581 111.98 l
+87.877 111.19 l
+89.247 110.44 l
+90.543 109.69 l
+91.915 108.99 l
+93.211 108.32 l
+94.582 107.66 l
+95.954 107.05 l
+97.248 106.43 l
+98.62 105.85 l
+99.915 105.28 l
+101.29 104.75 l
+102.58 104.22 l
+103.95 103.69 l
+105.25 103.16 l
+106.62 102.68 l
+107.99 102.19 l
+109.28 101.71 l
+110.66 101.22 l
+111.96 100.73 l
+113.33 100.29 l
+114.62 99.808 l
+115.99 99.367 l
+117.29 98.882 l
+118.65 98.441 l
+120.02 97.956 l
+121.32 97.515 l
+122.7 97.074 l
+123.99 96.589 l
+125.36 96.148 l
+126.66 95.663 l
+128.03 95.178 l
+129.32 94.738 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 139.99 m 58.692 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 138.31 m 58.692 138.31 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 136.68 m 58.692 136.68 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 135 m 58.692 135 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 133.33 m 58.692 133.33 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 131.65 m 58.692 131.65 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 129.98 m 58.692 129.98 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 128.34 m 58.692 128.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 126.67 m 58.692 126.67 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 124.99 m 58.692 124.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 123.32 m 58.692 123.32 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 121.64 m 58.692 121.64 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 120.01 m 58.692 120.01 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 118.33 m 58.692 118.33 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 116.66 m 58.692 116.66 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 114.98 m 58.692 114.98 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 113.31 m 58.692 113.31 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 111.68 m 58.692 111.68 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 110 m 58.692 110 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 108.32 m 58.692 108.32 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 106.65 m 58.692 106.65 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 104.97 m 58.692 104.97 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 103.34 m 58.692 103.34 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 101.67 m 58.692 101.67 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 99.985 m 58.692 99.985 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 98.309 m 58.692 98.309 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 96.633 m 58.692 96.633 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 95.002 m 58.692 95.002 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 93.326 m 58.692 93.326 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 91.65 m 58.692 91.65 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 89.975 m 58.692 89.975 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 88.299 m 58.692 88.299 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 86.667 m 58.692 86.667 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 84.992 m 58.692 84.992 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 83.316 m 58.692 83.316 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 81.64 m 58.692 81.64 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 79.964 m 58.692 79.964 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 78.333 m 58.692 78.333 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 76.657 m 58.692 76.657 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 74.981 m 58.692 74.981 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.282 73.306 m 58.692 73.306 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 71.63 m 58.692 71.63 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 69.999 m 58.692 69.999 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 59.986 68.323 m 58.692 68.323 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 58.692 139.99 m 172.99 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.111 138.49 m 63.111 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 67.608 139.24 m 67.608 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 72.026 139.24 m 72.026 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 76.522 139.24 m 76.522 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 80.942 138.49 m 80.942 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 85.437 139.24 m 85.437 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 89.935 139.24 m 89.935 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 94.353 139.24 m 94.353 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 98.85 138.49 m 98.85 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 103.27 139.24 m 103.27 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 107.76 139.24 m 107.76 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 112.19 139.24 m 112.19 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 116.67 138.49 m 116.67 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 121.1 139.24 m 121.1 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 125.6 139.24 m 125.6 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 130.02 139.24 m 130.02 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 134.51 138.49 m 134.51 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 138.93 139.24 m 138.93 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 143.42 139.24 m 143.42 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 147.85 139.24 m 147.85 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 152.34 138.49 m 152.34 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 156.75 139.24 m 156.75 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 161.25 139.24 m 161.25 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 165.67 139.24 m 165.67 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 170.17 138.49 m 170.17 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.111 138.49 m 63.111 139.99 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 58.692 139.99 m 58.692 68.082 l
+172.99 68.082 l
+172.99 139.99 l
+58.692 139.99 l
+cl gsave
+0 0 0 0.212 0 B
+grestore
+n 128.54 93.09 m 133.93 90.855 138.49 89.322 144.71 86.385 c
+150.92 83.449 158.77 79.109 165.81 75.471 c
+gsave
+0 0 0 0.176 0 B
+grestore
+n 129.21 94.649 m 133.56 93.193 136.21 92.752 142.23 90.283 c
+148.26 87.814 157.65 83.319 165.36 79.837 c
+gsave
+0 0 0 0.176 0 B
+grestore
+n 64.759 217.35 m 64.759 216.2 l
+66.665 216.2 l
+66.665 217.35 l
+64.759 217.35 l
+cl 1 0 0 F
+n 64.759 217.35 m 64.759 216.2 l
+66.665 216.2 l
+66.665 217.35 l
+64.759 217.35 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 67.503 217.35 m 67.503 216.2 l
+69.484 216.2 l
+69.484 217.35 l
+67.503 217.35 l
+cl 1 0 0 F
+n 67.503 217.35 m 67.503 216.2 l
+69.484 216.2 l
+69.484 217.35 l
+67.503 217.35 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 65.597 215.23 m 65.597 215.15 l
+65.826 215.15 l
+65.826 215.23 l
+65.597 215.23 l
+cl 1 0 0 F
+n 65.597 215.23 m 65.597 215.15 l
+65.826 215.15 l
+65.826 215.23 l
+65.597 215.23 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 67.198 215.9 m 67.198 214.44 l
+69.713 214.44 l
+69.713 215.9 l
+67.198 215.9 l
+cl 1 0 0 F
+n 67.198 215.9 m 67.198 214.44 l
+69.713 214.44 l
+69.713 215.9 l
+67.198 215.9 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 67.198 214.35 m 67.198 212.81 l
+69.79 212.81 l
+69.79 214.35 l
+67.198 214.35 l
+cl 1 0 0 F
+n 67.198 214.35 m 67.198 212.81 l
+69.79 212.81 l
+69.79 214.35 l
+67.198 214.35 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 70.932 213.78 m 70.932 213.38 l
+71.542 213.38 l
+71.542 213.78 l
+70.932 213.78 l
+cl 1 0 0 F
+n 70.932 213.78 m 70.932 213.38 l
+71.542 213.38 l
+71.542 213.78 l
+70.932 213.78 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 67.579 212.5 m 67.579 211.44 l
+69.408 211.44 l
+69.408 212.5 l
+67.579 212.5 l
+cl 1 0 0 F
+n 67.579 212.5 m 67.579 211.44 l
+69.408 211.44 l
+69.408 212.5 l
+67.579 212.5 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 70.169 212.59 m 70.169 211.35 l
+72.304 211.35 l
+72.304 212.59 l
+70.169 212.59 l
+cl 1 0 0 F
+n 70.169 212.59 m 70.169 211.35 l
+72.304 211.35 l
+72.304 212.59 l
+70.169 212.59 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 68.037 210.65 m 68.037 210.12 l
+68.951 210.12 l
+68.951 210.65 l
+68.037 210.65 l
+cl 1 0 0 F
+n 68.037 210.65 m 68.037 210.12 l
+68.951 210.12 l
+68.951 210.65 l
+68.037 210.65 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 69.941 211.13 m 69.941 209.63 l
+72.533 209.63 l
+72.533 211.13 l
+69.941 211.13 l
+cl 1 0 0 F
+n 69.941 211.13 m 69.941 209.63 l
+72.533 209.63 l
+72.533 211.13 l
+69.941 211.13 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 73.905 210.43 m 73.905 210.34 l
+74.133 210.34 l
+74.133 210.43 l
+73.905 210.43 l
+cl 1 0 0 F
+n 73.905 210.43 m 73.905 210.34 l
+74.133 210.34 l
+74.133 210.43 l
+73.905 210.43 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 70.018 209.5 m 70.018 208.05 l
+72.456 208.05 l
+72.456 209.5 l
+70.018 209.5 l
+cl 1 0 0 F
+n 70.018 209.5 m 70.018 208.05 l
+72.456 208.05 l
+72.456 209.5 l
+70.018 209.5 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 73.371 209.15 m 73.371 208.4 l
+74.667 208.4 l
+74.667 209.15 l
+73.371 209.15 l
+cl 1 0 0 F
+n 73.371 209.15 m 73.371 208.4 l
+74.667 208.4 l
+74.667 209.15 l
+73.371 209.15 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 70.475 207.61 m 70.475 206.72 l
+72 206.72 l
+72 207.61 l
+70.475 207.61 l
+cl 1 0 0 F
+n 70.475 207.61 m 70.475 206.72 l
+72 206.72 l
+72 207.61 l
+70.475 207.61 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 72.989 207.78 m 72.989 206.59 l
+75.047 206.59 l
+75.047 207.78 l
+72.989 207.78 l
+cl 1 0 0 F
+n 72.989 207.78 m 72.989 206.59 l
+75.047 206.59 l
+75.047 207.78 l
+72.989 207.78 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 71.008 205.75 m 71.008 205.44 l
+71.542 205.44 l
+71.542 205.75 l
+71.008 205.75 l
+cl 1 0 0 F
+n 71.008 205.75 m 71.008 205.44 l
+71.542 205.44 l
+71.542 205.75 l
+71.008 205.75 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 72.684 206.33 m 72.684 204.83 l
+75.352 204.83 l
+75.352 206.33 l
+72.684 206.33 l
+cl 1 0 0 F
+n 72.684 206.33 m 72.684 204.83 l
+75.352 204.83 l
+75.352 206.33 l
+72.684 206.33 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 76.57 205.71 m 76.57 205.44 l
+77.028 205.44 l
+77.028 205.71 l
+76.57 205.71 l
+cl 1 0 0 F
+n 76.57 205.71 m 76.57 205.44 l
+77.028 205.44 l
+77.028 205.71 l
+76.57 205.71 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 72.838 204.65 m 72.838 203.28 l
+75.199 203.28 l
+75.199 204.65 l
+72.838 204.65 l
+cl 1 0 0 F
+n 72.838 204.65 m 72.838 203.28 l
+75.199 203.28 l
+75.199 204.65 l
+72.838 204.65 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 75.885 204.52 m 75.885 203.46 l
+77.713 203.46 l
+77.713 204.52 l
+75.885 204.52 l
+cl 1 0 0 F
+n 75.885 204.52 m 75.885 203.46 l
+77.713 203.46 l
+77.713 204.52 l
+75.885 204.52 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 73.447 202.71 m 73.447 202.05 l
+74.589 202.05 l
+74.589 202.71 l
+73.447 202.71 l
+cl 1 0 0 F
+n 73.447 202.71 m 73.447 202.05 l
+74.589 202.05 l
+74.589 202.71 l
+73.447 202.71 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 75.427 203.2 m 75.427 201.56 l
+78.171 201.56 l
+78.171 203.2 l
+75.427 203.2 l
+cl 1 0 0 F
+n 75.427 203.2 m 75.427 201.56 l
+78.171 201.56 l
+78.171 203.2 l
+75.427 203.2 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 79.391 202.49 m 79.391 202.27 l
+79.695 202.27 l
+79.695 202.49 l
+79.391 202.49 l
+cl 1 0 0 F
+n 79.391 202.49 m 79.391 202.27 l
+79.695 202.27 l
+79.695 202.49 l
+79.391 202.49 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 73.905 200.86 m 73.905 200.68 l
+74.133 200.68 l
+74.133 200.86 l
+73.905 200.86 l
+cl 1 0 0 F
+n 73.905 200.86 m 73.905 200.68 l
+74.133 200.68 l
+74.133 200.86 l
+73.905 200.86 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 75.504 201.52 m 75.504 200.06 l
+78.019 200.06 l
+78.019 201.52 l
+75.504 201.52 l
+cl 1 0 0 F
+n 75.504 201.52 m 75.504 200.06 l
+78.019 200.06 l
+78.019 201.52 l
+75.504 201.52 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 78.857 201.17 m 78.857 200.37 l
+80.23 200.37 l
+80.23 201.17 l
+78.857 201.17 l
+cl 1 0 0 F
+n 78.857 201.17 m 78.857 200.37 l
+80.23 200.37 l
+80.23 201.17 l
+78.857 201.17 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 75.961 199.67 m 75.961 198.7 l
+77.561 198.7 l
+77.561 199.67 l
+75.961 199.67 l
+cl 1 0 0 F
+n 75.961 199.67 m 75.961 198.7 l
+77.561 198.7 l
+77.561 199.67 l
+75.961 199.67 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 78.399 199.84 m 78.399 198.52 l
+80.686 198.52 l
+80.686 199.84 l
+78.399 199.84 l
+cl 1 0 0 F
+n 78.399 199.84 m 78.399 198.52 l
+80.686 198.52 l
+80.686 199.84 l
+78.399 199.84 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 82.134 199.27 m 82.134 199.09 l
+82.438 199.09 l
+82.438 199.27 l
+82.134 199.27 l
+cl 1 0 0 F
+n 82.134 199.27 m 82.134 199.09 l
+82.438 199.09 l
+82.438 199.27 l
+82.134 199.27 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 76.494 197.73 m 76.494 197.42 l
+77.028 197.42 l
+77.028 197.73 l
+76.494 197.73 l
+cl 1 0 0 F
+n 76.494 197.73 m 76.494 197.42 l
+77.028 197.42 l
+77.028 197.73 l
+76.494 197.73 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 78.247 198.34 m 78.247 196.8 l
+80.838 196.8 l
+80.838 198.34 l
+78.247 198.34 l
+cl 1 0 0 F
+n 78.247 198.34 m 78.247 196.8 l
+80.838 196.8 l
+80.838 198.34 l
+78.247 198.34 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 81.677 197.95 m 81.677 197.2 l
+82.896 197.2 l
+82.896 197.95 l
+81.677 197.95 l
+cl 1 0 0 F
+n 81.677 197.95 m 81.677 197.2 l
+82.896 197.2 l
+82.896 197.95 l
+81.677 197.95 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 78.78 196.4 m 78.78 195.52 l
+80.304 195.52 l
+80.304 196.4 l
+78.78 196.4 l
+cl 1 0 0 F
+n 78.78 196.4 m 78.78 195.52 l
+80.304 195.52 l
+80.304 196.4 l
+78.78 196.4 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 81.142 196.67 m 81.142 195.3 l
+83.506 195.3 l
+83.506 196.67 l
+81.142 196.67 l
+cl 1 0 0 F
+n 81.142 196.67 m 81.142 195.3 l
+83.506 195.3 l
+83.506 196.67 l
+81.142 196.67 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 84.799 196.1 m 84.799 195.83 l
+85.335 195.83 l
+85.335 196.1 l
+84.799 196.1 l
+cl 1 0 0 F
+n 84.799 196.1 m 84.799 195.83 l
+85.335 195.83 l
+85.335 196.1 l
+84.799 196.1 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 79.313 194.51 m 79.313 194.29 l
+79.695 194.29 l
+79.695 194.51 l
+79.313 194.51 l
+cl 1 0 0 F
+n 79.313 194.51 m 79.313 194.29 l
+79.695 194.29 l
+79.695 194.51 l
+79.313 194.51 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 81.219 195.04 m 81.219 193.76 l
+83.429 193.76 l
+83.429 195.04 l
+81.219 195.04 l
+cl 1 0 0 F
+n 81.219 195.04 m 81.219 193.76 l
+83.429 193.76 l
+83.429 195.04 l
+81.219 195.04 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 84.191 194.91 m 84.191 193.85 l
+85.943 193.85 l
+85.943 194.91 l
+84.191 194.91 l
+cl 1 0 0 F
+n 84.191 194.91 m 84.191 193.85 l
+85.943 193.85 l
+85.943 194.91 l
+84.191 194.91 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 87.772 194.42 m 87.772 194.33 l
+87.924 194.33 l
+87.924 194.42 l
+87.772 194.42 l
+cl 1 0 0 F
+n 87.772 194.42 m 87.772 194.33 l
+87.924 194.33 l
+87.924 194.42 l
+87.772 194.42 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 81.753 193.1 m 81.753 192.48 l
+82.818 192.48 l
+82.818 193.1 l
+81.753 193.1 l
+cl 1 0 0 F
+n 81.753 193.1 m 81.753 192.48 l
+82.818 192.48 l
+82.818 193.1 l
+81.753 193.1 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 83.885 193.49 m 83.885 192.08 l
+86.249 192.08 l
+86.249 193.49 l
+83.885 193.49 l
+cl 1 0 0 F
+n 83.885 193.49 m 83.885 192.08 l
+86.249 192.08 l
+86.249 193.49 l
+83.885 193.49 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 87.391 193.01 m 87.391 192.52 l
+88.23 192.52 l
+88.23 193.01 l
+87.391 193.01 l
+cl 1 0 0 F
+n 87.391 193.01 m 87.391 192.52 l
+88.23 192.52 l
+88.23 193.01 l
+87.391 193.01 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 84.267 191.64 m 84.267 190.72 l
+85.867 190.72 l
+85.867 191.64 l
+84.267 191.64 l
+cl 1 0 0 F
+n 84.267 191.64 m 84.267 190.72 l
+85.867 190.72 l
+85.867 191.64 l
+84.267 191.64 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 86.705 191.82 m 86.705 190.54 l
+88.915 190.54 l
+88.915 191.82 l
+86.705 191.82 l
+cl 1 0 0 F
+n 86.705 191.82 m 86.705 190.54 l
+88.915 190.54 l
+88.915 191.82 l
+86.705 191.82 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 90.364 191.33 m 90.364 191.02 l
+90.821 191.02 l
+90.821 191.33 l
+90.364 191.33 l
+cl 1 0 0 F
+n 90.364 191.33 m 90.364 191.02 l
+90.821 191.02 l
+90.821 191.33 l
+90.364 191.33 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 84.724 189.75 m 84.724 189.39 l
+85.41 189.39 l
+85.41 189.75 l
+84.724 189.75 l
+cl 1 0 0 F
+n 84.724 189.75 m 84.724 189.39 l
+85.41 189.39 l
+85.41 189.75 l
+84.724 189.75 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 86.705 190.23 m 86.705 188.91 l
+88.992 188.91 l
+88.992 190.23 l
+86.705 190.23 l
+cl 1 0 0 F
+n 86.705 190.23 m 86.705 188.91 l
+88.992 188.91 l
+88.992 190.23 l
+86.705 190.23 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 89.601 190.14 m 89.601 189 l
+91.582 189 l
+91.582 190.14 l
+89.601 190.14 l
+cl 1 0 0 F
+n 89.601 190.14 m 89.601 189 l
+91.582 189 l
+91.582 190.14 l
+89.601 190.14 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 93.183 189.7 m 93.183 189.48 l
+93.564 189.48 l
+93.564 189.7 l
+93.183 189.7 l
+cl 1 0 0 F
+n 93.183 189.7 m 93.183 189.48 l
+93.564 189.48 l
+93.564 189.7 l
+93.183 189.7 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 87.316 188.29 m 87.316 187.67 l
+88.383 187.67 l
+88.383 188.29 l
+87.316 188.29 l
+cl 1 0 0 F
+n 87.316 188.29 m 87.316 187.67 l
+88.383 187.67 l
+88.383 188.29 l
+87.316 188.29 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 89.371 188.69 m 89.371 187.28 l
+91.811 187.28 l
+91.811 188.69 l
+89.371 188.69 l
+cl 1 0 0 F
+n 89.371 188.69 m 89.371 187.28 l
+91.811 187.28 l
+91.811 188.69 l
+89.371 188.69 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 92.573 188.42 m 92.573 187.54 l
+94.173 187.54 l
+94.173 188.42 l
+92.573 188.42 l
+cl 1 0 0 F
+n 92.573 188.42 m 92.573 187.54 l
+94.173 187.54 l
+94.173 188.42 l
+92.573 188.42 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 95.926 188.07 m 95.926 187.85 l
+96.307 187.85 l
+96.307 188.07 l
+95.926 188.07 l
+cl 1 0 0 F
+n 95.926 188.07 m 95.926 187.85 l
+96.307 187.85 l
+96.307 188.07 l
+95.926 188.07 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 87.772 186.44 m 87.772 186.31 l
+87.924 186.31 l
+87.924 186.44 l
+87.772 186.44 l
+cl 1 0 0 F
+n 87.772 186.44 m 87.772 186.31 l
+87.924 186.31 l
+87.924 186.44 l
+87.772 186.44 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 89.982 186.75 m 89.982 186 l
+91.203 186 l
+91.203 186.75 l
+89.982 186.75 l
+cl 1 0 0 F
+n 89.982 186.75 m 89.982 186 l
+91.203 186 l
+91.203 186.75 l
+89.982 186.75 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 92.115 187.1 m 92.115 185.64 l
+94.63 185.64 l
+94.63 187.1 l
+92.115 187.1 l
+cl 1 0 0 F
+n 92.115 187.1 m 92.115 185.64 l
+94.63 185.64 l
+94.63 187.1 l
+92.115 187.1 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 95.393 186.79 m 95.393 185.95 l
+96.84 185.95 l
+96.84 186.79 l
+95.393 186.79 l
+cl 1 0 0 F
+n 95.393 186.79 m 95.393 185.95 l
+96.84 185.95 l
+96.84 186.79 l
+95.393 186.79 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 90.515 184.85 m 90.515 184.72 l
+90.667 184.72 l
+90.667 184.85 l
+90.515 184.85 l
+cl 1 0 0 F
+n 90.515 184.85 m 90.515 184.72 l
+90.667 184.72 l
+90.667 184.85 l
+90.515 184.85 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 92.65 185.2 m 92.65 184.37 l
+94.097 184.37 l
+94.097 185.2 l
+92.65 185.2 l
+cl 1 0 0 F
+n 92.65 185.2 m 92.65 184.37 l
+94.097 184.37 l
+94.097 185.2 l
+92.65 185.2 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 95.011 185.42 m 95.011 184.15 l
+97.222 184.15 l
+97.222 185.42 l
+95.011 185.42 l
+cl 1 0 0 F
+n 95.011 185.42 m 95.011 184.15 l
+97.222 184.15 l
+97.222 185.42 l
+95.011 185.42 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 98.364 185.12 m 98.364 184.45 l
+99.432 184.45 l
+99.432 185.12 l
+98.364 185.12 l
+cl 1 0 0 F
+n 98.364 185.12 m 98.364 184.45 l
+99.432 184.45 l
+99.432 185.12 l
+98.364 185.12 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 93.258 183.22 m 93.258 183.13 l
+93.487 183.13 l
+93.487 183.22 l
+93.258 183.22 l
+cl 1 0 0 F
+n 93.258 183.22 m 93.258 183.13 l
+93.487 183.13 l
+93.487 183.22 l
+93.258 183.22 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 95.393 183.62 m 95.393 182.73 l
+96.84 182.73 l
+96.84 183.62 l
+95.393 183.62 l
+cl 1 0 0 F
+n 95.393 183.62 m 95.393 182.73 l
+96.84 182.73 l
+96.84 183.62 l
+95.393 183.62 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 97.755 183.84 m 97.755 182.51 l
+100.04 182.51 l
+100.04 183.84 l
+97.755 183.84 l
+cl 1 0 0 F
+n 97.755 183.84 m 97.755 182.51 l
+100.04 182.51 l
+100.04 183.84 l
+97.755 183.84 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 101.18 183.44 m 101.18 182.91 l
+102.18 182.91 l
+102.18 183.44 l
+101.18 183.44 l
+cl 1 0 0 F
+n 101.18 183.44 m 101.18 182.91 l
+102.18 182.91 l
+102.18 183.44 l
+101.18 183.44 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 96.001 181.68 m 96.001 181.5 l
+96.307 181.5 l
+96.307 181.68 l
+96.001 181.68 l
+cl 1 0 0 F
+n 96.001 181.68 m 96.001 181.5 l
+96.307 181.5 l
+96.307 181.68 l
+96.001 181.68 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 98.212 181.98 m 98.212 181.19 l
+99.583 181.19 l
+99.583 181.98 l
+98.212 181.98 l
+cl 1 0 0 F
+n 98.212 181.98 m 98.212 181.19 l
+99.583 181.19 l
+99.583 181.98 l
+98.212 181.98 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 100.65 182.16 m 100.65 180.97 l
+102.71 180.97 l
+102.71 182.16 l
+100.65 182.16 l
+cl 1 0 0 F
+n 100.65 182.16 m 100.65 180.97 l
+102.71 180.97 l
+102.71 182.16 l
+100.65 182.16 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 103.93 181.85 m 103.93 181.28 l
+104.92 181.28 l
+104.92 181.85 l
+103.93 181.85 l
+cl 1 0 0 F
+n 103.93 181.85 m 103.93 181.28 l
+104.92 181.28 l
+104.92 181.85 l
+103.93 181.85 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 106.97 181.72 m 106.97 181.46 l
+107.43 181.46 l
+107.43 181.72 l
+106.97 181.72 l
+cl 1 0 0 F
+n 106.97 181.72 m 106.97 181.46 l
+107.43 181.46 l
+107.43 181.72 l
+106.97 181.72 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 98.669 180.09 m 98.669 179.82 l
+99.126 179.82 l
+99.126 180.09 l
+98.669 180.09 l
+cl 1 0 0 F
+n 98.669 180.09 m 98.669 179.82 l
+99.126 179.82 l
+99.126 180.09 l
+98.669 180.09 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 100.88 180.44 m 100.88 179.52 l
+102.48 179.52 l
+102.48 180.44 l
+100.88 180.44 l
+cl 1 0 0 F
+n 100.88 180.44 m 100.88 179.52 l
+102.48 179.52 l
+102.48 180.44 l
+100.88 180.44 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 103.47 180.53 m 103.47 179.43 l
+105.37 179.43 l
+105.37 180.53 l
+103.47 180.53 l
+cl 1 0 0 F
+n 103.47 180.53 m 103.47 179.43 l
+105.37 179.43 l
+105.37 180.53 l
+103.47 180.53 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 106.59 180.31 m 106.59 179.65 l
+107.81 179.65 l
+107.81 180.31 l
+106.59 180.31 l
+cl 1 0 0 F
+n 106.59 180.31 m 106.59 179.65 l
+107.81 179.65 l
+107.81 180.31 l
+106.59 180.31 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 109.79 180.04 m 109.79 179.91 l
+110.1 179.91 l
+110.1 180.04 l
+109.79 180.04 l
+cl 1 0 0 F
+n 109.79 180.04 m 109.79 179.91 l
+110.1 179.91 l
+110.1 180.04 l
+109.79 180.04 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 101.41 178.55 m 101.41 178.24 l
+101.95 178.24 l
+101.95 178.55 l
+101.41 178.55 l
+cl 1 0 0 F
+n 101.41 178.55 m 101.41 178.24 l
+101.95 178.24 l
+101.95 178.55 l
+101.41 178.55 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 103.7 178.81 m 103.7 177.93 l
+105.22 177.93 l
+105.22 178.81 l
+103.7 178.81 l
+cl 1 0 0 F
+n 103.7 178.81 m 103.7 177.93 l
+105.22 177.93 l
+105.22 178.81 l
+103.7 178.81 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 106.21 178.94 m 106.21 177.8 l
+108.19 177.8 l
+108.19 178.94 l
+106.21 178.94 l
+cl 1 0 0 F
+n 106.21 178.94 m 106.21 177.8 l
+108.19 177.8 l
+108.19 178.94 l
+106.21 178.94 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 109.33 178.72 m 109.33 178.02 l
+110.56 178.02 l
+110.56 178.72 l
+109.33 178.72 l
+cl 1 0 0 F
+n 109.33 178.72 m 109.33 178.02 l
+110.56 178.02 l
+110.56 178.72 l
+109.33 178.72 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 112.54 178.46 m 112.54 178.28 l
+112.92 178.28 l
+112.92 178.46 l
+112.54 178.46 l
+cl 1 0 0 F
+n 112.54 178.46 m 112.54 178.28 l
+112.92 178.28 l
+112.92 178.46 l
+112.54 178.46 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 104.23 176.87 m 104.23 176.69 l
+104.61 176.69 l
+104.61 176.87 l
+104.23 176.87 l
+cl 1 0 0 F
+n 104.23 176.87 m 104.23 176.69 l
+104.61 176.69 l
+104.61 176.87 l
+104.23 176.87 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 106.37 177.22 m 106.37 176.3 l
+107.97 176.3 l
+107.97 177.22 l
+106.37 177.22 l
+cl 1 0 0 F
+n 106.37 177.22 m 106.37 176.3 l
+107.97 176.3 l
+107.97 177.22 l
+106.37 177.22 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 108.96 177.35 m 108.96 176.16 l
+111.01 176.16 l
+111.01 177.35 l
+108.96 177.35 l
+cl 1 0 0 F
+n 108.96 177.35 m 108.96 176.16 l
+111.01 176.16 l
+111.01 177.35 l
+108.96 177.35 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 111.92 177.22 m 111.92 176.34 l
+113.45 176.34 l
+113.45 177.22 l
+111.92 177.22 l
+cl 1 0 0 F
+n 111.92 177.22 m 111.92 176.34 l
+113.45 176.34 l
+113.45 177.22 l
+111.92 177.22 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 115.2 176.91 m 115.2 176.65 l
+115.74 176.65 l
+115.74 176.91 l
+115.2 176.91 l
+cl 1 0 0 F
+n 115.2 176.91 m 115.2 176.65 l
+115.74 176.65 l
+115.74 176.91 l
+115.2 176.91 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 107.05 175.28 m 107.05 175.06 l
+107.36 175.06 l
+107.36 175.28 l
+107.05 175.28 l
+cl 1 0 0 F
+n 107.05 175.28 m 107.05 175.06 l
+107.36 175.06 l
+107.36 175.28 l
+107.05 175.28 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 109.26 175.59 m 109.26 174.8 l
+110.63 174.8 l
+110.63 175.59 l
+109.26 175.59 l
+cl 1 0 0 F
+n 109.26 175.59 m 109.26 174.8 l
+110.63 174.8 l
+110.63 175.59 l
+109.26 175.59 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 111.7 175.77 m 111.7 174.58 l
+113.76 174.58 l
+113.76 175.77 l
+111.7 175.77 l
+cl 1 0 0 F
+n 111.7 175.77 m 111.7 174.58 l
+113.76 174.58 l
+113.76 175.77 l
+111.7 175.77 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 114.83 175.55 m 114.83 174.8 l
+116.12 174.8 l
+116.12 175.55 l
+114.83 175.55 l
+cl 1 0 0 F
+n 114.83 175.55 m 114.83 174.8 l
+116.12 174.8 l
+116.12 175.55 l
+114.83 175.55 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 118.02 175.33 m 118.02 175.06 l
+118.48 175.06 l
+118.48 175.33 l
+118.02 175.33 l
+cl 1 0 0 F
+n 118.02 175.33 m 118.02 175.06 l
+118.48 175.06 l
+118.48 175.33 l
+118.02 175.33 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 109.79 173.65 m 109.79 173.52 l
+110.1 173.52 l
+110.1 173.65 l
+109.79 173.65 l
+cl 1 0 0 F
+n 109.79 173.65 m 109.79 173.52 l
+110.1 173.52 l
+110.1 173.65 l
+109.79 173.65 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 112.08 173.92 m 112.08 173.21 l
+113.38 173.21 l
+113.38 173.92 l
+112.08 173.92 l
+cl 1 0 0 F
+n 112.08 173.92 m 112.08 173.21 l
+113.38 173.21 l
+113.38 173.92 l
+112.08 173.92 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 114.6 174.09 m 114.6 173.08 l
+116.35 173.08 l
+116.35 174.09 l
+114.6 174.09 l
+cl 1 0 0 F
+n 114.6 174.09 m 114.6 173.08 l
+116.35 173.08 l
+116.35 174.09 l
+114.6 174.09 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 117.56 173.96 m 117.56 173.21 l
+118.93 173.21 l
+118.93 173.96 l
+117.56 173.96 l
+cl 1 0 0 F
+n 117.56 173.96 m 117.56 173.21 l
+118.93 173.21 l
+118.93 173.96 l
+117.56 173.96 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 120.77 173.74 m 120.77 173.43 l
+121.3 173.43 l
+121.3 173.74 l
+120.77 173.74 l
+cl 1 0 0 F
+n 120.77 173.74 m 120.77 173.43 l
+121.3 173.43 l
+121.3 173.74 l
+120.77 173.74 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 112.61 172.02 m 112.61 171.93 l
+112.85 171.93 l
+112.85 172.02 l
+112.61 172.02 l
+cl 1 0 0 F
+n 112.61 172.02 m 112.61 171.93 l
+112.85 171.93 l
+112.85 172.02 l
+112.61 172.02 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 114.97 172.28 m 114.97 171.67 l
+116.04 171.67 l
+116.04 172.28 l
+114.97 172.28 l
+cl 1 0 0 F
+n 114.97 172.28 m 114.97 171.67 l
+116.04 171.67 l
+116.04 172.28 l
+114.97 172.28 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 117.41 172.46 m 117.41 171.49 l
+119.1 171.49 l
+119.1 172.46 l
+117.41 172.46 l
+cl 1 0 0 F
+n 117.41 172.46 m 117.41 171.49 l
+119.1 171.49 l
+119.1 172.46 l
+117.41 172.46 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 120.4 172.33 m 120.4 171.62 l
+121.67 171.62 l
+121.67 172.33 l
+120.4 172.33 l
+cl 1 0 0 F
+n 120.4 172.33 m 120.4 171.62 l
+121.67 171.62 l
+121.67 172.33 l
+120.4 172.33 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 123.5 172.11 m 123.5 171.84 l
+124.04 171.84 l
+124.04 172.11 l
+123.5 172.11 l
+cl 1 0 0 F
+n 123.5 172.11 m 123.5 171.84 l
+124.04 171.84 l
+124.04 172.11 l
+123.5 172.11 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 126.48 172.02 m 126.48 171.93 l
+126.62 171.93 l
+126.62 172.02 l
+126.48 172.02 l
+cl 1 0 0 F
+n 126.48 172.02 m 126.48 171.93 l
+126.62 171.93 l
+126.62 172.02 l
+126.48 172.02 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 117.8 170.65 m 117.8 170.12 l
+118.7 170.12 l
+118.7 170.65 l
+117.8 170.65 l
+cl 1 0 0 F
+n 117.8 170.65 m 117.8 170.12 l
+118.7 170.12 l
+118.7 170.65 l
+117.8 170.65 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 120.16 170.87 m 120.16 169.86 l
+121.91 169.86 l
+121.91 170.87 l
+120.16 170.87 l
+cl 1 0 0 F
+n 120.16 170.87 m 120.16 169.86 l
+121.91 169.86 l
+121.91 170.87 l
+120.16 170.87 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 123.13 170.74 m 123.13 169.99 l
+124.43 169.99 l
+124.43 170.74 l
+123.13 170.74 l
+cl 1 0 0 F
+n 123.13 170.74 m 123.13 169.99 l
+124.43 169.99 l
+124.43 170.74 l
+123.13 170.74 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 126.32 170.52 m 126.32 170.25 l
+126.78 170.25 l
+126.78 170.52 l
+126.32 170.52 l
+cl 1 0 0 F
+n 126.32 170.52 m 126.32 170.25 l
+126.78 170.25 l
+126.78 170.52 l
+126.32 170.52 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 129.22 170.43 m 129.22 170.3 l
+129.37 170.3 l
+129.37 170.43 l
+129.22 170.43 l
+cl 1 0 0 F
+n 129.22 170.43 m 129.22 170.3 l
+129.37 170.3 l
+129.37 170.43 l
+129.22 170.43 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 118.1 168.89 m 118.1 168.67 l
+118.4 168.67 l
+118.4 168.89 l
+118.1 168.89 l
+cl 1 0 0 F
+n 118.1 168.89 m 118.1 168.67 l
+118.4 168.67 l
+118.4 168.89 l
+118.1 168.89 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 120.54 169.06 m 120.54 168.49 l
+121.52 168.49 l
+121.52 169.06 l
+120.54 169.06 l
+cl 1 0 0 F
+n 120.54 169.06 m 120.54 168.49 l
+121.52 168.49 l
+121.52 169.06 l
+120.54 169.06 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 122.96 169.24 m 122.96 168.31 l
+124.58 168.31 l
+124.58 169.24 l
+122.96 169.24 l
+cl 1 0 0 F
+n 122.96 169.24 m 122.96 168.31 l
+124.58 168.31 l
+124.58 169.24 l
+122.96 169.24 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 125.95 169.11 m 125.95 168.45 l
+127.16 168.45 l
+127.16 169.11 l
+125.95 169.11 l
+cl 1 0 0 F
+n 125.95 169.11 m 125.95 168.45 l
+127.16 168.45 l
+127.16 169.11 l
+125.95 169.11 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 129.14 168.89 m 129.14 168.67 l
+129.54 168.67 l
+129.54 168.89 l
+129.14 168.89 l
+cl 1 0 0 F
+n 129.14 168.89 m 129.14 168.67 l
+129.54 168.67 l
+129.54 168.89 l
+129.14 168.89 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 120.92 167.21 m 120.92 167.12 l
+121.14 167.12 l
+121.14 167.21 l
+120.92 167.21 l
+cl 1 0 0 F
+n 120.92 167.21 m 120.92 167.12 l
+121.14 167.12 l
+121.14 167.21 l
+120.92 167.21 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 123.29 167.43 m 123.29 166.9 l
+124.26 166.9 l
+124.26 167.43 l
+123.29 167.43 l
+cl 1 0 0 F
+n 123.29 167.43 m 123.29 166.9 l
+124.26 166.9 l
+124.26 167.43 l
+123.29 167.43 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 125.8 167.61 m 125.8 166.73 l
+127.32 166.73 l
+127.32 167.61 l
+125.8 167.61 l
+cl 1 0 0 F
+n 125.8 167.61 m 125.8 166.73 l
+127.32 166.73 l
+127.32 167.61 l
+125.8 167.61 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 128.77 167.48 m 128.77 166.86 l
+129.84 166.86 l
+129.84 167.48 l
+128.77 167.48 l
+cl 1 0 0 F
+n 128.77 167.48 m 128.77 166.86 l
+129.84 166.86 l
+129.84 167.48 l
+128.77 167.48 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 131.81 167.34 m 131.81 166.99 l
+132.35 166.99 l
+132.35 167.34 l
+131.81 167.34 l
+cl 1 0 0 F
+n 131.81 167.34 m 131.81 166.99 l
+132.35 166.99 l
+132.35 167.34 l
+131.81 167.34 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 123.59 165.67 m 123.59 165.49 l
+123.96 165.49 l
+123.96 165.67 l
+123.59 165.67 l
+cl 1 0 0 F
+n 123.59 165.67 m 123.59 165.49 l
+123.96 165.49 l
+123.96 165.67 l
+123.59 165.67 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 126.1 165.85 m 126.1 165.32 l
+127.02 165.32 l
+127.02 165.85 l
+126.1 165.85 l
+cl 1 0 0 F
+n 126.1 165.85 m 126.1 165.32 l
+127.02 165.32 l
+127.02 165.85 l
+126.1 165.85 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 128.62 165.98 m 128.62 165.14 l
+130.07 165.14 l
+130.07 165.98 l
+128.62 165.98 l
+cl 1 0 0 F
+n 128.62 165.98 m 128.62 165.14 l
+130.07 165.14 l
+130.07 165.98 l
+128.62 165.98 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 131.58 165.89 m 131.58 165.27 l
+132.58 165.27 l
+132.58 165.89 l
+131.58 165.89 l
+cl 1 0 0 F
+n 131.58 165.89 m 131.58 165.27 l
+132.58 165.27 l
+132.58 165.89 l
+131.58 165.89 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 134.63 165.71 m 134.63 165.45 l
+135.02 165.45 l
+135.02 165.71 l
+134.63 165.71 l
+cl 1 0 0 F
+n 134.63 165.71 m 134.63 165.45 l
+135.02 165.45 l
+135.02 165.71 l
+134.63 165.71 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 126.32 164.08 m 126.32 163.86 l
+126.71 163.86 l
+126.71 164.08 l
+126.32 164.08 l
+cl 1 0 0 F
+n 126.32 164.08 m 126.32 163.86 l
+126.71 163.86 l
+126.71 164.08 l
+126.32 164.08 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 128.77 164.26 m 128.77 163.68 l
+129.84 163.68 l
+129.84 164.26 l
+128.77 164.26 l
+cl 1 0 0 F
+n 128.77 164.26 m 128.77 163.68 l
+129.84 163.68 l
+129.84 164.26 l
+128.77 164.26 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 131.36 164.39 m 131.36 163.55 l
+132.8 163.55 l
+132.8 164.39 l
+131.36 164.39 l
+cl 1 0 0 F
+n 131.36 164.39 m 131.36 163.55 l
+132.8 163.55 l
+132.8 164.39 l
+131.36 164.39 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 134.4 164.26 m 134.4 163.68 l
+135.32 163.68 l
+135.32 164.26 l
+134.4 164.26 l
+cl 1 0 0 F
+n 134.4 164.26 m 134.4 163.68 l
+135.32 163.68 l
+135.32 164.26 l
+134.4 164.26 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 137.39 164.08 m 137.39 163.86 l
+137.83 163.86 l
+137.83 164.08 l
+137.39 164.08 l
+cl 1 0 0 F
+n 137.39 164.08 m 137.39 163.86 l
+137.83 163.86 l
+137.83 164.08 l
+137.39 164.08 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 129.14 162.45 m 129.14 162.27 l
+129.44 162.27 l
+129.44 162.45 l
+129.14 162.45 l
+cl 1 0 0 F
+n 129.14 162.45 m 129.14 162.27 l
+129.44 162.27 l
+129.44 162.45 l
+129.14 162.45 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 131.58 162.67 m 131.58 162.1 l
+132.58 162.1 l
+132.58 162.67 l
+131.58 162.67 l
+cl 1 0 0 F
+n 131.58 162.67 m 131.58 162.1 l
+132.58 162.1 l
+132.58 162.67 l
+131.58 162.67 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 134.17 162.76 m 134.17 162.01 l
+135.47 162.01 l
+135.47 162.76 l
+134.17 162.76 l
+cl 1 0 0 F
+n 134.17 162.76 m 134.17 162.01 l
+135.47 162.01 l
+135.47 162.76 l
+134.17 162.76 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 137.22 162.58 m 137.22 162.14 l
+137.99 162.14 l
+137.99 162.58 l
+137.22 162.58 l
+cl 1 0 0 F
+n 137.22 162.58 m 137.22 162.14 l
+137.99 162.14 l
+137.99 162.58 l
+137.22 162.58 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 140.2 162.49 m 140.2 162.27 l
+140.58 162.27 l
+140.58 162.49 l
+140.2 162.49 l
+cl 1 0 0 F
+n 140.2 162.49 m 140.2 162.27 l
+140.58 162.27 l
+140.58 162.49 l
+140.2 162.49 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 134.4 160.99 m 134.4 160.55 l
+135.24 160.55 l
+135.24 160.99 l
+134.4 160.99 l
+cl 1 0 0 F
+n 134.4 160.99 m 134.4 160.55 l
+135.24 160.55 l
+135.24 160.99 l
+134.4 160.99 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 137.06 161.08 m 137.06 160.47 l
+138.13 160.47 l
+138.13 161.08 l
+137.06 161.08 l
+cl 1 0 0 F
+n 137.06 161.08 m 137.06 160.47 l
+138.13 160.47 l
+138.13 161.08 l
+137.06 161.08 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 139.96 160.99 m 139.96 160.55 l
+140.72 160.55 l
+140.72 160.99 l
+139.96 160.99 l
+cl 1 0 0 F
+n 139.96 160.99 m 139.96 160.55 l
+140.72 160.55 l
+140.72 160.99 l
+139.96 160.99 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 143.02 160.82 m 143.02 160.73 l
+143.24 160.73 l
+143.24 160.82 l
+143.02 160.82 l
+cl 1 0 0 F
+n 143.02 160.82 m 143.02 160.73 l
+143.24 160.73 l
+143.24 160.82 l
+143.02 160.82 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 137.22 159.41 m 137.22 158.97 l
+137.99 158.97 l
+137.99 159.41 l
+137.22 159.41 l
+cl 1 0 0 F
+n 137.22 159.41 m 137.22 158.97 l
+137.99 158.97 l
+137.99 159.41 l
+137.22 159.41 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 140.12 159.32 m 140.12 159.01 l
+140.65 159.01 l
+140.65 159.32 l
+140.12 159.32 l
+cl 1 0 0 F
+n 140.12 159.32 m 140.12 159.01 l
+140.65 159.01 l
+140.65 159.32 l
+140.12 159.32 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 142.94 159.27 m 142.94 159.05 l
+143.32 159.05 l
+143.32 159.27 l
+142.94 159.27 l
+cl 1 0 0 F
+n 142.94 159.27 m 142.94 159.05 l
+143.32 159.05 l
+143.32 159.27 l
+142.94 159.27 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 145.84 159.23 m 145.84 159.1 l
+145.99 159.1 l
+145.99 159.23 l
+145.84 159.23 l
+cl 1 0 0 F
+n 145.84 159.23 m 145.84 159.1 l
+145.99 159.1 l
+145.99 159.23 l
+145.84 159.23 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 137.53 157.64 m 137.53 157.51 l
+137.69 157.51 l
+137.69 157.64 l
+137.53 157.64 l
+cl 1 0 0 F
+n 137.53 157.64 m 137.53 157.51 l
+137.69 157.51 l
+137.69 157.64 l
+137.53 157.64 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 140.12 157.73 m 140.12 157.42 l
+140.65 157.42 l
+140.65 157.73 l
+140.12 157.73 l
+cl 1 0 0 F
+n 140.12 157.73 m 140.12 157.42 l
+140.65 157.42 l
+140.65 157.73 l
+140.12 157.73 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 142.87 157.73 m 142.87 157.42 l
+143.4 157.42 l
+143.4 157.73 l
+142.87 157.73 l
+cl 1 0 0 F
+n 142.87 157.73 m 142.87 157.42 l
+143.4 157.42 l
+143.4 157.73 l
+142.87 157.73 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 145.68 157.69 m 145.68 157.47 l
+146.14 157.47 l
+146.14 157.69 l
+145.68 157.69 l
+cl 1 0 0 F
+n 145.68 157.69 m 145.68 157.47 l
+146.14 157.47 l
+146.14 157.69 l
+145.68 157.69 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 148.57 157.64 m 148.57 157.51 l
+148.73 157.51 l
+148.73 157.64 l
+148.57 157.64 l
+cl 1 0 0 F
+n 148.57 157.64 m 148.57 157.51 l
+148.73 157.51 l
+148.73 157.64 l
+148.57 157.64 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 140.2 156.06 m 140.2 155.88 l
+140.51 155.88 l
+140.51 156.06 l
+140.2 156.06 l
+cl 1 0 0 F
+n 140.2 156.06 m 140.2 155.88 l
+140.51 155.88 l
+140.51 156.06 l
+140.2 156.06 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 142.87 156.1 m 142.87 155.84 l
+143.4 155.84 l
+143.4 156.1 l
+142.87 156.1 l
+cl 1 0 0 F
+n 142.87 156.1 m 142.87 155.84 l
+143.4 155.84 l
+143.4 156.1 l
+142.87 156.1 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 145.68 156.1 m 145.68 155.84 l
+146.14 155.84 l
+146.14 156.1 l
+145.68 156.1 l
+cl 1 0 0 F
+n 145.68 156.1 m 145.68 155.84 l
+146.14 155.84 l
+146.14 156.1 l
+145.68 156.1 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 151.32 156.01 m 151.32 155.92 l
+151.55 155.92 l
+151.55 156.01 l
+151.32 156.01 l
+cl 1 0 0 F
+n 151.32 156.01 m 151.32 155.92 l
+151.55 155.92 l
+151.55 156.01 l
+151.32 156.01 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 154.06 156.06 m 154.06 155.88 l
+154.38 155.88 l
+154.38 156.06 l
+154.06 156.06 l
+cl 1 0 0 F
+n 154.06 156.06 m 154.06 155.88 l
+154.38 155.88 l
+154.38 156.06 l
+154.06 156.06 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 156.8 156.06 m 156.8 155.88 l
+157.12 155.88 l
+157.12 156.06 l
+156.8 156.06 l
+cl 1 0 0 F
+n 156.8 156.06 m 156.8 155.88 l
+157.12 155.88 l
+157.12 156.06 l
+156.8 156.06 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 143.02 154.47 m 143.02 154.29 l
+143.24 154.29 l
+143.24 154.47 l
+143.02 154.47 l
+cl 1 0 0 F
+n 143.02 154.47 m 143.02 154.29 l
+143.24 154.29 l
+143.24 154.47 l
+143.02 154.47 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 145.68 154.47 m 145.68 154.25 l
+146.06 154.25 l
+146.06 154.47 l
+145.68 154.47 l
+cl 1 0 0 F
+n 145.68 154.47 m 145.68 154.25 l
+146.06 154.25 l
+146.06 154.47 l
+145.68 154.47 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 148.5 154.47 m 148.5 154.29 l
+148.8 154.29 l
+148.8 154.47 l
+148.5 154.47 l
+cl 1 0 0 F
+n 148.5 154.47 m 148.5 154.29 l
+148.8 154.29 l
+148.8 154.47 l
+148.5 154.47 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 156.88 154.42 m 156.88 154.34 l
+157.04 154.34 l
+157.04 154.42 l
+156.88 154.42 l
+cl 1 0 0 F
+n 156.88 154.42 m 156.88 154.34 l
+157.04 154.34 l
+157.04 154.42 l
+156.88 154.42 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 159.64 154.47 m 159.64 154.29 l
+159.86 154.29 l
+159.86 154.47 l
+159.64 154.47 l
+cl 1 0 0 F
+n 159.64 154.47 m 159.64 154.29 l
+159.86 154.29 l
+159.86 154.47 l
+159.64 154.47 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 148.5 152.84 m 148.5 152.7 l
+148.8 152.7 l
+148.8 152.84 l
+148.5 152.84 l
+cl 1 0 0 F
+n 148.5 152.84 m 148.5 152.7 l
+148.8 152.7 l
+148.8 152.84 l
+148.5 152.84 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 156.88 152.84 m 156.88 152.7 l
+157.04 152.7 l
+157.04 152.84 l
+156.88 152.84 l
+cl 1 0 0 F
+n 156.88 152.84 m 156.88 152.7 l
+157.04 152.7 l
+157.04 152.84 l
+156.88 152.84 l
+cl gsave
+1 0 0 0.088 0 B
+grestore
+n 61.407 217.57 m 58.817 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 215.06 m 58.817 215.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 212.59 m 58.817 212.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 210.07 m 58.817 210.07 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 207.56 m 58.817 207.56 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 205.09 m 58.817 205.09 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 202.58 m 58.817 202.58 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 200.06 m 58.817 200.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 197.6 m 58.817 197.6 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 195.08 m 58.817 195.08 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 192.57 m 58.817 192.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 190.05 m 58.817 190.05 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 187.59 m 58.817 187.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 185.07 m 58.817 185.07 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 182.56 m 58.817 182.56 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 180.09 m 58.817 180.09 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 177.58 m 58.817 177.58 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 175.06 m 58.817 175.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 172.59 m 58.817 172.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 170.08 m 58.817 170.08 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 167.57 m 58.817 167.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 165.05 m 58.817 165.05 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 162.58 m 58.817 162.58 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 160.07 m 58.817 160.07 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 157.55 m 58.817 157.55 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 155.09 m 58.817 155.09 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 152.57 m 58.817 152.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 150.06 m 58.817 150.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 147.59 m 58.817 147.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 58.817 217.57 m 172.75 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 66.97 216.07 m 66.97 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.169 216.82 m 70.169 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 73.447 216.82 m 73.447 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 76.723 216.82 m 76.723 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 79.924 216.82 m 79.924 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 83.2 216.07 m 83.2 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 86.477 216.82 m 86.477 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 89.677 216.82 m 89.677 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 92.953 216.82 m 92.953 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 96.231 216.82 m 96.231 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 99.432 216.07 m 99.432 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 102.71 216.82 m 102.71 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 105.98 216.82 m 105.98 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 109.26 216.82 m 109.26 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 112.46 216.82 m 112.46 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 115.74 216.07 m 115.74 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 119 216.82 m 119 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 122.22 216.82 m 122.22 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 125.48 216.82 m 125.48 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 128.77 216.82 m 128.77 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 131.96 216.07 m 131.96 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 135.24 216.82 m 135.24 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 138.52 216.82 m 138.52 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 141.72 216.82 m 141.72 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 145 216.82 m 145 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 148.27 216.07 m 148.27 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 151.55 216.82 m 151.55 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 154.75 216.82 m 154.75 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 158.03 216.82 m 158.03 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 161.3 216.82 m 161.3 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 164.5 216.07 m 164.5 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 167.78 216.82 m 167.78 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 171.05 216.82 m 171.05 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 66.97 216.07 m 66.97 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.694 216.82 m 63.694 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.417 216.82 m 60.417 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 67.579 216.16 m 68.646 214.04 l
+68.875 213.56 l
+70.018 211.53 l
+70.169 211.22 l
+71.465 209.06 l
+72.761 207.03 l
+74.056 205.18 l
+75.427 203.42 l
+76.723 201.74 l
+78.019 200.15 l
+79.313 198.7 l
+80.609 197.29 l
+81.905 195.92 l
+83.2 194.64 l
+84.496 193.45 l
+85.791 192.26 l
+87.087 191.16 l
+88.383 190.1 l
+89.677 189.08 l
+90.973 188.07 l
+92.344 187.14 l
+93.64 186.22 l
+94.935 185.34 l
+96.231 184.5 l
+97.527 183.66 l
+98.821 182.87 l
+100.12 182.07 l
+101.41 181.32 l
+102.71 180.57 l
+104 179.82 l
+105.3 179.12 l
+106.59 178.41 l
+107.89 177.71 l
+109.26 177 l
+110.56 176.3 l
+111.85 175.63 l
+113.15 174.93 l
+114.44 174.27 l
+115.74 173.56 l
+117.04 172.9 l
+118.33 172.2 l
+119.63 171.53 l
+120.92 170.83 l
+122.22 170.12 l
+123.5 169.42 l
+124.8 168.71 l
+126.18 167.96 l
+127.48 167.26 l
+128.77 166.46 l
+130.07 165.71 l
+131.36 164.92 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 217.57 m 58.817 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 215.06 m 58.817 215.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 212.59 m 58.817 212.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 210.07 m 58.817 210.07 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 207.56 m 58.817 207.56 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 205.09 m 58.817 205.09 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 202.58 m 58.817 202.58 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 200.06 m 58.817 200.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 197.6 m 58.817 197.6 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 195.08 m 58.817 195.08 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 192.57 m 58.817 192.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 190.05 m 58.817 190.05 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 187.59 m 58.817 187.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 185.07 m 58.817 185.07 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 182.56 m 58.817 182.56 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 180.09 m 58.817 180.09 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 177.58 m 58.817 177.58 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 175.06 m 58.817 175.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 172.59 m 58.817 172.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 170.08 m 58.817 170.08 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 167.57 m 58.817 167.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 165.05 m 58.817 165.05 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 162.58 m 58.817 162.58 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 160.07 m 58.817 160.07 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 157.55 m 58.817 157.55 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 155.09 m 58.817 155.09 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 152.57 m 58.817 152.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 150.06 m 58.817 150.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 147.59 m 58.817 147.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 58.817 217.57 m 172.75 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 66.97 216.07 m 66.97 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.169 216.82 m 70.169 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 73.447 216.82 m 73.447 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 76.723 216.82 m 76.723 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 79.924 216.82 m 79.924 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 83.2 216.07 m 83.2 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 86.477 216.82 m 86.477 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 89.677 216.82 m 89.677 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 92.953 216.82 m 92.953 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 96.231 216.82 m 96.231 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 99.432 216.07 m 99.432 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 102.71 216.82 m 102.71 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 105.98 216.82 m 105.98 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 109.26 216.82 m 109.26 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 112.46 216.82 m 112.46 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 115.74 216.07 m 115.74 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 119 216.82 m 119 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 122.22 216.82 m 122.22 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 125.48 216.82 m 125.48 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 128.77 216.82 m 128.77 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 131.96 216.07 m 131.96 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 135.24 216.82 m 135.24 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 138.52 216.82 m 138.52 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 141.72 216.82 m 141.72 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 145 216.82 m 145 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 148.27 216.07 m 148.27 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 151.55 216.82 m 151.55 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 154.75 216.82 m 154.75 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 158.03 216.82 m 158.03 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 161.3 216.82 m 161.3 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 164.5 216.07 m 164.5 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 167.78 216.82 m 167.78 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 171.05 216.82 m 171.05 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 66.97 216.07 m 66.97 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.694 216.82 m 63.694 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.417 216.82 m 60.417 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 67.579 216.16 m 68.646 214.04 l
+68.875 213.56 l
+70.018 211.53 l
+70.169 211.22 l
+71.465 209.06 l
+72.761 207.03 l
+74.056 205.18 l
+75.427 203.42 l
+76.723 201.74 l
+78.019 200.15 l
+79.313 198.7 l
+80.609 197.29 l
+81.905 195.92 l
+83.2 194.64 l
+84.496 193.45 l
+85.791 192.26 l
+87.087 191.16 l
+88.383 190.1 l
+89.677 189.08 l
+90.973 188.07 l
+92.344 187.14 l
+93.64 186.22 l
+94.935 185.34 l
+96.231 184.5 l
+97.527 183.66 l
+98.821 182.87 l
+100.12 182.07 l
+101.41 181.32 l
+102.71 180.57 l
+104 179.82 l
+105.3 179.12 l
+106.59 178.41 l
+107.89 177.71 l
+109.26 177 l
+110.56 176.3 l
+111.85 175.63 l
+113.15 174.93 l
+114.44 174.27 l
+115.74 173.56 l
+117.04 172.9 l
+118.33 172.2 l
+119.63 171.53 l
+120.92 170.83 l
+122.22 170.12 l
+123.5 169.42 l
+124.8 168.71 l
+126.18 167.96 l
+127.48 167.26 l
+128.77 166.46 l
+130.07 165.71 l
+131.36 164.92 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 217.57 m 58.817 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 215.06 m 58.817 215.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 212.59 m 58.817 212.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 210.07 m 58.817 210.07 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 207.56 m 58.817 207.56 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 205.09 m 58.817 205.09 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 202.58 m 58.817 202.58 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 200.06 m 58.817 200.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 197.6 m 58.817 197.6 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 195.08 m 58.817 195.08 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 192.57 m 58.817 192.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 190.05 m 58.817 190.05 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 187.59 m 58.817 187.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 185.07 m 58.817 185.07 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 182.56 m 58.817 182.56 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 180.09 m 58.817 180.09 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 177.58 m 58.817 177.58 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 175.06 m 58.817 175.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 172.59 m 58.817 172.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 170.08 m 58.817 170.08 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 167.57 m 58.817 167.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 165.05 m 58.817 165.05 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 162.58 m 58.817 162.58 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 160.07 m 58.817 160.07 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 157.55 m 58.817 157.55 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 155.09 m 58.817 155.09 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 152.57 m 58.817 152.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 150.06 m 58.817 150.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 147.59 m 58.817 147.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 58.817 217.57 m 172.97 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 66.97 216.07 m 66.97 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.169 216.82 m 70.169 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 73.447 216.82 m 73.447 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 76.723 216.82 m 76.723 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 79.924 216.82 m 79.924 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 83.2 216.07 m 83.2 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 86.477 216.82 m 86.477 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 89.677 216.82 m 89.677 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 92.953 216.82 m 92.953 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 96.231 216.82 m 96.231 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 99.432 216.07 m 99.432 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 102.71 216.82 m 102.71 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 105.98 216.82 m 105.98 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 109.26 216.82 m 109.26 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 112.46 216.82 m 112.46 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 115.74 216.07 m 115.74 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 119 216.82 m 119 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 122.22 216.82 m 122.22 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 125.48 216.82 m 125.48 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 128.77 216.82 m 128.77 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 131.96 216.07 m 131.96 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 135.24 216.82 m 135.24 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 138.52 216.82 m 138.52 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 141.72 216.82 m 141.72 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 145 216.82 m 145 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 148.27 216.07 m 148.27 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 151.55 216.82 m 151.55 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 154.75 216.82 m 154.75 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 158.03 216.82 m 158.03 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 161.3 216.82 m 161.3 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 164.5 216.07 m 164.5 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 167.78 216.82 m 167.78 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 171.05 216.82 m 171.05 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 66.97 216.07 m 66.97 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.694 216.82 m 63.694 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.417 216.82 m 60.417 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 67.579 216.16 m 68.646 214.04 l
+68.875 213.56 l
+70.018 211.53 l
+70.169 211.22 l
+71.465 209.06 l
+72.761 207.03 l
+74.056 205.18 l
+75.427 203.42 l
+76.723 201.74 l
+78.019 200.15 l
+79.313 198.7 l
+80.609 197.29 l
+81.905 195.92 l
+83.2 194.64 l
+84.496 193.45 l
+85.791 192.26 l
+87.087 191.16 l
+88.383 190.1 l
+89.677 189.08 l
+90.973 188.07 l
+92.344 187.14 l
+93.64 186.22 l
+94.935 185.34 l
+96.231 184.5 l
+97.527 183.66 l
+98.821 182.87 l
+100.12 182.07 l
+101.41 181.32 l
+102.71 180.57 l
+104 179.82 l
+105.3 179.12 l
+106.59 178.41 l
+107.89 177.71 l
+109.26 177 l
+110.56 176.3 l
+111.85 175.63 l
+113.15 174.93 l
+114.44 174.27 l
+115.74 173.56 l
+117.04 172.9 l
+118.33 172.2 l
+119.63 171.53 l
+120.92 170.83 l
+122.22 170.12 l
+123.5 169.42 l
+124.8 168.71 l
+126.18 167.96 l
+127.48 167.26 l
+128.77 166.46 l
+130.07 165.71 l
+131.36 164.92 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 217.57 m 58.817 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 215.06 m 58.817 215.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 212.59 m 58.817 212.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 210.07 m 58.817 210.07 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 207.56 m 58.817 207.56 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 205.09 m 58.817 205.09 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 202.58 m 58.817 202.58 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 200.06 m 58.817 200.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 197.6 m 58.817 197.6 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 195.08 m 58.817 195.08 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 192.57 m 58.817 192.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 190.05 m 58.817 190.05 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 187.59 m 58.817 187.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 185.07 m 58.817 185.07 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 182.56 m 58.817 182.56 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 180.09 m 58.817 180.09 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 177.58 m 58.817 177.58 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 175.06 m 58.817 175.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 172.59 m 58.817 172.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 170.08 m 58.817 170.08 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 167.57 m 58.817 167.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 165.05 m 58.817 165.05 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 162.58 m 58.817 162.58 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 160.07 m 58.817 160.07 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 157.55 m 58.817 157.55 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 155.09 m 58.817 155.09 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 152.57 m 58.817 152.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.111 150.06 m 58.817 150.06 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 61.407 147.59 m 58.817 147.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 58.817 217.57 m 172.75 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 66.97 216.07 m 66.97 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 70.169 216.82 m 70.169 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 73.447 216.82 m 73.447 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 76.723 216.82 m 76.723 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 79.924 216.82 m 79.924 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 83.2 216.07 m 83.2 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 86.477 216.82 m 86.477 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 89.677 216.82 m 89.677 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 92.953 216.82 m 92.953 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 96.231 216.82 m 96.231 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 99.432 216.07 m 99.432 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 102.71 216.82 m 102.71 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 105.98 216.82 m 105.98 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 109.26 216.82 m 109.26 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 112.46 216.82 m 112.46 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 115.74 216.07 m 115.74 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 119 216.82 m 119 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 122.22 216.82 m 122.22 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 125.48 216.82 m 125.48 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 128.77 216.82 m 128.77 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 131.96 216.07 m 131.96 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 135.24 216.82 m 135.24 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 138.52 216.82 m 138.52 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 141.72 216.82 m 141.72 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 145 216.82 m 145 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 148.27 216.07 m 148.27 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 151.55 216.82 m 151.55 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 154.75 216.82 m 154.75 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 158.03 216.82 m 158.03 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 161.3 216.82 m 161.3 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 164.5 216.07 m 164.5 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 167.78 216.82 m 167.78 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 171.05 216.82 m 171.05 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 66.97 216.07 m 66.97 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 63.694 216.82 m 63.694 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 60.417 216.82 m 60.417 217.57 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 64.912 217.26 m 64.912 216.29 l
+66.588 216.29 l
+66.588 217.26 l
+64.912 217.26 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 67.503 217.35 m 67.503 216.2 l
+69.484 216.2 l
+69.484 217.35 l
+67.503 217.35 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 67.198 215.94 m 67.198 214.44 l
+69.79 214.44 l
+69.79 215.94 l
+67.198 215.94 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 71.083 215.28 m 71.083 215.1 l
+71.389 215.1 l
+71.389 215.28 l
+71.083 215.28 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 67.198 214.31 m 67.198 212.85 l
+69.713 212.85 l
+69.713 214.31 l
+67.198 214.31 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 70.704 213.91 m 70.704 213.25 l
+71.771 213.25 l
+71.771 213.91 l
+70.704 213.91 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 67.655 212.46 m 67.655 211.53 l
+69.257 211.53 l
+69.257 212.46 l
+67.655 212.46 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 70.095 212.63 m 70.095 211.35 l
+72.379 211.35 l
+72.379 212.63 l
+70.095 212.63 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 68.189 210.52 m 68.189 210.21 l
+68.722 210.21 l
+68.722 210.52 l
+68.189 210.52 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 69.941 211.13 m 69.941 209.63 l
+72.533 209.63 l
+72.533 211.13 l
+69.941 211.13 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 73.751 210.56 m 73.751 210.21 l
+74.285 210.21 l
+74.285 210.56 l
+73.751 210.56 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 70.018 209.46 m 70.018 208.09 l
+72.456 208.09 l
+72.456 209.46 l
+70.018 209.46 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 73.294 209.19 m 73.294 208.35 l
+74.743 208.35 l
+74.743 209.19 l
+73.294 209.19 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 70.627 207.56 m 70.627 206.81 l
+71.923 206.81 l
+71.923 207.56 l
+70.627 207.56 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 72.838 207.87 m 72.838 206.5 l
+75.199 206.5 l
+75.199 207.87 l
+72.838 207.87 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 70.932 205.75 m 70.932 205.4 l
+71.542 205.4 l
+71.542 205.75 l
+70.932 205.75 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 72.838 206.28 m 72.838 204.87 l
+75.199 204.87 l
+75.199 206.28 l
+72.838 206.28 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 76.266 205.89 m 76.266 205.27 l
+77.332 205.27 l
+77.332 205.89 l
+76.266 205.89 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 73.066 204.52 m 73.066 203.46 l
+74.895 203.46 l
+74.895 204.52 l
+73.066 204.52 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 75.885 204.47 m 75.885 203.46 l
+77.638 203.46 l
+77.638 204.47 l
+75.885 204.47 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 73.675 202.58 m 73.675 202.18 l
+74.362 202.18 l
+74.362 202.58 l
+73.675 202.58 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 75.581 203.06 m 75.581 201.7 l
+78.019 201.7 l
+78.019 203.06 l
+75.581 203.06 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 79.086 202.62 m 79.086 202.14 l
+80.001 202.14 l
+80.001 202.62 l
+79.086 202.62 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 75.655 201.39 m 75.655 200.15 l
+77.866 200.15 l
+77.866 201.39 l
+75.655 201.39 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 78.475 201.39 m 78.475 200.2 l
+80.533 200.2 l
+80.533 201.39 l
+78.475 201.39 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 82.21 200.81 m 82.21 200.73 l
+82.438 200.73 l
+82.438 200.81 l
+82.21 200.81 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 76.343 199.45 m 76.343 198.92 l
+77.257 198.92 l
+77.257 199.45 l
+76.343 199.45 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 78.171 199.98 m 78.171 198.39 l
+80.914 198.39 l
+80.914 199.98 l
+78.171 199.98 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 81.829 199.45 m 81.829 198.92 l
+82.818 198.92 l
+82.818 199.45 l
+81.829 199.45 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 78.628 198.12 m 78.628 197.02 l
+80.457 197.02 l
+80.457 198.12 l
+78.628 198.12 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 81.142 198.26 m 81.142 196.89 l
+83.429 196.89 l
+83.429 198.26 l
+81.142 198.26 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 84.799 197.73 m 84.799 197.42 l
+85.335 197.42 l
+85.335 197.73 l
+84.799 197.73 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 79.237 196.14 m 79.237 195.83 l
+79.848 195.83 l
+79.848 196.14 l
+79.237 196.14 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 81.067 196.71 m 81.067 195.26 l
+83.581 195.26 l
+83.581 196.71 l
+81.067 196.71 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 84.191 196.45 m 84.191 195.48 l
+85.943 195.48 l
+85.943 196.45 l
+84.191 196.45 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 81.677 194.73 m 81.677 194.02 l
+82.973 194.02 l
+82.973 194.73 l
+81.677 194.73 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 83.811 195.08 m 83.811 193.67 l
+86.325 193.67 l
+86.325 195.08 l
+83.811 195.08 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 87.316 194.68 m 87.316 194.07 l
+88.383 194.07 l
+88.383 194.68 l
+87.316 194.68 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 82.21 192.83 m 82.21 192.7 l
+82.438 192.7 l
+82.438 192.83 l
+82.21 192.83 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 84.114 193.36 m 84.114 192.22 l
+86.02 192.22 l
+86.02 193.36 l
+84.114 193.36 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 86.782 193.36 m 86.782 192.17 l
+88.839 192.17 l
+88.839 193.36 l
+86.782 193.36 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 90.286 192.96 m 90.286 192.61 l
+90.897 192.61 l
+90.897 192.96 l
+90.286 192.96 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 84.799 191.33 m 84.799 191.02 l
+85.335 191.02 l
+85.335 191.33 l
+84.799 191.33 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 86.857 191.73 m 86.857 190.63 l
+88.839 190.63 l
+88.839 191.73 l
+86.857 191.73 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 89.677 191.69 m 89.677 190.63 l
+91.506 190.63 l
+91.506 191.69 l
+89.677 191.69 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 93.258 191.25 m 93.258 191.11 l
+93.487 191.11 l
+93.487 191.25 l
+93.258 191.25 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 87.391 189.83 m 87.391 189.35 l
+88.23 189.35 l
+88.23 189.83 l
+87.391 189.83 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 89.601 190.14 m 89.601 189 l
+91.582 189 l
+91.582 190.14 l
+89.601 190.14 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 92.496 190.05 m 92.496 189.08 l
+94.173 189.08 l
+94.173 190.05 l
+92.496 190.05 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 95.926 189.7 m 95.926 189.44 l
+96.383 189.44 l
+96.383 189.7 l
+95.926 189.7 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 90.059 188.29 m 90.059 187.67 l
+91.125 187.67 l
+91.125 188.29 l
+90.059 188.29 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 92.268 188.6 m 92.268 187.32 l
+94.479 187.32 l
+94.479 188.6 l
+92.268 188.6 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 95.239 188.51 m 95.239 187.45 l
+97.068 187.45 l
+97.068 188.51 l
+95.239 188.51 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 98.669 188.11 m 98.669 187.81 l
+99.126 187.81 l
+99.126 188.11 l
+98.669 188.11 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 92.802 186.7 m 92.802 186.04 l
+93.946 186.04 l
+93.946 186.7 l
+92.802 186.7 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 94.935 187.06 m 94.935 185.69 l
+97.297 185.69 l
+97.297 187.06 l
+94.935 187.06 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 97.983 186.92 m 97.983 185.82 l
+99.811 185.82 l
+99.811 186.92 l
+97.983 186.92 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 101.49 186.48 m 101.49 186.26 l
+101.87 186.26 l
+101.87 186.48 l
+101.49 186.48 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 95.545 185.12 m 95.545 184.45 l
+96.689 184.45 l
+96.689 185.12 l
+95.545 185.12 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 97.83 185.38 m 97.83 184.15 l
+99.965 184.15 l
+99.965 185.38 l
+97.83 185.38 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 100.73 185.29 m 100.73 184.23 l
+102.55 184.23 l
+102.55 185.29 l
+100.73 185.29 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 104.08 184.98 m 104.08 184.59 l
+104.76 184.59 l
+104.76 184.98 l
+104.08 184.98 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 98.364 183.48 m 98.364 182.87 l
+99.432 182.87 l
+99.432 183.48 l
+98.364 183.48 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 100.57 183.79 m 100.57 182.56 l
+102.71 182.56 l
+102.71 183.79 l
+100.57 183.79 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 103.55 183.7 m 103.55 182.65 l
+105.3 182.65 l
+105.3 183.7 l
+103.55 183.7 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 106.82 183.4 m 106.82 182.95 l
+107.58 182.95 l
+107.58 183.4 l
+106.82 183.4 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 109.79 183.26 m 109.79 183.09 l
+110.1 183.09 l
+110.1 183.26 l
+109.79 183.26 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 98.745 181.68 m 98.745 181.5 l
+99.051 181.5 l
+99.051 181.68 l
+98.745 181.68 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 101.18 181.85 m 101.18 181.28 l
+102.18 181.28 l
+102.18 181.85 l
+101.18 181.85 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 103.47 182.12 m 103.47 181.01 l
+105.37 181.01 l
+105.37 182.12 l
+103.47 182.12 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 106.21 182.12 m 106.21 181.01 l
+108.12 181.01 l
+108.12 182.12 l
+106.21 182.12 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 109.42 181.9 m 109.42 181.28 l
+110.48 181.28 l
+110.48 181.9 l
+109.42 181.9 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 112.54 181.68 m 112.54 181.46 l
+112.92 181.46 l
+112.92 181.68 l
+112.54 181.68 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 101.56 180.04 m 101.56 179.91 l
+101.79 179.91 l
+101.79 180.04 l
+101.56 180.04 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 103.93 180.27 m 103.93 179.69 l
+104.92 179.69 l
+104.92 180.27 l
+103.93 180.27 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 106.21 180.53 m 106.21 179.43 l
+108.19 179.43 l
+108.19 180.53 l
+106.21 180.53 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 109.03 180.53 m 109.03 179.43 l
+110.94 179.43 l
+110.94 180.53 l
+109.03 180.53 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 112.01 180.4 m 112.01 179.56 l
+113.45 179.56 l
+113.45 180.4 l
+112.01 180.4 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 115.28 180.09 m 115.28 179.87 l
+115.66 179.87 l
+115.66 180.09 l
+115.28 180.09 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 106.82 178.59 m 106.82 178.19 l
+107.51 178.19 l
+107.51 178.59 l
+106.82 178.59 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 109.26 178.77 m 109.26 177.97 l
+110.63 177.97 l
+110.63 178.77 l
+109.26 178.77 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 111.78 178.94 m 111.78 177.8 l
+113.68 177.8 l
+113.68 178.94 l
+111.78 178.94 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 114.9 178.72 m 114.9 178.02 l
+116.12 178.02 l
+116.12 178.72 l
+114.9 178.72 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 117.95 178.55 m 117.95 178.19 l
+118.56 178.19 l
+118.56 178.55 l
+117.95 178.55 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 120.92 178.41 m 120.92 178.32 l
+121.14 178.32 l
+121.14 178.41 l
+120.92 178.41 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 109.64 176.96 m 109.64 176.6 l
+110.26 176.6 l
+110.26 176.96 l
+109.64 176.96 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 112.08 177.13 m 112.08 176.43 l
+113.38 176.43 l
+113.38 177.13 l
+112.08 177.13 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 114.6 177.31 m 114.6 176.25 l
+116.42 176.25 l
+116.42 177.31 l
+114.6 177.31 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 117.41 177.27 m 117.41 176.3 l
+119.1 176.3 l
+119.1 177.27 l
+117.41 177.27 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 120.47 177.09 m 120.47 176.47 l
+121.6 176.47 l
+121.6 177.09 l
+120.47 177.09 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 123.66 176.83 m 123.66 176.74 l
+123.89 176.74 l
+123.89 176.83 l
+123.66 176.83 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 112.54 175.28 m 112.54 175.06 l
+112.92 175.06 l
+112.92 175.28 l
+112.54 175.28 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 114.97 175.5 m 114.97 174.89 l
+116.04 174.89 l
+116.04 175.5 l
+114.97 175.5 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 117.34 175.68 m 117.34 174.66 l
+119.17 174.66 l
+119.17 175.68 l
+117.34 175.68 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 120.16 175.68 m 120.16 174.66 l
+121.91 174.66 l
+121.91 175.68 l
+120.16 175.68 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 123.2 175.5 m 123.2 174.84 l
+124.36 174.84 l
+124.36 175.5 l
+123.2 175.5 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 126.32 175.28 m 126.32 175.06 l
+126.71 175.06 l
+126.71 175.28 l
+126.32 175.28 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 117.88 173.78 m 117.88 173.39 l
+118.63 173.39 l
+118.63 173.78 l
+117.88 173.78 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 120.23 174 m 120.23 173.12 l
+121.76 173.12 l
+121.76 174 l
+120.23 174 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 122.96 174.05 m 122.96 173.08 l
+124.66 173.08 l
+124.66 174.05 l
+122.96 174.05 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 125.95 173.92 m 125.95 173.21 l
+127.16 173.21 l
+127.16 173.92 l
+125.95 173.92 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 128.99 173.74 m 128.99 173.39 l
+129.61 173.39 l
+129.61 173.74 l
+128.99 173.74 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 120.61 172.2 m 120.61 171.75 l
+121.37 171.75 l
+121.37 172.2 l
+120.61 172.2 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 123.06 172.37 m 123.06 171.58 l
+124.5 171.58 l
+124.5 172.37 l
+123.06 172.37 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 125.72 172.46 m 125.72 171.49 l
+127.32 171.49 l
+127.32 172.46 l
+125.72 172.46 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 128.62 172.37 m 128.62 171.58 l
+129.98 171.58 l
+129.98 172.37 l
+128.62 172.37 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 131.89 172.11 m 131.89 171.84 l
+132.28 171.84 l
+132.28 172.11 l
+131.89 172.11 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 123.59 170.48 m 123.59 170.25 l
+123.96 170.25 l
+123.96 170.48 l
+123.59 170.48 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 125.95 170.7 m 125.95 170.03 l
+127.09 170.03 l
+127.09 170.7 l
+125.95 170.7 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 128.54 170.83 m 128.54 169.95 l
+130.07 169.95 l
+130.07 170.83 l
+128.54 170.83 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 131.36 170.78 m 131.36 169.99 l
+132.8 169.99 l
+132.8 170.78 l
+131.36 170.78 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 134.56 170.56 m 134.56 170.21 l
+135.17 170.21 l
+135.17 170.56 l
+134.56 170.56 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 126.41 168.84 m 126.41 168.71 l
+126.71 168.71 l
+126.71 168.84 l
+126.41 168.84 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 128.84 169.02 m 128.84 168.49 l
+129.76 168.49 l
+129.76 169.02 l
+128.84 169.02 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 131.21 169.28 m 131.21 168.27 l
+132.96 168.27 l
+132.96 169.28 l
+131.21 169.28 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 134.1 169.2 m 134.1 168.36 l
+135.55 168.36 l
+135.55 169.2 l
+134.1 169.2 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 137.22 168.98 m 137.22 168.54 l
+137.99 168.54 l
+137.99 168.98 l
+137.22 168.98 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 140.2 168.84 m 140.2 168.71 l
+140.51 168.71 l
+140.51 168.84 l
+140.2 168.84 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 129.14 167.26 m 129.14 167.08 l
+129.44 167.08 l
+129.44 167.26 l
+129.14 167.26 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 131.58 167.43 m 131.58 166.9 l
+132.5 166.9 l
+132.5 167.43 l
+131.58 167.43 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 134.1 167.61 m 134.1 166.73 l
+135.62 166.73 l
+135.62 167.61 l
+134.1 167.61 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 136.85 167.61 m 136.85 166.73 l
+138.36 166.73 l
+138.36 167.61 l
+136.85 167.61 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 140.12 167.34 m 140.12 166.99 l
+140.65 166.99 l
+140.65 167.34 l
+140.12 167.34 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 131.89 165.67 m 131.89 165.45 l
+132.28 165.45 l
+132.28 165.67 l
+131.89 165.67 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 134.33 165.89 m 134.33 165.27 l
+135.4 165.27 l
+135.4 165.89 l
+134.33 165.89 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 136.92 165.98 m 136.92 165.18 l
+138.29 165.18 l
+138.29 165.98 l
+136.92 165.98 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 139.81 165.89 m 139.81 165.23 l
+140.95 165.23 l
+140.95 165.89 l
+139.81 165.89 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 142.87 165.71 m 142.87 165.45 l
+143.4 165.45 l
+143.4 165.71 l
+142.87 165.71 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 134.63 164.08 m 134.63 163.86 l
+135.02 163.86 l
+135.02 164.08 l
+134.63 164.08 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 137.15 164.26 m 137.15 163.68 l
+138.06 163.68 l
+138.06 164.26 l
+137.15 164.26 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 139.74 164.35 m 139.74 163.6 l
+140.95 163.6 l
+140.95 164.35 l
+139.74 164.35 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 142.55 164.3 m 142.55 163.64 l
+143.7 163.64 l
+143.7 164.3 l
+142.55 164.3 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 145.76 164.04 m 145.76 163.9 l
+146.06 163.9 l
+146.06 164.04 l
+145.76 164.04 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 137.46 162.49 m 137.46 162.27 l
+137.76 162.27 l
+137.76 162.49 l
+137.46 162.49 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 139.96 162.63 m 139.96 162.14 l
+140.81 162.14 l
+140.81 162.63 l
+139.96 162.63 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 142.4 162.8 m 142.4 161.92 l
+143.84 161.92 l
+143.84 162.8 l
+142.4 162.8 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 145.45 162.63 m 145.45 162.1 l
+146.36 162.1 l
+146.36 162.63 l
+145.45 162.63 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 148.57 162.45 m 148.57 162.32 l
+148.73 162.32 l
+148.73 162.45 l
+148.57 162.45 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 140.28 160.82 m 140.28 160.73 l
+140.51 160.73 l
+140.51 160.82 l
+140.28 160.82 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 142.55 161.08 m 142.55 160.47 l
+143.7 160.47 l
+143.7 161.08 l
+142.55 161.08 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 145.14 161.22 m 145.14 160.33 l
+146.6 160.33 l
+146.6 161.22 l
+145.14 161.22 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 148.36 160.95 m 148.36 160.55 l
+149.03 160.55 l
+149.03 160.95 l
+148.36 160.95 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 151.32 160.82 m 151.32 160.73 l
+151.55 160.73 l
+151.55 160.82 l
+151.32 160.82 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 142.94 159.32 m 142.94 159.05 l
+143.32 159.05 l
+143.32 159.32 l
+142.94 159.32 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 145.38 159.45 m 145.38 158.88 l
+146.36 158.88 l
+146.36 159.45 l
+145.38 159.45 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 148.13 159.5 m 148.13 158.88 l
+149.2 158.88 l
+149.2 159.5 l
+148.13 159.5 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 151.16 159.32 m 151.16 159.05 l
+151.69 159.05 l
+151.69 159.32 l
+151.16 159.32 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 145.61 157.73 m 145.61 157.42 l
+146.21 157.42 l
+146.21 157.73 l
+145.61 157.73 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 148.27 157.78 m 148.27 157.33 l
+149.03 157.33 l
+149.03 157.78 l
+148.27 157.78 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 150.94 157.86 m 150.94 157.29 l
+151.93 157.29 l
+151.93 157.86 l
+150.94 157.86 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 153.98 157.69 m 153.98 157.47 l
+154.38 157.47 l
+154.38 157.69 l
+153.98 157.69 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 159.54 157.64 m 159.54 157.51 l
+159.86 157.51 l
+159.86 157.64 l
+159.54 157.64 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 148.36 156.14 m 148.36 155.79 l
+148.96 155.79 l
+148.96 156.14 l
+148.36 156.14 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 150.94 156.28 m 150.94 155.66 l
+151.93 155.66 l
+151.93 156.28 l
+150.94 156.28 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 153.84 156.19 m 153.84 155.75 l
+154.6 155.75 l
+154.6 156.19 l
+153.84 156.19 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 156.8 156.06 m 156.8 155.88 l
+157.12 155.88 l
+157.12 156.06 l
+156.8 156.06 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 159.54 156.1 m 159.54 155.88 l
+159.94 155.88 l
+159.94 156.1 l
+159.54 156.1 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 151.25 154.47 m 151.25 154.29 l
+151.62 154.29 l
+151.62 154.47 l
+151.25 154.47 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 153.84 154.56 m 153.84 154.16 l
+154.52 154.16 l
+154.52 154.56 l
+153.84 154.56 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 156.73 154.51 m 156.73 154.25 l
+157.19 154.25 l
+157.19 154.51 l
+156.73 154.51 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 159.54 154.47 m 159.54 154.29 l
+159.94 154.29 l
+159.94 154.47 l
+159.54 154.47 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 154.06 152.84 m 154.06 152.7 l
+154.38 152.7 l
+154.38 152.84 l
+154.06 152.84 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 156.73 152.88 m 156.73 152.66 l
+157.19 152.66 l
+157.19 152.88 l
+156.73 152.88 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 159.64 152.84 m 159.64 152.7 l
+159.86 152.7 l
+159.86 152.84 l
+159.64 152.84 l
+cl gsave
+0 0 0 0.088 0 B
+grestore
+n 67.579 216.25 m 68.646 214.26 l
+68.875 213.78 l
+70.018 211.88 l
+70.169 211.57 l
+71.465 209.5 l
+72.761 207.61 l
+74.056 205.84 l
+75.427 204.17 l
+76.723 202.58 l
+78.019 201.08 l
+79.313 199.71 l
+80.609 198.34 l
+81.905 197.11 l
+83.2 195.92 l
+84.496 194.77 l
+85.791 193.71 l
+87.087 192.66 l
+88.383 191.69 l
+89.677 190.72 l
+90.973 189.83 l
+92.344 188.95 l
+93.64 188.16 l
+94.935 187.36 l
+96.231 186.57 l
+97.527 185.82 l
+98.821 185.12 l
+100.12 184.41 l
+101.41 183.75 l
+102.71 183.09 l
+104 182.43 l
+105.3 181.81 l
+106.59 181.19 l
+107.89 180.57 l
+109.26 179.96 l
+110.56 179.38 l
+111.85 178.77 l
+113.15 178.19 l
+114.44 177.62 l
+115.74 177 l
+117.04 176.43 l
+118.33 175.86 l
+119.63 175.28 l
+120.92 174.66 l
+122.22 174.05 l
+123.5 173.47 l
+124.8 172.86 l
+126.18 172.2 l
+127.48 171.58 l
+128.77 170.92 l
+130.07 170.25 l
+131.36 169.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 67.579 216.25 m 68.646 214.26 l
+68.875 213.78 l
+70.018 211.88 l
+70.169 211.57 l
+71.465 209.5 l
+72.761 207.61 l
+74.056 205.84 l
+75.427 204.17 l
+76.723 202.58 l
+78.019 201.08 l
+79.313 199.71 l
+80.609 198.34 l
+81.905 197.11 l
+83.2 195.92 l
+84.496 194.77 l
+85.791 193.71 l
+87.087 192.66 l
+88.383 191.69 l
+89.677 190.72 l
+90.973 189.83 l
+92.344 188.95 l
+93.64 188.16 l
+94.935 187.36 l
+96.231 186.57 l
+97.527 185.82 l
+98.821 185.12 l
+100.12 184.41 l
+101.41 183.75 l
+102.71 183.09 l
+104 182.43 l
+105.3 181.81 l
+106.59 181.19 l
+107.89 180.57 l
+109.26 179.96 l
+110.56 179.38 l
+111.85 178.77 l
+113.15 178.19 l
+114.44 177.62 l
+115.74 177 l
+117.04 176.43 l
+118.33 175.86 l
+119.63 175.28 l
+120.92 174.66 l
+122.22 174.05 l
+123.5 173.47 l
+124.8 172.86 l
+126.18 172.2 l
+127.48 171.58 l
+128.77 170.92 l
+130.07 170.25 l
+131.36 169.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 67.579 216.25 m 68.646 214.26 l
+68.875 213.78 l
+70.018 211.88 l
+70.169 211.57 l
+71.465 209.5 l
+72.761 207.61 l
+74.056 205.84 l
+75.427 204.17 l
+76.723 202.58 l
+78.019 201.08 l
+79.313 199.71 l
+80.609 198.34 l
+81.905 197.11 l
+83.2 195.92 l
+84.496 194.77 l
+85.791 193.71 l
+87.087 192.66 l
+88.383 191.69 l
+89.677 190.72 l
+90.973 189.83 l
+92.344 188.95 l
+93.64 188.16 l
+94.935 187.36 l
+96.231 186.57 l
+97.527 185.82 l
+98.821 185.12 l
+100.12 184.41 l
+101.41 183.75 l
+102.71 183.09 l
+104 182.43 l
+105.3 181.81 l
+106.59 181.19 l
+107.89 180.57 l
+109.26 179.96 l
+110.56 179.38 l
+111.85 178.77 l
+113.15 178.19 l
+114.44 177.62 l
+115.74 177 l
+117.04 176.43 l
+118.33 175.86 l
+119.63 175.28 l
+120.92 174.66 l
+122.22 174.05 l
+123.5 173.47 l
+124.8 172.86 l
+126.18 172.2 l
+127.48 171.58 l
+128.77 170.92 l
+130.07 170.25 l
+131.36 169.59 l
+gsave
+0 0 0 0.088 0 B
+grestore
+n 58.817 217.57 m 58.817 147.39 l
+172.97 147.39 l
+172.97 217.57 l
+58.817 217.57 l
+cl gsave
+0 0 0 0.212 0 B
+grestore
+n 130.76 165.11 m 134.05 163.18 137.5 161.23 140.64 159.34 c
+143.78 157.44 146.63 155.6 149.63 153.72 c
+gsave
+0 0 0 0.176 0 B
+grestore
+n 131.44 169.47 m 136.15 166.82 141.43 163.88 145.58 161.52 c
+149.74 159.16 152.77 157.36 156.36 155.28 c
+gsave
+0 0 0 0.176 0 B
+grestore
+n savemat currentmatrix pop [1 0 0 1 85.654 82.587] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 85.654 82.587] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Symbol02800280) gf
+0.00 0.00 0.00 rgb 
+() s(Symbol02800280) gf
+0 0 m 0 ss 
+(a) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 88.759 82.587] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+( : 20) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 98.355 82.587] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Symbol02800280) gf
+0.00 0.00 0.00 rgb 
+() s(Symbol02800280) gf
+0 0 m 0 ss 
+(\260) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 100.33 82.587] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+( - 25) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 110.226 82.587] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Symbol02800280) gf
+0.00 0.00 0.00 rgb 
+() s(Symbol02800280) gf
+0 0 m 0 ss 
+(\260) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 129.891 106.658] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 129.891 106.658] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Symbol02800280) gf
+0.00 0.00 0.00 rgb 
+() s(Symbol02800280) gf
+0 0 m 0 ss 
+(a) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 132.995 106.658] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+( : 5) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 139.857 106.658] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Symbol02800280) gf
+0.00 0.00 0.00 rgb 
+() s(Symbol02800280) gf
+0 0 m 0 ss 
+(\260) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 141.832 106.658] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+( - 10) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 151.71 106.658] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Symbol02800280) gf
+0.00 0.00 0.00 rgb 
+() s(Symbol02800280) gf
+0 0 m 0 ss 
+(\260) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 68.8338 168.02] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(B : 0.45 - 0.55 T) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 122.266 187.541] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica02800280) gf
+0.00 0.00 0.00 rgb 
+(B : 0.75 - 0.85 T) s
+savemat setmatrix
+n 143.61 80.603 m 140.07 81.829 l
+140.04 79.457 l
+143.61 80.603 l
+cl 0 0 0 F
+n 115.47 80.923 m 140.06 80.643 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 156.09 88.279 m 154.8 91.803 l
+152.95 90.327 l
+156.09 88.279 l
+cl 0 0 0 F
+n 146.17 100.75 m 153.87 91.065 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n 149.69 164.72 m 149.71 168.47 l
+147.46 167.74 l
+149.69 164.72 l
+cl 0 0 0 F
+n 144.57 180.4 m 148.59 168.11 l
+gsave
+0 0 0 0.352 0 B
+grestore
+n savemat currentmatrix pop [1 0 0 1 66.0918 77.4219] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica03200320) gf
+0.00 0.00 0.00 rgb 
+(\(a\)) s
+savemat setmatrix
+n savemat currentmatrix pop [1 0 0 1 65.4624 156.732] concat
+25.4 1440 div 1.000000 mul dup scale 0 0 m
+/tab 283.00 1000.0 mul cvi def
+
+0 0 m 0 ss (Helvetica03200320) gf
+0.00 0.00 0.00 rgb 
+(\(b\)) s
+savemat setmatrix
+n 137.22 158.31 m
+133.96 160.17 l
+133.5 157.84 l
+cl
+0 0 0 F
+n 105.75 164.6 m
+133.73 159 l
+gsave
+0 0 0 0.3528 0 B
+grestore
+userdict /#copies 1 put
+grestore
+
+%%Trailer
+%%DocumentNeededResources: font Times-Roman Helvetica Symbol
+%%DocumentSuppliedResources: 
+end d_sv_obj restore
+

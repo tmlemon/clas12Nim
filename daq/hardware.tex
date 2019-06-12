@@ -1,8 +1,71 @@
-\section{Hardware Components and Constructions}
+\section{Hardware Components and Constructions}(Chris)
 
-.. generic description and diagram .. (Chris)
 
-\subsection{VXS/VME crates and CPU units (Abbott)}
+New instrumentation modules have been designed by Jefferson Lab that take advantage of the higher performance and elegant back-plane connectivity of the VITA 41 standard or "VXS" defined as VME with serial extensions. 
+VME with serial extensions or VXS was selected as the 12GeV data acquisition back-plane foundation for the front end detector readout and trigger hardware interface because the standard offered a method to easily synchronize and pass signals between each of the payload slots to a central switch fabric slot. At JLAB we use a dual star back-plane configuration and use one switch slot as the Trigger Processing and one switch slot to distribute the essential timing and synchronization signals to each of the front end boards.
+
+The Trigger Processor switch slot board manages the high speed Gigabit signaling from each of the payload slots, where eight differential pairs connect from the payload slots to the switch slots. The VXS crates are manufactured by WIENER and the back-plane can support up to 8Gb/s. The payload boards use Xilinx Virtex V technology, and these FPGA have up to 6.25Gbps transceivers. The payload boards are designed to run these high speed Gigabit transceivers at a maximum of 5Gpbs to transfer trigger data to the trigger processor module. 
+
+The design challenges for reliable and successful transmission of gigabit serial data over the VXS backplane requires the investment of high speed circuit board layout and routing tools.  The FPGA selection requirements include at least four full duplex Gigabit Transceivers, user I/O pin count >500, and fast integrated block memory with multi-rate FIFO logic. We use circuit board routing simulation tools such as Mentor Graphics HyperLynx [8] which are invaluable for critical simulation and verification of circuit board signal integrity for the gigabit transmission paths before the manufacturing process.  The FPGA devices that we use are capable of 6.25Gb/s serial transfer, and we have designed our circuit boards with signal integrity techniques using standard FR4 circuit board material to achieve >2.5Gb/s which meets the data transfer bandwidth requirements. 
+Another significant investment required for the hardware verification of the gigabit transceivers was a digital signal analyzer with 8GHz bandwidth to measure and record the backplane and fibre optic gigabit transceiver performance and to perform jitter analysis on the critical system clock and synchronization signals with at least 1ps resolution.  We used the Tektronix jitter analysis software which is a critical tool for the verification of our system clock, and for measurements of the phase controlled jitter attenuated clock provided by the Signal Distribution (SD) switch card in every crate.
+The investment of firmware development tools from FPGA industry leaders, Xilinx and Altera were also taken into consideration for the upgrade path to VXS.
+We use the Xilinx Aurora protocol for serial transmission which is robust, simple and is included with the FPGA development tools.  
+
+Fiber Optic Trigger distribution system:
+
+As shown in the Fig.~\ref{fig:hardwarediagram}, the digital sum value from each VTP in the front-end crate, and the distribution of the global clock, synchronization and trigger commands from the global trigger hardware, use a separate fibre optic cable.  The crate sum fibre link is shown in orange, and the critical timing signals distributed to each front-end crate are blue.  Each fibre optic link makes use of the Avago POP4 fibre optic transceivers and parallel OM3 rated glass fibre cable with MTP connections.  These fibre optic transceivers operate at 3.125 Gb/s for an aggregate bandwidth of 10 Gb/s which is ample enough for the summing information that is sent forward to the global trigger processing hardware.  The fibre link used for the distribution of the global clock, critical timing signals and trigger commands run at 1.25 Gb/s.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/hardware_diagram.png}
+	\caption{Hardware diagram with fiber links scheme}
+	\label{fig:hardwarediagram}
+\end{figure}
+
+
+
+
+\subsection{VXS/VME crates} (Chris)
+
+Previous 6GeV CLAS experiments used the VXI standard which was a new extension of the original VME standard. VXI offered a method to distribute clock and other timing signals with low skews via the back-plane. 9U circuit boards were used that offered a large number of front panel input/output connections to handle the six sectors of the CLAS detectors that contributed to the level 1 trigger. Detector signals were acquired with FastBus ADC and TDC or in some instances, from VME or even CAMAC modules. 
+
+During the initial design phase of the 12GeV experiments the requirements of a 200KHz sustained trigger rate demanded that the front end modules adopt a new method of handling precision timing and synchronization over dozens of front end crates. The latest technology at the 12GeV inception included FPGA devices with high speed serial transceivers built into the silicon fabric. A new VME extension was also emerging at the same time, which was labeled VXS, and defined a new high speed Gigabit connector with links between the VME slots and eight serial links to common switch slots. The VXS standard was declared as VITA 41 and several new standards have emerged in the past decade that expand the use of Gigabit serial transmission via a crate back-plane. For the 12GeV experiment era, we now have thousands of custom VXS payload and switch slot modules and hundreds of VXS front end crates. Complex experiments and high channel count detectors make use of these custom VXS boards  designs for all four experimental areas at Jefferson Lab.
+
+\subsection{VME Crate Controllers} (Abbott)
+
+The physics high speed data acquistion and trigger systems for 12GeV experiments have standardized on the VME64X and VXS
+backplane and crate enclosure form-factor. In addition to the custom electronics that reside in these crates there must also be a single "controller" for each crate. When we consider all 4 experimental Halls, this will likely exceed ~100 controllers for just the production experimental program alone.
+
+There are many commercial off the shelf options for this type of controller, and in general our requirements do not extend beyond what is currently commercially available. We do have some specific requirements that will narrow the viable choices.
+
+We have purchased VME controllers from several vendors for development purposes and have a significant investment in custom software that runs on all of the existing boards. We have also benchmarked our code and have come to expect certain "minimum" requirements for performance from the chosen architecture within a specified Operating System - Linux.
+
+We would also like to expect a certain minimum timeframe in which these controllers would be supported by the vendor wrt to avilable parts, repair and software updates (in the 10 year timeframe).
+
+General hardware requirements:
+
+\begin{itemize}
+	\item Single slot VME form-factor - No required rear transition module.
+	\item Intel Core i7 Dual or Quad core Embedded processer 2GHz (or greater).
+	\item Hyperthreading and 64 bit Arch Support
+	\item 4 GBytes DDR3 (1066MHz) ECC SDRAM (or greater)
+	\item Front panel Gigabit ethernet and Serial port console
+	\item 1 x4 PCI Express XMC expansion slot (or greater)
+	\item VME320 Interface using the Tundra Tsi148 chip
+	\item supporting all VME transfer modes including 2eSST
+	\item VXS optional: interface supporting both VITA 41.3 (Gig E) and 41.4 (PCIe) standards.
+\end{itemize}
+
+After several different boards were evaluated we purchased XVR16 Intel 4th Generation 4-core i7 Based Rugged VME Single Board Computers from GE (Fig.~\ref{fig:XVR16diagram}). They were installed in CLAS12 70+ crates and demonstrated excelent performance and reliability. Most of controllers were sending data over built-in 1GBit link, while for few of them 10GBit daughter board was installed to increase bandwidth. Maximum data rate from single crate in CLAS12 never exceeded 130MB/s, and with that rate 4-core controllers were able to handle vme data polling, data processing and sending data over network without any issues. 
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/XVR16_diagram.png}
+	\caption{Block diagram of the XVR16 VME crate controller}
+	\label{fig:XVR16diagram}
+\end{figure}
+
+
 
 \subsection{Trigger Disctribution system modules (TS, TD, TI)(William)}
 	
@@ -67,28 +130,30 @@ After the SYNC latency compensation, all the TI boards receive the SYNC at the s
 
 C.	Trigger distribution
 
-The trigger words, which include readout trigger signals and event information (event type, trigger timing etc.) are generated and serialized on the TS.  The serialized trigger word is fanned out by the SD board and TD board, and deserialized by the TI board.  The 16-bit trigger words are summarized in table 1.  
+The trigger words, which include readout trigger signals and event information (event type, trigger timing etc.) are generated and serialized on the TS.  The serialized trigger word is fanned out by the SD board and TD board, and deserialized by the TI board.  The 16-bit trigger words are summarized in Tab.~\ref{tab:trigger_word_definition}.  
 
-
-
-\begin{center}
-	Trigger word definition\\
-	\begin{tabular}{| l | l |}
+\begin{table}
+\begin{adjustbox}{width=\columnwidth,center}
+	\begin{tabular}{| l | l | l | l |}
 		\hline \hline
-		Bit 15:12		& 	Bit11:10	Bit 9-0	Comment		\\
+		Bit 15:12		& 	Bit 11:10 &	Bit 9-0	 & Comment		\\
 		\hline
-	1001	& Quadrant timing	Event type	GTP major trigger \\
-	1010	& Quadrant timing	Event type	Ext major trigger \\
-	1011	& Four TS partitions’ event types 	TS partitioning (4, 3, 2, 1) \\
-	0110	& Quadrant timing	Trigger source 	TImaster legacy Trigger \\
-		{\bf Event type	(TS) VME trigger} &     \\
-	0101	& Trigger command/Control	VME command \\
-	0100	& TS timer (TS time bit(13:2))	TI Sync check \\
-	0111	& Trigger content	Additional trigger info \\
+	1001	& Quadrant timing	& Event type	 & GTP major trigger \\
+	1010	& Quadrant timing	& Event type	 & Ext major trigger \\
+	
+	1011	& \multicolumn{2}{c}{Four TS partitions’ event types}    & TS partitioning (4, 3, 2, 1) \\
+
+	\multirow{2}{*}{0110}	& \multirow{2}{*}{Quadrant timing}	& Trigger source & TImaster legacy Trigger \\
+		    &                   & Event type	 & (TS) VME trigger     \\
+	0101	& Trigger command/Control	& VME command \\
+	0100	& TS timer (TS time bit(13:2))	& TI Sync check \\
+	0111	& Trigger content	& Additional trigger info \\
 		\hline \hline
 	\end{tabular}
-\end{center}
-
+\end{adjustbox}
+\caption{Trigger word definition}
+\label{tab:trigger_word_definition}
+\end{table}
 
 Both the fibre latency and trigger word serializer/ deserializer are compensated so that all the TI boards send the readout trigger at the same time to the frontend data acquisition electronics.  The SYNC is used in conjunction with a synchronous FIFO to enforce a fixed latency on the trigger distribution. Fig.~\ref{fig:TIsync} shows the diagram of the compensated trigger distribution.
 

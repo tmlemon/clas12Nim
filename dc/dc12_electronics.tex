@@ -1,0 +1,103 @@
+\section{Drift Chamber Electronics}
+After the drift chambers were built and the wires strung, we mounted
+on-chamber printed circuit boards onto the chamber endplates.
+The signal connections to the wires are made through printed-circuit 
+boards mounted along one side of each chamber, called Signal Translator 
+Boards (STBs).  These boards are responsible for signal routing and 
+pre-amplification.  
+
+On the opposite side of each sector, another set of 
+circuit boards called the High Voltage Translator Boards (HVTBs) is used 
+to make the high-voltage connections to the wires (see the subsection
+on gas, low voltage and high voltage for more details on the high
+voltage system).
+
+The drift chamber signal amplification and readout consists of the 
+following subsystems:
+\begin{itemize}
+\item  chamber-mounted printed circuit boards with a single in-line package
+(SIP) amplifier for each signal wire; these are the STB's
+\item  chamber printed circuit boards which distribute high voltage
+to all of the wires; these are the HVTB's
+\item a single 17-pair twisted-pair readout cable for each group of 16
+SIP's, and
+\item a 96-channel drift chamber readout board (DCRB) for each group
+of 6 cables (96 signal wires)
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular} {||c|c||} \hline \hline
+{\bf Component}           & {\bf Number} \\ \hline
+STB boards (6 types)      & 252 total \\ \hline
+HVTB boards (6 types)     & 252 total \\ \hline
+low-voltage cables        & 252 total  \\ \hline
+high-voltage cables       & 252 total  \\ \hline
+signal cables (17-pair)   & 1512 \\ \hline
+total signals             & 24192 \\ \hline \hline
+\end{tabular}
+\caption{\small{Electronic channel counts for the readout, high voltage,
+and low voltage.}}
+\label{electronic-channels}
+\end{center}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsubsection{On-Chamber PCBs and Cables}
+
+The circuit boards that interface the sense 
+wires to the pre-amplifiers (STBs) were  
+designed for a 96-channel format.  This format allows for only seven 
+circuit boards for each superlayer.   Fig.~\ref{r1stb} shows the traces 
+routed from the signal pick-up at the plated-through holes to the signal 
+inputs of the pre-amplifier.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{10.0cm}
+\special{psfile=r1stb.ps hscale=80 vscale=80 hoffset=30 voffset=-40}
+\caption{\small{Trace routing shown on one of the Region~1 STBs being
+designed.}}
+\label{r1stb}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The heart of the STB board is an individually packaged
+single in-line package (SIP) preamplifer which was modified
+from the design of the previous CLAS detectors and 
+included an epoxy resin encapsulation.  
+The encapsulation of the components was included to prevent 
+component corrosion in a somewhat humid environment (relative
+humidities as high as 60\%).
+These ``CP01'' pre-amplifiers provide the gain, dynamic range, rise time, low 
+noise, and low power needed for the performance requirements. 
+
+Each SIP operates at 6V and draws about ??? amps.  For safety 
+
+Each group of 16 pre-amplifier signals were routed to a 16-pin connector.
+Signals were routed from the STB's to the drift chamber readout boards (DCRB)
+over individual cables consisting of 16 twisted pairs.  We chose
+twisted-pair readout because of its immunity to electronic noise.
+The cables are round-jacketed with a 
+0.025-in pitch so that the overall cable dimension is smaller than the 
+standard 17-pair cable.  
+
+\subsection{Off-Chamber Amplification, Time Digitization and Readout}
+
+Our on-chamber 
+pre-amplifiers send signals to the readout boards (DCRB) 
+which provide another level of amplification, 
+signal discrimination adjustable threshold setting, time digitization
+and readout. 
+
+These DCRB's are based on FPGA technology, and in addition to
+their primary function of amplification, discrimination, digitization
+and readout, they are used in a simple ``cluster-finding'' algorithm
+to find track segment candidates with a latency of only hundreds
+of nanoseconds.
+
+
+More needed on DCRB's ...

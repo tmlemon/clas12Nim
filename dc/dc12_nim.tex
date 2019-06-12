@@ -1,0 +1,92 @@
+\documentclass{elsart}
+\usepackage[dvips]{color,graphics}
+\usepackage[pdftex]{graphicx}
+\usepackage{lineno}
+\linenumbers
+%
+% macro definitions
+%
+%\setcounter{bottomnumber} {1}
+%
+%\pagenumbering{arabic}
+%
+\begin{document}
+
+% -------------------------------------------------
+%  title page
+% -------------------------------------------------
+\begin{frontmatter}
+  
+\title{The CLAS12 Drift Chamber System}
+
+\author{M.D. Mestayer$^a$ et al.}
+
+% -------------------------------------------------
+%abstract
+% -------------------------------------------------
+
+\input{dc12_abstract}
+
+\end{frontmatter}
+
+\input{dc12_overview}
+
+% -------------------------------------------------
+% physics goals -> tech. specs. -> conceptual design
+% -------------------------------------------------
+
+\input{dc12_design}
+
+% -------------------------------------------------
+% design: ``box'' design, feedthoughs and pins, wire choice, gas choice, mechanical connections
+% -------------------------------------------------
+
+\input{dc12_construction}
+
+% -------------------------------------------------
+% construction: box assembly, stringing, board installation & cabling, gas manifolds
+% -------------------------------------------------
+
+\input{dc12_electronics}
+
+% -------------------------------------------------
+% electronics
+% -------------------------------------------------
+
+\input{dc12_gas_lv_hv}
+
+% -------------------------------------------------
+% gas, lv, hv systems
+% -------------------------------------------------
+
+\input{dc12_commissioning}
+
+% -------------------------------------------------
+% commissioning: ``burn-in and pre-testing'', installation and survey, lv, hv & gas hookup, signal connection
+% turn-on, early failures and repair
+% -------------------------------------------------
+
+\input{dc12_operations}
+
+% -------------------------------------------------
+%  operations and monitoring
+% -------------------------------------------------
+
+\input{dc12_track-cal}
+
+% -------------------------------------------------
+%  tracking, calibration and simulation
+% -------------------------------------------------
+
+\input{dc12_performance}
+
+% -------------------------------------------------
+%  track resolution and efficiency
+% -------------------------------------------------
+
+\input{dc12_references}
+
+% -------------------------------------------------
+
+\end{document}
+

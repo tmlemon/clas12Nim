@@ -2,9 +2,9 @@
 
 \subsection{Geometry}
 
-The CND geometry is implemented through the native gemc geometry API.
-The paddles are Geant4 generic trapezoids, see \F{cndGeometry}. The scintillator junctions are G4Polycons.
-The paddles are assigned the scintillator material and associated with the cnd hit process routine.
+The CND geometry is implemented through the native GEMC geometry API.
+The paddles are Geant4 generic trapezoids, see \F{cndGeometry}. The u-turn light guides are G4Polycons.
+The paddles are assigned the scintillator material and associated with the CND hit process routine.
 
 \begin{figure}
 	\centering
@@ -16,8 +16,8 @@ The paddles are assigned the scintillator material and associated with the cnd h
 \end{figure}
 
 
-\subsubsection{Geometry Git Location}
-The github location of the gemc perl api script is \url{https://github.com/gemc/detectors/tree/master/clas12/cnd}.
+\subsubsection{Geometry Location on GitHub}
+The Github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/cnd}.
 
 
 \subsection{Digitization}
@@ -25,10 +25,14 @@ The github location of the gemc perl api script is \url{https://github.com/gemc/
 \subsubsection{ADC}
 
 The energy deposited is reduced based on the position on the paddle using the calibration attenuation length. Two signals are then propagated, one directly
-to the PMT and one through the scintillator junction. A $30\%$ factor takes into account losses at junctions.
+to the PMT and one through the scintillator junction.
+Layer-dependent factors, applied to the two  signals, account for the light loss in the u-turn and in the neighbouring paddle.
+These factors were determined during cosmics-ray tests.
 
-The corrected energy is converted to the theoretical number of photos $N_{th}$ using the constant $1210 \gamma / MeV $. A poissonian is used to
-calculate the actual number of photons $N_{actual}$ and the resulting ``smeared`` energy is the converted to adc using the FADC conversion factor.
+The corrected energy is converted to the theoretical number of photons $N_{th}$ using the constant 1210 $\gamma$ / MeV which accounts for light
+propagation in the 1.4 m long light guides, for losses at the junctions and for the quantum efficiency of the photomultiplier.
+A Poissonian is used to
+calculate the actual number of photons $N_{actual}$ and the resulting ``smeared`` energy is the converted to ADC using the FADC conversion factor.
 
 \subsubsection{TDC}
 
@@ -36,14 +40,20 @@ The absolute hit time is corrected by:
 
 \begin{itemize}
 	\item the effective velocity (from CCDB)
-	\item a left/rigth time offset factor (from CCDB)
+	\item a left/right time offset factor (from CCDB)
 	\item the Birks Attenuation factor
+	\item the position and corresponding paddle length of the indirect hit
 \end{itemize}
 
-The time is then smeared by a $\sigma$ resolution read from CCDB using a gaussian function and then digitized using a TDC conversion factor.
+The time is then smeared by a $\sigma$ resolution read from CCDB using a Gaussian function and then digitized using a TDC conversion factor.
+The Birks factor, reducing the deposited
+energy depending on the particle type, enters in the timing calculation as
+follows: the direct and indirect times are smeared with a gaussian
+function having a width directly proportional to an empirically determined
+constant, and inversely proportional to the square root of the measured
+light (which is, in turn, proportional to the attenuated energy).
 
-
-\subsubsection{Summary of CCDB Table used}
+\subsubsection{Summary of CCDB Table Used}
 \begin{itemize}
 	\item /calibration/cnd/Status\_LR
 	\item /calibration/cnd/TDC\_conv
@@ -58,7 +68,7 @@ The time is then smeared by a $\sigma$ resolution read from CCDB using a gaussia
 
 
 \subsection{Digitized Bank}
-The digitized output bank has $ID=300$, and the variables are summarized in Table \ref{tab:cndBank}
+The digitized output bank has $ID=300$, and the variables are summarized in Table \ref{tab:cndBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -77,12 +87,12 @@ The digitized output bank has $ID=300$, and the variables are summarized in Tabl
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{The digitized CND bank}\label{tab:cndBank}
+	\caption{The digitized CND bank.}\label{tab:cndBank}
 \end{table}
 
 
 \subsubsection{Time Window}
-The timewindow of the CND is set to 5 ns.
+The time window  of the CND is set to 5 ns.
 
 
 \subsubsection{Process Routine Git Repository Location}

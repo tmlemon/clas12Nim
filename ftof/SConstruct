@@ -1,5 +1,6 @@
 import os
 
-env = Environment(ENV=os.environ)
-env['ENV']['TEXINPUTS']='..:'
-pdf = env.PDF(target  = 'ftof.pdf',  source = 'ftof.tex')
+env = Environment(PDFLATEXFLAGS = "-halt-on-error")  # stops log where error occurs
+env['ENV']['max_print_line']='1048576'               # log output does not break single lines into multiples
+
+env.Command('ftof-nim.pdf', 'ftof-nim.tex', "latex $SOURCE > /dev/null; latex $SOURCE > /dev/null; latex $SOURCE ; dvipdfm ftof-nim.dvi")
