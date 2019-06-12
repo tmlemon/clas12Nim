@@ -2,14 +2,14 @@
 
 \subsection{Module testing}
 
-Detailed quality assurance procedures were developed for testing the modules during assembly at Fermilab, reception tests at Jefferson Lab, tracker integration, and commissioning. At each stage the results were compared with previous measurements. Module performance was tested by calibration procedures. No significant correlated noise has been observed between the channels of the same chip, chips of the same module or closely placed modules. The measured average channel noise (see Fig.~\ref{fig:enc-chip}) is comparable with the estimated contributions of different noise sources. The gain dispersion measured on the channels is within the specs of the readout chip (see Fig.~\ref{fig:gain-chip}).
-
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=0.8\columnwidth,keepaspectratio]{enc-chip.png}
 \caption{Typical input noise on a single chip of an SVT module.}
 \label{fig:enc-chip}
 \end{figure} 
+
+Detailed quality assurance procedures were developed for testing the modules during assembly at Fermilab, reception tests at Jefferson Lab, tracker integration, and commissioning. At each stage the results were compared with previous measurements. Module performance was tested by calibration procedures. No significant correlated noise has been observed between the channels of the same chip, chips of the same module or closely placed modules. The measured average channel noise (see Fig.~\ref{fig:enc-chip}) is comparable with the estimated contributions of different noise sources. The gain dispersion measured on the channels is within the specs of the readout chip (see Fig.~\ref{fig:gain-chip}).
 
 \begin{figure}[hbt] 
 \centering 
@@ -29,7 +29,7 @@ Longer silicon strips have higher capacitance and thus a higher input noise (see
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=0.8\columnwidth,keepaspectratio]{occ_thr.png}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{occ_thr.png}
 \caption{Channel noise occupancy vs. DAC hit/no-hit threshold (in DAC bins, one DAC bin corresponds to 3.5~mV).}
 \label{fig:noiseocc}
 \end{figure}
@@ -116,7 +116,7 @@ Temperature variation of the SVT modules measured by sensors mounted on the hybr
 
 Cosmic ray tests of the SVT have been used to test track reconstruction routines for the SVT, as well as to establish correct readout, good noise performance, and full response for the entire detector. Cosmic data during detector integration in the clean room were taken in the standalone mode using the self triggering feature of the FSSR2 readout chip in coincidence logic. VSCM boards reading the SVT modules located at the top and bottom halves of the horizontally placed barrel provided the trigger signals via signal distribution of two VXS crates. The coincidence of  signals from the trigger interface boards of both crates was taken as the cosmic trigger. 
 
-After installation of the SVT in the hall, a trigger from CTOF detector was used to collect cosmic data for the CLAS12 central detector. A cosmic muon reconstructed in the central detector is shown in Fig.~\ref{fig:cd-cosmic-event}. Yellow circles represent crosses in the SVT and green circles correspond to the clusters in the Micromegas detector. A hit map for the SVT channels during the cosmic run is shown in Fig.~\ref{fig:cosmic-hitmap-svt}. The response of the channels was uniform, and performance results obtained during tracker integration were confirmed.
+After installation of the SVT in the hall, a trigger from CTOF detector was used to collect cosmic data for the CLAS12 central detector. A cosmic muon reconstructed in the central detector is shown in Fig.~\ref{fig:cd-cosmic-event}. SVT is the inner detector, surrounded by the Barrel Micromegas Tracker (BMT), the Central Time-Of-Flight system (CTOF), and the Central Neutron Detector (CND). Yellow circles represent crosses in the SVT and green circles correspond to the clusters in the Micromegas detector. A hit map for the SVT channels during the cosmic run is shown in Fig.~\ref{fig:cosmic-hitmap-svt}. The response of the channels was uniform, and performance results obtained during tracker integration were confirmed.
 The angular distribution of the cosmic muons reconstructed in the SVT is shown in Fig.~\ref{fig:track-phi-theta}.
 
 \begin{figure}[hbt] 

@@ -6,7 +6,7 @@ The SVT comprises 21504 channels of wire-bonded triplets of p-on-n AC-coupled si
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=0.8\columnwidth,keepaspectratio]{barrel-faradaycage.png}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{barrel-faradaycage.png}
 \caption{Layout of the barrel and the Faraday Cage. Copper supports are shown in yellow.  Supports are bolted directly to the cold plate. The silicon sensors are shown in green.}
 \label{fig:barrel-faradaycage}
 \end{figure}
@@ -35,7 +35,7 @@ The cold plate and upstream ring are attached to the mounting tube. The mounting
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{module.pdf}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{module.png}
 \caption{Layout of an SVT module.}
 \label{fig:module}
 \end{figure}
@@ -177,14 +177,14 @@ The downstream ring is supported by four aluminum region assembly bars (see Fig.
 
 The other holes were used for surveying the module location and for handling the module during assembly. There are three fiducial points on each module, two on the upstream copper insert, and one on the downstream PEEK insert. Upon completion the assembly of each region, the locations of the fiducials on the downstream and upstream rings were measured with respect to the coordinate axes with a precision of $\sim$20~$\mu$m using a FaroArm Quantum CMM. The shifts of survey positions from the ideal geometry were taken into account by the alignment software. Upon completion of the assembly of all modules, the detector was moved to a horizontal position and the relative positions between the downstream rings of all three regions were measured and recorded.
 %(see Fig.~\ref{fig:survey}).
-%\begin{figure}[hbt] 
-%\centering 
-%\includegraphics[width=0.3\columnwidth,keepaspectratio]{barrel-assembled.png}
-%\caption{Assembled barrel}
-%\label{fig:barrel-assembled}
-%\end{figure}
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=0.5\columnwidth,keepaspectratio]{barrel-assembled.png}
+\caption{Assembled barrel}
+\label{fig:barrel-assembled}
+\end{figure}
 
-After placement of each module on the support, all the modules on the support were re-tested to find and resolve problems with cables routed on the outside of the cylinder. Once assembly was completed, a light-tight Faraday cage encloses the SVT, dry air was flushed through it, and the modules were cooled. 
+After placement of each module on the support, all the modules on the support were re-tested to find and resolve problems with cables routed on the outside of the cylinder. Once assembly was completed (see Fig.~\ref{fig:barrel-assembled}), a light-tight Faraday cage encloses the SVT, dry air was flushed through it, and the modules were cooled. 
 
 %\begin{wrapfigure}{l}{0.5\columnwidth}
 %\includegraphics[width=1.0\columnwidth]{survey.png}
@@ -194,6 +194,12 @@ After placement of each module on the support, all the modules on the support we
 %
 %(Fig.~\ref{fig:barrel-assembled}) 
 
+After assembling each region the functionality of the integrated modules was checked. When barrel assembly was complete, it was rotated to a horizontal position using a special transition fixture (see Fig.~\ref{fig:rotation-fixture}). 
+
+The SVT support tube was mounted on the integration cart (see Fig.~\ref{fig:integration-cart}) using a crane and a mounting fixture placed on the parallel rails. The adjustment links on the cart allow for the SVT to be aligned with the support tube. The survey of the fiducials on the support structure was performed and alignment of the barrel was done by shimming the support tube and adjusting the mounting fixture links. 
+
+The mounting fixture with attached barrel was moved to one side of the integration cart and locked into place. At this time, all cables and cooling lines were connected to the SVT (see Fig.~\ref{fig:svt-assembled}). The cable bundles were secured to the support tube using the nylon eyebolts on the tube and connected to the readout electronics crates. 
+
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{rotation-fixture.png}
@@ -201,9 +207,7 @@ After placement of each module on the support, all the modules on the support we
 \label{fig:rotation-fixture}
 \end{figure}
 
-After assembling each region the functionality of the integrated modules was checked. When barrel assembly was complete, it was rotated to a horizontal position using a special transition fixture (see Fig.~\ref{fig:rotation-fixture}). 
-
-The SVT support tube was mounted on the integration cart (see Fig.~\ref{fig:integration-cart}) using a crane and a mounting fixture placed on the parallel rails. The adjustment links on the cart allow for the SVT to be aligned with the support tube. The survey of the fiducials on the support structure was performed and alignment of the barrel was done by shimming the support tube and adjusting the mounting fixture links. 
+The detector was tested and commissioned with cosmic rays. The integration cart was enclosed in a protective cover, the wheels were placed in the suspension pods, and the cart was transported to the experimental hall on a truck. In the hall the SVT was craned off the integration cart and mounted on the service cart. The cart hosts all detector services and is movable along the beam axis for easy maintenance.
 
 \begin{figure}[hbt] 
 \centering 
@@ -212,7 +216,7 @@ The SVT support tube was mounted on the integration cart (see Fig.~\ref{fig:inte
 \label{fig:integration-cart}
 \end{figure}
 
-The mounting fixture with attached barrel was moved to one side of the integration cart and locked into place. At this time, all cables and cooling lines were connected to the SVT (see Fig.~\ref{fig:svt-assembled}). The cable bundles were secured to the support tube using the nylon eyebolts on the tube and connected to the readout electronics crates. 
+After installation in Hall B, the SVT was tested with the services that are used to operate the SVT during data-taking. A series of runs was performed with and without the beam and with and without the magnetic field, four configurations in all. For each of these configurations, the tests for the module performance were repeated. Tests at later stages were aimed at finding problems with data acquisition and services, such as with the power supplies and cables, in order to ensure that no common mode noise was added to the system due to improper grounding and shielding. 
 
 \begin{figure}[hbt] 
 \centering 
@@ -220,7 +224,3 @@ The mounting fixture with attached barrel was moved to one side of the integrati
 \caption{SVT barrel after integration.}
 \label{fig:svt-assembled}
 \end{figure}
-
-The detector was tested and commissioned with cosmic rays. The integration cart was enclosed in a protective cover, the wheels were placed in the suspension pods, and the cart was transported to the experimental hall on a truck. In the hall the SVT was craned off the integration cart and mounted on the service cart. The cart hosts all detector services and is movable along the beam axis for easy maintenance.
-
-After installation in Hall B, the SVT was tested with the services that are used to operate the SVT during data-taking. A series of runs was performed with and without the beam and with and without the magnetic field, four configurations in all. For each of these configurations, the tests for the module performance were repeated. Tests at later stages were aimed at finding problems with data acquisition and services, such as with the power supplies and cables, in order to ensure that no common mode noise was added to the system due to improper grounding and shielding. 
