@@ -7,10 +7,7 @@ The chambers were designed with individual holes and holders for
 each wire, i.e. a ``strung'' rather than a ``wound'' chamber.  Our 
 inspection and assembly procedures were designed to produce devices with 
 wires placed and known by external survey to an accuracy of less than 1 mm. 
-In order to achieve our goal of a 250~$\mu$m positional accuracy per wire 
-layer, we performed a ``chamber alignment'' procedure using ``straight tracks''
-in an offline software procedure.  This is discussed in the section on
-calibration. In addition to accuracy, we have chosen materials and designed 
+In addition to accuracy, we have chosen materials and designed 
 procedures to insure a quiet and long-lived detector.  The construction 
 and wire-stringing techniques were based on our already successful {\tt CLAS} 
 drift chamber design.
@@ -22,7 +19,7 @@ about 8 times that of R1 and about 2.5 times that of R2.
 Each chamber is a solid trapezoid in shape, with  
 a pair of wire-supporting endplates that bear both the load of the 
 wire tensions and the weight of all associated hardware. A representative 
-chamber is shown in Fig.~\ref{dcsector}.  The wire tension load in
+chamber is shown in Fig.~\ref{generic-chamber-sketch}.  The wire tension load in
 R1 and R2 was borne by the stiffness of the endplates only, while in
 R3 the wire tension was offset 
 by compression in a carbon-fiber outer shell and in a set of carbon-fiber 
@@ -39,16 +36,19 @@ was of critical importance to the dimensional accuracy of the chambers.
 %%%%%%%%%%%%%%%%%%%%%% Figure : DC Sector Schematic %%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htpb]   
 \vspace{4.5cm}
-\special{psfile=r3dc.eps hscale=55 vscale=55 hoffset=-30 voffset=-150} 
-\caption{\small{Schematic representation of a typical drift-chamber sector 
-(here a R3 sector) highlighting some of the common hardware pieces used by each.}}
-\label{dcsector}
+
+\caption{\small{Assembly of a typical drift-chamber
+(here a R3 sector) highlighting the common components.}}
+\label{generic-chamber-sketch}
 \end{figure}   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Endplate Design and Construction}
 \hskip 0.15 in
 
+As noted above our chambers have wires strung from one endplate to 
+the other.  Holes are drilled into the endplates into which are
+placed feedthrough assemblies meant to hold the wire end.
 Each endplate was constructed with 4928 accurately positioned holes into 
 which the 
 wire-fixture assemblies were placed.  The sense, field, and guard wires in each 
@@ -62,6 +62,21 @@ Low-outgassing epoxy was employed to ensure a gas seal around the feedthroughs
 and crimp pins.  The feedthrough assemblies
 are shown in Figs.~\ref{xsect}, \ref{r2_inserts}, and \ref{r3_cut} for R1, R2, 
 and R3, respectively.
+
+Fig.~\ref{dc-corner} shows a slice through a chamber endplate (R2 in this case)
+showing some of the wire positioning hardware and attachment of the electronics 
+boards.
+%%%%%%%%%%%%%%%%%%%%%% Figure : DC Sector Schematic %%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htpb]   
+\vspace{4.5cm}
+\special{psfile=r2_inserts.eps hscale=70 vscale=70 hoffset=-93 voffset=-200}  
+\caption{\small{Schematic cross-sectional view of the R2 endplate 
+wire-positioning hardware.}}
+\label{dc-corner}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 \subsubsection{Inspection and Cleaning}
 
@@ -81,7 +96,7 @@ de-ionized water rinse and a dousing of methanol to facilitate drying.
 In addition, the injection-molded parts are specified to be free of silicon 
 mold releases.
 
-\subsubsection{Box Assembly}
+\subsubsection{Endplate and Box Assembly}
 
 
 The chamber bodies were constructed from the accurately machined plates
@@ -119,8 +134,6 @@ shown in Fig.~\ref{crimp}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{8.0cm}
-\special{psfile=reg1_proto_ft_assy.ps hscale=47 vscale=47 hoffset=110 
-voffset=-75}
 \caption{\small{An assembly drawing showing how the crimp pin was inserted
 into the feedthrough and how the conductive elastomer tube fits over the 
 crimp pin and inside the plated-through hole on the printed circuit board to 
@@ -133,9 +146,18 @@ make the electrical connection.}}
 \hskip 0.15in
 
 Our ``thin endplate'' design required minimizing wire tensions and
-thus diameter or the wire.  In addition, smaller diameter sense wires
+thus diameter or the wire.  The real key to reducing wire tension is to
+make the field wires (which are much larger than the sense wires) as 
+thin as possible and to make them out of low-density metal.  In this 
+section we describe our choices for sense, field and guard wires.
+We had to trade off the robustness and more uniform drift velocity
+afforded by large diameter sense wire with the disadvantages that they
+required higher electric fields, a potential problem for our high-density
+signal amplifier boards.
+
+In general, designers have chose very small diameter sense wires because they
 require lower operating voltates.
-The sense wire for all chambers, supplied by the Luma
+The sense wire for all of our chambers, supplied by the Luma
 Sweden Company, consists of 30-$\mu$m diameter gold-plated tungsten.  
 The previous CLAS drift chambers used 20-$\mu$m diameter wire for the
 sense wires.  We decided to use the thicker 30-$\mu$m wire for two 
@@ -145,7 +167,7 @@ gas gain as chambers with the thinner wire requires a high voltage setting
 (approximately 300 V higher) and this results in a higher field throughout the cell
 and a more linear drift velocity function.  As will be discussed later,
 we determined that our on-chamber high-voltage distribution boards could
-handle the slightly higher operating voltages.
+handle the higher operating voltages.
 
 Tungsten was chosen because of its durability, 
 and the gold-plating of the wires, amounting to a thickness of 0.127~$\mu$m, 

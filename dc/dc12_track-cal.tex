@@ -1,4 +1,15 @@
-\section{Calibration Procedures}
+\section{Drift Chamber Calibration Procedures}
+In this section, we discuss the calibration procedures to obtain the 
+best possible spatial resolution for reconstructing the trajectory of
+a forward-going charged particle.  We need to know three things to 
+accurately reconstruct a trajectory: the location of the wires, the
+distance of closest approach (DOCA) of the track to the wire and the
+value of the magnetic field traversed.  These were determined by
+\begin{itemize}
+\item alignment procedures
+\item time to distance calibration
+\item magnetic field mapping and modelling
+\end{itemize}.  We discuss all three after a brief overview of the track reconstruction.
 
 \subsection{Track Reconstruction Overview}
 
@@ -57,8 +68,66 @@ track positions in each drift cell are input data to our Kalman filter
 fit to determine the final track parameters.  This is colloquially referred
 to as ``time-based tracking''.
 
-The drift time is given by the following expression:
+\subsection{Alignment Procedures}
+\label{align}
 
+\hskip 0.15in
+As described in section~\ref{survey}, each of the 18 drift chambers was 
+surveyed after installation into CLAS.  The survey procedures had sub-millimeter
+accuracy, but we wanted an independent check of the chambers' positions.  For 
+this reason, the survey values for the chamber geometry were viewed only as 
+a reasonable starting point to be refined by comparisons with data.
+
+To adjust the chamber geometry parameters to improve the tracking resolution,
+``straight-track'' data with the torus magnetic field off were analyzed.  
+Tracks were found and fitted with our standard track reconstruction package.
+For various bins in the angle of the track, we measured the shifts of the
+track residual means as a function of layer number. 
+Before alignment, the data showed significant displacements of the means
+from zero.  
+
+Our procedure for aligment was straight-forward.  On a first pass through
+the data we used misaligment parameters (shifts and rotations of individual
+chambers) set to zero.  On subsequent passes, we deliberately misaligned
+a particular chamber by a particular offset in position or angle and 
+produced a second set of plots of residual mean vs. layer.  We ran 18 passes
+through the data, adjusting all combinations of region (1, 2, 3) and
+of offset type $\del x, \del y, \del z, \theta x, \theta y, \theta z$, one at
+a time.  The offsets in $x, y and z$ were 2 mm, and the angular rotations
+were 0.2 degrees.  We called these ``unit distortions''.
+
+We then subtracted the pass1 residual distribution from a pass''i'' distribution
+to give a ``change of residual'' distribution caused by a given ``unit distortion''.
+We then fit the observed residual distribution from the data to a weighted
+sum of the 18 ``change of residual'' distributions.  In principle, we
+could have had 18 free parameters, but in practice we had 12 free parameters:
+ $\del x, \del y, \del z, and \theta y$ for each of the 3 chambers: R1, R2 and R3
+where $\theta y$ is a tilt of a chamber.  The yaw ($\theta x$) and roll ($\theta z$)
+were not varied because they did not improve the fits.
+
+
+The 
+results of this procedure indicated that the best-fit position of the chambers 
+along the three coordinate axes varied by up to several millimeters relative 
+to the surveyed positions.  
+
+In addition we have functions to correct for  wire sag due to 
+gravitational forces and endplate bowing, which can cause 1 - 2 millimeter
+changes in hit position.
+
+\subsection{Time to Distance Calibration}
+The drift chambers' TDC's measure time.  This time is corrected for a number
+of effects, and this corrected time is converted to a distance, DOCA, by 
+a pre-calculated time to distance function.  In this subsection we 
+explain the time corrections, the function used to calculate time as a 
+function of DOCA and how we calibrate the parameters of this funciton.
+
+\subsubsection{Time Corrections}
+The drift time is the elapsed time between the time that the particle 
+traversed the wire cell and the time that the released gas ions (electrons)
+reached the sense wire.
+
+The drift time is given by the following expression:
 \begin{equation} 
 \label{drift}
 t_{drift} = t_{tdc} - t_{start} - t_{0} - t_{flight} - t_{prop} - t_{walk},
@@ -85,31 +154,7 @@ for all different combinations of drift-distance signs.  After selection of
 the full set of drift-distance signs within each superlayer, a final fit 
 results in improved track parameters.
 
-\subsection{Alignment Procedures}
-\label{align}
-
-\hskip 0.15in
-As described in section~\ref{survey}, each of the 18 drift chambers was 
-surveyed after installation into CLAS.  The survey procedures had sub-millimeter
-accuracy, but we wanted an independent check of the chambers' positions.  For 
-this reason, the survey values for the chamber geometry were viewed only as 
-a reasonable starting point to be refined by comparisons with data.
-
----------(more needed here)----------------
-To adjust the chamber geometry parameters to improve the tracking resolution,
-``straight-track'' data with the torus magnetic field off were analyzed.  The 
-results of this procedure indicated that the best-fit position of the chambers 
-along the three coordinate axes varied by up to several millimeters relative 
-to the surveyed positions.  These studies of the absolute and relative chamber 
-positioning are still ongoing, and should ultimately allow for the best-fit 
-determination of more complex degrees of freedom such as chamber pitch, yaw, 
-and roll.  In addition we have functions to correct for  wire sag due to 
-gravitational forces and chamber distortions, which can cause 1 - 2 millimeter
-changes in hit position.
-
-\subsection{Time-Delay Calibration}
-\label{tdlycal}
-
+\subsubsubsection{T0 Determination}
 \hskip 0.15 in
 As indicated in eq(\ref{drift}), the fixed-time delays (mainly fixed cable delays) 
 for each wire must be known in order to determine the drift times.   To determine
@@ -123,7 +168,7 @@ t$_0$. We occasionally re-do this analysis whenever we have a new trigger condit
 or new configuration of readout boards.
 
 
-\subsection{Time-to-Distance Calibration}
+\subsubsection{Time-to-Distance Functional Parameterization}
 \label{tdistcal}
 
 \hskip 0.15in
@@ -142,13 +187,6 @@ ionization densities of the tracks from particles with different velocities
 leads to substantial time-walk corrections for tracks near the wire.  Each of 
 these points is briefly discussed in this section.
 
-The effect of the DOCA bias was reduced by fitting data from a selected single
-layer in each superlayer that was excluded from the original track fit.  
-However, excluding a layer from the track fit is not enough to entirely 
-eliminate all bias.  Because of the regular brick-wall cell layout, tracks at 
-entrance angles of 0$^{\circ}$ or 30$^{\circ}$ yield biased values for DOCA, 
-even from the excluded layer, because the times in the included layers are 
-strongly correlated with the value of the time in the excluded layer.
 
 %%%%%%%%%%%%%%%%%%%%%% Figure : Garfield Picture %%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htpb]
@@ -173,58 +211,242 @@ determine the drift distance to the sense wire from the measured drift time.
 \subsubsection{Function Parameterization}
 \label{funcpar} 
 
-\hskip 0.15 in
-The drift time to drift distance function for R3 at a given track entrance 
-angle is parameterized in terms of a power law~\cite{mdm95} as:
+In the CLAS detector, the drift distance was parameterized and fit as a function
+of drift time.~\cite{mdm95}.
+For CLAS12, we have instead chosen to parameterize the time as a function of
+distance.  This is a more natural description of the drift chamber signal
+for several reasons:
+\begin{itemize}
+\item the maximum drift distance is given by geometry (the distance from
+a sense wire to the nearest field wire) and so it is fixed and can be used
+to scale the drift distance
+\item the drift velocity is a function of electric field strength, so the
+point of minimum field is the point of minimum velocity (and thus the inflection point on the T vs X curve). 
+This inflection point of the curve occurs at a
+definite value of distance within the cell and NOT at a definite value of time.
+\item the time walk due to finite ionization is
+naturally parameterized as a function of distance and NOT as a function of time.
+\item two of the major time corrections (time walk which is a function of the
+particle $\beta$ and a time correction for wires in a magnetic field, $B$ which
+scales like $B^2$) can simply be added to the nominal functional form.
+\end{itemize}
 
+A {\bf single functional form} is used to fill two tables: one of time indexed by discrete
+values of distance for use in the simulation by GEMC and one of 
+distance indexed by time for use by the track reconstruction code.
+
+
+\subsection{Choice of Mathematical Forms for the Distance to Time Function}
+We are investigating two functional forms: one is an exponential form and the other, polynomial.
+
+The two basic functional forms (for local angle $\alpha = 30^0$, small values
+of particle velocity $\beta$ and no magnetic field) are the following:
+\begin{enumerate}
+\item A polynomial form:
 \begin{equation}
-x(t) = v_0 t + \eta \left( {t \over t_{max}} \right)^p
-+ \kappa \left( { t \over t_{max}} \right)^q,
+t(x) =  a x^4 + b x^3 + c x^2 + {1 \over v_0} x,
 \end{equation}
+\item An exponential form:
+\begin{equation}
+t(x) = {1 \over v_0} x + a \left( {x \over x_{max}} \right)^n
++ b \left( { x \over x_{max}} \right)^m,
+\end{equation}
+\end{enumerate}
 
 \noindent
-where $v_0$ is the value of the saturated drift velocity near $t$=0, and the 
-coefficients $\eta$ and $\kappa$, and the exponents $p$ and $q$, are 
-determined by fitting the time-to-distance correlation.  Polynomial forms give
-comparable results and, in fact, are used for R1 and R2.
+where $v_0$ is the value of the saturated drift velocity near $x$=0.
+
+These functional forms were chosen because they can be made to satisfy several physical
+constraints on the distance to time function.
+
+\subsection{Physical Constraints on the Drift Velocity Function}
 
 Inspection of  Fig.~\ref{garfield}a reveals that for tracks near the outer
 edge of the cell, the first arriving ions follow the electric-field line from 
 the field wire to the sense wire, independent of track entrance angle.  Their 
-corresponding drift time is referred to as $t_{max}$.  A reduced or normalized 
-drift time $\hat{t}=t/t_{max}$ is used as an argument of the time-to-distance
-function that satisfies the cell boundary constraint,
+corresponding drift time is referred to as $t_{max}$ and is one of the fundamental
+parameters of the function. 
 
-\begin{equation} 
-\label{eq-xtmax}
-x(\hat{t}=1,\alpha)=C \cdot \cos(30^\circ-\alpha).
+A second constraint is that the velocity near the wire is the ``saturated drift
+velocity'' for our gas mixture, 90$\%$ argon - 10$\%$ CO$_2$.  We call this parameter $V_0$.
+
+Another constraint is imposed by the fact that there is a definite point in the
+cell at which the electric field is a minimum.  This implies that this is the point
+of minimum velocity and is thus an inflection point.  This occurs at a value
+$r = (x/x_{max}) = 0.615$ and the drift velocity at this point is termed $V_{mid}$.
+
+\subsubsection{Constraints on the Parameters for the Polynomial Form}
+In this subsection, we present the algebra for the constraints on the parameters
+(a, b, c and d) of the polynomial form.  Because there are four free parameters, we
+have imposed four constraints.
+
+Constraints on the function coefficients:
+\begin{itemize}
+\item The {\bf first constraint} is that $t(x)$ must equal $t_{max}$ when $x = x_{max} $.
+\item The {\bf second constraint} is that the drift velocity near the sense wire ($x = 0$)
+must equal the saturated value, $V_0$
+\item The ({\bf third constraint}) is that the function has an inflection point (a
+mininum in velocity) at the point in the cell with the lowest electric field
+strength.  From the geometry of our cells, this occurs at a distance
+of $ 0.615 \times x_{max}$.  Finally,
+\item a ({\bf fourth constraint}) is that the velocity equals $V_{mid}$ at the inflection point.
+\end{itemize}
+
+To summarize, these are the four constraints on the distance to time functions:
+\begin{enumerate}
+\item $t(x = x_{max}) = t_{max}$
+\item $dt / dx (x = 0) = 1 / V_0$
+\item $d^2 t / dx^2 (\hat{x} = 0.615 ) = 0$   
+\item $dt / dx (\hat{x} = 0.615 ) = 1/V_{mid}$  
+\end{enumerate}
+
+In this way we convert our original parameters, a, b, c and d to the physically meaningful
+parameters $t_{max}, V_0, r, and V_{mid}$ where $r$ is the value 0.615 (the fractional distance
+at which the inflection point occurs) which can in principle be varied.
+
+\subsubsection{Constraints on the Parameters for the Exponential Form}
+In this subsection, we present the algebra for the constraints on the parameters
+of the exponential form:
+
+Evaluating these equations (and assuming that $m-n = \delta mn$)
+yields the following constraints among the parameters:
+\begin{enumerate}
+\item $x_{max}/V_0 + a + b = t_{max}$
+\item $1/V_0 + (na+mb)/x_{max} = 1/V_0$
+\item $a n (n-1) .615^{n-2} + b m (m-1) .615^{m-2} = 0$
+\end{enumerate}
+
+Rearranging yields the following equations:
+\begin{enumerate}
+\item $a + b = t_{max} - x_{max}/V_0$
+\item $a + (m/n) b = 0$
+\item $a + [(m(m-1))/(n(n-1))] .615^{\delta nm} b = 0$
+\end{enumerate}
+where $\delta nm$ is the difference between exponent values.
+	
+Solving equations 1 and 2 for a and b yields the following:
+\begin{equation}
+\label{bequation}
+b = (t_{max} - x_{max}/V_0) / (1 - m/n)
+\end{equation}
+\begin{equation}
+\label{aequation}
+a = (t_{max} - x_{max}/V_0) - b)
+\end{equation}
+while solving equations 2 and 3 yields:
+\begin{equation}
+n - 1 = (m - 1) .615^{\delta nm}
+\end{equation}
+which simplifies to 
+\begin{equation}
+\label{nequation}
+n = (1 + (\delta nm - 1) .615^{\delta nm}) / (1 - .615^{\delta nm})
+\end{equation}
+\begin{equation}
+\label{mequation}
+m = n + \delta nm
+\end{equation}
+where the {\bf three independent parameters} are the following:
+\begin{itemize}
+\item {\bf $V_0$} (the saturated drift velocity in the high-field region), 
+\item {\bf $\delta nm$} (the difference between the exponent values) and 
+\item {\bf $t_{max}$} the maximum drift time.
+\end{itemize}
+
+
+\subsection{Dependence of Distance to Time Function on Local Angle}
+\noindent
+The preceding was the derivation for the function of time as a function
+of drift distance for tracks with a local angle, $\alpha = 30^0$.  
+We now discuss the
+functional dependence on varying local angle and on non-zero and varying
+values of the B-field.
+
+Please refer back to Fig.~\ref{garfield} which shows a 0 degree track and a 30 degree
+track, both at maximum distance from the sense wire.  Note that they will give the
+SAME TIME, Tmax, even though their distance-of-closest-approach differs by a factor
+of cos(30deg).  If Dmax is the distance from sense to field wire (and the maximum
+doca possible for a 30 deg. track), then Dmax times $\cos(30^\circ-\alpha)$ is the maximum
+doca for a track with local angle, $\alpha$.  Call this distance, $Dmax_{\alpha}$.
+
+\subsubsection{Local Angle Dependence of Polynomial Form}
+We derived the function for time versus distance for a particular local angle, $\alpha$, by
+assuming the same functional form as for $\alpha = 30$ but with a {\bf different coefficient, a}, which 
+satisfies the constraint that  $F(dmax_{\alpha},\alpha)$ = $t_{max}$.
+
+Using this constraint, we can solve for $a_{\alpha}$ in terms of the known coefficients $V_0, ~a, ~n$, and $m$,
+yielding the following:
+\begin{equation}
+\label{aalphaequation}
+_{\alpha}={t_{max} - b dmax_{alpha}^3 - c dmax_{alpha}^2 - d dmax_{alpha}}\over{dmax_{alpha}^4}
 \end{equation}
 
-\noindent
-The angle $\alpha$ is the track entrance angle and $C$ represents the cell 
-size.  At any given entrance angle, as shown in Fig.~\ref{xvst}a, the 
-time-to-distance function can be deduced using a correction function 
-$f(\hat{t})$:
+Using this formula for $a_{\alpha}$ we can derive the time as a function of distance and local
+angle, $\alpha$ as shown in Fig.~\ref{xvst}.  See, for instance, the upper-left sub-figure 
+which shows the time as function of distance for 5 different angles between $0^{\circ}$ and 
+$30^{\circ}$, equally spaced in $\cos \left(30^\circ-\alpha\right)$.  Note two things:
+\begin{enumerate}
+\item for each angle, $\alpha$, the time is $t_{max}$ at $dmax_{\alpha}$, and
+\item the distances for a given time are linear in $\cos \left(30^\circ-\alpha\right)$.
+\end{enumerate}
 
-\begin{equation} 
-\label{eq-xtang}
-x(\hat{t},\alpha) = x_0(\hat{t},\alpha_0) +C \left (\cos \left(30^\circ-\alpha\right)
--\cos\left(30^\circ-\alpha_0\right)\right) f(\hat{t}).
+Thus, the general functional form for time as a function of distance and local angle, $\alpha$
+is given by
+\begin{equation}
+\label{tfunctionofxandlocalangle}
+t(x,\alpha) = a_{\alpha} x^4 + b x^3 + c x^2 + d x
+\end{equation}.
+
+
+\subsubsection{Local Angle Dependence of Exponential Form}
+We derived the function for time versus distance for a particular local angle, $\alpha$, by
+assuming the same functional form as for $\alpha = 30$ but with a {\bf different coefficient, b}, which 
+satisfies the constraint that $t_{max}$ = $F(dmax_{\alpha},\alpha)$.
+
+Using this constraint, we can solve for $b_{\alpha}$ in terms of the known coefficients $V_0, ~a, ~n$, and $m$,
+yielding the following:
+\begin{equation}
+\label{balphaequation}
+b_{\alpha}={{(t_{max}-dmax_{\alpha}/V_0)-a(\cos \left(30^\circ-\alpha\right)^n)}\over{\cos \left(30^\circ-\alpha\right)^m}}
 \end{equation}
 
-\noindent
-In this expression, $x_0$ represents the drift distance expected for a given
-normalized drift time assuming an entrance angle $\alpha_0$.  This entrance
+Using this formula for $b_{\alpha}$ we can derive the time as a function of distance and local
+angle, $\alpha$ as shown in Fig.~\ref{xvst}.  See, for instance, the upper-left sub-figure 
+which shows the time as function of distance for 5 different angles between $0^{\circ}$ and 
+$30^{\circ}$, equally spaced in $\cos \left(30^\circ-\alpha\right)$.  Note two things:
+\begin{enumerate}
+\item for each angle, $\alpha$, the time is $t_{max}$ at $dmax_{\alpha}$, and
+\item the distances for a given time are linear in $\cos \left(30^\circ-\alpha\right)$.
+\end{enumerate}
+
+Thus, the general functional form for time as a function of distance and local angle, $\alpha$
+is given by
+\begin{equation}
+\label{tfunctionofxandlocalangle}
+t(x,\alpha) = {1 \over v_0} t + a \left( {x \over x_{max}} \right)^n
++ b_\alpha \left( { x \over x_{max}} \right)^m,
+\end{equation}
+where the {\bf independent parameters} are {\bf $V_0, \delta_{nm}$} and {\bf $t_{max}$} and the intermediate
+parameters a, $b_\alpha$, n and m are given by equations (\ref{aequation}), (\ref{balphaequation}), 
+(\ref{nequation}) and (\ref{mequation}), respectively.
+
+This function parameters {\bf $V_0, \delta_{nm}$} and {\bf $t_{max}$} are what is determined in a particular calibration.
+The average local angle, $\alpha_0$, is also written to the CALDB.  
+This entrance
 angle represents the average entrance angle for the full fitted data sample.
-The function $f(\hat{t})$ is used to correct the extracted drift distance for 
-the true entrance angle of the track.
+The distance versus time look-up tables are constructed at begin run
+time by extrapolating the function $x_0$ from its
+nominal local angle, $\alpha_0$, to the local angles of the tables, 
+nominally $0^\circ$ and $30^\circ$.  This extrapolation procedure and the related
+interpolation procedure are discussed in the next section.
 
-Since the R2 chambers are located between the torus cryostats, the 
-inhomogeneous magnetic field affects the drift velocity as shown in 
+\subsection{Dependence of Distance to Time Function on Magnetic Field Strength}
+Since the R2 chambers are located within the field region of the CLAS torus, the 
+magnetic field affects the drift velocity as shown in 
 Fig.~\ref{xvst}b.  In particular, the field rotates and shrinks the isochrones
 as shown in Fig.~\ref{garfield}b.  These effects can be modeled by a 
 modification to the effective entrance angle of the track and by an increase 
-in $t_{max}$.  Both of these corrections are assumed to depend only on the 
+in the time at a particular DOCA.  Both of these corrections are assumed to depend only on the 
 magnitude of the magnetic field, and not its direction, following a study 
 described in Ref~\cite{MM-IEEE}.  
 
@@ -240,15 +462,15 @@ GARFIELD simulation to be:
 \noindent
 where $a$ is a constant and $B$ is the magnetic field strength.
 
-%%%%%%%%% Figure : DOCA vs. Drift Time -- Angle and Field Dependence %%%%%%%%%%
-\begin{figure}[htpb]
-\vspace{9.8cm} 
-\special{psfile=xvst.eps hscale=60 vscale=60 hoffset=-70 voffset=-80}
-\caption{\small{Scatterplot of DOCA versus the corrected drift time for (a) R3
-axial wires showing the track local-angle dependence, and (b) R2 axial wires
-showing the magnetic-field dependence where the local angle range is between 
-23$^{\circ}$ and 25$^{\circ}$.  The overlaid curves represent the fitted 
-time-to-distance function.}}
+%%%%%%%%% Figure : TRKDOCA vs. Drift Time -- Angle and Field Dependence %%%%%%%%%%
+\begin{figure}[htb]
+\vspace{15.cm} 
+\special{psfile=images/tvsx.eps hscale=80 vscale=80 hoffset=-20 voffset=-10}
+\caption{\small{Scatterplot of the corrected drift time versus TRKDOCA for 
+(upper-left) R1, showing curves for various local angles from 30$^{\circ}$
+(righmost curve) to 0$^{\circ}$ (leftmost curve).  (Upper-right) for R2; 
+additionally showing 3 bands for B-field magnitudes of 0, 1, 1.5 Tesla.
+(Lower-left) for R3 with the inflection point identified.}}
 \label{xvst}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -265,19 +487,87 @@ t_{max}(B) = t_{max}(0) + b B^2,
 \noindent
 where $b$ is a constant and $B$ is the magnetic field strength.
 
-At any given local magnetic field point, the time-to-distance function 
-included an additional linear correction term $\beta(\hat{t})$ to describe 
-the magnetic field dependence~\cite{qin96}, 
+At any given local magnetic field point, the distance-to-time function 
+includes an additional correction term $\delta t_B$ to describe 
+the magnetic field dependence.  See this reference~\cite{qin96} for a related
+parameterization of the change in the distance at a particular time due to a
+B-field. 
 
 \begin{equation}
 \label{XTB}
-x(\hat{t},\alpha,B) = x(\hat{t},\alpha-\alpha_c,B_0) + (B-B_0) \beta(\hat{t}).
+t(\hat{x},\alpha,B) = t(\hat{x},\alpha-\alpha_c, B=0) +  \beta(\hat{x})*B^2.
 \end{equation}
 
 \noindent
-In this expression, $B_0$ represents the average magnetic field value for the 
-full fitted data sample.  For the R1 and R3 functions, no magnetic field 
+In this expression, the first term is the time calculated assuming B=0, and the
+second term is the time increase due to the B field.  For the R1 and R3 functions, no magnetic field 
 dependence is included, as the chambers are located outside the torus 
 cryostats in regions that are relatively field-free.
+
+
+\section{Determining the Distance to Time Function Parameters}
+We determine the experimental values of the function parameters by fitting
+a histogram of $TRKDOCA$ vs. time.
+
+\subsection{Method of Calibrating the Time-to-Distance Function}
+\label{tdistcal}
+
+Each hit on a track is characterized by two parameters, the measured drift 
+time from the sense wire and the distance-of-closest-approach (TRKDOCA) to the 
+sense wire.  A best fit to the dependence of time on TRKDOCA determines the
+values of the parameters of the drift-velocity function. 
+
+However, several factors 
+complicate this analysis. For example, the TRKDOCAs obtained from the fitted 
+tracks are biased quantities since an initial estimate of the drift-velocity 
+function is used in the track determination.  Moreover, the drift cells and
+the resulting isochrones are 
+not circular, as the analysis implicitly assumes, but are hexagonal, leading 
+to angle-dependent corrections.   The R2 chambers, in particular, are in a 
+region of high and spatially varying magnetic field which affects the distance
+versus time function.  Finally, the different 
+ionization densities of the tracks from particles with different velocities 
+leads to substantial time-walk corrections.  Each of 
+these points is briefly discussed in the next section.
+For these reasons, our fitting is an iterative process in which we calibrate,
+re-do track fitting, re-calibrate, etc.  We usually converge in 1 or 2 iterations.
+
+\section{Using the Distance to Time Function in Reconstruction}
+The track reconstruction program needs to know the expected distance as a function
+of time.  However, as explained in the previous paragraph, we will have calibrated and fitted
+the observed time as a function of distance.  So, we need to NUMERICALLY INVERT the t=f(x)
+function in order to fill a table of X (real number) as a function of the time index (integer).
+
+\subsection{Filling the Time to Distance and Distance to Time Tables}
+We calibrate the distance to time function by fitting the drift time versus
+TRKDOCA at a particular local angle, alpha.  We write the independent parameters,
+($V_0, deltanm, and T_{max}$ for the exponential function or $V_0, V_{mid} amd T_{max}$ for
+the polynomial form) to the data-base.  At the beginning of a reconstruction program,
+an $inversion program$ is run to numerical invert the function to produce a table
+of distance indexed by time.
+
+
+\subsection{How to Interpolate and Extrapolate in Local Angle}
+Please refer back to Fig.~\ref{xvst} in order to understand the local-angle dependence
+of distance versus time.  When the time is equal to $t_{max}$ the distance is equal to
+the largest value for the local angle; that is, $dmax_{\alpha}$.  Also note that by
+simple geometrical reasoning, $dmax_{\alpha} = dmax  cos(30-alpha)$.
+We assume that at times less than tmax and distances less than dmax, the calculated
+distances still vary linearly as $cos(30-alpha)$.  This angle dependence is built into
+our functional form.
+
+This means that we
+\begin{itemize}
+\item {\bf Fill} our time to distance tables for different local angles using the function, and
+\item {\bf Interpolate} between time to distance tables for different local angles to obtain
+the calculated distance at a particular local angle
+\end{itemize}
+For example if ``X_0'' is the distance (at a particular time) for a table filled for tracks with local angle of 0 degrees
+and ``X_{30}'' is the corresponding quantity for a table of 30 degree tracks, then
+\begin{equation} 
+\label{eq-extrap30}
+X(t,\alpha) = X_0 + (X_{30}-X_0) (cos(30-\alpha) - cos(30)) / (1. - cos(30))
+\end{equation}
+
 
 
