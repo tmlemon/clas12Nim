@@ -29,23 +29,35 @@ A simpler approach used successfully in CLAS with the EC is to proceed iterative
 Cosmic runs are performed using a special FPGA trigger that accepts only events where a single pixel has been activated. A pixel is the simplest possible cluster, and is the smallest unit of x-y position resolution in the FEC calorimeters, defined by the overlap of 3 scintillator stacks, one from each of the U,V and W views.  Requiring the muon to pass through a single pixel places the most restrictive cut possible on the particle track path length, thereby minimizing the spread in the MIP energy deposition.   
 \begin{figure}[hbt]
 \centering
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S9_1.png}
-\caption[]{Pixel map of mean energy loss from MIP muons measured in Sector 5 W PMTs in PCAL (left) and ECIN (right). Note in PCAL both V and W PMTs are readout from the base of the triangle, while ECIN W PMTs are readout along the right side.  Color gradient from yellow to blue shows the light attenuation as a function of increasing distance from the readout end of each scintillator. }
-\label{fig:S9_1}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S9_1_1.png}
+\caption[]{Pixel map of mean energy loss from MIP muons measured in Sector 5 W PMTs in PCAL (left) and ECIN (right). For each map the upper left corner is closest to the beamline. Note in PCAL both V and W strips are readout from the base of the triangle, while ECIN W strips are readout along the right side.  Color gradient from yellow to blue shows the light attenuation as a function of increasing distance from the readout end of each scintillator. }
+\label{fig:S9_1_1}
 \end{figure}
 
-A pixel map of the FEC response to cosmic pixel triggers is shown in Fig.~\ref{fig:S9_1} for W view strips in PCAL (left) and ECIN (right). The color gradient in both plots clearly shows the attenuation of light as a function of readout distance from the pixel, as well as overall variations in PMT gain near the readout end, such as the substantially brighter strip in ECIN W19.  Also evident is the finer granularity of pixels in PCAL compared to ECIN.  Note also that unlike the ECIN and ECOU calorimeters, which have a constant pixel size, the PCAL pixels have a variable size and shape due to the mixture of single and double readout strip widths and the different number of readout strips in U compared to V and W. 
+A pixel map of the FEC response to cosmic pixel triggers is shown in Fig.~\ref{fig:S9_1_1} for W view strips in PCAL (left) and ECIN (right). The color gradient in both plots clearly shows the attenuation of light as a function of readout distance from the pixel, as well as overall variations in PMT gain near the readout end, such as the substantially brighter strip in ECIN W19.  Also evident is the finer granularity of pixels in PCAL compared to ECIN.  Note also that unlike the ECIN and ECOU calorimeters, which have a constant pixel size, the PCAL pixels have a variable size and shape due to the mixture of single and double readout strip widths and the different number of readout strips in U compared to V and W. 
 \begin{figure}[hbt]
 \centering
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S9_2.png}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S9_1_2.png}
 \caption[]{Typical fits to muon MIP mean energy loss in PCAL pixels as a function of pixel distance from readout end of strip. Inset shows energy loss distribution in fADC units for the pixel highlighted by the arrow at top.}
-\label{fig:S9_2}
+\label{fig:S9_1_2}
 \end{figure}
 
-A typical attenuation response plot for a single PCAL PMT (W57) is shown in Fig.~\ref{fig:S9_2} from a cosmic run using a PCAL pixel trigger.  The inset shows the energy loss distribution from a single pixel near the readout end of the scintillator stack and the mean of this distribution for each pixel are the points plotted in the main figure.  The fit shown is used to obtain the $\it{a,b,c}$ calibration constants discussed above.  Using this parameterization the muon MIP peak extrapolated to $x=0$ is $\it{a+c}$.   The desired fADC calibration for this peak corresponds to 10 MeV deposited energy in the 5~cm thick scintillator stack (assuming $dE/dX(mip)=2$~MeV/cm).  PMT high voltages were iteratively adjusted until the peaks were matched within 5\% of the desired calibration.   These gains were then used for the initial round of data taking with an electron beam.
+A typical attenuation response plot for a single PCAL PMT (W57) is shown in Fig.~\ref{fig:S9_1_2} from a cosmic run using a PCAL pixel trigger.  The inset shows the energy loss distribution from a single pixel near the readout end of the scintillator stack and the mean of this distribution for each pixel are the points plotted in the main figure.  The fit shown is used to obtain the $\it{a,b,c}$ calibration constants discussed above.  Using this parameterization the muon MIP peak extrapolated to $x=0$ is $\it{a+c}$.   The desired fADC calibration for this peak corresponds to 10 MeV deposited energy in the 5~cm thick scintillator stack (assuming $dE/dX(mip)=2$~MeV/cm).  PMT high voltages were iteratively adjusted until the peaks were matched within 5\% of the desired calibration.   These gains were then used for the initial round of data taking with an electron beam.
 
 \subsection{Timing calibration}
 
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S9_2_1.png}
+\caption[]{}
+\label{fig:S9_2_1}
+\end{figure}
 
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S9_2_2.png}
+\caption[]{}
+\label{fig:S9_2_2}
+\end{figure}
 
 
