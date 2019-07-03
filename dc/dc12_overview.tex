@@ -8,34 +8,45 @@ be possible at these higher energies, the CLAS detector was significantly
 upgraded, and is now named the ``CLAS12'' detector.  This section describes
 the tracking of charged particles in the forward part of the detector.
 
-CLAS12 was designed to track charged particles emerging from the target with
-momenta greater than 200~MeV/c over the polar angle range from 5$^{\circ}$ to 
-140$^{\circ}$, while covering up to 80$\%$ of the azimuth.  Charged particles with 
-angles from 5$^{\circ}$ to 40$^{\circ}$ enter the forward detector's drift chamber
-system, while particle with angles greater than 40$^{\circ}$ enter the 
-central detector's tracking system comprised of Silicon vertex detectors and
-Micromegas-based tracking chambers.  These are covered in the section
-on central detector charged particle tracking.
-
 The CLAS12 forward detector is constructed around a toroidal magnet consisting of six 
 iron-free superconducting coils.  The particle detection system consists of drift 
 chambers to determine charged-particle trajectories, {\v C}erenkov detectors 
 for electron/pion separation, scintillation counters for flight-time 
 measurements, and calorimeters to identify electrons and high-energy neutral 
-particles.  Overviews of the CLAS12 subsystems and geometry may be found in the 
-CLAS12 Overview sectin.  A schematic three 
-dimensional view of the detector is shown in Fig.~\ref{clasview_3d}.  
-Figs.~\ref{clasview1} and \ref{clasview2} represent horizontal and vertical 
-cuts through the detector, respectively.
+particles.  An overview of the CLAS12 subsystems and geometry may be found in the 
+CLAS12 Overview section.  A schematic view of the torus magnet with drift chambers
+attached is shown in Fig.~\ref{chambers-and-torus}.  
+
+The forward tracker was designed to track charged particles emerging from the target with
+momenta greater than 200~MeV/c over the polar angle range from 7$^{\circ}$ to 
+40$^{\circ}$.  Because the coils of the torus magnet represent a 'dead area'
+in which we cannot detect charged particles, we designed the chamber endplates
+and attached electronics to be as thin as possible.  The resulting azimuthal
+coverage varied from 50\% of 2\pi at 5$^{\circ}$ to 80\% of 2\pi at 40$^{\circ}$.
+
+The forward tracking system consists of three regions divided into six
+sectors as shown in Fig.~\ref{chambers-and-torus}; located just before, inside, 
+and just outside the torus field volume, and referred to as Regions~1, 2, 
+and 3, respectively.  Thus in each sector we have a 'Region1' chamber located
+in front of the torus, followed by a 'Region2' chamber situated in the magnetic
+field volume, between the torus coils, and then a 'Region3' chamber located just
+downstream of the magnetic field.
+
+All chambers have the same, roughly equilateral triangular, shape.
+The regions are isomorphic with Region2 approx. 1.5 times larger
+in all dimensions than Region1, and Region3 is approximately 2 times larger than Region1
+in all dimensions.
+The chambers are planar, with the wires strung in layer with the first ``superlayer'' (of 6 layers)
+tilted at a 6$^\circ$ stereo angle, and the second superlayer at -6$^\circ$ stereo
+angle.  The design is discussed in more detail in the next section.
 
 %%%%%%%%%%%%%%%%%%%%%% Figure : CLAS 3D Picture %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htpb]
 \vspace{6.7cm} 
-\special{psfile=clas_3d.eps hscale=80 vscale=80 hoffset=-125 voffset=-225}
-\caption{\small{Three dimensional representation of CLAS with a portion
-of the system cut away to highlight the elements of the detector system 
-along with their geometries and relative positions.  The detector support
-structures are not shown.}}
+\caption{\small{A sketch of the torus magnet with drift chambers attached.
+Note that cable runs and gas lines have been removed for clarity.  The largest
+(R3) chambers are approximately equilateral triangular solids with 4 m long sides
+and 0.8 m depth.}}
 \label{clasview_3d}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -44,7 +55,7 @@ structures are not shown.}}
 
 \subsection{Physics Requirements for {\tt CLAS12} Forward Tracking}
 
-There are several broad areas of physics enquiry that drive 
+There are several broad areas of physics research that drive 
 the design of the forward tracking system: 
 spectroscopic studies of excited baryons, investigations of 
 the influence of nuclear matter on propagating quarks, studies of polarized 
@@ -54,61 +65,52 @@ are electroproduction of exclusive and semi-inclusive final states.  The
 cross sections for these processes are small, necessitating high-luminosity 
 experiments.  A variety of simulated experiments rely on luminosities of 
 10$^{35}$~cm$^{-2}$s$^{-1}$ to achieve the desired statistical accuracy in 
-runs of a few months duration.  The new kinematic range to be explored is 
+runs of a few months duration.  This is an order of magnitude increase
+in beam flux compared to the previous CLAS detector.  
+The new kinematic range to be explored is 
 characterized not only by smaller cross sections, but also by more outgoing 
 particles per event, with those particles being emitted with higher values 
 of momentum and at smaller laboratory angles.  These basic physics criteria 
 drive the design. 
 
-The deep exclusive reactions, in which an electron scattering at moderate to 
-high values of $Q^2$ results in a meson-baryon final state, provide the most 
+\begin{itemize}
+\item Physics constraints
+\begin{itemize}
+\item electron beam
+\item exclusive reactions
+\item wide kinematic coverage
+\end{itemize}
+\item Event types
+\begin{itemize}
+\item small cross-sections
+\item multi-particle final states
+\item large background rates
+\end{itemize}
+\end{itemize}
+
+
+Exclusive reactions, in which an electron scattering event 
+results in a meson-baryon final state, provide the most 
 stringent requirements for the {\tt CLAS12} tracking system.  A final state 
 of a few high-momentum, forward-going particles (the electron as well as one 
 or more mesons), combined with a moderate-momentum baryon emitted at large 
 angles, is the typical event type that determines the specifications of the 
 tracking system.
 
-The higher momentum and more forward angles of most hadrons leads us to 
-split the design into a ``forward'' detector, which covers lab angles between 
-5$^\circ$ and 40$^\circ$, and a ``central'' detector for hadrons with angles 
-greater than 35$^\circ$.  The higher luminosity goal necessitates the use of 
-a solenoidal magnet to shield the detector from M{\o}ller electrons.  To 
-reduce interactions between this solenoidal field and the main {\tt CLAS12} 
-toroidal field, and to facilitate construction and installation of new 
-detector elements, the torus has been re-designed.  It is more compact than 
-the previous {\tt CLAS} torus, while providing equivalent bending power.  This 
-smaller torus design provides several advantages in the overall detector 
-design: it decouples the design of the central solenoid and detector from 
-that of the torus and forward tracking system, and it makes detector 
-installation and removal easier.  
-
-In broad strokes, the detector must provide tracking for laboratory angles as 
-small as 5$^\circ$ and as large as 135$^\circ$ in order to cover as much of 
+In broad strokes, the forward detector must provide tracking for laboratory angles as 
+small as 7$^\circ$ and as large as 40$^\circ$ in order to cover as much of 
 the hadronic center-of-mass region as possible.  We require very good momentum 
 and angular resolution for the scattered electron in order to determine the 
 virtual photon flux factor, $\Gamma_v$, to an accuracy of a few percent.
 Because the average particle momenta will be higher, the resolution of the 
 tracking system must be better than the previous {\tt CLAS} values; the goal 
 for the fractional momentum resolution is 0.3\% to  1\% at a track momentum 
-of 10~GeV and small angles of 5-7$^\circ$.  Angular resolutions of about 1~mrad are required for the electron 
+of 10~GeV and an angle of 7$^\circ$.  Angular resolutions of about 1~mrad are required for the electron 
 in order to know the virtual photon flux factor, and hence, the cross section, 
 to a few percent. Finally, good vertex resolution will allow detection of 
 secondary decay vertices and serve as a good marker for strangeness production.
 
-/begin{itemize}
-/item Physics constraints
-/begin{itemize}
-/item electron beam
-/item exclusive reactions
-/item wide kinematic coverage
-/end{itemize}
-/item Event types
-/begin{itemize}
-/item small cross-sections
-/item multi-particle final states
-/item large background rates
-/end{itemize}
-/end{itemize}
+
 
 
 

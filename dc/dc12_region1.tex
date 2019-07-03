@@ -2,161 +2,48 @@
 
 \hskip 0.15 in 
 The R1 chambers were designed and constructed through a collaboration 
-of Carnegie Mellon University, the University of Pittsburgh, and the 
-University of Massachusetts.  These detectors constitute the innermost of 
-the three nested drift-chamber packages surrounding the target in the 
-spectrometer~\cite{dscnim}.  The R1 detectors track all charged particles 
-prior to their entry into the magnetic field of the CLAS torus.
+of Idaho State University and Jefferson Lab.  These 
+chambers are located before particles enter the magnetic field of the torus
+and are thus key to good angular resolution.  They also are subject to the
+highest level of background radiation. 
 
-R1 consists of six identical sectors integrated into a single unit.  Each
-sector consists of 1296 hexagonal drift cells ranging in diameter from 15 to 
-17~mm, with all wires located within 1~m of the primary beam.  Each sector 
-consists of two superlayers, the stereo layer at smaller radius, and the axial 
-layer at larger radius.  This arrangement, which is opposite to the outer two 
-Regions, was necessitated by space constraints within the torus.  While each R2 
-and R3 sector consists of 12 layers of sense wires, the limited space within the 
-torus allowed for only 10 layers in each R1 sector.  The final R1 design included 
-6 axial layers and 4 stereo layers.  Space constraints at the most backward 
-angles spanned by R1 required a reduction in the number of axial wire layers 
-from 6 to 3, as can be seen in Fig.~\ref{region1}.  Also the layer contour changes 
-shape from circular to straight for polar angles greater than 90$^{\circ}$.
+As we have seen from the generic assembly sketch of a chamber, the R1
+chambers have a similar shape to the R2 and R3 chambers, differing in
+scale and in some material choices.
+Most notably, the endplates were constructed of aluminum with stainless
+steel stiffener bars.
+Fig.~\ref{region1-endplate} shows and assembly drawing of an R1 endplate.
+
 
 %%%%%%%%%%%%%%%%%%%%%% Figure : Region One %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htpb]   
 \vspace{7.0cm}
-\special{psfile=region1.eps hscale=70 vscale=70 hoffset=-65 voffset=-215} 
-\caption{\small{Schematic side-view cross section of R1 highlighting the 
-locations of the main torus, mini-torus, target, and detector supports.  
-The shaded areas along the endplates correspond to the wire hole patterns.}}
+
+\caption{\small{Assembly drawing of a R1 endplate.}}
 \label{region1}
 \end{figure}   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Sense wires are shifted by $\pm$300~$\mu$m from the nominal position from one 
-wire layer to the next.  This ``mini-stagger'' feature feature helps to resolve 
-the track path for those tracks that run nearly parallel to a series of drift 
-cells.  The size of the stagger was chosen such that the induced drift time 
-differences could be resolved easily.  R2 and R3 did not stagger sense wires 
-in this way.
+The main challenges in the R1 construction and design came about because
+of the small wire spacing (~ 8mm between sense and field wires).  This
+increased the electrostatic attraction of neighboring wires if they are
+not perfectly and symmetrically placed, and it also made the physical act
+of stringing the wires more difficult.
 
-Fig.~\ref{region1} shows a schematic of how the wire-supporting endplates are 
-captured within the torus cryostat, as well as some of the detector support 
-structures.  To protect the chambers from charged electromagnetic background 
-emerging from the target, a small normal-conducting ``mini-torus'' magnet is 
-located inside of R1 during standard electron-beam operation.  The integral 
-magnetic field of the mini-torus is about 5$\%$ that of the main torus.  
+Wires with opposite voltage are electrostatically attracted.  If perfectly
+placed in a symmetric array the forces would cancel out, since each sense
+wire is surrounded by six field wires.  This is true for the sense wires
+even at the boundary layers because we grade the guard wire voltage so
+that the electric field are that same as they would be for an infinite grid.
 
-The shapes of the outer main torus and the inner mini-torus limited the
-amount of space available for the R1 chambers, along with their associated 
-on-board electronics, cables, and support hardware.  Fig.~\ref{xsect} shows a 
-projection of a portion of the detector near 90$^{\circ}$ to highlight how the 
-wire-support hardware, circuit boards, and cables were arranged to fit within 
-the shadow region of the torus cryostats.
+However, the sense wires might be slightly misplaced and so they would feel
+a force which, if the tension were below a critical value, would increase
+and pull them further out, further increasing the force, and so on until 
+the wire begins to oscillate and then spark.  For our electric field configuration
+this critical tension was about 2 grams, a factor of 9 below our nominal
+tension of 18 grams.
 
-%%%%%%%%%%%%%%%%%%% Figure : Cross Sectional View %%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htpb]   
-\vspace{9.5cm}
-\special{psfile=xsect.eps hscale=47 vscale=47 hoffset=-15 voffset=-20} 
-\caption{\small{Endplates and other components from neighboring R1 sectors 
-seen in projection.  Feedthroughs, crimp pins, and circuit boards for 
-pairs of sectors, along with the strut fixtures, had to fit within 
-3.5~cm of space to be contained within the shadow of the torus magnet.}}
-\label{xsect}
-\end{figure}   
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The 228-cm long wire-supporting endplates are made of 8-mm thick, 50-cm wide
-Alcoa Alca-Plus cast tooling plate, a non-magnetic alloy reputed to have low 
-internal stresses, and, therefore, thought to have minimal distortion after the 
-hole pattern was drilled.  Holes for the wire feedthroughs and assembly 
-hardware were drilled with a 4-mm diameter and an absolute position tolerance 
-of 130~$\mu$m.  Measurements of the finished plates showed systematic positional 
-distortions near 100~$\mu$m, some due to the manufacturing, and some of which 
-were consistent with few-degree temperature differences between manufacturing 
-and measuring~\cite{ereport}.
-
-Single sectors are built out of endplate pairs that support most of the R1
-mechanical loads.  During sector construction, the endplate spacing was 
-controlled at 22 points along their inner and outer perimeters to an accuracy of 
-25~$\mu$m using temporary 1.59-cm diameter aluminum posts.  Struts machined to 
-precise angles and affixed to the edges of the endplates supported the posts, 
-and later formed the mating surfaces for joining one sector to the next.  A 
-ball-and-socket mechanism allowed accurate coupling of the posts to the sectors 
-while later allowing smooth and simple removal of the posts upon integration of 
-the finished sectors into a single unit.  The lengths of the posts and struts
-defined the geometry of the sectors to 50~$\mu$m precision.
-
-Deciding where to support the thin sector endplates, in view of the heavy
-loads placed upon them, presented a complex mechanical problem that was
-solved using two approaches.  First, finite-element modeling of the endplates
-was used to understand the distribution of forces and deflections under the
-loads of the wires and of gravity \cite{ansys}.  This allowed for proper
-selection of the number, spacing, and position of the support posts.  Second, 
-a full-scale prototype of the detector was built to test and improve the 
-mechanical design, as well as to practice the assembly procedure.  Thick piano 
-wires modeled groups of about 200 sense and field wires, and lead weights 
-modeled the electronics and cables.  Fine wires were strung to monitor tension
-changes in response to various steps in the assembly and installation procedure.
-
-The endplate pairs each connect to thick aluminum back-plates, which in turn
-connect to a large six-sided annular support ring that also serves to align
-the six sectors.  After installation, three support legs anchor the support ring 
-to the upstream portion of the cryostat, constraining the position of the chamber 
-along the central beam axis.  At the downstream end of each sector, the 
-sector-plates connect to a small six-sided cylindrical pipe that ultimately anchors 
-onto a set of dowel pins on the cryostat.
-
-Fig.~\ref{xsect} highlights the hardware pieces described in the text including 
-the struts and wire feedthroughs.  The 4.8-mm length of the plastic feedthroughs 
-provide separation between each trumpet at high voltage and the grounded endplate.  
-Not shown are the custom-built polyethylene U-channels used to attach the 15-$\mu$m 
-aluminized-nylon gas windows to the inner and outer edges of the endplates.  For
-this purpose the glue seals were made with Scotchweld 2216 epoxy.  A 0.64-cm 
-diameter stainless-steel gas input line runs longitudinally along the endplate 
-to inject gas into the downstream end of each sector.  Another line is used to 
-exhaust gas from the upstream end of the detector. 
-
-Most of the challenges associated with the detector construction came about because 
-the endplates are not rigid.  This lack of stiffness led to two important effects 
-that required detailed consideration \cite{rat}.  First, the forces applied by the 
-wires caused the endplates to deflect by up to 1~mm.  These deflections, which 
-changed the tensions in some wires by over 50$\%$ of their strung value, were 
-compensated for by pre-tensioning the sectors prior to stringing.  That is, 67 heavy 
-steel wires were installed in order to deform the endplates prior to stringing, 
-using effective mass loads between 2 and 14~kg.  For each of the six sectors, 3435 
-field and guard wires were strung at a nominal tension of 100 g, and 1296 sense 
-wires were strung at a nominal tension of 30~g, resulting in $\approx$400 kg of 
-effective mass load on each endplate.  In contrast, the effective gravitational 
-load of each endplate, with its corresponding circuit boards, electronics, and cables, 
-comprised about 60~kg.  The pre-tension wires were released in stages and eventually 
-removed during sector stringing.  The stereo wires exerted the equivalent of 
-about 14~kg of shearing force which tended to distort the chamber sectors. However, 
-tests showed that the structure was rigid enough so that wire tensions were 
-not significantly affected.
-
-A second effect, peculiar only to the R1 wires, resulted from gravitational 
-forces acting on the long, thin endplates.  During construction, each sector was 
-supported by its ends in an orientation such that the wires could be strung 
-vertically.  However, in this orientation the gravitational forces on the
-endplates, and hence the endplate distortions, were at a maximum.  The temporary 
-posts maintained the relative spacing between the endplates to high precision, but 
-gravity acted to deflect the center of each endplate downward by 6~mm.  Thus, the 
-axial wires, which were exactly parallel to the posts, were unaffected by this effect, 
-as both endplates had identical gravitational sags.  However, due to the slight angle 
-of the stereo wires, their length was slightly increased or decreased, depending upon 
-which direction the sector was rotated from its ``sag-free'' endplate orientation, or 
-the orientation with the wires running horizontally.  This sagging of the endplates 
-during sector stringing had to be taken into account in order to allow all wire tensions 
-to fall within tolerance when the six sectors were integrated together.  By correctly 
-adjusting the stringing tensions along the length of the sector, and proper selection 
-of the number of pre-tension release steps, the final wire tensions in the sag-free 
-orientation were kept to within 20$\%$ of their nominal values.
-
-
-
-
-
-
-
+The challenges to stringing the chambers was overcome by careful attention to
+detail ...
 
 

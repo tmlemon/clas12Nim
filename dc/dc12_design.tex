@@ -1,19 +1,21 @@
 \section{Drift Chamber System Conceptual Design}
 
-The overall tracking requirements (0.5 -  1\% fractional momentum resolution 
-at 5~GeV and efficient tracking at a luminosity of 
-10$^{35}$~cm$^{-2}$s$^{-1}$) are the main drivers for drift chamber design.  
+The overall tracking requirements (0.3 -  1\% fractional momentum resolution 
+at 10~GeV and efficient tracking at a luminosity of 
+10$^{35}$~cm$^{-2}$s$^{-1}$) are the main drivers for the drift chamber design.  
 
 Because the {\tt CLAS} drift chamber system~\cite{dcnim} operated 
 successfully for 8~years, we re-used many of the design concepts and 
-most of the utility infrastructure.  In addition, we re-used some
+most of the utility infrastructure.  For example, we re-used some
 parts of the gas mixing and handling system, and also the high-voltage 
 and low-voltage systems and many of the high voltage and signal cables. 
 
 The forward tracking system consists of three regions divided into six
-sectors as shown in Fig.~\ref{umbrella}; located just before, inside, 
+sectors as shown in Fig.~\ref{chambers-and-torus}; located just before, inside, 
 and just outside the torus field volume, and referred to as Regions~1, 2, 
-and 3, respectively.  Each chamber has its wires arranged in two superlayers of
+and 3, respectively.  
+
+Each chamber has its wires arranged in two superlayers of
 six layers each, with the wires in the two superlayers strung with 
 $\pm$6$^\circ$ stereo angles, respectively.  The cell structure is 
 hexagonal, that is, each sense wire is surrounded by six field wires.  This 
@@ -24,23 +26,14 @@ on the previous drift chambers themselves~\cite{dcnim} for details of the
 previous detector and chambers.  
 
 The groups responsible for the {\tt CLAS12} drift
-chamber construction include Old Dominion University, Idaho State
+chamber design and construction were Old Dominion University, Idaho State
 University, and Jefferson Laboratory.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[hb]
-\vspace{10.6cm}
-\special{psfile=umbrella.ps hscale=60 vscale=60 hoffset=60 voffset=0}
-\caption{\small{Layout of the {\tt CLAS12} Forward Drift Chambers: 
-Regions~1, 2, and 3.}}
-\label{umbrella}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The major difference in the drift chambers for {\tt CLAS12} is that the 
 cells cover a smaller solid angle than those in the previous {\tt CLAS} 
 chambers, allowing efficient tracking at higher luminosities because the 
 accidental occupancy from particles not associated with the event is smaller.  
+
 Table~\ref{fwd-dc-design-parms} lists the main design parameters for each 
 region of the {\tt CLAS12} drift chambers.  For the purposes of simulating 
 track resolutions, we assumed that the position resolution of the individual 
@@ -59,7 +52,7 @@ Wires/layer          & 112      & 112          & 112      \\ \hline
 Cell size            & 0.75 cm  & 1.18 cm      & 2.07 cm  \\ \hline
 Active time window   & 150 ns   & 325 - 750 ns & 700 ns   \\ \hline
 Drift distance resolution   & 250~$\mu$m   & 250~$\mu$m &250~$\mu$m  \\ \hline
-Layer efficiency   & > 95\%   & > 95\% & > 95\%   \\ \hline
+Layer efficiency   & \> 95\%   & \> 95\% \> 95\%   \\ \hline
 \end{tabular}
 \caption{\small{Design parameters for the {\tt CLAS12} drift chambers.}}
 \label{fwd-dc-design-parms}
@@ -67,6 +60,8 @@ Layer efficiency   & > 95\%   & > 95\% & > 95\%   \\ \hline
 \end{table}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 10 pt
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[ht]
@@ -78,8 +73,9 @@ Small Cells & Robust track-finding  & Many wires to string \\ \hline
 Hexagonal Cells & Minimum number of wires  & Angle-dependence of time to distance  \\ \hline
 30-Micron diameter sense wire & Resistant to wire breakage & Higher operating voltage \\ \hline
 80-Micron diameter field wire & Lower total wire tension & Higher fields on cathode wires \\ \hline
-Shared, opposite voltage for sense and field & Identical fields for all layers & More HV channels required \\ \hline
-Self-supporting design & Easier maintenance and replacement & 1 - 2 mm bowing of endplates \\ \hline
+Shared, opposite voltage  & Identical fields & More HV \\
+for sense and field & for all layers & channels required \\ \hline
+Self-supporting design & Easier maintenance & 1 - 2 mm bowing of endplates \\ \hline
 \end{tabular}
 \caption{\small{Design features of the {\tt CLAS12} drift chambers.}}
 \label{fwd-dc-design-features}
@@ -87,7 +83,7 @@ Self-supporting design & Easier maintenance and replacement & 1 - 2 mm bowing of
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Drift Chamber Design}
+\subsection{Design Features}
 The CLAS12 drift chambers share some design characteristics with the
 previous CLAS chambers:
 \begin{itemize}
@@ -103,14 +99,26 @@ force on the endplates in case of the quench of our torus magnet, we
 use non-conducting G10 endplates for our R2 chambers
 \item The choice of gas; a 90:10 Argon:CO$_2$ mixture is the same
 as for the previous chambers.  We plan to run with a gas gain of 
-$5 \times 10^4$.
+about $5 \times 10^4$.
 \end{itemize}
 
 To improve the chambers' peformance we made some important changes to the design:
 \begin{itemize}
-\item all chambers have the same, roughly equilateral triangular, shape
-\item thus the regions are isomorphic with R2 approx. 1.5 times larger
+\item all chambers have the same, roughly equilateral triangular, shape.
+The regions are isomorphic with R2 approx. 1.5 times larger
 in all dimensions than R1, and R3 is approx. 2 times larger than R1
+\item all chambers are independent and self-supporting, allowing easy
+maintenance and repair
+\item all chambers are attached to the torus cryostat using 6 independent
+rods with ``ball and socket'' ends, meaning that the chambers can be
+moved out to maintenance position and moved back to the operating 
+postion by turning one precision turn-buckle assembly
+\item The previous CLAS chambers were interconnected to each other (R1) or 
+connected directly to the endplates (R2).  In the present chambers all of the wire tension
+is borne by the endplates and thus they can be independently mounted.
+The key to this improvement is the use of  
+ultra-stiff endplate assemblies that obtain their stiffness 
+by a flanged design.  
 \item For the previous CLAS detector, the $\phi$ resolution times $\sin \theta$ is about two 
 times larger than the $\theta$ resolution.  To have more equal resolution in 
 the two angles, we doubled our stereo angle from 0 and 6$^\circ$ to 
@@ -128,17 +136,9 @@ of 20 micron wire
 Cu-Be wire, tougher and with better surface properties than our previous
 choice of 140 micron gold-plated Aluminum wire
 \item  Our choice of guard wire is 140-$\mu$m diameter, gold-plated
-copper-beryllium   
-\item all chambers are independent and self-supporting, allowing easy
-maintenance and repair
-\item all chambers are attached to the torus cryostat using 6 independent
-rods with ``ball and socket'' ends, meaning that the chambers can be
-moved out to maintenance position and moved back to the operating 
-postion by turning one precision turn-buckle assembly
-\item In the present chambers, all of the wire tension
-is borne by the endplates.  The key to this improvement is the use of  
-ultra-stiff endplate assemblies that obtain their stiffness 
-by a flanged design.  
+copper-beryllium.  These wires were strong enough that we pre-tensioned 
+the chambers using only the guard wires; a simplification in the process.
+
 \end{itemize}
 
 One of the most significant design changes is the decision 
