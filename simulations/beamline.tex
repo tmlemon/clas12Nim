@@ -1,12 +1,12 @@
 \section{Beamline}
 
-The CLAS12 beamline is made up of several pieces, each discussed below. The positioning and composition of the beamline
+The CLAS12 beamline downstream of the target is made up of several pieces, each discussed below. The positioning and composition of the beamline
 depends on the run configuration, that can be:
 
 \begin{itemize}
-	\item FTOn: Forward Tagger present and operational. The Moller shield starts at z=877 mm from the target center to.
+	\item FTOn: Forward Tagger present and operational. The Moller shield starts at z=877 mm from the target center to, see \F{beamlineGeometry} top.
 	\item FTOff: FT is present but not operational. The FT tracker is replaced by shielding.
-                 The Moller shield starts at z=430 mm from the target center, and additional shielding is present to connect it to the FT.
+                 The Moller shield starts at z=430 mm from the target center, and additional shielding is present to connect it to the FT. See, \F{beamlineGeometry} bottom.
 \end{itemize}
 
 
@@ -43,7 +43,7 @@ and changes dimensions inside the torus and downstream of the torus as detailed 
 
 
 \subsection{Moeller Shielding}
-The Moeller shielding is composed by the following elements, shown in \F{moellerShieldingFTOn} for the FTOn configuration
+The Moeller shielding is composed of the following elements, shown in \F{moellerShieldingFTOn} for the FTOn configuration
 and in \F{moellerShieldingFTOff} for the FTOff configuration.
 
 \begin{figure}
@@ -69,17 +69,17 @@ and in \F{moellerShieldingFTOff} for the FTOff configuration.
 	\begin{itemize}
 		\item a Tungsten cone with increasing thickness.
 		\item a tungsten pipe and flange inside the FT
-		\item a structure to mount the FT and the shielding onto the torus frame, composed by:
+		\item a support system to mount the FT and the shielding onto the torus frame, composed by:
 		\begin{itemize}
 			\item an inner stainless steel shield and flange
 			\item an outer tungsten shield
 			\item nine copper screw to adjust the alignment of the FT and shields upstream of the torus
 		\end{itemize}
 	\end{itemize}
-	\item Only FT Off configuration:
+	\item Additions for FT Off configuration:
 	\begin{itemize}
 	\item a Tungsten cone tip to extend the Moeller shield cone
-	\item additional lead structure to replace the FT tracker with shielding
+	\item lead cylinder in place of the FT tracker
 	\end{itemize}
 
 \end{itemize}
@@ -88,15 +88,15 @@ and in \F{moellerShieldingFTOff} for the FTOff configuration.
 
 
 \subsection{Torus and downstream Shielding}
-Additional shielding is placed around the vacuum pipe inside the torus hub in the form of tungsten bricks.
-Downstream of the torus a shielding downstream of the torus in the form of a connecting tungsten nose and a long lead pipe.
-
+Additional shielding is placed around the vacuum pipe inside the torus hub in the form of tungsten cylinders.
+A shielding downstream of the torus in the form of a connecting tungsten nose and a long lead cylinder enclosed by a stainless steel frame.
 These components are shown in \F{downstreamShielding}.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/downstreamShielding.png}
-   \caption{Torus and Downstream shielding.}
+	\caption{Torus and Downstream shielding. Top: several tungsten cylinders were placed around the vacuum line (bloe colors).
+            Bottom: a long lead cylinder (blue) is enclosed by a stainless steel frame.}
 	\label{fig:downstreamShielding}
 \end{figure}
 
@@ -106,6 +106,6 @@ These components are shown in \F{downstreamShielding}.
 
 The beamline geometry is entirely imported from the engineering CAD model.
 
-\subsubsection{Geometry Git Location}
+\subsubsection{Geometry Location on GitHub}
 
 The Github location of the GEMC geometry CAD volumes is \url{https://github.com/gemc/detectors/tree/master/clas12/cadBeamline}.

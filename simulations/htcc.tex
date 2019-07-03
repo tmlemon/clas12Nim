@@ -22,13 +22,14 @@ the digitization routine.
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/htccDetail.png}
 	\caption{Top: an electron passing through the HTCC gas volume and emitting Cherenkov photons. The light cone
             hits two mirrors and it is re-directed to the corresponding PMTs.
-            Bottom: details of the mirrors implementation. These are subtractions of ellipsoid Geant4 volumes intersected
-            with planes to cut the sides. }
+            Bottom: details of the mirrors implementation. These are subtractions of ellipsoid Geant4 volumes along
+            cetain planes between two adjacent mirror substrates. Each plane is defined by a second order
+            curve along which the two substrates intersect. The curve is ``flat'', i.e. lies entirely in on that plane.}
 	\label{fig:htccGeometry}
 \end{figure}
 
 
-\subsubsection{Geometry Git Location}
+\subsubsection{Geometry Location on GitHub}
 The Github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/htcc}.
 
 
