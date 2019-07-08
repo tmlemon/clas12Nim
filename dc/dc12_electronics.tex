@@ -77,8 +77,9 @@ noise, and low power needed for the performance requirements.
 Each SIP operates at 6V and draws about 13m Amps.   
 
 Each group of 16 pre-amplifier output signals were routed to a 17 pair connector.
-Sixteen of the pairs are used as differential signal paths which are routed from the STB's to the drift chamber readout boards (DCRB)
-over individual cables consisting of 16 twisted pairs.  The seventeenth pair is used to send a calibration pulse from the DCRB
+Sixteen of the pairs are used as differential signal paths which are routed from the STB's to the 
+drift chamber readout boards (DCRB) over individual cables consisting of 16 twisted pairs.  
+The seventeenth pair is used to send a calibration pulse from the DCRB
 to the STB preamplifier group. We chose
 twisted-pair readout because of its immunity to electronic noise.
 The cables are round-jacketed with a 
@@ -101,95 +102,5 @@ of nanoseconds.
 
 
 More needed on DCRB's ...
-
-
-\subsection{Low Voltage System}
-We reused th low voltage power supplies that were used for {\tt CLAS}.  
-The Hewlett Packard model HP6651A are linear DC power supplies with low ripple output, and high reliability.  
-The supplies are remotely programmable through GPIB and EPICS and the output voltage and current are monitored.   We 
-isolated the low voltage from 
-ground loops by using local voltage regulators on the pre-amplifier interface 
-boards (STBs).  The segmentation of the low voltage distribution cables is 
-based on 32 preamplifier channels per supply cable.  Each of these supply 
-cables is fused with an appropriate type of fuse rated for over-current 
-protection based on 32 pre-amplifier loads.  
-
-We designed our low voltage system: supplies, fusing, cables and control
-system to be as robust and maintenance-free as possible.  To minimize
-the damage to the tracking system in the event of a failure such as
-a shorted pre-amplifier, we built in fine segmentation with only
-32 preamplifier channels per supply cable.  Each of these supply 
-cables is fused with an appropriate type of fuse rated for over-current 
-protection based on this load.
-In the event of a short circuit which causes a fuse to blow,
-a simple, external cable disconnect will reduce the size of the affected
-area to 16 signal wires without the need to access the chambers.
-
-The on-chamber pre-amplifiers require 6V and approximately 18A per chamber
-(a total of 1344 pre-amps per chamber).
-The low voltage power supplies are re-used from the original CLAS detector.  
-These units are robust and manufactured by Hewlett Packard.  
-The supplies are remotely programmable and monitored.   We 
-isolated the low voltage from 
-ground loops, using local voltage regulators on the pre-amplifier interface 
-boards (STBs).  
-
-Fig.~\fig{dc-low-voltage-system} is a schematic of the low voltage
-supply system and a snapshot 
-of the control panel for monitoring the state of the system.
-
-\subsection{High Voltage System}
-
-As in the case of the low-voltage system, we designed our high voltage system: 
-supplies, distribution boxes, cables and control system to be as robust and 
-maintenance-free as possible.  
-We re-used our CAEN 
-system 527 high voltage supplies with somewhat finer segmentation than our 
-previous system, consistent with our total channel count dropping from 34000 
-to about 24000.
-To minimize the damage to the tracking system in the event of a failure such as
-a broken wire, we built in very fine segmentation.
-Each individual high-voltage channel powers a variable-sized group of 
-wires: a 48-wire group for wires in the small-angle region, a 96-wire group
-in the middle-angle region and a 192-wire group at large angles.
-
-In the event of a failure (e.g. a broken wire) which results in a trip
-of a single HV channel, we can further reduce the size of the affected
-area from the whole group (48, 96 or 192 wires) to a much smaller grouping
-of 8, 16 or 32 wires by an external cable disconnect without the need to 
-physically access the chambers themselves.
-
-The high-voltage supply and distribution system consists of the following:
-\begin{itemize}
-\item a crate-based high voltage power supplies with 36 independent
-high voltage channels for each drift chamber (1344 signal wires each).
-Of these 36 channels, 16 supply positive high voltage to the sense
-wires, 16 supply negative voltage to the field wires, and 4 supply
-positive voltage to the guard wires
-\item a series of two distribution boxes which distribute the high
-voltage from the supplly channels on individual cables to groups
-of wires, with the group size being 8 wires (for small angle wires)
-to 16 (intermediate angles) to 32 (large angles). 
-\item  on-chamber printed circuit boards which distribute high voltage
-to all of the wires; these are the HVTB's
-\end{itemize}
-
-
-
-Fig.~\fig{dc-high-voltage-system} is a schematic of the high voltage
-supply system and a snapshot 
-of the control panel for monitoring the state of the system.
-
-%%%%%%%%%%%%%%%%%%%%%% Figure : DC Sector Schematic %%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}
-\vspace{4.5cm}
-%\includegraphics[width=0.5\columnwidth]{dc-view.png}
-\caption{\small{A schematic of the high voltage supply system and smapshot of 
-the monitoring and control panel screen.}}
-\label{dc-high-voltage-system}
-\end{figure}   
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 

@@ -92,7 +92,8 @@ chambers) set to zero.  On subsequent passes, we deliberately misaligned
 a particular chamber by a particular offset in position or angle and 
 produced a second set of plots of residual mean vs. layer.  We ran 18 passes
 through the data, adjusting all combinations of region (1, 2, 3) and
-of offset type $\del x, \del y, \del z, \theta x, \theta y, \theta z$, one at
+of offset type $\delta$x, $\delta$ y, $\delta$ z, $\theta$ x, 
+$\theta$ y, $\theta$ z, one at
 a time.  The offsets in $x, y and z$ were 2 mm, and the angular rotations
 were 0.2 degrees.  We called these ``unit distortions''.
 
@@ -101,7 +102,7 @@ to give a ``change of residual'' distribution caused by a given ``unit distortio
 We then fit the observed residual distribution from the data to a weighted
 sum of the 18 ``change of residual'' distributions.  In principle, we
 could have had 18 free parameters, but in practice we had 12 free parameters:
- $\del x, \del y, \del z, and \theta y$ for each of the 3 chambers: R1, R2 and R3
+ $\delta$ x, $\delta$ y, $\delta$ z, and $\theta$ y for each of the 3 chambers: R1, R2 and R3,
 where $\theta y$ is a tilt of a chamber.  The yaw ($\theta x$) and roll ($\theta z$)
 were not varied because they did not improve the fits.
 
@@ -154,8 +155,7 @@ for all different combinations of drift-distance signs.  After selection of
 the full set of drift-distance signs within each superlayer, a final fit 
 results in improved track parameters.
 
-\subsubsubsection{T0 Determination}
-\hskip 0.15 in
+\subsubsection{T0 Determination}
 As indicated in eq(\ref{drift}), the fixed-time delays (mainly fixed cable delays) 
 for each wire must be known in order to determine the drift times.   To determine
 this t$_0$ value, we produced a histogram of the following quantity for all hits
@@ -562,8 +562,8 @@ This means that we
 \item {\bf Interpolate} between time to distance tables for different local angles to obtain
 the calculated distance at a particular local angle
 \end{itemize}
-For example if ``X_0'' is the distance (at a particular time) for a table filled for tracks with local angle of 0 degrees
-and ``X_{30}'' is the corresponding quantity for a table of 30 degree tracks, then
+For example if ``$X_0$'' is the distance (at a particular time) for a table filled for tracks with local angle of 0 degrees
+and ``$X_{30}$'' is the corresponding quantity for a table of 30 degree tracks, then
 \begin{equation} 
 \label{eq-extrap30}
 X(t,\alpha) = X_0 + (X_{30}-X_0) (cos(30-\alpha) - cos(30)) / (1. - cos(30))
