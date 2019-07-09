@@ -5,10 +5,14 @@
 The DC geometry is implemented through the COATJAVA geometry service.
 The service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
 
-Each layer is a generic G4Trapezoid, tilted by $+6^O$ or $-6^O$ depending if they are part of a stereo superlayer or not.
+For each sector, there are three drift chambers: one in front of the torus, one between the torus coils
+and one following the torus.  These three chambers are referred to as different ``regions''.
+The chambers are strung with the wires arranged in 12 internal layers.
+Each layer is a generic G4Trapezoid, tilted by $+6^O$ or $-6^O$ depending if they are in the first or second
+superlayer of a region.
 The 12 layers in each region (6 per superlayer) are placed in a region mother volume made of air, see \F{dcGeometry}.
 The layers are assigned the $CO_2$ material and associated with the DC hit process routine.
-The wire identifications is performed in the Process ID routine.
+The wire identification is performed in the Process ID routine.
 
 \begin{figure}
 	\centering
@@ -58,14 +62,11 @@ A time walk correction function is applied to $T_i$ that includes discrete ioniz
 	\item the velocity of the particle
 \end{itemize}
 
-The resulting $T_w$ is then used in a landau-function to mimic the detector response function.
+The resulting $T_w$ is then used in a Landau-function to mimic the detector response function.
 
-An intrinsic random time walks correction $\sigma_{TW}$ due to multiple scattering is calculated and the time is smeared with
+An intrinsic random time walk correction $\sigma_{TW}$ due to multiple scattering is calculated and the time is smeared with
 a Gaussian function using $\sigma_{TW}$ as the resolution.
-
-An example of the resolution function that represents real LTCC data is shown in \F{dcResolution}.
-
-Finally, a random number is thrown and if it's above the efficiency function, calculated based on $DOCA$, the hit is rejected.
+Finally, a random number is thrown (between 0 and 1) and if it's above the efficiency function, calculated based on $DOCA$, the hit is rejected.
 
 \begin{figure}
 	\centering
@@ -121,10 +122,10 @@ The DC hit process routine location in git is \url{https://github.com/gemc/sourc
 \subsubsection{Background Rates}
 
 A detailed study of the background rates coming from beam interacting with the target was done to ensure that the DC occupancy stays
-within limits that do not affect the reconstruction efficiency, typically below $3\%$.
+within limits that do not affect the reconstruction efficiency, typically below $5\%$.
 
 Given the nominal operating luminosity $L=10^{35} cm^{-2}s^{-1}$, and the liquid hydrogen target of $5 cm$, the beam electron rates
-is $R=4.7 \times 10^{11} Hz$. This correspond to around 124,000 electrons in the DC 250 ns time window of region 1.
+is $R=4.7 \times 10^{11} Hz$. This corresponds to around 124,000 electrons in the DC 250 ns time window of region 1.
 
 Various analyses \cite{targetStudy}, \cite{clas12Beamline}, \cite{clas12Background}, were performed using 124,000 electrons / event
 to study the DC occupancy response to variations of hardware position and beamline configurations.
