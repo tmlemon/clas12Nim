@@ -14,7 +14,7 @@ simulated data and failed on final validation stage. Most complicated stage1 com
 ben
 Some stage1, as well as all stage2 and stage3 components were implemented using VHDL. For those, VIVADO tools were used for validation diring design phase, in particular ...
 
-\section{Validation of special purpose FPGA triggers using cosmic runs} 
+\subsection{Validation of special purpose FPGA triggers using cosmic runs} 
 
 Efficiency and spatial uniformity of cluster finding trigger described in Section 5.3 requires already calibrated calorimeters with pre-determined PMT gain and light attenuation constants loaded into the VTP/FPGA trigger firmware.  Calibration runs using a special purpose MIP trigger were used to obtain these constants.  This so-called "pixel trigger" used a simple multiplicity condition on 1D cluster size for each U,V,W view to reject undesirable muon trajectories and select normally incident tracks.  This reduced the trigger and data rate by 95$\%$ and ensured the same MIP energy was deposited for all possible triple intersections of single strips.  
 
@@ -45,8 +45,11 @@ Additional configurable trigger elements were introduced, including a total ener
 \input{Validation_Andrea}
 
 
+\subsection{Final validation before experiment start up}
 
+After CLAS12 detector was commissioned and trigger system components were validated, we still have to execute validation process for entire system in the begining of every experiment. It is needed because different experiments requesting configuration changes in trigger system, taking advantage of it's flexibility. Also, we are applying firmware changes occasionally to improve trigger system components based on previous experience, and those changes have to be validated.
 
-\section{Validation for different experiments} Valery
+Final trigger system validation is performed by taking beam data with random trigger (see ~\ref{sec:validation_random}).
+Trigger logic is configured exactly as it will be set in experimant, but it is running in tagging mode reporting trigger decisions into data stream for every randomly generated event. After several hours of running we are collecting at least 100 million events. After data processed and events reconstructed, we will find several thousands events which accidently fell into correct trigger window. Those events will be used to obtain trigger efficiency and purity assuming that our off-line reconstruction software works correctly. It should be mentioned that working off-line reconstruction is important pre-requisite for trigger validation.
 
-After CLAS12 detector was commissioned and trigger system was validated, we still have to repeat validation process occasionally. It is needed because different experiments requesting configuration changes in trigger system, taking advantage of it's flexibility.
+Final trigger validation procedure was executed several times during first year of CLAS12 experiments and it was proven to be very useful: bugs in trigger firmware were found and fixed, and trigger configuration parameters were optimized. Every experiment in CLAS12 starts from trigger system validation.
