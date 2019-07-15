@@ -12,12 +12,28 @@ Vivado HLS was used to implement a variety of trigger algorithms, event builder 
 
 \subsection{Operating Systems} Moffit
 
-Stage 1 and stage 3 of the CLAS12 Trigger System controlled through Arch Linux running in Xilinx arm ...
+Linux operating systems are used on all readout controllers in the CLAS12 DAQ. The VME crate controllers use Intel based CPUs and run a standard Centos and Linux kernel distribution. The VTP modules use an ARMv7 CPU with custom hardware and run Arch Linux using a custom Linux kernel. Both CPUs boot from the network using a shared kernel and root filesystem images, which simplify administration. Common DAQ software (readout, configuration, slow control, diagnostics, etc.) tools are able to used for both platforms and most tools available on standard desktop PCs are also available to use.
 
-Stage 2 controlled by CentOS Linux running on Intel controller. As results all 3 stages designed to provide convenient access to ...
-using c/c++ programs.
+Archlinux with armv7
 
-\input{operating_systems}
+\begin{itemize}
+\item Linux Kernel 4.4.0
+  \begin{itemize}
+  \item Updates with specific support for Xilinx Zynq Processors
+  \item Available at https://github.com/Xilinx/linux-xlnx.git
+  \item Custom device-tree
+  \item Provides FPGA programming interface
+  \item Allocates Physical Memory for use with DMA and event buffers
+  \item Standard I$^2c$ and SPI API
+  \end{itemize}
+
+\item Archlinux compiled for armv7
+  \begin{itemize}
+  \item Available at https://archlinuxarm.org/
+  \item Filesystem over NFS
+  \item diskless booting using tftp (UBoot)
+  \end{itemize}
+\end{itemize}
 
 
 \subsection{Configuration Software}
