@@ -1,13 +1,13 @@
 \section{Design}
 
-CLAS12 Trigger System is designed as 3-stage pipeline-style system with total latency up to 8us. Stage 1 receives information from various CLAS12 detecrors and performs data processing in according to the type of detector. Stage 2 performs timing and geometry coincidence between different subset of dectors in 6 groups in according to 6-sector CLAS12 detector structure, as well as coincidence with information from central detectors. Stage 3 forms final trigger decision.
+CLAS12 Trigger System is designed as 3-stage pipeline-style system with total latency up to 8us. Stage 1 receives information from various CLAS12 detecrors and performs data processing in according to the type of detector. Stage 2 performs timing and geometry coincidence between different subset of detectors in 6 groups corresponding to 6-sector CLAS12 detector structure, as well as coincidence with information from central detectors. Stage 3 forms final trigger decision.
 CLAS12 Trigger diagram is shown on Fig.~\ref{fig:TriggerDiagram}.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/CLAS12_TRIGGER_1.pdf}
 	\caption{CLAS12 Trigger System Diagram}
-	\label{fig:TtiggerDiagram}
+	\label{fig:TriggerDiagram}
 \end{figure}
 
 
@@ -15,11 +15,11 @@ CLAS12 Trigger diagram is shown on Fig.~\ref{fig:TriggerDiagram}.
 
 \subsubsection{FADCs as initial trigger information}
 
-Almost all photomultiplier-based detectors in CLAS12 uses JLAB VXS 250Mhz Flash ADCs as starting point of the trigger logic (ref). Every channel of those FADC boards are pre-programmed with gain, pedestal and amplitude threshold above pedestal. Every pulse above amplitude threshold is integrated and sent to the corresponding section of the Stage 1 trigger logic. 16-channel FADC boards are reporting 13-bit pulse integrals and 3-bit pulse time every 32 ns, allowing following trigger logic to restore 4 ns pulse resolution while double pulse resolution remains 32 ns. Based on FADC reporting schedule following trigger logic stages can work on 250MHz clock, athought in that case we found it hard to meet FPGA timing, and our Stage 1 algorithms are running on 125MHz or slowers clocks as described below.
+Almost all photomultiplier-based detectors in CLAS12 uses JLAB VXS 250Mhz Flash ADCs as starting point of the trigger logic (FADC, \ref). Every channel of those FADC boards are pre-programmed with gain, pedestal and amplitude threshold above pedestal. Every pulse above amplitude threshold is integrated and sent to the corresponding section of the Stage 1 trigger logic. 16-channel FADC boards are reporting 13-bit pulse integrals and 3-bit pulse time every 32 ns, allowing following trigger logic to restore 4 ns pulse resolution while double pulse resolution remains 32 ns. Based on FADC reporting schedule following trigger logic stages can work on 250MHz clock, athought in that case we found it hard to meet FPGA timing, and our Stage 1 algorithms are running on 125MHz or slowers clocks as described below.
 
 \subsubsection{DCRBs as trigger information}
 
-Drift chamber-based trigger is using JLAB 125Mhz DCRB Discriminator/TDC boards to feed trigger system. Those 96-channel units reporting hits above pre-programmed thresholds every 16 ns.
+Drift chamber-based trigger is using JLAB 125Mhz Discriminator/TDC boards (DCRB, \ref) to feed trigger system. Those 96-channel units reporting hits above pre-programmed thresholds every 16 ns.
 
 \subsubsection{Electromagnetic calorimeters} sergey
 \label{sec:ECAL}

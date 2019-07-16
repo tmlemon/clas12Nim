@@ -48,8 +48,22 @@ Additional configurable trigger elements were introduced, including a total ener
 \subsection{Final validation before experiment start up}
 
 After CLAS12 detector was commissioned and trigger system components were validated, we still have to execute validation process for entire system in the begining of every experiment. It is needed because different experiments requesting configuration changes in trigger system, taking advantage of it's flexibility. Also, we are applying firmware changes occasionally to improve trigger system components based on previous experience, and those changes have to be validated.
-
 Final trigger system validation is performed by taking beam data with random trigger (see ~\ref{sec:validation_random}).
-Trigger logic is configured exactly as it will be set in experimant, but it is running in tagging mode reporting trigger decisions into data stream for every randomly generated event. After several hours of running we are collecting at least 100 million events. After data processed and events reconstructed, we will find several thousands events which accidently fell into correct trigger window. Those events will be used to obtain trigger efficiency and purity assuming that our off-line reconstruction software works correctly. It should be mentioned that working off-line reconstruction is important pre-requisite for trigger validation.
 
-Final trigger validation procedure was executed several times during first year of CLAS12 experiments and it was proven to be very useful: bugs in trigger firmware were found and fixed, and trigger configuration parameters were optimized. Every experiment in CLAS12 starts from trigger system validation.
+Final trigger validation procedure was executed several times during first year of CLAS12 experiments and it was proven to be very useful: bugs in trigger firmware were found and fixed, and trigger configuration parameters were optimized.
+For one occasion firmware bug was introduced into PCAL stage1 trigger logic during firmware update which expected to be small and simple. Final validation procedure revealed irregulatity in spacial distribution of clusters (fig ~\ref{fig:PCAL_bug_data}) (it also shows one CLAS12 sector is missing but it was enother problem unrelated to the trigger system). Since PCAL stage1 firmware is implemented in C++/HLS, GEANT4 data sample was reprocessed through C++ firmware implementation (fig. ~\ref{fig:PCAL_bug_hls}), problem was confirmed and subsequently found and fixed. Firmware was recompiled and reloaded and final trigger validation was repeated showing that problem was fixed. It took just several hours between finding the problem and being ready to run again. Every experiment in CLAS12 starts from final trigger system validation. 
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/PCAL_bug_data.png}
+	\caption{PCAL bug in beam data}
+	\label{fig:PCAL_bug_data}
+\end{figure}
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/PCAL_bug_hls.png}
+	\caption{PCAL bug in GEANT4 simulation}
+	\label{fig:PCAL_bug_hls}
+\end{figure}
+
