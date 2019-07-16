@@ -50,17 +50,17 @@ and low voltage.}}
 The circuit boards that interface the sense 
 wires to the pre-amplifiers (STBs) were  
 designed for a 96-channel format.  This format requires seven 
-circuit boards for each superlayer of (672 signals).   Fig.~\ref{r1stb} shows the traces 
+circuit boards for each superlayer of (672 signals).   Fig.~\ref{trace-routing-schematic} shows the traces 
 routed from the signal pick-up at the plated-through holes to the signal 
 inputs of the pre-amplifier.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{10.0cm}
-\special{psfile=r1stb.ps hscale=80 vscale=80 hoffset=30 voffset=-40}
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{trace-routing-schematic.jpg}}}
 \caption{\small{Trace routing shown on one of the Region~1 STBs being
 designed.}}
-\label{r1stb}
+\label{trace-routing-schematic}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -76,6 +76,20 @@ noise, and low power needed for the performance requirements.  The CP01 is
 a transimpedance amplifier with a gain of $2 mV/\mu Amp$ and a rise-time
 less than $10 ns$.  Each SIP operates at 6V and draws about $13 mA$.   
 
+ Fig.~\ref{CP01-description} shows the design and specifications of the
+CP01 pre-amplifier.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{10.0cm}
+{hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=64]{CP01-description.jpg}}}
+\caption{\small{Description of the CP01 Design and Specs}}
+\label{CP01-description}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+ 
 Each group of 16 pre-amplifier output signals were routed to a 17 pair connector.
 Sixteen of the pairs are used as differential signal paths which are routed from the STB's to the 
 drift chamber readout boards (DCRB) over individual cables consisting of 16 twisted pairs.  
@@ -105,18 +119,21 @@ tube ensures good contact with the circuit board.  This approach has the
 advantages of reducing the space needed for connections, preventing crimp pins 
 from being pulled from the feedthroughs when disconnecting the boards from the 
 wires, and reducing the cost compared to metal connectors.  This detail is 
-shown in Fig.~\ref{crimp}.
+shown in Fig.~\ref{wire-to-amplifier}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{8.0cm}
-\caption{\small{An assembly drawing showing how the crimp pin was inserted
+\vspace{10.0cm}
+{hbox{\includegraphics[width=0.35\columnwidth,natwidth=610,natheight=642]{wire-to-amplifier.jpg}}}
+\caption{\small{Detail of the signal path from the wire's crimp pin to the CP01 amplifier showing
+the various conductive paths.  An assembly drawing showing how the crimp pin was inserted
 into the feedthrough and how the conductive elastomer tube fits over the 
 crimp pin and inside the plated-through hole on the printed circuit board to 
 make the electrical connection.}}
-\label{crimp}
+\label{wire-to-amplifier}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \subsection{Off-Chamber Amplification, Time Digitization and Readout}
 
