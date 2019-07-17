@@ -58,17 +58,21 @@ foreach d ($detChanged)
 	echo                  > compile.log
 	echo Detector: $d    >> compile.log
 	echo                 >> compile.log
+	set toPublish = $d".pdf"
 	if ($d != "magnets") then
 		# make sure the style files are common
 		cp ../*.sty .
 		echo Compiling with `which scons` >> compile.log
 		echo                              >> compile.log
 		scons
-		echo Result: `ls *.pdf`           >> compile.log
+		echo To Publish: $toPublish       >> compile.log
 		ls -lrt                           >> compile.log
 		echo                              >> compile.log
 	endif
-	scp *.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims
+	if ($d == "dc") then
+toPublish = dc_nim.pdf
+	endif
+	scp $toPublish ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims
 	echo $d published    >> compile.log
 	if ($d != "magnets") then
 		scons -c
