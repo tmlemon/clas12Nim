@@ -1,14 +1,15 @@
-\section{Requirements(Sergey,Valery)}
+\section{Requirements}
 
-The CLAS12 detector  has been designed to study the interactions of electrons and photons with nucleons and nuclei at high luminosity. 
-The CLAS12 trigger system is providing trigger signals for these processes. 
-Any detectors with Flash Analog to Digital Converter (FADC) front-end electronics may participate in the trigger event selection.  In addition, track reconstruction by the drift chambers at the trigger level is used to select events with charge particles in the final state. 
+The CLAS12 detector  has been designed to study the interactions of electrons and photons with nucleons and nuclei at high luminosity. The CLAS12 trigger system have to provide trigger signals for these processes. Based on physics processes simulation required event rate was set to 20 kHz. Trigger latency was required not less then 8 us to provide enough room for trigger logic processing.
+
 %(see Fig.~\ref{fig:CLAS12}). 
-The trigger firmware has access to  the following detectors:
+
+Following detectors were defined to be part of the trigger system:
+
 \begin{itemize}
 	\item High Threshold Cherenkov Counter (HTCC)
 	\item Drift Chambers (DC)
-	\item Low Threshold Cherenkov Counter (LTCC)
+	%\item Low Threshold Cherenkov Counter (LTCC)
 	\item Time of Flight System (TOF)
 	\item Preshower Calorimeter (PCAL)
 	\item Electromagnetic Calorimeter (EC).
@@ -17,3 +18,7 @@ The trigger firmware has access to  the following detectors:
 	\item Central Neutron Detector (CND)
 	\item Forward Tagger (FT)
 \end{itemize}
+
+All those detectors were required to provide information to the trigger system. To achieve that front-end electronics was required to be designed with built-in trigger components. 
+
+ 
