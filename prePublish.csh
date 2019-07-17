@@ -70,7 +70,9 @@ foreach d ($detChanged)
 		echo                              >> compile.log
 	endif
 	if ($d == "dc") then
-toPublish = dc_nim.pdf
+		toPublish = dc_nim.pdf
+	else if ($d != "beamline") then
+		toPublish = beamline_nim.pdf
 	endif
 	scp $toPublish ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims
 	echo $d published    >> compile.log
