@@ -10,7 +10,7 @@ For FPGA synthesis and implemenation Xilinx ISE/Planahead and Vivado were used. 
 
 Vivado HLS was used to implement a variety of trigger algorithms, event builder logic, and general purpose logic. HLS components were able to be verified with C/C++ test benches on their own without anything more than GNU GCC and associated C/C++ header files from the HLS toolchain. This tool often allowed for faster implementation for FPGA implemenation, but many components still were implemented in HDL were resource and/or timing requirements become critical. Vivado HLS generated VHDL files from the C/C++ sources that were included into the FPGA compilation and full simulations. Occasionally simulation of the HDL generated files was required to debug C/C++ modules when simulation under GCC found no problem, but the HDL result did. Differences between C/C++ simulation and the corresponding HDL output were primarily due to: C/++ assumption of infinite length buffering while HDL buffers were finite, ambiguous C/C++ coding where GCC and HLS behaviors differed, and latency issues due to the C/C++ simulation has no concept of elapsed time.
 
-\subsection{Operating Systems} Moffit
+\subsection{Operating Systems}
 
 Linux operating systems are used on all readout controllers in the CLAS12 DAQ. The VME crate controllers use Intel based CPUs and run a standard Centos and Linux kernel distribution. The VTP modules use an ARMv7 CPU with custom hardware and run Arch Linux using a custom Linux kernel. Both CPUs boot from the network using a shared kernel and root filesystem images, which simplify administration. Common DAQ software (readout, configuration, slow control, diagnostics, etc.) tools are able to used for both platforms and most tools available on standard desktop PCs are also available to use.
 
@@ -38,9 +38,9 @@ Archlinux with armv7
 
 \subsection{Configuration Software}
 
-\subsubsection{Configuration Files} sergey
+\subsubsection{Configuration Files}
 
-CLAS12 Trigger system has large amount of parameters controlling its logic. Those parameters are set by writing values to hadrware registers, and controlled by reading those registers back. System is using ascii files, example is shown on (Fig.). Every line contains key word and the number of corresponding parameter values. Directive 'include' allows to use hierarhical set of configuration files. Normally main configuration file is selected during run startup procedure, and run control software resolves all 'include' directives creating one big configuration file. That file is used to program all trigger harwdare registers, and it is also written to the data stream for bookkeeping purposes. Register contents are read back and results recorded into data stream as well, providing full control of trigger system settings. Normally the same configuration files contains DAQ settings as well, makeing it complete source for entire DAQ/Trigger system settings.
+CLAS12 Trigger system has large amount of parameters controlling its logic. Those parameters are set by writing values to hadrware registers, and controlled by reading those registers back. System is using ascii files, example is shown on (Fig. ~). Every line contains key word and the number of corresponding parameter values. Directive 'include' allows to use hierarhical set of configuration files. Normally main configuration file is selected during run startup procedure, and run control software resolves all 'include' directives creating one big configuration file. That file is used to program all trigger harwdare registers, and it is also written to the data stream for bookkeeping purposes. Register contents are read back and results recorded into data stream as well, providing full control of trigger system settings. Normally the same configuration files contains DAQ settings as well, makeing it complete source for entire DAQ/Trigger system settings.
 
 
 \subsubsection{Timing Setting}
