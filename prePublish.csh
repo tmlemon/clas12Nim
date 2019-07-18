@@ -70,21 +70,18 @@ foreach d ($detChanged)
 		echo                              >> compile.log
 	endif
 	if ($d == "dc") then
-		toPublish = dc_nim.pdf
-	else if ($d != "beamline") then
-		toPublish = beamline_nim.pdf
-	else if ($d != "ftof") then
-		toPublish = ftof-nim.pdf
-	else if ($d != "ctof") then
-		toPublish = ctof-nim.pdf
-	else if ($d != "dc") then
-		toPublish = dc12_nim.pdf
+		set toPublish = dc_nim.pdf
+	else if ($d == "beamline") then
+		set toPublish = beamline_nim.pdf
+	else if ($d == "ftof") then
+		set toPublish = ftof-nim.pdf
+	else if ($d == "ctof") then
+		set toPublish = ctof-nim.pdf
+	else if ($d == "dc") then
+		set toPublish = dc12_nim.pdf
 	endif
 	scp $toPublish ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims
 	echo $d published    >> compile.log
-	if ($d != "magnets") then
-		scons -c
-	endif
 	echo                 >> compile.log
 	echo "Done. Check ~/error.log for cronjob errors."  >> compile.log
 	echo                 >> compile.log

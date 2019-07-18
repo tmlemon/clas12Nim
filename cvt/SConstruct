@@ -1,5 +1,0 @@
-import os
-
-env = Environment(ENV=os.environ)
-env['ENV']['TEXINPUTS']='..:'
-pdf = env.PDF(target  = 'cvt.pdf',  source = 'cvt.tex')
