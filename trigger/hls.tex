@@ -9,11 +9,13 @@ It allows to involve programmers who developed algorithms for offline data proce
 
 HLS was used to develop most of stage 1 components of CLAS12 trigger:
 
-High Threshold Cherenkov Counter (cluster energy reconstruction)
-Forward and Central Time-of-Flight Counters (clustering and left-right correction)
-Electromagnetic and Preshower Calorimeters (cluster energy and position reconstruction)
+\begin{itemize}
+	\item High Threshold Cherenkov Counter (cluster energy reconstruction)
+	\item Forward and Central Time-of-Flight Counters (clustering and left-right correction)
+	\item Electromagnetic and Preshower Calorimeters (cluster energy and position reconstruction)
+\end{itemize}
 
-Time-of-Flight and Cherenkov counters implementation was rather trivial, it would typically takes less then 10-15% of the Virtex 7 chip and timing requirements were easily met.
+Time-of-Flight and Cherenkov counters implementation was rather trivial, it would typically takes less then 10-15\% of the Virtex 7 chip and timing requirements were easily met.
 
 Calorimeter trigger implementations required much more effort because of its complex nature which requires significant FPGA resources. Details are further explained in the next sections using Electromagnetic Calorimeters as the example.
 
@@ -42,7 +44,8 @@ The ability to validate firmware using C++ implementation is the one of the bigg
 CLAS12 Calorimeters and other detectors were successfully implemented into trigger system using HLS to produce core part of the firmware. This trigger was used in the first physics run and worked as expected. We were able to select events based on individual cluster energy, something which was possible before only during offline data processing.
 HLS in general appears to be a useful tool, especially to implement smaller trigger components like Cherenkov or time-of-flight counters. For components utilizing significant portion of the FPGA, it will be great to improve HLS in following directions:
 
-Support multi-clock domains
-Improve subroutine calls by allowing option to fully registered paths between modules. 
-Improve state machine logic, for example support streams between routines inside the project and be able to generate separate state machines for separate routines. It will allows to avoid splitting project manually and use HDL as top interface as we are currently forced to do.
-
+\begin{itemize}
+	\item Support multi-clock domains
+	\item Improve subroutine calls by allowing option to fully registered paths between modules. 
+	\item Improve state machine logic, for example support streams between routines inside the project and be able to generate separate state machines for separate routines. It will allows to avoid splitting project manually and use HDL as top interface as we are currently forced to do.
+\end{itemize}

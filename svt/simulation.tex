@@ -16,9 +16,44 @@ A realistic model of the SVT has been developed, describing the location and com
 \label{fig:svt3dview}
 \end{figure}
 
+According to the results of GEANT simulation of the SVT, a resolution of 50~$\mu$m in the bending plane is needed to measure, with a precision better than 5$\%$, tracks with momentum up to 1~GeV (see Fig.~\ref{fig:PtRes}) \cite{MC1,MC2}. At low momenta the degradation of the resolution is caused by multiple scattering.
+
+\begin{figure}[hbt]
+\includegraphics[width=0.9\columnwidth,keepaspectratio]{PtResol.pdf}
+\caption{Simulated SVT momentum resolution.}
+\label{fig:PtRes}
+\end{figure}
+
 \subsection{Backgrounds, energy deposition, dose rates}
 
-Simulations of beam-related backgrounds were performed for several thicknesses of a tungsten shielding cylinder around the CLAS12 target covering the first SVT layer. Rates, fluences, radiation doses, and 1 MeV neutron damage rates in the SVT were calculated for different particles. For each event, 124,000 electrons going through the target within a 248.5-ns time window were simulated. This corresponds to the full CLAS12' $10^{35}$cm$^{-2}$s$^{-1}$ luminosity on a 5-cm-long liquid-hydrogen target at 11 GeV beam energy. Rates in the first SVT layer for a liquid-hydrogen target are shown in Fig.~\ref{fig:rates-lh2}. The energy deposited in layer 1 for the electromagnetic and the hadronic particles is shown in Fig.~\ref{fig:energy-deposited-l1}. At a threshold of 30 keV, 92$\%$ of the electromagnetic background is rejected while preserving  99.5$\%$ of the signals coming from the hadrons~\cite{TDRSVT}.
+Radiation-induced bulk and surface detector damage studies have been conducted with charged hadrons, leptons, neutrons, and $\gamma$-ray photons. The radiation damage produced by different particles with different energies are scaled under the assumption of the Non-Ionizing Energy Loss (NIEL) hypothesis as the radiation damage in the silicon bulk depends only on the non-ionizing energy loss. The damage caused by different particles is referenced to the damage from 1 MeV neutrons. The standard value for the NIEL of 1 MeV neutrons is 95 MeVmb. 
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{Pb_1MeVeq.png}
+\caption{Accumulated 1MeV equivalent neutron fluence for the lead target.}
+\label{fig:fluka1}
+\end{figure}
+
+To calculate the effects of different target configurations on the SVT detector,  FLUKA~\cite{FLUKA1, FLUKA2} simulations have been performed. In order to include the hadron electro-nuclear production, a dedicated source term has been used to enhance the physics production from the target, since it is a key in radiation estimates for targets with radiation length below 4$\%$. To assess the radiation damage to the SVT, the accumulated 1MeV neutron equivalent fluence has been recorded corresponding to the planned run conditions. For the experiment with lead target, the expected exposure was 240 h at beam current of 38 nA with electron beam energy of 6.6 GeV (Fig.~\ref{fig:fluka1}). For deuterium target, the study has been done for the accumulated charge of 108 mC at 11 GeV (Fig.~\ref{fig:fluka2}). In both scenarios the expected doses should not cause substantial degradation of the silicon sensors.
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{Deuterium_1MeVeq.png}
+\caption{Accumulated 1MeV equivalent neutron fluence for the deuterium target.}
+\label{fig:fluka2}
+\end{figure}
+
+FLUKA simulations of radiation damage levels have been performed in terms of 1MeV equivalent neutron fluence and high energy hadron equivalent fluence which is proportional to the rate of Single Event Effects (SEE)~\cite{FLUKA3}. Estimated levels of radiation damage in radial direction are presented in Fig.~\ref{fig:rad-levels-radial}) for liquid hydrogen and carbon targets at nominal beam currents. Also shown the radiation levels for the tagger magnet yoke during the beam tuning (see the beam line section in this volume).
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{rad-levels-radial.png}
+\caption{Estimated levels of radiation damage in radial direction in terms of 1MeV neutron equivalent fluence in silicon.}
+\label{fig:rad-levels-radial}
+\end{figure}
+
+Simulations of beam-related backgrounds were performed for several thicknesses of a tungsten shielding cylinder around the CLAS12 target covering the first SVT layer. 
  
 \begin{figure}[hbt] 
 \centering 
@@ -26,6 +61,8 @@ Simulations of beam-related backgrounds were performed for several thicknesses o
 \caption{Rates in the first SVT layer for a 5-cm long liquid hydrogen target at the nominal CLAS12 operating luminosity of $10^{35}$cm$^{-2}$s$^{-1}$.}
 \label{fig:rates-lh2}
 \end{figure}
+
+Rates, fluences, radiation doses, and 1 MeV neutron damage rates in the SVT were calculated for different particles. For each event, 124,000 electrons going through the target within a 248.5-ns time window were simulated. This corresponds to the full CLAS12' $10^{35}$cm$^{-2}$s$^{-1}$ luminosity on a 5-cm-long liquid-hydrogen target at 11 GeV beam energy. Rates in the first SVT layer for a liquid-hydrogen target are shown in Fig.~\ref{fig:rates-lh2}. The energy deposited in layer 1 for the electromagnetic and the hadronic particles is shown in Fig.~\ref{fig:energy-deposited-l1}. At a threshold of 30 keV, 92$\%$ of the electromagnetic background is rejected while preserving  99.5$\%$ of the signals coming from the hadrons~\cite{TDRSVT}.
 
 \begin{figure}[hbt] 
 \centering 
@@ -58,14 +95,7 @@ While the gamma fluences / doses show a dramatic decrease with the introduction 
 %\end{wrapfigure}
 
 %\subsection{Resolutions}
-%
-%According to the results of GEANT simulation of the SVT, a resolution of 50~$\mu$m in the bending plane is needed to measure, with a precision better than 5$\%$, tracks with momentum up to 1~GeV (see Fig.~\ref{fig:PtRes}) \cite{MC1,MC2}. 
-%
-%\begin{wrapfigure}{l}{0.45\columnwidth}
-%\includegraphics[width=0.45\columnwidth]{PtResol.pdf}
-%\caption{Simulated SVT momentum resolution.}
-%\label{fig:PtRes}
-%\end{wrapfigure}
-%
+
+
 %\subsection{Efficiencies}
 
