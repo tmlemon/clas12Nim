@@ -30,7 +30,7 @@ The most complex processing is performed for electromagnetic calorimeters (clust
 \subsubsection{Electromagnetic calorimeters}
 \label{sec:ECAL}
 
-CLAS12 two electromagnetic calorimeters (ECAL, \ref) consists of multiple layers of scintillating strips and lead sheets with photomultipliers readout on one side of scintillators (Fig.~\ref{fig:PCAL}). Primary goal of those detectors is electron identification by defining energy and coordinate of the electromagnetic showers, called clusters. Cluster finding algorithm was well established during off-line data processing development, and was adopted for trigger implementation with some simplifications.
+CLAS12 two electromagnetic calorimeters (ECAL, \ref) consists of multiple layers of scintillating strips and lead sheets with photomultipliers readout on one side of scintillators (PCAL is shown on Fig.~\ref{fig:PCAL}, EC is similar). Primary goal of those detectors is electron identification by defining energy and coordinate of the electromagnetic showers, called clusters. Cluster finding algorithm was well established during off-line data processing development, and was adopted for trigger implementation with some simplifications.
 
 First, it searches for one-dimensional clusters in each of three views, sorting them by energy and keeping only those above threshold, but not more then four. Second, it searches for two-dimensional clusters looking for crosses between three views. For two-dimension clusters found, it performs attenuation correction based on pre-loaded attenuantion length of the scintillation strips and distance from cluster to PMT, and correct cluster energy. Finally, it sorts two-dimension clusters by energy and report those above threshold, but not more then four. For every cluster, energy and coordinates are reported to the Stage 2 every 8 ns. There is an persistency parameter allowing to report the same clusters for several consequative 8 ns intervals to ensure timing coincidence with another trigger components, as well as timing delay parameter for the same purpose.
 
@@ -39,9 +39,9 @@ It should be mentioned that such algorithm is designed to found clusters with ma
 \begin{figure}[htp]
 	\begin{center}
 		\centering
-		\includegraphics[width=7cm]{img/PCAL-EC.pdf}
+		\includegraphics[width=7cm]{img/pcal1.png}
 		%\includegraphics{PCA.pdf}
-		\caption{Cluster's reconstruction in the PCAL and EC calorimeters}
+		\caption{Cluster's reconstruction in the PCAL calorimeter}
 		\label{fig:PCAL}
 	\end{center}
 \end{figure} 
@@ -176,5 +176,6 @@ The stage 3 trigger is the final stage and collects all sector and central trigg
 
 
 \subsection{Trigger information in data stream}
+\label{sec:trigger_in_datastream}
 
-An important part of all 3 stages of the trigger system is the event builder allowing it to participate in event-by-event readout the same was as DAQ front-end electronics. Each time the CLAS12 DAQ is triggered, Stage 1 VTP will build the event with trigger decision details (such as ECAL cluster coordinate/energy or DC segments/roads information), Stage 2 SSPs will build sector-level and central detectors coinsidence results, and the Stage 3 VTP will build an event which contains the trigger bit decisions for all 32bit for a given programmable window related to the readout trigger time. This allows trigger system to be run in ``tagging mode'' and is a powerful way to test trigger efficiency (using either a loose trigger or random trigger).
+An important part of the trigger system is the event builder. It allows trigger components to participate in event-by-event readout the same way as it is done for DAQ components. All three stages of the trigger system are equiped  event builders. Every time the CLAS12 DAQ is triggered, Stage 1 will build the data bank(s) with trigger decision details (such as ECAL cluster coordinate/energy or DC segments/roads information), Stage 2 will build the data bank with sector-level and central detectors coinsidence results, and the Stage 3 will build the data bank which contains the trigger bit decisions for all final decision 32 trigger bits. Event builders are reading information from the pipeline-style buffers for a given programmable window related to the readout trigger time. All trigger-related data banks are available in data stream along with DAQ data banks, providing detailed information about trigger decision for every accepted event. In particular, this allows trigger system to be run in ``tagging mode'' which is a powerful way to test trigger efficiency (using either a loose trigger or random trigger).
