@@ -20,11 +20,7 @@ about 8 times that of R1 and about 2.5 times that of R2.
 Each chamber is a solid trapezoid in shape, with  
 a pair of wire-supporting endplates that bear both the load of the 
 wire tensions and the weight of all associated hardware. A representative 
-chamber is shown in Fig.~\ref{generic-chamber-sketch}.  The wire tension load in
-R1 and R2 was borne by the stiffness of the endplates only, while in
-R3 the wire tension was offset 
-by compression in a carbon-fiber outer shell and in a set of carbon-fiber 
-posts that were part of the chamber construction.  
+chamber is shown in Fig.~\ref{generic-chamber-sketch}. 
 
 At the radially outward end of each chamber, a thick ``back-plate'' was 
 employed to maintain the relative 
@@ -85,7 +81,7 @@ boards.
 \begin{figure}[htpb]   
 \vspace{4.5cm}Schematic cross-sectional view of the R2 endplate showing
 wire-positioning hardware.
-\special{psfile=img/r2_inserts.eps hscale=70 vscale=70 hoffset=-93 voffset=-200}  
+\special{psfile=img/r2_inserts.eps hscale=70 vscale=70 hoffset=0 voffset=0}  
 \caption{\small{}}
 \label{dc-corner}
 \end{figure}   
@@ -117,14 +113,14 @@ mold releases.
 \hskip 0.15in
 
 Our ``thin endplate'' design required minimizing wire tensions and
-thus diameter or the wire.  The real key to reducing wire tension is to
+thus diameter of the wire.  The real key to reducing wire tension is to
 make the field wires (which are much larger than the sense wires) as 
 thin as possible and to make them out of low-density metal.  In this 
 section we describe our choices for sense, field and guard wires.
 We had to trade off the robustness and more uniform drift velocity
 afforded by large diameter sense wire with the disadvantages that they
-required higher electric fields, a potential problem for our high-density
-signal amplifier boards.
+required higher voltages to reach the same gas gain; 
+a potential problem for our high-density signal amplifier boards.
 
 In general, designers have chose very small diameter sense wires because they
 require lower operating voltates.
@@ -147,8 +143,8 @@ electronics gain and thresholds dictated that the gas gain be a few times
 10$^4$.  Under this condition, the electric field at the surface of the sense 
 wires is $\approx$200~kV/cm.  The field-wire diameter was chosen to ensure 
 that the electric field at their surface remained below 50~kV/cm to minimize 
-conditions which could cause unwanted cathode emissions.  We note that
-our choice violated the ``20~kV/cm rule'' proposed by Fabio Sauli and others
+conditions which could cause unwanted cathode emissions and a noisy chamber.  We note that
+our choice violated the ``20~kV/cm rule'' proposed by Fabio Sauli (Ref~\cite{sauli_cathode_emission}) and others
 to reduce cathode emission.  Our own studies showed that there was no cathode
 emission below 50~kV/cm from any wire with good surface finish.  Each batch
 of wire was tested with our test device (ref:patent) to ensure that at operating field 
@@ -156,7 +152,7 @@ values there was no emission.
 
 We chose 80-$\mu$m gold-plated Cu-Be wire for our field wire.
 It is very tough, and is easily plated and resists ``flaking'' of the gold
-plating.  The 80-$\mu$m diameter choice was made to obtain the minimum
+plating.  The choice of 80-$\mu$m diameter field wire was made to obtain the minimum
 radius that would satisfy our surface electric field limit.  This small
 diameter is important because it means that the field wires could be strung 
 at lower tension than a more dense wire, with minimal gravitational sag.  
@@ -168,9 +164,8 @@ the chambers.
 \subsection{Construction Materials}
 
 \hskip 0.15 in
-Due to the complex geometry of CLAS and the difficulty of removing and repairing 
-drift chambers, it was crucial to minimize chamber aging.  Care was taken to 
-ensure that all materials in contact with the gas volume were clean and ``chamber 
+To insure that the drift chambers perform well for 10 years or more, care was taken to 
+specify that all materials in contact with the gas volume were clean and ``chamber 
 safe'' as defined in Ref~\cite{kadyk}.  All construction was carried out in 
 Class-10000 or better clean rooms.
 

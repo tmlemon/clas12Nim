@@ -26,34 +26,6 @@ of momentum and at smaller laboratory angles.  These basic physics criteria
 drive the design. 
 
 
-Table~\ref{fwd-dc-physics-specifications} lists the physics goals for the CLAS12 program
-main and the resulting design features that will allow us to achieve these goals. for 
-the {\tt CLAS12} drift chambers and the physics goal that is the driver
-for the specification.  
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\small{
-\begin{table}[ht]
-\begin{center}
-\begin{tabular}{||c|c|c||} \hline \hline
-   {\bf Goal}         & {\bf Physics Spec} & {\bf Design Feature}\\ \hline
-Measure $\Gamma_v$  & $d \theta < 1mrad$   & planar chambers \\ 
-accurately  & $dp/p < 1\% $ & identical cells (easy to calibrate)  \\ \hline
-Select an exclusive  & $dp < .05 GeV/c$ & $250 /mu $ accuracy      \\ 
-reaction; e.g. only one    & $\delta\theta p < .02 GeV/c$ &  $+/- 6^{circ} stereo angle $ \\ 
-missing pion       & $sin\theta \delta \phi p < .02 GeV/c$ & \\ \hline
-Track resolution       & $dp/p < 0.3\% at 10 GeV/c, 7^\circ$ & small cells \\ 
-           & $dp/p < 1\%$ for lower momenta, larger angles &  \\ \hline
-small       & Luminosity = $10^{35}$~cm$^{-2}$s$^{-1}$  & six 6-layer superlayers \\ 
-cross sections  & high efficiency & small cells \\ \hline
-good acceptance   & $\delta\phi = 50\% at 5^\circ$ & \\ \hline
-\end{tabular}
-\caption{\small{\bf Physics goals to general specifications and design features}}
-\label{fwd-dc-physics-specifications}
-\end{center}
-\end{table}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Exclusive reactions, in which an electron scattering event 
 results in a meson-baryon final state, provide the most 
@@ -77,6 +49,32 @@ in order to know the virtual photon flux factor, and hence, the cross section,
 to a few percent. Finally, good vertex resolution will allow detection of 
 secondary decay vertices and serve as a good marker for strangeness production.
 
+Table~\ref{fwd-dc-physics-specifications} lists the physics goals for the CLAS12 program
+main and the resulting design features that will allow us to achieve these goals. for 
+the {\tt CLAS12} drift chambers and the physics goal that is the driver
+for the specification.  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\small{
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{||c|c|c||} \hline \hline
+   {\bf Goal}         & {\bf Physics Specification} & {\bf Design Spec or Feature}\\ \hline
+Measure $\Gamma_v$  & $d \theta < 1mrad$   & planar chambers \\ 
+accurately  & $dp/p < 1\% $ & identical cells (each superlayer)  \\ \hline
+Select an exclusive  & $dp < .05 GeV/c$ & $250 \mu $ accuracy      \\ 
+reaction; e.g. only one    & $ p~\delta\theta < .02 ~GeV/c$ &  $+/- 6^\circ$ stereo angle  \\ 
+missing pion       & $p ~sin\theta \delta \phi < .02 GeV/c$ & \\ \hline
+Small       & L = $10^{35}$~cm$^{-2}$s$^{-1}$  & six 6-layer superlayers \\ 
+cross sections  & high efficiency & small cells \\ \hline
+good acceptance   & $\delta\phi = 50\%$ at $5^\circ$ & thin endplates\\ \hline
+\end{tabular}
+\caption{\small{\bf Physics goals to general specifications and design features}}
+\label{fwd-dc-physics-specifications}
+\end{center}
+\end{table}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Drift Chamber Conceptual Design}
 
@@ -203,7 +201,7 @@ rods with ``ball and socket'' ends, meaning that the chambers can be
 moved out to maintenance position and moved back to the operating 
 postion by turning one precision turn-buckle assembly
 \item The previous CLAS chambers were interconnected to each other (R1) or 
-connected directly to the endplates (R2).  In the present chambers all of the wire tension
+connected directly to the torus (R2).  In the present chambers all of the wire tension
 is borne by the endplates and thus they can be independently mounted.
 The key to this improvement is the use of  
 ultra-stiff endplate assemblies that obtain their stiffness 
@@ -216,7 +214,7 @@ times larger than the $\theta$ resolution.  To have more equal resolution in
 the two angles, we doubled our stereo angle from 0 and 6$^\circ$ to 
 $\pm$6$^\circ$.
 \item all chambers are planar, with the first ``superlayer'' (of 6 layers)
-tilted at 6$^\circ$ stereo angle, and the second superlayer at -6$^\circ$ stereo
+tilted at a 6$^\circ$ stereo angle, and the second superlayer at a -6$^\circ$ stereo
 angle
 \item all wires within one superlayer are parallel to each other, thus
 every cell in the superlayer is identical, making it easier to model
@@ -254,7 +252,7 @@ configuration.}}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-One of the most significant design changes is the decision 
+One of the most significant design changes was the decision 
 to use 30-$\mu$m diameter sense wire rather than the previously-used 
 20~$\mu$m wire. 
 This should make the chambers more resistant to wire 

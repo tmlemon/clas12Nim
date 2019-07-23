@@ -24,34 +24,24 @@ being part of a track are identified
 \item a ``noise rejection algorithm'' is then applied to the clusters, 
 with one of the more efficient algorithms being the removal of the
 interior hits from horizontal ``strings'' of hits along a layer.
-The effectiveness of this cut follows from the observation that
-high-momentum tracks from hadrons typically cross the superlayers
-at a large angle, while ``curlers'' from low-momentum background
-follow curling trajectories with a significant part of the pattern
-being along layers
 \item the resulting trimmed clusters are then fit to a straight-line hypothesis,
 and those hits with acceptable residuals are kept and identified collectively
-as a ``track segment''
+as a ``track segment''.  This fit uses the wire position as the assumed hit
+position and is called ``hit-based tracking''.
 \item because the ``hits'' in a track segment are 2-dimensional objects (we
 do not know their location along the wire direction) a track segment is not
 a line but a plane.  Thus pairs of segments in neighboring superlayers within
-one chamber (with superlayers of +/- 6deg stereo angle) represent the
+one chamber (with superlayers of +/- $6^\circ$ stereo angle) represent the
 intersection of two planes; that is a line.  This line's coordinates 
 are evaluated midway between the two superlayers, and is a 6-dimensional
 object (x,y,z and 3 angles) which we call a ``cross''.
 \item in the first pattern-recognition step to find a track candidate,
 the positions of 3 crosses (1 each in R1, R2 and R3) are fit to a
 parabolic functional form to give us a ``track candidate''.
-\item the track candidate is actually the ``state vector'' of our
+\item the track candidate is the initial ``state vector'' of our
 Kalman filter tracking program
-\item the state vector's ``member coordinates'' are the following
-\begin{itemize}
-\item x and y at a specified z-location, and
-\item the two angles, thetax and thetay and
-\item the inverse momentum of the track candidate
 \end{itemize} 
 
-\end{itemize} 
 
 Due to the comparatively small size of the drift cells and the large 
 number of wire layers, the track momenta can already be reconstructed 
@@ -94,10 +84,10 @@ produced a second set of plots of residual mean vs. layer.  We ran 18 passes
 through the data, adjusting all combinations of region (1, 2, 3) and
 of offset type $\delta$x, $\delta$ y, $\delta$ z, $\theta$ x, 
 $\theta$ y, $\theta$ z, one at
-a time.  The offsets in $x, y and z$ were 2 mm, and the angular rotations
+a time.  The offsets in $x, y$ and $z$ were 2 mm, and the angular rotations
 were 0.2 degrees.  We called these ``unit distortions''.
 
-We then subtracted the pass1 residual distribution from a pass''i'' distribution
+We then subtracted the pass1 residual distribution from a pass``i'' distribution
 to give a ``change of residual'' distribution caused by a given ``unit distortion''.
 We then fit the observed residual distribution from the data to a weighted
 sum of the 18 ``change of residual'' distributions.  In principle, we
@@ -111,10 +101,6 @@ The
 results of this procedure indicated that the best-fit position of the chambers 
 along the three coordinate axes varied by up to several millimeters relative 
 to the surveyed positions.  
-
-In addition we have functions to correct for  wire sag due to 
-gravitational forces and endplate bowing, which can cause 1 - 2 millimeter
-changes in hit position.
 
 \subsection{Time to Distance Calibration}
 The drift chambers' TDC's measure time.  This time is corrected for a number
@@ -218,14 +204,13 @@ distance.  This is a more natural description of the drift chamber signal
 for several reasons:
 \begin{itemize}
 \item the maximum drift distance is given by geometry (the distance from
-a sense wire to the nearest field wire) and so it is fixed and can be used
-to scale the drift distance
+a sense wire to the nearest field wire) and so it is fixed
 \item the drift velocity is a function of electric field strength, so the
 point of minimum field is the point of minimum velocity (and thus the inflection point on the T vs X curve). 
 This inflection point of the curve occurs at a
-definite value of distance within the cell and NOT at a definite value of time.
+definite value of distance within the cell and not at a definite value of time.
 \item the time walk due to finite ionization is
-naturally parameterized as a function of distance and NOT as a function of time.
+naturally parameterized as a function of distance and not as a function of time.
 \item two of the major time corrections (time walk which is a function of the
 particle $\beta$ and a time correction for wires in a magnetic field, $B$ which
 scales like $B^2$) can simply be added to the nominal functional form.
@@ -237,27 +222,15 @@ distance indexed by time for use by the track reconstruction code.
 
 
 \subsection{Choice of Mathematical Forms for the Distance to Time Function}
-We are investigating two functional forms: one is an exponential form and the other, polynomial.
+We use a 4th order polynomial to model the distance to time relationship.
 
-The two basic functional forms (for local angle $\alpha = 30^0$, small values
-of particle velocity $\beta$ and no magnetic field) are the following:
-\begin{enumerate}
-\item A polynomial form:
 \begin{equation}
 t(x) =  a x^4 + b x^3 + c x^2 + {1 \over v_0} x,
 \end{equation}
 \item An exponential form:
-\begin{equation}
-t(x) = {1 \over v_0} x + a \left( {x \over x_{max}} \right)^n
-+ b \left( { x \over x_{max}} \right)^m,
-\end{equation}
-\end{enumerate}
 
-\noindent
-where $v_0$ is the value of the saturated drift velocity near $x$=0.
-
-These functional forms were chosen because they can be made to satisfy several physical
-constraints on the distance to time function.
+By the use of simple calculus we convert the parameters a, b, c and d to equivalent parameters which have
+a physically intuitive meaning (see next section).
 
 \subsection{Physical Constraints on the Drift Velocity Function}
 
@@ -282,14 +255,14 @@ have imposed four constraints.
 
 Constraints on the function coefficients:
 \begin{itemize}
-\item The {\bf first constraint} is that $t(x)$ must equal $t_{max}$ when $x = x_{max} $.
-\item The {\bf second constraint} is that the drift velocity near the sense wire ($x = 0$)
+\item  $t(x)$ must equal $t_{max}$ when $x = x_{max} $.
+\item  the drift velocity near the sense wire ($x = 0$)
 must equal the saturated value, $V_0$
-\item The ({\bf third constraint}) is that the function has an inflection point (a
+\item the function has an inflection point (a
 mininum in velocity) at the point in the cell with the lowest electric field
 strength.  From the geometry of our cells, this occurs at a distance
 of $ 0.615 \times x_{max}$.  Finally,
-\item a ({\bf fourth constraint}) is that the velocity equals $V_{mid}$ at the inflection point.
+\item the velocity equals $V_{mid}$ at the inflection point.
 \end{itemize}
 
 To summarize, these are the four constraints on the distance to time functions:
@@ -302,56 +275,7 @@ To summarize, these are the four constraints on the distance to time functions:
 
 In this way we convert our original parameters, a, b, c and d to the physically meaningful
 parameters $t_{max}, V_0, r, and V_{mid}$ where $r$ is the value 0.615 (the fractional distance
-at which the inflection point occurs) which can in principle be varied.
-
-\subsubsection{Constraints on the Parameters for the Exponential Form}
-In this subsection, we present the algebra for the constraints on the parameters
-of the exponential form:
-
-Evaluating these equations (and assuming that $m-n = \delta mn$)
-yields the following constraints among the parameters:
-\begin{enumerate}
-\item $x_{max}/V_0 + a + b = t_{max}$
-\item $1/V_0 + (na+mb)/x_{max} = 1/V_0$
-\item $a n (n-1) .615^{n-2} + b m (m-1) .615^{m-2} = 0$
-\end{enumerate}
-
-Rearranging yields the following equations:
-\begin{enumerate}
-\item $a + b = t_{max} - x_{max}/V_0$
-\item $a + (m/n) b = 0$
-\item $a + [(m(m-1))/(n(n-1))] .615^{\delta nm} b = 0$
-\end{enumerate}
-where $\delta nm$ is the difference between exponent values.
-	
-Solving equations 1 and 2 for a and b yields the following:
-\begin{equation}
-\label{bequation}
-b = (t_{max} - x_{max}/V_0) / (1 - m/n)
-\end{equation}
-\begin{equation}
-\label{aequation}
-a = (t_{max} - x_{max}/V_0) - b)
-\end{equation}
-while solving equations 2 and 3 yields:
-\begin{equation}
-n - 1 = (m - 1) .615^{\delta nm}
-\end{equation}
-which simplifies to 
-\begin{equation}
-\label{nequation}
-n = (1 + (\delta nm - 1) .615^{\delta nm}) / (1 - .615^{\delta nm})
-\end{equation}
-\begin{equation}
-\label{mequation}
-m = n + \delta nm
-\end{equation}
-where the {\bf three independent parameters} are the following:
-\begin{itemize}
-\item {\bf $V_0$} (the saturated drift velocity in the high-field region), 
-\item {\bf $\delta nm$} (the difference between the exponent values) and 
-\item {\bf $t_{max}$} the maximum drift time.
-\end{itemize}
+at which the inflection point occurs) which can in principle also be varied.
 
 
 \subsection{Dependence of Distance to Time Function on Local Angle}
@@ -378,7 +302,7 @@ Using this constraint, we can solve for $a_{\alpha}$ in terms of the known coeff
 yielding the following:
 \begin{equation}
 \label{aalphaequation}
-_{\alpha}={t_{max} - b dmax_{alpha}^3 - c dmax_{alpha}^2 - d dmax_{alpha}}\over{dmax_{alpha}^4}
+a_{\alpha} = {{t_{max} - b dmax_{alpha}^3 - c dmax_{alpha}^2 - d dmax_{alpha}}\over{dmax_{alpha}^4}}
 \end{equation}
 
 Using this formula for $a_{\alpha}$ we can derive the time as a function of distance and local
@@ -395,50 +319,10 @@ is given by
 \begin{equation}
 \label{tfunctionofxandlocalangle}
 t(x,\alpha) = a_{\alpha} x^4 + b x^3 + c x^2 + d x
-\end{equation}.
-
-
-\subsubsection{Local Angle Dependence of Exponential Form}
-We derived the function for time versus distance for a particular local angle, $\alpha$, by
-assuming the same functional form as for $\alpha = 30$ but with a {\bf different coefficient, b}, which 
-satisfies the constraint that $t_{max}$ = $F(dmax_{\alpha},\alpha)$.
-
-Using this constraint, we can solve for $b_{\alpha}$ in terms of the known coefficients $V_0, ~a, ~n$, and $m$,
-yielding the following:
-\begin{equation}
-\label{balphaequation}
-b_{\alpha}={{(t_{max}-dmax_{\alpha}/V_0)-a(\cos \left(30^\circ-\alpha\right)^n)}\over{\cos \left(30^\circ-\alpha\right)^m}}
 \end{equation}
 
-Using this formula for $b_{\alpha}$ we can derive the time as a function of distance and local
-angle, $\alpha$ as shown in Fig.~\ref{xvst}.  See, for instance, the upper-left sub-figure 
-which shows the time as function of distance for 5 different angles between $0^{\circ}$ and 
-$30^{\circ}$, equally spaced in $\cos \left(30^\circ-\alpha\right)$.  Note two things:
-\begin{enumerate}
-\item for each angle, $\alpha$, the time is $t_{max}$ at $dmax_{\alpha}$, and
-\item the distances for a given time are linear in $\cos \left(30^\circ-\alpha\right)$.
-\end{enumerate}
 
-Thus, the general functional form for time as a function of distance and local angle, $\alpha$
-is given by
-\begin{equation}
-\label{tfunctionofxandlocalangle}
-t(x,\alpha) = {1 \over v_0} t + a \left( {x \over x_{max}} \right)^n
-+ b_\alpha \left( { x \over x_{max}} \right)^m,
-\end{equation}
-where the {\bf independent parameters} are {\bf $V_0, \delta_{nm}$} and {\bf $t_{max}$} and the intermediate
-parameters a, $b_\alpha$, n and m are given by equations (\ref{aequation}), (\ref{balphaequation}), 
-(\ref{nequation}) and (\ref{mequation}), respectively.
 
-This function parameters {\bf $V_0, \delta_{nm}$} and {\bf $t_{max}$} are what is determined in a particular calibration.
-The average local angle, $\alpha_0$, is also written to the CALDB.  
-This entrance
-angle represents the average entrance angle for the full fitted data sample.
-The distance versus time look-up tables are constructed at begin run
-time by extrapolating the function $x_0$ from its
-nominal local angle, $\alpha_0$, to the local angles of the tables, 
-nominally $0^\circ$ and $30^\circ$.  This extrapolation procedure and the related
-interpolation procedure are discussed in the next section.
 
 \subsection{Dependence of Distance to Time Function on Magnetic Field Strength}
 Since the R2 chambers are located within the field region of the CLAS torus, the 
@@ -451,7 +335,13 @@ magnitude of the magnetic field, and not its direction, following a study
 described in Ref~\cite{MM-IEEE}.  
 
 The rotation of the isochrones is parameterized as a shift in the effective
-entrance angle.  This correction term $\alpha_c$ is determined from a 
+entrance angle.  
+\begin{equation} 
+\label{eq-bcorrn-to-ang}
+\alpha_b = \alpha_0 + \alpha_c \cos^{-1}(1 - a B), 
+\end{equation}
+
+The correction term $\alpha_c$ is determined from a 
 GARFIELD simulation to be:
 
 \begin{equation} 
@@ -460,7 +350,8 @@ GARFIELD simulation to be:
 \end{equation}
 
 \noindent
-where $a$ is a constant and $B$ is the magnetic field strength.
+where $a$ is a constant equal to $0.02$ and $B$ is the magnetic field strength in Tesla and angular
+units are degrees.
 
 %%%%%%%%% Figure : TRKDOCA vs. Drift Time -- Angle and Field Dependence %%%%%%%%%%
 \begin{figure}[htb]
@@ -541,8 +432,7 @@ function in order to fill a table of X (real number) as a function of the time i
 \subsection{Filling the Time to Distance and Distance to Time Tables}
 We calibrate the distance to time function by fitting the drift time versus
 TRKDOCA at a particular local angle, alpha.  We write the independent parameters,
-($V_0, deltanm, and T_{max}$ for the exponential function or $V_0, V_{mid} amd T_{max}$ for
-the polynomial form) to the data-base.  At the beginning of a reconstruction program,
+$V_0, V_{mid} amd T_{max}$ to the data-base.  At the beginning of a reconstruction program,
 an $inversion program$ is run to numerical invert the function to produce a table
 of distance indexed by time.
 
@@ -551,9 +441,9 @@ of distance indexed by time.
 Please refer back to Fig.~\ref{xvst} in order to understand the local-angle dependence
 of distance versus time.  When the time is equal to $t_{max}$ the distance is equal to
 the largest value for the local angle; that is, $dmax_{\alpha}$.  Also note that by
-simple geometrical reasoning, $dmax_{\alpha} = dmax  cos(30-alpha)$.
+simple geometrical reasoning, $dmax_{\alpha} = dmax$  $cos(30-\alpha)$.
 We assume that at times less than tmax and distances less than dmax, the calculated
-distances still vary linearly as $cos(30-alpha)$.  This angle dependence is built into
+distances still vary linearly as $cos(30-\alpha)$.  This angle dependence is built into
 our functional form.
 
 This means that we
