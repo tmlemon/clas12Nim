@@ -39,9 +39,9 @@ object (x,y,z and 3 angles) which we call a ``cross''.
 the positions of 3 crosses (1 each in R1, R2 and R3) are fit to a
 parabolic functional form to give us a ``track candidate''.
 \item the track candidate is the initial ``state vector'' of our
-Kalman filter tracking program
+Kalman filter tracking program 
 \end{itemize} 
-
+The full track reconstruction procedure will be discussed in a separate paper.
 
 Due to the comparatively small size of the drift cells and the large 
 number of wire layers, the track momenta can already be reconstructed 
@@ -103,11 +103,11 @@ along the three coordinate axes varied by up to several millimeters relative
 to the surveyed positions.  
 
 \subsection{Time to Distance Calibration}
-The drift chambers' TDC's measure time.  This time is corrected for a number
+The drift chamber TDC's measure time.  This time is corrected for a number
 of effects, and this corrected time is converted to a distance, DOCA, by 
 a pre-calculated time to distance function.  In this subsection we 
 explain the time corrections, the function used to calculate time as a 
-function of DOCA and how we calibrate the parameters of this funciton.
+function of DOCA and how we calibrate the parameters of this function.
 
 \subsubsection{Time Corrections}
 The drift time is the elapsed time between the time that the particle 
