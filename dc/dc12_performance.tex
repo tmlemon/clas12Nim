@@ -205,7 +205,7 @@ at the excluded layer.  This variance over-estimates the single-wire resolution.
 Since there are six layers per superlayer and layer 3 is excluded from the fit,
 this amounts to a $10 - 15\%$ over-estimate.
 
-Fig.~\ref{sigres} shows the width of the track-hit residual distribution plotted versus DOCA for 
+Fig.~\ref{resolution-vs-doca} shows the width of the track-hit residual distribution plotted versus DOCA for 
 each of the different chamber Regions.  The single-wire resolution worsens near the 
 wire and also at the outer edge of the cell.  This arises due to finite cluster sizes 
 due to the Poisson distribution of ion-pair production along the path of the primary ion 
@@ -214,15 +214,21 @@ field lines near the field wire.  The average single-wire resolution in the midd
 portion of the cell for each Region is presently about 200 to 250~$\mu$m.  The whole-cell 
 average is about 310, 315 or 380~$\mu$m for R1, R2, and R3, respectively.
 
-%%%%%%%%%%%%%%%%%%%%%% Figure : Resolution vs. DOCA  %%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htpb]
-\vspace{9cm} 
-\special{psfile=sigres.eps hscale=52 vscale=48 hoffset=-30 voffset=-60}
-\caption{\small{Track-hit residual sigmas plotted versus the fitted DOCA for each
-of the three drift chamber Regions. }}
-\label{sigres}
+The bottom sub-figure is a histogram of the track DOCA.  It is approximately flat as
+expected, since the particle luminosity is approximately constant over the small solid
+angle of a single drift cell.  It shows a dip at zero, which is a real effect and is
+due to a spreading out of the arrival time of ionized electrons when the track is
+very close to the wire.\begin{figure}[htbp]
+\vspace{5cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/resolution-vs-doca.png}}}
+\end{picture}
+\caption{\small{Top sub-plot: Resoluton plotted versus the track DOCA (cm).  Bottom sub-plot:  The 1-d plot
+of track DOCA (cm).}}
+\label{resolution-vs-doca}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusions}
 
