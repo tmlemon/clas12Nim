@@ -83,5 +83,6 @@ foreach d ($detChanged)
 	echo                 >> compile.log
 	echo "Done. Check ~/error.log for cronjob errors."  >> compile.log
 	echo                 >> compile.log
+	scons -c
 
 end
