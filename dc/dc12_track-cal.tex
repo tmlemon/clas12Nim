@@ -135,6 +135,55 @@ results of this procedure indicated that the best-fit position of the chambers
 along the three coordinate axes varied by up to several millimeters relative 
 to the surveyed positions.  
 
+\subsection{Geometrical Distortions}
+The drift chamber internal geometry (placement of wires, etc.) was checked by detailed
+surveys of the endplate, and of the endplates position with respect to the survey holes
+located on the `nose' and `back' plates during construction of the full chamber assembly
+and before stringing.
+As discussed in the previous section, we surveyed the chambers into place on the
+torus and also applied a `straight-track' analysis to fine-tune our knowledge
+of the chambers geometrical location and orientation.
+
+In addition to these alignment procedures which treat the chamber as a rigid, fixed
+geometrical shape, we also measured and corrected two important chamber distortions:
+\begin{itemize}
+\item wire sagging due to gravity
+\item bowing inward of the endplates in response to the collective wires' tension
+\end{itemize}
+
+The wire sag can be a large as 1mm for our 4 m long wires.  For this small
+sag, it is sufficient to describe the shape of the sag as a parabola with
+maximum deviation from a straight line occurring at the mid-plane of the chamber.
+This correction to the hit position is thus applied at `event time' when 
+the y-location of the hit has been determined.
+
+The second type of geometrical distortion is due to the bowing of the endplates.
+Because we wished to keep the endplates as thin as possible and because we did
+not wish to obstruct the active area of the chamber volume with material, the
+entire tension load was borne by the endplates which had a simple support at the
+small `nose' plate and a fixed support at the 'back' plate.
+
+We did extensive engineering analysis and also post-stringing survey to determine the
+size and pattern of this bowing.  Because our endplate planes are not perpendicular to
+the wires, when they bow they move the wire endpoints outward.  The amount varies
+according to the chamber position because the weight of the endplates also plays a role,
+but the bowing in the direction perpendicular to the wire could be as large as 1.5 mm.
+This point of maximum deflection occurs about a fourth of the way between the `nose' and
+`back' plates.  In Fig.~\ref{sketch-of-distortions} we show the engineering analysis
+for a R2 enplate which agreed well with our direct surveys.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{5cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/sketch-of-distortions.png}}}
+\end{picture}
+\caption{\small{An engineering analysis showing the endplate bowing due to wire tension.}}
+\label{sketch-of-distortions}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Time to Distance Calibration}
 The drift chamber TDC's measure time.  This time is corrected for a number
 of effects, and this corrected time is converted to a distance, DOCA, by 
