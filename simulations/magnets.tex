@@ -10,7 +10,7 @@ in a section view with the target and an 11 GeV electron beam.
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/solenoid.png}
    \caption{An 11 GeV electron beam is impinging on a 5 cm liquid hydrogen target. At the full $10^{35} cm-2s-1$ luminosity, this correspond to
             124,000 electrons in a 250 ns window. Normally this would produce a storm of Moeller electrons that would saturate any detector in the forward or central
-				region. However the solenoid focus all of them along the beam line, providing the most effective shield to CLAS12.
+				region. However the solenoid focus all of the Moeller electrons along the beam line, providing a most effective shield for CLAS12.
             }
 	\label{fig:solenoid}
 \end{figure}
@@ -19,10 +19,10 @@ The torus geometry is imported from the engineering CAD model through 54 tessell
 
 \begin{itemize}
 	\item the bore heat shield and hub components
-	\item the back and front plants
-	\item the stainless steel coil frames
-	\item the copper coils
-	\item internal shielding around the hub
+	\item the back and front hub steel plates
+	\item the stainless steel coil vacuum jackets
+	\item the torus coils containing the wires, represented by copper volumes in geant4
+\item internal shielding around the hub, made by tungsten cylinders (blue in \F{torus})
 \end{itemize}
 
 The torus hub is protected from the beampipe background with additional tungsten shielding.
@@ -33,7 +33,7 @@ The torus geometry is shown in \F{torus}.
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/torusGeometry.png}
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/torusDetail.png}
 	\caption{Top: the GEMC implementation of the torus hardware. The volumes are imported from the CAD engineering model.
-            The stainless steel frame embeds the copper coils, immersed in the cold hub tube.
+            The stainless steel vacuum jacket embeds the geant4 coil volumes.
 				Bottom: a section view of the torus in the vicinity of the beamline. The warm and cold hub are visible, along with the
 				tungsten shielding (blue colors).}
 	\label{fig:torus}
@@ -43,16 +43,16 @@ The torus geometry is shown in \F{torus}.
 \subsection{Magnetic Field Maps} \label{clas12FieldMaps}
 
 
-The field maps are imported in the simulation using ascii files. Both fields can be scaled by an arbitrary number.
+The field maps are imported into the simulation using ascii files. Both fields can be scaled by an arbitrary number.
 Both fields are defined in the Hall-B coordinate system and both can be shifted and tilted by additional delta amounts.
 
 \subsubsection{Solenoid}
 The solenoid field map has cylindrical symmetry around the z- axis, so the map used in the simulation is defined in the transverse / longitudinal plane
 and then rotated when requested by the Geant4 navigation. The integration method used in the simulation is the Runge-Kutta 4.
 
-The solenoid field near the target is parallel to the z-axis and its uniformity was measured to be 318 ppm.
-The field map grid is made by 600 points
-in the transverse coordinate, from 0 to 3m and by 1200 points along the z-axis, from \mbox{-3m} to 3m.
+The solenoid field near the target is parallel to the z-axis and its uniformity was measured to be 318 ppm over a 25mm diameter and 40mm long cylindrical volume.
+The field map grid is made by 600 points in the transverse coordinate, from 0 to 3m and by 1200 points
+along the z-axis, from \mbox{-3m} to 3m.
 The field grid values are linearly interpolated to the (x,y,z) coordinate requested by geant4.
 
 Table \ref{tab:solMap} shows the field map ascii data structure.
