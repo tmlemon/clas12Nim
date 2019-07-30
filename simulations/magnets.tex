@@ -47,12 +47,12 @@ The field maps are imported in the simulation using ascii files. Both fields can
 Both fields are defined in the Hall-B coordinate system and both can be shifted and tilted by additional delta amounts.
 
 \subsubsection{Solenoid}
-The solenoid field map has cylindrical symmetry around the z- axis, so the map is defined in the transverse / longitudinal plane
+The solenoid field map has cylindrical symmetry around the z- axis, so the map used in the simulation is defined in the transverse / longitudinal plane
 and then rotated when requested by the Geant4 navigation. The integration method used in the simulation is the Runge-Kutta 4.
 
-The solenoid field near the target points along the z direction and its uniformity is $\Delta B / B < 10^{-4}$.
-
-The field map has 1200 points along the z-axis, from -3m to 3m. It has 600 points in the transverse coordinate, from 0 to 3m.
+The solenoid field near the target is parallel to the z-axis and its uniformity was measured to be 318 ppm.
+The field map grid is made by 600 points
+in the transverse coordinate, from 0 to 3m and by 1200 points along the z-axis, from \mbox{-3m} to 3m.
 The field grid values are linearly interpolated to the (x,y,z) coordinate requested by geant4.
 
 Table \ref{tab:solMap} shows the field map ascii data structure.
@@ -73,20 +73,21 @@ Table \ref{tab:solMap} shows the field map ascii data structure.
           0.010  &  -0.010 & 0.000203  & 5.000570 \\
 		\end{tabular}
 	\end{center}
-	\caption{Solenoid ascii field map values around the target. The field values are in Tesla. $T=\sqrt(X^2+Z^2)$}\label{tab:solMap}
+\caption{Solenoid ascii field map values around the target. T is the transverse coordinate $\sqrt{(x^2+y^2)}$ and z is the longitudinal coordinate.
+            The solenoid field is centered at Z=0, the location of the center of the target. The field values are in Tesla.}\label{tab:solMap}
 \end{table}
 
 \subsubsection{Torus}
 The torus field can be imported using a symmetric map or a full 3D map.
 The symmetric map is defined in half the CLAS12 sector. It is symmetric around the sector mid-plane and copied in each sector
 when requested by the Geant4 navigation. The 3D map covers the entire cartesian space and accounts for field deviations due to coil
-movements or imperfections.
+movements or imperfections \cite{GhoshalSolenoid}.
 
 
 The field map has 251 points along the z-axis, from 1m to 3m. It has 2501 points in the transverse coordinate, from 0 to 5m.
 It has 16 azimuthal points from $0$ to $30^0$. The field grid values are linearly interpolated to the (x,y,z) coordinate requested by geant4.
 
-The torus field in mid sector is perpendicular to the z-axis and is typically $2.5$ Tesla.
+The torus field in mid sector is perpendicular to the z-axis and is typically $2.058$ Tesla.
 Table \ref{tab:torMap} shows the field map ascii data structure.
 
 \begin{table}[h]
@@ -104,7 +105,8 @@ Table \ref{tab:torMap} shows the field map ascii data structure.
           0.0         &  190.0   &  352.0   &  0       &     4.38935 &  0 \\
 		\end{tabular}
 	\end{center}
-	\caption{Torus ascii field map values near mid-sector. The field values are in kGauss. $T=\sqrt(X^2+Z^2)$}\label{tab:torMap}
+	\caption{Torus ascii field map values near mid-sector. T is the transverse coordinate $\sqrt{(x^2+y^2)}$ and z is the longitudinal coordinate.
+            The field values are in kGauss.}\label{tab:torMap}
 \end{table}
 
 
