@@ -4,11 +4,11 @@ This section describes various software tools used during CLAS12 trigger system 
 
 \subsection{Development Software}
 
-Several software packages were used to implement and test the trigger logic developed for CLAS12. These were the FPGA synthesis and implementation and FPGA high level synthesizer.
+Several software packages were used to implement and test the trigger logic developed for CLAS12. These were the FPGA synthesis and implementation packages, and FPGA high level synthesizer.
 
 For FPGA synthesis and implemenation Xilinx ISE/Planahead and Vivado were used. Most of the front-end boards were developed years ago and use Virtex 5 and Spartan 6 FPGAs, which are not supported by Xilinx Vivado, so we relied on Xilinx ISE/Planahead for synthesis and implementation. Even though these tools are no longer updated by Xilinx they have proved to be stable, reliable, and deliver consistent results. Newer design use Xilinx 7-series parts (we used Artix, Kintex, and Virtex) so we used the Vivado tools, which had far better support than ISE/Planahead.
 
-Vivado HLS was used to implement a variety of trigger algorithms, event builder logic, and general purpose logic. HLS components were able to be verified with C/C++ test benches on their own without anything more than GNU GCC and associated C/C++ header files from the HLS toolchain. This tool often allowed for faster implementation for FPGA implemenation, but many components still were implemented in HDL were resource and/or timing requirements become critical. Vivado HLS generated VHDL files from the C/C++ sources that were included into the FPGA compilation and full simulations. Occasionally simulation of the HDL generated files was required to debug C/C++ modules when simulation under GCC found no problem, but the HDL result did. Differences between C/C++ simulation and the corresponding HDL output were primarily due to: C/++ assumption of infinite length buffering while HDL buffers were finite, ambiguous C/C++ coding where GCC and HLS behaviors differed, and latency issues due to the C/C++ simulation has no concept of elapsed time.
+Vivado HLS was used to implement a variety of trigger algorithms, event builder logic, and general purpose logic. HLS components were able to be verified with C/C++ test benches on their own without anything more than GNU GCC and associated C/C++ header files from the HLS toolchain. This tool often allowed for faster implementation for FPGA implemenation, but many components still were implemented in HDL were resource and/or timing requirements become critical. Vivado HLS generated VHDL files from the C/C++ sources that were included into the FPGA compilation and full simulations. Occasionally simulation of the HDL generated files was required to debug C/C++ modules when simulation under GCC found no problem, but the HDL result did. Differences between C/C++ simulation and the corresponding HDL output were primarily due to: C/++ assumption of infinite length buffering while HDL buffers were finite, ambiguous C/C++ coding where GCC and HLS behaviors differed, and latency issues due to the C/C++ simulation has no concept of elapsed time. Our experience with HLS described in details in section \ref{sec:hls}.
 
 \subsection{Operating Systems}
 
@@ -40,7 +40,14 @@ Archlinux with armv7
 
 \subsubsection{Configuration Files}
 
-CLAS12 Trigger system has large amount of parameters controlling its logic. Those parameters are set by writing values to hadrware registers, and controlled by reading those registers back. System is using ascii files, example is shown on (Fig. ~). Every line contains key word and the number of corresponding parameter values. Directive 'include' allows to use hierarhical set of configuration files. Normally main configuration file is selected during run startup procedure, and run control software resolves all 'include' directives creating one big configuration file. That file is used to program all trigger harwdare registers, and it is also written to the data stream for bookkeeping purposes. Register contents are read back and results recorded into data stream as well, providing full control of trigger system settings. Normally the same configuration files contains DAQ settings as well, makeing it complete source for entire DAQ/Trigger system settings.
+CLAS12 Trigger system has large amount of parameters controlling its logic. Those parameters are set by writing values to hadrware registers, and controlled by reading those registers back. System is using ascii files, example is shown on (Fig.\ref{fig:config}). Every line contains key word and the number of corresponding parameter values. Directive 'include' can be used to create hierarhical set of configuration files. Normally main configuration file is selected during run startup procedure, and run control software resolves all 'include' directives creating one big configuration file. That file is used to program all trigger hardware registers, and it's content is also written to the data stream for bookkeeping purposes. Register contents are read back and results recorded into data stream as well, providing full control of trigger system settings. Normally the same configuration files contains DAQ settings as well, makeing it complete source for entire DAQ/Trigger system settings.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/config.png}
+	\caption{Configuration file example}
+	\label{fig:config}
+\end{figure}
 
 
 \subsubsection{Timing Setting}
@@ -57,4 +64,9 @@ One of the important components of the trigger setting process is delay curves m
 
 \subsubsection{Gain calibration and Threshold settings}
 
-One of the important settings in trigger system is FADC ones. As it stated above FADC boards serves as initial stage of the most of the Stage 1 trigger components (except Drift Chamber), and correct pedestal and gain calibration is critical for correct trigger system performance. Pedestal and gain measurements were conducted before run startup, and values were loaded using configuration files. As result, all thresholds in configuration files were set using understandable units such as MeV for calorimeters and the number of photoelectrons for cherenkov counter.
+One of the important settings in trigger system is FADC ones. As it stated above FADC boards serves as pre-trigger of the most of the Stage 1 trigger components (except Drift Chamber), and correct pedestal and gain calibration is critical for correct trigger system performance. Pedestal and gain measurements were conducted before run startup, and values were loaded using configuration files. As result, all thresholds in configuration files were set using understandable units such as MeV for calorimeters and the number of photoelectrons for cherenkov counter.
+
+
+\subsection{Readout and Control Software}
+
+All trigger hardware modules were implemented in VXS format and installed into VXS crates along with other DAQ electronics. All readout and control libraries were developed as part of DAQ system software project as described in \ref{}. From software point of view DAQ and Trigger systems can be considered as one system equiped with standard software tools.
