@@ -1,110 +1,153 @@
 \section{LTCC Refurbishment}
 
 
-The re-scoping of the LTCC to discriminate pions instead of electrons requires a dramatic increase in the
-number of photo-electrons detected. Four areas have been considered to achieve this:
+The re-scoping of the LTCC to discriminate pions instead of electrons required a dramatic increase in the
+number of photo-electrons detected. Four areas were considered to achieve this:
 
 \begin{enumerate}
-	\item Re-coat all mirrors to increase their reflectivity
-	\item Re-coat the Winston Cones to increase their reflectivity
-	\item Wavelength shifting re-coating of the PMTs to increase the response to ultraviolet photons.
+	\item Increase optical reflectivity
+	\item Increase PMT response to UV light
 	\item Increase gas volume
+	\item Address the gas leaks and other hardware issues.
 \end{enumerate}
 
 
-GEMC Simulations of pions quantify the Cherenkov light number of reflections on the cylindrical, elliptical,
-parabolic and winston cones surfaces as:
+Monte-Carlo simulations of pions in the LTCC quantified the number of Cherenkov light  reflections on the cylindrical, elliptical,
+parabolic and Winston cones surfaces as:
 
 \begin{itemize}
-	\item 2 reflections only: $30\%$ of the times
-	\item 3 reflections $40\%$ of the times
-	\item 4 or more reflections $30\%$ of the times
+	\item 2 reflections only: 30$\%$ of the time
+	\item 3 reflections: 40$\%$ of the time
+	\item 4 or more reflections: 30$\%$ of the time
 \end{itemize}
 
-The results have been confirmed with empirical observations during the mirrors aligmnent.
+These results were confirmed with empirical observations during the mirror alignment.
 
-The original average measured reflectivity of the mirrors and winston cones
-shows a degraded reflectivity compared to the values at installation, probalby due to
-17 years of aging. A study of refurbishment of the mirrors and winston cones surfaces
+A study of refurbishment of the mirror and Winston cone surfaces
 involved re-coating samples of surfaces and mirrors using several companies.
-All scenarios resulted in a dramatic increase of reflectivity. The original versus refurbished projected
-reflectivity is shown in Fig.~\ref{fig:reflectivityGain}.
+The original average measured reflectivity of the mirrors and Winston cones
+showed a degraded reflectivity compared to the values at installation and to
+the new samples, probably due to  17 years of aging, see \F{reflectivityGain}.
 
-\begin{figure}[hbt]
+
+\begin{figure}
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/reflectivityGain.png}
-	\caption{Average number of reflections calculated from simulations studies.}
+	\caption{A typical reflectivity measurement of one original LTCC mirror (black diamond) shows a 65\% reflectivity versus what can be achieved
+		      by a new coating (red dots), about 90\% reflectivity. The increase is even more significant at smaller wavelengths }
 	\label{fig:reflectivityGain}
 \end{figure}
 
-When the number of reflections are taken into account, the refurbishment shows
-a factor of 2.4 gain in the visible and a factor of 3 in the UV:
+In the study a few scenarios using the $C_4F_{10}$ index of refraction (shown in \F{c4f10RefrIndex})
+and considering the various reflection probabilities outlined above  were considered:
 
-\begin{itemize}
-	\item Visible:
-	\begin{itemize}
-		\item original integrated reflectivity: $27.5\%$ (1 reflection $65\%$)
-		\item refurbished integrated reflectivity: $68.1\%$  (1 reflection $88\%$ )
-	\end{itemize}
-	\item Ultra violet:
-	\begin{itemize}
-		\item original integrated reflectivity: $9.1\%$ (1 reflection $45\%$)
-		\item refurbished integrated reflectivity: $34.3\%$  (1 reflection $75\%$ )
-	\end{itemize}
-\end{itemize}
-
-
-\begin{figure}[hbt]
+\begin{figure}
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/c4f10RefrIndex.png}
-	\caption{Average number of reflections calculated from simulations studies.}
+	\caption{The $C_4F_{10}$ gas refraction index as a function of wavelength.}
 	\label{fig:c4f10RefrIndex}
 \end{figure}
 
-\begin{figure}[hbt]
+\begin{itemize}
+	\item using old or new mirror reflectivity (see \F{reflectivityGain})
+	\item using a completely transparent gas or the $C_4F_{10}$ with its measured transparency
+	\item using the actual or the enhanced PMT quantum efficiency function
+	\item using or not the additional $C_4F_{10}$ gas volume
+	\item comparing the pion response to the original CLAS 6 GeV era electron response
+\end{itemize}
+
+The distributions for each scenario were plugged in the Frank\textendash Tamm formula \cite{Frank:1937fk} below to calculate
+the Cherenkov radiation yield as a function of wavelength and momenta:
+
+%~\ref{eq:cerenkov}.
+
+\begin{equation} \label{eq:cerenkov}
+	\frac{d^2n}{dxd\lambda} = \frac{2\pi z^2\alpha}{\lambda^2}\sin^2{\theta_C(v)},
+\end{equation}
+
+where $\alpha$ is the fine structure constant and $\theta_C$ is the Cherenkov cone half-angle.
+
+One particular combination among the described scenarios is given as an example \F{photonYieldStudy} for pions,
+the measured non-furbished mirror reflectivity, a 100$\%$ transparent gas and a PMT with ideal refurbished quantum efficiency.
+
+\begin{figure}
 	\centering
-	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/photonYieldStudy.png}
-	\caption{Average number of reflections calculated from simulations studies.}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/photonYieldStudy.png}
+	\caption{Cherenkov light yield as a function of pion momentum and photon wavelength using the Frank\textendash Tamm for one of the scenarios considered:
+            mirrors and Winston cones with low reflectivity (LTCC original mirror, not refurbished), a perfectly transparent gas and an ideally refurbished PMT.}
 	\label{fig:photonYieldStudy}
 \end{figure}
 
 
-\begin{figure}[hbt]
+When the number of reflections is taken into account, the refurbishment shows
+a factor of 2.4 gain in the visible light wavelengths and a factor of 3 in the UV:
+
+%\begin{itemize}
+%	\item Visible:
+%	\begin{itemize}
+%		\item original integrated reflectivity: 27.5$\%$ (1 reflection $65\%$)
+%		\item refurbished integrated reflectivity: 68.1$\%$  (1 reflection $88\%$ )
+%	\end{itemize}
+%	\item Ultra violet:
+%	\begin{itemize}
+%		\item original integrated reflectivity: $9.1\%$ (1 reflection $45\%$)
+%		\item refurbished integrated reflectivity: $34.3\%$  (1 reflection $75\%$ )
+%	\end{itemize}
+%\end{itemize}
+
+\begin{itemize}
+	\item Visible:
+	\begin{itemize}
+		\item original integrated reflectivity: 27.5$\%$
+		\item refurbished integrated reflectivity: 68.1$\%$
+	\end{itemize}
+	\item Ultra-violet:
+	\begin{itemize}
+		\item original integrated reflectivity: 9.1$\%$
+		\item refurbished integrated reflectivity: 34.3$\%$
+	\end{itemize}
+\end{itemize}
+
+
+The results have been summarized in \F{refurbishmentGains} for two main scenarios: mirror re-coating and PMT quantum efficiency improvements.
+By performing both of these improvements the study shows that the LTCC response to pions will be the same as it was for electrons above 4 GeV.
+
+\begin{figure}
 	\centering
-	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/refurbishmentGains.png}
-	\caption{Average number of reflections calculated from simulations studies.}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/refurbishmentGains.png}
+	\caption{Ratio of LTCC response to pions to old response to electrons. Black diamonds: with no refurbishment, the goal of detecting pions cannot be reached.
+            More than a factor of two can be gained by re-coating the mirrors and Winston cones (blue squares). In addition, by increasing the
+            PMT response to UV light (green stars), the LTCC can reach the old performance above pion momenta of 4 GeV.}
 	\label{fig:refurbishmentGains}
 \end{figure}
-
-
-
-
 
 The design changes of the LTCC are summarized below:
 
 \begin{enumerate}
-\item Resize the box to fit in the reduced space between the Drift Chambers and the Time-Of-Flight:
+\item Resize the box to fit in the reduced space between the Drift Chambers and the Forward Time-Of-Flight:
 	\begin{enumerate}
 		\item Cut Sides
-		\item Relocate segments 16-17-18
+		\item Relocate the three mirror sets closest to the back-wall
 		\item Redesign, replace back-wall frame
 	\end{enumerate}
 
-	\item Decrease inefficient regions.
-	\item Increase PMT gain, split output to provide both FADC and TDC signals.
+	\item Decrease inefficient regions
+	\item Increase PMT gain, split output to provide both FADC and TDC signals
 	\item Minimize gas leaks
-	\item Better mirrors support
+	\item Better mirror supports
 	\item Increase light yield:
 	\begin{enumerate}
 		\item Re-coat all mirrors
-		\item Re-coat WCs
+		\item Re-coat Winston Cones
 		\item Wavelength shifting re-coating of the PMTs
-		\item Add “nose” to increase gas volume
+		\item Add nose to increase gas volume
 	\end{enumerate}
 \end{enumerate}
 
 \input{box}
 \input{mirrors}
-\input{pmts}
 \input{wc}
+\input{pmts}
+\input{pmtBase}
 \input{windows}
+

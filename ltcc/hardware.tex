@@ -1,51 +1,56 @@
-\section{Hardware Components and Constructions}
-
-ltcc Hardware Components and Constructions description 3 pages
+\section{Hardware Components Summary}
 
 
-\subsection{Final Technical Specs}
+The hardware components of the LTCC are summarized in Table \ref{tab:ltccProperties}, and the electronic properties
+are summarized in Table \ref{tab:ltccChannels}
 
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| l | l |}
+			\hline \hline
+			Property                 & Value \\
+			\hline
+			{\bf Mirrors}            &                               \\
+			Support Structure        & Kevlar / vinyl                \\
+			Elliptical Mirrors       & L: 6"-55", W: 8"-"11"         \\
+			Hyperbolic Mirrors       & L: 12"-30", W: 8"-9.25"       \\
+			Mirror Coating           & Al/MgF2                       \\
+			Reflectivity             & 85\% from 250 to 650 nm       \\
+			{\bf Gas system}         &                               \\
+			Gas used                 &   $C_4F_{10}$                 \\
+			Refraction Index         & 1.00134                       \\
+			Transparency             & 100\% above 220nm             \\
+			Density                  & 9.94 kg/m3                    \\
+			Window Material          & Tedlar/Mylar/Tedlar           \\
+			{\bf Magnetic Shields}   &                               \\
+			Eagle AAA Material       & 80\% Ni, 4\% Mo, 15\% Fe      \\
+			Attenuation Factor       &  85 Axial, 390 Transverse     \\
+			{\bf PID}                &                               \\
+			$\pi/K$ separation       &  3.5 to 9 GeV/c               \\
+			Time resolution          &  ~0.6 ns                      \\
+			\hline \hline
+		\end{tabular}
+	\end{center}
+\caption{Summary of LTCC Properties}\label{tab:ltccProperties}
+\end{table}
 
-\begin{center}
-	LTCC properties\\
-	\begin{tabular}{| l | l |}
-		\hline \hline
-		Property                 & Value \\
-		\hline
-		{\bf Mirrors}            &                                      \\
-		Support Structure        & 3 Kevlar layers / vinyl foam         \\
-		Elliptical Mirrors       & L: 6"-55", W: 8"-"11"                \\
-		Hyperbolic Mirrors       & L: 12"-30", W: 8"-9.25"              \\
-		Mirror Coating           & Al/MgF2                              \\
-		Reflectivity             & 85\% from 250 to 650 nm              \\
-		{\bf $C_4F_{10}$ gas}    &                                      \\
-		Refraction Index         & 1.00134                              \\
-		Transparency             & 100\% above 220nm                    \\
-		Density                  & 9.94 kg/m3                           \\
-		Window Material          & Tedlar/Mylar/Tedlar composite        \\
-		{\bf Magnetic Shields}   &                                      \\
-		Eagle AAA Material       & 80\% Ni, 4.2\% Mo, 15\% Fe           \\
-		Field Attenuation Factor &  85 Axial, 390 Transverse            \\
-		{\bf PID}                &                                      \\
-		$\pi/K$ separation       &  3.5 to 9 GeV/c                      \\
-		Time resolution          &  ~0.6 ns                             \\
-		\hline \hline
-	\end{tabular}
-\end{center}
-
-\begin{center}
-	LTCC channel counts \\
-	\begin{tabular}{| l | c |}
-		\hline \hline
-		Property                 & Value \\
-		\hline
-		PMTs             &  200 Photonis XP 4500B, 16 Photonis XP 4508    \\
-		Voltage Dividers & Philips / Photonis VD305K                      \\
-		Flash ADC        & JLab fADC250-MHz, 16 ch                        \\
-		TDC              & JLab F1TDC V2, 32 ch                           \\
-		Calibration      & Online (prescaled trigger) or dedicated runs   \\
-		Monitoring       & Online occupancies                             \\
-		\hline \hline
-	\end{tabular}
-\end{center}
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| l | c |}
+			\hline \hline
+			Property                 & Value \\
+			\hline
+			PMTs             & 200 Photonis XP 4500B8    \\
+	                       & 16 Photonis XP 4508       \\
+			Voltage Dividers & Photonis VD305K           \\
+			HV Power Supply  & CAEN SY4527               \\
+			Power boards     & 1501P                     \\
+			Flash ADC        & JLab FADC250-MHz          \\
+			TDC              & Caen 1190                 \\
+			Discriminators   & DSC2                      \\
+			\hline \hline
+		\end{tabular}
+	\end{center}
+	\caption{Summary of LTCC Electronics}\label{tab:ltccChannels}
+\end{table}
 

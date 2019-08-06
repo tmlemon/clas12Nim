@@ -1,19 +1,132 @@
 \section{Software}
 
-... CODA DAQ software ... (Abbott)
+\subsection{CODA DAQ software (Abbott)}
 
-... components description (runcontrol-Sergey, front-end libs-Moffit, ROC-Abbott, EB-Graham, ET-Carl, ER-Sergey) ..
+CLAS12 DAQ system is based on CODA (Fig.~\ref{fig:coda_diagram}), short for CEBAF Online Data Acquisition. It is a kit of parts that allows the researcher to implement a data acquisition system. The scale of the system can range from a few detector channels in a test stand to tens of thousands of channels in a large detector installation in one of the halls. CODA achieves this scaling through modularity and provides a set of hardware components along with complementary software components.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/coda_diagram.png}
+	\caption{CODA System Diagram}
+	\label{fig:coda_diagram}
+\end{figure}
+
+
+\subsection {Runcontrol(Sergey)}
+
+The CODA DAQ system includes a run control facility consisting of a back-end run control supervisor and a front-end graphical operator display that connects to the supervisor and controls its operation. The supervisor in turn controls operation of the many CODA components that participate in the run. The latter are defined in run configuration files that the operator chooses at startup. The gui (Runcontrol, Fig.~\ref{fig:runcontrol1}) presents the operator with a choice of possible actions that depend on the current state of the run. The supervisor translates the operator choice into appropriate commands to the individual components. Alternatively, limited communication with the supervisor can be performed via command-line scripts.
+The supervisor in addition monitors the health and operation of the CODA components and warns the operator or pauses the run if problems are detected.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/runcontrol1.png}
+	\caption{Runcontrol GUI}
+	\label{fig:runcontrol1}
+\end{figure}
+
+
+
+\subsection{Front End Libraries(Moffit)}
 
 \input{fe-libs}
 
-... messaging system (ActiveMQ) ... (Sergey)
 
-... runtime database (RCDB) ... (Sergey)
+\subsection{Readout Controller(Abbott)}
 
-... online data monitoring from ET system ... (Raffaella,Cole)
+Readout Controller (ROC, Fig.~\ref{fig:roc_diagram}) software component is the program running on front-end controllers such as Intel-based VME/VXS crate controllers, VTP trigger boards or regular Linux servers - any hardware receiving data from front-end electronics. On the DAQ startup ROC main program starts three threads, after that it just controlls thread health and communicates with run control process. Three threads (readout, processing and network) are passing data from one to another communicating over circular buffers. Typical number of buffers in each circle is 8 and size of every buffer is 4 MBytes, which defines how long front-end electronics will be read out before feeling effect of the back-end busy conditions.
 
-... CSS for DAQ, communication with DAQ - Nathan ...
+First (readout) thread receives data from front-end electronics and places them into first circular buffer. That thread can run in pooling mode occupying entire cpu core, or in interrupt mode. CLAS12 are using mostly pooling mode which has adequate performance on multi-core controllers.
 
-... ROOT for DAQ (FT) - Andrea ...
+Second (processing) thread reads data from first circular buffer and perform needed data processing, in particular it does so-called disentangling and data sanity check. Results placed into second circular buffer. That component can create its own threads to burst processing power.
 
-... CED ... (Heddle)
+Third (network) thread reads data from second circular buffer and send it over network to the Event Builder.
+
+First and second threads have user part which compiled separately and downloaded dynamically, it allows users to develop experiment-dependent code without recompiling CODA framework.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/roc_diagram.pdf}
+	\caption{Readout Controller Diagram}
+	\label{fig:roc_diagram}
+\end{figure}
+
+
+\subsection{Event Builder (Graham)}
+
+Event Builder (EB, Fig.~\ref{fig:eb_diagram}) is the program receiving data fragments from all readout controllers and glueing it into events. Building process is based on event number, event type and timestamp of the data fragments: for every particular event all three values have to be identical for all data from all readout controllers. In case of any difference DAQ will be stopped and error reported.
+
+Event Builder consists of receiving and building parts. Receiving part contains set of independent threads, one per readout controller connected to it by TCP protocol. Every thread receives data and place it into internal buffer. If buffer becomes full thread stops receiving data, effectively propagating busy condition back to readout controller.
+Building part has the number of identical building threads, which takes turns by getting data from receiving part internal buffers, building events and placing them into Event Transfer System.
+
+Total number of Event Builder threads in CLAS12 DAQ is currently 118, so the number of network connections from readout controllers. Because of that it have to run on powerful server, usually the one with many cpu cores, big memory and high bandwidth network card. CLAS12 is using DELL R730 server with 32 cores, 64GByte memory and 40Gbit network card. That server is adequate for CLAS12 DAQ requirements.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/eb_diagram.pdf}
+	\caption{Event Builder Diagram}
+	\label{fig:eb_diagram}
+\end{figure}
+
+
+\subsection{Event Transfer (Carl)}
+
+The Event Transfer (ET, Fig.~\ref{fig:et_diagram}) system provides the user with an efficient method for moving bulk data between processes. ET was not designed as a messaging system, it can rather be visualized as data containers moving around a circular railway track. In this metaphor a producer of data (Event Builder) requests an empty container, fills it with data, tags it with metadata describing the contents and places it at the start of the track. Stations along the track are assigned algorithms for testing the metadata and selecting containers of interest. The user has the option of making a station blocking or non-blocking. A container stopped at a blocking station holds up all of the other containers behind it on the track. A data consumer attached to the station processes the data in the container and has the option of either putting the container back on the track, where it proceeds to the next station, or returning the container to the station at the start of the track, effectively discarding the data. In the simple example diagram on Fig.~\ref{fig:et_diagram}, a data monitoring consumer attaches to a non-blocking station which samples data of interest. Event Recorder attaches to a blocking station and records the content of every container to disk. The container is then returned to the start of the track.
+
+Using these simple concepts complicated data pathways can be constructed. The ET package supports remote consumers connecting to stations over the network allowing load sharing between multiple machines. 
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/et_diagram.png}
+	\caption{Event Transfer System Diagram}
+	\label{fig:et_diagram}
+\end{figure}
+
+\subsection{Event Recorder (Sergey)}
+
+Event Recorder (ER, Fig.~\ref{fig:er_diagram}) is the program receiving data from ET system and recording data files into the disk. It can write data in one or several files in parallel (so-called multi-stream mode). If multi-stream mode is used event order is preserved, but it requires the allocated memory size to be bigger then the number of streams multiplied by the file size.
+
+The ER structure in multi-stream more is shown on Fig.~\ref{fig:er_diagram}. Distribution thread receives data from Event Transfer System, search for the free writing thread and grab its mutex. It starts filling up thread's buffer with data until it becomes full. After that it signals writing thread to start writing entire buffer to the separate file using specified file name and extension. Writing thread marks it self 'busy' and writes data to the file, after that becoming 'free' again. While writing process is happening distribution thread grabs another free writing thread and process repeats. ER writing performance can be increased by increasing the number of writing threads.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/er_diagram.pdf}
+	\caption{Event Recorder Diagram}
+	\label{fig:er_diagram}
+\end{figure}
+
+
+\subsection{Messaging System (ActiveMQ) (Sergey)}
+
+Messaging system in CLAS12 DAQ is based on ActiveMQ library and its C++ extension. Two ActiveMQ servers used to route all communiations. The number of connections to ActiveMQ is several hundreds, and the number of messages sent every second is several tens of thousands, with data volume few tens of Megabytes per second. Messaging system is used in particular to monitor and control DAQ components, in addition to the Runcontrol.
+
+
+\subsection{Runtime Database (RCDB) (Sergey)}
+
+JLAB-designed mysql-based Runtime Database (RCDB) is used to store run parameters and statistic. It has web interface (Fig.) and provides interface to various languages including C++ and Java.
+
+
+\subsection{Online Data Monitoring (Raffaella,Cole)}
+
+CLAS12 Online data monitoring is the set of programs attached to Event Transfer System and processing data in real time. One of such program's output is shown on Fig.
+
+
+
+\subsection{CSS for DAQ, communication with DAQ (Nathan)}
+
+
+
+\subsection{ROOT for DAQ (FT) (Andrea)}
+
+\input{AndreaDAQ}
+
+
+\subsection{CLAS Event Display (Heddle)}
+
+The CLAS12 event display (ced) is a full-function graphical application that displays on-line (and off-line) events using various representations of CLAS12 called views. The views are independent windows that the user can pan, zoom, scroll, etc. Some of the views are geometrically faithful, and some are designed for maximal information content as opposed to realism. The primary purpose and utility of ced, when used on-line as part of the DAQ system, is for additional monitoring. While running, ced will display an event from the live stream at a selectable rate, typically one every two seconds. A quick glance at ced will confirm, for example, that there are data in the drift chambers that appear to form tracks. In this way it serves as an early warning of problems with detectors and/or the data stream. It is also possible to operate ced in a mode where it creates graphical histograms or occupancy overlays. A typical view from ced is shown in Fig.~\ref{fig:ced}.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/ced.png}
+	\caption{CED Event Example}
+	\label{fig:ced}
+\end{figure}

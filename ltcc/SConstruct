@@ -1,5 +1,11 @@
 import os
+import sys; sys.path.append('/opt/jlab_software/2.3/scons_bm')
 
-env = Environment(ENV=os.environ)
-env['ENV']['TEXINPUTS']='..:'
-pdf = env.PDF(target  = 'ltcc.pdf',  source = 'ltcc.tex')
+from util import scanFiles
+
+env = Environment(PDFLATEXFLAGS = "-halt-on-error")  # stops log where error occurs
+env['ENV']['max_print_line']='1048576'               # log output does not break single lines into multiples
+
+env.Command('ltcc.pdf', 'ltcc.tex', "pdflatex $SOURCE > /dev/null; bibtex ltcc ; pdflatex $SOURCE > /dev/null; pdflatex $SOURCE")
+cleans = scanFiles('.', accept=["ltcc.*", "*.aux"], reject=[".tex"])
+Clean('ltcc.pdf', cleans)

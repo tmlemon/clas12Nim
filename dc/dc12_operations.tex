@@ -1,0 +1,81 @@
+\section{Chamber Operation and Performance Monitoring}
+
+\subsection{Choice of Gas}
+\hskip 0.15in
+
+The main requirements for the chamber gas were that it have reasonably low 
+multiple scattering, allow for reasonable gas gains, have short collection 
+times in order to reduce the random background expected from M{\o}ller 
+electrons and target-generated X-rays, and be inexpensive because of the 
+large volume of the chambers. Also, safety considerations motivate the use of
+a non-flammable gas mixture.  Additional concerns about small gas 
+leaks and the proximity of many photomultiplier tubes argued against helium 
+mixtures.  Ultimately a 90$\%$ argon - 10$\%$ CO$_2$ mixture was employed 
+for several reasons: the gas has a fairly high saturated drift velocity 
+($>$ 5~cm/$\mu$s), and it has an operating voltage plateau of several hundred 
+volts before breakdown occurs.  The 90$\%$/10$\%$ mixture 
+provides good efficiency, adequate resolution, and reasonable collection times.
+
+
+
+
+\subsection{Selecting the Proper Operating Voltage}
+\hskip 0.15in
+In this section we discuss our operating voltages and how it was selected.
+
+First, we discuss how we divide the total voltage between our sense, field 
+and guard wires in order to mimic a cell layout with an infinite number of
+layers, to achieve a situation in which all wires, regardless of layer, have
+the same gain.  Then we discuss our choice of the total sense to field
+wire difference in voltage; including the resulting gas gain and efficiency.
+
+
+\subsubsection{Dividing the Total Voltage between Sense, Field and Guard Wires}
+As noted previously, we ran our chambers with a mixed voltage scheme:
+positive high voltage on the sense wires, negative voltage on the
+field wires and positive voltage on the guard wires.
+This mixed-voltage scheme has a couple of advantgages over a scheme in
+which the field wires, for example, are held at ground potential:
+\begin{itemize}
+\item fewer field lines run from the sense wire to the endplate which
+is grounded.  This reduces the likelihood of producing a `Malter effect'
+(Ref.~\cite{Malter}) in which an accidental source of cathode emission
+(due to an insulating contaminant on the endplate, for example) causes
+a self-sustaining discharge
+\item the sense to ground potential and the field to ground potentials 
+are smaller; decreasing surface electric fields on the on-chamber
+circuit boards
+\end{itemize}
+
+In addition, by carefully selecting the values of the sense, field and
+guard wire voltages we can create potential distributions which mimic
+an infinite grid of cells, where the gain on any wire is the same as
+any other, regardless of whether is the first, last or middle layer.
+
+This optimum condition is reached when the sense voltage is twice the
+field voltage (and opposite sign).  This is because we have twice as many
+field wires as sense wires and all field lines which originate on a
+field wire land on a sense wire.  
+
+The guard wire voltage was then chosen so that the total charge on all wires is zero.  
+If we have a nearby ground plane due to the metallized gas bag then it will
+have no net effect on the nearby wire planes if there is no net flux of
+electric field through the bag which is the case if the enclosed net charge
+is zero.
+
+So, the ratio of voltages from Sense to Field to Guard wires is 1 : -1/2 : 5/14.
+
+\subsubsection{Operating Voltage, Gas Gain and Layer Efficiency}
+The gas gain varies exponentially with the total sense to field wire voltage
+difference, with a doubling voltage of about 100, 110 or 120V respectively, for
+R1, R2 and R3.  During our Fall 2019 run, we ran with sense - field wire voltage
+differences of 2100, 2325 and 2475 V, respectively for R1, R2 and R3
+
+We calculate that our total gas gain is approximately 2.7~$10^4$, 3.7~$10^4$, and 4.4~$10^4$,  
+respectively, for R1, R2 and R3.
+
+
+References: `A study of electron drift velocity in Ar-CO2 and AR-CO2-CF4 gas
+mixtures', NIM A340 (1994) p.485-490
+
+CLAS-Note 2009-27 1Calculation of Drift Chamber Gas Gain' Mestayer

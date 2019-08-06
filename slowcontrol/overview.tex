@@ -1,5 +1,21 @@
 \section{Overview}
 
-slowcontrol overview description \cite{einstein}
+The CLAS12 slow controls system is based on Experimental Physics Industrial Control System (EPICS), currently version 3.14.12.5 \cite{epics-website}, and includes about 90 EPICS input-output controllers (IOCs) interfacing with approximately 50 different types of hardware via various communication protocols and 100K(?) process variables (PVs).
 
+One objective of upgrading the controls system for the 12 GeV era at JLab was incorporating legacy hardware and standalone controls systems into full EPICS integration, such that everything is accessible from a single interface and on any computer in the CLAS12 system.  Another was leveraging standard infrastructure tools supported by central JLab computing resources.
+
+Most of the IOCs run on standard rack-mounted servers running Red Hat Enterprise 7 (RHEL7) in the control room.  A few IOCs run in more speciazed systems in the experimental hall, such VxWorks 5.X real-time operating systems on Motorolla VME controllers, primarily for high-rate, synchronous beam monitoring and support of legacy components.  All IOCs and associated processes are managed with procServ for interactive access when necessary and cronjobs for automatic startup and recovery \cite{procserv-website}.
+
+For the graphical user interface we chose the modern Control Systems Studio (CS-Studio) developed at Oak Ridge National Laboratory \cite{css-website}.   CS-Studio is an Eclipse-based java system with various features supporting quick interface development such as templating and dynamic generation \cite{css-website}.  We also use CS-Studio's alarm system, which is based on a mysql database for storing alarm configuration and status and message history, and a server monitoring the IOCs, updating the database, and communicating with clients.  The clients include a graphical interface tightly integrated with the rest of the controls system, with visible feedback and heirarchical view of the alarm system, an annuciator service running in the background in the control room, and a notifier service sending emails to on-call experts on particular alarm conditions.
+
+The operators of the controls system run directly on desktop PCs running RHEL7.  Full remote access is also provided, via 2-factor authentication and X-forwarding or VNC as well as VMWare virtual machines supported by JLab.  Read-only access in a web browser is provided via WebOPI, another product affiliated with CS-Studio.
+
+We utilize two internal EPICS channel access gateways, one read-only for the web interface, and the other for minimizing connections to superconducting magnet controls systems.  Wherever appropriate, the standard autosave feature of EPICS is utilized to automatically preserve settings across IOC reboots, and the standard burt save/restore mechanisms.  The controls system also utilizes many custom hardware and software interlocks.
+
+An important component of the slow controls system is archiving data.  For this we utilize the EPICS archiving system called Mya, a product developed by and in support of accelerator operations at Jefferson Lab and shared with the experimental halls.  This provides storage and access to many previous years data of all CLAS12 EPICS PVs \cite{mya}.
+
+Installation and configuration of the associated desktop and server machines, including custom service daemons, cron jobs, IOCs, network disk mounting, and deployment of upgrades and software changes, is managed via puppet and a central server maintained by Jefferson Lab \cite{puppet-website}.  Resulting maintainence is almost hands-free, and recovery from hardware failures or power outages is largely automated.  Monitoring of the servers is performed with Nagios, also provided by Jefferson Lab, which provides email notifications on system errors \cite{nagios-website}.
+
+
+Possible images:  fastdaq live/ROOT tools, beamline overview, fancy cryo screen, 
 

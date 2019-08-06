@@ -1,0 +1,75 @@
+\section{Commissioning}
+
+In this section we describe our procedures to do the following:
+
+\begin{enumerate}
+\item install electronics boards and ``on-chamber'' cables
+\item gradually bring the chambers to full operating voltage (``burn-in'') 
+and to test for any other problems
+\item install and survey the chambers
+\item diagnose and fix any early failures, and
+\item perform efficiency scans over a range of HV and discriminator settings
+\end{enumerate}
+
+\subsection{Electronics Installation and Turn-on}
+After the chambers were strung and went through a mechanical quality
+check to insure that all wires are intact and properly tensioned, we
+installed the on-chamber electronics boards.
+
+There are two types of board: one is a High-Voltage Distribution Board (HVTB)
+which brings RC-filtered high voltage to the wires.  Because there are three
+types of wire: `sense', `field' and `guard' we supply three different voltages
+to each board.  As discussed in the design section, we have a mixed high
+voltage system: the sense (or anode) wires are operated at positive voltage,
+typically about 2000 Volts; the field (or cathode) wires are operated at
+about -1000 V and the guard wires at about +700 V.  This creates an
+electric field which converges radially onto the sense wire with surface
+field values of about 200 kV/cm.  Similarly each field wire has an
+electric field directed radially outward from the surface with a strength
+of about 50 kV/cm.  The surface field for the field wires is weaker 
+because there are twice as many field wires as sense wires and their
+diameter is larger (80 microns compared to 30).  The guard wires
+close out the structure and their voltage is chosen to approximate an
+infinite grid of wires; thus every sense and field wire in a superlayer
+has the same field configuration unless there is an irregularity (like
+a missing, broken wire) nearby.
+
+On the other side of the chamber are our Signal Translator Boards (STB) 
+which support an individual Single Inline Package (SIP) transimpedance
+pre-amplifier for each sense wire.  This pre-amplifier takes the
+small current pulse (microAmps) and translates it into a voltage 
+pulse with a transimpedance of 2 mV/microAmp.  The signals (typically
+10's to 100's of mV and 10's to 100's of nanosecond duration) are
+transmitted down twisted-pair conducting wire to our downstream
+Drift Chamber Readout Boards (DCRB) which further amplifies and
+discriminates the voltage pulse and then converts the leading edge
+to a digital time signal.
+See figures (STB, HVTB) in the electroncis section for more details.
+
+At this stage, our technicians did three important tasks:
+\begin{enumerate}
+\item ``daisy-chained'' the field wire crimp pins so that a single
+HV cable could power two rows of field wires (32 wires)
+\item physically positioned the boards so that their plated through
+holes aligned directly above the sense wire crimp pins, and attached
+the boards to the chamber with screws, and
+\item electrically connected each sense wire crimp pin to each
+plated through hole using a conductive rubber 'sleeve' which fit
+over the crimp pin and also contacted the plated through hole on
+its outer radius.
+\end{enumerate}
+
+Now the chamber was ready for ``burn-in'' and ``pre-testing''.
+
+\subsection{``Burn-in and Pre-testing''}
+- work flow: raise by a step, wait until current subsides, raise by
+a step ... and repeat
+
+
+\subsection{Installation and Survey}
+- chambers attached by ball and socket joints to rods which are attached
+on the other end by ball and socket to the toroidal magnet frame
+
+\subsection{Early Failures and Repair}
+
+\subsection{Efficiency Scans of HV and Discriminator Thresholds}

@@ -11,24 +11,6 @@ Online Editing
 You can edit individual tex files on your browser, for example by pasting some tex code. Upon committing, the PDF file will be produced within 10 minutes. However it is recommended to edit the files directly on your computer by cloning the repo, see below.
 
 
-Pre-requisites to compile:
---------------------------
-
-- scons (not necessary but does simplify things quite a bit). To install scons: 
-  
-  1. click [this link](https://sourceforge.net/projects/scons/files/scons/2.5.1/scons-2.5.1.tar.gz/download) to start an automatic download of scons
-  2. untar / unzip with tar -zxpvf scons-2.5.1.tar.gz, or double click the file from Finder
-  3. to install scons cd to the scons unpacked directory and type:
-  
-   `sudo python setup.py install`
-
-- on Mac you can use [Tex Studio](https://www.texstudio.org) instead of scons
-- mac latex:  http://www.tug.org/mactex/. 
-- linux latex: you may need to `sudo apt-get install texlive-publishers`
-
-If you do not use scons, see the notes on bibliography below.
-
-
 How to get the tex files and create a pdf
 ------------------------------------------
 
@@ -36,15 +18,25 @@ First, clone the repository:
 
 ```git clone https://github.com/JeffersonLab/clas12Nim.git```
 
-This will create a directory "clas12Nim". Inside that dir, change dir to your detector and type scons to create the PDF:
-
-For example, to create the ftof pdf:
+This will create a directory "clas12Nim". Inside that dir, change dir to your detector:
 
    `cd ftof`
+
+To use scons to produce pdf:
+
    
-   `scons`
-   
+   `scons` (if you have scons installed)
+
+
+To use pdflatex directly (you can also use latex):
+
+  `pdflatext ftof.tex`
+
+(to make the references see the complete tex instructions below)
+
 Alternatively (on an Apple computer with latex installed) you can use MacTex to open the main file, which has the same name as the system (for example: svt.tex for svt).
+
+
 
 What to edit
 ------------
@@ -126,11 +118,30 @@ I suggest you add all the pictures in a "img" directory. To add to the repositor
 To include a picture "examplePic.png" use the following code:
 
 ```
-\begin{wrapfigure}{l}{0.5\columnwidth}
-  \includegraphics[width=0.5\columnwidth]{examplePic.png}
-  \caption{Example of a picture}
-  \label{fig:examplePic}
-\end{wrapfigure}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ftGeometry.png}
+	\caption{The three detectors in the FT geometry }
+	\label{fig:ftGeometry}
+\end{figure}
+```
+
+
+Pictures and tables across two columns
+--------------------------------------
+
+Some pictures or tables are too big to fit in one column. 
+
+You can add a "*" at the end of the begin directive to span the picture or table across two columns.
+For example:
+
+```
+\begin{figure*}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ftGeometry.png}
+	\caption{The three detectors in the FT geometry }
+	\label{fig:ftGeometry}
+\end{figure*}
 ```
 
 
@@ -162,17 +173,36 @@ It will look like this:
 }
 
 ```
+
+
+
+Compiling using scons, mactex, pdflatex
+---------------------------------------
+
+- scons (not necessary but does simplify things quite a bit). To install scons: 
+  
+  1. click [this link](https://sourceforge.net/projects/scons/files/scons/2.5.1/scons-2.5.1.tar.gz/download) to start an automatic download of scons
+  2. untar / unzip with tar -zxpvf scons-2.5.1.tar.gz, or double click the file from Finder
+  3. to install scons cd to the scons unpacked directory and type:
+  
+   `sudo python setup.py install`
+
+- on Mac you can use [Tex Studio](https://www.texstudio.org) instead of scons
+- mac latex:  http://www.tug.org/mactex/. 
+- linux latex: you may need to `sudo apt-get install texlive-publishers`
+
+If you do not use scons, see the notes on bibliography below.
 **Bibtex Formatting Notes:** 
 
  - To capitalize a word use curly braces, for example ```{CLAS}```.
  - Use "and others" if you want "et al" to appear in the document.
 
-**Note:** if you do not use scons, you have to take care of the bibliography items using latex. You have to run these commands. Notice that ```latex``` is ran *three times*. Given your systemname (*svt*, *trigger*, etc):
+**Note:** if you do not use scons, you have to take care of the bibliography items using latex. You have to run these commands. Notice that ```pdflatex``` is ran *three times*. Given your systemname (*svt*, *trigger*, etc):
 
-1. latex systemname
+1. pdflatex systemname
 2. bibtex systemname
-3. latex systemname
-4. latex systemname
+3. pdflatex systemname
+4. pdflatex systemname
 
 
 
