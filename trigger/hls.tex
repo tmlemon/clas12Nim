@@ -29,7 +29,8 @@ It should be mentioned that it took significant amount of time to implement desi
 Among all trigger system elements, the most challenging for FPGA implementation was trigger component serving two CLAS12 electromagnetic calorimeters. Due to its structure, those calorimeters do not provide cluster coordinates or energies without significant event reconstruction. Trigger implementation details is described in section \ref{sec:ECAL}. Below we are describing our experience with HLS using ECAL as an example.
 
 
-\subsection{C++ vs HLS C++}
+\subsection{C++ vs HLS C++
+}
 
 FPGA implementation of the ECAL trigger was done in a 125MHz domain, a balance between speed and resource utilization. Trigger system components, in general, require a fixed latency, it set certain constrains on design. Reconstruction algorithm borrowed from offline analysis framework was adopted for VIVADO HLS by rewriting it to C++, using HLS streams, HLS pragmas, unrolling for-loops, pipelining and making all other needed changes. Resulting implementation was tested on simulated data and shown correct results. After that we started to run it through VIVADO HLS and VIVADO tools and address various issues related to generating an FPGA image that met timing and fit within the resource allotment.
 
@@ -66,7 +67,7 @@ The original ECAL project consisted of about 20 C++ procedures that occupied mos
 
 After every significant change we re-tested the code on simulated data, making sure it still produce correct results. Chart on Fig. ~\ref{fig:hls_chart} shows how many HLS projects were created in the end.
 
-Another reason for subdividing project is the lack of multi-clock domain support. Since event builder in VTP board works on 250MHz domain and most projects using slower clock every project was subdivided and separate pieces communicated over HDL-written interface. The necessity of subdivide HLS projects and use HDL to assemble them together is probably the most annoying feature in HLS usage.
+Another reason for subdividing project is the lack of multi-clock domain support. Since event builder in VTP board works on 250MHz domain and most projects using slower clock every project was subdivided and separate pieces communicated over HDL-written interface. The necessity of subdivide HLS projects and use HDL to assemble them together is probably the most annoying feature in HLS usage. Much of this subdividing can be reduced by using the HLS DATAFLOW directives (which can isolate functions communicating through registered FIFO interfaces), but it requires further code restructuring to be compatible with this flow and doesn't support multiple clock domains.
 
 \begin{figure}[hbt]
 	\centering
