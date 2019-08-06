@@ -1,1 +1,11 @@
 \subsection{Validation of the electron trigger}
+As described in section \ref{sec:validation_random}, for trigger validation we have used a RT data. 
+The $\mathrm{1^{st}}$ step in the validation of electron trigger is a selection of  events with ``clean electron''. The CLAS12 offline reconstruction software assignes PID to each reconstruction particle ({\color{Red} reference to offline recon.}) ( for electron PID=11) however in this studies we imposed additional cuts. 
+In particular 
+\begin{itemize}
+ \item DC roads are optimized for tracks originating from the target, that is why in the offline analysis we have put a cut on the vertex ``Z'' coordinate to make sure the track originates from the target.
+ \item Selected events where electron hits calorimeters (PCal and EC) in a fiducial region, to make sure the shower is fully reconstructed.
+ \item Applied trigger condition cuts on offline cluster energies in the PCal and EC, also on number of photoelectrons in HTCC.
+\end{itemize}
+
+
