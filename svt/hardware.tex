@@ -6,7 +6,7 @@ The SVT regions are cantilevered off a chilled cold plate that is designed to re
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{coldplate.png}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{coldplate.jpg}
 \caption{Copper tubing lines brazed to the copper cold plate (left) and the fully assembled assembled cold plate (right).}
 \label{fig:coldplate}
 \end{figure}
@@ -37,11 +37,20 @@ The outer shell of the Faraday cage is insulated with 3-mm-thick neoprene sheet.
 
 \subsection{Slow controls and detector monitoring}
 
-Ambient conditions inside the detector are monitored by temperature and humidity sensors installed inside the downstream rings. Safe operation of the tracker is ensured by Experimental Physics and Industrial Control System (EPICS)-based real-time monitoring of all important operation parameters and status of the hardware components \cite{EPICS}. The software and hardware interlocks continuously monitor the critical system parameters. A multi-level user interface provides safe operation of the SVT by the shift crew and all necessary tools for the system experts (see Fig.~\ref{fig:svt-overview}).
+Ambient conditions inside the detector are monitored by temperature and humidity sensors installed on the upstream rings (see Fig.~\ref{fig:ambient-sensors}). There are 3 ambient sensor boards glued in the dedicated slots on the inner side of the rings in regions 2 and 3. There are 2 temperature and 2 humidity sensors on each board for redundancy. 
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=0.6\columnwidth,keepaspectratio]{svt-overview.png}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{ambient-sensors.jpg}
+\caption{Ambient sensor boards mounted on the upstream rings.}
+\label{fig:ambient-sensors}
+\end{figure}
+
+Safe operation of the tracker is ensured by Experimental Physics and Industrial Control System (EPICS)-based real-time monitoring of all important operation parameters and status of the hardware components \cite{EPICS}. The software and hardware interlocks continuously monitor the critical system parameters. A multi-level user interface provides safe operation of the SVT by the shift crew and all necessary tools for the system experts (see Fig.~\ref{fig:svt-overview}).
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{svt-overview.jpg}
 \caption{User interface for the SVT slow controls overview.}
 \label{fig:svt-overview}
 \end{figure}
@@ -50,7 +59,7 @@ The SVT Hardware Interlock System (HIS) is a backup system designed to protect t
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{svt-interlocks.png}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{svt-interlocks.jpg}
 \caption{User interface for the SVT hardware interlock system (HIS).}
 \label{fig:svt-interlocks}
 \end{figure}
@@ -80,10 +89,10 @@ The performance and stability of the system is tested at various operation tempe
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{svt-monitor.png}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{svt-monitor.jpg}
 \caption{SVT detector monitoring interface.}
 \label{fig:svt-monitor}
 \end{figure}
 
-Java-based data quality monitoring tools were developed to check detector performance both online and offline. The SVT detector monitoring interface is shown in Fig.~\ref{fig:svt-monitor}. The tools allow for checking the status of track reconstruction and performance of the individual modules. 
+Java-based data quality monitoring tools were developed to check detector performance both online and offline. The SVT detector monitoring interface is shown in Fig.~\ref{fig:svt-monitor}. The tools allow for checking the status of track reconstruction and performance of the individual modules. Individual sensors can be selected from the SVT layout canvas on the left side of the interface. On the right side a specific set of histograms can be selected with the tabs. The selected tab shows the position of the reconstructed crosses on the surface of the sensors for the first SVT region. The gaps between the sensors are visible.
 
