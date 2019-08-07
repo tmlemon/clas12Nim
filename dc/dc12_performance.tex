@@ -15,61 +15,29 @@ produced from the targets by the multi-GeV incident electron beam.  This
 constraint is severe for the drift chambers since they are close to the 
 target. Particularly for the R1 chambers, the large flux of 
 particles limits the luminosity in two ways.  First, a large number of 
-background-related hits in the chambers makes track reconstruction very 
-difficult.  The working assumption is that the analysis software can tolerate 
+background-related hits in the chambers reduces the track reconstruction 
+efficiency.  The working assumption is that the analysis software can tolerate 
 no more that a 5$\%$ accidental chamber occupancy in order to successfully 
 reconstruct charged-particle tracks.  Second, the effects of sustained high 
 luminosities are unfavorable for long chamber lifetimes.  Aging correlates 
-directly with the current carried by the chambers, maximum values for which 
-have been set following detailed studies with electron beams~\cite{carman}.
+directly with the currents generated in the chambers.
 
 We have not yet observed any sign of aging in the drift chambers.
 For the previous CLAS chambers, we used the same gas mixture and ran at a
 similar gain and the chambers lasted more than 10 years with no indication
-of aging except for an isolated episode in which a ``Malter effect'' (currents
-persisting even when the beam was off) was observed and was attributed to
-infiltration of water vapor into the gas mixture.  Sealing off the source of
-this water vapor fixed the problem.  The exact chemistry of the effect was
-not identified but it was suspected to involve deposition of carbonates on
-the wire surface.
-
-%%%%%%%%%%%%%%%%%%%%%% Figure : R1 Lifetime Measurement %%%%%%%%%%%%%%%%
-\begin{figure}[htpb]
-\vspace{5.0 cm} 
-\special{psfile=life.ps hscale=58 vscale=58 hoffset=-35 voffset=-145}
-\caption{\small{Estimated R1 chamber operating lifetime in years times C/cm of
-charge accumulated as a function of the average polar angle spanned by
-each of the HVTBs.  Data are shown with the mini-torus at full field, and
-assume continuous operation of the chamber at a luminosity of
-1$\times$10$^{34}$~cm$^{-2}$s$^{-1}$.}}
-\label{life}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The useful chamber lifetime is difficult to predict, as it depends on many 
-different parameters such as construction materials, purity of the operating gas, 
-chamber geometry, and other unknown effects.  Fig.~\ref{life} shows the R1 chamber
-lifetime, defined in terms of accumulated charge, as a function of angle.  These 
-estimates are based on the currents drawn from the HVTBs at a luminosity of 
-1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$.  The lifetime will be shortest for small 
-angles where the flux of charged particles is largest.  The lifetime estimate 
-presented in Fig.~\ref{life} pessimistically assumes that the chambers are 
-continuously illuminated.  In practice, the actual lifetime will likely be at least 
-five times longer, and that for the outer drift chambers should be about an order of 
-magnitude longer as they see much reduced ionization relative to R1.
-
-During operation at a luminosity of 1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$ our present
-chambers draw similar currents per wire as did the previous chambers at a luminosity of 
-1$\times$10$^{34}$~cm$^{-2}$s$^{-1}$.
-The previous chambers operated for more than 10 years with no 
-sign of ``aging'' (except for 
-the failure of external components and some wire breakage), we expect the present
+of aging.  We expect the present
 chambers to perform well for at least 10 years.
 
 
 \subsection{Efficiency}
 
 \hskip 0.15in
+The probability of reconstructing a track due to a charged particle within
+our fiducial volume is referred to as the ``tracking efficiency''.
+There are three categories of inefficiency: the ``intrinsic layer inefficiency'',
+the ``background-related inefficiency'' and the ``malfunction related 
+inefficiency''.
+
 The chamber efficiency can be described in terms of either the ``layer efficiency'' 
 or the ``tracking efficiency''.  The layer efficiency is the probability that a
 good hit is recorded in a wire layer through which the track has passed, based on 
@@ -78,25 +46,27 @@ the evidence from all other layers in the superlayer.  This is called the
 cell efficiency for the particular choice of gas mixture, high-voltage set point, and 
 discriminator level.  
 
-The plateau curves used to set the high-voltage operating points for the chambers 
-show that the average layer efficiency is $>$98$\%$ (see Fig.~\ref{plateau}).  
-Fig.~\ref{edoca} reveals that a large contribution to the 2$\%$ inefficiency comes 
+We took data at successively higher values of high voltage and measured the
+layer efficiency at each point.  We set the high-voltage operating points such that
+the average layer efficiency is $>$98$\%$. 
+Fig.~\ref{hit-effcy-vs-doca} reveals that a large contribution to the 2$\%$ inefficiency comes 
 from tracks that pass close to the sense wire.  These tracks give rise to signals 
 that have low pulse height and long duration, and thus may escape detection.
 
 
 \vfil
 \eject
-
-%%%%%%%%%%%%%%%%% Figure : Layer Efficiency vs. DOCA %%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htpb]
-\vspace{5.0cm} 
-\special{psfile=layereff.eps hscale=70 vscale=65 hoffset=-65 voffset=-195}
-\caption{\small{The layer efficiency plotted versus the distance-of-closest-approach
-(DOCA) to a sense wire.  This typical sample is from an R3 sector.}}
-\label{edoca}
+%%%%%%%%%%%%%%%%%%%%%%%%%%Figure: Hit Efficiency vs. Doca %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{5cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/example-figure.png}}}
+\end{picture}
+\caption{\small{Place holder for a figure}}
+\label{hit-effcy-vs-doca}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%% Figure : Sector Efficiency vs. Luminosity %%%%%%%%%%%%%%%
 \begin{figure}[htpb]
