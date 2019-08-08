@@ -29,12 +29,12 @@ Longer silicon strips have higher capacitance and thus a higher input noise (see
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{occ_thr.png}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{occ_thr.jpg}
 \caption{Channel noise occupancy vs. DAC hit/no-hit threshold (in DAC bins, one DAC bin corresponds to 3.5~mV).}
 \label{fig:noiseocc}
 \end{figure}
 
-The noise occupancy histogram with no charge injection is shown in Fig.~\ref{fig:noiseocc}. It probes the tail of the noise distribution, which can show effects masked by the higher occupancy at low thresholds. A MPV of the signal peak from a MIP corresponds to a 100$^{th}$ DAC bin. The equivalent noise charge of the SVT channels is shown in  Fig.~\ref{fig:enc}. The peak is $\sim$1600 electrons, the shoulder on the left side corresponds to the shorter strips. The channel noise allows setting a 3$\sigma$ threshold at the 30~keV level. 
+The noise occupancy histogram with no charge injection is used to find the noise value (Fig.~\ref{fig:noiseocc}). It probes the tail of the noise distribution, which can show effects, which are masked by the higher occupancy at low thresholds and provides a cross-check of the noise value obtained from the response curve measurement. A MPV of the signal peak from a MIP corresponds to a 100$^{th}$ DAC bin. The equivalent noise charge of the SVT channels is shown in  Fig.~\ref{fig:enc}. The peak is $\sim$1600 electrons (signal-to-noise ratio 15), the shoulder on the left side corresponds to the shorter strips. The channel noise allows setting a 3$\sigma$ threshold at the 30~keV level. 
 
 \begin{figure}[hbt] 
 	\centering 
@@ -77,6 +77,15 @@ The detector response and full readout chain calibration was done with $\gamma$ 
 \subsection{Integration and system checkout}
 
 To verify performance of the integrated detector, data acquisition chain, power services, and cooling system, as well as the detector control and data acquisition software, the final detector system was installed in the clean room and used at all stages of tracker integration and commissioning. The SVT was operated for several months under environmental conditions close to the ones in the experimental hall. Defects known before the integration of the system were reestablished. 99.9$\%$ of channels were operational after the detector integration. 
+ 
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{occupancy-threshold.jpg}
+\caption{Log occupancy vs. threshold squared.}
+\label{fig:occupancy-threshold}
+\end{figure}
+
+The noise behavior was found to be within expectations and well understood. The dependence of the noise on the environmental temperature and humidity is small. The noise performance in the experimental hall was comparable with the results taken in the clean room during integration. Several diagnostic tools were used to measure the common mode noise performance of the detector. Fig.~\ref{fig:occupancy-threshold} shows log occupancy vs. threshold squared plot. Purely Gaussian noise gives a straight line in the plot over much of the useful range. Occupancy refers to the (normalized) total number of hits in all channels in a run. The power of this plot is to show non-Gaussian noise contributions as deviations from this linear fall-off. The hit map is plotted in the plane spanned by channel number and event number. It is an important diagnostic tool to test for presence of the correlated noise and understanding the data quality, such as dead/noisy channels, channel occupancy, uniformity across the channels and events in a run, coherent effects on the channels in individual events.
 
 \begin{figure}[hbt] 
 \centering 
@@ -85,7 +94,7 @@ To verify performance of the integrated detector, data acquisition chain, power 
 \label{fig:svt_gain}
 \end{figure}
 
-The noise behavior was found to be within expectations and well understood. The dependence of the noise on the environmental temperature and humidity is small. The noise performance in the experimental hall was comparable with the results taken in the clean room during integration. No significant correlated noise has been observed between the channels of the same chip, between the chips of the same module, or between the closely placed modules. The front-end electronics performed reliably, and no chip failures were observed. The distribution of gain was uniform and stable for all channels (see Fig.~\ref{fig:svt_gain}). 
+No significant correlated noise has been observed between the channels of the same chip, between the chips of the same module, or between the closely placed modules. The front-end electronics performed reliably, and no chip failures were observed. The distribution of gain was uniform and stable for all channels (see Fig.~\ref{fig:svt_gain}). 
  
 \begin{figure}[hbt] 
 \centering 
@@ -158,7 +167,7 @@ The charge sharing among two adjacent strips was studied using using the $\eta$-
 \label{fig:eta-function}
 \end{figure}
 
-Strip multiplicity of the clusters (cluster size) in the cosmic run is shown in Fig.~\ref{fig:cluster-size}. The size of the clusters is lowest in the innermost region and is increasing with radius due to a larger local track angle (the tracks, triggered by the CTOF, crossing the barrel far from the beam line).
+Strip multiplicity of the clusters (cluster size) in the cosmic run is shown in Fig.~\ref{fig:cluster-size}. The size of the clusters is lowest in the innermost region and is increasing with radius due to a larger local track angle (the tracks, triggered by the CTOF, crossing the barrel far from the beam line). The results are in agreement with simulations and the data on the charge sharing among adjacent readout strips obtained with the laser.
 
 \begin{figure}[hbt] 
 \centering 
@@ -167,7 +176,7 @@ Strip multiplicity of the clusters (cluster size) in the cosmic run is shown in 
 \label{fig:cluster-size}
 \end{figure}
 
-Cosmic muons are an important source for calibration and alignment. Their trajectories are sensitive to misalignments of different tracker parts. The cosmic muons significantly improve the alignment precision. A preliminary alignment of the SVT was done using the sample of several millions of the cosmic muon tracks taken without solenoid magnetic field. With exception of the modules located at the shallow angle to the vertical axis, the acquired sample provided adequate statistics of the tracks to extract the misalignment data. The tracks crossing the sensors at large inclination angles and low energy tracks subject to multiple scattering were rejected. Additional requirement on the $\chi^2$ per degree of freedom of the track fit was applied to reject tracks effected by the outlier hits. The spacial residuals before (blue) and after (red) the alignment procedure (see Fig.~\ref{fig:alignment}) are expected to provide the designed momentum resolution.
+Cosmic muons are an important source for calibration and alignment. Their trajectories are sensitive to misalignments of different tracker parts. The cosmic muons significantly improve the alignment precision. A preliminary alignment of the SVT was done using the sample of several millions of the cosmic muon tracks taken without solenoid magnetic field. With exception of the modules located at the shallow angle to the vertical axis, the acquired sample provided adequate statistics of the tracks to extract the misalignment data. The tracks crossing the sensors at large inclination angles and low energy tracks subject to multiple scattering were rejected. Additional requirement on the $\chi^2$ per degree of freedom of the track fit was applied to reject tracks effected by the outlier hits. The spacial residuals before (blue) and after (red) the alignment procedure (see Fig.~\ref{fig:alignment}) are shown. Only the shifts in the sensor plane were taken into account in the alignment procedure for this plot. Validation of alignment procedures was performed on Monte Carlo simulation and cosmic data.
 
 \begin{figure}[hbt] 
 \centering 
@@ -292,7 +301,6 @@ Noise performance of the SVT during the physics data taking is demonstrated in F
 
 Fig.~\ref{fig:occupancy-beam-current} shows SVT occupancy vs. beam current for hydrogen and deuterium targets. The production data were taken at 50 nA. The SVT occupancy increases linearly with luminosity and remains at low levels not causing a substantial drop in the track finding efficiency.
 
-
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{residual.jpg}
@@ -300,4 +308,14 @@ Fig.~\ref{fig:occupancy-beam-current} shows SVT occupancy vs. beam current for h
 \label{fig:residual}
 \end{figure}
 
-A series of dedicated central tracker alignment runs was done at low beam current without magnetic field. The alignment data were collected when position of the central detector subsystems or the target has changed. In addition to the track-based alignment, the data from the mechanical survey of the fiducials were also recorded when the detectors were moved. Centroid residual for one of the SVT sensors after preliminary tracker alignment is shown in Fig.~\ref{fig:residual}. Sensor spacial resolution is close to the specs.
+A series of dedicated central tracker alignment runs was done at low beam current without magnetic field. The alignment data were collected when position of the central detector subsystems or the target has changed. The dependence of the residuals on the track parameters is explicitly taken into account. The alignment code uses the partial derivatives of the distance of closest approach (DOCA) taken with respect to the track parameters and the SVT geometry. This approach accounts for the correlated shifts among the geometry parameters. In addition to the track-based alignment, the data from the mechanical survey of the fiducials were also recorded when the detectors were moved. Centroid residual for one of the SVT sensors after preliminary tracker alignment is shown in Fig.~\ref{fig:residual}. Sensor spacial resolution is within the specs. Further improvements are expected from the ongoing development of the alignment algorithm and the track reconstruction code (like energy loss and Lorentz angle corrections).
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{lorentz-angle.jpg}
+\caption{Cluster size vs. local track azimuthal angle.}
+\label{fig:lorentz-angle}
+\end{figure}
+
+Fig.~\ref{fig:lorentz-angle} shows average cluster size at different local azimuthal angles of the track. Zero angle corresponds to normal incident tracks. The data were taken at negative polarity of the solenoid field. The smallest cluster size corresponds to the Lorentz angle.
+

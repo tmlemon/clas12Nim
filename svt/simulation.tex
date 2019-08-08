@@ -79,7 +79,7 @@ Fluences, radiation doses, and 1 MeV neutron damage rates in the SVT were calcul
 \label{fig:energy-deposited-l1}
 \end{figure}
 
-A tungsten shield 51~$\mu$m thick is installed on the target scattering chamber. The shield consists of 2 sheets mounted over the top and bottom halves of the foam cylinder referenced to the SVT common ground. The SVT rates and radiation damage benefit from the inclusion of the tungsten shield. The rates have been compared with physics run data at several beam currents. There is a good agreement between the real and the simulated data.
+A tungsten shield 51~$\mu$m thick is installed on the target scattering chamber. The shield consists of 2 sheets mounted over the top and bottom halves of the foam cylinder referenced to the SVT common ground. The SVT rates and radiation damage benefit from the inclusion of the tungsten shield. The rates have been compared with physics run data at several beam currents.
 
 While the gamma fluences / doses show a dramatic decrease with the introduction of shielding, the total fluences and doses decrease significantly for the thinner configuration and do not vary much for thicker tungsten (see Fig.~\ref{fig:rates-l1}). The photon radiation dose becomes negligible for 50 $\mu$m or more of tungsten with total 1 MeV equivalent radiation dose about 65 krad per year on a liquid-hydrogen target. For 15 years of running the experiment on a carbon target the estimated radiation dose for the sensors is 2.5~Mrad (with 50 $\%$ operation) \cite{TDRSVT}. 
 
@@ -88,6 +88,15 @@ While the gamma fluences / doses show a dramatic decrease with the introduction 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{rates-l1.jpg}
 \caption{Rates in the first SVT layer for different tungsten shield thickness from 50 to 500 $\mu$m for a liquid hydrogen target at the nominal CLAS12 operating luminosity. No energy threshold cut applied.}
 \label{fig:rates-l1}
+\end{figure}
+
+An estimate of the double hit rate was performed. Fig.~\ref{fig:double-hit-rate} shows the probability of the double hits in the inner region of the SVT. The ratio of the double hits to the single hits was found to be about 1$\%$.
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{double-hit-rate.jpg}
+\caption{Double hit fraction in the region 1 with liquid hydrogen target.}
+\label{fig:double-hit-rate}
 \end{figure}
 
 \subsection{Magnetic Field}
@@ -101,20 +110,5 @@ Due to the constrains on the maximum length of the cables, the readout, slow con
 \label{fig:solenoid-field}
 \end{figure}
 
-%\subsection{Occupancies}
 
-%\subsection{Alignment}
-
-%Validation of alignment procedures was performed on Monte Carlo simulation and cosmic data. Detector alignment procedure is using a least squares approach of a Millepede II algorithm \cite{Millepede}. The dependence of the residuals on the track parameters is explicitly taken into account. The alignment code uses the partial derivatives of the distance of closest approach (DOCA) taken with respect to the track parameters and the SVT geometry. This approach accounts for correlated shifts among the geometry parameters. Results of alignment correction for one of the SVT modules are shown in Fig.~\ref{fig:alignment}. Only shifts in the sensor plane were taken into account in the alignment procedure for this plot.
-
-%\begin{wrapfigure}{l}{0.5\columnwidth}
-%\includegraphics[width=1.0\columnwidth]{alignment.png}
-%\caption{Alignment of the SVT module.}
-%\label{fig:alignment}
-%\end{wrapfigure}
-
-%\subsection{Resolutions}
-
-
-%\subsection{Efficiencies}
 
