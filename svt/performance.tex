@@ -34,12 +34,12 @@ Longer silicon strips have higher capacitance and thus a higher input noise (see
 \label{fig:noiseocc}
 \end{figure}
 
-The noise occupancy histogram with no charge injection is used to find the noise value (Fig.~\ref{fig:noiseocc}). It probes the tail of the noise distribution, which can show effects, which are masked by the higher occupancy at low thresholds and provides a cross-check of the noise value obtained from the response curve measurement. A MPV of the signal peak from a MIP corresponds to a 100$^{th}$ DAC bin. The equivalent noise charge of the SVT channels is shown in  Fig.~\ref{fig:enc}. The peak is $\sim$1600 electrons (signal-to-noise ratio 15), the shoulder on the left side corresponds to the shorter strips. The channel noise allows setting a 3$\sigma$ threshold at the 30~keV level. 
+The noise occupancy histogram with no charge injection is used to find the noise value (Fig.~\ref{fig:noiseocc}). It probes the tail of the noise distribution, which can show effects, which are masked by the higher occupancy at low thresholds and provides a cross-check of the noise value obtained from the response curve measurement. A MPV of the signal peak from a MIP corresponds to a 100$^{th}$ DAC bin. The equivalent noise charge of the SVT channels is shown in  Fig.~\ref{fig:enc}. The peak is $\sim$1600 electrons (signal-to-noise ratio 15), the shoulder on the left side is related to the shorter strips. The channel noise allows setting a 3$\sigma$ threshold at the 30~keV level. 
 
 \begin{figure}[hbt] 
 	\centering 
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{enc.png}
-	\caption{SVT ENC for all channels. The main peak corresponds to the full length strips (33 cm). The shoulder on the left side corresponds to the shorter strips.}
+	\caption{SVT ENC for all channels. The main peak corresponds to the full length strips (33 cm). The shoulder on the left side is related to the shorter strips.}
 	\label{fig:enc}
 \end{figure}
 
@@ -228,7 +228,7 @@ Radiation induced energy levels in the middle of the band gap are causing an inc
 \begin{equation} \Delta I_R = \alpha \Phi \label{eq:leakage-fluence},
 \end{equation}
 
-where $\Phi$ is the particle fluence and $\alpha \approx$ 4$\cdot$10$^{-17}$ A/cm~\cite{DIERLAMMTHESIS}. The increased leakage current is increasing the noise and heating up the sensor, which, in turn, will further increase the leakage current. When the temperature increases beyond a critical temperature where the cooling can not maintain a stable temperature this will result in thermal runaway. After accumulating a large hadron fluence, the SVT requires low temperature operation to avoid thermal runaway induced by the sensor leakage current. Fig.~\ref{fig:thermal-runaway} shows thermal runaway in the 2 innermost layers of the SVT received the highest radiation dose. Leakage currents in other layers were stable. The monitoring data correspond to the period after a physics run with liquid hydrogen target, when there was no beam in the hall for extended time. The leakage currents became stable when the coolant temperature was decreased.
+where $\Phi$ is the particle fluence and $\alpha \approx$ 4$\cdot$10$^{-17}$ A/cm~\cite{DIERLAMMTHESIS}. The increased leakage current is increasing the noise and heating up the sensor, which, in turn, will further increase the leakage current. When the temperature increases beyond a critical temperature where the cooling can not maintain a stable temperature this will result in thermal runaway. After accumulating a large hadron fluence, the SVT requires low temperature operation to avoid thermal runaway induced by the sensor leakage current. Fig.~\ref{fig:thermal-runaway} shows thermal runaway in the 2 innermost layers of the SVT received the highest radiation dose. Leakage currents in other layers were stable. The monitoring data were taken after a physics run with liquid hydrogen target, when there was no beam in the hall for extended time. The leakage currents became stable when the coolant temperature was decreased.
 
 \begin{figure}[hbt] 
 \centering 
@@ -237,7 +237,7 @@ where $\Phi$ is the particle fluence and $\alpha \approx$ 4$\cdot$10$^{-17}$ A/c
 \label{fig:thermal-runaway}
 \end{figure}
 
-Fig.~\ref{fig:leakage-layers-deuterium} shows monitoring plots for the average sensor leakage currents in the SVT layers during the data taking with liquid deuterium target. For the first few hours in the time period shown there was no beam in the hall and the currents were stable. Currents in all the layers are increasing with time when beam is present. The jumps in the leakage current of a layer between two values correspond to beam trips. The largest difference between beam-on and beam-off levels and the rate of current increase is in the inner layers. The data were taken at 50 nA beam current. 
+Fig.~\ref{fig:leakage-layers-deuterium} shows monitoring plots for the average sensor leakage currents in the SVT layers during the data taking with liquid deuterium target. For the first few hours in the time period shown there was no beam in the hall and the currents were stable. Currents in all the layers are increasing with time when beam is present. The jumps in the leakage current of a layer between two values are related to the beam trips. The largest difference between beam-on and beam-off levels and the rate of current increase is in the inner layers. The data were taken at 50 nA beam current. 
 
 \begin{figure}[hbt] 
 \centering 
@@ -246,7 +246,7 @@ Fig.~\ref{fig:leakage-layers-deuterium} shows monitoring plots for the average s
 \label{fig:leakage-layers-deuterium}
 \end{figure}
 
-Comparison of the rates of leakage current increase with different targets is shown in Fig.~\ref{fig:leakage-hydrogen-duterium}. The rate of current increase with liquid deuterium target was about 1 nA per hour. Corresponding rate for liquid hydrogen target was 0.06 nA per hour. The data were taken at 50 nA beam current corresponding to the instantaneous luminosity of 0.7~$\times$10$^{35}$cm$^{-2}$s$^{-1}$ per nucleon.
+Comparison of the rates of leakage current increase with different targets is shown in Fig.~\ref{fig:leakage-hydrogen-duterium}. The rate of current increase with liquid deuterium target was about 1 nA per hour. The rate for liquid hydrogen target was 0.06 nA per hour. The data were taken at 50 nA beam current corresponding to the instantaneous luminosity of 0.7~$\times$10$^{35}$cm$^{-2}$s$^{-1}$ per nucleon.
 
 \begin{figure}[hbt] 
 \centering 
@@ -263,7 +263,7 @@ The rate of current increase for the hydrogen target was much smaller.
 \label{fig:hit-map-rga}
 \end{figure}
 
-After a year of running several sensors developed pinholes (the strips with DC current through the damaged dielectric (oxide) between aluminum strip and implant, resulting in a high current flowing into a channel) observed as groups of adjacent hot channels. The performance of the charge amplifying chip is deteriorated by the high current flowing into a channel. The bias voltage on these sensors has been lowered to reduce noise and abnormally high leakage currents (high occupancy regions on the map). The increased leakage current is reduced by lowering the detector temperature. The detector is kept below -10 C to freeze the reverse annealing interleaved with short periods at room temperature for the beneficial annealing. A hit map of the SVT from a physics run is shown in Fig.~\ref{fig:hit-map-rga}. Sensors with pinholes are seen on the map as darker horizontal lines due to reduced efficiency (under-depleted sensors) with strips of masked hot channels with no hits. 
+The surface of silicon sensors suffers from the damage due to the ionizing radiation. The damage affects the insulating properties of SiO$_2$ layer between the strips and the aluminum electrodes, collecting the charge generated by the photons and the charged particles. The trapped positive charge is causing accumulation of electrons in the Si/SiO$_2$ interface between the strips, thus decreasing the resistance between the strips and increasing the interstrip capacitance which affects noise performance and degrades the spacial resolution. After a year of running several sensors developed pinholes (the strips with DC current through the damaged dielectric between aluminum strip and implant, resulting in a high current flowing into a channel) observed as groups of adjacent hot channels. The performance of the charge amplifying chip is deteriorated by the high current flowing into a channel. The bias voltage on these sensors has been lowered to reduce noise and abnormally high leakage currents (high occupancy regions on the map). The increased leakage current was reduced by decreasing the detector temperature. The sensors are kept below -10$\degree$C to freeze the reverse annealing interleaved with short periods at room temperature for the beneficial annealing. A hit map of the SVT from a physics run is shown in Fig.~\ref{fig:hit-map-rga}. Sensors with pinholes are seen on the map as darker horizontal lines due to reduced efficiency (under-depleted sensors) with strips of masked hot channels with no hits. 
 
 \begin{figure}[hbt] 
 \centering 
@@ -317,5 +317,5 @@ A series of dedicated central tracker alignment runs was done at low beam curren
 \label{fig:lorentz-angle}
 \end{figure}
 
-Fig.~\ref{fig:lorentz-angle} shows average cluster size at different local azimuthal angles of the track. Zero angle corresponds to normal incident tracks. The data were taken at negative polarity of the solenoid field. The smallest cluster size corresponds to the Lorentz angle.
+Fig.~\ref{fig:lorentz-angle} shows average cluster size at different local azimuthal angles of the track. Zero angle is related to the normal incident tracks. The data were taken at negative polarity of the solenoid field. The smallest cluster size corresponds to the Lorentz angle when the track is parallel to the magnetic field lines.
 
