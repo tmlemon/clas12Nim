@@ -308,14 +308,23 @@ Fig.~\ref{fig:occupancy-beam-current} shows SVT occupancy vs. beam current for h
 \label{fig:residual}
 \end{figure}
 
-A series of dedicated central tracker alignment runs was done at low beam current without magnetic field. The alignment data were collected when position of the central detector subsystems or the target has changed. The dependence of the residuals on the track parameters is explicitly taken into account. The alignment code uses the partial derivatives of the distance of closest approach (DOCA) taken with respect to the track parameters and the SVT geometry. This approach accounts for the correlated shifts among the geometry parameters. In addition to the track-based alignment, the data from the mechanical survey of the fiducials were also recorded when the detectors were moved. Centroid residual for one of the SVT sensors after preliminary tracker alignment is shown in Fig.~\ref{fig:residual}. Sensor spacial resolution is within the specs. Further improvements are expected from the ongoing development of the alignment algorithm and the track reconstruction code (like energy loss and Lorentz angle corrections).
+A series of dedicated central tracker alignment runs was done at low beam current without magnetic field. The alignment data were collected when position of the central detector subsystems or the target has changed. The dependence of the residuals on the track parameters is explicitly taken into account. The alignment code uses the partial derivatives of the distance of closest approach (DOCA) taken with respect to the track parameters and the SVT geometry. This approach accounts for the correlated shifts among the geometry parameters. In addition to the track-based alignment, the data from the mechanical survey of the fiducials were also recorded when the detectors were moved. Centroid residual for one of the SVT sensors after preliminary tracker alignment is shown in Fig.~\ref{fig:residual}. Sensor spacial resolution is within the specs. Further improvements are expected from the ongoing development of the alignment algorithm and the track reconstruction code (like energy loss and Lorentz angle corrections which have strong impact on alignment).
 
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{lorentz-angle.jpg}
-\caption{Cluster size vs. local track azimuthal angle.}
+\caption{Cluster size vs. local track azimuthal angle. The insert shows dependence of the cluster size on the track angle.}
 \label{fig:lorentz-angle}
 \end{figure}
 
-Fig.~\ref{fig:lorentz-angle} shows average cluster size at different local azimuthal angles of the track. Zero angle is related to the normal incident tracks. The data were taken at negative polarity of the solenoid field. The smallest cluster size corresponds to the Lorentz angle when the track is parallel to the magnetic field lines.
+In a strong magnetic field, charge in the silicon detector drifts at the Lorentz Angle, which must be taken into account when reconstructing the cluster position. Fig.~\ref{fig:lorentz-angle} shows average cluster size at different local azimuthal angles of the track. Zero angle is related to the normal incident tracks. The data were taken at negative polarity of the solenoid field. The Lorentz angle $\Theta_{LA}$ can be calculated as the track incidence angle corresponding to the minimum of the average cluster size when the track local angle is equal to the Lorentz angle.
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{matched-hits.jpg}
+\caption{Number of the SVT hits per track.}
+\label{fig:matched-hits}
+\end{figure}
+
+The number of matched SVT hits per reconstructed track in the physics run with the hydrogen target is shown in Fig.~\ref{fig:matched-hits}. For most tracks all 6 SVT layers have been matched. The tracks with low number of matched hits passed through the gaps between the modules.
 
