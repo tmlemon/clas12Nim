@@ -51,12 +51,12 @@ running.  Information from the nA-BPMs can also be used in a feedback  loop to k
 The wire harps \cite{wireharp} are used to measure the transverse beam profile. These are devices with 25-$\mu$m tungsten wires 
 mounted in the horizontal and vertical directions on a support fork that moves the wires into the beam at $45^\circ$. As 
 the harp moves into beam, count rates from beam halo counters are combined with the wire position information to determine the beam profile.
-Since this is an invasive measurement, it is performed primarily during the beam setup or when other devices indicate a problem with the beam. 
+Since this is an invasive measurement, it is performed primarily during beam setup or when other devices indicate a problem with the beam. 
 
 The beam halo counters are PMT-based devices located at various positions along the beamline and are mounted very close to the 
 beam; usually strapped directly to the beam pipe. The PMTs have either scintillating or Cherenkov-light-producing plastic mounted on 
 the photocathode. In addition to providing count rates for the wire harps, these counters are sensitive to any beam halo or undesirable 
-beam interactions. These counters are the main tools to monitor beam-induced background in the hall and along with the BOM provide 
+beam interactions. These counters are the main tools to monitor beam-induced background in the hall and, along with the BOM, provide 
 feedback signals for the machine fast shutdown system (FSD). The FSD will stop beam delivery in the case of excessively high background
 rates in order to protect the detectors. 
 
@@ -65,27 +65,20 @@ longitudinal polarization measurement, a Faraday cup in the downstream tunnel (e
 and a beam viewer that looks at a retractable fluorescent screen installed before the Faraday cup for visual verification of beam transport to 
 the dump.     
 
-In Fig.\ref{fig:mgui}, the main Graphical User Interface (GUI) for monitoring the beam delivery and beamline devices is shown. The 
-underlying software is EPICS \cite{EPICS} for the real-time control and monitoring of devices. The user interface is built using the 
-CS-Studio tools \cite{CS-Studio}. All variables available in EPICS are archived using the Jefferson Lab MYA data archiver \cite{MYA}. 
+The Experimental Physics and Industrial Control System (EPICS) \cite{EPICS} is used for monitoring the beam delivery and for control 
+of the beamline devices. Graphical User Interfaces (GUIs) for each application are built using the CS-Studio tools \cite{CS-Studio}. All 
+variables available in EPICS are archived using the Jefferson Lab MYA data archiver \cite{MYA}. For continuous monitoring of the beam
+and the state of the beamline devices, one single GUI was deployed that contains monitored quantities from the beam halo counter rates,
+magnets, vacuum, cryotarget, beam positions and currents, as well as state of moving devices. For convenience of monitoring, a timeline 
+of counter rates, along with BPM positions and beam current readings can be displayed separately.  
 
-Each section of the main GUI represents a collection of monitored quantities. In the top row, the rates of beam halo counters and the 
-integrated rates of CLAS12 detectors are displayed. The other information shown at the top of the GUI are the status of the hall on 
-the right, the state of the beam orbit locks on the left, and the FSD configuration in the middle. In the middle of the GUI, beam position 
-and current monitors are displayed together with the target status and BOM counts.  The status and positions of moving devices such 
-as wire harps, collimators, and the beam blocker are displayed in the lower middle part of the GUI. At the bottom of the GUI the vacuum 
-gauges, and currents and fields of the beamline magnets and the CLAS12 superconducting magnets are shown. The digital output of the 
-beam viewer camera is displayed in the lower right corner. There is also information on beam parameters and beam helicity in the upper left 
-quadrant of the GUI. For convenience of monitoring, a timeline of counter rates, along with BPM positions and beam current readings can 
-be displayed separately.  
-
-\begin{figure*}[t]
-\begin{center}
-\includegraphics[width=0.95\textwidth]{main_gui.pdf}
-	\caption{The main Graphical User Interface (GUI) for monitoring of beamline devices, detector rates, and magnets.}
-\label{fig:mgui}
-\end{center}
-\end{figure*}
+%\begin{figure*}[t]
+%\begin{center}
+%\includegraphics[width=0.95\textwidth]{main_gui.pdf}
+%	\caption{The main Graphical User Interface (GUI) for monitoring of beamline devices, detector rates, and magnets.}
+%\label{fig:mgui}
+%\end{center}
+%\end{figure*}
 
 
 
@@ -94,7 +87,7 @@ the 2C beamline in the Hall-B upstream tunnel. During this tuning process the be
 detectors from excessive radiation exposure. Once the 2C beamline is tuned, the beam is then sent to the downstream electron dump and 
 tuned onto the CLAS12 target. During the tuning process, the beam profile and transverse position are optimized using the information from 
 the wire harps, the nA-BPMs, and the beam halo counters.  The beam is accepted for physics production running when all the relevant 
-parameters are within expected limits. After production beam has been established,  limits on the halo counter rates, beam positions, and 
+parameters are within expected limits. After production beam has been established,  limits on the halo counter rates, beam position, and 
 beam current are set in the CS-Studio alarm system to help Hall-B shift personnel to monitor the beam quality when running experiments.  
 
 
@@ -139,12 +132,12 @@ After the beam has been established for physics running, its position and curren
 counter rates and the nA-BPMs. Figure~\ref{fig:position} shows the the distribution of the {\it x--} and {\it y--}positions about the mean at the 
 2H01 nA-BPM. The RMS of both distributions is on order of $20~\mu$m. Such stability is largely due to use of the beam orbit lock system 
 that uses the position readings of nA-BPMs to drive horizontal and vertical correctors that keep the position of the beam at the set points 
-established at the start of a running period.    
+established at the start of a running period.
 
 \begin{figure}[ht]
 \begin{center}
-\includegraphics[width=0.23\textwidth]{position_2h01x.pdf}
-\includegraphics[width=0.23\textwidth]{position_2h01y.pdf}
+\includegraphics[width=0.234\textwidth]{position_2h01x.pdf}
+\includegraphics[width=0.234\textwidth]{position_2h01y.pdf}
 \caption{Beam position deviations, $x-\mu_x$ (left)  and $\mu_y$ (right), over a month of running as measured by the 2H01 nA-BPM. }
 \label{fig:position}
 \end{center}
@@ -186,7 +179,7 @@ for coarse monitoring of the beam current during the experiment.}
 
 Instead, a 5-kW beam dump can be inserted in front of the FC during high-power running. This insertable dump, or beam blocker, is a 
 water-cooled, 28-cm-long copper cylinder (19.5 radiation lengths).   While most of the beam is deposited in this beam blocker, the FC 
-still measures a leak-through charge that is proportional to the total beam current with a very high accuracy of better than 0.5\%. 
+still measures a leak-through current that is proportional to the total beam current with a very high accuracy of better than 0.5\%. 
 In order to use the FC current measurement with the blocker in, a beam-current attenuation factor, $A$, must be determined for every 
 beam energy, so that the beam current is given by $I=A I_{FC}^{in}$, where $I_{FC}^{in}$ is the beam current measured at the FC when the
 beam blocker is in. 

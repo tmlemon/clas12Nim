@@ -60,10 +60,10 @@ $10\%$ of the real coincident rate for our polarimeter. The accidental rate is m
 \label{sec-PolDesign}
 
 The layout for the polarimeter is shown in Fig.~\ref{fig-PolLayout}. The essential elements of the polarimeter include a polarized target 
-system, a pair of quadrupole magnets both operated in a dispersive mode to separate the scattered electrons for the unscattered  
+system, a pair of quadrupole magnets both operated in a dispersive mode to separate the scattered electrons from the unscattered  
 beam electrons, a pair of detectors, and lead shielding between the second quadrupole and the detectors to reduce 
 background.  The detectors consist of scintillating fibers packed with lead powder to form a 15.6-cm wide, 9.0-cm high, and 25-cm deep 
-block with a light guide and read out with a PMT. The detectors are surrounded by 
+block with a light guide and are read out with a PMT. The detectors are surrounded by 
 lead bricks with a scattered-particle aperture of 7.62 cm in the horizontal direction and 5.0 cm in the vertical direction.
 The locations of the quadrupoles and detectors along with the quadrupole fields were determined by simulations of the layout. The 
 locations and fields were adjusted in the simulation so that $\theta_{CM}=90^\circ\pm (4^\circ-4.5^\circ)$.
@@ -125,7 +125,7 @@ Since the magnetization is related to the total field, $B$, and the applied fiel
 	M=B-H=\frac{1}{4\pi}H\left(\frac{\int_{\rm total} Vdt-\int_HVdt}{\int_HVdt}\right),
 \end{equation}
 %
-where $\int_{\rm total} Vdt$ is the total area of the signal. Figure~\ref{fig-PSat} shows a typical saturation curve for the target, i.e. how 
+where $\int_{\rm total} Vdt$ is the total area of the signal. Figure~\ref{fig-PSat} shows a typical saturation curve for the target, i.e.~how 
 the target polarization depends on the applied field. Measurements were done with two different pickup coils with the difference between 
 the two results indicating the systematic uncertainty associated with knowledge of the coil geometry. For this foil, the polarization saturates 
 at a value of $7.31\pm 0.08$\%, where the uncertainty is a combination of the statistical uncertainties from the linear fits of the saturation
@@ -184,41 +184,41 @@ variations in the geometry (locations of quadrupoles and detectors) and magnetic
 \label{sec-SpinDance}
 
 Beam polarization measurements are usually done on a weekly basis or after changes to the accelerator configuration.  The shift personnel
-use what is in essence a push-button GUI interface shown in Fig.~\ref{fig:mollergui}. The user selects which target to use (left or right) and the
+use what is in essence a push-button GUI interface. The user selects which target to use (left or right) and the
 Helmholtz coil polarity. The settings for the quadrupoles are automatically calculated based upon the beam energy. Individual M{\o}ller runs
 are usually done for both targets with a statistical precision of $\pm 1.5$\%, which is slightly smaller than the total systematic uncertainty. 
 The underlying software calculates the beam polarization using the beam-helicity-gated true and accidental coincidence rates from 
 the M{\o}ller detectors along with the beam-helicity related charge asymmetry measured using the SLM. 
-At the end of a M{\o}ller run the beam polarization is stored in the database and displayed in the GUI, as seen in the upper right quadrant 
-of  Fig.~\ref{fig:mollergui}. 
+At the end of a M{\o}ller run the beam polarization is stored in the GUI and goes automatically to the electronic logbook. The scaler 
+readouts during the run are stored in the run file while polarization the measurement is stored the database. 
 
-\begin{figure}[ht]
-\begin{center}
-\includegraphics[width=0.475\textwidth]{moller_gui.pdf}
-	\caption{Graphical user interface for M{\o}ller polarimeter operation.}
-\label{fig:mollergui}
-\end{center}
-\end{figure}
+%\begin{figure}[ht]
+%\begin{center}
+%\includegraphics[width=0.475\textwidth]{moller_gui.pdf}
+%	\caption{Graphical user interface for M{\o}ller polarimeter operation.}
+%\label{fig:mollergui}
+%\end{center}
+%\end{figure}
 
 Results of beam polarization measurements taken during the fall 2018 run period are shown in Fig.~\ref{fig:molrga}.
 There are two distinct regions of beam polarization with average polarizations of $85.95\% ~\pm ~1.29\%$ and $89.22\%~\pm~2.51\%$. 
-These two regions differ by settings of the angle, $\theta_W$ of the Wien filter in the injector. The initial setting of the Wien-filter angle was 
-set to maximize the beam polarization in Hall B and is based on a calculation of the electron spin precession in the accelerator. 
+These two regions differ by settings of the angle, $\theta_W$ of the Wien filter in the injector. The initial Wien-filter angle was 
+set to maximize the beam polarization in Hall B and was based on a calculation of the electron spin precession in the accelerator. 
 However, the polarization in the early part of the running period fell below the expected maximum of about 90\%, which was measured 
 at the injector by a Mott polarimeter, indicating an incorrectly calculated $\theta_W$ . In order to find the optimum value of $\theta_W$, 
 two more M{\o}ller measurements of the beam polarization in Hall-B were performed at $\theta_W=25^\circ$ and $70^\circ$.  
-The result of these measurements along with the average at $40^\circ$ are shown in Fig.~\ref{fig:sdance}. Fitting these three points 
-with a function of $a\cos\left(\theta_W-b\right)$ (dashed curve), where $a$ and $b$ are fit parameters,  shows that the maximum
- polarization of about 90\% in Hall B occurs for $\theta_W\approx 40^\circ$.
+The result of these measurements along with the average at $\theta_W=50^\circ$ are shown in Fig.~\ref{fig:sdance}. Fitting these three 
+points with a function of $a\cos\left(\theta_W-b\right)$ (dashed curve), where $a$ and $b$ are fit parameters,  shows that the maximum
+polarization of about 90\% in Hall B occurs for $\theta_W\approx 40^\circ$.
  
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{Moller-RGA-2018.pdf}
 	\caption{Beam polarization measured in Hall B during the fall 2018 running period. Prior to October 30 the measurements from the 
 	Hall-B polarimeter (squares) averaged to $85.9\%\pm1.2\%$ (stat.), which is lower than the expected 90\% from the injector Mott 
-	measurements (triangles). After the optimizing the Wien-filter angle the average polarization measured in Hall B was measured 
-	to be $89.2\%\pm2.5\%$ (stat.). Filled and open symbols correspond to measurements made with and without a half-wave plate. Error bars
-	are statistical only.}
+	measurements (black band). After optimizing the Wien-filter angle the average polarization measured in Hall B was measured 
+	to be $89.2\%\pm2.5\%$ (stat.). Filled and open symbols correspond to measurements made with and without a half-wave plate, 
+	respectively. Error bars are statistical only.}
 \label{fig:molrga}
 \end{center}
 \end{figure}
@@ -226,7 +226,7 @@ with a function of $a\cos\left(\theta_W-b\right)$ (dashed curve), where $a$ and 
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{Hall-B_fall_spin_dance.pdf}
-	\caption{Beam polarization measurements at three different Wien angle settings taken during the fall 2018 run period.  The dashed 
+	\caption{Beam polarization measurements at different Wien angle settings taken during the fall 2018 run period.  The dashed 
 	curve is the cosine-function fit to the data points. The filled point is the average over all measurements with the angle set to $50^\circ$ 
 	and the open points are from single measurements. Error bars are statistical only. }
 \label{fig:sdance}
