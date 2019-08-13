@@ -11,8 +11,9 @@ hall. In addition to the devices used by accelerator operations, there are sever
 are controlled and monitored by Hall-B shift personnel. 
 
 For high-energy operation of CLAS12, the 2C beamline as described in Ref.~\cite{HPSBeamline} was modified to include 
-the M{\o}ller polarimeter located in the upstream tunnel of the hall (see Fig.~\ref{fig:upstream}) and an intermediate beam dump just upstream 
-of the hall. Additionally, the 2H beamline  (Fig.~\ref{fig:hall1}) now includes a cryogenic target and a tungsten shield downstream of the 
+the M{\o}ller polarimeter located in the upstream tunnel of the hall %(see Fig.~\ref{fig:upstream})
+ and an intermediate beam dump just upstream 
+of the hall. Additionally, the 2H beamline (Fig.~\ref{fig:hall1}) now includes a cryogenic target and a tungsten shield downstream of the 
 target inside the CLAS12 torus magnet bore. The M{\o}ller polarimeter is used to periodically measure the longitudinal beam polarization and is discussed in more detail in Sec.~\ref{mollerpol}.  The other components are discussed immediately below.
 
 % had to move this figure to intro section so that it would end up where I wanted it
@@ -27,7 +28,8 @@ target inside the CLAS12 torus magnet bore. The M{\o}ller polarimeter is used to
 \begin{figure*}[t]
 \begin{center}
 \includegraphics[width=1.\textwidth]{beamline_hall_1.pdf}
-\caption{Beamline in the hall, upstream of the CLAS12 target. {\color{red} Not the final figure.}}
+	\caption{Beamline in Hall B showing beamline elements upstream of the CLAS12 target, cryotarget, CLAS12 central detector and 
+	the tungstem shield downstream of the scattering chamber.}
 \label{fig:hall1}
 \end{center}
 \end{figure*}
@@ -50,7 +52,7 @@ electron beam is dumped on the yoke.
 The FLUKA simulations were used to determine background radiation levels at the tracking detectors for different configurations of the 
 dump and compared with radiation levels from various targets and beam currents at the design luminosity.  It was found that acceptable 
 background radiation levels from the dump occur when the beam is steered into the yoke at approximately 33 cm from the upstream 
-entrance to the tagger magnet bore, as shown in Fig.\ref{fig:yokedump}. This is done by setting the tagger magnetic field to be 
+entrance to the tagger magnet bore, as shown in Fig.~\ref{fig:yokedump}. This is done by setting the tagger magnetic field to be 
 $I({\rm A}) = 43.491\times E({\rm GeV}) - 0.076$, where $I$ and $E$ are 
 the tagger power supply current and the beam energy, respectively.   
 %
@@ -93,8 +95,8 @@ rise much higher even for longer beam application times.
 \begin{figure}[hbt]
 \begin{center}
 \includegraphics[width=0.45\textwidth]{YokeHeating.pdf}
-	\caption{The heat distribution after $60$ minutes of beam exposure at the dump location is shown. The highest temperature in the yoke 
-	is at the region of the impact and is $76^\circ$C assuming an initial uniform temperature of $22^\circ$C.}
+	\caption{The heat distribution after $60$ minutes of beam exposure at the upstream dump location is shown. The highest 
+	temperature in the yoke is at the region of the impact and is $76^\circ$C assuming an initial uniform temperature of $22^\circ$C.}
 \label{fig:ansys_yoke}
 \end{center}
 \end{figure}
@@ -130,7 +132,7 @@ beamline starts after a 60-cm-long air gap after the scattering chamber and ends
 \includegraphics[width=0.45\textwidth]{target_sch.pdf}
 %\includegraphics[width=0.45\textwidth]{TCell.pdf}
 	\caption{Sketch of the cryogenic target showing the target cell, beam offset monitor, and scattering chamber with associated plumbing 
-	and structural supports. {\color{red} Not the final figures.}}
+	and structural supports.}
 \label{fig:targsch}
 \end{center}
 \end{figure}
@@ -138,7 +140,7 @@ beamline starts after a 60-cm-long air gap after the scattering chamber and ends
 \begin{figure*}[t]
 \begin{center}
 \includegraphics[width=1.\textwidth]{beamline_hall_shielding.pdf}
-\caption{Tungsten shielding downstream of the target, through the torus magnet bore. {\color{red} Not the final figure.}}
+\caption{Tungsten shielding downstream of the target, through the torus magnet bore.}
 \label{fig:shield}
 \end{center}
 \end{figure*}
@@ -164,7 +166,7 @@ guide the flux of particles out the downstream end of CLAS12 without interacting
 
 Because CLAS12 will run with and without the Forward Tagger (FT) (described elsewhere in this volume) in use, two shielding 
 configurations were designed. Figure~\ref{fig:shield} shows the configuration when the FT is in use. The shielding starts with a 
-tungsten cone with a 5-cm diameter hole at the center for the beamline. When the FT is in use, the tungsten cone is mounted directly 
+tungsten cone with a 5-cm diameter hole at the center for the beam. When the FT is in use, the tungsten cone is mounted directly 
 to the FT central support, which is also made from tungsten. In this case, the angular acceptance of particles scattered from the target 
 starts at $\sim 2^\circ$. For the configuration without the FT, a large diameter lead cylinder is inserted between the FT central support 
 (after removing the FT tracker) and the tungsten cone, thus moving the cone closer to the target. In this case the acceptance for forward 
@@ -175,8 +177,12 @@ tungsten shield around the FT mounting fixture to the torus, and a lead-tungsten
 \begin{center}
 \includegraphics[width=0.48\textwidth]{fton_final_origin.pdf}
 \includegraphics[width=0.48\textwidth]{ftoff_final_origin.pdf}
-\caption{Tungsten shielding downstream of the target, through the torus magnet bore. {\color{red} This figure needs a more descriptive 
-caption and perhaps some labels on the figure.}}
+	\caption{The origin of particles hitting Region 1 drift chambers in the $R$-$z$ plane, where $R$ is the transverse distance from 
+	the beam and the $z$ is in the beam direction. The top graph corresponds to the FT-on configuration and the bottom graph is for 
+	FT-off. The main source of the background is the target located at $R=0$ and $z=0$. The second largest source is the edge of 
+	the tungsten shield that starts from (40,850) and extends to (60,1700), followed by the outer edge of the Forward Tagger calorimeter 
+	enclosure located around $R=200$ mm and $z=2000$ mm. The other large source is the mirror of the high-threshold Cherenkov 
+	counter shown as almost vertical band at around $z=1550$ mm.}
 \label{fig:origin}
 \end{center}
 \end{figure}
@@ -188,10 +194,7 @@ chambers. The simulated beam was spread out over this time window to match the a
 LH$_2$ target such that the design luminosity of $10^{35}$ cm$^{-2}$ s$^{-1}$ was achieved in the simulation. The simulated target 
 included the aluminum entrance and exit foils and the air gap downstream of the target. The final shielding configuration resulted in 
 occupancies of less than about 3\% for the FT-on configuration and less than about 1.5\% for the FT-off configuration.  Figure~\ref{fig:origin} 
-shows the origins of background particles hitting the drift chambers for both shielding configurations. The main source of detected events 
-is from the target with other sources being the edges of the tungsten shields and detector enclosures. {\color{red} I really don't see this very 
-clearly.  I had to blow up the figure to see that the target was a source.  It is clear that there is some sort of edge scattering going on 
-but without some clarifying labels on the figure it isn't clear what these sources are.  I wonder if this figure is really needed since the main 
-point of this paragraph is that the shielding results in an acceptable occupancy has been achieved.}  
+shows the origins of background particles hitting the drift chambers for both shielding configurations. The main source of the background 
+is the target with other sources being the edges of the tungsten shield, and detector enclosures (see figure caption for details). 
 
 

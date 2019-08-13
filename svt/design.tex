@@ -1,6 +1,6 @@
 \section{Design}
 
-\subsection{Barrel layout and support structure}
+\subsection{Barrel Layout and Support Structure}
 
 The SVT comprises 21504 channels of wire-bonded triplets of p-on-n AC-coupled single-sided silicon micro-strip sensors in six layers (three concentric polygonal regions that have 10, 14, and 18 double-sided modules positioned at radii of 65, 93, and 120 mm). The SVT is enclosed by a Faraday cage with an inner radius of 57 mm (with 6 mm clearance to the inner shell of the target scattering chamber) and an outer radius of 133 mm. To minimize multiple scattering, a unique module design with extra long 33~cm strips has been developed to reduce the material budget to about 1.4$\%$ of a radiation length per region (two silicon planes) for normal incidence tracks, which is essential for tracking at low momenta~\cite{Vertex2016}. No module services such as cooling lines, power, readout, and slow control cables were placed in the tracking volume. The module dimensions are 41.9 cm $\times$ 4.2 cm $\times$ 0.39 cm. All of the SVT modules are identical to minimize production costs. There are no overlaps of adjacent modules and minimal clearance between them to satisfy material budget and acceptance constrains.
 
@@ -40,9 +40,9 @@ The cold plate and upstream ring are attached to the mounting tube. The mounting
 \label{fig:module}
 \end{figure}
 
-\subsection{Module design}
+\subsection{Module Design}
 
-The SVT uses single-sided 320-$\mu$m thick microstrip sensors fabricated by Hamamatsu, mounted on each side of the module (see Fig.~\ref{fig:module}). All modules have 3 types of sensors: H (Hybrid), I (Intermediate), and F (Far). The sensors were cut from 6 inch wafers with resistivity of 5 $\kiloohm$ and <100> surface orientation, with 2 sensors per wafer to maximize the yield. All sensors have the same size, 112$\times$42 mm. There are three daisy-chained sensors per layer (six per module) with a 110~$\mu$m gap between them. 
+The SVT uses single-sided 320-$\mu$m thick microstrip sensors fabricated by Hamamatsu, mounted on each side of the module (see Fig.~\ref{fig:module}). All modules have 3 types of sensors: H (Hybrid), I (Intermediate), and F (Far). The sensors were cut from 6 inch wafers with high resistivity of 5 $\kiloohm$, to ensure low full depletion voltage, 2 sensors per wafer to maximize the yield. Surface damage is minimized by using silicon with a <100> surface orientation. All sensors have the same size, 112$\times$42 mm. There are three daisy-chained sensors per layer (six per module) with a 110~$\mu$m gap between them. 
 
 \begin{figure}[hbt] 
 \centering 
@@ -51,9 +51,9 @@ The SVT uses single-sided 320-$\mu$m thick microstrip sensors fabricated by Hama
 \label{fig:strip-layout}
 \end{figure}
 
-Each layer has 256 strips with linearly varying angles of 0$^\circ$--3$^\circ$ (constant $\phi$ pitch of 1/85$^\circ$) to minimize the dead sensor area. The first readout strip is parallel to the longitudinal axis of the module; the last readout strip has an angle of 3$^\circ$ with respect to this axis (see Fig.~\ref{fig:strip-layout}). Because of the constant $\phi$ pitch, the lengths of the readout strips of the modules vary from 0.5 cm to 33 cm. At the hybrid side, the intermediate strip pitch is 78 $\mu$m and the readout pitch is 156 $\mu$m. The strip-to-pitch ratio is 0.256 for all three types of sensors. Fig.~\ref{fig:sensor} shows the cross-sectional view of the sensor. The aluminum strip width is 26 $\mu$m and is AC-coupled via the SiO$_2$ layer to the 20-$\mu$m wide $p$+ implant strips, which are ~1.2 $\mu$m below the aluminum strips. The total strip capacitance at 1 MHz is below 1.3 pf/cm and coupling capacitance above 10 pF/cm. Electrical specs of the sensors are shown in Table~\ref{tab:sensor-table}~\cite{SENSORNOTE}. The implant strips are grounded via 1.5~$\megaohm$ polysilicon resistors. The unpassivated aluminum backplane (ohmic contact) is connected to the positive side of the power supply; the $n$-bulk volume of the sensor is depleted via the highly doped $n$++ layer. The guard ring is surrounding the sensitive area to reduce the surface currents from the edges of the detector. The 42-mm width of the sensor accommodates 256 readout strips and the ~1 mm keep-out zones along the edge of the sensor.
+Each layer has 256 strips with linearly varying angles of 0$^\circ$--3$^\circ$ (constant $\phi$ pitch of 1/85$^\circ$) to minimize the dead sensor area. The first readout strip is parallel to the longitudinal axis of the module; the last readout strip has an angle of 3$^\circ$ with respect to this axis (see Fig.~\ref{fig:strip-layout}). Because of the constant $\phi$ pitch, the lengths of the readout strips of the modules vary from 0.5 cm to 33 cm. At the hybrid side, the intermediate strip pitch is 78 $\mu$m and the readout pitch is 156 $\mu$m. It was shown~\cite{BRAIBANTNOTE} that radiation effects increase the inter-strip capacitance and decrease the backplane capacitance. The strip-to-pitch ratio of 0.256 has been chosen for all three types of sensors, for which the two effects compensate, and the total strip capacitance remains constant with the accumulated dose. Fig.~\ref{fig:sensor} shows the cross-sectional view of the sensor. The aluminum strip width is 26 $\mu$m and is AC-coupled via the SiO$_2$ layer to the 20-$\mu$m wide $p$+ implant strips, which are ~1.2 $\mu$m below the aluminum strips. The total strip capacitance at 1 MHz is below 1.3 pf/cm and coupling capacitance above 10 pF/cm. Electrical specs of the sensors are shown in Table~\ref{tab:sensor-table}~\cite{SENSORNOTE}. The implant strips are grounded via 1.5~$\megaohm$ polysilicon resistors. The unpassivated aluminum backplane (ohmic contact) is connected to the positive side of the power supply; the $n$-bulk volume of the sensor is depleted via the highly doped $n$++ layer. The guard ring is surrounding the sensitive area to reduce the surface currents from the edges of the detector. The 42-mm width of the sensor accommodates 256 readout strips and the ~1 mm keep-out zones along the edge of the sensor.
 
-\begin{table}[]
+\begin{table}[hbt]
 \begin{tabular}{ll}
 \hline
 Full depletion voltage      & 40$<$V$<$100 \\ 
@@ -84,7 +84,7 @@ Single strip DC current & $<$2 nA\\ \hline
 \label{fig:backing-structure}
 \end{figure}
 
-The sensors are mounted on a backing structure composed of Rohacell 71 core, 78 $\mu$m thick bus cable, and carbon fiber (see Fig.~\ref{fig:backing-structure}). The carbon fiber skin is made from Mitsubishi type K13C2U fibers oriented in a quasi-isotropic (45/-45/0) pattern. To ensure adequate electrical conductivity, it is co-cured with the bus cable, made from a Kapton sheet with 3-$\mu$m thick and 0.5-mm wide copper traces; one side provides high voltage (HV) to the sensors, a 6$\times$6~mm copper mesh on the other side grounds the carbon fiber.  The Rohacell core under the hybrid board is replaced by a copper heat sink to remove $\sim$2~W of heat generated by the ASIC preamplifier chips. At the downstream end of the module, the Rohacell core is replaced by a PEEK insert. The cross-section of the active area of the module is shown in Fig.~\ref{fig:svt-module-layers}. 
+The sensors are mounted on a backing structure designed to provide rigid and lightweight support to the sensors. The backing structure is composed of Rohacell 71 core, 78 $\mu$m thick bus cable, and carbon fiber (see Fig.~\ref{fig:backing-structure}). The carbon fiber skin is made from Mitsubishi type K13C2U fibers oriented in a quasi-isotropic (45/-45/0) pattern. To ensure adequate electrical conductivity, it is co-cured with the bus cable, made from a Kapton sheet with 3-$\mu$m thick and 0.5-mm wide copper traces; one side provides high voltage (HV) to the sensors, a 6$\times$6~mm copper mesh on the other side grounds the carbon fiber.  The Rohacell core under the hybrid board is replaced by a copper heat sink to remove $\sim$2~W of heat generated by the ASIC preamplifier chips. At the downstream end of the module, the Rohacell core is replaced by a PEEK insert. The cross-section of the active area of the module is shown in Fig.~\ref{fig:svt-module-layers}. 
 
 \begin{figure}[hbt] 
 \centering 
@@ -109,7 +109,7 @@ A pitch adapter matches the 156~$\mu$m sensor readout pitch to the 50~$\mu$m FSS
 \label{fig:HFCB}
 \end{figure}
 
-Both sides of a module are instrumented with a readout system by a single rigid-flex Hybrid Flex Circuit Board (HFCB) located on the upstream end of the module (see Fig.~\ref{fig:HFCB}). The HFCB provides bias to the silicon sensors, and power and control lines to four FSSR2 ASICs located at the edge of the hybrid, two on the top and two on the bottom side. The ASICs are glued to pads on their substrates with conductive epoxy. These pads are the reference for the analog return for the chips. The hybrid area of each HFCB (42 x 82 mm) consists of two rigid boards (top and bottom hybrids) connected by a 10~mm-long wing flex High Density Interconnect (HDI) cable wrapped around the backing structure (see Fig.~\ref{fig:hfcb-wrap}). The transition line from the rigid board to the flex cable was strengthened. Both hybrids connect to the module electrically using micro-bonding technology for the signals and bias return, and solder connection for the detector bias and module support ground. The sensors, the pitch adapters, and the HFCB are glued to both sides of the backing structure. 
+Both sides of a module are instrumented with a readout system by a single rigid-flex Hybrid Flex Circuit Board (HFCB) located on the upstream end of the module (see Fig.~\ref{fig:HFCB}). The HFCB is a single circuit providing all module services and the components to control and read out the signals from the module. The SVT module is attached to the cold plate and all module service cables are passed through its slots. The design of the HFCB rigid and flex parts accommodates the geometrical constrains imposed by the barrel layout. The HFCB provides bias to the silicon sensors, and power and control lines to four FSSR2 ASICs located at the edge of the hybrid, two on the top and two on the bottom side. The ASICs are glued to pads on their substrates with conductive epoxy. These pads are the reference for the analog return for the chips. The hybrid area of each HFCB (42 x 82 mm) consists of two rigid boards (top and bottom hybrids) connected by a 10~mm-long wing flex High Density Interconnect (HDI) cable wrapped around the backing structure (see Fig.~\ref{fig:hfcb-wrap}). The transition line from the rigid board to the flex cable was strengthened. Both hybrids connect to the module electrically using micro-bonding technology for the signals and bias return, and solder connection for the detector bias and module support ground. The sensors, the pitch adapters, and the HFCB are glued to both sides of the backing structure. 
 
 \begin{figure}[hbt] 
 \centering 
@@ -165,7 +165,7 @@ For the thermal analysis, the module was modeled with the copper support and the
 
 \subsection{Module Assembly and Quality Assurance (QA)}
 
-The position resolution of the detector can be compromised if the alignment is not known. Due to tight material budget restrictions there is no room for an individual module adjustment system. Strict positional tolerances are imposed so that minimal corrections need to be made to the measurements. Therefore, both the position of the sensors with respect to each other and with respect to the alignment points are measured and controlled during module production. A mechanical survey was  carried out before electrical testing to check that the module fits within a well-defined envelope and to ensure no interference with adjacent modules on the support structure. The SVT modules were assembled at the Fermilab Silicon Detector Facility and tested at Jefferson Lab. Prior to installation on a module, all components were inspected and tested as part of the quality assurance procedure.  
+The position resolution of the detector can be compromised if the alignment is not known. Due to tight material budget restrictions there is no room for an individual module adjustment system. Strict positional tolerances are imposed so that minimal corrections need to be made to the measurements. Therefore, both the position of the sensors with respect to each other and with respect to the alignment points are measured and controlled during module production. A mechanical survey was  carried out before electrical testing to check that the module fits within a well-defined envelope and to ensure no interference with adjacent modules on the support structure. The SVT modules were assembled at the Fermilab Silicon Detector Facility and tested at Jefferson Lab. Prior to installation on a module, all components were inspected and tested as part of the quality assurance procedure. Risk failure modes were evaluated for all the production steps and the mitigation actions were taken.
 
 \begin{figure}[hbt] 
 \centering 
@@ -174,7 +174,7 @@ The position resolution of the detector can be compromised if the alignment is n
 \label{fig:iv-sensor}
 \end{figure}
 
-Sensor characterization was initially carried out by the manufacturer and later confirmed by the reception testing at Jlab and Fermilab. Fig.~\ref{fig:iv-sensor} shows the typical IV-curve for the hybrid-type sensor. Sensor leakage currents and the number of bad strips were within the specs and matched the data supplied by the vendor.
+Sensor characterization was initially carried out by the manufacturer and later confirmed by the reception testing at Jlab and Fermilab. Fig.~\ref{fig:iv-sensor} shows the typical IV-curve for the hybrid-type sensor. The quality of the sensors was excellent. All sensor parameters were better than the specification limits. Sensor leakage currents were well below the limit of 10 nA/cm$^2$ (470 nA) and there were no defective strips. 
 
 \begin{figure}[hbt] 
 \centering 
@@ -183,7 +183,7 @@ Sensor characterization was initially carried out by the manufacturer and later 
 \label{fig:cv-sensor}
 \end{figure}
 
-The measurements of sensor full depletion voltage were done by testing the dependence of its capacitance on the reverse bias voltage. Fig.~\ref{fig:cv-sensor} shows good agreement of the data obtained at different test facilities. The full depletion voltage data were found to be within the specs.
+The measurements of sensor full depletion voltage were done by testing the dependence of its capacitance on the reverse bias voltage. Fig.~\ref{fig:cv-sensor} shows good agreement of the data obtained at different test facilities. The full depletion voltage data were found to be within the specs. 
 
 \begin{figure}[hbt] 
 \centering 
@@ -192,7 +192,7 @@ The measurements of sensor full depletion voltage were done by testing the depen
 \label{fig:probe-station}
 \end{figure}
 
-The initial tests for continuity, shorts, and current draw on the FSSR2 chips were done by TestEdge, Inc on the wafer level prior to the dicing. The yield was ~99$\%$, 8 failures out of 520 chips. A more detailed testing of individual chips after the dicing was performed at JLab.  Fig.~\ref{fig:probe-station} shows the probe card used for the quality assurance of the readout chips. The measurement procedure included register testing (read/write), loading and reading back the mask, measuring channel inefficiency, gain, noise, and threshold dispersion. 330 chips were tested with yield over 90$\%$. No additional dead channels have been observed in the modules produced from the tested chips.  
+The pitch adapters passed visual inspection. Mechanical survey, bond pull test, and trace resistance measurements were performed on the selected pitch adapters.
 
 \begin{figure}[hbt] 
 \centering 
@@ -201,7 +201,17 @@ The initial tests for continuity, shorts, and current draw on the FSSR2 chips we
 \label{fig:hfcb-test}
 \end{figure}
 
-Fabrication and primary quality control of the HFCBs were done by Compunetics. A variety of mechanical mock ups using different 12-layer stack-ups were used to evaluate the bend radius of the wing flex cable. Boards passed the bending test were sent to the MicroCraft company for a comprehensive automated electrical testing. HFCB assembly was done by Compunetix inc. using automated pick-and-place component mounting system with thermal profiling reflow system, and automated inspection process. Reception test at JLab included visual inspection, resistance measurements, and burn-in. Acceptance testing of the HFCBs at Jlab is shown in Fig.~\ref{fig:hfcb-test}.
+The initial tests for continuity, shorts, and current draw on the FSSR2 chips were done by TestEdge, Inc on the wafer level prior to the dicing. The yield was ~99$\%$, 8 failures out of 520 chips. A more detailed testing of individual chips after the dicing was performed at JLab.  Fig.~\ref{fig:probe-station} shows the probe card used for the quality assurance of the readout chips. The measurement procedure included register testing (read/write), loading and reading back the mask, measuring channel inefficiency, gain, noise, and threshold dispersion. 330 chips were tested with yield over 90$\%$. No additional dead channels have been observed in the modules produced from the tested chips.  
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{bus-cable-lamination.jpg}
+\caption{Bus cable lamination.}
+\label{fig:bus-cable-lamination}
+\end{figure}
+
+Fabrication and primary quality control of the HFCBs were done by Compunetics. A variety of mechanical mock ups using different 12-layer stack-ups were used to evaluate the bend radius of the wing flex cable. Boards passed the bending test were sent to the MicroCraft company for a comprehensive "flying lead" automated electrical testing, including intranet tests for opens, net to net (with 50 mil adjacency) tests for shorts, and isolation tests applying 100 V for 16 ms. HFCB assembly was done by Compunetix inc. using automated pick-and-place component mounting system with thermal profiling reflow system, and automated inspection process. Reception test at JLab included visual inspection, resistance measurements, and burn-in. Acceptance testing of the HFCBs at Jlab is shown in Fig.~\ref{fig:hfcb-test}.
+
 
 \begin{figure}[hbt] 
 \centering 
@@ -210,7 +220,16 @@ Fabrication and primary quality control of the HFCBs were done by Compunetics. A
 \label{fig:bus-cable-routing}
 \end{figure}
 
-Fabrication of the backing structure was done in the carbon fiber laboratory at Fermilab. To make a bus cable skin for the backing structure, the bus cable panel was laminated on the sheet of the carbon fiber and co-cured in the oven at 250 F. The layout of the six bus cables on a panel has a minimum of 5.05 mm between adjacent cables on the panel to allow for the 1/8-inch diameter routing bit (see Fig.~\ref{fig:bus-cable-routing}). After the routing step the components of the bus cable (two bus cable skins and Rohacell core) were examined under the microscope and selected for the next fabrication step. 
+Fabrication of the backing structure was done in the carbon fiber laboratory at Fermilab. To make a bus cable skin for the backing structure, the bus cable panel containing 6 circuits was laminated on the 3-ply sheet of the carbon fiber for good ground contact and co-cured under vacuum in the oven at 250 F. Fig.~\ref{fig:bus-cable-lamination} shows the process of bus cable lamination to the carbon fiber.
+
+\begin{figure}[hbt] 
+\centering 
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{inserts.jpg}
+\caption{Inspecting the inserts.}
+\label{fig:inserts}
+\end{figure}
+
+The layout of the six bus cables on a panel has a minimum of 5.05 mm between adjacent cables on the panel to allow for the 1/8-inch diameter routing bit. Fig.~\ref{fig:bus-cable-routing} shows the process of the Computer Numerical Control (CNC) precision routing of the laminated bus cables. After the routing step the components of the bus cable (two bus cable skins and Rohacell core) were examined under the microscope and selected for the next fabrication step. 
 
 \begin{figure}[hbt] 
 \centering 
@@ -219,9 +238,11 @@ Fabrication of the backing structure was done in the carbon fiber laboratory at 
 \label{fig:backing-structure-mold}
 \end{figure}
 
-To assemble the backing structure, a mold and an epoxy that cures at room temperature were used (see Fig.~\ref{fig:backing-structure-mold}). The backing structures were cured on a precision jig to satisfy the required tolerances. Backing structure flatness was within 250 $\mu$m.
+Copper and PEEK inserts were inspected at Fermilab (Fig.~\ref{fig:inserts}). Go/No-Go gage pins and caliper measurements were done on all inserts. The Coordinate Measuring Machine (CMM) inspection of precision features was performed on a subset of the parts. JLab mechanical engineer approved inspection results before using the inserts in production.
 
-Each module has two pairs of mounting and fiducial holes in the copper heat sink and one in the PEEK insert (see Fig.~\ref{fig:backing-structure-assembled}). After a module was fabricated, the positions of these fiducial holes were measured with respect to the fiducial marks etched on the sensor. 
+To assemble the backing structure, a mold and an epoxy that cures at room temperature were used (see Fig.~\ref{fig:backing-structure-mold}). Precision pins were holding the  mounting inserts in place. The backing structures were cured on a precision jig to satisfy the required tolerances. Backing structure flatness was within 250 $\mu$m.
+
+Assembled backing structure is shown in Fig.~\ref{fig:backing-structure-assembled}. Each module has two pairs of mounting and fiducial holes in the copper heat sink (on the right side of the picture) and one in the PEEK insert (on the left side). After a module was fabricated, the positions of these fiducial holes were measured with respect to the fiducial marks etched on the sensor. The copper trace along the backing structure has gold-plated pads to ensure electrical contact from the back side of the sensors to HV bias via silver epoxy applied to them during sensor glueing. There are 3 pads for each sensor. On the right side of the backing structure close to the copper insert, there are wire-bonding pads to connect the HV trace and the copper mesh to the bias and ground pads on the HFCB.
 
 \begin{figure}[hbt] 
 \centering 
@@ -239,7 +260,7 @@ The holes for the mounting pin have a tight diameter tolerance and are used for 
 \label{fig:backing-structure-kapton}
 \end{figure}
 
-Installation of the HFCB onto the backing structure was done in a special fixture (see Fig.~\ref{fig:hfcb-glueing}). Backing structure was pinned to the base plate with alignments tabs on the HFCB setting its position. Bottom side glued and allowed to cure. HV and GND tabs were soldered to bus cable, then the backing structure was flipped over for glueing of the top side of the HFCB, followed by soldering the HV and GND tabs and cutting off the alignment tabs. Visual inspection and electrical testing were done by the JLab crew.
+Installation of the HFCB onto the backing structure was done in a special fixture (see Fig.~\ref{fig:hfcb-glueing}). Backing structure was pinned to the base plate with alignments tabs on the HFCB setting its position and alignment of both sides. Bottom side glued and allowed to cure. HV and GND tabs were soldered to bus cable, then the backing structure was flipped over for glueing of the top side of the HFCB, followed by soldering the HV and GND tabs and cutting off the alignment tabs. Visual inspection and electrical testing were done by the JLab crew.
 
 \begin{figure}[hbt] 
 \centering 
@@ -248,14 +269,17 @@ Installation of the HFCB onto the backing structure was done in a special fixtur
 \label{fig:hfcb-glueing}
 \end{figure}
 
-Sensor placement was done in the fixture shown in Fig.~\ref{fig:sensor-placement}. The backing structure with mounted HFCB was attached to the fixture with a clamp. The vacuum channels in the fixture were used to ensure the planarity of the backing structure. The epoxy glue was spread on the surface of the backing structure, then the sensors were placed and aligned within few $\mu$m with respect to the insert and sensor fiducials in the coordinate measuring machine (CMM). The weight block wrapped in Kapton tape was holding the sensor during the curing process. Sensor alignment and flatness were within the specifications, most sensors were aligned within 5 $\mu$m.
-
+Backing structure was mounted to removable support plate on the fixture with an optical CMM. The backing structure with mounted HFCB was attached to the fixture with a clamp. The vacuum channels in the fixture were used to ensure the planarity of the backing structure. A coordinate system was established from the mounting hole and the slot. The alignment frames were used to rough align sensors with no epoxy and are then withdrawn. 
+ The epoxy was spread on surface of the backing structure and silver epoxy was applied to HV pad areas using the masks. Sensor alignment frames were moved into place and the final alignment with respect to the insert and sensor fiducials was set (Fig.~\ref{fig:sensor-placement-cmm}). The pitch adapters were positioned by hand. 
+ 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{sensor-placement.png}
-\caption{Mounting the sensors on the backing structure.}
-\label{fig:sensor-placement}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{sensor-placement-cmm.jpg}
+\caption{Sensor alignment in the CMM.}
+\label{fig:sensor-placement-cmm}
 \end{figure}
+
+ The weight block wrapped in Kapton tape was holding the sensor during the curing process. Sensor alignment and flatness were within the specifications, most sensors were aligned within 5 $\mu$m as was validated by the independent sensor alignment survey on the Optical Gaging Products (OGP) CMM.
 
 After installation of the HFCBs and pitch adapters, the module was placed in a carrier box designed to allow storage of partially and fully fabricated modules (see Fig.~\ref{fig:svt-carrier-box}). The design of the carrier box provides secure mounting of the double-sided module using the location pins with the screws in the copper and PEEK inserts. The flex cable is secured with a clamp. The module can be powered, cooled (using a passive heat sink), and operated in the carrier box. The carrier box allows access to both sides of the module to facilitate inspection and debugging. 
 
@@ -284,7 +308,7 @@ Module performance tests were done at various stages during module production at
 \label{fig:shipping-container}
 \end{figure}
 
-\subsection{Detector integration and commissioning}
+\subsection{Detector Integration and Commissioning}
 
 %\begin{figure}[hbt]
 %\centering 
@@ -301,12 +325,12 @@ Barrel integration took place at Jefferson Lab. The regions were assembled in se
 \label{fig:svt-assembly}
 \end{figure}
 
-Fig.~\ref{fig:assembly-closeup} shows he close-up photo of the adjacent modules on the barrel, demonstrating the two readout chips encapsulated on 3 sides, wire-bonded to the HFCB, the pitch adapter, and the sensor. The barrel installation procedure was tested successfully, no modules were damaged during the region integration.
+Fig.~\ref{fig:assembly-closeup} shows he close-up photo and the layout of the adjacent modules on the barrel, demonstrating the two readout chips encapsulated on 3 sides, wire-bonded to the HFCB, the pitch adapter, and the sensor. The sensors extend on both sides of the backing structure by 2.5 mm. The minimal gap between the adjacent modules is 300 $\mu$m. The barrel installation procedure was tested successfully, no modules were damaged during the region integration.
 
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{assembly-closeup.jpg}
-\caption{The close-up photo of the adjacent modules on the barrel.}
+\caption{The close-up photo of the adjacent modules on the barrel (top). Layout of the adjacent modules (bottom).}
 \label{fig:assembly-closeup}
 \end{figure}
 
