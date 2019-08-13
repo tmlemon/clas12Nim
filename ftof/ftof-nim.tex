@@ -46,7 +46,7 @@ discrete widths of 6~cm, 15~cm, and 22~cm, and of discrete thicknesses of 5~cm a
 effective counter time resolution for passing charged particles varies from 50~ps for the shortest
 counters at small angles to 200~ps for the longest counters at large angles. The detectors are part
 of the forward-angle particle identification system for CLAS12 during offline event reconstruction
-and are an element of the online data acquisition trigger to select final state event topologies with
+and are a component of the online data acquisition trigger to select final state event topologies with
 forward-going charged particles.
 \end{abstract}
 
@@ -70,28 +70,29 @@ equipment in Hall~B forms the large-acceptance CLAS12 spectrometer that is desig
 with beam energies up to 11~GeV at a beam-target luminosity of up to $10^{35}$~cm$^{-2}$s$^{-1}$
 to allow for precision measurements of exclusive reactions with polarized beam and both unpolarized
 and polarized targets. This spectrometer is based on two superconducting magnets, a solenoid in the
-central region around the target and a toroid at forward angles.
+central region around the target and a toroid at forward angles. See Ref.~\cite{clas12-nim} for more
+complete information on CLAS12.
 
 The CLAS12 torus magnet has a six-fold symmetry that divides the forward acceptance in the polar angle
 range from 5$^\circ$ to 35$^\circ$ into six 60$^\circ$-wide sectors. It produces a field primarily in
 the azimuthal direction. The torus $\int \!B d\ell$ field strength at its nominal full current is 2.8~T
 at 5$^\circ$ and 0.5~T at 35$^\circ$. A set of three multi-layer drift chambers in each sector (before
 the field, within the field, and after the field) and a forward micromegas vertex tracker are used for
-charged particle tracking to measure momenta. Downstream of the torus each sector is initially
-instrumented with a Cherenkov counter for $\pi/K$ separation (four sectors are instrumented with low
-threshold gas Cherenkov counters, one sector is instrumented with a ring-imaging Cherenkov counter, and
-the final sector will eventually be instrumented with a second ring-imaging Cherenkov counter), three planar
-layers of scintillation counters for charged particle time measurements called the Forward Time-of-Flight
-(FTOF) system, and an electromagnetic calorimeter system for electron and neutral particle identification.
-Just upstream of the torus is a large-volume high-threshold gas Cherenkov counter for electron
-identification and a tagging system to detect electrons and photons at scattering angles below $5^\circ$.
+charged particle tracking to measure momenta. Downstream of the torus each sector is instrumented with
+a Cherenkov counter for $\pi/K$ separation (four sectors are instrumented with low threshold gas Cherenkov
+counters, one sector is instrumented with a ring-imaging Cherenkov counter, and the final sector will eventually
+be instrumented with a second ring-imaging Cherenkov counter), three planar layers of scintillation counters
+for charged particle time measurements called the Forward Time-of-Flight (FTOF) system, and an
+electromagnetic calorimeter system for electron and neutral particle identification. Just upstream of the torus
+is a large-volume high-threshold gas Cherenkov counter for electron identification and a tagging system to
+detect electrons and photons at scattering angles below $5^\circ$.
 
 The CLAS12 solenoid spans the central angular range from 35$^\circ$ to 125$^\circ$ and has a uniform
 5~T central field at its nominal full current. The solenoid serves to focus the low-energy M{\o}ller
 background down the beam pipe to the beam dump away from the acceptance of the spectrometer. The
 detectors mounted within the solenoid include a thick scintillation counter for neutron identification, a
 barrel of thin scintillation counters for charged particle timing measurements, and a set of tracking
-detectors around the target. Upstream of the solenoid, covering angles from 135$^\circ$ to 145$^\circ$
+detectors around the target. Upstream of the solenoid, covering angles from 135$^\circ$ to 145$^\circ$,
 a wall of scintillation counters is installed for additional neutron detection coverage.
 
 Figure~\ref{clas12-model} shows a model representation of CLAS12 to highlight its overall layout and scale.
@@ -107,7 +108,7 @@ Hall~B in the period from 1997 to 2012 when it was decommissioned.
 {\hbox{\includegraphics[width=0.70\textwidth,natwidth=610,natheight=642,angle=-90]{pics/ftof_clas12.pdf}}}
 \end{picture} 
 \caption{(Color Online) Model representation of the CLAS12 spectrometer in Hall~B at Jefferson Laboratory.
-The electron beam is incident from the left side of this figure. The CLAS12 detector is roughly 10~m in
+The electron beam is incident from the left side of this figure. The CLAS12 detector is roughly 20~m in
 scale along the beam axis. For further details on the individual subsystems that make up the CLAS12
 spectrometer see Ref.~\cite{clas12-nim}.}
 \label{clas12-model}
@@ -120,64 +121,23 @@ Detector, Section~\ref{sec:overview} provides a high-level overview of the FTOF 
 overall design requirements, Section~\ref{sec:design} provides a technical description of the system
 design, and Section~\ref{sec:performance} highlights the performance of the system through both
 bench testing with cosmic rays, as well as during the 2017 commissioning run and 2018 first production
-run with electrons. Finally, Section~\ref{sec:summary} provides a summary of the FTOF system for
+running with electrons. Finally, Section~\ref{sec:summary} provides a summary of the FTOF system for
 CLAS12.
 
 \section{CLAS12 Forward Detector Particle Identification}
 \label{clas12-fd-pid}
 
 Particle identification in the CLAS12 Forward Detector relies on input from each of the different
-forward detector subsystems. A reconstructed track in the Drift Chambers (DC) identifies the
+Forward Detector subsystems. A reconstructed track in the drift chambers (DC) identifies the
 presence of a charged particle and is used as a veto for forward-going neutral particles. The curvature
 of the particle tracks in the magnetic field of the torus provides the electric charge and momentum.
 The other detector subsystems are used to identify the particle type. These subsystems include the
 different Cherenkov counters (HTCC, LTCC, and RICH), the electromagnetic calorimeters (ECAL), and
-the FTOF system. These systems are used as part of the overall CLAS12 particle identification scheme
-to separate the different particle species as a function of momentum.
-
-CLAS12 consists of three different Cherenkov counters in the Forward Detector. A CO$_2$ filled
-High Threshold Cherenkov Counter (HTCC) is positioned just downstream of the solenoid magnet. The
-HTCC is used in conjunction with the electromagnetic calorimeters (ECAL) to identify scattered electrons
-over their full momentum range. The HTCC threshold for pions is $\sim$5~GeV and is therefore used for
-$e/\pi$ discrimination up to this threshold. The HTCC is also used for $\pi/K$ and $\pi/p$ separation
-from $\sim$5-9~GeV. $C_4F_{10}$ filled Low Threshold Cherenkov Counters (LTCC) are included in four
-of the six CLAS12 sectors just upstream of the FTOF. This system is used for $\pi/K$ and $\pi/p$
-separation for particle momenta in the range from $\sim$3-9~GeV. Finally, an aerogel-based Ring Imaging
-Cherenkov (RICH) detector is included in one sector of CLAS12 and is used for $\pi/K$, $\pi/p$, and $K/p$
-separation in the range of momenta from $\sim$3-8~GeV (with a second RICH unit for the final sector now
-under construction).
-
-However, the primary system for particle identification in CLAS12 for forward-going charged particles
-is the FTOF system. The main requirement for this system is that its counters provide excellent timing
-resolution for particle identification. The FTOF  was designed to measure the flight time of charged
-particles emerging from the target with an average timing resolution of 80~ps. Given this nominal timing
-resolution for the counters, the momentum threshold for particle identification can be defined. For our
-purposes, thresholds are quoted at the 4$\sigma$ level for FTOF, which amounts to the momenta where
-particle identification can occur with up to an order of magnitude difference in the relative yields of the
-different species. The timing resolution is illustrated by computing the flight time differences between
-different charged particle species, pions, kaons, and protons, for tracks normally incident on the detector.
-Figure~\ref{tdiff} shows the computed time differences as a function of momentum. Where the 4$\sigma$
-line crosses the computed time difference curves defines the momentum limit for particle identification
-for each particle species. These limits are quoted as 2.8~GeV for $\pi/K$ separation, 4.8~GeV for $K/p$
-separation, and 5.4~GeV for $\pi/p$ separation.  Figure~\ref{clas12-pid} highlights the different detector
-subsystems used for charged particle identification of forward-going charged particles in CLAS12 and the
-range of momenta for which they are responsible for the separation of the different particle species.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{5.0cm}
-\begin{picture}(50,50) 
-\put(35,-105)
-{\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/tdiff_sep18.pdf}}}
-\end{picture} 
-\caption{(Color Online) Time differences, $\Delta t$, between protons and pions, between protons and
-kaons, and between kaons and pions (as indicated) for a 7~m path length from the target to the FTOF
-system.  The horizontal line indicates a time difference four times larger than the average FTOF
-counter design resolution of $\sigma_{TOF} \approx$ 80~ps. The vertical lines that meet each curve
-represent the momentum where 4$\sigma$ particle species separation is quoted.}
-\label{tdiff}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+the FTOF. These systems are used as part of the overall CLAS12 particle identification scheme to
+separate the different particle species as a function of momentum. Figure~\ref{clas12-pid} highlights
+the different detector subsystems used for charged particle identification of forward-going charged
+particles in CLAS12 and the range of momenta for which they are responsible for the separation of the
+different particle species.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -187,8 +147,50 @@ represent the momentum where 4$\sigma$ particle species separation is quoted.}
 {\hbox{\includegraphics[width=0.70\textwidth,natwidth=610,natheight=642]{pics/clas12-pid-chart.pdf}}}
 \end{picture} 
 \caption{(Color Online) CLAS12 Forward Detector subsystems used for particle identification and the
-range of momentum where they are designed to be effective in separating different particle species.}
+momentum range where they are designed to be effective in separating different particle species.}
 \label{clas12-pid}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CLAS12 consists of three different Cherenkov counters in the Forward Detector. A CO$_2$-filled
+High Threshold Cherenkov Counter (HTCC) is positioned just downstream of the solenoid magnet. The
+HTCC is used in conjunction with the electromagnetic calorimeters (ECAL) to identify scattered electrons
+over their full momentum range. The HTCC threshold for pions is $\sim$5~GeV and is used for $e/\pi$
+discrimination up to this threshold. The HTCC is also used for $\pi/K$ and $\pi/p$ separation from
+$\sim$5-9~GeV. $C_4F_{10}$-filled Low Threshold Cherenkov Counters (LTCC) are included in four
+of the six CLAS12 sectors just upstream of the FTOF. This system is used for $\pi/K$ and $\pi/p$
+separation for particle momenta in the range from $\sim$3-9~GeV. Finally, an aerogel-based Ring Imaging
+Cherenkov (RICH) detector is included in one sector of CLAS12 and is used for $\pi/K$, $\pi/p$, and $K/p$
+separation in the range of momenta from $\sim$3-8~GeV (with a second RICH unit for the final sector now
+under construction).
+
+However, the FTOF is the primary system for particle identification in CLAS12 for forward-going charged
+particles. The main requirement for this system is that its counters provide excellent timing resolution for
+particle identification. The FTOF  was designed to measure the flight time of charged particles emerging
+from the target with an average time resolution of 80~ps. Given this nominal time resolution for the
+counters, the momentum threshold for particle identification can be defined. For our purposes, thresholds
+are quoted at the 4$\sigma$ level for FTOF, which amounts to the momenta where particle identification
+can occur with up to an order of magnitude difference in the relative yields of the different species. The
+time resolution is illustrated by computing the flight time differences between different charged particle
+species, pions, kaons, and protons, for tracks normally incident on the detector. Figure~\ref{tdiff} shows
+the computed time differences as a function of momentum. Where the 4$\sigma$ line crosses the computed
+time difference curves defines the momentum limit for particle identification for each particle species.
+These limits are quoted as 2.8~GeV for $\pi/K$ separation, 4.8~GeV for $K/p$ separation, and 5.4~GeV
+for $\pi/p$ separation.  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{5.0cm}
+\begin{picture}(50,50) 
+\put(35,-105)
+{\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/tdiff_sep18.pdf}}}
+\end{picture} 
+\caption{(Color Online) Time differences (ns) between protons and pions, between protons and kaons,
+and between kaons and pions (as indicated) for a 7~m path length from the target to the FTOF system
+plotted vs. particle momentum (GeV).  The horizontal line indicates a time difference four times larger
+than the average FTOF counter design resolution of $\sigma_{TOF} \approx$ 80~ps. The vertical lines
+that meet each curve represent the momentum where 4$\sigma$ particle species separation is quoted.}
+\label{tdiff}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -236,7 +238,7 @@ on their Forward Carriage supports are shown in Fig.~\ref{fwd_car}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.6cm}
+\vspace{5.2cm}
 \begin{picture}(50,50) 
 \put(100,-35)
 {\hbox{\includegraphics[width=0.50\textwidth,natwidth=610,natheight=642]{pics/fwd_carriage.pdf}}}
@@ -329,10 +331,10 @@ and the high voltage system used for the FTOF.
 The projected space behind the coils of the CLAS12 torus as defined by straight lines projecting from
 the center of the nominal target position radially outward and is referred to downstream of the torus as
 its shadow region. This region is inactive and defines the space available for locating the light guides,
-photomultiplier tubes (PMTs), voltage dividers, and signal and high voltage cables. The remaining area in
-the forward direction is the sensitive fiducial region of the detector and must be covered by scintillation
-counters. The design specification for FTOF called for a minimum of 50\% azimuthal acceptance at
-5$^\circ$ increasing to 95\% at 45$^\circ$.
+PMTs, voltage dividers, and signal and high voltage cables. The remaining area in the forward direction is
+the sensitive fiducial region of the detector and must be covered by scintillation counters. The design
+specification for FTOF called for a minimum of 50\% azimuthal acceptance at 5$^\circ$ increasing to
+95\% at 45$^\circ$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -353,23 +355,23 @@ face of the FTOF in a representative Forward Carriage sector.}
 
 Figure~\ref{shadow} provides an illustration of the shadow region projected onto the Forward Carriage
 created primarily by the torus cryostats and the drift chamber endplates as projected onto the face of
-the FTOF system. These pictures come from the CAD design model of CLAS12. Figure~\ref{shadow}(left)
-shows a picture of the shadow bands on the Forward Carriage that defines a uniform gap of $\sim$40~cm
-between each sector. Figure~\ref{shadow}(right) shows the defined active region in one sector of CLAS12 on
-the face of the FTOF. The azimuthal width of this area at the position of the Forward Carriage in Hall~B
-essentially defined the length of the scintillation counters. The final limits of the shadow region at the
-location of FTOF are actually defined by the Region~2 Drift Chamber system.  While the Region~1 and
-Region~3 chambers have their endplates, on-board electronics, and readout cables located mainly in the
-shadow of the torus cryostats, the Region~2 chambers are located fully between the cryostats.
+the FTOF system. Figure~\ref{shadow}(left) shows a picture of the shadow bands on the Forward
+Carriage that defines a uniform gap of $\sim$40~cm between each sector. Figure~\ref{shadow}(right)
+shows the defined active region in one sector of CLAS12 on the face of the FTOF. The azimuthal width
+of this area at the position of the Forward Carriage in Hall~B essentially defined the length of the
+scintillation counters. The final limits of the shadow region at the location of FTOF are actually defined
+by the endplates of the drift chamber system located within the torus coils. The drift chamber systems
+upstream of the torus and downstream of the torus have their endplates, on-board electronics, and readout
+cables located mainly in the shadow of the torus cryostats.
 
 The panel-1a and panel-1b FTOF arrays in each sector are triangular in shape with the shortest counters
 located closest to the beamline and the longest counters furthest from the beamline. The length of each
 counter for a given counter number $N_{counter}$ is as follows:
 
 \begin{itemize}
-\item Panel-1a: $L (cm) = 15.85 \times N_{counter} + 16.43$ ~~($N_{counter} = 1 \to 5$), 
-\item Panel-1a: $L (cm) = 15.85 \times N_{counter} + 11.45$ ~~($N_{counter} = 6 \to 23$), 
-\item Panel-1b: $L (cm) = 6.40 \times N_{counter} + 10.84$ ~~($N_{counter} = 1 \to 62$).
+\item Panel-1a: $L$ (cm) = $15.85 \times N_{counter} + 16.43$ ~~($N_{counter} = 1 \to 5$), 
+\item Panel-1a: $L$ (cm) = $15.85 \times N_{counter} + 11.45$ ~~($N_{counter} = 6 \to 23$), 
+\item Panel-1b: $L$ (cm) =$ 6.40 \times N_{counter} + 10.84$ ~~($N_{counter} = 1 \to 62$).
 \end{itemize}
 
 The panel-1a and panel-1b arrays are tilted toward the target at an angle of 25$^{\circ}$ consistent with
@@ -388,15 +390,16 @@ The panel-2 arrays are mounted radially outward of the panel-1a and panel-1b arr
 Fig.~\ref{side-view}. The length of each counter for a given counter number $N_{counter}$ is as follows:
 
 \begin{itemize}
-\item Panel-2: $L (cm) = 13.73 \times N_{counter} + 357.55$~~ ~~($N_{counter} = 1 \to 5$).
+\item Panel-2: $L$ (cm) = $13.73 \times N_{counter} + 357.55$~~ ~~($N_{counter} = 1 \to 5$).
 \end{itemize}
 
 The panel-2 arrays are tilted toward the target at an angle of 58.11$^\circ$. The minimum angle covered
 by panel-2 based on a straight line from the target is 34.698$^\circ$. Each of the six panel-2 arrays
-covers an area of 4.4~m$^2$. Note that the panel-2 arrays are not visible in the CLAS12 acceptance as
-seen by straight lines from the center of the target. However, due to the presence of the toroidal magnetic
-field, they provide additional acceptance for low momentum tracks  and for tracks associated with strange
-particles that decay in-flight after emerging from the target (e.g. $\Lambda \to N \pi$ with $c \tau = 7.89$~cm).
+covers an area of 4.4~m$^2$. Note that the panel-2 arrays are not within in the CLAS12 acceptance as
+seen by straight lines from the center of the target. However, due to the presence of the toroidal
+magnetic field, they provide additional acceptance for low momentum tracks  and for tracks associated
+with strange particles that decay in-flight after emerging from the target (e.g. $\Lambda \to N \pi$
+with $c \tau = 7.89$~cm).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -432,17 +435,16 @@ gap\_1a\_1b & \multicolumn{2}{c|}{10.717~cm} &  -- \\ \hline
 Given the active area coverage requirements for the FTOF system within each CLAS12 sector on the
 Forward Carriage, another key aspect of the geometry associated with the FTOF system design is
 the width of the individual scintillation counters. An essential optimization was made to select the
-counter width to reduce the number of readout channels while considering the overall count rates per
+counter width to reduce the number of readout channels, while considering the overall count rates per
 bar at the nominal luminosity associated with incident charged and neutral particles including photons.
 These rates must allow for reasonable PMT anode currents that do not affect the stability of the PMT
-response in terms of pulse shape or saturation effects, nor lead to unreasonably short PMT lifetimes
-defined in terms of the total integrated charge collected at the first dynode of the PMT. In addition, the
-width of the scintillation bars determines the granularity of the scattering angle definition in the trigger
-and its matching to the projected tracks from the Drift Chambers to the electromagnetic calorimeters.
-Note that the 15-cm widths of panel-1a and the 22-cm widths of panel-2 of the existing refurbished
-counters of the CLAS TOF system were optimized for nominal beam-target luminosities a factor of 10 lower
-than for CLAS12. The 6-cm widths of the newly constructed panel-1b counters were optimized for the
-higher rate operating conditions of CLAS12.
+response in terms of pulse shape or saturation effects, nor lead to unreasonably short PMT lifetimes.
+In addition, the width of the scintillation bars determines the granularity of the scattering angle definition
+in the trigger and its matching to the projected tracks from the drift chambers to the electromagnetic
+calorimeters. Note that the 15-cm widths of panel-1a and the 22-cm widths of panel-2 of the existing
+refurbished counters of the CLAS TOF system were optimized for nominal beam-target luminosities a
+factor of 10 lower than for CLAS12. The 6-cm widths of the newly constructed panel-1b counters were
+optimized for the higher rate operating conditions of CLAS12.
 
 \subsection{Time Resolution}
 \label{res-sec}
@@ -468,23 +470,22 @@ by:
 Here $\sigma_0$ represents the intrinsic electronic resolution of the measurement system. This
 represents a floor-term contribution that is independent of the light level. The remaining terms
 $\sigma_1$ and $\sigma_2$ are directly dependent on the photo-statistics at the PMT photocathode
-$N_{pe}$ (see Eq.(\ref{nphe-eq}). The term $\sigma_1$ models the jitter in the combined single
+$N_{pe}$ (see Eq.(\ref{nphe-eq})). The term $\sigma_1$ models the jitter in the combined single
 photoelectron response of the scintillation counter and its PMTs and the term $\sigma_2$ accounts
 for path length variations in the light collection.  These path length variations in the scintillator scale
 with the distance from the source to the PMT, which we take to be half the length of the counter
-($L/2$), since the scintillators are read out at either side.  The statistical behavior of the last two terms
-is indicated by scaling the single-photoelectron responses by $\sqrt{N_{pe}}$, where $N_{pe}$ is the
-average number of photoelectrons seen by the PMT of a counter with an infinitely long attenuation length.
-For scintillators that are several meters long, the dominant contribution comes from transit time variations
-of photon paths in the scintillator.
+($L/2$), since the scintillators are read out at either side.  The statistical behavior of the last two
+terms is indicated by scaling the single-photoelectron responses by $\sqrt{N_{pe}}$. For scintillators
+that are several meters long, the dominant contribution comes from transit time variations of photon
+paths in the scintillator to the PMT.
 
 The values of the parameters $\sigma_0$, $\sigma_1$, and $\sigma_2$ for the panel-1a and panel-2
-counters are given in the CLAS TOF paper~\cite{tof-nim}, where the above functional form with the
-parameters listed in Table~\ref{timing-parms} was found to well describe the measured data. A direct
-extension of these parameters is assumed to be reasonable for estimating the time resolution for the
-panel-1b counters. A summary of all parameters employed are listed in Table~\ref{timing-parms}. Note
-that due to improvements in the resolution of the readout electronics for the CLAS12 FTOF system
-compared to the CLAS TOF system, the floor-term $\sigma_0$ has been reduced from 62~ps to 40~ps. 
+counters are given in Ref.~\cite{tof-nim}, where the above functional form with the parameters listed
+in Table~\ref{timing-parms} was found to describe the measured data. A direct extension of these
+parameters is assumed to be reasonable for estimating the time resolution for the panel-1b counters.
+A summary of all parameters employed are listed in Table~\ref{timing-parms}. Note that due to
+improvements in the resolution of the readout electronics for the CLAS12 FTOF system compared to
+the CLAS TOF system, the floor-term $\sigma_0$ has been reduced from 62~ps to 40~ps. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[htbp]
@@ -520,7 +521,7 @@ For the panel-2 counters, $N_{pe}$ is further scaled by the factor $F = 0.9$ to 
 collection efficiencies at the end of the larger panel-2 counters with their 3-in PMTs and longer light
 guides compared to the smaller panel-1a PMTs with their relatively short light guides~\cite{tof-nim}. For
 the panel-1b counters, $N_{pe}$ is determined as for panel-1a using Eq.(\ref{nphe-eq}) by scaling by the
-ratio of the cross sectional areas of the scintillation bars (15~cm x 5~cm vs. 6~cm x 6~cm). 
+ratio of the cross sectional areas of the scintillation bars (15~cm $\times$ 5~cm vs. 6~cm $\times$ 6~cm). 
 
 Figure~\ref{sigma_tof} shows the parameterized resolution for the counters in panel-1a, panel-1b,
 and panel-2 as a function of counter length. The Forward Detector event reconstruction and particle
@@ -582,26 +583,27 @@ of the FTOF system~\cite{scint-mat-ref}.}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The bulk attenuation length of the scintillation material is stated by its manufacturer to be 160~cm for
-BC-404 and 380~cm for BC-408. However, the practical attenuation length of the actual prepared bars
-is smaller than the nominal bulk value as the real path length of photons from the charged particle
-intersection point to the ends of the bar is increased and reflections occur, both due to the finite geometry
-of the bar. For optimal response, this practical attenuation length should typically be longer than the bar to
-ensure sufficient photon statistics. Measurements of the practical attenuation length of the FTOF counters
-are given in Section~\ref{sec:attlen}.
+The bulk attenuation length of the scintillation material is stated by its manufacturer to be 160~cm
+for BC-404 and 380~cm for BC-408. However, the practical attenuation length of the prepared bars
+is smaller than the nominal bulk value as the actual path length of photons from the charged particle
+intersection point to the ends of the bar is increased and reflections occur due to the finite geometry
+of the bar. For optimal response, this practical attenuation length should typically be longer than the
+bar to ensure sufficient photon statistics. Measurements of the practical attenuation length of the
+FTOF counters are given in Section~\ref{sec:attlen}.
 
 \subsubsection{Photomultiplier Tubes and Voltage Dividers}
 
 The panel-1a counters are read out at either end through 2-in diameter Thorn EMI 9954A PMTs (later
 manufactured by ElectronTubes)~\cite{et-ref}. The PMTs are coupled to the scintillation bars using
-12-cm-long acrylic light guides that match the 15~cm x 5~cm scintillator on one end and the 2-in diameter
-PMT on the other end.  For the panel-2 counters 3-in diameter Philips XP4312B/D1 3-in PMTs (later
-manufactured by Photonis~\cite{photonis}) are employed. The PMTs are coupled to the scintillators
-through acrylic light guides that match the 22~cm x 5~cm scintillator on one end and the 3-in diameter
-PMT on the other end. Both the 9954A and XP4312B/D1 PMTs have 12 linear-focused dynode stages. For
-both the panel-1a and panel-2 counters the PMTs are glued on the light guides using BC-600 optical glue.
-See Ref.~\cite{tof-nim} for full details on the PMT selection criteria and the light guide designs. The
-performance specifications for these PMTs are listed in Table~\ref{pmt-specs}.
+12-cm-long acrylic light guides that match the 15~cm $\times$ 5~cm scintillator on one end and the
+2-in diameter PMT on the other end.  For the panel-2 counters, 3-in diameter Philips XP4312B/D1 3-in
+PMTs (later manufactured by Photonis~\cite{photonis}) are employed. The PMTs are coupled to the
+scintillators through acrylic light guides that match the 22~cm $\times$ 5~cm scintillator on one end
+and the 3-in diameter PMT on the other end. Both the 9954A and XP4312B/D1 PMTs have 12
+linear-focused dynode stages. For both the panel-1a and panel-2 counters the PMTs are glued on the
+light guides using BC-600 optical glue. See Ref.~\cite{tof-nim} for full details on the PMT selection
+criteria and the light guide designs. The performance specifications for these PMTs are listed in
+Table~\ref{pmt-specs}.
 
 The voltage dividers employed for the panel-1a and panel-2 readout are custom units built specifically
 for the CLAS TOF project~\cite{tof-nim}. The dividers use high voltage field-effect transistors to fix
@@ -615,8 +617,8 @@ with a voltage divider to form the R9779-20MOD assembly. These PMTs include 8 li
 stages. This high time resolution PMT was selected due to its particularly compact overall assembly length
 of 113~mm. The length restriction was necessary to fit within the defined shadow region of the torus
 cryostats at the location of the PMTs (see Section~\ref{ftof-geometry} for details). These PMTs are
-coupled directly to the ends of the scintillation bars using BC-600 optical glue. The performance specifications
-for all FTOF PMTs are listed in Table~\ref{pmt-specs}.
+coupled directly to the ends of the scintillation bars using BC-600 optical glue. The performance
+specifications for all FTOF PMTs are listed in Table~\ref{pmt-specs}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[htbp]
@@ -647,17 +649,17 @@ Transition time spread                     & 0.4~ns & 0.25 ns & 0.4 ns \\ \hline
 
 \subsubsection{PMT Magnetic Shielding}
 
-The FTOF PMTs are located in a range from 6.2~m to 7.2~m from the target in a region of where the stray
-magnetic field from the torus is computed to be less than 30~G when the torus is operated at full field.
-Custom magnetic shields for the PMTs are included to reduce both the axial and transverse components of
-the field along the full accelerating structure of the PMT to a level less than 0.2~G. For the panel-1a and
-panel-2 counters, the PMT magnetic shields consist of a 0.020-in thick $\mu$-metal cylinder, with the
-shield extending 2~in beyond the front face of the PMT.  For the panel-1b counters, the magnetic shields
-are composed of 2-mm thick $\mu$-metal that extends 2~in beyond the front face of the PMT. The shield
-has a rectangular box design that fits over the edge of the scintillation bar. The face of the shield opposite
-the PMT side has a small penetration to allow the signal and HV cables and connectors to pass through. Further
-details on the FTOF magnetic shielding and the field tests that were conducted are included in
-Refs.~\cite{nim-p1b,ftof-shields}.
+The FTOF PMTs are located in a range from 6.2~m to 7.2~m from the target in a region of where the
+stray magnetic field from the torus is computed to be less than 30~G when the torus is operated at full
+field. Custom magnetic shields for the PMTs are included to reduce both the axial and transverse
+components of the field along the full accelerating structure of the PMT to a level of less than 0.2~G.
+For the panel-1a and panel-2 counters, the PMT magnetic shields consist of a 0.020-in thick $\mu$-metal
+cylinder, with the shield extending 2~in beyond the front face of the PMT.  For the panel-1b counters, the
+magnetic shields are composed of 2-mm thick $\mu$-metal that extends 2~in beyond the front face of
+the PMT. The shield has a rectangular box design that fits over the edge of the scintillation bar. The face
+of the shield opposite the PMT side has a small penetration to allow the signal and HV cables and connectors
+to pass through. Further details on the FTOF magnetic shielding and the field tests that were conducted
+are included in Refs.~\cite{nim-p1b,ftof-shields}.
 
 \subsubsection{Counter Assembly and Support}
 
@@ -677,24 +679,25 @@ For panel-1b, the scintillation counter wrapping materials include:
 \item 1 layer of 0.0003-in (0.00076~cm) thick aluminized polyester film.
 \end{itemize}
 
-After wrapping, each of the FTOF scintillation counters was attached to a support structure that consists of
-a composite sandwich structure of stainless steel skins on structural foam that is attached to the detector
-frame only at the two ends. The composite structure, which mounts on the scintillator side facing away from
-the target, provides uniform material thickness to the detected particles.  The support was undersized so
-the counters could be uniformly placed as close together as allowed by the wrapping material and the
-scintillation bar manufacturing tolerances. 
+After wrapping, each of the FTOF scintillation counters was attached to a support structure that consists
+of a composite sandwich structure of stainless steel skins on structural foam that is attached to the
+detector frame only at the two ends. The composite structure, which mounts on the scintillator side facing
+away from the target, provides uniform material thickness to the detected particles.  The support was
+undersized across the counter width so they could be placed as close together as allowed by the wrapping
+material and the scintillation bar manufacturing tolerances. 
 
-Each panel-1a counter is mounted on 1-in thick supports to minimize the thickness of the package from the
-standpoint of Coulomb multiple scattering and energy loss considerations.  The maximum deflection for the
-installed scintillators is 4.4~mm, as estimated from deflection tests and the compound angle of each detector,
-which relieves the overall support requirements. The space for the panel-2 counters allowed for 3-in thick
-sandwich supports, which are mechanically much stiffer and result in no appreciable deflection. Again, each
-panel-2 counter is mounted to its own support structure. For the panel-1b counters, the backing structures
-are 2-in thick and designed to support two panel-1b counters. The maximum deflection for the installed
-scintillators is less than 5~mm, which occurs at the middle of the longest counters.
+Each panel-1a counter is mounted on a 1-in thick supports to minimize the thickness of the package from
+the standpoint of Coulomb multiple scattering and energy loss considerations.  The maximum deflection
+for the installed scintillators is 4.4~mm, as estimated from deflection tests and the compound angle of
+each detector, which relieves the overall support requirements. The space behind the panel-2 counters
+allowed for 3-in thick sandwich supports, which are mechanically much stiffer and result in no appreciable
+deflection. Again, each panel-2 counter is mounted to its own support structure. For the panel-1b counters,
+the backing structures are 2-in thick and designed to support two panel-1b counters. The maximum
+deflection for the installed scintillators is less than 5~mm, which occurs at the middle of the longest
+counters.
 
 The support structures onto which the scintillator counters are attached are bolted to box-beam support
-frames (steel for panel-1a and panel-2, aluminum for panel-1b) that resided in the torus shadow regions.
+frames (steel for panel-1a and panel-2, aluminum for panel-1b) that reside in the torus shadow regions.
 The support frames are triangular in shape for panel-1a and panel-1b, and form a rhombus shape for
 panel-2. The panel-1a frames are bolted directly to the upstream faces of the electromagnetic
 calorimeters in each sector of the Forward Carriage. The panel-1b frames are bolted directly to the
@@ -725,7 +728,7 @@ information from the FADCs is also employed for energy loss measurements to prov
 means for identification of slow particles. In addition, pulse fitting techniques are employed using the
 FADC pulse shape to determine the hit time of the track that can be compared to the TDC time to better
 ensure matching of the ADC and TDC information in the high rate operating environment of CLAS12 (see
-Section~\ref{cluster}.)
+Section~\ref{cluster}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -741,19 +744,18 @@ Section~\ref{cluster}.)
 
 The intrinsic resolution of the electronics system ($\sigma_0$) must be optimized to ensure that it does
 not become a limitation to the effective counter timing resolution. There are several contributions to this
-term and each electronic component was studied to understand its effect.  From our bench measurements
-and measurements from CLAS12, a reasonable approximation for the floor term in the counter hit time
-resolution is $\sigma_0=40$~ps (see Section~\ref{res-sec}). The PMT anode outputs are connected to
-JLab-designed VME leading-edge discriminators. A leading-edge, rather than a constant-fraction,
-discriminator was chosen for the FTOF system. Although a constant-fraction discriminator delivers better
-timing initially, off-line time-walk corrections to leading-edge time give comparable results at a significantly
-lower cost since the off-line analysis can use the measured charge. Time walk is an instrumental shift in the
-measured hit time that arises due to the finite rise time of the analog pulse. For a given event time, pulses
-of different amplitude cross the leading-edge discriminator threshold at slightly different time. The
-time-walk correction algorithm is described in Section~\ref{sec-tw}. The discriminator threshold was set
-at -25~mV, significantly above the 1-2~mV noise level. This threshold corresponds to 1~MeV of deposited
-energy. The discriminator signal output width was set to 35~ns in order to prevent multiple outputs from the
-same input pulse.
+term and each electronic component was studied to understand its effect.  From our measurements on the
+bench and from CLAS12, a reasonable approximation for the floor term in the counter hit time resolution
+is $\sigma_0=40$~ps (see Section~\ref{res-sec}). The PMT anode outputs are connected to JLab-designed
+VME leading-edge discriminators. A leading-edge rather than a constant-fraction discriminator was chosen
+for the FTOF system. Although a constant-fraction discriminator delivers better timing initially, off-line
+time-walk corrections to leading-edge times give comparable results at a significantly lower cost since the
+off-line analysis can use the measured charge. Time walk is an instrumental shift in the measured hit time
+that arises due to the finite rise time of the analog pulse. For a given event time, pulses of different
+amplitude cross the leading-edge discriminator threshold at slightly different time. The time-walk correction
+algorithm is described in Section~\ref{sec-tw}. The discriminator threshold was set at -25~mV, significantly
+above the 2~mV noise level. This threshold corresponds to 1~MeV of deposited energy. The discriminator
+signal output width was set to 35~ns in order to prevent multiple outputs from the same input pulse.
 
 The output of the discriminator goes to a CAEN VME TDC. Both high resolution TDCs (25~ps LSB CAEN
 VX1290A) and lower resolution TDCs (100~ps LSB CAEN V1190A) are employed~\cite{tdc-manual}, where
@@ -761,8 +763,8 @@ the lower resolution TDCs are associated with the longer counters at large polar
 ($N_{counter}=17 \to 23$), panel-1b ($N_{counter}=49 \to 62$), and panel-2 ($N_{counter}=1 \to 5$). These
 multi-hit pipeline TDCs were chosen in order to allow for readout capability in the operating luminosity of
 $10^{35}$~cm$^{-2}$s$^{-1}$. The TDC readout window was set to 250~ns to ensure the full dynamic range
-of the data was safely in time with the trigger. The key performance specifications of these units are given
-in Table~\ref{tdcadc-specs}.
+of the data was safely in time with the trigger. The key performance specifications of these TDC units are
+given in Table~\ref{tdcadc-specs}.
 
 The integral non-linearity (INL) of the TDCs represents the accumulated error of the input-output
 characteristic of the TDC with respect to the ideal response and is defined by:
@@ -792,8 +794,8 @@ which lies between channels 35 and 65. A pulse fitting algorithm, which fits the
 down to the baseline, is used to determine the hit time from the FADC signal. The readout window for the
 FTOF FADCs is set to 192 samples (48~ns). The applied readout threshold is set to 1~MeV to ensure that
 the hit cluster energy can be determined with a reasonable accuracy. Details on the hit clustering for FTOF
-are described in Section~\ref{cluster}. The key performance specifications of all of the digitizing units are
-given in Table~\ref{tdcadc-specs}.
+are described in Section~\ref{cluster}. The key performance specifications of these FADC units are given
+in Table~\ref{tdcadc-specs}.
 
 The signal cables used for the FTOF system to connect from the PMT anodes and dynodes to the Forward
 Carriage patch panels are RG-58C/U fire-retardant coaxial cables. This type of cable is appropriate for
@@ -841,25 +843,25 @@ plot shows signal amplitude vs. FADC channel.}
 \subsubsection{High-Voltage Supplies}
 
 The PMTs for the FTOF counters typically operate at about 2000~V with negative polarity. The typical
-dark current drawn by the PMTs on the assembled counters is $<20$~nA. The system is powered by a
-single high voltage mainframe for each sector. These mainframes are either CAEN 1527LC or CAEN 4527
-units outfitted with negative polarity 24-channel A1535N modules that can supply up to 3.5~kV per channel
-with a maximum current of 3~mA. The power supply has a voltage ripple specification of $<$20~mV
-peak-to-peak (typical). Each channel consumes less than 1~W during counter operation. The typical supply
-currents per channel are 300~$\mu$A to 500~$\mu$A.
+dark current drawn by the PMTs is $<20$~nA. The system is powered by a single high voltage mainframe
+for each sector. These mainframes are either CAEN 1527LC or CAEN 4527 units outfitted with negative
+polarity 24-channel A1535N modules that can supply up to 3.5~kV per channel with a maximum current of
+3~mA. The power supply has a voltage ripple specification of $<$20~mV peak-to-peak. Each channel
+consumes less than 1~W during counter operation with typical supply currents per channel between
+300~$\mu$A to 500~$\mu$A.
 
 The mainframe is controlled remotely through the Hall~B Slow Controls system. A graphical user interface
 using EPICS~\cite{epics} running on a UNIX system communicates with the mainframe via Ethernet. The
 mainframe settings enable basic protection of the PMTs in terms of maximum voltage and current settings,
 and channel ramp rates.
 
-The high voltage cables for each PMT are fire-retardant RG-59 coaxial cables that run from the PMT voltage
-divider to a local disconnect HV distribution box located behind the panel-2 arrays in each sector. There
-are four HV distribution boxes for each sector, two for the left PMTs and two for the right PMTs of
-each sector. The output of each HV distribution box is a pair of 35-ft long multi-conductor cables, each
-containing 24-channels, with a Radiall connector to mate with the HV A1535N board input connector. Each
-multi-conductor high voltage cable contains 30 conductors wrapped in Tefzel insulation, an outer wire shield,
-and a PVC insulation wrap. Each conductor is rated at 5-kV.
+The high voltage cables for each PMT are fire-retardant RG-59 coaxial cables that run from the PMT
+voltage divider to a local disconnect HV distribution box located behind the panel-2 arrays in each
+sector. There are four 48-channel HV distribution boxes for each sector, two for the left PMTs and two
+for the right PMTs. The output of each HV distribution box is a pair of 35-ft long multi-conductor cables,
+each containing 24-channels, with a Radiall connector to mate with the HV A1535N board input connector.
+Each multi-conductor high voltage cable contains individual conductors wrapped in Tefzel insulation, an outer
+wire shield, and a PVC insulation wrap. Each conductor is rated at 5-kV.
 
 \section{FTOF Performance}
 \label{sec:performance}
@@ -875,10 +877,10 @@ Full details on the bench test performance results for the panel-1a and panel-2 
 in Ref.~\cite{dsc-cn2013-001} and for the panel-1b counters in Ref.~\cite{nim-p1b}.
 
 In this section the essential performance results from the bench testing studies are presented in terms
-of the counter photoelectron statistics and benchmark time calibrations. Then the nominal algorithms
-are introduced to provide details on how the in-beam FTOF time resolution performance was calibrated
-and quantified. Finally, this section provides the current status of the particle identification capabilities
-of the FTOF system in relation to the design specifications.
+of the counter photoelectron statistics and benchmark time calibrations. Then the calibration algorithms
+are introduced to provide details on how the in-beam FTOF time resolution performance was quantified.
+Finally, this section provides the current status of the particle identification capabilities of the FTOF
+system in relation to the design specifications.
 
 \subsection{Bench Measurements}
 
@@ -887,20 +889,20 @@ of the FTOF system in relation to the design specifications.
 
 The primary approach to determine the average number of photoelectrons at the photocathode of a PMT
 generated by minimum-ionizing particles passing through the scintillation bars~(see Ref.~\cite{Gi86} for
-further details) employs the ratio of the integral of the pulse for a minimum-ionizing particle to the integral
-of the pulse for a single photoelectron. For these measurements we used the pulse integration feature of an
-Agilent Technologies MSO-X 3034A 350~MHz (4 GSa/s) oscilloscope and averaged over 1000 pulses. The
-minimum-ionizing particle signals were analyzed by connecting the scope to a PMT mounted on one of the
-shortest FTOF panel-1a counters. For the single photoelectron signal, we took data using just a bare PMT
-on the bench using the same HV setting. For both measurements the oscilloscope threshold was adjusted
-appropriately. For the minimum-ionizing peak analysis the threshold had to be set high enough ($>$200~mV)
-to eliminate tracks that did not pass perpendicularly through the bar. For the single photoelectron peak the 
-threshold had to be set low enough (1~mV) to pick out the single-electron emission noise pulses from the
+further details) employs the ratio of the integral of the signal pulse to the integral of the pulse for a single
+photoelectron. For these measurements we used the pulse integration feature of an Agilent Technologies
+MSO-X 3034A 350~MHz (4 GSa/s) oscilloscope and averaged over 1000 pulses. The minimum-ionizing
+particle signals were analyzed by connecting the scope to a PMT mounted on one of the shortest FTOF
+panel-1a counters. For the single photoelectron signal, we took data using just a bare PMT on the bench
+using the same HV setting. For both measurements the oscilloscope threshold was adjusted appropriately.
+For the minimum-ionizing peak analysis the threshold had to be set high enough ($>$200~mV) to eliminate
+tracks that did not pass through the full thickness of the bar. For the single photoelectron peak the
+threshold had to be set low enough (1~mV) to pick out the single-electron emission noise pulses from the 
 photocathode that are the dominant source of the PMT intrinsic dark current. This measurement scheme
-yielded $N_{pe}$=1000$\pm$100, a value consistent with the one found during the initial characterization of
-these counters for the CLAS TOF system nearly 25 years ago~\cite{tof-nim}. Based on the parameterization
-given in Eq.(\ref{nphe-eq}), Fig.~\ref{nphe-plot} shows the number of photoelectrons at the PMT photocathodes
-for the different FTOF counters.
+yielded $N_{pe}$=1000$\pm$100, a value consistent with the one found during the initial characterization
+of these counters for the CLAS TOF system nearly 25 years ago~\cite{tof-nim}. Based on the
+parameterization given in Eq.(\ref{nphe-eq}), Fig.~\ref{nphe-plot} shows the number of photoelectrons at
+the PMT photocathodes for the different FTOF counters.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -910,13 +912,13 @@ for the different FTOF counters.
 {\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/nphe.pdf}}}
 \end{picture} 
 \caption{Parameterized distribution of the number of photoelectrons vs. counter length (cm) for the
-different panel-1a (dotted), panel-1b (dashed), and panel-2 (dot-dashed) counters based on direct
-measurements with the shortest panel-1a counter.}
+panel-1a (dotted), panel-1b (dashed), and panel-2 (dot-dashed) counters based on direct measurements
+with the shortest panel-1a counter.}
 \label{nphe-plot}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-A second method to determine the number of photoelectrons produced at the PMT photocathode,
+A second method to estimate the number of photoelectrons produced at the PMT photocathode,
 which accounts for the quantum efficiency at the photocathode, can be estimated from cosmic
 ray data using the form of Ref.~\cite{kajino}:
 
@@ -927,33 +929,29 @@ ray data using the form of Ref.~\cite{kajino}:
 
 \noindent
 where $M_{ADC}$ is the ADC mean for the minimum-ionizing peak in the ADC spectrum and $\sigma_{ADC}$
-is the width of the ADC distribution. These quantities are most accurately determined from the system
-after the PMTs are well gain matched. The form of Eq.(\ref{nphe}) assumes that a finite $\sigma_{ADC}$
+is the width of the ADC distribution. The form of Eq.(\ref{nphe}) assumes that a finite $\sigma_{ADC}$
 arises solely due to statistical variations in the number of photoelectrons created at the photocathode for
 an event sample with a fixed energy loss per track, which we can assume to be a good approximation for
-perpendicularly incident minimum-ionizing tracks. To determine the average number of photoelectrons
-based on Eq.(\ref{nphe}), it is important that we minimize attenuation length effects that lead to absorption
-of the scintillation light as it propagates along the counter toward the PMTs. This can be done by restricting
-the coordinate along the counter to within $\pm$5~cm about the center of the bar. From the measured data
-averaged across the counters in panel-1a and panel-1b it was found that $N_{pe}^{1a} = 373 \pm 39$ and
-$N_{pe}^{1b} = 1158 \pm 77$ \cite{pmt-currents}. These results, while roughly a factor of two below the
-parameterized estimates also show the same factor of three difference in the expected number of
-photoelectrons for panel-1b relative to panel-1a. The estimates from the first approach are considered more
-reliable not only because they are connected to a more direct measurement of the number of photoelectrons,
-but also because this parameterization for $N_{pe}$ used in Eq.(\ref{timing-func}) agrees reasonably well
-with the measured counter resolutions shown in Section~\ref{tres-beam}.
+perpendicularly incident minimum-ionizing tracks. From the measured data averaged across the counters in
+panel-1a and panel-1b it was found that $N_{pe}^{1a} = 373 \pm 39$ and $N_{pe}^{1b} = 1158 \pm 77$
+\cite{pmt-currents}. These results, while roughly a factor of two below the parameterized estimates, also
+show the same factor of three difference in the expected number of photoelectrons for panel-1b relative
+to panel-1a. The estimates from the first approach are considered to be more reliable not only because they
+are connected to a more direct measurement of the number of photoelectrons, but also because this
+parameterization for $N_{pe}$ used in Eq.(\ref{timing-func}) agrees reasonably well with the measured
+counter resolutions shown in Section~\ref{tres-beam}.
 
 \subsubsection{Bench Time Resolution Performance}
 \label{sec-bench}
 
 The basic algorithm used on the test bench for the panel-1a and panel-2 counters to determine the time
-resolution of a given reference counter is to use incident cosmic ray tracks to compare the measured
-time for the reference counter to the time measured by two other identical counters in a triplet counter
-configuration (see Fig.~\ref{triplet}). For a triplet measurement, where the track passes through all three
-counters with double-sided readout, six times are measured ($t_1 \to t_6$). Each time measurement actually
-represents the difference between the discriminated PMT signal (TDC start) and the trigger time (TDC
-stop) generated from the six-fold PMT coincidence. These time measurements are then translated into three
-counter hit times $t_{t,m,b} = \frac{1}{2}(t_{1,3,5} + t_{2,4,6})$.
+resolution of a given reference counter was to use incident cosmic ray tracks to compare the measured
+time for a reference counter to the time measured by two other identical counters in a triplet counter
+configuration (see Fig.~\ref{triplet}). For a triplet measurement, where the track passes through all
+three counters with double-sided readout, six times are measured ($t_1 \to t_6$). Each time measurement
+actually represents the difference between the discriminated PMT signal (TDC start) and the trigger
+time (TDC stop) generated from the six-fold PMT coincidence. These time measurements are then
+translated into three counter hit times $t_{t,m,b} = \frac{1}{2}(t_{1,3,5} + t_{2,4,6})$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -962,9 +960,9 @@ counter hit times $t_{t,m,b} = \frac{1}{2}(t_{1,3,5} + t_{2,4,6})$.
 \put(70,5)
 {\hbox{\includegraphics[width=0.80\textwidth,natwidth=610,natheight=642]{pics/triplet-alt.pdf}}}
 \end{picture} 
-\caption{Schematic representation of a triplet of counters (labeled top - t, middle - m, and bottom - b)
-with a cosmic ray track traversing the stack. The geometry of the triplet is configured such that the
-separation between the top and middle counters matches that of the middle and bottom counters.}
+\caption{Schematic representation of a triplet of counters (labeled top - $t$, middle - $m$, and bottom
+- $b$) with a cosmic ray track traversing the stack. The geometry of the triplet was configured such that
+the separation between the top and middle counters matches that of the middle and bottom counters.}
 \label{triplet}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -978,10 +976,10 @@ measurements, the residual time $t_r$ will also be smeared. While we still expec
 be zero, the width of the $t_r$ distribution can be used to determine the average time resolution of the
 counters in the triplet.
 
-The average time resolution of each of the identical counters is computed from the variance $\delta t_r$ in
-the measured time residual $t_r$. Assuming the average time resolution for each PMT in the triplet
-($\Delta t_i$, $i = 1 \to 6$) is identical and taking into account that each counter is readout using two PMTs,
-we can write the final expression for the average counter time resolution as:
+The average time resolution of each of the identical counters was computed from the variance $\delta t_r$
+in the measured time residual $t_r$. Assuming the average time resolution for each PMT in the triplet
+($\Delta t_i$, $i = 1 \to 6$) is identical and taking into account that each counter is read out using two
+PMTs, we can write the final expression for the average counter time resolution as:
 
 \begin{equation}
 \label{sig-counter}
@@ -996,10 +994,10 @@ Figure~\ref{final-resolution} shows the average time resolution measured in the 
 for the panel-1a and panel-2 FTOF counters. For these measurements the fully assembled counter arrays
 were stacked one above the other in the cosmic ray test stand. The triplets $t$, $m$, and $b$ were
 formed from the counters for Sectors~1, 6, and 5 and separately for the counters for Sectors~2, 4, and
-3. This analysis includes a minimum PMT ADC cut to remove events that did not pass through the full
-thickness of the counter (``corner-clippers'') and also includes a coordinate cut of $\pm$10~cm about
-the center of the scintillation bar. Due to the use of leading edge discriminators the measured PMT times
-are corrected with a time-walk function of the form:
+3. This analysis included a minimum PMT ADC cut to remove events that did not pass through the full
+thickness of the counter (``corner-clippers'') and also included a coordinate cut of $\pm$10~cm about
+the center of the scintillation bar. Due to the use of leading edge discriminators, the measured PMT times
+were corrected with a time-walk function of the form:
 
 \begin{equation}
 \label{walk-function}
@@ -1010,9 +1008,9 @@ t_{walk}^{L,R} = \frac{A_0}{1 + A_1 \sqrt{(ADC - PED)_{L,R}}}.
 Here, $ADC - PED$ is the pedestal-subtracted ADC value for each PMT. The time-walk functional in
 these measurements best describe the data using $A_0 = 50.0$ and $A_1 = 0.852$.
 
-The average time resolutions for the counters in the panel-1a S1-S6-S5 and S2-S4-S3 triplets are
+The average time resolutions for the counters in the panel-1a S1-S6-S5 and S2-S4-S3 triplets were
 found to be slightly better ($\sim$15\%) than those achieved for the baseline measurements over
-20~years ago. For panel-2, the average time resolution is found to be slightly worse ($\sim$15\%)
+20~years ago. For panel-2, the average time resolution was found to be slightly worse ($\sim$15\%)
 than these same baseline measurements.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1029,28 +1027,28 @@ than these same baseline measurements.
 \caption{(Color Online) Average bench measurement resolutions (ps) vs. counter length (cm) using cosmic rays
 for the refurbished FTOF panel-1a (left) and panel-2 (right) counters. The different sets of data points
 correspond to the two different cosmic ray test stands used for calibration. The data points for the counters
-in sectors 1, 5, and 6 are averaged together as well as those for the counters in sectors 2, 3, and 4.}
+in sectors 1, 5, and 6 were averaged together, as well as those for the counters in sectors 2, 3, and 4.}
 \label{final-resolution}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The bench measurements for the panel-1b FTOF counters were carried out using a stack of six
-equidistant similar counters from $N_{counter} = 1 \to 62$. Accounting for the necessary path length
-corrections to relate the individual counter times to each other, six simultaneous triplet counter
-measurements are analyzed and the resulting time-residual system of equations is then solved for the
-individual counter time resolution. Also in distinction to the simple time-walk correction employed for the
-panel-1a and panel-2 measurements shown in Eq.(\ref{walk-function}), a more sophisticated position-dependent
-time-walk correction is employed that generalizes the simpler position-independent form. Precision
-measurements of the time-walk amplitude ($A_0$ in Eq.(\ref{walk-function})) vs. the distance from the PMT
-showed a nearly linear fall-off of the amplitude with increasing distance from the PMT. On average the
-time-walk amplitude is $\sim$30\% larger at the PMT compared to the far end of the bar, although this near
-to far end ratio of the amplitude decreases linearly with the length of the bar. Our measurements showed this
-ratio varies between 20\% for the shortest bars to 40\% for the longest bars. After accounting for this
-correction vs. hit position along the bar, a final baseline for the average panel-1b time resolutions were
-extracted averaging over the six similar counters from $N_{counter} = 1 \to 62$. The resulting time resolutions
-for the panel-1b counters are shown in Fig.~\ref{p1b-tres} and range from 30~ps for the shortest counters 
-(17~cm long) to 80~ps for the longest counters (408~cm long). Full details describing the measurements are
-provided in Ref.~\cite{nim-p1b}.
+equidistant counters of a given counter number from $N_{counter} = 1 \to 62$. Accounting for the
+necessary path length corrections to relate the individual counter times to each other, six simultaneous
+triplet counter measurements were analyzed and the resulting time-residual system of equations was then
+solved for the individual counter time resolution. Also in distinction to the simple time-walk correction
+employed for the panel-1a and panel-2 measurements shown in Eq.(\ref{walk-function}), a more sophisticated
+position-dependent time-walk correction was employed that generalizes the simpler position-independent form.
+Precision measurements of the time-walk amplitude ($A_0$ in Eq.(\ref{walk-function})) vs. the distance from
+the PMT showed a nearly linear fall-off of the amplitude with increasing distance from the PMT. On average
+the time-walk amplitude is $\sim$30\% larger at the PMT compared to the far end of the bar, although this
+near to far end ratio of the amplitude decreases linearly with the length of the bar. Our measurements
+showed this ratio varies between 20\% for the shortest bars to 40\% for the longest bars. After accounting
+for this correction vs. hit position along the bar, a final baseline for the average panel-1b time resolutions was
+extracted averaging over the six counters of a given number from $N_{counter} = 1 \to 62$. The resulting time
+resolutions for the panel-1b counters are shown in Fig.~\ref{p1b-tres} and range from 30~ps for the shortest
+counters  (17~cm long) to 80~ps for the longest counters (408~cm long). Full details describing the
+measurements are provided in Ref.~\cite{nim-p1b}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -1060,8 +1058,8 @@ provided in Ref.~\cite{nim-p1b}.
 {\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{pics/p1b-tres.pdf}}}
 \end{picture} 
 \caption{Measurements of the time resolution (ps) vs. counter length (cm) achieved for the FTOF panel-1b
-system averaged over the six similar counters belonging to each CLAS12 Forward Carriage sector. These
-data were acquired on the bench using cosmic rays. Full details are included in Ref.~\cite{nim-p1b}.}
+system averaged over the six counters of a given length belonging to each CLAS12 Forward Carriage sector.
+These data were acquired on the bench using cosmic rays. Full details are included in Ref.~\cite{nim-p1b}.}
 \label{p1b-tres}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1080,6 +1078,7 @@ represent the intrinsic time resolutions of the counters. The effective in situ 
 in detail and presented in Section~\ref{tres-beam}.
 
 \subsection{FTOF Beam-Data Calibrations}
+\label{beam-data-calib}
 
 In the nominal data taking mode for CLAS12, whenever the FTOF is involved in an event that triggers the
 spectrometer readout, the ADCs and TDCs for all PMTs with a signal above the discriminator threshold are
@@ -1093,17 +1092,17 @@ accurate (with a resolution of $<$20~ps), the determination of which beam bunch 
 must be determined by the experiment.
 
 The full calibration of each of the FTOF counters involves a number of discrete steps that are carried out
-separately for each of our data runs (where a run typically lasts for about two hours). The calibration constants
-for each run are stored in the CLAS12 calibration database. The steps to the FTOF calibration are carried out
-in a particular sequence~\cite{ftof-calib}.
+separately for a given data run (where a run typically lasts for about two hours). The calibration constants
+for each run are stored in the CLAS12 calibration database. The calibrations are redone whenever there is
+a response shift outside of our allow timing or energy tolerances. The steps to the FTOF calibration are
+carried out in a particular sequence~\cite{ftof-calib}.
 
 \begin{enumerate}
 \item Left/right PMT time offsets: This time offset accounts for the difference in the time recorded
 between the left side and right side PMTs in a given counter due mainly to the different PMT transit times.
-These time offsets are determined by determining the centroid of the difference between the left/right
-TDC time difference and the left and right TDC time computed using the counter hit point from the drift
-chamber system divided by the effective speed of light in the counter. These time shifts range between
-$\pm$5~ns.
+These time offsets are determined from the centroid of the difference between the left/right TDC time
+difference and the left and right TDC time computed using the counter hit point from the drift chamber
+system divided by the effective speed of light in the counter. These time shifts range between $\pm$5~ns.
 
 \item ADC Calibration: Determine the ADC channel to energy deposition calibration factor for each counter
 using minimum-ionizing events, see Section~\ref{gain-matching}.
@@ -1121,17 +1120,21 @@ to determine the time-walk correction, see Section~\ref{sec-tw}.
 \item Counter-to-Counter Time Offset Calibration: In order to measure the absolute flight time of a charged
 particle from the target to the FTOF counter and to be able to reconstruct exclusive events when hits are
 associated with multiple FTOF counters, the relative time offsets of each counter relative to all of the other
-counters in the system need to be determined. This is done in two steps for the FTOF calibration. The first
-step is to correlate each track to the RF time, a step that amounts to a precision time alignment in bins of the
-TDC LSB. The second step is a coarse alignment of each counter time in bins of the RF period $T_{RF}$. See
-Section~\ref{sec-talign}. During this same step the effective counter time resolutions are extracted, see
-Section~\ref{tres-beam}.
+counters in the system need to be determined. This is done in two steps. The first step is to correlate each
+track to the RF time, which amounts to a precision time alignment in bins of the TDC LSB. The second step is
+a coarse alignment of each counter time in bins of the RF period $T_{RF}$. See Section~\ref{sec-talign}.
+During this step the effective counter time resolutions are extracted, see Section~\ref{tres-beam}.
 
 \item TDC Calibration: After calibrating the integral non-linearities of each TDC channel in the system (see
 Section~\ref{sec-elec}), the TDC channel to time calibration is completed using beam events, see
 Section~\ref{sec-tdccal}.
 
 \end{enumerate}
+
+To calibrate the panel-1a and panel-1b counters an event filter is chosen to select charged leptons and pions.
+For the panel-2 calibration it is necessary to select charged pions and protons. Due to the increased multiple
+energy loss and Coulomb multiple scattering of the proton sample, the effective counter time resolutions
+derived for the panel-2 counters are noticeably worse than for the bench test results.
 
 \subsubsection{PMT Gain Matching}
 \label{gain-matching}
@@ -1143,19 +1146,17 @@ so that the minimum-ionizing particle response is such that the peak location ap
 channel for all counters, also allows for easier data monitoring during online and offline analyses.
 
 The FTOF PMT high voltage settings were determined using calibration runs employing minimum-ionizing
-tracks. These minimum-ionizing tracks deposit roughly 10~MeV (12~MeV) as they pass through the 5~cm
-(6~cm) thick FTOF scintillation bars, as $dE/\rho dx = 2$~MeV/g/cm$^2$ for minimum-ionizing particles.
-Normally the high voltage settings are based on runs using cosmic rays with the readout based on a
+tracks. These minimum-ionizing tracks deposit roughly 10~MeV (12~MeV) as they pass through the 5-cm
+(6-cm) thick FTOF scintillation bars, as $dE/\rho dx = 2$~MeV/g/cm$^2$ for minimum-ionizing particles.
+The high voltage settings were initially based on runs using cosmic rays with the readout based on a
 calorimeter pixel trigger that effectively select tracks approximately perpendicular to the face of the
-FTOF counters in panel-1a and panel-1b. These calibrations can also be carried out using minimum-ionizing
-tracks from beam data coming from the target. In this case the charge information is scaled by a scintillation
-bar path length correction given by $t/P$, where $t$ is the counter thickness and $P$ is the path-length of
-the track in the counter as determined by extrapolation of the drift chamber track to the location of the
-FTOF counter.
-
-The energy deposited in the scintillation bars follows a Landau distribution and is recorded by the ADCs,
-which show Landau peaks above pedestal. Minimum-ionizing tracks that do not pass through the full counter
-thickness give rise to a background beneath the Landau peak.
+FTOF counters in panel-1a and panel-1b. Currently the calibrations are carried out using minimum-ionizing
+tracks from beam data coming from the target. In this case the ADC charge information is scaled by a
+scintillation bar path length correction given by $t/P$, where $t$ is the counter thickness and $P$ is the
+path-length of the track in the counter as determined by extrapolation of the drift chamber track to the
+location of the FTOF counter. The energy deposited in the scintillation bars follows a Landau distribution
+and is recorded by the ADCs, which show Landau peaks above the pedestal. Minimum-ionizing tracks that
+do not pass through the full counter thickness give rise to a background beneath the Landau peak.
 
 For the HV calibrations, to avoid issues with the attenuation of light for tracks that pass near the ends of
 the bars and with unbalanced light entering the left and right PMTs, we combine the information from the
@@ -1175,10 +1176,10 @@ loss of PMT gain with time correlated with the total charge collected at the ano
 are set as low as possible.
 
 The position of the minimum-ionizing peak in the ADC spectrum is set by the PMT HV values. For a given
-scintillation bar, a typical ADC spectrum is shown in Fig.~\ref{gmean}. Given that the same channel is chosen
-to position the minimum-ionizing peak for all counters in either a panel-1a or panel-1b panel, the required PMT
-gain increases linearly from the short to the long bars to compensate for the attenuation losses in the longer
-bars.
+scintillation bar, a typical $\overline{ADC}$ spectrum is shown in Fig.~\ref{gmean}. Given that the same
+channel is chosen to position the minimum-ionizing peak for all counters in either panel-1a or panel-1b, the
+required PMT gain increases linearly from the short to the long bars to compensate for the attenuation
+losses in the longer bars.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -1276,17 +1277,17 @@ PMT can be written in terms of the attenuation length as:
 
 \begin{equation}
 \label{al-adc}
-ADC = A_0 e^{\pm x/\lambda},
+ADC = A_0 e^{-d/\lambda},
 \end{equation}
 
 \noindent
-where $A_0$ is a constant, $x$ is the distance along the counter with respect to the PMT location, and
+where $A_0$ is a constant, $d$ is the distance along the counter with respect to the PMT location, and
 $\lambda$ is the counter attenuation length. Forming the ratio of the ADC values from the right over
 the left ends of the counter,
 
 \begin{equation}
 \label{linear}
-\log \left( \frac{(ADC-PED)_R}{(ADC-PED)_L} \right ) = C + \frac{2x}{\lambda},
+\log \left( \frac{(ADC-PED)_R}{(ADC-PED)_L} \right ) = C + \frac{2d}{\lambda},
 \end{equation}
 
 \noindent
@@ -1373,8 +1374,8 @@ $d_{L,R}^{DC}$ are the distances along the bar from the track hit point to the l
 This vertex time residual represents the FTOF hit time from a single PMT traced back to the reaction
 vertex and compared to a precise time reference $t_{RF}$ given by the RF signal from the accelerator.
 As $t_{RF}$ represents a reference time for the arrival of the electron beam bunch at a fixed
-position along the beamline in Hall~B assigned as the center of the target, the time must be
-corrected for the displacement of the reaction vertex along the length of the hydrogen target.
+position along the beamline in Hall~B assigned as the center of the target, the time must be corrected
+for the displacement of the reaction vertex along the extended length of the target.
 
 As the beam bucket that was associated with the event is not determined at this point, the 
 time walk for each PMT is actually determined using the modulus of $t^{res}_{L,R}$ with the RF
@@ -1385,9 +1386,10 @@ t'_{L,R} = mod (t^{res}_{L,R}, T_{RF})~{\rm vs.}~(ADC-PED)_{L,R}.
 \end{equation}
 
 Figure~\ref{twalk-plot} shows the $t'$ vs. $ADC$ distribution for a representative FTOF PMT in
-panel-1b from beam data using a 10.6-GeV electron beam incident upon a liquid-hydrogen target.
-Note that all distributions that employ $t'_{L,R}$ are sorted in 25~ps bins (consistent with the TDC
-LSB). The overall scale of the time-walk effects spanning the full dynamic range of the ADC is 2~ns.
+panel-1b from beam data using a 10.6-GeV electron beam incident upon a 5-cm long liquid-hydrogen
+target. Note that all distributions that employ $t'_{L,R}$ are sorted in 25~ps bins (consistent with
+the TDC LSB). The overall scale of the time-walk effects spanning the full dynamic range of the
+ADC is 2~ns.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -1402,7 +1404,7 @@ data. As $t'$ is defined using the modulus of $T_{RF}$, its limits span $\pm T_{
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The second part of the full time-walk correction accounts for important position-dependent effects as
+The second part of the full time-walk correction accounts for additional position-dependent effects as
 discussed in Section~\ref{sec-bench}. To simplify the algorithm the approach we take is to determine
 first a position-independent correction for the left-side and right-side PMTs. In a second step we then
 fit a second-order polynomial to the counter hit time vs. hit position along the counter.
@@ -1419,12 +1421,12 @@ related to the time-walk.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{2.7cm}
+\vspace{2.5cm}
 \begin{picture}(50,50) 
-\put(0,125)
-{\hbox{\includegraphics[width=0.38\textwidth,natwidth=610,natheight=642,angle=-90]{pics/p1b-posdep1.pdf}}}
-\put(200,125)
-{\hbox{\includegraphics[width=0.38\textwidth,natwidth=610,natheight=642,angle=-90]{pics/p1b-posdep2.pdf}}}
+\put(0,-75)
+{\hbox{\includegraphics[width=0.5\textwidth,natwidth=610,natheight=642]{pics/p1b-posdep1.pdf}}}
+\put(200,-75)
+{\hbox{\includegraphics[width=0.5\textwidth,natwidth=610,natheight=642]{pics/p1b-posdep2.pdf}}}
 \end{picture} 
 \caption{(Color Online) Plot of $t'$ (ns) vs. hit position (cm) along the bar from beam data after the
 position-independent time-walk correction (left) and after the ad hoc second-order polynomial correction
@@ -1452,13 +1454,14 @@ event that led to the hit in the FTOF counter.
 
 The determination of the absolute flight time of charged particle tracks from the reaction vertex
 to an FTOF counter is performed in two steps. In the first step, fine timing offsets (binned in the
-25~ps TDC LSB) are determined to align the FTOF hit times traced back to the vertex for
-each counter within the RF time window. In the second step, coarse timing offsets binned in units of the
+25~ps TDC LSB) are determined to align the FTOF hit times traced back to the vertex for each
+counter within the RF time window. In the second step, coarse timing offsets binned in units of the
 RF period $T_{RF}$ are determined to select the specific RF beam bucket associated with the event.
 
-The fine timing alignment algorithm uses the FTOF hit time traced to the event vertex relative to the RF
-to align the vertex times of all FTOF hits (modulo $T_{RF}$). However, instead of using the separate
-left and right PMT hit times as in Eq.(\ref{tres}), this algorithm uses the average counter hit times, 
+The fine timing alignment algorithm uses the FTOF hit time traced back to the event vertex relative
+to the RF to align the vertex times of all FTOF hits (modulo $T_{RF}$). However, instead of using the
+separate left and right PMT hit times as in Eq.(\ref{tres}), this algorithm uses the average counter
+hit times, 
 
 \begin{equation}
 t_{res}' = mod \left[ \left( \left(\overline{t}_{hit} - \frac{L}{\beta c} \right) -
@@ -1475,13 +1478,13 @@ in a range of $\pm T_{RF}/2$ about the peak channel in the distribution.
 \begin{figure}[htbp]
 \vspace{4.0cm}
 \begin{picture}(50,50) 
-\put(30,205)
+\put(35,202)
 {\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642,angle=-90]{pics/rfp-plot.pdf}}}
 \end{picture} 
 \caption{(Color Online) Distribution of the FTOF hit times from beam data traced back to the vertex relative
 to the RF (ns) for one representative FTOF panel-1b counter with the Gaussian plus background fit overlaid
 to determine the counter RF offset and the effective counter time resolution. As $t'$ is defined using the
-modulus of $T_{RF}$ this distribution is limited to span $\pm T_{RF}$.}
+modulus of $T_{RF}$ this distribution is limited to span $\pm T_{RF}/2$.}
 \label{rfp-plot}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1576,24 +1579,24 @@ correction is made to define the value of the phase $n$ that is valid for the en
 
 The average hit time resolution for the FTOF from the TDCs is about 80~ps and that from the FTOF
 FADCs, given the rapid fall time of the fast PMT signals that provide for only 2-3 samples on the falling
-edge is only $\approx$1~ns. A matching requirement of 10~ns between the TDC time and the FADC time
-is employed during event reconstruction. While this matching requirement still needs to be tuned further,
-it is currently reasonably efficient at allowing the FADC hits to be matched with the TDC hits.
-This is important as due to the different thresholds on the discriminators and the FADCs, the number
-of entries in the hits lists are up to a factor of two different. The matching criteria is also essential
-in order to assign the correct ADC information to the hit not only for the time-walk correction that
-directly uses the measured ADC but also for the energy loss computation.
+edge is only about 1~ns. A matching requirement of 10~ns between the TDC time and the FADC time is
+employed during event reconstruction. While this matching requirement still needs to be tuned further,
+it is already reasonably efficient at allowing the FADC hits to be matched with the TDC hits. This is
+important as due to the different thresholds on the discriminators and the FADCs, the number of
+entries in the hits lists can be up to a factor of two different. The matching criteria is also essential in
+order to assign the correct ADC information to the hit not only for the time-walk correction that directly
+uses the measured ADC but also for the energy loss computation.
 
 \subsubsection{Counter Time Resolutions}
 \label{tres-beam}
 
-The effective time resolutions for each counter determined after complete calibrations of the
-FTOF system are shown in Fig.~\ref{eff-tres}. These measurements are from a beam data run with
-10.6-GeV electrons incident on a liquid-hydrogen target. These time resolutions represents the
-current quality of the overall CLAS12 calibrations. The results are based on calibration procedures that
-are not yet fully optimized, as well as uncertainties in the reconstructed momentum and path length
-from the forward track reconstruction. Note that the time resolution floor-term $\sigma_0$ discussed
-in Section~\ref{res-sec} and Eq.(\ref{timing-func}) does not include the contributions from the
+The effective time resolutions for each counter determined after complete calibrations of the FTOF
+system are shown in Fig.~\ref{eff-tres}. These measurements are from a beam data run with 10.6-GeV
+electrons incident on a 5-cm long liquid-hydrogen target. These time resolutions represents the current
+quality of the overall CLAS12 calibrations. The results are based on calibration procedures that are not
+yet fully optimized, as well as uncertainties in the reconstructed momentum and path length from the
+forward track reconstruction. Note that the time resolution floor-term $\sigma_0$ discussed in
+Section~\ref{res-sec} and Eq.(\ref{timing-func}) does not include the contributions from the
 reconstructed path length uncertainties. These uncertainties are polar and azimuthal angle dependent.
 Near the torus coils the true magnetic field has different variations than accounted for in our conductor
 model used to generate the field for the event reconstruction. Furthermore, the path length uncertainties
@@ -1604,13 +1607,15 @@ of the detector affect the quality and accuracy of the reconstruction. When all 
 misalignments are accounted for their contribution to the floor-term of the resolution function will be
 reduced.
 
-Nevertheless the time resolutions already achieved meet the system design specifications outlined in
-Section~\ref{sec:overview} and shown in Table~\ref{spec-table}. With these resolutions, the quality of
-the particle identification in the Forward Detector of CLAS12 allows the experimental program in Hall~B
-to reach its goals. As further operating experience with CLAS12 is gained, we expect to realize further
-modest but important improvements in the FTOF time resolution that will allow $\pi/K$, $\pi/p$, and
-$K/p$ separation in the Forward Detector of CLAS12 to be pushed to higher momenta than currently
-seen.
+Nevertheless the time resolutions already achieved meet the system design specifications in the forward
+direction outlined in Section~\ref{sec:overview} and shown in Table~\ref{spec-table}. For the panel-2
+counters the time resolutions are 200-250~ps, but the calibrations are presently limited by statistics and by
+the use of low-momentum protons in the calibration sample (as discussed in Section~\ref{beam-data-calib}). 
+With these resolutions, the quality of the particle identification in the Forward Detector of CLAS12 allows
+the experimental program in Hall~B to reach its goals. As further operating experience with CLAS12 is
+gained, we expect to realize further modest but important improvements in the FTOF time resolution that
+will allow $\pi/K$, $\pi/p$, and $K/p$ separation in the Forward Detector of CLAS12 to be pushed to higher
+momenta than currently seen.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -1620,7 +1625,8 @@ seen.
 {\hbox{\includegraphics[width=1.2\textwidth,natwidth=610,natheight=642]{pics/res-r5038.pdf}}}
 \end{picture} 
 \caption{The measured effective time resolution (ps) vs. counter number for each of the FTOF counters
-in sector~1 as determined using final state leptons and pions.}
+in sector~1 as determined using final state leptons and pions for panel-1a and panel-1b and pions and
+protons for panel-2.}
 \label{eff-tres}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1677,27 +1683,16 @@ deposited energies in both counters,
 The relevant path length through the layer is then determined from ray tracing of the drift chamber
 track. This path length through the layer is then used to compute $dE/dx$.
 
-The hit time associated with the cluster in a given layer is based on an energy deposition weighted average
-accounting for the time offset between the cluster hits. For the FTOF reconstruction the assigned hit
-position in the counter is based on ray tracing of the charged track through the FTOF array. For each counter
-the hit position is assigned as mid-way between the track entrance point and exit point on the bar. In this way
-a cluster hit time is computed as:
+The hit time associated with the cluster in a given layer is currently based on assigning the hit time as
+the counter hit with the closest geometrical match to the charged track extrapolated from the drift
+chambers to the FTOF system. The algorithm will be further studied and optimized in the future.
 
-\begin{equation}
-t_{hit} = t_i \cdot \frac{E_i}{E_{tot}} + \left(t_{i+1} - \frac{\Delta r_C}{\beta c} \right),
-\cdot \frac{E_{i+1}}{E_{tot}}
-\end{equation}
-
-\noindent
-where $\beta c$ is the track speed and $\Delta r_C$ is the distance between the hit positions assigned for each
-of the counters in the cluster.
-
-In the forward direction where there is a defined hit or a defined cluster in both panel-1b and panel-1a, a cluster
-matching algorithm is applied to determine if the hit or cluster in panel-1b and the hit or cluster in panel-1a are
-associated with the same incident track. Once the clusters in panel-1b and panel-1a arrays are matched together
-as associated with the same incident track, the corrected FTOF time based on the panel-1a and panel-1b cluster
-times is computed using a time resolution weighting according to the counter in each cluster with the largest 
-energy deposition.
+In the forward direction where there is a defined hit or a defined cluster in both panel-1b and panel-1a,
+a cluster matching algorithm (using timing and hit-coordinate information) is applied to determine if the
+hit or cluster in panel-1b and the hit or cluster in panel-1a are associated with the same incident track.
+Once the clusters in panel-1b and panel-1a arrays are matched together as associated with the same
+incident track, the corrected FTOF time based on the panel-1a and panel-1b cluster times is computed using
+a time resolution weighting according to the counter in each cluster with the largest energy deposition.
 
 \begin{equation}
   t_{corr} = \frac{\displaystyle \frac{\displaystyle t_{1b}^{cluster}}{\displaystyle \delta_{1b}} +
@@ -1707,15 +1702,15 @@ energy deposition.
 \end{equation}
 
 \noindent
-Here $\delta_{1a,1b}$ are the time resolutions measured for the counters determined during the fine timing
-algorithm step (see Section~\ref{sec-talign}), and $t_{1a,1b}^{cluster}$ are the cluster times defined with
-respect to the RF time. The term $\Delta r/(\beta c)$ accounts for the path length difference between
-the panel-1b cluster hit coordinate and the panel-1a cluster hit coordinate and comes from forward tracking
-information. As $\beta$ depends on the FTOF time, it is assumed that it is based on the panel-1b time
-information.
+Here $\delta_{1a,1b}$ are the effective time resolutions measured for the counters determined during
+the fine timing algorithm step (see Section~\ref{sec-talign}), and $t_{1a,1b}^{cluster}$ are the cluster
+times defined with respect to the RF time. The term $\Delta r/(\beta c)$ accounts for the path length
+difference between the panel-1b cluster hit coordinate and the panel-1a cluster hit coordinate and comes
+from forward tracking information. As $\beta$ depends on the FTOF time, it is assumed that it is based
+on the panel-1b time information.
 
 Given the effective FTOF counter resolutions shown in Fig.~\ref{eff-tres}, the overall FTOF hit
-time resolution is improved by 20\% when combining the times from panel-1b and panel-1a in this
+time resolution is improved by 15-20\% when combining the times from panel-1b and panel-1a in this
 manner. Of course, if the track interacts with only panel-1a or with only panel-1b due to the slightly
 different solid angles of coverage of the arrays, then only the single plane hit time is used in the
 event reconstruction. This is also accounted for in the CLAS12 Monte Carlo simulation code.
@@ -1724,10 +1719,10 @@ event reconstruction. This is also accounted for in the CLAS12 Monte Carlo simul
 \label{sec:beam}
 
 The first in-beam characterization of the FTOF system took place during the Dec. 2017 to Feb. 2018
-CLAS12 Engineering Run and subsequently during the first physics production running period that
-took place from Mar. - May 2018. During these periods the performance of the FTOF system was
-tested at different beam energies (2.2, 6.4, 10.6~GeV), different torus and solenoid magnetic field
-strengths and polarities (from 0 field to full field for both magnets), and over a range of beam-target
+CLAS12 Engineering Run and subsequently during the first physics production running periods that took
+place from Mar. - May 2018 and Sep. - Dec. 2018. During these periods the performance of the FTOF
+system was tested at different beam energies (2.2, 6.4, 10.6~GeV), different torus and solenoid magnetic
+field strengths and polarities (from 0 field to full field for both magnets), and over a range of beam-target
 luminosities up to twice the nominal planned CLAS12 luminosity of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$.
 In this section the measured scaler rates and PMT currents as a function of beam current are presented,
 as well as the reconstruction results and particle identification capabilities relative to the system
@@ -1775,14 +1770,15 @@ than the contribution from minimum-ionizing hadrons.
 \begin{figure}[ht]
 \vspace{3.8cm}
 \begin{picture}(50,50) 
-\put(20,-70)
+\put(25,-70)
 {\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{pics/mc-rates.pdf}}}
 \end{picture} 
-\caption{(Color Online) Simulation results for the FTOF counter rates (kHz) for 11~GeV electrons on a
-liquid-hydrogen target at the nominal CLAS12 design luminosity of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$.
-The rates are calculated for a 1-MeV deposited-energy threshold and expressed in kHz. Here the
-leftmost group of 62 paddles corresponds to panel-1b, the middle group of 23 paddles corresponds to
-panel-1a, and the rightmost group of 5 paddles corresponds to panel-2.}
+\caption{(Color Online) Simulation results for the FTOF counter rates (kHz) for each sector for
+11~GeV electrons on a liquid-hydrogen target at the nominal CLAS12 design luminosity of
+$1 \times 10^{35}$~cm$^{-2}$s$^{-1}$. The rates are calculated for a 1-MeV deposited-energy
+threshold and expressed in kHz. Here the left-most group of 62 paddles corresponds to panel-1b,
+the middle group of 23 paddles corresponds to panel-1a, and the right-most group of 5 paddles
+corresponds to panel-2.}
 \label{ftof-gemc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1796,8 +1792,8 @@ charged particle event rate $\langle R \rangle$. This current can be expressed a
 \end{equation}
 
 \noindent
-where $Q_e = 1.6 \times 10^{-19}$ C/e is the electron charge and $G$ is the PMT gain (assumed to be
-$1 \times 10^6$). Using the photoelectron statistics estimated detailed in Section~\ref{res-sec},
+where $Q_e = 1.6 \times 10^{-19}$ C/e is the electron charge and $G$ is the PMT gain (assumed to
+be $1 \times 10^6$). Using the photoelectron statistics estimated in Section~\ref{res-sec},
 Fig.~\ref{mc-pmt-currents} shows the predictions of the PMT anode currents for all of the FTOF
 counters at nominal operating luminosity at 11~GeV from our detailed GEANT-4 Monte Carlo
 studies~\cite{gemc-cn2017}. These predictions show typical PMT anode currents in the panel-1a and
@@ -1812,11 +1808,11 @@ measurements are in good accord with the simulation expectations.
 \put(20,-70)
 {\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{pics/mc-currents.pdf}}}
 \end{picture} 
-\caption{(Color Online) Computed PMT currents from Monte Carlo studies at the nominal operating
-luminosity of CLAS12 of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$ with 11~GeV electrons incident upon a
-liquid-hydrogen target. Here the leftmost group of 62 paddles corresponds to panel-1b, the middle
-group of 23 paddles corresponds to panel-1a, and the rightmost group of 5 paddles corresponds to
-panel-2.}
+\caption{(Color Online) Computed PMT currents ($\mu$A) from Monte Carlo studies for each sector
+at the nominal operating luminosity of CLAS12 of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$ with 11~GeV
+electrons incident upon a liquid-hydrogen target. Here the left-most group of 62 paddles corresponds
+to panel-1b, the middle group of 23 paddles corresponds to panel-1a, and the right-most group of 5
+paddles corresponds to panel-2.}
 \label{mc-pmt-currents}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1830,7 +1826,7 @@ panel-2.}
 \end{picture} 
 \caption{(Color Online) Measurements of the PMT anode current for representative panel-1b left-side
 PMTs ($N_{counter}=10, 20, 40$) as a function of beam current with a 10.6-GeV electron beam incident
-upon a 5-cm liquid-hydrogen target.}
+upon a 5-cm long liquid-hydrogen target.}
 \label{pmt-currents}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1850,10 +1846,10 @@ separation of pions and protons can be seen from these data.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.0cm}
+\vspace{3.2cm}
 \begin{picture}(50,50) 
-\put(10,-165)
-{\hbox{\includegraphics[width=0.9\textwidth,natwidth=610,natheight=642]
+\put(0,-185)
+{\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]
 {pics/ftof-mass.pdf}}}
 \end{picture} 
 \caption{Reconstructed mass squared (GeV$^2$) for positively charged particles for all counters in
@@ -1872,13 +1868,13 @@ specifications in Section~\ref{sec:overview} and Table~\ref{spec-table}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.7cm}
+\vspace{4.0cm}
 \begin{picture}(50,50) 
-\put(0,-185)
-{\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/bvsp.pdf}}}
+\put(-15,-200)
+{\hbox{\includegraphics[width=1.1\textwidth,natwidth=610,natheight=642]{pics/bvsp.pdf}}}
 \end{picture} 
 \caption{(Color Online) Velocity of positive hadrons ($\beta$) versus momentum (GeV) for all counters
-in panel-1a (left), panel-1 (middle), and panel-2 (right) from beam data with a 10.6~GeV electron beam
+in panel-1a (left), panel-1b (middle), and panel-2 (right) from beam data with a 10.6~GeV electron beam
 incident on a liquid-hydrogen target.}
 \label{fig:betavsp}
 \end{figure}
@@ -1892,18 +1888,18 @@ Spectrometer in Hall~B at Jefferson Lab known as the Forward Time-of-Flight or F
 system consists of 90 scintillation bars in each of the six forward sectors of the CLAS12 Forward Detector
 for a total of 540 counters. This design is based on rectangular counters varying in length from 17~cm to
 426~cm in three different counter arrays in each sector. In the polar angle range from 5$^\circ$ to
-35$^\circ$ the FTOF system consists of two layers of counters referred to as the panel-1a and panel-1b.
+35$^\circ$ the FTOF system consists of two layers of counters referred to as panel-1a and panel-1b.
 The panel-1a counters were refurbished from the forward TOF counters that were part of the original
-CLAS spectrometer. The panel-1b counters were newly constructed for CLAS12. Together the time
-measurements from these counters currently provide time resolutions from 50~ps at small angles to
-better than 100~ps at large angles. In the polar angle range from 35$^\circ$ to 45$^\circ$ the FTOF
-system consists of the panel-2 counters that provide timing resolutions of about 200~ps. With these
-time resolutions the FTOF system can separate $\pi/K$ to 2.8~GeV, $K/p$ to 4.8~GeV, and $\pi/p$ to
-5.4~GeV with 4$\sigma$ separation with up to an order of magnitude difference in the relative yields. The
-specifications are sufficient to meet and surpass the design particle identification requirements in the
-forward direction for the full CLAS12 physics program. The performance of the FTOF system was
-verified in extensive bench studies in our cosmic ray test stands as well as after installation in the first
-beam runs with the CLAS12 system in the period from Dec. 2017 to May 2018. 
+CLAS spectrometer. The panel-1b counters were newly constructed for CLAS12. Together the timing
+measurements from these counters currently provide effective time resolutions from 50~ps at small
+angles to 100~ps at large angles. In the polar angle range from 35$^\circ$ to 45$^\circ$ the FTOF
+system consists of the panel-2 counters that provide effective time resolutions of about 250~ps. With
+these time resolutions the FTOF system can separate $\pi/K$ to 2.8~GeV, $K/p$ to 4.8~GeV, and $\pi/p$
+to 5.4~GeV with 4$\sigma$ separation with up to an order of magnitude difference in the relative yields.
+The specifications are sufficient to meet the design particle identification requirements in the forward
+direction for the full CLAS12 physics program. The performance of the FTOF system was verified in
+extensive bench studies in our cosmic ray test stands, as well as after installation in the first beam runs
+with the CLAS12 system in the period from Dec. 2017 to Dec. 2018. 
 
 \ack
 
@@ -1917,12 +1913,12 @@ DE-AC05-84ER40150 and NSF Grant PHY-1205782.
 
 \begin{thebibliography}{99}
 
+\bibitem{clas12-nim}
+V.D. Burkert {\it et al.}, to be published in Nucl. Inst. and Meth. A, (2020). (see this issue)
+  
 \bibitem{clas-nim}
 B.A. Mecking {\it et al.}, Nucl. Inst. and Meth. {\bf A503}, 513 (2003).
 
-\bibitem{clas12-nim}
-V.D. Burkert {\it et al.}, to be published in Nucl. Inst. and Meth. A, (2020).
-  
 \bibitem{tof-nim}
 E.S. Smith {\it et al.}, Nucl. Inst. and Meth. {\bf A432}, 265 (1999).
 
@@ -1933,7 +1929,8 @@ Bicron, 12345 Kinsman Road, Newbury, OH 44065, http://www.bicron.com.
 Hamamatsu Photonics, http://www.hamamatsu.com.
   
 \bibitem{nim-p1b}
-R. Gothe, {\it A New Time-of-Flight System for CLAS12''}, to be submitted to Nucl. Inst. and Meth A, (2020).
+R. Gothe {\it et al.}, {\it A New Time-of-Flight System for CLAS12''}, to be submitted to Nucl. Inst.
+and Meth A, (2020).
 
 \bibitem{ftof-geom}
 D.S. Carman, {\it Forward Time-of-Flight Geometry for CLAS12}, CLAS12-Note 2014-005.
