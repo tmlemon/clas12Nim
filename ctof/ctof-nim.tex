@@ -24,8 +24,7 @@
 \author[Glasgow]{L. Clark}
 \author[INFN]{R. De Vita}
 \author[KNU]{W. Kim}, 
-\author[JLAB]{B. Miller},
-\author[KNU]{A. Ni}, and
+\author[JLAB]{B. Miller}, and
 \author[JLAB]{C. Wiggins} 
 
 \address[JLAB]{Thomas Jefferson National Accelerator Facility, Newport News, VA 23606, USA}
@@ -43,13 +42,14 @@ e-mail: carman@jlab.org.}
 The Central Time-of-Flight system for the large-acceptance CLAS12 spectrometer in Hall~B at 
 the Thomas Jefferson National Accelerator Facility is described. The system consists of a 
 hermetic barrel of scintillation counters at a radius of 25~cm from the beamline. The 
-wedge-shaped counters are roughly 3.4~cm wide, 3.0~cm thick, and 90~cm long, and span a range 
+wedge-shaped counters are 3.4~cm wide, 3.0~cm thick, and 90~cm long, and span a range 
 of polar angles relative to the center of the nominal target location from roughly 35$^\circ$ 
-to 125$^\circ$. The counters reside in the 5-T field of the CLAS12 superconducting solenoid. 
-The bars are read out via bent light guides 1~m long on the upstream end of the counters and 1.6~m
+to 125$^\circ$. The counters reside in the 5-T field of the CLAS12 superconducting solenoid. The
+bars are read out via bent light guides 1~m long on the upstream end of the counters and 1.6~m
 long on the downstream end. The phototubes are shielded by a multi-layer dynamical magnetic shield
-system to reduce the local fringe fields in the range from 400~G to 1000~G down to the level of 0.2~G
-at the location of the photocathodes. The average intrinsic time resolution of the counters is 65~ps.
+system to reduce the local fringe fields in the range from 400~G to 1000~G down to the level of
+0.2~G at the location of the photocathodes. The average intrinsic time resolution of the counters is
+65~ps.
 \end{abstract}
 
 \end{frontmatter}
@@ -71,7 +71,7 @@ with beam energies up to 11~GeV at a nominal beam-target luminosity of
 $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$ to allow for precision measurements of exclusive 
 reactions with polarized beam and both unpolarized and polarized targets. This spectrometer is 
 based on two superconducting magnets, a solenoid in the central region about the target and a 
-toroid at forward angles.
+toroid at forward angles. See Ref.~\cite{overview-ref} for more complete information on CLAS12.
 
 The CLAS12 torus has a six-fold symmetry that divides the forward acceptance in the range from
 5$^\circ$ to 35$^\circ$ into six 60$^\circ$-wide sectors. It produces a field primarily in the 
@@ -79,10 +79,11 @@ azimuthal direction. The field strength at its nominal full current in terms of
 $\int \!B d\ell$ is 2.8~T at 5$^\circ$ and 0.5~T at 35$^\circ$. A set of three multi-layer drift 
 chambers in each sector (before the field, within the field, and after the field) and a forward
 micromegas vertex tracker are used for charged particle tracking to measure momenta. Downstream 
-of the torus each sector is instrumented with a Cherenkov counter for $\pi/K$ separation (five 
-sectors are instrumented with low threshold gas Cherenkov counters and one sector is instrumented 
-with a ring-imaging Cherenkov counter), a scintillation counter wall for charged particle 
-time measurements, and an electromagnetic calorimeter system for electron and neutral particle 
+of the torus each sector is instrumented with a Cherenkov counter for $\pi/K$ separation (four 
+sectors are instrumented with low threshold gas Cherenkov counters, one sector is instrumented 
+with a ring-imaging Cherenkov counter, and the final sector will eventually be instrumented with a
+second ring-imaging Cherenkov counter), a scintillation counter wall for charged particle time
+measurements, and an electromagnetic calorimeter system for electron and neutral particle 
 identification. Just upstream of the torus is a large-volume high-threshold gas Cherenkov counter 
 for electron identification and a tagging system to detect electrons and photons at scattering 
 angles below $5^\circ$.
@@ -146,7 +147,7 @@ technical parameters is given in Table~\ref{spec-table}.
 \caption{View of the Central Time-of-Flight (CTOF) system for CLAS12. The scintillation bars form a
 hermetic barrel and the PMTs are attached to the ends of long light guides attached to each end of
 the bars. The beam enters the detector in this figure from the left side along the symmetry axis of the
-barrel..} 
+barrel.} 
 \label{ctof-design}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -161,7 +162,7 @@ barrel..}
 \caption{(Color Online) CTOF mounted within the CLAS12 solenoid in a cut view where the beam axis runs
 along the CTOF barrel symmetry axis with the beam entering from the left. This figure shows the CTOF
 counters in relation to the Central Neutron Detector~\cite{cnd-ref} and the cryostat of the
-superconducting solenoid\cite{magnets-ref}.}
+superconducting solenoid~\cite{magnets-ref}.}
 \label{cut-view}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -172,9 +173,9 @@ the downstream light guides are bent to curve around the downstream face of the 
 The upstream light guides are 1~m long and the downstream light guides are 1.6~m long. These 
 long light guides are necessary to position the field-sensitive PMTs in reduced regions of the
 solenoid fringe field. However, even in these positions, the PMTs reside in inhomogeneous fields 
-at levels as large as 1~kG at the location of the upstream PMTs and as large as 400~G at the 
-location of the downstream PMTs. In order to allow for operation of the PMTs in this environment, 
-they are mounted within multi-layer magnetic shields (see Section~\ref{sec:shields}).
+as large as 1~kG at the location of the upstream PMTs and as large as 400~G at the location of the
+downstream PMTs. In order to allow for operation of the PMTs in this environment, they are mounted
+within multi-layer magnetic shields (see Section~\ref{sec:shields}).
 
 The main requirement for the CTOF system is that its counters provide excellent time resolution 
 for particle identification. Given the nominal time resolution of the counters, the momentum 
@@ -205,9 +206,9 @@ momentum for tracks to reach the CTOF system is roughly 300~MeV.}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Figure~\ref{pth-kin} shows a plot of the momentum versus polar angle for pions in CLAS12 from beam data
-of an 10.6~GeV electron beam incident upon a hydrogen target. Here it is seen that the typical track momenta
-accepted by CTOF are in the range below 2~GeV.
+Figure~\ref{pth-kin} shows a plot of the momentum versus polar angle for charged pions in CLAS12
+from beam data of a 10.6~GeV electron beam incident upon a liquid-hydrogen target. Here it is seen
+that the typical track momenta accepted by CTOF are in the range below 2~GeV.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -300,7 +301,7 @@ time resolution. The value of 65~ps is our requirement for the intrinsic time re
 represents the overall effective resolution that sets the 3$\sigma$ specifications for particle
 identification.
 
-In this section the design details of the scintillation bars, the light guides, the magnetic shields and the
+In this section the design details of the scintillation bars, the light guides, the magnetic shields, and the
 electronics are discussed. Each component of the system design was considered within the context of the
 design constraints both for the CTOF and the neighboring detector subsystems, and optimized against
 cost and performance considerations. 
@@ -336,9 +337,9 @@ Figure~\ref{scint-geom} shows a schematic side view and end view of a ``generic'
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.4cm}
+\vspace{4.8cm}
 \begin{picture}(50,50) 
-\put(45,190)
+\put(40,185)
 {\hbox{\includegraphics[angle=-90,width=0.70\textwidth,natwidth=610,natheight=642]{pics/scint-geom.pdf}}}
 \end{picture} 
 \caption{Schematic views of a generic CTOF scintillation bar showing a) a side view and b) 
@@ -416,26 +417,25 @@ Refractive index              & 1.58 \\ \hline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The bulk attenuation length of this material is stated by its manufacturer to be $\sim$4~m. However,
-the practical attenuation length of the actual prepared bars is smaller than this bulk value as the path
-length of photons from the charged particle intersection point to the ends of the bar is increased due
-to the finite geometry of the bar. This practical attenuation length should be longer than the bar to
-ensure sufficient photon statistics at the ends of the bar. For the CTOF scintillation bars, the
-manufacturing specification was that the bar attenuation length be longer than 280~cm. Measurements
-of the practical attenuation length of the CTOF counters, which include the light guides, see
-Section~\ref{sec:attlen} for details, are reduced from this value by a factor of two.
+the practical attenuation length of the prepared bars is smaller than this bulk value as the path length
+of photons from the charged particle intersection point to the ends of the bar is increased due to the
+finite geometry of the bar. This practical attenuation length should be longer than the bar to ensure
+sufficient photon statistics at the ends of the bar. For the CTOF scintillation bars, the manufacturing
+specification was that the bar attenuation length be longer than 280~cm. Measurements of the practical
+attenuation length of the CTOF counters, which include the light guides, see Section~\ref{sec:attlen}
+for details, are reduced from this value by a factor of two.
 
-The scintillation bars were required to be clear and free of visual inclusions, air bubbles,
-and cracks. The bars were machined with diamond-tooled end mills on two faces and were cast
-against glass on the other two faces. Upon delivery the bars were subjected to additional
-hand polishing to further improve the surface quality in some cases. The scintillation bar
-polishing generally followed the guidelines recommended by Eljen~\cite{eljen-guide}. Using a
-low-speed random orbital sander, the surface was sanded using a continuous stream of water
-across the sanding head with sandpaper grits from 400 to 6000 in roughly 10 even steps. The 
-bar was washed after each step with soapy water and then rinsed with water. Using a soft 
-cotton cloth, a final hand polishing was then performed using alumina powders with particle 
-sizes of 1~$\mu$m, 0.3~$\mu$m, and 0.05~$\mu$m, again with washing and rinsing between
-each step. Care was taken in all phases of handling of the bars to wear gloves and to avoid contact 
-with alcohols or other solvents.
+The scintillation bars were required to be clear and free of visual inclusions, air bubbles, and cracks.
+The bars were machined with diamond-tooled end mills on two faces and were cast against glass on
+the other two faces. Upon delivery the bars were subjected to additional hand polishing to further
+improve the surface quality in some cases. The scintillation bar polishing generally followed the
+guidelines recommended by Eljen~\cite{eljen-guide}. Using a low-speed random orbital sander, the
+surface was sanded using a continuous stream of water across the sanding head with sandpaper grits
+from 400 to 6000 in 10 even steps. The bar was washed after each step with soapy water and then
+rinsed with water. Using a soft cotton cloth, a final hand polishing was then performed using alumina
+powders with particle sizes of 1~$\mu$m, 0.3~$\mu$m, and 0.05~$\mu$m, again with washing and
+rinsing between each step. Care was taken in all phases of handling of the bars to wear gloves and to
+avoid contact with alcohols or other solvents.
 
 \subsection{Light Guides}
 
@@ -483,13 +483,13 @@ couples to the PMT.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The design of the upstream light guide is shown in Fig.~\ref{ctof-lg}(a). The sides of the acrylic
-cylinder were milled to a length of $\sim$25~cm along the light guide to form a wedge up to a radius
+cylinder were milled to a length of 25~cm along the light guide to form a wedge up to a radius
 of 37~cm in the $(r,\phi)$-plane in order to fit into the $\Delta \phi=7.5^\circ$ sector. The straight
-cylindrical section is $\sim$75~cm long to position the PMT in the solenoid fringe field at a position
+cylindrical section is 75~cm long to position the PMT in the solenoid fringe field at a position
 where the maximum field is at the level of $\sim$1~kG. The design of the downstream light guide is
-shown in Fig.~\ref{ctof-lg}(b). The sides of the cylinder were milled to a length of $\sim$30~cm along
+shown in Fig.~\ref{ctof-lg}(b). The sides of the cylinder were milled to a length of 30~cm along
 the light guide to form a wedge up to a radius of 40~cm in the $(r,\phi)$ plane. The light guide bends
-through an angle of 135$^\circ$ over a length of $\sim$45~cm around the downstream face of the
+through an angle of 135$^\circ$ over a length of 45~cm around the downstream face of the
 solenoid magnet to position the downstream PMTs in a lower maximum value of the solenoid fringe field
 of about 400~G. 
  
@@ -503,15 +503,15 @@ function of its material properties, such as refractive index, bulk attenuation 
 surface reflectivity. Additionally, the light guide transmittance depends on its geometrical
 shape and size. In particular, the ratio of the light guide entrance area $S_i$ to its exit
 area $S_o$ is of critical importance since Liouville's phase space theorem dictates that the 
-transmittance $T$ of the guiding system is constrained to be $\le \frac{S_o}{S_i}$. Thus, in
+transmittance $T$ of the guiding system is constrained to be $\le S_o/S_i$. Thus, in
 order to avoid this fundamental limitation, the PMT photocathode area $S_{pc}$ must be larger
 than the area of the end of the scintillation bar. For the CTOF system we required that $S_{pc}$
-be larger than $\sim$12.5~cm$^2$. For the R2083 PMT chosen for CTOF (see
-Section~\ref{PMTs}) with a 5.08-cm diameter and a 16.6~cm$^2$ photocathode area, the cross
-section of the focusing light guide almost doubles from the scintillation bar end to the PMT. As
-was shown through both Monte Carlo calculations and light transmission measurements
-\cite{barbosa06}, this feature roughly doubles the transmittance of the focusing light guides
-compared to guides of a constant cross section.
+be larger than 12.5~cm$^2$. For the R2083 PMT chosen for CTOF (see Section~\ref{PMTs})
+with a 5.08-cm diameter and a 16.6~cm$^2$ photocathode area, the cross section of the focusing
+light guide almost doubles from the scintillation bar end to the PMT. As was shown through both
+Monte Carlo calculations and light transmission measurements~\cite{barbosa06}, this feature
+roughly doubles the transmittance of the focusing light guides compared to guides of a constant
+cross section.
 
 The production light guides for CTOF were therefore based on a focusing design where 
 the cross section of the light guide matches to the wedge-shaped face of the scintillation bar 
@@ -538,10 +538,10 @@ make design choices.
 The photons generated in the scintillation bar were modeled assuming that minimum-ionizing
 particles were perpendicularly incident upon the middle of the CTOF counter. The parameters
 used in our calculations were $R$=0.9, $IR$=0.99, and a bulk attenuation length of
-$\lambda_p$=6.65~m in the acrylic. It was assumed that the wrapping was a radiant mirror film
-VM-2002 from 3M~\cite{3m-ref}. The simulation studies for the final production designs of the
-CTOF light guides yielded average transmittances of $\sim$60\% for the upstream light guides
-and $\sim$50\% for the downstream light guides.
+$\lambda_p$=6.65~m in the acrylic. It was assumed that the wrapping was a radiant mirror film.
+The simulation studies for the final production designs of the CTOF light guides yielded average
+transmittances of $\sim$60\% for the upstream light guides and $\sim$50\% for the
+downstream light guides.
 
 Each aspect of the light guide design was studied in detail to optimize its light transport 
 efficiency. In the remainder of this section, some comments on different aspects of the 
@@ -567,15 +567,14 @@ from being employed.
 \vskip 0.5cm
 
 \item Extent of Wedge-Shaped Region: The transition of the light guides from the wedge-shaped 
-end at the scintillation bar to the cylindrical cross section was optimized through Monte 
-Carlo calculations. The design required that the light guides at the upstream and downstream 
-ends of the detectors fully fit within a 7.5$^\circ$ opening from the target. The Monte Carlo 
-calculations showed that the light transport efficiency is strongly dependent on the length 
-of the cylindrical portion of the light guide. The longer the cylindrical portion of the light 
-guide compared to the wedge-shaped region, the better the transmittance. For the upstream 
-(downstream) light guides the wedge-shaped portion has an extent of $\sim$25~cm ($\sim$30~cm), 
-which could not be made shorter and still have the light guide fit within its 7.5$^\circ$ 
-azimuthal restriction.
+end at the scintillation bar to the cylindrical cross section was optimized through Monte Carlo
+calculations. The design required that the light guides at the upstream and downstream ends of
+the detectors fully fit within a 7.5$^\circ$ opening from the target. The Monte Carlo calculations
+showed that the light transport efficiency is strongly dependent on the length of the cylindrical
+portion of the light guide. The longer the cylindrical portion of the light guide compared to the
+wedge-shaped region, the better the transmittance. For the upstream (downstream) light guides
+the wedge-shaped portion has an extent of 25~cm (30~cm), which could not be made shorter and
+still have the light guide fit within its 7.5$^\circ$ azimuthal restriction.
 
 \vskip 0.5cm
 
@@ -586,12 +585,12 @@ PMT entry window needs to be taken into account since photons may escape through
 of the glass window, and according to our Monte Carlo simulations, the PMT window effect may
 reduce the number of primary photoelectrons up to 30\%. In order to compensate for this effect,
 the light guides transition from a constant cylindrical cross section to a focusing cone over their last 
-$\sim$5~cm. The focusing cone slightly increases the photon angle at the exit. Simultaneously, 
-the cone shrinks the luminous area and provides for slightly better targeting at the photocathode. 
-Since most of the photons at the end of the cylindrical part of the light guide propagate within 
-the total internal reflection angle, the focusing cone directs a substantial fraction of the 
-escaping photons to the spherical photocathode. The cone length and opening angle were optimized 
-for the best possible transmittance. 
+5~cm. The focusing cone slightly increases the photon angle at the exit. Simultaneously, the cone
+shrinks the luminous area and provides for slightly better targeting at the photocathode. Since most
+of the photons at the end of the cylindrical part of the light guide propagate within the total internal
+reflection angle, the focusing cone directs a substantial fraction of the escaping photons to the
+spherical photocathode. The cone length and opening angle were optimized for the best possible
+transmittance. 
 
 \end{itemize}
 
@@ -634,13 +633,13 @@ and (7) digital voltmeter.}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-From these data for our upstream (downstream) light guides, we measured an average
-transmittance of $\sim$60\% ($\sim$50\%). Studies of our test setup indicated that our 
-transmittance measurements were accurate to the few percent level. These values can be 
-compared directly to measurements of the photoelectron statistics using cosmic ray data for a
-configuration with a CTOF scintillation bar coupled directly to a PMT to that where the
-scintillation bar is coupled to a production CTOF light guide. Our findings showed that the ratio
-of photoelectrons was in agreement with our bench measurements and our Monte Carlo
+From these data for our upstream and downstream light guides, we measured an average
+transmittance in full accord with our transport calculations (see Section~\ref{lg-mc}). Studies of
+our test setup indicated that our transmittance measurements were accurate to the few percent
+level. These values can be compared directly to measurements of the photoelectron statistics using
+cosmic ray data for a configuration with a CTOF scintillation bar coupled directly to a PMT to that
+where the scintillation bar is coupled to a production CTOF light guide. Our findings showed that
+the ratio of photoelectrons was in agreement with our bench measurements and our Monte Carlo
 calculation results discussed in Section~\ref{lg-mc}.
 
 From the transmittance data the practical attenuation length (see Section~\ref{scint-mat} 
@@ -655,10 +654,10 @@ for a discussion of practical vs. bulk attenuation lengths) of the light guide c
 which assumes an exponential attenuation of light along the light guide. The average practical 
 attenuation length measured for the CTOF acrylic light guides was $\sim$2.3~m.
 
-In order to characterize the bulk attenuation length of our chosen acrylic material, the
-same measurement system shown in Fig.~\ref{trans-setup} was employed. For these measurements 
+In order to characterize the bulk attenuation length of our chosen acrylic material, the same
+measurement system shown in Fig.~\ref{trans-setup} was employed. For these measurements 
 the Teflon film light diffuser was removed. For this case the sensor area of the photometer 
-($\sim$1~cm$^2$) was large enough to intercept the full transmitted beam. The average bulk 
+(1~cm$^2$) was large enough to intercept the full transmitted beam. The average bulk
 attenuation length of the acrylic material was measured to be 6.65$\pm$0.5~m.
 
 \subsection{Photomultiplier Tube/Voltage Divider Assemblies} 
@@ -746,10 +745,9 @@ field-resistant devices. If such PMTs could be used (and were competitive in ter
 compared to conventional PMTs), then the CTOF could have been designed without the need for long
 light guides or possibly without any light guides whatsoever. One solution considered employed 
 the Burle 85011 micro-channel plate (MCP) PMT~\cite{burle-ref}. These devices have immunity to
-magnetic fields up to $\sim$2~T, while providing very good time resolution~\cite{kichimi}.
-However, the drawback of MCP PMTs is that their quantum efficiency (QE) is only about half that
-of conventional PMTs, which would have an adverse affect on the counter time resolution that has
-the behavior,
+magnetic fields up to 2~T, while providing very good time resolution~\cite{kichimi}. However, the
+drawback of MCP PMTs is that their quantum efficiency (QE) is only about half that of conventional
+PMTs, which would have an adverse affect on the counter time resolution that has the behavior,
 
 \begin{equation}
 \sigma_{PMT} \propto \frac{1}{\sqrt{N_{ph} \cdot QE}},
@@ -939,13 +937,13 @@ inner layers.
 
 Ferromagnetic materials for shielding applications are of two types, those with high saturation
 and those with high permeability. In very high fields, materials with high saturation should
-be used. This is the reason why we chose 1008 steel for our outermost shield layer. In
-moderate fields, ferromagnetics with high permeability can be used. The alloy HiPerm-49
-(48\% Ni, 0.5\% Mg, 0.35\% Si, 0.02\% C, balance Fe) was chosen, which has a saturation flux 
-density of $\sim$1.5~T after hydrogen annealing. Thin cylinders made of high permeability 
-materials are useful in small magnetic fields. For the inner shield layer Co-NETIC was selected, 
-an alloy that contains 80.6\% Ni and 14\% Fe, which saturates at about 0.8~T and is in the same 
-family metallurgically as $\mu$-metal.
+be used. This is the reason why we chose 1008 steel for our outermost shield layer. In moderate
+fields, ferromagnetics with high permeability can be used. The alloy HiPerm-49 (48\% Ni, 0.5\%
+Mg, 0.35\% Si, 0.02\% C, balance Fe) was chosen, which has a saturation flux density of 1.5~T
+after hydrogen annealing. Thin cylinders made of high permeability materials are useful in small
+magnetic fields. For the inner shield layer Co-NETIC was selected, an alloy that contains 80.6\%
+Ni and 14\% Fe, which saturates at about 0.8~T and is in the same family metallurgically as
+$\mu$-metal.
 
 Using coaxial cylinders meets the design requirement that the magnetic shields have openings 
 for the coaxial light guides. Therefore, axial field lines can easily penetrate inside the 
@@ -989,8 +987,8 @@ and polyimide overcoat) was wound on an aluminum mandrel that was positioned bet
 inner and middle ferromagnetic layers. The compensation coil actually consists of two wholly 
 independent coils, the first $z_1$ of 90 turns placed about the middle of the PMT accelerating 
 structure and the second $z_2$ of 60 turns placed about the PMT photocathode. A gap between the 
-coils was included to achieve a more uniform field along the PMT axis. 2-D FEA calculations 
-showed that coil currents on the order of 0.5~A to 1~A were sufficient to reduce the inner 
+coils was included to achieve a more uniform field along the PMT axis. 2-D finite element analysis (FEA)
+calculations  showed that coil currents on the order of 0.5~A to 1~A were sufficient to reduce the inner 
 remnant field of 0.5~G to 1~G down to the level of 0.2~G for optimal PMT response. For these 
 currents, the coils generate a field of 5~G to 10~G at the surface of the mandrel.
 
@@ -1029,18 +1027,18 @@ Although the Wiener MPOD system can provide up to 5~A per channel, our field tes
 to 1~A were appropriate for shield operation. In this current regime the coil system remains
 at room temperature. During operation of the coil power supply in Hall~B, a temperature
 interlock circuit protects the coils from overheating by shutting off the MPOD power supply if
-the shield temperature at the mandrel location goes about 100~$^{\circ}$F.
+the shield temperature at the mandrel location rises above 100~$^{\circ}$F.
 
 \subsubsection{Model Calculations}
 
 In order to optimize the performance of the CTOF magnetic shields, studies were performed 
-using both 2-D and 3-D finite element analysis (FEA) calculations. Ultimately, full 
-consistency between these approaches was achieved~\cite{cn2015-003}. The 2-D FEA calculations 
-were carried out using the Poisson Superfish program~\cite{poisson}. In this model the shield 
-was placed into an axial field with a gradient along the shield axis to approximate a realistic 
-CLAS12 field scenario. For this calculation the maximal external field was $\sim$1300~G at the 
-side of the shield nearest the solenoid and $\sim$700~G at the opposite end. The magnetic field 
-in the accelerating area of the PMT was below 1~G without the compensation coils energized. 
+using both 2-D and 3-D FEA calculations. Ultimately, full consistency between these approaches
+was achieved~\cite{cn2015-003}. The 2-D FEA calculations were carried out using the Poisson
+Superfish program~\cite{poisson}. In this model the shield was placed into an axial field with a
+gradient along the shield axis to approximate a realistic CLAS12 field scenario. For this calculation
+the maximal external field was 1300~G at the side of the shield nearest the solenoid and 700~G
+at the opposite end. The magnetic field in the accelerating area of the PMT was below 1~G without
+the compensation coils energized. 
 
 Full 3-D calculations with the OPERA-TOSCA suite~\cite{opera} for the CTOF shields in a 1~kG
 uniform external field titled at 40$^\circ$ with respect to the shield axis yielded the results 
@@ -1136,15 +1134,16 @@ bench tests showed that the scintillator/light guide joints made up with BC-600 
 than using Dymax 3-20262 UV curing glue~\cite{dymax}.
 
 After gluing of the counters was completed, they were placed onto storage carts in the CTOF assembly
-area. These carts each held eight counters laid horizontally in a vertical stack with $\sim$20~cm
-between each counter. The next step in the counter preparation was to wrap the counters, first in a highly
-reflective layer and then in a fully opaque layer. The highly reflective wrapping layer for the CTOF counters
-employs the Enhanced Specular Reflector VM-2002~\cite{vm2002-ref}. This layer serves to increase the
-light transmittance along the counter from the charged particle ionization path to the PMTs. The outer
-opaque layer for the CTOF counters employs Tedlar, a polyvinyl fluoride film from DuPont~\cite{dupont-ref}.
+area. These carts each held eight counters laid horizontally in a vertical stack with roughly 20~cm
+between each counter. The next step in the counter preparation was to wrap the counters, first in a 
+reflective layer and then in a fully opaque layer. The reflective wrapping layer for the CTOF counters
+employs the Enhanced Specular Reflector VM-2002~\cite{vm2002-ref}. This layer serves to increase
+the light transmittance along the counter from the charged particle ionization path to the PMTs. The
+outer opaque layer for the CTOF counters employs Tedlar, a polyvinyl fluoride film from DuPont
+\cite{dupont-ref}.
 
 The nominal gap between the bare faces of neighboring CTOF scintillation bars in the barrel is
-800~$\mu$m. In order to have sufficient space to form the barrel at its nominal radial position allowing
+800~$\mu$m. In order to have sufficient space to form the barrel at its nominal radial position, allowing
 for assembly and component tolerances, it was imperative that the wrapping be completed so that there
 were no wrinkles or excess material on the inter-counter sides of the bars and that all tape seals were
 applied only to the inner and outer radial surfaces of the bars. To aid in this required the VM-2002 sheets
@@ -1154,13 +1153,13 @@ scintillation bars.
 The scheme for wrapping the Tedlar layer on the scintillation bars was based on cold-forming 
 Tedlar templates using tooling designed to give precise Tedlar forms that could be mated to the 
 counters and sealed with electrical tape along smooth, wrinkle-free seams.  This region covers the 
-scintillation bar and $\sim$30.5~cm of the transitions from the tapered to the cylindrical portions
-of the upstream and downstream light guides. The remaining portions of the Tedlar wrapping that 
-span from the template region of the counters to the PMTs was easily covered using rectangular 
-pieces of Tedlar wrapped around the cylindrical light guides. The full details on the counter 
-wrapping for the scintillation bars is included in Ref.~\cite{ctof-wrapping}. The final inter-counter
-gap after wrapping is $\sim$450~$\mu$m on average (= 800~$\mu$m - 2$\times$50.8~$\mu$m
-(Tedlar outer-wrap) - 4$\times$66.0~$\mu$m (VM-2002 inner-wrap including overlap of sheets)).
+scintillation bar and 30~cm of the transition from the tapered to the cylindrical portions of the
+upstream and downstream light guides. The remaining portions of the Tedlar wrapping that span
+from the template region of the counters to the PMTs was easily covered using rectangular pieces
+of Tedlar wrapped around the cylindrical light guides. The full details on the counter wrapping for
+the scintillation bars is included in Ref.~\cite{ctof-wrapping}. The final nominal inter-counter gap
+after wrapping is $\sim$434~$\mu$m (800~$\mu$m - 2$\times$50.8~$\mu$m (Tedlar
+outer-wrap) - 4$\times$66.0~$\mu$m (VM-2002 inner-wrap including overlap of sheets)).
 
 After the counter wrapping was completed, the counters were secured in their positions on the
 storage carts and the magnetic shields were installed. Due to the weight of the shield assemblies,
@@ -1173,12 +1172,12 @@ magnetic shields are included in Ref.~\cite{ctof-sh-assy}.
 
 With the inner and intermediate shield layers installed on each light guide, the final step of the
 counter assembly was to install the R2083 PMTs with their voltage dividers into the shield volume.
-Note that the azimuthal orientation of the PMT within the Co-NETIC shield layer is set to
+Note that the azimuthal orientation of the PMTs within the Co-NETIC shield layer is set to
 minimize $\vec{v} \times \vec{B}$ effects from the remnant solenoid field within the shield volume
 that might otherwise result in loss of photoelectrons from the acceleration chain. The coupling contact
 between the PMT and the end of the light guide was made up with BC-630 silicone optical grease
-\cite{bc-630} ($n$=1.465) to match the indices of refraction of the two materials. The PMT was held
-against the light guide using pressure from a spring clamp at the end of the voltage divider (see
+\cite{bc-630} ($n$=1.465) to match the indices of refraction of the two materials. The PMTs are
+held against the light guide using pressure from a spring clamp at the end of the voltage divider (see
 Fig.~\ref{bshield-3d}).
 
 The storage carts served as the basis for the CTOF cosmic ray test stand and extensive 
@@ -1203,7 +1202,7 @@ upstream of its nominal operating position). The counter and strongback were sup
 installation arm pivoted to the counter installation position as shown in Fig.~\ref{install}(a).
 
 Step \#2: The cart was moved upstream to insert the counter into the solenoid volume. The
-installation arm was then rotated to the desired azimuthal location after the cart hit the rail stop
+installation arm was then rotated to the desired azimuthal location after the cart hit the rail
 positioned along the solenoid rails at the proper installation position as shown in Fig.~\ref{install}(b).
 
 Step \#3: The counter installation arm was then pivoted until the CTOF scintillation bar was horizontal
@@ -1241,7 +1240,7 @@ position on the solenoid and installing counters alternating back and forth betw
 angle and low-pitch angle designs. The final counter for insertion (with the low-pitch angle design) was
 machined to have a rectangular cross section of 24~cm width to fit into the last gap in the barrel.
 
-After installation of each counter, survey measurements were taken to ensure counter positioning 
+After installation of the counters, survey measurements were taken to ensure counter positioning 
 was within tolerances and any adjustments necessary were made. The final survey of the counters
 after installation and adjustments showed that all counters were positioned radially to within
 $\pm$3~mm of their design position. The signal and high voltage cables were attached after all
@@ -1284,8 +1283,8 @@ The constant-fraction shaping delay for each discriminator channel is determined
 external 50~$\Omega$ coaxial cable connected to the channel shaping circuit. To select the optimal
 shaping delay the counter time resolutions were studied for delay cables from 4~ns to 16~ns for
 each counter relative to a fixed reference time. Figure~\ref{cfd-study}  shows the results of these
-studies for a set of 8 counters. The resolution was seen to improve until a minimum is reached and
-then remains relatively flat. The final delay setting employed 10~ns delay cables (with the internal
+studies for a set of 8 counters. The time resolution was seen to improve until a minimum is reached and
+then remains relatively flat. Based on these results we chose to use 10~ns delay cables (with the internal
 module offset delay omitted) with the time-walk compensation network setup according to the
 manufacturer's recommendations.
 
@@ -1302,13 +1301,13 @@ manufacturer's recommendations.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 During operation of the CTOF system in Hall~B, the CTOF discriminator thresholds were set to
-$\sim$30~mV. After setting the PMT gains, this corresponded to a threshold of $\sim$1~MeV of
-deposited energy. This threshold is well below the 6~MeV energy deposited by a perpendicularly
-incident minimum-ionizing particle.
+30~mV. After setting the PMT gains, this corresponded to a threshold of 1~MeV of deposited
+energy. This threshold is well below the 6~MeV energy deposited by a perpendicularly incident
+minimum-ionizing particle.
 
 The output of the discriminator goes to a CAEN VX1290N 16-channel 25~ps LSB (least significant bit)
 VME TDC~\cite{tdc-manual}. These multi-hit pipeline TDCs were chosen in order to allow for readout
-capability in the operating luminosity of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$. The TDC readout window
+capability at the operating luminosity of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$. The TDC readout window
 was set to 250~ns to ensure the full dynamic range of the data was safely in time with the trigger. The
 key performance specifications of these units are given in Table~\ref{tdcadc-specs}.
 
@@ -1321,13 +1320,13 @@ D(t) = \int \frac{t}{LSB},
 
 \noindent
 where $D$ is the output data, $t$ is the input time, and $LSB$ is the intrinsic bin size. The compensation
-tables for the CAEN V1190A and VX1290A TDCs are stored as tables in the unit SRAM memory. Initial
-tables are measured at the factory and come preloaded on the modules. These tables are reasonably
-accurate when operating the module using its internal 40~MHz/25~ns period clock. However, in CLAS12,
-the modules are strobed with an external clock of a slightly larger frequency of 41.67~MHz. This difference
-in the frequency has a non-negligible affect on the INL tables. For our purposes we use a high frequency
-pulser to populate the full dynamic range of the TDC within the CLAS12 readout clock. The measured INL
-tables that were derived from this calibration were written into the TDC memory to replace the factory-loaded
+tables for the CAEN VX1290A TDCs are stored as tables in the unit SRAM memory. Initial tables are
+measured at the factory and come preloaded on the modules. These tables are reasonably accurate when
+operating the module using its internal 40~MHz/25~ns period clock. However, in CLAS12, the modules are
+strobed with an external clock of a slightly larger frequency of 41.67~MHz. This difference in the
+frequency has a non-negligible affect on the INL tables. For our purposes we use a high frequency pulser
+to populate the full dynamic range of the TDC within the CLAS12 readout clock. The measured INL tables
+that were derived from this calibration were written into the TDC memory to replace the factory-loaded
 values. Details on the procedure and the residual non-linearity affects are given in Ref.~\cite{inl-tables}.
 
 The PMT signals are also connected to the FADCs for the pulse charge measurement. The readout
@@ -1350,7 +1349,7 @@ Section~\ref{cluster}. The key performance specifications of these units are giv
 \put(65,-90)
 {\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642]{pics/ctof-fadc.pdf}}}
 \end{picture} 
-\caption{Average pedestal-subtracted FADC spectrum from a CTOF counter readout from beam data
+\caption{Average pedestal-subtracted FADC spectrum from a CTOF counter read out from beam data
 with a 10.6~GeV electron beam incident upon a 5~cm liquid-hydrogen target with the JLab FADC250
 module.}
 \label{fadc-pulse}
@@ -1395,9 +1394,8 @@ The PMTs for the CTOF counters typically operate at about 2000~V with negative p
 dark current drawn by the PMTs on the assembled counters was $<20$~nA. The system is powered by a
 single CAEN 527~\cite{caen-527} high voltage mainframe outfitted with negative polarity 24-channel
 A1535N modules that can supply up to 3.5~kV per channel with a maximum current of 3~mA. The power
-supply has a voltage ripple specification of $<$20~mV peak-to-peak (typical). Each channel consumes less
-than 1~W during counter operation. The typical supply currents per channel are 300~$\mu$A to
-500~$\mu$A.
+supply has a voltage ripple specification of $<$20~mV peak-to-peak. Each channel consumes less than
+1~W during counter operation. The typical supply currents per channel are 300~$\mu$A to 500~$\mu$A.
 
 The mainframe is controlled remotely through the Hall~B Slow Controls system. A graphical user interface
 using EPICS~\cite{epics} running on a UNIX system communicates with the mainframe via Ethernet. The
@@ -1408,24 +1406,25 @@ The high voltage cables for each PMT are fire-retardant RG-59 coaxial cables tha
 divider to a local disconnect high voltage (HV) distribution box located under the solenoid. There are two
 48-channel HV distribution boxes for the CTOF. The output of each HV distribution box is a pair of 
 35-ft long multi-conductor cables, each containing 24-channels, with a Radiall connector to mate with the
-CAEN HV A1535N board input connector. Each multi-conductor high voltage cable contains 30 conductors
-wrapped in Tefzel insulation, an outer wire shield, and a PVC insulation wrap. Each conductor rated at 5-kV.
+CAEN HV A1535N board input connector. Each multi-conductor high voltage cable contains individual
+conductors wrapped in Tefzel insulation, an outer wire shield, and a PVC insulation wrap. Each conductor
+rated at 5~kV.
 
 \section{CTOF Performance}
 \label{sec:performance}
 
 This section highlights the performance of the CTOF system both from the cosmic ray test stand
-and in Hall~B during the first beam runs for CLAS12. The test stand time performance is important
-to understand to ensure that the performance specifications as detailed in Table~\ref{spec-table} are
+and in Hall~B during the first beam runs for CLAS12 in 2018. These results are important to
+understand to ensure that the performance specifications as detailed in Table~\ref{spec-table} are
 met as the CTOF system is primarily responsible for the limits of the charged particle identification
-separation for CLAS12 in the central direction. Full details on the bench test performance results for
-the CTOF counters are provided in Ref.~\cite{dsc-cn2016-009}.
+separation for CLAS12 in the central direction. 
 
 In this section the essential performance results from the bench testing studies in terms of the counter
-photoelectron statistics and benchmark time calibrations are presented. Then the nominal algorithms
-are presented to provide details on how the in-beam CTOF time was calibrated and the resolution
-quantified. Finally, this section provides the current status of the particle identification capabilities
-of the CTOF system in relation to the design specifications.
+photoelectron statistics and benchmark time calibrations are presented. Full details on the bench test
+performance results for the CTOF counters are provided in Ref.~\cite{dsc-cn2016-009}. After reviewing
+the key bench testing results, the nominal algorithms are presented to provide details on how the in-beam
+CTOF time was calibrated and the time resolution quantified. Finally, this section provides the current
+status of the particle identification capabilities of the CTOF system in relation to the design specifications.
 
 \subsection{Bench Measurements}
 \label{sec:bench}
@@ -1441,11 +1440,11 @@ MSO-X 3034A 350~MHz (4 GSa/s) oscilloscope and averaged over 1000 pulses. The mi
 signals were analyzed by connecting the scope to a PMT mounted on one of the CTOF counters. For the single
 photoelectron signal, we took data using just a bare PMT on the bench using the same HV setting. For both
 measurements the oscilloscope threshold was adjusted appropriately. For the minimum-ionizing peak analysis
-the threshold had to be set high enough ($>$200~mV) to eliminate tracks that did not pass perpendicularly
-through the bar. For the single photoelectron peak the threshold had to be set low enough (1~mV) to pick out
-the single-electron emission noise pulses from the photocathode that are the dominant source of the PMT
+the threshold had to be set high enough ($>$200~mV) to eliminate tracks that did not pass fully through the
+bar. For the single photoelectron peak the threshold had to be set low enough (1~mV) to pick out the
+single-electron emission noise pulses from the photocathode that are the dominant source of the PMT
 intrinsic dark current. This measurement scheme yielded 200 photoelectrons per MeV of deposited energy
-at a gain of 1$\times$10$^6$, which corresponds to $\sim$0.03~nC/MeV.
+at a gain of 1$\times$10$^6$, which corresponds to 0.03~nC/MeV.
 
 \subsubsection{Bench Time Resolution Performance}
 \label{sec-bench}
@@ -1481,9 +1480,9 @@ measured residual $t_r$ should nominally be 0. However, due to the smearing of t
 $t_t$, $t_m$, and $t_b$ due to the finite time resolution of the measurements, the residual time
 $t_r$ will also be smeared. While we still expect the mean of $t_r$ to be zero, the width of the
 $t_r$ distribution can be used to determine the average time resolution of each counter in the triplet.
-(For the outer counters in the triplet, the definition of the time residual must be slightly modified to
+For the outer counters in the triplet, the definition of the time residual must be slightly modified to
 account for the small path length difference between the reference counter and the other two
-counters.)
+counters.
 
 The average time resolution of each counter is computed from the variance $\delta t_r$ in the
 measured time residual $t_r$. Assuming the average time resolution for each PMT in the triplet
@@ -1506,10 +1505,10 @@ Figure~\ref{res-avg} shows the average time resolution measured for each CTOF co
 triplet counter configuration. This analysis included a minimum ADC cut to remove events with low
 photon statistics that did not pass through the full width of the counter and also a coordinate cut of
 $\pm$10~cm about the center of the scintillation bar. Here the average counter time resolution is
-roughly 70~ps. The resolution on average is slightly worse for the top and bottom counters of each
-cart due to the uncertainties in the path length corrections discussed in Section~\ref{sec-bench}.
-Given the discussion of the time resolution measurement limitations in Section~\ref{res-limitations},
-these results are quite encouraging compared to the design specifications.
+70~ps. The resolution on average is slightly worse for the top and bottom counters of each cart due
+to the uncertainties in the path length corrections discussed in Section~\ref{sec-bench}. Given the
+discussion of the time resolution measurement limitations in Section~\ref{res-limitations}, these
+results are quite encouraging compared to the design specifications.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -1545,7 +1544,7 @@ track coordinate, ADC geometric mean, and track angle.}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Fig~\ref{res-ctof2} shows the average resolution for a representative CTOF counter as a function
+Figure~\ref{res-ctof2} shows the average resolution for a representative CTOF counter as a function
 of hit coordinate, ADC value, and track incidence angle. The resolution is optimal about the center of
 the counter and gets worse near the ends where one PMT receives its minimum light due to attenuation
 length effects. The resolution is reasonably flat over the ADC range corresponding to minimum-ionizing
@@ -1558,7 +1557,7 @@ increased photo-statistics.
 \begin{figure}[htbp]
 \vspace{3.1cm}
 \begin{picture}(50,50) 
-\put(12,-200)
+\put(12,-205)
 {\hbox{\includegraphics[width=1.1\textwidth,natwidth=610,natheight=642]{pics/res-dep.pdf}}}
 \end{picture} 
 \caption{Dependence of the counter time resolution for a representative counter on a). the
@@ -1579,11 +1578,11 @@ the time-walk corrections. These results are detailed in a separate report~\cite
 
 There are two factors involved in the bench test studies that limited the accuracy of the measured
 CTOF counter time resolutions. The first arose from the extremely low data rate for each triplet 
-of counters ($< 0.1$~Hz) due to the narrow counter width and the counter-to-counter separation of 
-$\sim$21.6~cm. Data runs of $\sim$1~week were necessary to collect sufficient statistics to 
-determine the counter resolutions. Due to the inherent calibration drifts over this time that 
-could not be tracked precisely, the measured counter time resolutions were smeared. The second
-factor arose due to the counter-to-counter alignment within the carts was only at the level of
+of counters ($< 0.1$~Hz) due to the narrow counter width and the average counter-to-counter
+separation of $\sim$21.6~cm. Data runs of $\sim$1~week were necessary to collect sufficient
+statistics to determine the counter resolutions. Due to the inherent calibration drifts over this time
+that  could not be tracked precisely, the measured counter time resolutions were smeared. The
+second factor arose due to the counter-to-counter alignment within the carts was only at the level of
 $\pm$0.64~cm. This scale was set by the fairly crude design of the carts and the counter supports,
 which were mainly intended for counter assembly, wrapping, and storage. With counter-to-counter
 separations of $\sim$21.6~cm, the inaccuracies of the alignment were such that the residual centroids
@@ -1593,15 +1592,15 @@ contributions of both factors smeared the measured time resolutions by up to 20\
 \subsection{CTOF Beam-Data Calibrations}
 
 In the nominal data taking mode for CLAS12, whenever the CTOF is involved in an event that triggers
-the spectrometer, the ADCs and TDCs for all PMTs with a signal above the discriminator threshold
-are recorded. For the FADCs, the charge of the pulse is integrated over the extent of the pulse
-region and the pedestal is subtracted event by event as discussed in Section~\ref{sec-elec}. For the
-TDCs the time recorded is relative to the trigger. To determine the flight time of the charged track
-from the target to the CTOF, the TDC time must be compared to the time of the accelerator radio
-frequency (RF) pulse relative to the trigger. The RF signal from the accelerator has a period an integer
-multiple of 2.004~ns. The RF bunch length itself corresponds to a few picoseconds. Although the timing
-signals are very accurate (with a resolution of $<$20~ps), the determination of which beam bunch
-produced a given interaction must be determined by the experiment.
+the readout, the ADCs and TDCs for all PMTs with a signal above the discriminator threshold are
+recorded. For the FADCs, the charge of the pulse is integrated over the extent of the pulse region
+and the pedestal is subtracted event by event as discussed in Section~\ref{sec-elec}. For the TDCs
+the time recorded is relative to the trigger. To determine the flight time of the charged track from
+the target to the CTOF, the TDC time must be compared to the time of the accelerator radio frequency
+(RF) pulse relative to the trigger. The RF signal from the accelerator has a period an integer multiple of
+2.004~ns. The RF bunch length itself corresponds to a few picoseconds. Although the timing signals are
+very accurate (with a resolution of $<$20~ps), the determination of which beam bunch produced a given
+interaction must be determined by the experiment.
 
 The full energy and time calibration of the each of the CTOF counters involves a number of discrete
 steps. The calibration constants for each run are stored in the CLAS12 calibration database. The
@@ -1631,10 +1630,10 @@ counter. See Section~\ref{sec:veff}.
 charged particle from the target to the CTOF counter and to be able to reconstruct exclusive events
 when hits are associated with multiple CTOF counters, the relative time offsets of each counter relative
 to all of the other counters in the system need to be determined. This is done in two steps. The first
-step is to align each track to the RF time, a step that amounts to a precision time alignment in bins of
-the TDC LSB. The second step is a coarse alignment of each counter time in bins of the RF period
-$T_{RF}$. See Section~\ref{sec-talign}. During this step the effective counter time resolutions are
-extracted (see Section~\ref{tres-beam}).
+step is to align each counter hit time to the RF time, a step that amounts to a precision time alignment in
+bins of the TDC LSB. The second step is a coarse alignment of each counter hit time in bins of the RF
+period $T_{RF}$. See Section~\ref{sec-talign}. During this step the effective counter time resolutions
+are extracted (see Section~\ref{tres-beam}).
 
 \item TDC calibration: After calibrating the integral non-linearities of each TDC channel in the system
 (see Section~\ref{sec-elec}), the TDC channel to time calibration is completed using beam events. See
@@ -1652,7 +1651,7 @@ so that the minimum-ionizing particle peak appears in the same ADC channel for a
 easier data monitoring during online and offline analysis.
 
 The CTOF PMT high voltage settings were determined using calibration runs employing minimum-ionizing
-tracks. These minimum-ionizing tracks deposit roughly 6~MeV as they pass through the 3~cm thick CTOF
+tracks. These minimum-ionizing tracks deposit roughly 6~MeV as they pass through the 3-cm thick CTOF
 scintillation bars, as $dE/\rho dx = 1.956$~MeV/g/cm$^2$ for minimum-ionizing particles. The initial high
 voltage settings were based on runs using cosmic rays with the solenoid at zero field with the readout
 based on a trigger that required tracks to cross the barrel to select tracks approximately perpendicular to
@@ -1660,11 +1659,10 @@ the face of the CTOF counters. During production data taking, these calibrations
 minimum-ionizing tracks from beam data coming from the target. In this case the charge information is
 scaled by a scintillation bar path length correction given by $t/P$, where $t$ is the counter thickness and
 $P$ is the path-length of the track in the counter as determined by extrapolation of the track beyond the
-central tracker to the location of the CTOF counter.
-
-The energy deposited in the scintillation bars follows a Landau distribution that is recorded by the ADCs,
-which show Landau peaks above pedestal. Minimum-ionizing tracks that do not pass through the full counter
-thickness give rise to a background beneath the Landau peak.
+central tracker to the location of the CTOF counter. The energy deposited in the scintillation bars is
+recorded by the ADCs, which show Landau peaks above pedestal. Minimum-ionizing tracks that do not pass
+through the full counter thickness and more heavily ionizing tracks give rise to a background beneath the
+Landau peak.
 
 For the HV calibrations, to avoid issues with the attenuation of light for tracks that pass near the ends of
 the bars and with unbalanced light entering the upstream and downstream PMTs, we combine the
@@ -1802,18 +1800,18 @@ bars, as more collected light translates into better time resolution, it is impo
 attenuation length to be as long as possible. The general design goal was that the attenuation length 
 be on the order of the overall length of the bars.
 
-For EJ-200, this bulk attenuation length is reported by the manufacturer as 380~cm
-\cite{scint-spec}. The practical attenuation length of the scintillation material turns out to 
-be about half the bulk attenuation length. The coupling of the CTOF scintillation bars to the 
-acrylic light guides reduces the measured counter practical attenuation length by another 
-$\sim$35\% to 50\% (corresponding to $e^{-L_{LG}/\lambda_A}$, where $L_{LG}$ is the light guide 
-length and $\lambda_A$=2.3~m (see Section~\ref{optical-tests})).
+For EJ-200, this bulk attenuation length is reported by the manufacturer as 380~cm~\cite{scint-spec}.
+The practical attenuation length of the scintillation material turns out to be about half the bulk
+attenuation length. The coupling of the CTOF scintillation bars to the acrylic light guides reduces the
+measured counter practical attenuation length by another 35\% to 50\% (corresponding to
+$e^{-L_{LG}/\lambda_A}$, where $L_{LG}$ is the light guide length and $\lambda_A$=2.3~m (see
+Section~\ref{optical-tests})).
 
 The measured ADC values for each PMT can be written in terms of the attenuation length as:
 
 \begin{equation}
 \label{al-adc}
-ADC_{U,D} = A_0^{U,D} e^{\pm x/\lambda},
+ADC_{U,D} = A_0^{U,D} e^{-d/\lambda},
 \end{equation}
 
 \noindent
@@ -1821,11 +1819,11 @@ where $A_0^U$ and $A_0^D$ are constants and $\lambda$ is the counter attenuation
 
 \begin{equation}
 \label{linear}
-\log \left( \frac{(ADC-PED)_U}{(ADC-PED)_D} \right ) = C + \frac{2x}{\lambda}, 
+\log \left( \frac{(ADC-PED)_U}{(ADC-PED)_D} \right ) = C + \frac{2d}{\lambda}, 
 \end{equation}
 
 \noindent
-and a linear fit of the ADC log ratio vs. coordinate $x$ is used to extract the effective counter attenuation
+and a linear fit of the ADC log ratio vs. coordinate $d$ is used to extract the effective counter attenuation
 length. Here the hit coordinate along the counter is determined using the measured TDC hit times $t_U$
 and $t_D$ from:
 
@@ -1857,11 +1855,10 @@ CTOF counters. The average attenuation length is found to be 140~cm in accord wi
 \label{sec:veff}
 
 The effective velocity of light in each counter employs a calculation based on the comparison of the
-reconstructed coordinate information along the scintillation bar from the time information with
-the track hit coordinate determined from the extrapolation of the track beyond the Central Vertex
-Tracker~\cite{svt-ref,mm-ref} to the location of the CTOF counters. Figure~\ref{veff} shows the
-measured effective velocity for each CTOF counter using data with a 10.6-GeV electron beam incident
-upon a liquid-hydrogen target. 
+reconstructed coordinate information along the scintillation bar from the time information with the
+track hit coordinate determined from the extrapolation of the track beyond the central tracker to
+the location of the CTOF counters. Figure~\ref{veff} shows the measured effective velocity for
+each CTOF counter using data with a 10.6-GeV electron beam incident upon a liquid-hydrogen target. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -1946,7 +1943,7 @@ t_{P2P} = t_{vert}^1 - t_{ST}^2,
 where,
 
 \begin{equation}
-t_{vert}^i = \overline{t}_{hit}^i - \frac{L}{\beta c}.
+t_{vert}^i = \overline{t}_{hit}^i - \frac{L}{\beta c},~~~~~~ i = 1,2.
 \end{equation}
 
 \noindent
@@ -1978,7 +1975,7 @@ time a single conversion constant of CONV = 23.45~ps/channel is employed for the
 \begin{figure}[htbp]
 \vspace{4.2cm}
 \begin{picture}(50,50) 
-\put(90,-60)
+\put(85,-60)
 {\hbox{\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/tdc-plot.pdf}}}
 \end{picture} 
 \caption{(Color Online) Distribution of $t_{res}'$ (ns) vs. TDC channel * CONV (ps) for one
@@ -2038,7 +2035,7 @@ from beam data for a 10.6~GeV electron beam incident upon a liquid-hydrogen targ
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Note that as discussed in the Section~\ref{sec:design} introduction, the final CTOF counter resolutions
+Note that as discussed in the Section~\ref{sec:design} introduction, the CTOF counter time resolutions
 shown in Fig.~\ref{eff-tres} are listed as effective time resolutions as they include additional smearing
 effects beyond that included in the resolutions discussed and shown in Section~\ref{sec-bench} determined
 from the cosmic ray test stand. The contributions from all non-CTOF sources to the effective resolution
@@ -2082,7 +2079,7 @@ bar as determined by the central tracker. The average CTOF hit time is then give
 \end{equation}
 
 The output from the FADCs is also used as part of the CLAS12 level-1 trigger. Signals in CTOF above
-the FADC threshold of $\sim$1~MeV are used to set a trigger bit that defines charged hadrons in the
+the FADC threshold of 1~MeV are used to set a trigger bit that defines charged hadrons in the
 CLAS12 Central Detector. Signals from the CTOF system are also used to provide an effective charged
 particle veto for the detection of neutrals in the neutron detector radially outward from CTOF. While high
 resolution time measurements are the primary role of the CTOF system for charged particle identification
@@ -2096,31 +2093,33 @@ Particle trajectories from the target passing through the CTOF barrel can pass t
 counters. To determine the full deposited energy in a given counter layer, a clusterization algorithm is used
 to match the CTOF counter hits with the track trajectory at the location of the CTOF barrel. Neighboring
 CTOF hits that match to the trajectory are assigned to be part of a cluster. The assigned cluster energy is
-then the sum of the deposited energy in counters matched to the track. The relevant path length through
-the CTOF barrel is then determined from ray tracing of the central tracker in the solenoid field. This path
-length through the CTOF is then used to compute $dE/dx$. The hit time associated with the cluster is
-taken as the earliest time from the matched hits.
+the sum of the deposited energy in counters matched to the track. The relevant path length through
+the CTOF barrel is determined from ray tracing of the central tracker in the solenoid field. This path
+length through the CTOF is used to compute $dE/dx$. The hit time associated with the cluster in a given
+layer is currently based on assigning the hit time as the counter hit with the closest geometrical match to the
+charged track extrapolated from the central tracker to the CTOF system. The algorithm will be further
+studied and optimized in the future.
   
 \subsection{Beam Performance}  
 \label{sec:beam}
 
 The first in-beam characterization of the CTOF system took place during the Dec. 2017 to Feb. 2018
-CLAS12 Engineering Run and subsequently during the first physics production running period that
-took place from Mar. - May 2018. During these periods the performance of the CTOF system was
-tested at different beam energies (2.2, 6.4, 10.6~GeV), different solenoid magnetic field strengths
-and polarities (from 0 field to full field), and over a range of beam-target luminosities up to twice the
-nominal planned CLAS12 luminosity of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$. In this section the
-measured scaler rates and PMT currents as a function of beam current are presented, as well as the
-reconstruction results and particle identification capabilities relative to the system specifications
-based on the current system reconstructions and calibrations.
+CLAS12 Engineering Run and subsequently during the first physics production running periods that
+took place from Mar. - May 2018 and Sep. - Dec. 2018. During these periods the performance of the
+CTOF system was tested at different beam energies (2.2, 6.4, 10.6~GeV), different solenoid magnetic
+field strengths and polarities (from 0 field to full field), and over a range of beam-target luminosities
+up to twice the nominal planned CLAS12 luminosity of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$. In this
+section the measured scaler rates and PMT currents as a function of beam current are presented, as
+well as the reconstruction results and particle identification capabilities relative to the system
+specifications based on the current system reconstructions and calibrations.
 
 \subsubsection{CTOF Rates and PMT Currents}
 
-The count rates during beam operations can be viewed during data taking using the scalers
-associated with the FADCs. The threshold applied for these scalers are set at $\sim$1~MeV. During
-a beam current scan with a 10.6~GeV electron beam incident upon the 5~cm long liquid-hydrogen target
-from 5~nA to 75~nA (corresponding to the nominal design luminosity for CLAS12
-$1 \times 10^{35}$~cm$^{-2}$s$^{-1}$) the average count rate in the different CTOF counters was
+The count rates during beam operations can be viewed during data taking using the scalers associated
+with the FADCs. The threshold applied for these scalers are set at 1~MeV. During a beam current scan
+with a 10.6~GeV electron beam incident upon the 5~cm long liquid-hydrogen target from 5~nA to 75~nA
+(corresponding to the nominal design luminosity for CLAS12 $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$) and
+the solenoid at its full nominal current, the average count rate in the different CTOF counters was
 studied. The results shown in Fig.~\ref{ctof-rates} display a reasonably linear behavior. The rates in
 the downstream PMTs are roughly a factor of two larger than in the upstream PMTs. Part of this
 difference is due to the fact that the events seen by the CTOF are predominantly focused at the
@@ -2139,8 +2138,9 @@ guides that is seen by the downstream PMTs and not by the upstream PMTs.
 {\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{pics/rates-ctof.pdf}}}
 \end{picture} 
 \caption{(Color Online) CTOF counter rates (kHz) for 10.6~GeV electrons on a liquid-hydrogen target
-as a function of beam current (nA) with a 1~MeV energy threshold. The nominal operating luminosity
-of CLAS12 of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$ corresponds to a beam current of $\sim$75~nA.}
+with the solenoid at its full nominal current as a function of beam current (nA) with a 1~MeV energy
+threshold. The nominal operating luminosity of CLAS12 of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$
+corresponds to a beam current of $\sim$75~nA.}
 \label{ctof-rates}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2162,28 +2162,28 @@ the CTOF counter rates as a function of track momentum for different particle sp
 \caption{(Color Online) CLAS12 Monte Carlo calculations for 11 GeV electrons on a liquid-hydrogen
 target at a luminosity of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$ showing CTOF rates per counter as
 a function of particle momentum for leptons (black), photons (blue), charged pions (brown), protons
-(gold), and neutrons (red).}
+(gold), and neutrons (red). The simulations were done with the solenoid at its full nominal current.}
 \label{ctof-mc}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 From our GEANT-4 Monte Carlo studies, the response of the CTOF with an 11~GeV electron beam
 incident upon a 5~cm liquid-hydrogen target has been studied in detail~\cite{ctof-cn2018}. These
-studies have been carried out at a beam current of 75~nA corresponding to the full nominal design
-luminosity of CLAS12 of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$. The results of these studies showed
-that for each CTOF counter the incident rate of all charged and neutral particles is 4~MHz, of which
-$\sim$97\% is photons and leptons. With a 1~MeV energy deposition threshold in the CTOF counters
-to match that applied to the hardware, the rate of charged and neutral particles is
-$\sim$130~kHz/counter, half of which is leptons and photons and half is hadronic. Including attenuation
-effects along the scintillation bar and light guides, the measured counter rates at the PMTs are
+studies have been carried out with the solenoid at its full nominal current and a beam current of 75~nA
+corresponding to the full nominal design luminosity of CLAS12 of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$.
+The results of these studies showed that for each CTOF counter the incident rate of all charged and
+neutral particles is 4~MHz, of which $\sim$97\% is photons and leptons. With a 1~MeV energy deposition
+threshold in the CTOF counters to match that applied to the hardware, the rate of charged and neutral
+particles is $\sim$130~kHz/counter, half of which is leptons and photons and half is hadronic. Including
+attenuation effects along the scintillation bar and light guides, the measured counter rates at the PMTs are
 $\sim$110~kHz (upstream) and $\sim$120~kHz (downstream). The predictions for the upstream PMTs
 match well what is seen in direct measurements during beam operations. However, the predictions for
 the downstream PMTs are a factor of three lower than the direct measurements. This is likely due to
 the fact that in the simulation the CTOF light guides are not active materials in which events that
 generate Cherenkov light in the light guides (see remarks above) are modeled or included.
 
-In actuality it is not the event rate that defines the luminosity limit of the CTOF system, but the actual
-PMT anode currents, which are limited to $\sim$200~$\mu$A (see Section~\ref{divider}). The average
+In actuality it is not the event rate that defines the luminosity limit of the CTOF system, but the PMT
+anode currents, which are limited to $\sim$200~$\mu$A (see Section~\ref{divider}). The average
 PMT current is directly proportional to the average number of photoelectrons $\langle N_{phe} \rangle$
 created at the photocathode by the scintillation light and the average incident charged particle event rate
 $\langle R \rangle$. This current can be expressed as:
@@ -2197,7 +2197,7 @@ where $Q_e = 1.6 \times 10^{-19}$ C/e is the electron charge, $G$ is the PMT gai
 per bar. Using the expected photoelectron statistics discussed in Section~\ref{sec:npe} at a PMT gain
 of 1$\times$10$^6$, the simulations estimated PMT currents of 30-40~$\mu$A at full nominal CLAS12
 luminosity. Direct measurements in beam of the PMT anode currents were made as a function of beam
-current as shown in Fig.~\ref{pmt-currents}. The measurements are about three times larger than
+current as shown in Fig.~\ref{pmt-currents}. The measurements are about two times larger than
 expectations. The discrepancy is most likely due to the fact that the sampled PMT (randomly chosen on
 the upstream end of CTOF) was operating at a gain above 1$\times$10$^6$.
 
@@ -2209,7 +2209,8 @@ the upstream end of CTOF) was operating at a gain above 1$\times$10$^6$.
 {\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{pics/full-ctof.pdf}}}
 \end{picture} 
 \caption{Measurements of the PMT anode current ($\mu$A) for a representative upstream CTOF PMT
-as a function of beam current (nA) with a 10.6~GeV electron incident upon a 5~cm liquid-hydrogen target.}
+as a function of beam current (nA) with a 10.6~GeV electron incident upon a 5~cm liquid-hydrogen target
+and the solenoid at full field.}
 \label{pmt-currents}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2259,29 +2260,31 @@ superconducting solenoid, the light is delivered to the PMTs through long light 
 PMTs to be positioned in reduced field regions where a multi-layer shield system reduces the
 magnet fringe fields to the level of 0.2~G at the PMT photocathode. The scintillation bars are read
 out at each end. The detector was designed to have an intrinsic time resolution of about 65~ps and
-this level of performance has been achieved. With these time resolutions the CTOF system can
-separate $\pi/K$ to 0.58~GeV, $K/p$ to 0.93~GeV, and $\pi/p$ to 1.14~GeV with 3$\sigma$
-separation with up to an order of magnitude difference in the relative yields.  The specifications are
-sufficient to meet the particle identification requirements in the forward direction for the full CLAS12
-physics program. The performance of the CTOF system was verified in extensive bench studies in our
-cosmic ray test stands as well as after installation in the first beam runs with the CLAS12 system in
-the period from Dec. 2017 to May 2018. 
+an effective time resolution of 80~ps, and this level of performance has been achieved. With these
+time resolutions the CTOF system can separate $\pi/K$ to 0.58~GeV, $K/p$ to 0.93~GeV, and
+$\pi/p$ to 1.14~GeV with 3$\sigma$ separation with up to an order of magnitude difference in the
+relative yields.  The specifications are sufficient to meet the particle identification requirements in
+the central direction for the full CLAS12 physics program. The performance of the CTOF system was
+verified in extensive bench studies in our cosmic ray test stands, as well as after installation in the
+first beam runs with the CLAS12 system in the period from Dec. 2017 to May 2018 and from Sep. to
+Dec. 2018. 
 
 \ack
 
 We benefited greatly from useful discussions with and assistance from Sergey Boyarinov, Chris
 Cuevas, Ralf Gothe, Chris Keith, Eugene Pasyuk, Cole Smith, Elton Smith, Maurizio Ungaro, and
 Veronique Ziegler. We thank the Hall~B technical crew for their efforts during counter installation.
-Finally, we thank the summer students that contributed to component assembly and testing for this
-system. This work was supported in part by DOE Contract DE-AC05-84ER40150.
+Finally, we thank the students and post-docs, as well as the JLab Detector Support Group that
+contributed to component assembly and testing for this system. This work was supported in part
+by DOE Contract DE-AC05-84ER40150.
 
 \begin{thebibliography}{99}
 
-\bibitem{clas-nim}
-B.A. Mecking {\it et al.}, Nucl. Inst. and Meth. {\bf A503}, 513 (2003).
-
 \bibitem{overview-ref}
 V.D. Burkert {\it et al.}, {\it ``The CLAS12 Spectrometer at Jefferson Laboratory''}, see this issue.
+
+\bibitem{clas-nim}
+B.A. Mecking {\it et al.}, Nucl. Inst. and Meth. {\bf A503}, 513 (2003).
 
 \bibitem{cnd-ref}
 J. Bettane {\it et al.}, {\it ``The CLAS12 Central Neutron Detector''}, see this issue.
@@ -2330,9 +2333,6 @@ https://misportal.jlab.org/ul/Physics/Hall-B/clas/viewFile.cfm/2006-011.pdf?docu
 G. Mutchler and Y. Sharabian, {\it ``Wrapping Tests and Monte Carlo Evaluation of a New Highly 
 Segmented CLAS Start Counter''}, CLAS-NOTE 2005-008.\\
 https://misportal.jlab.org/ul/Physics/Hall-B/clas/viewFile.cfm/2005-008.pdf?documentId=167
-
-\bibitem{3m-ref}
-3M Optical Systems, http://www.apioptics.com/pdf/ESR.pdf
 
 \bibitem{ilt-ref}
 International Light Technologies, http://www.intl-lighttech.com/
@@ -2431,7 +2431,7 @@ http://www.caen.it/servlet/checkCaenManualFile?Id=12125
 E. Jastremski, https://www.jlab.org/Hall-B/ftof/manuals/caen-inl-notes.pdf
 
 \bibitem{fadc-manual}
-https://www.jlab.org/Hall-B/ftof/manuals/FADC250UsersManual.pdf
+JLab 250~MHz FADC Manual, https://www.jlab.org/Hall-B/ftof/manuals/FADC250UsersManual.pdf
   
 \bibitem{caen-527}
 CAEN 527 HVPS, see https://www.caen.it/sections/power-supply/
@@ -2459,12 +2459,6 @@ https://www.jlab.org/Hall-B/ctof/notes/ctof\_calib.pdf
 Eljen Technologies scintillator specifications,\\
 http://www.eljentechnology.com/images/technical\_library/Physical\_Constants\_Plastic.pdf
 
-\bibitem{svt-ref}
-M.A. Antonioli {\it et al.}, {\it ``The CLAS12 Silicon Vertex Tracker''}, see this issue.
-
-\bibitem{mm-ref}
-F. Bossu {\it et al.}, {\it ``The CLAS12 Micromegas Tracker''}, see this issue.
-  
 \bibitem{ctof-recon}
 D.S. Carman, {\it Central Time-of-Flight Reconstruction for CLAS12},\\
 https://www.jlab.org/Hall-B/ctof/notes/ctof-recon.pdf
