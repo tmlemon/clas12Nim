@@ -9,7 +9,7 @@ value of the magnetic field traversed.  These were determined by
 \item alignment procedures
 \item time to distance calibration
 \item magnetic field mapping and modelling
-\end{itemize}.  We discuss all three after a brief overview of the track reconstruction.
+\end{itemize}.  
 
 \subsection{Track Reconstruction Overview}
 
@@ -62,10 +62,12 @@ The full track reconstruction procedure will be discussed in a separate paper.
 \label{align}
 
 \hskip 0.15in
-As described in section~\ref{survey}, each of the 18 drift chambers was 
-surveyed after installation into CLAS.  The survey procedures had sub-millimeter
-accuracy, but we wanted an independent check of the chambers' positions.  For 
-this reason, the survey values for the chamber geometry were viewed only as 
+Each of the 18 drift chambers was 
+surveyed with millimeter to sub-millimeter
+accuracy, but we wanted an independent check of the chambers' positions and 
+we needed to know the absolute position to better than 0.1 mm in order to 
+achieve momentum resolutions on the order of 0.3\%.  For 
+these reasons, the survey values for the chamber geometry were viewed only as 
 a reasonable starting point to be refined by comparisons with data.
 
 To adjust the chamber geometry parameters to improve the tracking resolution,
@@ -73,8 +75,8 @@ To adjust the chamber geometry parameters to improve the tracking resolution,
 Tracks were found and fitted with our standard track reconstruction package.
 For various bins in the angle of the track, we measured the shifts of the
 track residual means as a function of layer number. 
-Before alignment, the data showed significant displacements of the means
-from zero.  
+Before correcting for mis-alignment in software, the data showed significant 
+displacements of the means from zero, as large as 2 mm.  
 
 Our procedure for aligment was straight-forward.  On a first pass through
 the data we used misaligment parameters (shifts and rotations of individual
@@ -82,8 +84,8 @@ chambers) set to zero.  On subsequent passes, we deliberately misaligned
 a particular chamber by a particular offset in position or angle and 
 produced a second set of plots of residual mean vs. layer.  We ran 18 passes
 through the data, adjusting all combinations of region (1, 2, 3) and
-of offset type $\delta$x, $\delta$ y, $\delta$ z, $\theta$ x, 
-$\theta$ y, $\theta$ z, one at
+of offset type $\delta$x, $\delta$y, $\delta$z, $\theta$x, 
+$\theta$y, $\theta$z, one at
 a time.  The offsets in $x, y$ and $z$ were 2 mm, and the angular rotations
 were 0.2 degrees.  These 2mm shifts and 0.2 degree rotations were
 called ``unit distortions''.
@@ -108,7 +110,7 @@ R3 from 25-36).
 \vspace{5cm}
 \begin{picture}(50,50)
 \put(-10,10)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-before.png}}}
+{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-before.png}}}
 \end{picture}
 \caption{\small{A plot of the fit residual mean versus layer, before alignment.}}
 \label{resids-vs-layer-before}
@@ -123,7 +125,7 @@ aligned the chambers.
 \vspace{5cm}
 \begin{picture}(50,50)
 \put(-10,10)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-after.png}}}
+{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-after.png}}}
 \end{picture}
 \caption{\small{A plot of the fit residual mean versus layer, after alignment.}}
 \label{resids-vs-layer-after}
@@ -177,7 +179,7 @@ for a R2 enplate which agreed well with our direct surveys.
 \vspace{5cm}
 \begin{picture}(50,50)
 \put(-10,10)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/sketch-of-distortions.png}}}
+{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/sketch-of-distortions.png}}}
 \end{picture}
 \caption{\small{An engineering analysis showing the endplate bowing due to wire tension.}}
 \label{sketch-of-distortions}
@@ -209,22 +211,11 @@ flight time of the particle from the interaction vertex to the wire, $t_{prop}$
 is the signal propagation time along the wire, and $t_{walk}$ is a time-walk 
 correction made for short drift times due to different ionizations for slow 
 and fast particles.  
-
 With a trigger based on detecting an electron in the CLAS12 detector, the event start time is 
 given by the time-of-flight counter time for the primary scattered electron 
 corrected for the calculated flight time of this electron from the beam-target vertex.
 
-Through the use of an appropriate function, the drift time determines the 
-distance-of-closest-approach (DOCA) of the charged-particle track to the sense 
-wire.  However, there remains an ambiguity regarding which side of the sense 
-wire the track passed by.  This ``left-right ambiguity'' is resolved within 
-the individual superlayers by comparing the $\chi^2$ values for the track fit 
-for all different combinations of drift-distance signs.  After selection of 
-the full set of drift-distance signs within each superlayer, a final fit 
-results in improved track parameters.
-
-\subsubsection{T0 Determination}
-As indicated in eq(\ref{drift}), the fixed-time delays (mainly fixed cable delays) 
+As indicated in equation~\ref{drift}), the fixed-time delays (mainly fixed cable delays) 
 for each wire must be known in order to determine the drift times.   To determine
 this t$_0$ value, we produced a histogram of the following quantity for all hits
 used on tracks:$ ( t_{tdc} - t_{start} - t_{flight} - t_{prop} - t_{walk} )$.
@@ -249,7 +240,7 @@ complicate this analysis. For example, the DOCAs obtained from the fitted
 tracks are biased quantities since an initial estimate of the drift-velocity 
 function is used in the track determination.  Moreover, the drift cells are 
 not circular, as the analysis implicitly assumes, but are hexagonal, leading 
-to angle-dependent corrections.   The R2 chambers, in particular, are in a 
+to angle-dependent corrections.   Also, the R2 chambers are in a 
 region of high and spatially varying magnetic field.  Finally, the different 
 ionization densities of the tracks from particles with different velocities 
 leads to substantial time-walk corrections for tracks near the wire.  Each of 
@@ -307,25 +298,23 @@ distance indexed by time for use by the track reconstruction code.
 We use a 4th order polynomial to model the distance to time relationship.
 
 \begin{equation}
-t(x) =  a x^4 + b x^3 + c x^2 + {1 \over v_0} x,
+t(x) =  a x^4 + b x^3 + c x^2 + d x,
 \end{equation}
 
 
 By the use of simple calculus we convert the parameters a, b, c and d to equivalent parameters which have
-a physically intuitive meaning (see next section).
+a physically intuitive meaning.
 
 \subsection{Physical Constraints on the Drift Velocity Function}
 
 Inspection of  Fig.~\ref{garfield}a reveals that for tracks near the outer
 edge of the cell, the first arriving ions follow the electric-field line from 
-the field wire to the sense wire, independent of track entrance angle.  Their 
-corresponding drift time is referred to as $t_{max}$ and is one of the fundamental
-parameters of the function. 
+the field wire to the sense wire, independent of track entrance angle.  The
+corresponding drift time is referred to as $t_{max}$ and occurs when DOCA is at its maximum value.
 
 A second constraint is that the velocity near the wire is the ``saturated drift
 velocity'' for our gas mixture, 90$\%$ argon - 10$\%$ CO$_2$.  We call this parameter $V_0$.
-
-Another constraint is imposed by the fact that there is a definite point in the
+A third constraint is imposed by the fact that there is a definite point in the
 cell at which the electric field is a minimum.  This implies that this is the point
 of minimum velocity and is thus an inflection point.  This occurs at a value
 $r = (x/x_{max}) = 0.615$ and the drift velocity at this point is termed $V_{mid}$.
@@ -384,7 +373,7 @@ Using this constraint, we can solve for $a_{\alpha}$ in terms of the known coeff
 yielding the following:
 \begin{equation}
 \label{aalphaequation}
-a_{\alpha} = {{t_{max} - b dmax_{alpha}^3 - c dmax_{alpha}^2 - d dmax_{alpha}}\over{dmax_{alpha}^4}}
+a_{\alpha} = {{t_{max} - b ~dmax_{\alpha}^3 - c ~dmax_{\alpha}^2 - d ~dmax_{\alpha}}\over{dmax_{\alpha}^4}}
 \end{equation}
 
 Using this formula for $a_{\alpha}$ we can derive the time as a function of distance and local
@@ -393,10 +382,10 @@ which shows the time as function of distance for 5 different angles between $0^{
 $30^{\circ}$, equally spaced in $\cos \left(30^\circ-\alpha\right)$.  Note two things:
 \begin{enumerate}
 \item for each angle, $\alpha$, the time is $t_{max}$ at $dmax_{\alpha}$, and
-\item the distances for a given time are linear in $\cos \left(30^\circ-\alpha\right)$.
+\item the distances for a given time vary with angle, $\alpha$, as $\cos \left(30^\circ-\alpha\right)$.
 \end{enumerate}
 
-Thus, the general functional form for time as a function of distance and local angle, $\alpha$
+The general functional form for time as a function of distance and local angle, $\alpha$
 is given by
 \begin{equation}
 \label{tfunctionofxandlocalangle}
@@ -490,20 +479,6 @@ time from the sense wire and the distance-of-closest-approach (TRKDOCA) to the
 sense wire.  A best fit to the dependence of time on TRKDOCA determines the
 values of the parameters of the drift-velocity function. 
 
-However, several factors 
-complicate this analysis. For example, the TRKDOCAs obtained from the fitted 
-tracks are biased quantities since an initial estimate of the drift-velocity 
-function is used in the track determination.  Moreover, the drift cells and
-the resulting isochrones are 
-not circular, as the analysis implicitly assumes, but are hexagonal, leading 
-to angle-dependent corrections.   The R2 chambers, in particular, are in a 
-region of high and spatially varying magnetic field which affects the distance
-versus time function.  Finally, the different 
-ionization densities of the tracks from particles with different velocities 
-leads to substantial time-walk corrections.  Each of 
-these points is briefly discussed in the next section.
-For these reasons, our fitting is an iterative process in which we calibrate,
-re-do track fitting, re-calibrate, etc.  We usually converge in 1 or 2 iterations.
 
 \section{Using the Distance to Time Function in Reconstruction}
 The track reconstruction program needs to know the expected distance as a function
@@ -513,9 +488,9 @@ function in order to fill a table of X (real number) as a function of the time i
 
 \subsection{Filling the Time to Distance and Distance to Time Tables}
 We calibrate the distance to time function by fitting the drift time versus
-TRKDOCA at a particular local angle, alpha.  We write the independent parameters,
-$V_0, V_{mid} amd T_{max}$ to the data-base.  At the beginning of a reconstruction program,
-an $inversion program$ is run to numerical invert the function to produce a table
+TRKDOCA at a particular local angle, $\alpha$.  We write the independent parameters,
+$V_0, ~V_{mid}$ and $T_{max}$ to the data-base.  At the beginning of a reconstruction program,
+an {\bf inversion program} is run to numerical invert the function to produce a table
 of distance indexed by time.
 
 

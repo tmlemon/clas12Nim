@@ -1,6 +1,5 @@
 \section{Drift Chamber Tracking System Performance}
 
-\section{System Performance}
 
 \subsection{Chamber Lifetime}
 \label{choper}
@@ -38,46 +37,20 @@ There are three categories of inefficiency: the ``intrinsic layer inefficiency''
 the ``background-related inefficiency'' and the ``malfunction related 
 inefficiency''.
 
-The chamber efficiency can be described in terms of either the ``layer efficiency'' 
-or the ``tracking efficiency''.  The layer efficiency is the probability that a
+The layer efficiency is the probability that a
 good hit is recorded in a wire layer through which the track has passed, based on 
 the evidence from all other layers in the superlayer.  This is called the 
 ``excluded-layer method''.  The layer efficiency is a measure of the intrinsic drift 
 cell efficiency for the particular choice of gas mixture, high-voltage set point, and 
 discriminator level.  
 
+In the section on commissioning we discussed our `high voltage plateau'.
 We took data at successively higher values of high voltage and measured the
 layer efficiency at each point.  We set the high-voltage operating points such that
 the average layer efficiency is $>$98$\%$. 
 Fig.~\ref{hit-effcy-vs-doca} reveals that a large contribution to the 2$\%$ inefficiency comes 
 from tracks that pass close to the sense wire.  These tracks give rise to signals 
 that have low pulse height and long duration, and thus may escape detection.
-
-
-\vfil
-\eject
-%%%%%%%%%%%%%%%%%%%%%%%%%%Figure: Hit Efficiency vs. Doca %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{5cm}
-\begin{picture}(50,50)
-\put(-10,10)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/example-figure.png}}}
-\end{picture}
-\caption{\small{Place holder for a figure}}
-\label{hit-effcy-vs-doca}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%% Figure : Sector Efficiency vs. Luminosity %%%%%%%%%%%%%%%
-\begin{figure}[htpb]
-\vspace{6.3cm} 
-\special{psfile=trk_eff.eps hscale=65 vscale=60 hoffset=-40 voffset=-185}
-\caption{\small{Tracking efficiency plotted as a function of the R1 hit
-occupancy ($\%$) for recoil protons from elastic scattering where the
-corresponding electron track has been reconstructed.}}
-\label{trkeff}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Track Resolution}
 
@@ -216,14 +189,14 @@ wire connection schemes and on-board preamplifiers.
 
 \noindent
 - The toroidal shape of the magnet and the desire to have measurements before, within, 
-and after the high-field region, resulted in the design and fabrication of nested 
-multi-layer drift chambers that have cylindrical profiles.
+and after the high-field region, resulted in the design of a `rod and ball' mounting scheme
+which minimized dead areas and facilitates maintenance.
 
 \noindent
 - The fabrication of chambers that support large static wire tensions, but have thin 
-endplates necessitated three novel support systems: the ``six chambers as a unit'' 
-design of R1, the spring mounting to the cryostat of R2, and the thin outer carbon 
-shell of R3.
+endplates necessitated three endplate designs: aluminum stiffened with steel bars (R1),
+G10 stiffened with steel bars (R2) and Carbon fiber plates filled with foam and reinforce
+with Carbon-fiber posts and close-out plate (R3). 
 
 \noindent
 -The need for precise tracking in a system with non-saturated drift velocity 
@@ -232,9 +205,9 @@ and low-gain operation) resulted in a semi-automated calibration and monitoring 
 package.
 
 \vskip 10pt
-The CLAS drift chamber system has been in routine operation since January 1998. 
+The CLAS drift chamber system has been in routine operation since Spring, 2017. 
 The system has reached its design goals of 
-high-luminosity operation (1$\times$10$^{34}$~cm$^{-2}$s$^{-1}$) in a 
+high-luminosity operation (1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$) in a 
 high-flux electromagnetic reaction environment, with very good track 
 reconstruction efficiency over a large range of angles and 
 magnetic fields.  The single-wire efficiency is greater than $98\%$ and the

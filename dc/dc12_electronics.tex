@@ -51,7 +51,10 @@ and low voltage.}}
 The circuit boards that interface the sense 
 wires to the pre-amplifiers (STBs) were  
 designed for a 96-channel format.  This format requires seven 
-circuit boards for each superlayer (672 signals).   Fig.~\ref{trace-routing-schematic} shows the traces 
+circuit boards for each superlayer (672 signals).   
+
+
+Fig.~\ref{trace-routing-schematic} shows the traces 
 routed from the signal pick-up at the plated-through holes to the signal 
 inputs of the pre-amplifier.
 
@@ -90,13 +93,11 @@ CP01 pre-amplifier.
 \put(10,-10)
 {\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=64]{img/CP01-description.jpg}}}
 \end{picture}
-\caption{\small{Description of the CP01 Design and Specs}}
+\caption{\small{The CP01 pre-amplifier design and specifications.}}
 \label{CP01-description}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
- 
 Each group of 16 pre-amplifier output signals were routed to a 17 pair connector.
 Sixteen of the pairs are used as differential signal paths which are routed from the STB's to the 
 drift chamber readout boards (DCRB) over individual cables consisting of 16 twisted pairs.  
@@ -106,8 +107,10 @@ twisted-pair readout because of its immunity to electronic noise.
 The cables are round-jacketed with a 
 0.025-in pitch so that the overall cable dimension is smaller than the 
 standard 17-pair cable.  
+ 
 
-\subsubsection{Mounting Electronics Boards}
+
+\subsubsection{Mounting Electronics Boards onto the Chamber}
 
 The signal side of each chamber was tiled with multi-layered printed circuit 
 boards called Signal Translation Boards (STBs).  These boards were designed 
@@ -132,14 +135,14 @@ shown in Fig.~\ref{wire-to-amplifier}.
 \begin{figure}[htbp]
 \vspace{5cm}
 \begin{picture}(50,50)
-\put(-10,10)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/wire-to-amplifier.jpg}}}
+\put(20,20)
+{\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{img/wire-to-amplifier.jpg}}}
 \end{picture}
-\caption{\small{Detail of the signal path from the wire's crimp pin to the CP01 amplifier showing
-the various conductive paths.  An assembly drawing showing how the crimp pin was inserted
+\caption{\small{ An assembly drawing showing how the crimp pin was inserted
 into the feedthrough and how the conductive elastomer tube fits over the 
 crimp pin and inside the plated-through hole on the printed circuit board to 
-make the electrical connection.}}
+make the electrical connection. Also shown is the signal path from the wire's
+crimp pin to the pre-amplifier.  }}
 \label{wire-to-amplifier}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -164,13 +167,14 @@ of nanoseconds.
 The DCRB is a 96 channel board that is a combination post-amplifier,
 discriminator, time-to-digital converter (TDC) and also has a trigger
 output path to provide track segment information for an online tracking trigger.
+Fourteen such boards are housed in
+a proprietary 9U, 160 mm depth, VXS form factor/crate.
+The whole system consisted of 18 such crates, one for each drift chamber.
 
-The DCRB is a proprietary 9U, 160 mm depth, VXS form factor/crate.
-To perform its time digitization task it utilizes on-board synchronization to
+To perform its time digitization task, the DCRButilizes on-board synchronization to
 return the signal time relative to an input time signal from  a Trigger Distribution
 Crate.
-
-It is described in it own, separate article (ref).  Its design and architecture
+Its design and architecture
 allows it to achieve the following performance metrics:
 \begin{itemize}
 \item DCRB Performance Metrics
