@@ -861,7 +861,7 @@ sector. There are four 48-channel HV distribution boxes for each sector, two for
 for the right PMTs. The output of each HV distribution box is a pair of 35-ft long multi-conductor cables,
 each containing 24-channels, with a Radiall connector to mate with the HV A1535N board input connector.
 Each multi-conductor high voltage cable contains individual conductors wrapped in Tefzel insulation, an outer
-wire shield, and a PVC insulation wrap. Each conductor is rated at 5-kV.
+wire shield, and a PVC insulation wrap. Each conductor is rated at 5~kV.
 
 \section{FTOF Performance}
 \label{sec:performance}
@@ -1121,9 +1121,10 @@ to determine the time-walk correction, see Section~\ref{sec-tw}.
 particle from the target to the FTOF counter and to be able to reconstruct exclusive events when hits are
 associated with multiple FTOF counters, the relative time offsets of each counter relative to all of the other
 counters in the system need to be determined. This is done in two steps. The first step is to correlate each
-track to the RF time, which amounts to a precision time alignment in bins of the TDC LSB. The second step is
-a coarse alignment of each counter time in bins of the RF period $T_{RF}$. See Section~\ref{sec-talign}.
-During this step the effective counter time resolutions are extracted, see Section~\ref{tres-beam}.
+counter hit time to the RF time, which amounts to a precision time alignment in bins of the TDC LSB. The
+second step is a coarse alignment of each counter hit time in bins of the RF period $T_{RF}$. See
+Section~\ref{sec-talign}. During this step the effective counter time resolutions are extracted, see
+Section~\ref{tres-beam}.
 
 \item TDC Calibration: After calibrating the integral non-linearities of each TDC channel in the system (see
 Section~\ref{sec-elec}), the TDC channel to time calibration is completed using beam events, see
@@ -1154,9 +1155,9 @@ FTOF counters in panel-1a and panel-1b. Currently the calibrations are carried o
 tracks from beam data coming from the target. In this case the ADC charge information is scaled by a
 scintillation bar path length correction given by $t/P$, where $t$ is the counter thickness and $P$ is the
 path-length of the track in the counter as determined by extrapolation of the drift chamber track to the
-location of the FTOF counter. The energy deposited in the scintillation bars follows a Landau distribution
-and is recorded by the ADCs, which show Landau peaks above the pedestal. Minimum-ionizing tracks that
-do not pass through the full counter thickness give rise to a background beneath the Landau peak.
+location of the FTOF counter. The energy deposited in the scintillation bars is recorded by the ADCs, which
+show Landau peaks above the pedestal. Minimum-ionizing tracks that do not pass through the full counter
+thickness and more heavily ionizing tracks give rise to a background beneath the Landau peak.
 
 For the HV calibrations, to avoid issues with the attenuation of light for tracks that pass near the ends of
 the bars and with unbalanced light entering the left and right PMTs, we combine the information from the
@@ -1961,7 +1962,7 @@ http://www.caen.it/servlet/checkCaenManualFile?Id=12125
 E. Jastremski, https://www.jlab.org/Hall-B/ftof/manuals/caen-inl-notes.pdf
 
 \bibitem{fadc-manual}
-https://www.jlab.org/Hall-B/ftof/manuals/FADC250UsersManual.pdf
+JLab 250~MHz FADC manual, https://www.jlab.org/Hall-B/ftof/manuals/FADC250UsersManual.pdf
   
 \bibitem{epics}
 EPICS (Experimental Physics and Industrial Control System),\\ http://www.aps.anl.gov/epics
