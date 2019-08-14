@@ -4,18 +4,23 @@ As seen in \F{optics}, each LTCC segment is composed of four optical surfaces: o
 one hyperbolic mirror, one cylindrical mirror, and the Winston cone.
 The reflectivity of a random selection of 30 elliptical, cylindrical and hyperbolic mirrors from two sectors was measured.
 All the mirrors analyzed showed significant degradation from the original desired reflectivity of 90$\%$ in the visible spectrum,
-see for example \F{reflectivityBefore}.
+see for example \F{reflectivityBeforeAndAfter} (top).
 A refurbishment of the mirrors was crucial to enhance the detector response to the pion emitted Cherenkov light.
 Due to the material, assembly, and dimensions of the different types of mirrors, two different techniques were applied to refurbish the
 reflective surfaces.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/mirrorsReflectivityBefore.png}
-	\caption{Reflectivity measurement as a a function of wavelength of a sample of 8 mirrors before re-coating, each sampled at two different places (front and back). The reflectivity
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/mirrorsReflectivityBefore.png}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/mirrorsReflectivityAfter.png}
+	\caption{Top: Reflectivity measurement as a a function of wavelength of a sample of 8 mirrors before re-coating,
+            each sampled at two different places (front and back). The reflectivity
 				was measured using a monochromator (Newport model CS260-USB-1-FH-A) with a deuterium light source with a reach
-            between 200 nm and 400 nm. The reflectivity showed a degraded quality of about 65$\%$ instead of an optimal 90$\%$.}
-	\label{fig:reflectivityBefore}
+            between 200 nm and 400 nm. The reflectivity showed a degraded quality of about 65$\%$ instead of an optimal 90$\%$.
+			   Bottom: Reflectivity measurement as a function of wavelength of a sample of 5 mirrors measured after gluing the Lexan strips (see text for detail).
+            Note the very high value of reflectivity in the UV region, where most of the Cherenkov light is produced. In the visible spectrum,
+            the reflectivity is about 90$\%$.}
+	\label{fig:reflectivityBeforeAndAfter}
 \end{figure}
 
 
@@ -24,16 +29,7 @@ reflective surfaces.
 The cylindrical mirrors range from 6 to 12 inches in length. Each mirror is made from a single piece of aluminum or plastic.
 Due to the small size, they fit in most vacuum chambers used to coat mirrors by evaporation of aluminum with magnesium fluoride
 (AlMgF$_2$). After successful testing of re-coating of AlMgF$_2$ onto the existing substrate, the work of re-coating 216 cylindrical mirrors
-was awarded to ECI~\cite{ECI}. See \F{reflectivityAfter} for typical reflectivity values after re-coating.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/mirrorsReflectivityAfter.png}
-	\caption{Reflectivity measurement as a function of wavelength of a sample of 5 mirrors measured after gluing the Lexan strips (see text for detail).
-            Note the very high value of reflectivity in the UV region, where most of the Cherenkov light is produced. In the visible spectrum,
-            the reflectivity is about 90$\%$.}
-	\label{fig:reflectivityAfter}
-\end{figure}
+was awarded to ECI~\cite{ECI}. See \F{reflectivityBeforeAndAfter} (bottom) for typical reflectivity values after re-coating.
 
 \subsubsection{Re-coating of elliptical and hyperbolic mirrors}
 
@@ -61,7 +57,7 @@ An example of unwrapping the film off the Lexan strip is shown in \F{filmOnStrip
 various protective material films. The job was eventually awarded to ECI \cite{ECI}.
 %The setup to glue the coated Lexan strip onto the existing mirrors is shown in \F{filmOnStrip} (bottom).
 After 24 hours of curing time the film was removed.
-The typical reflectivity of the refurbished mirrors is shown in \F{reflectivityAfter}.
+The typical reflectivity of the refurbished mirrors is shown in \F{reflectivityBeforeAndAfter} (bottom).
 
 
 \begin{figure}[ht]
@@ -106,7 +102,7 @@ summary Table~\ref{tab:strips}.
 \end{table}
 
 
-In \F{reflectivityAfter} a typical spectrum of reflectivity that applies to all cylindrical, elliptical and hyperbolic mirrors is shown.
+In \F{reflectivityBeforeAndAfter} (bottom) a typical spectrum of reflectivity that applies to all cylindrical, elliptical and hyperbolic mirrors is shown.
 The re-coated mirrors shows a $\sim 90\%$ reflectivity in the visible spectrum and an exceptional $\sim 80\%$
 reflectivity in the UV spectrum.
 
@@ -130,13 +126,14 @@ longitudinally along the center line of each elliptical mirror. Both the ellipti
 dimensions and to center it in the middle of the face of the PMT.
 
 
-\begin{figure}[ht]
+\begin{figure}[hb]
 \centering
 	\includegraphics[width=0.95\columnwidth, keepaspectratio]{img/mirrorAlignmentSimulationZoomed.png}
-	\caption{The simulation of a laser line (white tracks are photons) originating from the target (first ellipse focal point) and directed at the elliptical mirrors. The photons are reflected
-		      to the second ellipse focal point. The hyperbole first focal point is near the ellipse focal point so the hyperbolic mirror
+	\caption{The simulation of a laser line (white tracks are photons) originating from the target (first ellipse focal point) and directed at the elliptical mirrors.
+            The photons are reflected to the second ellipse focal point. The hyperbole first focal point is near the ellipse focal point so the hyperbolic mirror
 			   reflects the incoming photons to the hyperbole second focal point, located above the face of the PMTs.
-			   This picture illustrate the procedure used for the alignment: the mirrors positions are adjusted until the laser line originating from the target is focused on the face of the PMT.}
+			   This picture illustrate the procedure used for the alignment: the mirrors positions are adjusted until the laser line originating from
+				the target is focused on the face of the PMT.}
 	\label{fig:alignmentSimulation}
 \end{figure}
 

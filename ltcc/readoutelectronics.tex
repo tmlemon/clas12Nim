@@ -5,7 +5,8 @@
 The XP4500B Photonis photomultipliers are powered in positive polarity by a CAEN SY4527 outfitted with 1501P boards.
 
 There are two anode signals from the tubes. One of them is connected directly to Flash ADC
-boards built at Jefferson Lab, the Flash ADC module FADC250. The FADC250 sampling frequency is $250 MHz$. The other signals is discriminated by a DSC2 unit and connected to CAEN v1190 TDC modules.
+boards built at Jefferson Lab, the Flash ADC module FADC250. The FADC250 sampling frequency is $250 MHz$.
+The other signals is discriminated by a DSC2 unit and connected to CAEN v1190 TDC modules.
 The TDCs were set to have 50ps/channel timing resolution.
 
 The Cherenkov FADC250 and TDC information is read out using the CEBAF Online Data Acquisition system (CODA).
@@ -13,12 +14,10 @@ The Cherenkov FADC250 and TDC information is read out using the CEBAF Online Dat
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/electronicScheme.png}
-	\caption{The electronic schematic of the LTCC.}
+	\caption{The electronic schematic of the LTCC. One HV and two readout signals are connected from the PMTs base to the patach panel.
+				The patch panels then connects the HV to CAEN SY4527 (1501P boards), one readout to the FADC250 and the other to DSC2 discriminators.}
 	\label{fig:electronicScheme}
 \end{figure}
-
-
-
 
 
 A typical signal from the FADC250 module is shown in \F{fadc}. The signal is usually contained in 3 to 5 time samples (each time sample is 4 ns).
