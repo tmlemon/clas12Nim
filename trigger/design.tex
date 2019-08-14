@@ -1,47 +1,47 @@
 \section{Design}
 
-CLAS12 Trigger System is designed as 3-stage pipeline-style system with total latency up to 8us. Input information for the trigger system comes from two kind of sources:  Flash Analog to Digital Converters (FADCs) used in PMT-based detectors, and Drift Chamber Readout Boards (DCRBs) used in Drift Chambers. FADCs and DCRBs are working as pre-trigger level reporting information to the trigger system in appropriate form. Stage 1 receives information from FADCs and DCRBs and performs data processing in according to the type of detector. Stage 2 performs timing and geometry coincidence between different subset of detectors in six groups corresponding to six-sector CLAS12 detector structure, as well as coincidence with information from central detectors. Stage 3 forms final trigger decision. CLAS12 Trigger diagram is shown on Fig.~\ref{fig:TriggerDiagram}.
+The CLAS12 Trigger System was designed as a 3-stage pipeline-style system with total latency up to 8~$mu$s. Input information for the Trigger System comes from two sources:  Flash Analog to Digital Converters (FADCs) used in the photomultiplier tube (PMT)-based detectors, and Drift Chamber Readout Boards (DCRBs) used in Drift Chambers. The FADCs and DCRBs work as the pre-trigger level, reporting information to the Trigger System in the appropriate form. Stage 1 receives information from the FADCs and DCRBs and performs data processing according to the type of detector. Stage 2 performs a timing and geometry coincidence between different subsets of detectors in six groups, corresponding to the six-sector CLAS12 detector structure, as well as requires coincidence with information from central detectors. Stage 3 forms the final trigger decision. The CLAS12 Trigger diagram is shown in Fig.~\ref{fig:TriggerDiagram}.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/CLAS12_TRIGGER_1.pdf}
-	\caption{CLAS12 Trigger System Diagram}
+	\caption{The CLAS12 Trigger System diagram.}
 	\label{fig:TriggerDiagram}
 \end{figure}
 
 
-\subsection{FADCs as pre-trigger}
+\subsection{FADCs as Pre-trigger}
 
-All photomultiplier-based detectors in CLAS12 participating in trigger system uses JLAB VXS 250Mhz Flash ADCs as starting point of the trigger logic (FADC, \ref). Every channel of those FADC boards are pre-programmed with gain, pedestal and amplitude threshold above pedestal. Every pulse above amplitude threshold is integrated and sent to the corresponding section of the Stage 1 trigger logic. 16-channel FADC boards are reporting 13-bit pulse integrals and 3-bit pulse time every 32 ns, allowing following trigger logic to restore 4 ns pulse resolution while double pulse resolution remains 32 ns. Based on FADC reporting schedule following trigger logic stages can work on 250MHz clock, athought in that case we found it hard to meet FPGA timing, and our Stage 1 algorithms are running on 125MHz or slowers clocks as described below. Trigger information is provided to the following stages using VXS back plane serial lines.
-
-
-\subsection{DCRBs as pre-trigger}
-
-Drift chamber-based trigger is using JLAB 125Mhz Discriminator/TDC boards (DCRB, \ref) to feed trigger system. Those 96-channel units reporting hits above pre-programmed thresholds every 16 ns. As well as FADC boards, DCRBs are implemented in VXS format and providing trigger information using VXS back plane serial lines.
+All PMT-based detectors in CLAS12 participating in the Trigger System use JLab VXS 250~MHz flash ADCs as the starting point of the trigger logic (FADC, \ref). Each channel of the FADC boards is pre-programmed with gain, pedestal, and amplitude threshold above pedestal. Every pulse above amplitude threshold is integrated and sent to the corresponding section of the Stage 1 trigger logic. The 16-channel FADC boards report 13-bit pulse integrals and 3-bit pulse time every 32~ns, which allows the following trigger logic to restore 4~ns pulse resolution while the double pulse resolution remains 32~ns. Based on the FADC reporting schedule, the following trigger logic stages can work on a 250~MHz clock, although in that case we found it problematic to meet the Field Programmable Gate Array (FPGA) timing. Because of that, our Stage 1 algorithms run on 125~MHz or slower clocks as described below. Tteh trigger information is provided to the following stages using VXS backplane serial lines.
 
 
-\subsection{Stage 1} 
+\subsection{DCRBs as Pre-trigger}
 
-Stage 1 is using specially designed VXS Trigger Processor boards (VTP, see \ref). VTP boards are installed in switch slots in every VXS crate participating in trigger system. VTPs are collecting trigger data from pre-trigger boards (FADCs and DCRBs) over VXS serial lines.
-
-The most complex processing is performed for electromagnetic calorimeters (cluster finding) and drift chamber tracker (segment and road finding). In following sections we'll describe various trigger components design.
+The Drift Chamber-based trigger uses JLab 125~MHz discriminator/TDC boards (DCRB, \ref) to feed the Trigger System. These 96-channel units report hits above the pre-programmed thresholds every 16 ns. As for the FADC boards, the DCRBs are implemented in VXS format and provide trigger information using VXS backplane serial lines.
 
 
-\subsubsection{Electromagnetic calorimeters}
+\subsection{Stage 1 Trigger} 
+
+The Stage 1 trigger uses specially designed VXS Trigger Processor boards (VTP, see \ref). The VTP boards are installed in switch slots in every VXS crate participating in the Trigger System. The VTPs collect trigger data from the pre-trigger boards (FADCs and DCRBs) over VXS serial lines.
+
+The most complex processing is performed for the electromagnetic calorimeters (cluster finding) and the Drift Chambers (segment and road finding). In the following sections we describe the design of the various trigger components.
+
+
+\subsubsection{Electromagnetic Calorimeters}
 \label{sec:ECAL}
 
-CLAS12 two electromagnetic calorimeters (ECAL, \ref) includes two detectors: EC and PCAL. Each of them consists of multiple layers of scintillating strips and lead sheets with photomultipliers readout on one side of scintillators (PCAL is shown on Fig.~\ref{fig:PCAL}, EC is similar). Primary goal of those detectors is electron identification by defining energy and coordinate of the electromagnetic showers, called clusters. Cluster finding algorithm was well established during off-line data processing development, and was adopted for trigger implementation with some simplifications.
+The CLAS12 electromagnetic calorimeter (ECAL, \ref) includes two eparate subsystems, the EC and PCAL. Each consists of multiple layers of scintillating strips and lead sheets with photomultiplier readout on one side of the scintillators (the PCAL is shown in Fig.~\ref{fig:PCAL}, the EC is similar). The primary purpose of these detectors is electron identification by defining the energy and coordinate of their electromagnetic showers, referred to as clusters. The cluster finding algorithm was well established during off-line data processing development, and was adopted for the trigger implementation with some simplifications.
 
-First, it searches for one-dimensional clusters in each of three views, sorting them by energy and keeping only those above threshold, but not more then four. Second, it searches for two-dimensional clusters looking for crosses between three views. For two-dimension clusters found, it performs attenuation correction based on pre-loaded attenuantion length of the scintillation strips and distance from cluster to PMT, and correct cluster energy. Finally, it sorts two-dimension clusters by energy and report those above threshold, but not more then four. For every cluster, energy and coordinates are reported to the Stage 2 every 8 ns. There is an persistency parameter allowing to report the same clusters for several consequative 8 ns intervals to ensure timing coincidence with another trigger components, as well as timing delay parameter for the same purpose. One event with single cluster is shown in PCAL (preshower calorimeter) on Fig.~\ref{fig:PCAL}, corrected energies are shown for individual strips.
+The algorithm first searches for one-dimensional clusters in each of the three calorimeter views (u,v,w), sorting them by energy and keeping only those above threshold, with a maximum number of four clusters in each view. Next the algorithm searches for two-dimensional clusters looking for overlap between the three views. For all two-dimension clusters found, it performs attenuation corrections based on pre-loaded tables of the attenuantion lengths of the scintillation strips using the distance from the cluster to the PMT, to deternime the correct cluster energy. Finally, the algorithm sorts the two-dimension clusters by energy and reports those above threshold, with a maximum number limited to four. For every cluster, the energy and coordinates are reported to the Stage 2 trigger every 8~ns. There is a persistency parameter that allows the same clusters to be reported for several consecutive 8~ns intervals to check for a timing coincidence with the other trigger components, as well as a timing delay parameter for the same purpose. One event with a single cluster is shown in the PCAL (preshower calorimeter) in Fig.~\ref{fig:PCAL}. The corrected energies are shown for the individual strips.
 
-It should be mentioned that such algorithm is designed to found clusters with maximum energy targeting electrons identification. For some CLAS12 experiments, it was necessary to identify minimum-ionizing particles (MIPs) using the same trigger component. For that purpose, clusters with energy below certain threshold were selected. Such method works for events where the number of clusters does not exceed four, otherwise there is a risk of loosing low-energy clusters corresponding to MIPs. Intensive trigger efficiency studies were conducted for such cases, and MIP trigger efficiency was measured and found acceptable.
+It should be mentioned that such an algorithm is designed to find clusters with a maximum energy to target electron identification. For some CLAS12 experiments, it is necessary to identify minimum-ionizing particles (MIPs) using the same trigger component. For that purpose, clusters with energy below a certain defined threshold can be selected. Such a method works for events where the number of clusters does not exceed four, otherwise there is a risk of losing low-energy clusters corresponding to MIPs. Intensive trigger efficiency studies were conducted for such cases, and the MIP trigger efficiency was measured and found acceptable.
 
 \begin{figure}[htp]
 	\begin{center}
 		\centering
 		\includegraphics[width=7cm]{img/pcal1.png}
 		%\includegraphics{PCA.pdf}
-		\caption{Cluster's reconstruction in the PCAL calorimeter}
+		\caption{Trigger System representation of a cluster reconstruction using the three views of the PCAL in one sector of CLAS12.}
 		\label{fig:PCAL}
 	\end{center}
 \end{figure} 
@@ -50,14 +50,14 @@ It should be mentioned that such algorithm is designed to found clusters with ma
 \subsubsection{High Threshold Cherenkov Counter}
 \label{sec:HTCC}
 
-CLAS12 High Threshold Cherenkov Counter (HTCC, \ref) serves as one of primary components of electron trigger logic. It was specially designed to discriminate electrons from other charge particles. HTCC consists of 48 sections readout by PMTs connected to FADCs (Fig.~\ref{fig:multihitHTCC}). For trigger purposes 2x2 section sliding window is used to identify clusters. The cluster may include one, two, three or maximum four PMT's signals collecting the Cherenkov light from the adjacent mirrors as shown in  Fig.~\ref{fig:multihitHTCC}. Configuration parameters includes single channel energy threshold, cluster multiplicity threshold and cluster energy threshold. Results are reported to Stage 2 as 48-bit masks every 4 ns. FADC 'gain' configuration parameter allows energy calibration, making it possible to set energy thresholds in terms of the number of photoelectrons.
+The CLAS12 High Threshold Cherenkov Counter (HTCC, \ref) serves as one of the primary components of the electron trigger logic. It was specially designed to discriminate electrons from other charged particles. The HTCC consists of 48 mirror sections readout by PMTs connected to FADCs (see Fig.~\ref{fig:multihitHTCC}). For trigger purposes, a 2x2 section sliding window is used to identify clusters. The cluster may include from one to four PMT signals collecting the Cherenkov light from the adjacent mirrors as shown in  Fig.~\ref{fig:multihitHTCC}. The configuration parameters include the single channel energy threshold, cluster multiplicity threshold, and cluster energy threshold. The results are reported to the Stage 2 trigger as 48-bit masks every 4 ns. The FADC ``gain'' configuration parameter allows for PMT energy calibrations, making it possible to set energy thresholds in terms of the number of photoelectrons.
 
 
 \begin{figure}[htp]
 	\begin{center}
 		\centering
 		\includegraphics[width=8cm]{img/multiHits.pdf}
-		\caption{Hits registered by HTCC (red circles) and reconstructed cluster position (yellow). They coincide for one hit clusters (top left plot) which has the lowest resolution.}
+		\caption{Hits registered by the HTCC (red circles) and the reconstructed cluster position (yellow). The hit position and cluster position coincide for one hit clusters (top left plot), which has the lowest position resolution.}
 		\label{fig:multihitHTCC}
 	\end{center}
 \end{figure} 
@@ -66,11 +66,11 @@ CLAS12 High Threshold Cherenkov Counter (HTCC, \ref) serves as one of primary co
 \subsubsection{Drift Chamber}
 \label{sec:DC}
 
-CLAS12 Drift Chamber (DC, \ref) contains six superlayers, six layers in each superlayers, 112 wires in every layer. There is no signal amlpitude information available, only hits timing can be used. Trigger algorithm was designed as two-step process.
+The CLAS12 Drift Chambers (DC, \ref) contain six superlayers in each of the six CLAS12 sectors. Each superlayer contains six layers, and 112 wires in each layer. There is no signal amplitude information available, only hit information can be used in the trigger. The Trigger algorithm was designed as a two-step process.
 
-First it searches for segments in each of six superlayers, reporting 112-bit mask with bits set for segments found. Search for segments is conducted based on pre-loaded segment dictionary, generated by drift chamber simulation software based on internal superlayer wires location. In case if several segments found in the same location the one with maximum number of hits are kept. In theory the number of layers contributing to segment must be equal to 6, and the number of hit wires in one segment can vary from 6 to 12 depending on track position and angle. On practice, the number of layers and hits in segment can be less because of drift chamber inefficiencies and broken wires, so threshold for segment finder in trigger logic was usually set to 4 and sometimes to 3 layers out of 6.
+In the first step it searches for segments in each of the six superlayers, reporting a 112-bit mask with the bits set for the segments found. The search for segments is conducted based on a pre-loaded segment dictionary, generated by the Drift Chamber simulation software based on the wire locations in the superlayers. If several segments are found in the same location, the one with the maximum number of hits is kept. In theory, the number of layers contributing to each segment must be equal to 6, and the number of hit wires in a segment can vary from 6 to 12 depending on the track position and angle. In practice, the number of layers and hits in each segment can be less because of Drift Chamber inefficiencies and hardware problems, so the threshold for the segment finder in the trigger logic was usually set to 4 and sometimes to 3 layers out of 6 to ensure an efficient trigger.
 
-After segment search complete and six 112-bit masks are ready second step is performed. On that step pre-loaded road dictionary is used to identify possible track candidates (so-called road finding). Road disctionaries were generated by GEMC Monte Carlo program (\ref) or taken from the real beam data (\ref). At least five out of six superlayers are required to satisfy trigger condition. All found roads are reported to the Stage 2 every 16 ns. Information reported in form of 112-bit words used for geometry match on Stage 2.
+After the segment search is complete and the six 112-bit masks are ready, the second step is performed, in which a pre-loaded road dictionary (corresponding to allpossible charged particle trajectories) is used to identify possible track candidates (so-called road finding). The road disctionaries were generated by the GEMC Monte Carlo program (\ref) or taken from the real beam data (\ref). At least five out of six superlayers are required to satisfy the trigger condition. All found roads are reported to the Stage 2 trigger every 16~ns. The information reported in the form of 112-bit words is used for the geometry match in the Stage 2 trigger.
 
 
 \subsubsection{Forward Time-Of-Flight Counter}
