@@ -15,7 +15,7 @@ A 3D view of the simulated geometry of the LTCC \F{simOverview}. The LTCC GEMC s
 	\label{fig:simOverview}
 \end{figure}
 
-\subsection{Mirrors Geometry}
+\subsection{Geometry}
 
 The Cherenkov light is emitted on a small cone around the direction of the emitting particle. The angle of
 incidence of the particles entering the LTCC can be different from the angle at the production vertex due to the bending of the tracks
@@ -50,13 +50,25 @@ In the geant4 implementation the elliptical mirrors are composed by, for each se
 \end{enumerate}
 
 The hyperbolic mirrors are made by polycon that approximate the mathematical shape of the mirrors using a number of faucets
-varying from 10 (smallest mirror) to 30 faucets (longest mirrors).
+varying from 10 (smallest mirror) to 30 faucets (longest mirrors). The measured reflectivity is imported in the simulation as
+optical property of the mirror material.
 
 
-\subsection{Winston Cones Geometry}
-The 
+The CAD engineering models of the WC have been used in the simulations, see \F{wcSimulation}. The measured reflectivity is imported in the simulation as
+optical property of the WC material.
 
-\subsection{Box Support Structure}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/wcLargeReal.png}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/wcLargeSim.png}
+	\caption{Top: a picture of the large WC used for segments 12 to 18. Bottom: the tesselated volume used in the
+            simulation, imported fromthe CAD engineering model.}
+	\label{fig:wcSimulation}
+\end{figure}
+
+
+The LTCC box support structure was imported from the engineering model shown in \F{boxCut}.
+
 
 support structure in active area  + nose
 
