@@ -127,7 +127,7 @@ solenoidal magnetic field bends charged tracks into helices, while forward-going
 $\sim$2~T toroidal magnetic field. For both systems, track reconstruction comprises algorithms for
 pattern recognition and track fitting. Hit objects, corresponding to the passage of a particle through a
 particular detector component, require the transformation of an electronic signal into a location of the
-track’s position in the detector sub-system geometry. A hit is thus a geometric object, for example, a
+track's position in the detector sub-system geometry. A hit is thus a geometric object, for example, a
 line segment. These objects then form the input to the pattern recognition algorithms. This first step
 involves the identification of clusters of hits and the determination of the spatial coordinates and
 corresponding uncertainties for hits and clusters of hits. At the pattern recognition stage, hits that are
@@ -139,7 +139,7 @@ the detailed magnetic field map.
 
 The Drift Chamber (DC) wire hit information is given by the wire geometrical location and the drift time
 to the wire. Track-dependent corrections to the hit, such as left-right ambiguity and time-walk must then
-be performed. Pattern recognition for the DC is done to first order on a ”hit-based” basis. In hit-based
+be performed. Pattern recognition for the DC is done to first order on a "hit-based" basis. In hit-based
 tracking, a hit is defined as a wire with a recorded signal.  No timing information is incorporated at the
 preliminary stage of the reconstruction.  Uncorrelated hit noise in the DC are identified by a Simple Noise
 Removal (SNR) algorithm and rejected. SNR stores all the data for a drift chamber layer (112 sense wires)
@@ -180,14 +180,14 @@ in a local coordinate system with the z-axis perpendicular to the chambers wire 
 $ty=py$/$pz$, in that frame~\cite{spiri} .  The equations of motion of the track in the torus field are solved u
 sing a Runge-Kutta 4 numerical method.  The measurements used in the fit are the drift distances to the wires
 taking into account the left/right position of the track with respect to the wire. Time corrections are applied
-after ”hit-based” tracking to account for the event start time, cable delays, propagation times along the wires,
+after hit-based tracking to account for the event start time, cable delays, propagation times along the wires,
 event flight times to the hit location along the wires, beta-dependent corrections, and the effect of the magnetic
 field on the cell isochrones which modify the drift times.  
 
 After the times are corrected, the drift distance is computed using a tabulated distance-to-times
 multi-dimentional arrays.  The drift distances are computed using a multi-dimentional interpolation method
 using the segment local angle, the value of the magnetic field at the location of the hit and the corrected
-times.  The Kalman fit is redone at ”time-based” level using hits with corrected times and computed drift distances. 
+times.  The Kalman fit is redone at time-based level using hits with corrected times and computed drift distances. 
 
 A graphical representation of tracks in the CLAS Event Display is shown in figure~\ref{fig:dcTracks}.  The
 display shows a longitudinal view of the chambers trapezoidal shapes. The field intensity is represented by a
