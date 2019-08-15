@@ -77,6 +77,8 @@ foreach d ($detChanged)
 		set toPublish = ftof-nim.pdf
 	else if ($d == "ctof") then
 		set toPublish = ctof-nim.pdf
+	else if ($d == "rich") then
+		set toPublish = nima-rich.pdf
 	endif
 	scp $toPublish ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims
 	echo $d published    >> compile.log
