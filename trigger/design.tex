@@ -114,7 +114,7 @@ The Stage 2 trigger collects data from Stage 1 using fiber optics. It is based o
 	\end{tabular}
 \end{center}
 
-The forward detectors in the trigger consist of FTOF, ECAL, PCAL, HTCC, and DC. A single SSP collects all forward dector trigger streams from a single sector of CLAS12. After the delay and concidence widths are applied to each input stream the input streams are copied to 8 programmable sector trigger bits. Each sector trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be taylored for a particular trigger type. Sector trigger bits are computed and sent to the final trigger stage 3.
+The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, and DC. A single SSP collects all forward detector trigger streams from a single sector of CLAS12. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable sector trigger bits. Each sector trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be tailored for a particular trigger type. The sector trigger bits are computed and sent to the final Stage 3 trigger.
 
 \begin{center}
 	Forward Detector Trigger Primitives\\
@@ -135,7 +135,7 @@ The forward detectors in the trigger consist of FTOF, ECAL, PCAL, HTCC, and DC. 
 	\end{tabular}
 \end{center}
 
-The central detectors participating in the trigger consist of CTOF, CND, and FT. A single SSP collects all central detector trigger streams. After the delay and concidence widths are applied to each input stream the input streams are copied to 8 programmable central trigger bits. Each central trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be taylored for a particular trigger type. Central trigger bits are computed and sent to the final trigger stage 3 where all sector and central trigger bits arrive at the GTP to compute the global trigger bits.
+The central detectors participating in the trigger consist of CTOF, CND, and FT. A single SSP collects all central detector trigger streams. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable central trigger bits. Each central trigger bit contains a variety of trigger primitives and customizable thresolds/cuts that can be tailored for a particular trigger type. The central trigger bits are computed and sent to the final Stage 3 trigger where all sector and central trigger bits arrive to compute the global trigger bits.
 
 \begin{center}
 	Central Detector Trigger Primitives\\
@@ -154,28 +154,28 @@ The central detectors participating in the trigger consist of CTOF, CND, and FT.
 \end{center}
 
 
-\subsection{Stage 3}
+\subsection{Stage 3 Trigger}
 
-The stage 3 trigger is the final stage and collects all sector and central trigger bit streams in a single module where they can be combined in a variety of ways to generate the global trigger bits used for reading out the DAQ. It is implemented on single VTP board installed in switch slot on the same VXS crate where all Stage 2 SSPs are reside. There are 32 independent trigger bits that can form a trigger based on any combination of sector and/or central trigger bits. Each trigger bit contains two sector trigger bit conditions (required to both be true) and a signle central trigger bit condition. Additionally each trigger bit contains 16bit prescaler, final pulse width, and scaler.
+The Stage 3 trigger is the final stage and collects all sector and central trigger bit streams in a single module where they can be combined in a variety of ways to generate the global trigger bits used for reading out the Data Acquisition System (DAQ). It is implemented on a single VTP board installed in the switch slot on the same VXS crate where all Stage 2 trigger SSPs reside. There are 32 independent trigger bits that can form a trigger based on any combination of sector and/or central trigger bits. Each trigger bit contains two sector trigger bit conditions (required to both be true) and a signle central trigger bit condition. Additionally, each trigger bit contains a 16~bit prescaler, final pulse width, and scaler.
 
 \begin{center}
-	Stage 3 Specs\\
+	Stage 3 Trigger Specs\\
 	\begin{tabular}{| l | l |}
 		\hline \hline
 		Name				& Specification	\\
 		\hline
-		Latency (Stage 1+2+3)		& 7$\mu$s	\\
-		Jitter				& 4ns		\\
+		Latency (Stage 1+2+3)		& 7~$\mu$s	\\
+		Jitter				& 4~ns		\\
 		Stage 3 trigger bits		& 32		\\
 		Prescaler			& 0-65535	\\
-		Trigger bit width		& 4ns-1$\mu$s	\\
-		Pulse rate			& 0.05Hz-125MHz	\\
+		Trigger bit width		& 4~ns - 1~$\mu$s	\\
+		Pulse rate			& 0.05~Hz - 125~MHz	\\
 		\hline \hline
 	\end{tabular}
 \end{center}
 
 
-\subsection{Trigger information in data stream}
+\subsection{Trigger Information in Data Stream}
 \label{sec:trigger_in_datastream}
 
-An important part of the trigger system is the event builder. It allows trigger components to participate in event-by-event readout the same way as it is done for DAQ components. All three stages of the trigger system are equiped  event builders. Every time the CLAS12 DAQ is triggered, Stage 1 will build the data bank(s) with trigger decision details (such as ECAL cluster coordinate/energy or DC segments/roads information), Stage 2 will build the data bank with sector-level and central detectors coinsidence results, and the Stage 3 will build the data bank which contains the trigger bit decisions for all final decision 32 trigger bits. Event builders are reading information from the pipeline-style buffers for a given programmable window related to the readout trigger time. All trigger-related data banks are available in data stream along with DAQ data banks, providing detailed information about trigger decision for every accepted event. In particular, this allows trigger system to be run in ``tagging mode'' which is a powerful way to test trigger efficiency (using either a loose trigger or random trigger).
+An important part of the Trigger System is the Event Builder, which allows the trigger components to participate in event-by-event readout the same way as is done for the DAQ components. All three stages of the Trigger System are equipped with Event Builders. Every time the CLAS12 DAQ is triggered, Stage 1 will build the data bank(s) with trigger decision details (such as the ECAL cluster coordinate/energy or DC segments/roads information), Stage 2 will build the data bank with sector-level and central detector coincidence results, and Stage 3 will build the data bank that contains the trigger bit decisions for all final 32 trigger bit decisions. Event Builders read information from the pipeline-style buffers for a given programmable window related to the readout trigger time. All trigger-related data banks are available in the data stream along with the DAQ data banks, providing detailed information about the trigger decision for every accepted event. In particular, this allows the Trigger System to be run in ``tagging mode'', which is a powerful way to test the trigger efficiency (using either a loose or a random trigger).
