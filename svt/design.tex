@@ -1,6 +1,6 @@
 \section{Design}
 
-\subsection{Barrel layout and support structure}
+\subsection{Barrel Layout and Support Structure}
 
 The SVT comprises 21504 channels of wire-bonded triplets of p-on-n AC-coupled single-sided silicon micro-strip sensors in six layers (three concentric polygonal regions that have 10, 14, and 18 double-sided modules positioned at radii of 65, 93, and 120 mm). The SVT is enclosed by a Faraday cage with an inner radius of 57 mm (with 6 mm clearance to the inner shell of the target scattering chamber) and an outer radius of 133 mm. To minimize multiple scattering, a unique module design with extra long 33~cm strips has been developed to reduce the material budget to about 1.4$\%$ of a radiation length per region (two silicon planes) for normal incidence tracks, which is essential for tracking at low momenta~\cite{Vertex2016}. No module services such as cooling lines, power, readout, and slow control cables were placed in the tracking volume. The module dimensions are 41.9 cm $\times$ 4.2 cm $\times$ 0.39 cm. All of the SVT modules are identical to minimize production costs. There are no overlaps of adjacent modules and minimal clearance between them to satisfy material budget and acceptance constraints.
 
@@ -40,7 +40,7 @@ The mounting surfaces of the upstream and downstream rings are machined closely 
 \label{fig:module}
 \end{figure}
 
-\subsection{Module design}
+\subsection{Module Design}
 
 The SVT uses single-sided 320-$\mu$m thick microstrip sensors fabricated by Hamamatsu, mounted on each side of the module (see Fig.~\ref{fig:module}). All modules have 3 types of sensors: H (Hybrid), I (Intermediate), and F (Far). The sensors were cut from 6 inch wafers with high resistivity of 5 $\kiloohm$ to ensure low full depletion voltage and 2 sensors per wafer to maximize the yield. Surface damage is minimized by using silicon with a <100> surface orientation. All sensors have the same size, 112 mm $\times$ 42 mm. There are three daisy-chained sensors per layer (six per module) with a 110~$\mu$m gap between them. 
 
@@ -152,7 +152,7 @@ The design of the HFCB reflects recommendations given by the experts in low nois
 \label{fig:module-deflection}
 \end{figure}
 
-Thermal and structural final element analysis (FEA) on the SVT detector elements was performed using ANSYS \cite{ANSYS}. The deflection in the detector was analyzed for an individual module and for a region as a whole. The deflection was calculated based on the gravitational load on the module. On the upstream end the module was assumed to be fixed since it is fastened to the upstream support ring of the detector. On the downstream end a simply supported condition was assumed since it is supported by the downstream ring. The maximum deflection of a module due to gravity is 14~$\mu$m (see Fig.~\ref{fig:module-deflection}) due to the excellent mechanical rigidity of the silicon sensors and the carbon fiber support. The deflection of the downstream ring is less than 7~$\mu$m. The vertical modules in the barrel minimize the deflection in the downstream ring making it a fairly rigid structure. The deflection of the entire SVT is 230~$\mu$m. 
+Thermal and structural Finite Element Analysis (FEA) on the SVT detector elements was performed using ANSYS \cite{ANSYS}. The deflection in the detector was analyzed for an individual module and for a region as a whole. The deflection was calculated based on the gravitational load on the module. On the upstream end the module was assumed to be fixed since it is fastened to the upstream support ring of the detector. On the downstream end a simply supported condition was assumed since it is supported by the downstream ring. The maximum deflection of a module due to gravity is 14~$\mu$m (see Fig.~\ref{fig:module-deflection}) due to the excellent mechanical rigidity of the silicon sensors and the carbon fiber support. The deflection of the downstream ring is less than 7~$\mu$m. The vertical modules in the barrel minimize the deflection in the downstream ring making it a fairly rigid structure. The deflection of the entire SVT is 230~$\mu$m. 
 
 For the thermal analysis, the module was modeled with the copper support and the heat sink insert. The heat output from each module is about 2.5 W. Cooling the cold plate with coolant flowing in the copper tubes that are brazed into the cold plate at -20$^\circ$C, at a rate of 2 liters per minute, results in a temperature differential of the coolant between the inlet and outlet of the cold plate of less than 1$^\circ$C. The temperature distribution on the module is shown in Fig.~\ref{fig:module-temp}. The maximum temperature of the sensors at the readout end is -10$^\circ$C. The variation in temperature from the upstream end of the Hybrid sensor to the downstream end of the Far sensor is about 1$^\circ$C. All components of the cooling system are outside of the tracking volume.
 
@@ -308,14 +308,8 @@ Module performance tests were done at various stages during module production at
 \label{fig:shipping-container}
 \end{figure}
 
-\subsection{Detector integration and commissioning}
+\subsection{Detector Integration and Commissioning}
 
-%\begin{figure}[hbt]
-%\centering 
-%\includegraphics[width=1.0\columnwidth,keepaspectratio]{modulesupport.png}
-%\caption{SVT barrel assembly.}
-%\label{fig:modulesupport}
-%\end{figure}
 The barrel integration took place at JLab. The regions were assembled in sequence. The assembly was done in a vertical position on a square table with a suspension and leveling system. Positioning the barrel vertically allows access to all modules of the region being assembled and facilitates strain relief of the cables during testing. Region 1 (innermost region) was assembled first, followed by Regions 2 and 3. The modules were mounted on dowels inserted in the rings by holding the module by the two handling rods that were screwed into the inserts (see Fig.~\ref{fig:svt-assembly}). 
 
 \begin{figure}[hbt] 
@@ -325,7 +319,7 @@ The barrel integration took place at JLab. The regions were assembled in sequenc
 \label{fig:svt-assembly}
 \end{figure}
 
-Figure~\ref{fig:assembly-closeup} shows a close-up photo and the layout of the adjacent modules on the barrel, demonstrating the two readout chips encapsulated on 3 sides, wire-bonded to the HFCB, the pitch adapter, and the sensor. The sensors extend on both sides of the backing structure by 2.5 mm. The minimum gap between adjacent modules is 300 $\mu$m. The barrel installation procedure was tested successfully, and no modules were damaged during the region integration.
+Figure~\ref{fig:assembly-closeup} shows a close-up photo and the layout of the adjacent modules on the barrel, demonstrating the two readout chips encapsulated on 3 sides, wire-bonded to the HFCB, the pitch adapter, and the sensor. The sensors extend on both sides of the backing structure by 2.5 mm. The minimum gap between adjacent modules is $\sim$300 $\mu$m. The barrel installation procedure was tested successfully, and no modules were damaged during the region integration.
 
 \begin{figure}[hbt] 
 \centering 
