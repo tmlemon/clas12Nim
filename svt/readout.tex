@@ -16,7 +16,7 @@ The analog section of the FSSR core consists of 128 channels (see Fig.~\ref{fig:
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{fssr2-analog.jpg}
-\caption{FSSR2 analog channels.}
+\caption{A block diagram of a single FSSR2 analog channel with the main elements labeled.}
 \label{fig:fssr2-analog}
 \end{figure}
 
@@ -31,7 +31,7 @@ The FSSR2 ASIC architecture is such that it sends out 24-bit data words if a cha
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{fssr2-sync.jpg}
-\caption{FSSR2 clock and timestamp synchronization.}
+\caption{FSSR2 clock and timestamp synchronization. The BCO clock is halted when SYNC is asserted and started with its rising edge aligned to the global trigger clock rising edge. }
 \label{fig:fssr2-sync}
 \end{figure}
 
@@ -42,7 +42,7 @@ The four FSSR2 ASICs on the HFCB communicate with the VXS architecture-based Seg
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{vscm-event-trigger.jpg}
-\caption{VSCM event triggering.}
+\caption{VSCM event triggering. See text for description of the sequence.}
 \label{fig:vscm-event-trigger}
 \end{figure}
 
