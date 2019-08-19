@@ -1,0 +1,5 @@
+import os
+
+env = Environment(ENV=os.environ)
+env['ENV']['TEXINPUTS']='..:'
+pdf = env.PDF(target  = 'recon-nim.pdf',  source = 'recon-nim.tex')

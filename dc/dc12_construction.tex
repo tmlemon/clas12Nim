@@ -12,18 +12,27 @@ procedures to insure a quiet and long-lived detector.  The construction
 and wire-stringing techniques were based on our already successful {\tt CLAS} 
 drift chamber design.
 
-The three chamber types (called ``regions'', with ``Region1'' abbreviated as ``R1'', etc.)  share the same basic design elements simply
+The three chamber types (called ``regions'', with ``Region1'' abbreviated as 
+``R1'', etc.)  share the same basic design elements simply
 scaled up in size by a factor of 1.5 for R2 relative to R1 and a factor
-of 2 between R3 and R1.  Thus the R3 chambers have a volume which is
-about 8 times that of R1 and about 2.5 times that of R2.  
+of 2 between R3 and R1.  
 Each chamber is a solid trapezoid in shape, with  
 a pair of wire-supporting endplates that bear both the load of the 
 wire tensions and the weight of all associated hardware. A representative 
-chamber is shown in Fig.~\ref{generic-chamber-sketch}.  The wire tension load in
-R1 and R2 was borne by the stiffness of the endplates only, while in
-R3 the wire tension was offset 
-by compression in a carbon-fiber outer shell and in a set of carbon-fiber 
-posts that were part of the chamber construction.  
+chamber is shown in Fig.~\ref{generic-chamber-sketch}, with parts indicated.
+
+%%%%%%%%%%%%%%%%%%%%%% Figure : generic chamber sketch %%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htpb]   
+\vspace{4.5cm}
+\begin{picture}(50,50)
+\put(10,-10)
+{\hbox{\includegraphics[width=0.5\columnwidth,natwidth=610,natheight=642]{img/generic-chamber-sketch.png}}}
+\end{picture}
+\caption{\small{Assembly of a typical drift-chamber
+(here a R3 sector) highlighting the common components.}}
+\label{generic-chamber-sketch}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 At the radially outward end of each chamber, a thick ``back-plate'' was 
 employed to maintain the relative 
@@ -33,15 +42,17 @@ end of each chamber, the endplates were connected together via a small joining
 piece called the ``nose-plate''.  The hardware fabrication and placement 
 was of critical importance to the dimensional accuracy of the chambers.
 
-%%%%%%%%%%%%%%%%%%%%%% Figure : DC Sector Schematic %%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htpb]   
-\vspace{4.5cm}
 
-\caption{\small{Assembly of a typical drift-chamber
-(here a R3 sector) highlighting the common components.}}
-\label{generic-chamber-sketch}
-\end{figure}   
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Endplate and Box Assembly}
+
+
+The chamber bodies were constructed from the accurately machined plates
+(2 endplates, a ``nose plate'' and a ``back plate'').
+The endplates themselves were an assembly of a basic plate with precision-drilled
+holes to which we bolted and glued stiffener bars.  In the case of
+R1 the plate was aluminum and the stiffener bars were stainless steel;
+for R2 the plates were G10 and the bars stainless steel and for R3
+the plates were an assembly of thin steel plates with a foam interior.
 
 \subsection{Endplate Design and Construction}
 \hskip 0.15 in
@@ -59,19 +70,17 @@ stainless-steel insert at the tip of each feedthrough known as a ``trumpet''.
 This trumpet was fitted into an injection-molded Noryl plastic feedthrough.  
 All wires were held in place using gold-plated copper crimp pins.  
 Low-outgassing epoxy was employed to ensure a gas seal around the feedthroughs 
-and crimp pins.  The feedthrough assemblies
-are shown in Figs.~\ref{xsect}, \ref{r2_inserts}, and \ref{r3_cut} for R1, R2, 
-and R3, respectively.
+and crimp pins.  
 
 Fig.~\ref{dc-corner} shows a slice through a chamber endplate (R2 in this case)
 showing some of the wire positioning hardware and attachment of the electronics 
 boards.
 %%%%%%%%%%%%%%%%%%%%%% Figure : DC Sector Schematic %%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htpb]   
-\vspace{4.5cm}
-\special{psfile=r2_inserts.eps hscale=70 vscale=70 hoffset=-93 voffset=-200}  
-\caption{\small{Schematic cross-sectional view of the R2 endplate 
-wire-positioning hardware.}}
+\vspace{8cm}Schematic cross-sectional view of the R2 endplate showing
+wire-positioning hardware.
+\special{psfile=img/r2_inserts.eps hscale=70 vscale=70 hoffset=0 voffset=+30}  
+\caption{\small{}}
 \label{dc-corner}
 \end{figure}   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -96,36 +105,21 @@ de-ionized water rinse and a dousing of methanol to facilitate drying.
 In addition, the injection-molded parts are specified to be free of silicon 
 mold releases.
 
-\subsubsection{Endplate and Box Assembly}
-
-
-The chamber bodies were constructed from the accurately machined plates
-(2 endplates, a ``nose plate'' and a ``back plate'').
-The endplates themselves were an assembly of a basic plate with precision-drilled
-holes to which we bolted and glued stiffener bars.  In the case of
-R1 the plate was aluminum and the stiffener bars were stainless steel;
-for R2 the plates were G10 and the bars stainless steel and for R3
-the plates were an assembly of thin steel plates with a foam interior.
-
-
-
-
 
 
 \subsection{Wire Choice}
 \hskip 0.15in
-
 Our ``thin endplate'' design required minimizing wire tensions and
-thus diameter or the wire.  The real key to reducing wire tension is to
+thus diameter of the wire.  The real key to reducing wire tension is to
 make the field wires (which are much larger than the sense wires) as 
 thin as possible and to make them out of low-density metal.  In this 
 section we describe our choices for sense, field and guard wires.
 We had to trade off the robustness and more uniform drift velocity
 afforded by large diameter sense wire with the disadvantages that they
-required higher electric fields, a potential problem for our high-density
-signal amplifier boards.
+required higher voltages to reach the same gas gain; 
+a potential problem for our high-density signal amplifier boards.
 
-In general, designers have chose very small diameter sense wires because they
+In general, designers have chosen very small diameter sense wires because they
 require lower operating voltates.
 The sense wire for all of our chambers, supplied by the Luma
 Sweden Company, consists of 30-$\mu$m diameter gold-plated tungsten.  
@@ -135,9 +129,7 @@ reasons: first, it is significantly tougher making it easier to handle without
 accidental kinking and less likely to break, and second, to operate at the same 
 gas gain as chambers with the thinner wire requires a high voltage setting 
 (approximately 300 V higher) and this results in a higher field throughout the cell
-and a more linear drift velocity function.  As will be discussed later,
-we determined that our on-chamber high-voltage distribution boards could
-handle the higher operating voltages.
+and a more linear drift velocity function.  
 
 Tungsten was chosen because of its durability, 
 and the gold-plating of the wires, amounting to a thickness of 0.127~$\mu$m, 
@@ -146,16 +138,17 @@ electronics gain and thresholds dictated that the gas gain be a few times
 10$^4$.  Under this condition, the electric field at the surface of the sense 
 wires is $\approx$200~kV/cm.  The field-wire diameter was chosen to ensure 
 that the electric field at their surface remained below 50~kV/cm to minimize 
-conditions which could cause unwanted cathode emissions.  We note that
-our choice violated the ``20~kV/cm rule'' proposed by Fabio Sauli and others
+conditions which could cause unwanted cathode emissions and a noisy chamber.  We note that
+our choice violated the ``20~kV/cm rule'' proposed by 
+Fabio Sauli (Ref~\cite{sauli_cathode_emission}) and others
 to reduce cathode emission.  Our own studies showed that there was no cathode
 emission below 50~kV/cm from any wire with good surface finish.  Each batch
-of wire was tested with our test device (ref:patent) to ensure that at operating field 
+of wire was tested with our test device (ref~\cite{patent}) to ensure that at operating field 
 values there was no emission.  
 
 We chose 80-$\mu$m gold-plated Cu-Be wire for our field wire.
 It is very tough, and is easily plated and resists ``flaking'' of the gold
-plating.  The 80-$\mu$m diameter choice was made to obtain the minimum
+plating.  The choice of 80-$\mu$m diameter field wire was made to obtain the minimum
 radius that would satisfy our surface electric field limit.  This small
 diameter is important because it means that the field wires could be strung 
 at lower tension than a more dense wire, with minimal gravitational sag.  
@@ -167,9 +160,8 @@ the chambers.
 \subsection{Construction Materials}
 
 \hskip 0.15 in
-Due to the complex geometry of CLAS and the difficulty of removing and repairing 
-drift chambers, it was crucial to minimize chamber aging.  Care was taken to 
-ensure that all materials in contact with the gas volume were clean and ``chamber 
+To insure that the drift chambers perform well for 10 years or more, care was taken to 
+specify that all materials in contact with the gas volume were clean and ``chamber 
 safe'' as defined in Ref~\cite{kadyk}.  All construction was carried out in 
 Class-10000 or better clean rooms.
 
@@ -209,8 +201,8 @@ rotation of the detector by hand.  A gantry crane was used to lift the
 detector onto and off the stringing fixture and to raise the small end of 
 the detector to account for the stereo angles.
 
-The stringing fixture was very basic.  It was mounted to the floor using 
-concrete anchors.  This minimizes floor obstruction as the box must be 
+The stringing fixture was mounted to the floor using 
+concrete anchors.  This minimized floor obstruction as the box must be 
 rotated to the opposite side to string the second set of wires.  The box 
 and frame assembly were placed far enough away from the uprights such that 
 they did not interfere with stringing activities.  There was a gross 

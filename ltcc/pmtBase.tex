@@ -18,17 +18,17 @@ signal to noise ratio: the high voltage needed to detect the single photo-electr
 The design was adapted to use the LTCC XP4500B base and a prototype, shown in \F{pmtWithDivider}, was built to provide a x10
 amplification and a split signal directly from the PMT base.
 
-\begin{figure}
+\begin{figure*}
 	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/dividerSchematic.png}
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/pmtWithDivider.png}
+	\includegraphics[width=1.25\columnwidth, keepaspectratio]{img/dividerSchematic.png}
+	\includegraphics[width=0.75\columnwidth, height=0.95\columnwidth]{img/pmtWithDivider.png}
 	\caption{Top: schematic of the board, shown as a resistor chain for simplicity. The amplifier, designed to operate at current from 0.7 to 1.5 mA,
             provides amplification in the first stage using a common base amplifier, made on a fast NPN transistor NE68033 by California Eastern Laboratories.
             In the output stage a PNP-NPN transistors is used.
             Bottom: the prototype module installed in the XP4500B PMT base.
             The bottom of the base has been modified to contain the HV SHV input and two output signals. }
 	\label{fig:pmtWithDivider}
-\end{figure}
+\end{figure*}
 
 In \F{dividerTests} (top) a comparison of the two signals shows the similarity between the two outputs.
 During testing of the modified PMT bases, the output has been processed by a Flash ADC and acquired with a data
@@ -38,11 +38,10 @@ coming from the external dedicated splitter and amplifier through the ADC electr
 
 \begin{figure}
 	\centering
-%	\includegraphics[width=0.87\columnwidth,keepaspectratio]{img/doubleSignal.png}
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/fadcOutput.png}
-	\includegraphics[width=0.97\columnwidth,keepaspectratio]{img/cc_signal.png}
+	\includegraphics[width=0.47\columnwidth,height=0.75\columnwidth]{img/fadcOutput.png}
+	\includegraphics[width=0.47\columnwidth,height=0.75\columnwidth]{img/cc_signal.png}
 	\caption{The single photo-electron FADC spectrum of one of the PMTs with the modified base (top) compared with the original ADC output in the
-            configuration of a dedicated external splitter and amplifier. }
+            configuration of a dedicated external splitter and amplifier (bottom). }
 	\label{fig:dividerTests}
 \end{figure}
 

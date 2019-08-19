@@ -1,4 +1,14 @@
-\section{Electronics}
+\section{Electronics and readout}
+The completely resistive high-voltage dividers of the CND were designed following the voltage distribution ratio suggested by Hamamatsu. The tube-base assembly was developed at IPN Orsay with the aim to mechanically match the mild-steel PMT shielding, for a compact and robust design. 
+In order to operate the PMTs, high voltages (typically in the range of 1500 V) are provided by multi-channel CAEN SY527 power supplies. 
+%(Fig.~\ref{hv_ps_figure}, left). 
+The HV boards adopted for the CND are CAEN A734N (16 channels, 3 kV max voltage, 3 mA max current). %(Fig.~\ref{hv_ps_figure}, right). 
+The signal of each PMT is sent to an active splitter.
+The three splitter modules used for the CND were originally developed by IPN Orsay for the G0 experiment (Hall C, JLab) \cite{Androic:2011rha}. Each module is an active 64-channel splitter with unity gain, so that there is no loss of amplitude. The 64 SMA inputs are placed in the back panel. In the front panel there are 8 8-channel output connectors (DMCH) for the time signals and 4 16-channel output connectors (FASTBUS) for the charge signals. 
+The charge signal from the splitter is sent to JLab-designed 16-channel 250~MHz VXS-based flash-ADCs.  
+The time signal from the splitter is sent to a constant fraction discriminator (CFD) GANELEC FCC8, originally developed for the TAPS detector in Mainz. Each CFD module is an 8-channel CAMAC unit with LEMO 00 input connectors and 2x8-pin output connectors in differential ECL. The threshold can be set for each channel individually using a manual switch or remote control, and no time-walk adjustement is required for the module.  
+The discriminated time signal then goes to the TDC (CAEN VX1290A, 32 channels/board, 25 ps/channel resolution). 
+In total, the read-out system includes 3 splitter modules, 19 CFD modules, 5 TDC boards, and 8 ADC boards. 
 
-cnd electronics description
+
 

@@ -1,5 +1,6 @@
-% !TEX root = ./trigger.tex
+
 \section{Physics triggers}
+\label{sec:physics_triggers}
 
 
 %%%%%%%%   Overview   %%%%%%%%
@@ -16,6 +17,8 @@
 
 
 \subsection{Electron Trigger}
+\label{sec:electron_trigger}
+
 The electron trigger is designed to select the inclusive electron scattering out of the CLAS12 targets:
 \begin{equation}
 e(p,n,A)\rightarrow e^\prime X.
@@ -43,16 +46,21 @@ The track reconstruction in the DC system at the trigger level is very useful fo
 The geometrical matching between track candidates and hits in the PCAL and EC detectors was used to strengthen the trigger performance.
 
 The electron trigger configuration may be presented by the formula:
-\begin{align*} 
+\begin{align} 
+\label{eq:em_trg_formula}
+\begin{split}
  &HTCC_i(N_{phe}{>}N^{HTCC}_{min})\times\\
  & [E_{PCAL}{>}E^{PCAL}_{min})\times E_{Total}{>}E^{Total}_{min})\times  DC]_i
-\end{align*}
+ \end{split}
+\end{align}
 \noindent
 where index $i$ is the CLAS12 sector number, $N_{phe}$ is the number of photoelectrons detected by HTCC.  $N^{HTCC}_{min}$, 
 $E^{PCAL}_{min}$, $ E^{Total}_{min}$ are the trigger parameters, and $DC$ means that  track was reconstructed by the $DC$-system. The space correlations between all detectors and coordinates of the track are implemented as well.
 
 
 \subsection{Photoproduction trigger}
+\label{sec:photoproduction_trigger}
+
 The photoproduction trigger is designed to select  events when scattered electron is detected by the Forward Tagger in the angular range $\theta\sim2-5$ degrees
 $$
 e p  \rightarrow e^\prime(detected\ by\ FT) X.
@@ -115,6 +123,7 @@ In case the trigger rate is too high for the DAQ bandwidth the CND detector coul
 
 
 \subsection{$J/\psi$ meson trigger}
+\label{sec:meson_trigger}
 
 The special trigger was designed to detect the quasi-photoproduction of $J/\psi$-mesons
 $$

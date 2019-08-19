@@ -1,6 +1,5 @@
 \section{Drift Chamber Tracking System Performance}
 
-\section{System Performance}
 
 \subsection{Chamber Lifetime}
 \label{choper}
@@ -15,97 +14,43 @@ produced from the targets by the multi-GeV incident electron beam.  This
 constraint is severe for the drift chambers since they are close to the 
 target. Particularly for the R1 chambers, the large flux of 
 particles limits the luminosity in two ways.  First, a large number of 
-background-related hits in the chambers makes track reconstruction very 
-difficult.  The working assumption is that the analysis software can tolerate 
+background-related hits in the chambers reduces the track reconstruction 
+efficiency.  The working assumption is that the analysis software can tolerate 
 no more that a 5$\%$ accidental chamber occupancy in order to successfully 
 reconstruct charged-particle tracks.  Second, the effects of sustained high 
 luminosities are unfavorable for long chamber lifetimes.  Aging correlates 
-directly with the current carried by the chambers, maximum values for which 
-have been set following detailed studies with electron beams~\cite{carman}.
+directly with the currents generated in the chambers.
 
-%%%%%%%%%%%%%%%%%%%%%% Figure : R1 Lifetime Measurement %%%%%%%%%%%%%%%%
-\begin{figure}[htpb]
-\vspace{5.0 cm} 
-\special{psfile=life.ps hscale=58 vscale=58 hoffset=-35 voffset=-145}
-\caption{\small{Estimated R1 chamber operating lifetime in years times C/cm of
-charge accumulated as a function of the average polar angle spanned by
-each of the HVTBs.  Data are shown with the mini-torus at full field, and
-assume continuous operation of the chamber at a luminosity of
-1$\times$10$^{34}$~cm$^{-2}$s$^{-1}$.}}
-\label{life}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The useful chamber lifetime is difficult to predict, as it depends on many 
-different parameters such as construction materials, purity of the operating gas, 
-chamber geometry, and other unknown effects.  Fig.~\ref{life} shows the R1 chamber
-lifetime, defined in terms of accumulated charge, as a function of angle.  These 
-estimates are based on the currents drawn from the HVTBs at a luminosity of 
-1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$.  The lifetime will be shortest for small 
-angles where the flux of charged particles is largest.  The lifetime estimate 
-presented in Fig.~\ref{life} pessimistically assumes that the chambers are 
-continuously illuminated.  In practice, the actual lifetime will likely be at least 
-five times longer, and that for the outer drift chambers should be about an order of 
-magnitude longer as they see much reduced ionization relative to R1.
-
-During operation at a luminosity of 1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$ our present
-chambers draw similar currents per wire as did the previous chambers at a luminosity of 
-1$\times$10$^{34}$~cm$^{-2}$s$^{-1}$.
-The previous chambers operated for more than 10 years with no 
-sign of ``aging'' (except for 
-the failure of external components and some wire breakage), we expect the present
+We have not yet observed any sign of aging in the drift chambers.
+For the previous CLAS chambers, we used the same gas mixture and ran at a
+similar gain and the chambers lasted more than 10 years with no indication
+of aging.  We expect the present
 chambers to perform well for at least 10 years.
 
 
 \subsection{Efficiency}
 
 \hskip 0.15in
-The chamber efficiency can be described in terms of either the ``layer efficiency'' 
-or the ``tracking efficiency''.  The layer efficiency is the probability that a
+The probability of reconstructing a track due to a charged particle within
+our fiducial volume is referred to as the ``tracking efficiency''.
+There are three categories of inefficiency: the ``intrinsic layer inefficiency'',
+the ``background-related inefficiency'' and the ``malfunction related 
+inefficiency''.
+
+The layer efficiency is the probability that a
 good hit is recorded in a wire layer through which the track has passed, based on 
 the evidence from all other layers in the superlayer.  This is called the 
 ``excluded-layer method''.  The layer efficiency is a measure of the intrinsic drift 
 cell efficiency for the particular choice of gas mixture, high-voltage set point, and 
 discriminator level.  
 
-The plateau curves used to set the high-voltage operating points for the chambers 
-show that the average layer efficiency is $>$98$\%$ (see Fig.~\ref{plateau}).  
-Fig.~\ref{edoca} reveals that a large contribution to the 2$\%$ inefficiency comes 
+In the section on commissioning we discussed our `high voltage plateau'.
+We took data at successively higher values of high voltage and measured the
+layer efficiency at each point.  We set the high-voltage operating points such that
+the average layer efficiency is $>$98$\%$. 
+Fig.~\ref{hit-effcy-vs-doca} reveals that a large contribution to the 2$\%$ inefficiency comes 
 from tracks that pass close to the sense wire.  These tracks give rise to signals 
 that have low pulse height and long duration, and thus may escape detection.
-
-The tracking efficiency is the probability of identifying a 
-track when, based on kinematics, a charged particle is projected to pass through the 
-active region of the drift chambers.  For example, such a particle would be a recoil
-proton from e-p elastic scattering.
-Fig.~\ref{trkeff} shows the calculated tracking efficiency for recoil protons from
-e-p elastic scattering, plotted as a function of the R1 hit occupancy for the sector 
-where the recoil proton is expected.  The tracking efficiency remains $>$85$\%$ for 
-chamber hit occupancies up to 5$\%$.  
-
-\vfil
-\eject
-
-%%%%%%%%%%%%%%%%% Figure : Layer Efficiency vs. DOCA %%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htpb]
-\vspace{5.0cm} 
-\special{psfile=layereff.eps hscale=70 vscale=65 hoffset=-65 voffset=-195}
-\caption{\small{The layer efficiency plotted versus the distance-of-closest-approach
-(DOCA) to a sense wire.  This typical sample is from an R3 sector.}}
-\label{edoca}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%% Figure : Sector Efficiency vs. Luminosity %%%%%%%%%%%%%%%
-\begin{figure}[htpb]
-\vspace{6.3cm} 
-\special{psfile=trk_eff.eps hscale=65 vscale=60 hoffset=-40 voffset=-185}
-\caption{\small{Tracking efficiency plotted as a function of the R1 hit
-occupancy ($\%$) for recoil protons from elastic scattering where the
-corresponding electron track has been reconstructed.}}
-\label{trkeff}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Track Resolution}
 
@@ -203,7 +148,7 @@ at the excluded layer.  This variance over-estimates the single-wire resolution.
 Since there are six layers per superlayer and layer 3 is excluded from the fit,
 this amounts to a $10 - 15\%$ over-estimate.
 
-Fig.~\ref{sigres} shows the width of the track-hit residual distribution plotted versus DOCA for 
+Fig.~\ref{resolution-vs-doca} shows the width of the track-hit residual distribution plotted versus DOCA for 
 each of the different chamber Regions.  The single-wire resolution worsens near the 
 wire and also at the outer edge of the cell.  This arises due to finite cluster sizes 
 due to the Poisson distribution of ion-pair production along the path of the primary ion 
@@ -212,15 +157,23 @@ field lines near the field wire.  The average single-wire resolution in the midd
 portion of the cell for each Region is presently about 200 to 250~$\mu$m.  The whole-cell 
 average is about 310, 315 or 380~$\mu$m for R1, R2, and R3, respectively.
 
-%%%%%%%%%%%%%%%%%%%%%% Figure : Resolution vs. DOCA  %%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htpb]
-\vspace{9cm} 
-\special{psfile=sigres.eps hscale=52 vscale=48 hoffset=-30 voffset=-60}
-\caption{\small{Track-hit residual sigmas plotted versus the fitted DOCA for each
-of the three drift chamber Regions. }}
-\label{sigres}
+The bottom sub-figure is a histogram of the tracks' DOCA distribution.  It is approximately flat as
+expected, since the particle luminosity is approximately constant over the small solid
+angle of a single drift cell.  It shows a dip at zero, which is a real effect and is
+due to a spreading out of the arrival time of ionized electrons when the track is
+very close to the wire.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{5cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/resolution-vs-doca.png}}}
+\end{picture}
+\caption{\small{Top sub-plot: Resoluton plotted versus the track DOCA (cm).  Bottom sub-plot:  The 1-d plot
+of track DOCA (cm).}}
+\label{resolution-vs-doca}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusions}
 
@@ -236,14 +189,14 @@ wire connection schemes and on-board preamplifiers.
 
 \noindent
 - The toroidal shape of the magnet and the desire to have measurements before, within, 
-and after the high-field region, resulted in the design and fabrication of nested 
-multi-layer drift chambers that have cylindrical profiles.
+and after the high-field region, resulted in the design of a `rod and ball' mounting scheme
+which minimized dead areas and facilitates maintenance.
 
 \noindent
 - The fabrication of chambers that support large static wire tensions, but have thin 
-endplates necessitated three novel support systems: the ``six chambers as a unit'' 
-design of R1, the spring mounting to the cryostat of R2, and the thin outer carbon 
-shell of R3.
+endplates necessitated three endplate designs: aluminum stiffened with steel bars (R1),
+G10 stiffened with steel bars (R2) and Carbon fiber plates filled with foam and reinforce
+with Carbon-fiber posts and close-out plate (R3). 
 
 \noindent
 -The need for precise tracking in a system with non-saturated drift velocity 
@@ -252,9 +205,9 @@ and low-gain operation) resulted in a semi-automated calibration and monitoring 
 package.
 
 \vskip 10pt
-The CLAS drift chamber system has been in routine operation since January 1998. 
+The CLAS drift chamber system has been in routine operation since Spring, 2017. 
 The system has reached its design goals of 
-high-luminosity operation (1$\times$10$^{34}$~cm$^{-2}$s$^{-1}$) in a 
+high-luminosity operation (1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$) in a 
 high-flux electromagnetic reaction environment, with very good track 
 reconstruction efficiency over a large range of angles and 
 magnetic fields.  The single-wire efficiency is greater than $98\%$ and the

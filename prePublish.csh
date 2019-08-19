@@ -58,23 +58,37 @@ foreach d ($detChanged)
 	echo                  > compile.log
 	echo Detector: $d    >> compile.log
 	echo                 >> compile.log
+	set toPublish = $d".pdf"
 	if ($d != "magnets") then
 		# make sure the style files are common
 		cp ../*.sty .
 		echo Compiling with `which scons` >> compile.log
 		echo                              >> compile.log
 		scons
-		echo Result: `ls *.pdf`           >> compile.log
+		echo To Publish: $toPublish       >> compile.log
 		ls -lrt                           >> compile.log
 		echo                              >> compile.log
 	endif
-	scp *.pdf ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims
-	echo $d published    >> compile.log
-	if ($d != "magnets") then
-		scons -c
+	if ($d == "dc") then
+		set toPublish = dc12_nim.pdf
+	else if ($d == "beamline") then
+		set toPublish = beamline_nim.pdf
+	else if ($d == "ftof") then
+		set toPublish = ftof-nim.pdf
+	else if ($d == "ctof") then
+		set toPublish = ctof-nim.pdf
+	else if ($d == "rich") then
+		set toPublish = nima-rich.pdf
+	else if ($d == "reconstruction") then
+		set toPublish = recon-nim.pdf
 	endif
+	scp $toPublish ftp.jlab.org:/group/clas/www/clasweb/html/12gev/nims
+	echo $d published    >> compile.log
 	echo                 >> compile.log
 	echo "Done. Check ~/error.log for cronjob errors."  >> compile.log
 	echo                 >> compile.log
+	if ($d != "magnets") then
+		scons -c
+	endif
 
 end

@@ -1,0 +1,10 @@
+\subsection{Validation of the electron trigger}
+As a reminder the electron trigger logic uses responces from PCal, EC, HTCC and DC (see eq. \ref{eq:em_trg_formula}), and as it was described in section \ref{sec:validation_random}, for trigger validation we have used a RT data. 
+The $\mathrm{1^{st}}$ step in the validation of electron trigger is a selection of  events with ``clean electron''. The CLAS12 offline reconstruction software assignes PID to each reconstruction particle ({\color{Red} reference to offline recon.}) ( for electron PID=11) however in this studies we imposed additional cuts. 
+In particular 
+\begin{itemize}
+ \item DC roads are optimized for tracks originating from the target, that is why in the offline analysis we have put a cut on the vertex ``Z'' coordinate to make sure the track originates from the target.
+ \item Selected events where electron hits calorimeters (PCal and EC) in a fiducial region, to make sure the shower is fully reconstructed.
+ \item Applied trigger condition cuts on offline cluster energies in the PCal and EC, also on number of photoelectrons in HTCC.
+\end{itemize}
+After applying above mentioned cuts, for each of these electrons, we have checked whether the electron trigger bit is set for the corresponding sector. At the end the trigger efficiency is defined as the number of ``Bit Not Set'' events over the number of all events with ``clean'' electron.

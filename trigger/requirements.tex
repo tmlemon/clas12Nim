@@ -1,19 +1,22 @@
-\section{Requirements(Sergey,Valery)}
+\section{Requirements}
 
-The CLAS12 detector  has been designed to study the interactions of electrons and photons with nucleons and nuclei at high luminosity. 
-The CLAS12 trigger system is providing trigger signals for these processes. 
-Any detectors with Flash Analog to Digital Converter (FADC) front-end electronics may participate in the trigger event selection.  In addition, track reconstruction by the drift chambers at the trigger level is used to select events with charge particles in the final state. 
+The CLAS12 detector was designed to study the interactions of electrons and photons with nucleons and nuclei at nominal luminosity of $1\times 10^{35}$~cm$^{-2}$s$^{-1}$. The CLAS12 trigger system has to provide trigger signals for these processes. Based on the simulation of the physics processes of interest, the required event rate was estimated to be up to 20~kHz. The trigger latency was required to be not less then 8~$\mu$s to provide sufficient time for trigger logic processing.
+
 %(see Fig.~\ref{fig:CLAS12}). 
-The trigger firmware has access to  the following detectors:
+
+The following detectors were defined to be part of the trigger system:
+
 \begin{itemize}
-	\item High Threshold Cherenkov Counter (HTCC)
-	\item Drift Chambers (DC)
-	\item Low Threshold Cherenkov Counter (LTCC)
-	\item Time of Flight System (TOF)
-	\item Preshower Calorimeter (PCAL)
-	\item Electromagnetic Calorimeter (EC).
-	%\item Silicon Vertex Detector (SVT)
-	\item Central Time of Flight (CTOF)
-	\item Central Neutron Detector (CND)
-	\item Forward Tagger (FT)
+	\item High Threshold Cherenkov Counter (HTCC, \ref)
+	\item Drift Chambers (DC, \ref)
+	\item Forward Time-of-Flight System (FTOF, \ref)
+	\item Preshower Calorimeter (PCAL, \ref)
+	\item Electromagnetic Calorimeter (EC, \ref).
+	\item Central Time-of-Flight (CTOF, \ref)
+	\item Central Neutron Detector (CND, \ref)
+	\item Forward Tagger (FT, \ref)
 \end{itemize}
+
+Each of these detectors is required to provide information to the trigger system. To achieve that, the front-end electronics were required to be designed with built-in trigger components. 
+
+ 

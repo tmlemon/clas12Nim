@@ -18,7 +18,7 @@ installed the on-chamber electronics boards.
 
 There are two types of board: one is a High-Voltage Distribution Board (HVTB)
 which brings RC-filtered high voltage to the wires.  Because there are three
-types of wire: 'sense', 'field' and 'guard' we supply three different voltages
+types of wire: `sense', `field' and `guard' we supply three different voltages
 to each board.  As discussed in the design section, we have a mixed high
 voltage system: the sense (or anode) wires are operated at positive voltage,
 typically about 2000 Volts; the field (or cathode) wires are operated at
@@ -46,7 +46,7 @@ discriminates the voltage pulse and then converts the leading edge
 to a digital time signal.
 See figures (STB, HVTB) in the electroncis section for more details.
 
-At this stage, our technicians did three important tasks:
+After stringing was complete we did the following:
 \begin{enumerate}
 \item ``daisy-chained'' the field wire crimp pins so that a single
 HV cable could power two rows of field wires (32 wires)
@@ -62,14 +62,68 @@ its outer radius.
 Now the chamber was ready for ``burn-in'' and ``pre-testing''.
 
 \subsection{``Burn-in and Pre-testing''}
-- work flow: raise by a step, wait until current subsides, raise by
-a step ... and repeat
-
+When drift chambers are first turned on, they typically draw fairly high
+`dark' currents, even at low voltages.  The standard procedure is to
+slowly raise the high voltage, wait for a certain time period during
+which the current subsides and raise the voltage again, and so on.
+For our chambers, the typical time period was an hour and the typical
+voltage step was 75 V which is approximately the `doubling voltage' of
+our chambers (the voltage step which increases the gain by a factor
+of two).
 
 \subsection{Installation and Survey}
 - chambers attached by ball and socket joints to rods which are attached
 on the other end by ball and socket to the toroidal magnet frame
 
-\subsection{Early Failures and Repair}
 
-\subsection{Efficiency Scans of HV and Discriminator Thresholds}
+
+\subsection{Determining the Operating Values of the Discriminator Thresholds and High Voltage Settings}
+
+We set the discriminator levels in the DCRB's to reduce the accidental hit rate (with no beam) due to electronic
+noise to be less than about 1\%.  Since the electronic noise was generally proportional to wire length, we had less
+electronic noise on the smaller R1 chambers.  Using this criteria, we set the thresholds to 30, 45 and 45 mV, respectively,
+for R1, R2 and R3.  
+Once we set the discriminator thresholds, we performed a High Voltage efficiency scan.  We raised the high voltage in
+steps of 75 Volts and analysed the data.  We set the operating value for the high voltage at the point at which
+the layer efficiency equaled or exceeded 97\%.
+
+We determined the layer efficiency using the `excluded layer' method.  In one superlayer (of six layers) we found track
+segments by our usual fitting method, but ignoring the data from a pre-selected layer (layer 3, for example).  We then
+projected the track segment through that layer and determined whether or not the indicated wire (or an adjacent one) had a good hit.
+Fig.~\ref{effcy-vs-voltage} shows the `plateau curve' of efficiency plotted versus voltage for one typical chamber 
+and superlayer.  The layer efficiency at the chosen operating high voltage poiont was between 97\% and 98\%.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{5cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/trace-routing-schematic.jpg}}}
+\end{picture}
+\caption{\small{Layer efficiency plotted versus high voltage for a typical superlayer.}}
+\label{effcy-vs-voltage}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+The single layer inefficiency is not uniform across the drift cell.  It is higher near the sense wire and also near the outer
+edge of the cell.  A track passing close to a sense wire leave many ions in the cell, but the ion arrival times are stretched
+out from near-zero to the maximum drift time, Tmax.  The result is that the pre-amplifier's output signal has a low voltage
+amplitude but persists for a long time.  So, even though the collected charge is large the voltage put out by our trans-impedance
+pre-amplifiers may not be large enough to exceed the voltage discriminator threshold of the DCRB,
+For the case of tracks near the outer edge of the cell (so-called `corner-clippers') they simply leave a very small number
+of ions in the cell and thus have a small signal.
+
+In Fig.~\ref{effcy-vs-doca} we plot the layer efficiency as a function of the distance-of-closest-approach (DOCA) and
+you can see the characteristic rise of the ineffiency near to and far from the sense wire.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{5cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/trace-routing-schematic.jpg}}}
+\end{picture}
+\caption{\small{Layer efficiency plotted versus DOCA.}}
+\label{effcy-vs-doca}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

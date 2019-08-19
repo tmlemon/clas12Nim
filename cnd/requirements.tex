@@ -1,4 +1,68 @@
 \section{Requirements}
 
-cnd requirements description
+Measuring Deeply Virtual Compton Scattering (DVCS) on a neutron target ($en \to e' n' \gamma$) is one of the necessary steps to complete
+our understanding of the structure of the nucleon in terms of Generalized Parton Distributions (GPDs) \cite{Mueller:1998fv,Ji:1996ek,Radyushkin:1996nd}.
+DVCS on a neutron target allows one to perform a quark-flavor decomposition of the GPDs, combined with the results for DVCS on a proton target.
+Moreover, it plays a complementary role to DVCS on a transversely polarized proton target in the determination of the GPD $E$, the least known and least
+constrained GPD that enters Ji's sum rule \cite{Ji:1996ek}, which links integrals of GPDs to the total angular momentum of the quarks.
+To measure $n$-DVCS on a deuterium target ($ed\to e'n\gamma(p)$) with CLAS12, the electron and the DVCS photon, emitted mainly at small angles, can be detected in the CLAS12 forward calorimeters (ECAL \cite{ecal_nim} and FT\cite{ft_nim}), while the neutron is emitted predominantly (for $\sim 80$\% of the events) at $\theta> 40^o$ in the laboratory frame, with an average momentum around 0.5~GeV.
+%This kinematic constraint imposes the addition of a neutron detector to the CD, that in its baseline design has very limited detection efficiency for neutrons --- they can be detected in the CTOF, with about 2-3\%  of efficiency. 
+These kinematic constraint conditions drive the design specifications for the CND. %The available radial space for the CND within the CLAS12 solenoid outside of the CTOF~\cite{ctofref} dictates the overall CND detector thickness and hence its possible neutron detection efficiency.
+With the aid of the CLAS12 fast Monte Carlo tool (FASTMC), the requirements in terms of angular and momentum resolutions on the detected neutrons were determined by studying the missing mass (``$MM$'') of the $e'n'\gamma$ system.
+%The kinematical variables of the scattered electron ($e$) and of the DVCS photon ($\gamma$), computed by a n-DVCS event generator, were ``smeared'' using the values of resolutions provided by FASTMC. 
+%For the photon detection at low angles ($2.5^o-4.5^o$) the Forward Tagger (FT) is used. Its energy and angular resolutions were parametrized in the simulation according to its design specifications. 
+%
+%The CND requirements were determined by studying the missing mass (``$MM$'') of the $en\gamma$ system, which is a quantity one can cut on to ensure exclusivity for the n-DVCS channel by minimizing the $en\pi^0$ contamination. First of all, without applying any resolutions on the electron and photon kinematical variables, and varying the smearing on the neutron kinematical variables, it was shown that the resolution on the neutron momentum plays the major role in determining the width of $MM(en\gamma)$, while the effect of the angular resolutions is less important. 
+%Varying either $\sigma_{\theta}$ or $\sigma_{\phi}$ by a factor of 200 (from $0.1^o$ to $20^o$) increases the width of $MM(en\gamma)$ by about 30\% more, while the same increase by a factor of 200 (from 0.1\% to 20\%) on the neutron momentum resolution $\sigma_P/P$ worsens the resolution of the missing mass by a factor of 40. 
+%
+Using realistic resolutions on the electron and photon calculated by FASTMC, it was found that if the neutron momentum resolution is kept below 10\% its effect on the $MM$ resolution is negligible with respect to the other particles in the reaction \cite{Niccolai:2018qzm}. 
+
+Therefore, considering that the detection capabilities of CLAS12 for electrons and high-energy photons are fixed, the requirements of the CND are:
+\begin{itemize}
+\item{good neutron identification capabilities for the kinematic range of interest ($0.2<p_n<1.2$ GeV, $40^o<\theta_n<80^o$);}
+\item{neutron momentum resolution $\sigma_P/P$ within 10\%.}
+\end{itemize}
+
+\subsection{Constraints}
+\label{sect_constraints}
+The available space in the CLAS12 Cetral Detector is limited by the presence of the CTOF and of the solenoid magnet, which left about 10 cm free. 
+However, the CTOF can also be used to detect neutrons, adding an additional 2-3\% of detection efficiency. 
+The central tracker can be used as a veto for charged particles.
+Finally, the strong fringe field of the 5-T magnetic field required careful consideration for the positioning and the type of the CND PMTs.
+
+%\begin{figure}[htb] 
+%\begin{center}
+%\includegraphics[width=0.5\textwidth]{./Figure/newcnd.jpg}
+%\caption {Drawing of the Central Detector: the red area represents the free space between the magnet (shaded area) and the CTOF (represented by the
+%  bar and its bent light guides).}
+%\label{cnd4}
+%\end{center}
+%\end{figure}
+
+After extensive GEANT4 simulations and R\&D studies devoted to examine the various options for the CND and its possible photodetectors \cite{Niccolai:2018qzm}, the final design choice was a barrel of standard plastic scintillator bars of trapezoidal cross section, all with their long sides parallel to the beam direction. This geometry is similar to that of the CTOF \cite{ctofref}. 
+
+%\begin{figure}[htb]
+%\begin{center}
+%\includegraphics[width=0.5\textwidth]{./Figure/Geometriescintillateurs.jpg}
+%\caption {Geometry of the scintillator barrel for the Central Neutron Detector. Precise dimensions are reported in Tab.\ref{lab_scint_dim}.}
+%The final design consists of 3 radial layers each made of 48 trapezoidal scintillator paddles.}
+%\label{geom_scint}
+%\end{center}
+%\end{figure}
+As previously stated, one of the two requirements of the CND is good neutron identification capabilities. If the charged particles are vetoed by the central tracker, the only particles remaining from the target that can be misidentified for neutrons are photons. Using plastic scintillators, the most straightforward way to distinguish neutrons from photons is by measuring their time-of-flight (TOF) and comparing the values of $\beta$:
+\begin{eqnarray}
+\beta= \frac{l}{TOF\cdot c},
+\end{eqnarray}
+where $c$ is the speed of light and $l$ is flight path of the particle from the target to the scintillator bar. This can be obtained, in our geometry, as
+\begin{eqnarray}
+l= \sqrt{z^2+h^2},
+\end{eqnarray}
+where $z$ and $h$ are the hit position along the beam $z$ axis and in the radial direction, respectively. To obtain $z$ one must measure the time of the hit at both ends of the scintillator bar:
+\begin{eqnarray}
+z=\frac{1}{2} \cdot v_{eff}\cdot(t_{left}-t_{right}),
+\end{eqnarray}
+where $v_{eff}$ is the effective velocity of light propagation in the scintillator material. To know $h$ it is necessary to have reasonably small radial segmentation: $h$ will be given by the distance between the target and the middle of the hit paddle.
+   
+GEANT4-based simulations show that to ensure a good photon/neutron separation for the neutron momentum range of the $n$-DVCS reaction the CND has to be equipped with photodetectors ensuring a time resolution of about 150 ps. 
+
 

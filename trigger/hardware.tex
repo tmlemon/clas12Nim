@@ -1,24 +1,19 @@
-\section{Hardware Implementation} Chris
+\section{Hardware Implementation}
 
-The CLAS12 Level 1 Trigger System is implemented using High Speed Serial (VXS) techniques for a complete fully pipelined multi-crate trigger system that takes advantage of the elegant high speed VXS serial extensions for VME.  This trigger system includes three sections starting with the front end VXS crate Trigger Processor (VTP), a global Sub-System Processor (SSP) and a Trigger Supervisor that manages the timing, synchronization and front end event readout.  
-Within a front end crate, trigger information is gathered from each 16 Channel, 12bit Flash ADC module at 4nS intervals via the VXS backplane, to a Trigger Processor (VTP).  Each Trigger Processor is capable of handling these 500MBps VXS links from the 16 FADC modules, and then performs real time crate level trigger algorithms.  The crate trigger processor transmits the Level 1 trigger information through multiple Gigabit transceivers that are combined into a fiber link.  The VTP uses a multi-fiber link to increase the aggregate trigger data transfer rate to the global trigger to 10Gbps.
-The front end crate trigger data is transmitted on the VXS backplane, and on the multi-fiber link using the Aurora protocol from Xilinx.  The front end modules use Virtex-V devices with Gigabit Transceivers operating at 2.5Gbps. The VXS Trigger Processor collects these serial streams with a Virtex7 device and works with a Zynq7 processor to manage the network interface and on-board Linux operating system.
-The entire trigger system is synchronous and operates at 250Mhz with the Trigger Supervisor managing not only the front end event readout, but also the distribution of the critical timing clocks, synchronization signals, and the global trigger signals to each front end readout crate.  These signals are distributed to the front end crates on a separate fiber link and each crate is synchronized using a unique encoding scheme to guarantee that each front end crate is synchronous with a fixed latency, independent of the distance between each crate.  The overall trigger signal latency is <3uS, and the proposed 12GeV experiments at Jefferson Lab require up to 200KHz Level 1 trigger rate.
+The CLAS12 Trigger System is implemented using High Speed Serial (VXS) techniques for a complete fully pipelined multi-crate trigger system that takes advantage of the elegant high speed VXS serial extensions for VME.  This trigger system includes pre-trigger level and three stages starting with the front end VXS crate Trigger Processor (VTP), a sector-level Sub-System Processor (SSP) and a global VTP processor and Trigger Supervisor that manages the timing, synchronization and front end event readout.  
 
-\subsection{SSP board}
+Within a front end crate, trigger information is gathered from pre-trigger boards, consisting of 16 channel 12bit FADC  (\ref) and 96 chanel DCRB (\ref) modules via the VXS backplane, to a Trigger Processor (VTP). Each Trigger Processor is capable of handling these 500MBps VXS links from the 16 modules, and then performs real time crate level trigger algorithms.  The crate trigger processor transmits the Stage 1 trigger information through multiple Gigabit transceivers that are combined into a fiber link.  The VTP uses a multi-fiber link to increase the aggregate trigger data transfer rate to the global trigger to 10Gbps.
 
-\begin{figure}[hbt]
-	\centering
-	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/ssp_board.png}
-	\caption{SubSystem Processor (SSP)}
-	\label{fig:ssp_board}
-\end{figure}
+The trigger data is transmitted on the VXS backplane, and on the multi-fiber link using the Aurora protocol from Xilinx.  The front end VXS modules use Virtex-V devices with Gigabit Transceivers operating at 2.5Gbps. The VTP collects these serial streams with a Virtex7 device and works with a Zynq7 processor to manage the network interface and on-board Linux operating system.
 
-The SubSystem Processor (SSP) Fig.~\ref{fig:ssp_board} is a VXS payload card used to collect data from multiple front-end (Stage 1) crates. The SSP performs the stage 2 trigger processing by creating sector and central trigger bit decisions. Up to 16 SSP modules can be housed in a single VXS crate, but only 7 are currently needed: 6 for sector detectors, and 1 for central detectors. There are 36 full-duplex serial links each capable of running at up to 6.5Gbps that can be used for transporting trigger data. The links are bonded in groups of 4 for a total of 8 channels: 1 VXS switch slot interface (copper) and 8 QSFP interfaces (optical). All VXS and QSFP lanes run at 5Gbps (or 20Gbps per channel).
+The entire trigger system is synchronous and operates at 250Mhz with the Trigger Supervisor managing not only the front end event readout, but also the distribution of the critical timing clocks, synchronization signals, and the global trigger signals to each front end readout crate.  These signals are distributed to the front end crates on a separate fiber link and each crate is synchronized using a unique encoding scheme to guarantee that each front end crate is synchronous with a fixed latency, independent of the distance between each crate.  The overall trigger signal latency is <=8uS, and the CLAS12 experiments at Jefferson Lab require up to 20kHz trigger rate with can be easily handled since hardware has an ability to run up to 200KHz trigger rate.
 
-\paragraph{Stage 2 Trigger Processing}
-Stage 1 optical data arrives at the SSP where it is aligned and processed through various algorithms to make the sector and central trigger bit decisions. There are 8 sector and central trigger bits (expandable to 32) that evaluated at 250MHz so that no jitter is introduced by this stage. These bits are sent to the stage 3 VTP using the VXS switch serial interface.
+Following sections describes main trigger system hardware components.
 
+
+\subsection{Pre-trigger boards}
+
+Two type of boards are used as pre-trigger to supply information to the trigger system: FADC and DCRB. They are described in details in CLAS12 DAQ paper \ref.
 
 \subsection{VTP board}
 
@@ -46,3 +41,18 @@ A Zynq FPGA is used on the VTP to run the standard CLAS12 CODA ROC component, wh
 	\caption{VTP Block Diagram}
 	\label{fig:vtp_block_daq}
 \end{figure}
+
+
+\subsection{SSP board}
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/ssp_board.png}
+	\caption{SubSystem Processor (SSP)}
+	\label{fig:ssp_board}
+\end{figure}
+
+The SubSystem Processor (SSP) Fig.~\ref{fig:ssp_board} is a VXS payload card used to collect data from multiple front-end (Stage 1) crates. The SSP performs the stage 2 trigger processing by creating sector and central trigger bit decisions. Up to 16 SSP modules can be housed in a single VXS crate, but only 7 are currently needed: 6 for sector detectors, and 1 for central detectors. There are 36 full-duplex serial links each capable of running at up to 6.5Gbps that can be used for transporting trigger data. The links are bonded in groups of 4 for a total of 8 channels: 1 VXS switch slot interface (copper) and 8 QSFP interfaces (optical). All VXS and QSFP lanes run at 5Gbps (or 20Gbps per channel).
+
+\paragraph{Stage 2 Trigger Processing}
+Stage 1 optical data arrives at the SSP where it is aligned and processed through various algorithms to make the sector and central trigger bit decisions. There are 8 sector and central trigger bits (expandable to 32) that evaluated at 250MHz so that no jitter is introduced by this stage. These bits are sent to the stage 3 VTP using the VXS switch serial interface. As well as VTP, SSP has event builder allowing to readout trigger information and insert it into data stream.

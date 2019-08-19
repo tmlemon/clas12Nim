@@ -12,8 +12,12 @@ the PCB with the readout strips, the kapton support, the mesh layer and the ioni
 	\item ------ pcb
 	\item -------- strips
 	\item ---------- kapton
-	\item ------------ gas
+	\item ------------ gas (amplification gap)
 	\item -------------- mesh
+	\item ---------------- gas (drift detection gap)
+	\item ------------------ drift potential electrode
+	\item -------------------- foil
+	\item ---------------------- ground
 \end{itemize}
 
 The sensitive volume containing the gas is assigned the argon isobutan gas and associated with the BMT hit process routine.
@@ -26,7 +30,8 @@ The strip identification is performed in the Process ID routine.
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bmtGeometry.png}
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bmtDetail.png}
 	\caption{Top: an overall view of the central detector trackers. The target is surrounded by 3 layers of silicon vertex trackers and
-            3 layers of micromegas. Bottom: detail of the micromegas GEMC geometry, showing the overlay cover, the copper ground and pcb strips}
+            6 layers of micromegas, 3 with Z-trips, 3 with C-strips. On the front the Forward Micromega Tracker disks are visible.
+            Bottom: detail of the micromegas GEMC geometry, showing the overlay cover, the copper ground and pcb strips}
 	\label{fig:bmtGeometry}
 \end{figure}
 

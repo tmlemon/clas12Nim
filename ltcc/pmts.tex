@@ -13,62 +13,51 @@ detector by converting UV photons with a wavelength below 300 nm into two
 isotropically emitted photons with longer wavelengths.
 
 The projected QE gained by a deposition of p-terphenyl (PT) on the XP4500Bs
-PMT \cite{Koczon:1457653} is shown in \F{pmtQuantumEfficiencyGain}.
+PMT \cite{Koczon:1457653} is shown in \F{pmtQuantumEfficiencyGainAndExample} (top).
 The gain at shorter wavelengths near 200 nm, where most of the Cherenkov light
 detectable by the LTCC optics is concentrated, is more than a factor of 3.
 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/pmtQuantumEfficiencyGain.png}
-	\caption{The typical QE for a Photonis XP4500B PMT (solid black line), compared to the projected QE after application
-				of a PT wave-length shifter at four different material loads (dashed lines), as a function of wavelength. }
-	\label{fig:pmtQuantumEfficiencyGain}
+	\includegraphics[width=0.99\columnwidth, height=0.65\columnwidth]{img/pmtQuantumEfficiencyGain.png}
+	\includegraphics[width=0.95\columnwidth, height=0.55\columnwidth]{img/ptExample.png}
+	\caption{Top: The typical QE for a Photonis XP4500B PMT (solid black line), compared to the projected QE after application
+				of a PT wave-length shifter at four different material loads (dashed lines), as a function of wavelength.
+            Bottom: A test glass after coating. Notice that  110 $\mu$ g/cm$^2$ (894 nm) of PT provides an
+            almost transparent coating.}
+	\label{fig:pmtQuantumEfficiencyGainAndExample}
 \end{figure}
 
 Several tests were performed in collaboration with the Temple University Physics Department using the equipment schematics
-shown in \F{pmtTestingSetup}. The setup used a monochromator with a precision of 0.35 nm and two PMTs (one for the measurement,
+shown in \F{pmtTestingSetupAndptQEResults} (top). The setup used a monochromator with a precision of 0.35 nm and two PMTs (one for the measurement,
 one for the   reference calibration). The PMTs were switched to confirm the stability of the results. Each PMT was measured
 while coated and then again after the coating had been removed using acetone and isopropanol.
 The observed photon rate was read out by a scaler.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/pmtTestingSetup.png}
-	\caption{Monochromator setup used for the gain measurement.}
-	\label{fig:pmtTestingSetup}
+	\includegraphics[width=0.95\columnwidth, height=0.65\columnwidth]{img/pmtTestingSetup.png}
+	\includegraphics[width=0.99\columnwidth, height=0.65\columnwidth]{img/ptQEResults.png}
+	\caption{Top: Monochromator setup used for the gain measurement. Bottom: Results from the monochromator measurements (red circles), compared to the
+				nominal prediction for a PT material load of $110\,\mu g/cm^2$ (dashed line).}
+	\label{fig:pmtTestingSetupAndptQEResults}
 \end{figure}
 
 The results from 2 different PMTs each at 2 different positions were found to be
-consistent. \F{ptQEResults} shows the average measured gain from these four
+consistent. \F{pmtTestingSetupAndptQEResults} (bottom) shows the average measured gain from these four
 measurements. The observed gain was found to be consistent with the nominal
 prediction for a perfectly saturated coating.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ptQEResults.png}
-	\caption{Results from the monochromator measurements (red circles), compared to the
-				nominal prediction for a PT material load of
-            $110\,\mu g/cm^2$ (dashed line).}
-	\label{fig:ptQEResults}
-\end{figure}
 
 Based on these results, 200 PMTs were treated \cite{Joosten:2016lcl} with an optimal material load of 110 $\mu$g/cm$^2$,
 corresponding to a PT thickness of 894 nm. This corresponded to an overall
 increase of the PMT response to Cherenkov light of about 40\%.
 
-In \F{ptExample} (top) an example of deposition of a test glass is shown. Notice that the coating is almost
+In \F{pmtQuantumEfficiencyGainAndExample} (bottom) an example of deposition of a test glass is shown. Notice that the coating is almost
 transparent in the visible light spectrum. At the bottom of the figure the actual setup used at Temple
 University is shown.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ptExample.png}
-%	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/templeSetup.png}
-	\caption{A test glass after coating. Notice that  110 $\mu$ g/cm$^2$ (894 nm) of PT provides an
-            almost transparent coating.}
-	\label{fig:ptExample}
-\end{figure}
+
 
 
 
