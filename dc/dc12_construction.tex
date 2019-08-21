@@ -42,10 +42,6 @@ end of each chamber, the endplates were connected together via a small joining
 piece called the ``nose-plate''.  The hardware fabrication and placement 
 was of critical importance to the dimensional accuracy of the chambers.
 
-
-\subsubsection{Endplate and Box Assembly}
-
-
 The chamber bodies were constructed from the accurately machined plates
 (2 endplates, a ``nose plate'' and a ``back plate'').
 The endplates themselves were an assembly of a basic plate with precision-drilled
@@ -79,7 +75,7 @@ boards.
 \begin{figure}[htpb]   
 \vspace{8cm}Schematic cross-sectional view of the R2 endplate showing
 wire-positioning hardware.
-\special{psfile=img/r2_inserts.eps hscale=70 vscale=70 hoffset=0 voffset=+30}  
+\special{psfile=img/r2_inserts.eps hscale=70 vscale=70 hoffset=0 voffset=0}  
 \caption{\small{}}
 \label{dc-corner}
 \end{figure}   
@@ -136,8 +132,21 @@ and the gold-plating of the wires, amounting to a thickness of 0.127~$\mu$m,
 ensures chemical inertness as well as a smooth surface finish.  The expected 
 electronics gain and thresholds dictated that the gas gain be a few times 
 10$^4$.  Under this condition, the electric field at the surface of the sense 
-wires is $\approx$200~kV/cm.  The field-wire diameter was chosen to ensure 
-that the electric field at their surface remained below 50~kV/cm to minimize 
+wires is $\approx$200~kV/cm.  
+
+We chose 80-$\mu$m gold-plated Cu-Be wire for our field wire.
+Cu-Be wire is very tough, is easily plated and resists ``flaking'' of the gold
+plating. 
+A small diameter for the field wire is important because it means that they 
+could be strung at lower tension than a larger wire for the same gravitational sag.  
+This minimizes the forces on the endplates which we wanted to keep as 
+thin as possible to maximize the solid-angle of the sensitive area of
+the chambers.
+
+The 80-$\mu$m diameter was chosen because it is the smallest possible choice
+which will not initiate cathode emission at the surface.
+At our operating conditions, the surface field at the field wire
+surface is less than 50~kV/cm, and this will minimize 
 conditions which could cause unwanted cathode emissions and a noisy chamber.  We note that
 our choice violated the ``20~kV/cm rule'' proposed by 
 Fabio Sauli (Ref~\cite{sauli_cathode_emission}) and others
@@ -145,17 +154,6 @@ to reduce cathode emission.  Our own studies showed that there was no cathode
 emission below 50~kV/cm from any wire with good surface finish.  Each batch
 of wire was tested with our test device (ref~\cite{patent}) to ensure that at operating field 
 values there was no emission.  
-
-We chose 80-$\mu$m gold-plated Cu-Be wire for our field wire.
-It is very tough, and is easily plated and resists ``flaking'' of the gold
-plating.  The choice of 80-$\mu$m diameter field wire was made to obtain the minimum
-radius that would satisfy our surface electric field limit.  This small
-diameter is important because it means that the field wires could be strung 
-at lower tension than a more dense wire, with minimal gravitational sag.  
-This minimizes the forces on the endplates which we wanted to keep as 
-thin as possible to maximize the solid-angle of the sensitive area of
-the chambers.
-
 
 \subsection{Construction Materials}
 
