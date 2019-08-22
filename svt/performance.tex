@@ -21,7 +21,7 @@ Detailed quality assurance procedures were developed for testing the modules dur
 \begin{figure}[hbt] 
 	\centering 
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{encstriplength.png}
-	\caption{Input noise vs. strip length.}
+	\caption{Input noise vs. strip length. Results of a linear fit are shown.}
 	\label{fig:encstriplength}
 \end{figure}
 
@@ -34,7 +34,7 @@ Longer silicon strips have higher capacitance and thus a higher input noise (see
 \label{fig:noiseocc}
 \end{figure}
 
-The noise occupancy histogram with no charge injection is used to find the noise value (see Fig.~\ref{fig:noiseocc}). This histogram probes the tail of the noise distribution, which can show effects that are masked by the higher occupancy at low thresholds and provides a cross-check of the noise value obtained from the response curve measurement. A most probable value of the signal peak from a MIP corresponds to the 100$^{th}$ DAC bin. The equivalent noise charge of the SVT channels is shown in  Fig.~\ref{fig:enc}. The peak is $\sim$1600 electrons (signal-to-noise ratio 15), the shoulder on the left side is related to the shorter strips. The channel noise allows setting a 3$\sigma$ threshold at the 30~keV level. 
+The noise occupancy histogram with no charge injection is used to find the noise value (see Fig.~\ref{fig:noiseocc}). This histogram probes the tail of the noise distribution, which can show effects that are masked by the higher occupancy at low thresholds and provides a cross-check of the noise value obtained from the response curve measurement. A Most Probable Value (MPV) of the signal peak from a MIP corresponds to the 100$^{th}$ DAC bin. The equivalent noise charge of the SVT channels is shown in  Fig.~\ref{fig:enc}. The peak is $\sim$1600 electrons (signal-to-noise ratio 15), the shoulder on the left side is related to the shorter strips. The channel noise allows setting a 3$\sigma$ threshold at the 30~keV level. 
 
 \begin{figure}[hbt] 
 	\centering 
@@ -48,7 +48,7 @@ The detector response and full readout chain calibration was done with $\gamma$ 
 \begin{figure}[hbt] 
 	\centering 
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{signal-gamma.jpg}
-	\caption{Signal from Am$^{241}$ $\gamma$ source.}
+	\caption{Signal from Am$^{241}$ $\gamma$ source. Results of a Gaussian fit are shown. Expected peak position is marked with an arrow.}
 	\label{fig:signal-gamma}
 \end{figure}
 
@@ -81,7 +81,7 @@ To verify performance of the integrated detector, data acquisition chain, power 
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{occupancy-threshold.jpg}
-\caption{Log occupancy vs. threshold squared.}
+\caption{Log occupancy vs. threshold squared. The results of a linear fit are shown}
 \label{fig:occupancy-threshold}
 \end{figure}
 
@@ -89,8 +89,8 @@ The noise behavior was found to be within expectations and well understood. The 
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{svt_gain.png}
-\caption{Distribution of gain for the SVT channels.}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{svt_gain.jpg}
+\caption{Distribution of gain for the SVT channels. The results of a Gaussian fit are shown.}
 \label{fig:svt_gain}
 \end{figure}
 
@@ -99,25 +99,25 @@ No significant correlated noise has been observed between the channels of the sa
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{svt-hall.jpg}
-\caption{SVT detector installed in the experimental hall before being integrated with the CLAS12 detector.}
+\caption{SVT detector installed in the experimental hall before being integrated with the CLAS12 detector. The cables are routed through the slots in the support flange. The cooling pipes, insulated with a foam, are attached to the bottom of the support tube.}
 \label{fig:svt-hall}
 \end{figure}
 
-In the hall the SVT was dismounted from the integration cart, craned to the Space Frame level in the horizontal position using the mounting brackets on the support tube and the counter weight system to balance the weight of the cables, which remained connected to the modules and coiled around the support tube during this operation. The support tube was attached to the central tracker service cart with the alignment system for final adjustment of the SVT along the beamline. The cart hosts the crates for the power supplies, back-end electronics, slow controls, and the dry air distribution system. The service cart can be moved along the beamline on rails, providing access to the detector during maintenance. The power, network, gas, and cooling lines are long enough to allow the cart to be moved up to 5 m upstream. Figure~\ref{fig:svt-hall} shows the SVT detector after installation in the experimental hall. All modules were found to be fully functional after transportation from the assembly site and installation on the beamline. 
+In the hall the SVT was dismounted from the integration cart, craned to the Space Frame level in the horizontal position using the mounting brackets on the support tube and the counter weight system to balance the weight of the cables, which remained connected to the modules and coiled around the support tube during this operation. The support tube was attached to the central tracker service cart with the alignment system for final adjustment of the SVT along the beamline. The cart hosts the crates for the power supplies, back-end electronics, slow controls, and the dry air distribution system. The service cart can be moved along the beamline on rails, providing access to the detector during maintenance. The power, network, gas, and cooling lines are long enough to allow the cart to be moved up to 5 m upstream. Figure~\ref{fig:svt-hall} shows the SVT detector after installation in the experimental hall. The SVT Faraday cage, insulated with a foam, can bee seen on the right side of the photo. All modules were found to be fully functional after transportation from the assembly site and installation on the beamline. 
 
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{hybrid-temps.png}
-\caption{Hybrid temperatures (left) and the difference in temperature between the two sides of the module with coolant at -26 $^\circ$C (right).}
+\caption{Hybrid temperatures (left) and the difference in temperature between the two sides of the module with coolant at -26$^\circ$C (right).}
 \label{fig:hybrid-temps}
 \end{figure}
 
-Temperature variation of the SVT modules measured by sensors mounted on the hybrids with coolant at -26 $^\circ$C is shown in Fig.~\ref{fig:hybrid-temps} (left). In these operating conditions the module temperatures were uniformly distributed within the region, with lower temperatures close to the cooling lines. Region 3 temperatures were slightly higher than in the inner regions due to the design of the cold plate and longer lengths of the heat sinks. The temperature difference between the two sides of a module is within 1$^\circ$C as shown in Fig.~\ref{fig:hybrid-temps} (right). Sensor leakage currents remained at the same low levels after installation (see Fig.~\ref{fig:currents}). The spread in the distribution of the leakage currents is due to variations in sensor temperatures. Thermal cycling of the modules verified the robustness of the bond wires.
+Temperature variation of the SVT modules measured by sensors mounted on the hybrids with coolant at -26$^\circ$C is shown in Fig.~\ref{fig:hybrid-temps} (left). In these operating conditions the module temperatures were uniformly distributed within the region, with lower temperatures close to the cooling lines. Region 3 temperatures were slightly higher than in the inner regions due to the design of the cold plate and longer lengths of the heat sinks (double-peak structure of the distribution). The temperature difference between the two sides of a module is within 1$^\circ$C as shown in Fig.~\ref{fig:hybrid-temps} (right). The leakage current is extremely sensitive to temperature, doubling every $\sim$8$\degree$C~\cite{SZE}. Sensor leakage currents remained at the same low levels after installation (see Fig.~\ref{fig:currents}). The spread in the distribution of the leakage currents is due to variations in sensor temperatures. Thermal cycling of the modules verified the robustness of the bond wires.
 
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{currents.png}
-\caption{Sensor leakage currents after detector integration.}
+\caption{Sensor leakage currents after detector integration. The spread in the distribution of the leakage currents is due to variations in sensor temperatures.}
 \label{fig:currents}
 \end{figure}
 
@@ -128,15 +128,15 @@ Cosmic ray tests of the SVT have been used to test track reconstruction routines
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{cosmic-stand.jpg}
-\caption{The SVT cosmic test stand.}
+\caption{The SVT cosmic test stand. Four SVT modules in the carrier boxes are mounted between the trigger paddles.}
 \label{fig:cosmic-stand}
 \end{figure}
 
-Cosmic data during detector integration in the clean room were taken in the standalone mode using the self-triggering feature of the FSSR2 readout chip in coincidence logic. VSCM boards reading the SVT modules located at the top and bottom halves of the horizontally placed barrel provided the trigger signals via the signal distribution of two VXS crates. The coincidence of  signals from the trigger interface boards of both crates was taken as the cosmic trigger. The response of the channels was uniform, and the performance results obtained during tracker integration were confirmed. The angular distribution of the cosmic muons reconstructed in the SVT is shown in Fig.~\ref{fig:track-phi-theta}. $\Theta$ is the polar angle, $\phi$ is the azimuthal angle in the CLAS12 coordinate system.
+Cosmic data during detector integration in the clean room were taken in the standalone mode using the self-triggering feature of the FSSR2 readout chip in coincidence logic. VSCM boards reading the SVT modules located at the top and bottom halves of the horizontally placed barrel provided the trigger signals via the signal distribution of two VXS crates. The coincidence of  signals from the trigger interface boards of both crates was taken as the cosmic trigger. The response of the channels was uniform, and the performance results obtained during tracker integration were confirmed. The angular distribution of the cosmic muons reconstructed in the SVT is shown in Fig.~\ref{fig:track-phi-theta}. $\Theta$ is the polar angle, $\phi$ is the azimuthal angle in the CLAS12 coordinate system. The tracks are uniformly distributed within acceptance.
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{track-phi-theta.png}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{track-phi-theta.jpg}
 \caption{Angular distribution of the cosmic muons reconstructed in the SVT.}
 \label{fig:track-phi-theta}
 \end{figure}
@@ -145,15 +145,15 @@ After installation of the SVT in the hall and checkout of the detector services 
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=0.8\columnwidth,keepaspectratio]{cd-cosmic-event.png}
-\caption{Cosmic muon reconstructed in the CLAS12 Central Detector.}
+\includegraphics[width=0.6\columnwidth,keepaspectratio]{cd-cosmic-event.png}
+\caption{Cosmic muon reconstructed in the CLAS12 Central Detector. The track is matched to the signal registered in the CTOF and the CND.}
 \label{fig:cd-cosmic-event}
 \end{figure}
 
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{cosmic-hitmap-svt.png}
-\caption{Monitoring SVT hit map during a cosmic run showing module vs. strip number.}
+\caption{Monitoring SVT hit map during a cosmic run showing module vs. strip number. The strips on the right side have shorter length.}
 \label{fig:cosmic-hitmap-svt}
 \end{figure}
 
@@ -162,7 +162,7 @@ The charge sharing among two adjacent strips was studied using the $\eta$-functi
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{eta-function.png}
-\caption{$\eta$-function for the two-strip clusters.}
+\caption{Charge sharing in the SVT sensor: $\eta$-function for the two-strip clusters.}
 \label{fig:eta-function}
 \end{figure}
 
@@ -171,7 +171,7 @@ Strip multiplicity of the clusters (cluster size) in the cosmic run is shown in 
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{cluster-size.png}
-\caption{Strip multiplicity of the clusters in the cosmic run.}
+\caption{Strip multiplicity of the clusters in the cosmic run. The mean cluster size is in agreement with the simulated data.}
 \label{fig:cluster-size}
 \end{figure}
 
@@ -180,7 +180,7 @@ Cosmic muons are an important source for calibration and alignment. Their trajec
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{alignment.png}
-\caption{Residuals for one of the SVT sensors before (blue) and after (red) alignment.}
+\caption{Validation of alignment procedures on cosmic data. Residuals for one of the SVT sensors before (left peak) and after (right peak) alignment.}
 \label{fig:alignment}
 \end{figure}
 
@@ -190,15 +190,15 @@ The performance of an SVT module was studied at Fermilab in a beam test with 120
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{beam-test.png}
-\caption{Beam test setup.}
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{beam-test.png}
+\caption{Beam test setup. The SVT module in the plastic carrier box is mounted vertically downstream from the beam telescope. The hybrid side in on the top, copper insert is attached to a water-cooled heatsink.}
 \label{fig:beam-test}
 \end{figure}
 
 \begin{figure}[h] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{cluster-charge-protons.png}
-\caption{Cluster charge distribution from 120 GeV protons.}
+\caption{Cluster charge distribution from 120 GeV protons. Expected MPV of the peak for the MIP is indicated by the arrow.}
 \label{fig:cluster-charge-protons}
 \end{figure}
 
@@ -206,7 +206,7 @@ The front-end electronics performance and noise occupancy of the detector were s
 
 \begin{figure}[h] 
 \centering 
-\includegraphics[width=0.8\columnwidth,keepaspectratio]{cd-tracks.jpg}
+\includegraphics[width=0.6\columnwidth,keepaspectratio]{cd-tracks.jpg}
 \caption{Multi-track event reconstructed in the CLAS12 Central Detector during a physics run.}
 \label{fig:cd-tracks}
 \end{figure}
@@ -226,17 +226,16 @@ Radiation induced energy levels in the middle of the band gap cause an increase 
 
 \begin{equation} \Delta I_R = \alpha \Phi \label{eq:leakage-fluence},
 \end{equation}
-
 where $\Phi$ is the particle fluence and $\alpha \approx$ 4$\cdot$10$^{-17}$ A/cm~\cite{DIERLAMMTHESIS}. The increased leakage current increases the noise and heats up the sensor, which, in turn, will further increase the leakage current. When the temperature increases beyond a critical temperature where the cooling cannot maintain a stable temperature, this will result in thermal runaway. After accumulating a large hadron fluence, the SVT requires low temperature operation to avoid thermal runaway induced by the sensor leakage current. Figure~\ref{fig:thermal-runaway} shows thermal runaway in the 2 innermost layers of the SVT that received the highest radiation dose after beam operation. the leakage currents in other layers were stable. The monitoring data were taken after a physics run with a liquid-hydrogen target, when there was no beam in the hall for extended time. The leakage currents became stable when the coolant temperature was decreased.
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{thermal-runaway.png}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{thermal-runaway.jpg}
 \caption{Thermal runaway in the SVT inner layers (L1 and L2). The data shown correspond to the period right after the physics run, when the beam was turned off.}
 \label{fig:thermal-runaway}
 \end{figure}
 
-Figure~\ref{fig:leakage-layers-deuterium} shows monitoring plots for the average sensor leakage currents in the SVT layers during data-taking with a liquid-deuterium target. For the first few hours in the time period shown there was no beam in the hall and the currents were stable. Currents in all layers increase with time when beam is present. The jumps in the leakage current of a layer between two values are related to beam trips. The largest difference between the beam-on and beam-off levels and the rate of current increase is in the inner layers. The data were taken at 50 nA beam current. 
+Figure~\ref{fig:leakage-layers-deuterium} shows monitoring plots for the average sensor leakage currents in the SVT layers during data-taking with a liquid-deuterium target. For the first few hours in the time period shown there was no beam in the hall and the currents were stable. Currents in all layers increase with time when beam is present. The jumps in the leakage current of a layer between two values are related to beam trips. The largest difference between the beam-on and beam-off levels and the rate of current increase is in the inner layers. The distribution of leakage currents is in agreement with the accumulated dose, higher currents in the sensors closest to the target. The sensors in the outermost layer have higher temperature, affecting the currents. The data were taken at 50 nA beam current. 
 
 \begin{figure}[hbt] 
 \centering 
@@ -245,13 +244,13 @@ Figure~\ref{fig:leakage-layers-deuterium} shows monitoring plots for the average
 \label{fig:leakage-layers-deuterium}
 \end{figure}
 
-Comparison of the rates of leakage current increase with different targets is shown in Fig.~\ref{fig:leakage-hydrogen-duterium}. The rate of current increase with a liquid-deuterium target was about 1 nA per hour. The rate for a liquid-hydrogen target was 0.06 nA per hour. The data were taken at 50 nA beam current corresponding to the instantaneous luminosity of 0.7~$\times$10$^{35}$cm$^{-2}$s$^{-1}$ per nucleon.
+Comparison of the rates of leakage current increase with different targets is shown in Fig.~\ref{fig:leakage-hydrogen-deuterium}. The rate of current increase with a liquid-deuterium target was about 1 nA per hour. The rate for a liquid-hydrogen target was 0.06 nA per hour. The difference in rates can be attributed to the higher neutron flux in the CLAS12 Central Detector for the liquid-deuterium target. The increase of leakage current when beam is delivered to the target is also larger for the liquid-deuterium target. The data were taken at 50 nA beam current corresponding to the instantaneous luminosity of 0.7~$\times$10$^{35}$cm$^{-2}$s$^{-1}$ per nucleon.
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{leakage-hydrogen-duterium.png}
-\caption{Average sensor leakage currents in the SVT layer 1 during runs with liquid-hydrogen and liquid-deuterium targets.}
-\label{fig:leakage-hydrogen-duterium}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{leakage-hydrogen-deuterium.png}
+\caption{Average sensor leakage currents in the SVT layer 1 during runs with liquid-hydrogen and liquid-deuterium targets. There was no beam for the first few hours for the liquid-deuterium target.}
+\label{fig:leakage-hydrogen-deuterium}
 \end{figure}
 
 \begin{figure}[hbt] 
@@ -266,11 +265,11 @@ The surface of the silicon sensors suffers from the damage due to ionizing radia
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{mean-hit-occupancy.png}
-\caption{Mean hit occupancies for the sectors of the innermost SVT layer with a 5-cm long liquid-hydrogen target at 50 nA beam current.}
+\caption{Average number of hits for the sectors of the innermost SVT layer with a 5-cm long liquid-hydrogen target at 50 nA beam current.}
 \label{fig:mean-hit-occupancy}
 \end{figure}
 
-Figure~\ref{fig:mean-hit-occupancy} shows the average hit occupancy per event in the innermost SVT layer for the data taken with a liquid-hydrogen target at a nominal beam current of 50 nA. The hits are uniformly distributed among the sectors with occupancies close to 1$\%$ (each sensor has 256 strips).
+Figure~\ref{fig:mean-hit-occupancy} shows the average hit occupancy (number of hits) per event in the innermost SVT layer for the data taken with a liquid-hydrogen target at a nominal beam current of 50 nA. The hits are uniformly distributed among the sectors with occupancies close to 1$\%$ (each sensor has 256 strips).
 
 \begin{figure}[hbt] 
 \centering 
@@ -284,11 +283,11 @@ The impact of the tungsten shield on the SVT occupancy is shown in Fig.~\ref{fig
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{beam-no-beam-occupancy.png}
-\caption{SVT hit multiplicity during the liquid-hydrogen run at 50 nA beam current.}
+\caption{SVT hit multiplicity during the liquid-hydrogen run at 50 nA beam current. The narrow peak on the left side represents the SVT occupancy with no beam.}
 \label{fig:beam-no-beam-occupancy}
 \end{figure}
 
-Noise performance of the SVT during the physics data taking is demonstrated in Fig.~\ref{fig:beam-no-beam-occupancy}, showing the SVT hit multiplicity during the liquid-hydrogen run at nominal 50 nA beam current. The main peak is at about 130 hits per event, which corresponds to 0.6$\%$ detector occupancy. The narrow peak on the left side represents the SVT occupancy when there was no beam in the hall. The plot confirms good signal-to-noise ratio of the detector. 
+Noise performance of the SVT during the physics data taking is demonstrated in Fig.~\ref{fig:beam-no-beam-occupancy}, showing the SVT hit multiplicity during the liquid-hydrogen run at nominal 50 nA beam current. The main peak is at about 130 hits per event, which corresponds to 0.6$\%$ detector occupancy. The peak on the left side represents the SVT occupancy when there was no beam in the hall obtained with a random trigger. The plot confirms good signal-to-noise ratio of the detector. 
 
 \begin{figure}[hbt] 
 \centering 
@@ -302,7 +301,7 @@ Figure~\ref{fig:occupancy-beam-current} shows the SVT occupancy vs. beam current
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{residual.jpg}
-\caption{Centroid residual for one of the SVT sensors after preliminary tracker alignment.}
+\caption{Centroid residual for one of the SVT sensors after preliminary tracker alignment. The results of a Gaussian fit are shown.}
 \label{fig:residual}
 \end{figure}
 
@@ -311,7 +310,7 @@ A series of dedicated central tracker alignment runs was done at low beam curren
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{lorentz-angle.jpg}
-\caption{Cluster size vs. local track azimuthal angle. The insert shows the dependence of the cluster size on the track angle.}
+\caption{Cluster size vs. local track azimuthal angle. The insert shows the dependence of the cluster size on the track angle. The smallest cluster size corresponds to the Lorentz angle}
 \label{fig:lorentz-angle}
 \end{figure}
 
@@ -320,18 +319,18 @@ In a strong magnetic field, charge in the silicon detector drifts at the Lorentz
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{matched-hits.jpg}
-\caption{Number of the SVT hits per track.}
+\caption{Number of the SVT hits per track. For most tracks all 6 SVT layers have been matched.}
 \label{fig:matched-hits}
 \end{figure}
 
-The number of matched SVT hits per reconstructed track in the physics run with the hydrogen target is shown in Fig.~\ref{fig:matched-hits}. For most tracks all 6 SVT layers have been matched. The tracks with low number of matched hits passed through the gaps between the modules.
+The number of matched SVT hits per reconstructed track in the physics run with the hydrogen target is shown in Fig.~\ref{fig:matched-hits}. For most tracks all 6 SVT layers have been matched to a track. The tracks with low number of matched hits passed through the gaps between the modules.
 
 
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{layer-efficiency.jpg}
-\caption{Efficiency of hit matching in the SVT layers.}
+\caption{Efficiency of hit matching in the SVT layers. The hit is matched if it is associated with a track and there are on-track hits in two adjacent layers.}
 \label{fig:layer-efficiency}
 \end{figure}
 
-Figure~\ref{fig:layer-efficiency} shows the efficiency of matching the hits to the tracks in each SVT layer. The hit is matched if it is associated with a track and there are on-track hits in two adjacent layers. The lower efficiency in the outer SVT layer is due to the tracks that are not within its acceptance. The efficiencies are expected to improve with further development of the tracking and alignment algorithms. 
+Figure~\ref{fig:layer-efficiency} shows the efficiency of matching the hits to the tracks in each SVT layer. For each layer the efficiency is the ratio of the number of tracks with hits in the layer associated with a track to the number of tracks with on-track hits in two adjacent layers. The lower efficiency in the outer SVT layer is due to the tracks that are not within its acceptance. The data were taken at 5 nA beam current with a 5-cm thick liquid-hydrogen target. The efficiencies are expected to improve with further development of the tracking and alignment algorithms. 

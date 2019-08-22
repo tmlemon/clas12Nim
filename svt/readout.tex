@@ -6,7 +6,7 @@ There are 512 channels per module read out by FSSR2 chips, mounted on a hybrid. 
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{fssr2.jpg}
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{fssr2.jpg}
 \caption{FSSR2 ASIC with the different functional areas labeled.}
 \label{fig:fssr2}
 \end{figure}
@@ -16,7 +16,7 @@ The analog section of the FSSR core consists of 128 channels (see Fig.~\ref{fig:
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{fssr2-analog.jpg}
-\caption{FSSR2 analog channels.}
+\caption{A block diagram of a single FSSR2 analog channel with the main elements labeled.}
 \label{fig:fssr2-analog}
 \end{figure}
 
@@ -31,7 +31,7 @@ The FSSR2 ASIC architecture is such that it sends out 24-bit data words if a cha
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{fssr2-sync.jpg}
-\caption{FSSR2 clock and timestamp synchronization.}
+\caption{FSSR2 clock and timestamp synchronization. The BCO clock is halted when SYNC is asserted and started with its rising edge aligned to the global trigger clock rising edge. }
 \label{fig:fssr2-sync}
 \end{figure}
 
@@ -42,7 +42,7 @@ The four FSSR2 ASICs on the HFCB communicate with the VXS architecture-based Seg
 \begin{figure}[hbt] 
 \centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{vscm-event-trigger.jpg}
-\caption{VSCM event triggering.}
+\caption{VSCM event triggering. See text for description of the sequence.}
 \label{fig:vscm-event-trigger}
 \end{figure}
 
@@ -50,7 +50,7 @@ The VSCM design makes the FSSR2 data-driven architecture compatible with the CLA
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{svt-test-stand.jpg}
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{svt-test-stand.jpg}
 \caption{The SVT test stand installed in the clean room.}
 \label{fig:svt-test-stand}
 \end{figure}
@@ -75,28 +75,24 @@ The equivalent circuit diagram of a silicon strip sensor with connected readout 
 
 \begin{equation} Q^{RMS}_{n}=a+C_{tot}{\cdot}b  \label{eq:qn},
 \end{equation}
-
 where $a = v^{RMS}_{ni} \cdot (C_{f} + C_{i})$, $b = v^{RMS}_{ni}$, and $C_f$ is the feedback capacitance of the amplifier.
 
 Parallel shot noise from the reverse bias current $I_b$ through the strip can be expressed as:
 
 \begin{equation} \frac{1}{q_e}\frac{e}{\sqrt{8}}\sqrt{2q_eI_b\tau} \approx 108\cdot\sqrt{I_b[\mu A]\tau [ns]}  \label{eq:bias},
 \end{equation}
-
 where $q_e$ is charge of the charge carriers and $\tau$ is the characteristic shaping time.
 
 Parallel noise from shunt resistance $R_b$ is:
 
 \begin{equation} \frac{1}{q_e}\frac{e}{\sqrt{8}}\sqrt{\frac{4kT}{R_b\tau}} \approx A\cdot\sqrt{\frac{\tau [ns]}{R_b[M \Omega]}} \label{eq:shunt},
 \end{equation}
-
 where $k$ is the Boltzmann constant and $T$ is the temperature, $A$ is the temperature dependent factor equal to 24 at 20$\degree$C and 22.5 at -10$\degree$C.
 
 Series noise from metal strip resistance $R_s$ is:
 
 \begin{equation} \frac{1}{q_e}\frac{e}{\sqrt{8}}\sqrt{4kT\frac{R_s}{3\tau}C_{tot}} \approx B\cdot C_{tot}[pF]\cdot\sqrt{\frac{R_s[\Omega]}{\tau [ns]}} \label{eq:strip},
 \end{equation}
-
 where $B$ is the temperature dependent factor equal to 14 at 20$\degree$C and 13 at -10$\degree$C.
 
 For non-irradiated sensors the shot noise from the measured sensor reverse bias current 0.05--0.4 $\mu$A (256 strips) at -10--20$\degree$C is within 20-50 electrons with a shaping time of 125 ns and can be neglected. As demonstrated in Eqs. (\ref{eq:shunt}) and (\ref{eq:strip}), the detector noise does not change much when the sensors are cooled up to -10$\degree$C. The contribution from the shunt resistance is about 200 electrons with a shaping time of 125 ns. The total capacitance of the strip $C_{tot}$ including the wire bonds and the pitch adapter is $\sim$45 pF. The metal strip (33 cm) resistance is $\sim$230 $\Omega$, which gives an estimate for the series noise of $\sim$850 electrons.
