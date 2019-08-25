@@ -1,51 +1,31 @@
 
-\section{Physics triggers}
+\section{Physics Triggers}
 \label{sec:physics_triggers}
-
-
-%%%%%%%%   Overview   %%%%%%%%
-
-
-%\begin{figure}[htp]
-%\begin{center}
-%\centering
-%\includegraphics[width=8cm, angle=270]{clas12-design.pdf}
-%\caption{CLAS 12 detector and its subsystems.}
-%\label{fig:CLAS12}
-%\end{center}
-%\end{figure}
 
 
 \subsection{Electron Trigger}
 \label{sec:electron_trigger}
 
-The electron trigger is designed to select the inclusive electron scattering out of the CLAS12 targets:
+The electron trigger is designed to select the inclusive electron scattering from the CLAS12 targets:
 \begin{equation}
 e(p,n,A)\rightarrow e^\prime X.
 \label{eqn:electron}
 \end{equation}
 \noindent
 
-The trigger  selects  events with the at least one scattered  electron detected by the forward detectors.
-Searching for the electrons is performed  in all six CLAS12 sectors in parallel. The final electron trigger is  a simple "OR" of the six sector trigger signals.
+The trigger  selects  events with at least one scattered electron detected by the forward detectors. The High Threshold Cherenkov Counter (HTCC),  Preshower Calorimeter (PCAL),  Electromagnetic Calorimeter (EC), and Drift Chambers (DC) participate in the generation of the trigger decision. Searching for the electrons is performed  in all six CLAS12 sectors in parallel. The final electron trigger is  a simple "OR" of the six sector trigger signals.
 
-High Threshold Cherenkov Counter (HTCC),  Preshower Calorimeter (PCAL),  Electromagnetic Calorimeter (ECAL) and Drift Chambers (DC) are participating in the generation of the trigger decision.
+The HTCC discriminates electrons from other charged particles. This detector must be calibrated in terms of the number of photoelectrons before the start of any experiment. The HTCC trigger logic is searches for clusters and calculates the total number of  photoelectrons  detected by HTCC. The cluster may include up to four PMT signals that collect the Cherenkov light from the adjacent mirrors as described in Section ~\ref{sec:HTCC}. The minimum number of  photoelectrons in the cluster  is one of the main electron trigger parameters. Usually this parameter equals 1-2 photoelectrons depending on the experiment requirements.
 
-HTCC discriminates electrons from other charge particles. The detector was calibrated before the experiment in terms of number of photoelectrons. The HTCC trigger logic is searching for the clusters and is calculating the total number of  photoelectrons  detected by HTCC. The cluster may include up to four PMT's signals collecting the Cherenkov light from the adjacent mirrors as described in ~\ref{sec:HTCC}. The minimum number of  photoelectrons in the cluster  is one of the main electron trigger parameters. Usually this parameter equals 1-2 photoelectrons depending on the experiment requirements.
+The PCAL and EC calorimeters are designed to detect photons and electrons as described in Section ~\ref{sec:ECAL}. The high energy deposition in the calorimeters is a signature of electron detection, and is one of the electron trigger parameters. The PCAL and EC detectors must be calibrated before the start of any experiment in terms of energy deposition measured in MeV. The electron trigger uses cuts on the cluster energy in the PCAL ($E_{PCAL}$) and EC ($E_{EC}$) separately, and cuts on the total energy deposition in both detectors $E_{Total}=E_{PCAL}+E_{EC}$.
+These cuts   depend  on the beam energy and the experiment requirements, and usually lie in the region from 150-300~MeV (corresponding to minimum electron energy from 600-1200~MeV) for the energy sum $E_{Total}$.
 
-The PCAL and EC calorimeters are designed to detect photons and electrons as it described in ~\ref{sec:ECAL}. The high energy deposition in the calorimeters is signature of the electron, and one of the electron trigger parameters.
-The PCAL and EC detectors were calibrated before experiment in terms of energy deposition measured in MeV.
-The electron trigger is using cuts on the cluster energy  in PCAL ($E_{PCAL}$) and EC ($E_{EC}$) separately and cut on the total energy deposition in both detectors $E_{Total}=E_{PCAL}+E_{EC}$.
-These cuts   depend  on the beam energy and the experiment requirements and usually lie in the region 150-300 MeV for the energy sum $E_{Total}$.
+Geometrical matching between the HTCC signal and the position of the shower in the PCAL calorimeter helps to suppress
+random coincidences between two detectors. The trigger firmware uses the HTCC-PCAL lookup table to make a proper event selection.
 
-Geometrical matching between the HTCC signal and position of the shower in the PCAL calorimeter helps to suppress the
-random coincidence between two detectors. The trigger firmware is using the HTCC-PCAL lookup table to make a proper event selection.   
+The track reconstruction in the DC system at the trigger level is very useful for the further suppression of accidental background, as described in Section ~\ref{sec:DC}. The trigger decision requires at least 3 layers in every superlayer and at least 5 superlayers in every road, which is a standard setting for all triggers where the DC-based component is used. The geometrical matching between track candidates and hits in the PCAL and EC detectors is used to strengthen the trigger performance in terms of event purity.
 
-The track reconstruction in the DC system at the trigger level is very useful for the further suppression of the accidental background, it described in ~\ref{sec:DC}. Trigger desicion required at least 3 layers in every superlayer and at least 5 superlayers in every road, which was standard setting for all triggers where DC-based component was used.
-
-The geometrical matching between track candidates and hits in the PCAL and EC detectors was used to strengthen the trigger performance.
-
-The electron trigger configuration may be presented by the formula:
+The electron trigger configuration may be represented by the formula:
 \begin{align} 
 \label{eq:em_trg_formula}
 \begin{split}
@@ -54,93 +34,63 @@ The electron trigger configuration may be presented by the formula:
  \end{split}
 \end{align}
 \noindent
-where index $i$ is the CLAS12 sector number, $N_{phe}$ is the number of photoelectrons detected by HTCC.  $N^{HTCC}_{min}$, 
-$E^{PCAL}_{min}$, $ E^{Total}_{min}$ are the trigger parameters, and $DC$ means that  track was reconstructed by the $DC$-system. The space correlations between all detectors and coordinates of the track are implemented as well.
+where index $i$ is the CLAS12 sector number, and $N_{phe}$ is the number of photoelectrons detected by the HTCC in a defined cluster. $N^{HTCC}_{min}$,  $E^{PCAL}_{min}$, $ E^{Total}_{min}$ are trigger parameters, and $DC$ means that  a track was reconstructed by the $DC$-system. The space correlations between all detectors and coordinates of the track are implemented as well.
 
 
-\subsection{Photoproduction trigger}
+\subsection{Photoproduction Trigger}
 \label{sec:photoproduction_trigger}
 
-The photoproduction trigger is designed to select  events when scattered electron is detected by the Forward Tagger in the angular range $\theta\sim2-5$ degrees
-$$
-e p  \rightarrow e^\prime(detected\ by\ FT) X.
-$$
-\noindent
-Strictly speaking it is not photoproduction process but electron scattering with  low $Q^2=4E_{beam}E'\sin^2\theta/2$.
-The trigger logic is continuously searching for the clusters developed in the FT calorimeter by electromagnetic shower and is calculating the shower energy and space coordinates. 
-The cluster energy is the sum of all the
-crystal energies within a 3x3 spatial array and time constraints. Once
-the clustering algorithm  has identified a cluster, the
-corresponding data is reported to the next trigger stage. This
-includes: the timestamp, the energy, and the spatial coordinates (center
-of the seed crystal). The cluster energy is not corrected for shower
-leakage effects at this stage. Finally, the trigger processor makes the
-trigger decision by applying further cuts to the clusters. The trigger  selection is based on lower and upper energy limits and a number of hits in the cluster. The trigger may also select events with the definite number of clusters detected by the calorimeter. 
-The coincidence with the two-planes  scintillating hodoscope   located in front of the calorimeter serves to discriminate the charge particles from the high energy photons. 
-It gives the possibility to select the reaction with electron and several photons in the final state, for example
+The photoproduction trigger is designed to select events where a scattered electron is detected by the Forward Tagger in the polar angular range from 2$\degree$ to 5$\degree$. Strictly speaking it is not a photoproduction process but electron scattering with low four-momentum transfer $Q^2=4E_{beam}E'\sin^2\theta/2$. The trigger logic continuously searches for the clusters in the FT calorimeter from electromagnetic shower, and calculates the shower energy and space coordinates. The cluster energy is the sum of all thecrystal energies within a 3x3 spatial array that meet the time matching constraints. Once the clustering algorithm  has identified a cluster, the corresponding data is reported to the next trigger stage. This includes the timestamp, the energy, and the spatial coordinates (center of the seed crystal). The cluster energy is not corrected for shower leakage effects at this stage. Finally, the trigger processor makes the trigger decision by applying further cuts to the clusters. The trigger  selection is based on lower and upper energy limits and the number of hits in the cluster. The trigger may also select events with a specified number of clusters detected by the calorimeter.  The coincidence with the two-plane  scintillating hodoscope   located in front of the calorimeter serves to discriminate charged particles from high energy photons. This also provides for the possibility to select reactions with an electron and several photons in the final state, for example
 $$
 ep\to e'\gamma\gamma X.
 $$
 \noindent
-The trigger system may use the  information from forward and barrel detectors to select the events with several charge or neutral particles in coincidence with the electron in the FT calorimeter. The trigger detector composition depends on the reaction under study. 
+The trigger system may use the  information from the CLAS12 Forward and Central Detectors to select events with several charged or neutral particles in coincidence with the electron in the FT calorimeter. The trigger detector composition depends on the reaction under study. 
 
-The charge particles in the forward detectors  were selected by the coincidence between TOF, PCAL and EC with the tracks reconstructed by the DC system. The space correlation between all trigger detectors are required including coordinates 
- of tracks crossing the detector's planes. The cluster-track matching is an important part of the background reduction at the trigger level. The cuts on the energy depositions in the trigger detectors are used to select charge and neutral particles. 
+Charged particles in the Forward Detectors are selected by a coincidence between the FTOF, PCAL, and EC with tracks reconstructed by the DC system. The space correlation between all trigger detectors are required, including coordinates of tracks crossing the detector planes. Hit matching along the track is an important part of the background reduction at the trigger level. The cuts on the energy depositions in the trigger detectors are used to select charged and neutral particles. 
  
  The following trigger configuration 
  \begin{align*} 
  &FT(E^{FT}_{min}{<}E{<}E^{FT}_{max})\times\\
  & [FTOF(E{>}E^{FTOF}_{min})\times PCAL(E{>}E^{PCAL}_{min})\times  DC]_i
 \end{align*}
-  was used in the first CLAS12 experiments to select the reaction $ep\to e'h^{+/-}X$
- with at least one electron and one charge particle in the final state. Index i denotes the CLAS12 sector number. 
- Each detector has his own trigger energy cuts: $ E^{FT}_{min}$,  $E^{FT}_{max}$, $E^{FTOF}_{min}$ and $E^{PCAL}_{min}$.
- The space correlation between the FTOF and PCAL elements was implemented.
- The trigger rate was too high for the DAQ bandwidth so this trigger was prescaled. 
+was used in the first CLAS12 experiments to select the reaction $ep\to e'h^{+/-}X$ with at least one electron and one charged particle in the final state. The index $i$ denotes the CLAS12 sector number. Each detector has his own trigger energy cuts: $ E^{FT}_{min}$,  $E^{FT}_{max}$, $E^{FTOF}_{min}$, and $E^{PCAL}_{min}$. A space correlation matching requirement between the FTOF and PCAL elements was implemented. The trigger rate was too high for the available DAQ bandwidth, so this trigger was prescaled. 
 
-The selection of the events with at least two charge particles detected in the forward direction in different sectors was done by the trigger configuration
+The selection of the events with at least two charged particles detected in the forward direction in different sectors was done by the trigger configuration
  \begin{align*} 
  &FT(E^{FT}_{min}{<}E{<}E^{FT}_{max})\times\\
  & [FTOF(E{>}E^{FTOF}_{min})\times  PCAL(E{>}E^{PCAL}_{min})\times   DC]_i \times \\
  & [FTOF(E{>}E^{FTOF}_{min})\times  PCAL(E{>}E^{PCAL}_{min})\times   DC]_j,
 \end{align*}
- where $i$ and$j$ denote different CLAS12 sectors. This trigger selects events with electron detected by the FT calorimeter and two charged particles in the different CLAS12 sectors. 
+where $i$ and $j$ denote different CLAS12 sectors. This trigger selects events with an electron detected by the FT calorimeter and two charged particles in different CLAS12 sectors.
  
- The central detectors, such as central time of flight (CTOF) and central neutral detector (CND), were used for the selection of the events with at least one  particle detected in the central detector. The following trigger configurations
+The central detectors, such as Central Time-of-Flight (CTOF) and Central Neutral Detector (CND), were used for the selection of the events with at least one  particle detected in the Central Detector. The following trigger configuration
  \begin{align*} 
  &FT(E^{FT}_{min}{<}E{<}E^{FT}_{max})\times\\
  & [FTOF(E{>}E^{FTOF}_{min})\times  PCAL(E{>}E^{PCAL}_{min})\times   DC]_i \times \\
  & CTOF(E{>}E^{CTOF}_{min})\end{align*}
 \noindent
-were used for the selection of the electron in FT, at least one charge paticle going in the forward direction and at least one particle detected in the central detectors.
-In case the trigger rate is too high for the DAQ bandwidth the CND detector could be added to the coincidence chain with the space correlation between the CTOF and CND counters
+was used for the selection of events with an electron in the FT, at least one charged paticle going in the forward direction, and at least one particle detected in the central detectors. In case the trigger rate is too high for the available DAQ bandwidth the CND detector could be added to the coincidence chain with the space correlation between the CTOF and CND counters as:
  \begin{align*} 
  &FT(E^{FT}_{min}{<}E{<}E^{FT}_{max})\times PCAL(E{>}E^{PCAL}_{min})\times   DC]_i \times \\
  & CTOF(E{>}E^{CTOF}_{min})\times  CND(E{>}E^{CND}_{min}).
 \end{align*}
 \noindent
- As it was stated above the energy depositions in all detectors were the trigger parameters depending on the experiment requirements.
+As stated above, the minimum energy depositions in all detectors in the trigger are parameters that depend on the individual experiment requirements.
 
 
-\subsection{$J/\psi$ meson trigger}
+\subsection{$J/\psi$ Meson Trigger}
 \label{sec:meson_trigger}
 
-The special trigger was designed to detect the quasi-photoproduction of $J/\psi$-mesons
+A special trigger was designed to detect the quasi-photoproduction of $J/\psi$-mesons
 $$
 ep \to e' J/\psi p'.
 $$
 Two decay modes are useful for the selection of the $J/\psi$ meson: $J/\psi \to e^+e^-$ and $J/\psi \to \mu^+\mu^-$.
-The conventional electron and phototproduction triggers  select the $J/\psi$-meson  in case of the decay to the electron-positron pair.
-But these trigger configurations don't  work  with the muons in the final state. However it was mandatory to add one more decay mode for this experiment. It will double the statistics and has no radiative tail in comparison with electron-positron pair in the final state. The CLAS12 spectrometer has no muon system. But it turns out that the selection of particles with the energy deposition in the
-PCAL-EC  calorimeters close to the minimum  ionizing  value is sufficient to suppress the background from pions when the 
-invariant mass of two  particles (muons or pions) is near the $J/\psi$-mass. The muons from the $J/\psi$ decay appear in the opposite CLAS12 sectors that was used in the trigger configuration  
+The conventional electron and photoproduction triggers  select the $J/\psi$-meson  in case of the decay to the electron-positron pair. However these trigger configurations do not  work  with muons in the final state. Therefore, another trigger was added to select one more decay mode for this experiment. The CLAS12 spectrometer has no dedicated muon system, but it turns out that the selection of particles with energy deposition in the PCAL-EC calorimeters close to the minimum-ionizing  value is sufficient to suppress the background from pions when the invariant mass of the two particles (muons or pions) is near the $J/\psi$-mass. The muons from the $J/\psi$ decay appear in opposite CLAS12 sectors, which allowed for the trigger configuration:  
 \begin{align*} 
  & [FTOF(E{{>}}5){\times}  PCAL(15{<}E{<}60){\times} EC(60{<}E{<}120){\times}   DC]_i {\times} \\
  & [FTOF(E{{>}}5){\times}  PCAL(15{<}E{<}60){\times} EC(60{<}E{<}120){\times}   DC]_j  
 \end{align*}
 \noindent
-The energy units are MeV. Note, that there is no requirement to search for the scattered electron at all. It gives an order of magnitude advantage in the  virtual photon flux in comparison the case when electron is detected in the FT-calorimeter.
-
-
-
-
+The energy units are in MeV. Note, that there is no requirement to search for the scattered electron at all. This gives an order of magnitude advantage in the  virtual photon flux in comparison with the case when the electron is detected in the FT-calorimeter.
