@@ -1,4 +1,5 @@
-\subsection{Validation of the electron trigger}
+\subsection{Validation of the Electron Trigger}
+
 As a reminder the electron trigger logic uses responces from PCal, EC, HTCC and DC (see eq. \ref{eq:em_trg_formula}), and as it was described in section \ref{sec:validation_random}, for trigger validation we have used a RT data. 
 The $\mathrm{1^{st}}$ step in the validation of electron trigger is a selection of  events with ``clean electron''. The CLAS12 offline reconstruction software assignes PID to each reconstruction particle ({\color{Red} reference to offline recon.}) ( for electron PID=11) however in this studies we imposed additional cuts. 
 In particular 
@@ -8,3 +9,23 @@ In particular
  \item Applied trigger condition cuts on offline cluster energies in the PCal and EC, also on number of photoelectrons in HTCC.
 \end{itemize}
 After applying above mentioned cuts, for each of these electrons, we have checked whether the electron trigger bit is set for the corresponding sector. At the end the trigger efficiency is defined as the number of ``Bit Not Set'' events over the number of all events with ``clean'' electron.
+Both RG-A and RG-B experiments required to have a good (close to $100 \%$) trigger efficiency for electron above $\mathrm{2\;GeV}$. Since both PCal and EC are sampling calorimeters, $\mathrm{2\;GeV}$ electrons will deposit only part (in average about $25\%$ in our case) of the the total energy. Then because of shower and light fluctuations some $\mathrm{2\;GeV}$ electrons will have less than $\mathrm{25\%}$ energy reconstructed in the calorimeters. Based on this, in the trigger we required the energy to be more than $\mathrm{300 \; MeV}$, which guarantee that more than $\mathrm{99\%}$ of $\mathrm{2\;GeV}$ electrons will deposit energy above the threshold.
+
+\begin{figure}[!htb]
+ \centering
+ \subfloat[]{\label{fig:em_eff_Allcomponents}\grinp[width=0.25\tw]{img/All_components_65416544.pdf}}
+ \subfloat[]{\label{fig:em_nphe_Miss}\grinp[width=0.25\tw]{img/nphe_missed1_65416544.pdf}}
+ \caption{(a) Momentum distribution of ``Good electrons''. The Brown distribution represents all ``Good electrons'', The blue histograms represents all events where the electron trigger bit was not set, the black histogram represent events, which doesn't have $\mathrm{EC}\times \mathrm{PCal}$ trigger bit, and the red one represent events that missed the electron trigger bit. (b) distribution of the number of photoelectrons for where the electron has more than $\mathrm{2\;GeV}$ energy and missed the HTCC trigger bit.}
+ \label{fig:em_missed_events}
+\end{figure}
+
+In Fig.\ref{fig:em_eff_Allcomponents} shown momentum distributions of all ``Good'' electrons (Brown), electrons when electron trigger bit was not set by trigger (blue), when $\mathrm{EC}\times \mathrm{PCal}$ bit was not set (black), and red represents events when HTCC bit was not set. As one can see above $\mathrm{2\; GeV}$ most of events have only HTCC bit missing. On the Fig.\ref{fig:em_nphe_Miss} shown distribution of the number of photoelectrons for events, which miss the HTCC trigger bit. As one can see about $\mathrm{90\%}$ of these events are at at the threshold (reminder that in the trigger we used 2 photoelecton threshold), and since in the trigger the precision of gains and pedestals is smaller ({\color{Red}probably Ben can comment what was the exact precision}) than the one used in offline reconstruction, this, then this could create potentially such threshold related effects.
+
+\begin{figure}[!htb]
+ \centering
+ \grinp[width=0.45\tw]{img/em_Efficiency_65416544.pdf}
+ \caption{Electron trigger efficiency above $\mathrm{2\;GeV}$}
+ \label{fig:em_eff}
+\end{figure}
+
+The final efficiency is shown in the Fig.\ref{fig:em_eff}, where we can see above $\mathrm{2\;GeV}$ region, the trigger efficiency is above $\mathrm{95\; \%}$.

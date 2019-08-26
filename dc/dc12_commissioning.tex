@@ -1,14 +1,14 @@
-\section{Commissioning}
+\section{Pre-Installation Commissioning}
 
-In this section we describe our procedures to do the following:
+In this section we describe our procedures which took
+place after chamber stringing was complete to get the
+chambers ready for installation in the experiment.
 
 \begin{enumerate}
 \item install electronics boards and ``on-chamber'' cables
-\item gradually bring the chambers to full operating voltage (``burn-in'') 
-and to test for any other problems
+and gradually bring the chambers to full operating voltage 
 \item install and survey the chambers
-\item diagnose and fix any early failures, and
-\item perform efficiency scans over a range of HV and discriminator settings
+\item perform efficiency scans to determine the HV and discriminator operational settings
 \end{enumerate}
 
 \subsection{Electronics Installation and Turn-on}
@@ -19,20 +19,7 @@ installed the on-chamber electronics boards.
 There are two types of board: one is a High-Voltage Distribution Board (HVTB)
 which brings RC-filtered high voltage to the wires.  Because there are three
 types of wire: `sense', `field' and `guard' we supply three different voltages
-to each board.  As discussed in the design section, we have a mixed high
-voltage system: the sense (or anode) wires are operated at positive voltage,
-typically about 2000 Volts; the field (or cathode) wires are operated at
-about -1000 V and the guard wires at about +700 V.  This creates an
-electric field which converges radially onto the sense wire with surface
-field values of about 200 kV/cm.  Similarly each field wire has an
-electric field directed radially outward from the surface with a strength
-of about 50 kV/cm.  The surface field for the field wires is weaker 
-because there are twice as many field wires as sense wires and their
-diameter is larger (80 microns compared to 30).  The guard wires
-close out the structure and their voltage is chosen to approximate an
-infinite grid of wires; thus every sense and field wire in a superlayer
-has the same field configuration unless there is an irregularity (like
-a missing, broken wire) nearby.
+to each board.  
 
 On the other side of the chamber are our Signal Translator Boards (STB) 
 which support an individual Single Inline Package (SIP) transimpedance
@@ -75,55 +62,3 @@ of two).
 - chambers attached by ball and socket joints to rods which are attached
 on the other end by ball and socket to the toroidal magnet frame
 
-
-
-\subsection{Determining the Operating Values of the Discriminator Thresholds and High Voltage Settings}
-
-We set the discriminator levels in the DCRB's to reduce the accidental hit rate (with no beam) due to electronic
-noise to be less than about 1\%.  Since the electronic noise was generally proportional to wire length, we had less
-electronic noise on the smaller R1 chambers.  Using this criteria, we set the thresholds to 30, 45 and 45 mV, respectively,
-for R1, R2 and R3.  
-Once we set the discriminator thresholds, we performed a High Voltage efficiency scan.  We raised the high voltage in
-steps of 75 Volts and analysed the data.  We set the operating value for the high voltage at the point at which
-the layer efficiency equaled or exceeded 97\%.
-
-We determined the layer efficiency using the `excluded layer' method.  In one superlayer (of six layers) we found track
-segments by our usual fitting method, but ignoring the data from a pre-selected layer (layer 3, for example).  We then
-projected the track segment through that layer and determined whether or not the indicated wire (or an adjacent one) had a good hit.
-Fig.~\ref{effcy-vs-voltage} shows the `plateau curve' of efficiency plotted versus voltage for one typical chamber 
-and superlayer.  The layer efficiency at the chosen operating high voltage poiont was between 97\% and 98\%.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{5cm}
-\begin{picture}(50,50)
-\put(-10,10)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/trace-routing-schematic.jpg}}}
-\end{picture}
-\caption{\small{Layer efficiency plotted versus high voltage for a typical superlayer.}}
-\label{effcy-vs-voltage}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-The single layer inefficiency is not uniform across the drift cell.  It is higher near the sense wire and also near the outer
-edge of the cell.  A track passing close to a sense wire leave many ions in the cell, but the ion arrival times are stretched
-out from near-zero to the maximum drift time, Tmax.  The result is that the pre-amplifier's output signal has a low voltage
-amplitude but persists for a long time.  So, even though the collected charge is large the voltage put out by our trans-impedance
-pre-amplifiers may not be large enough to exceed the voltage discriminator threshold of the DCRB,
-For the case of tracks near the outer edge of the cell (so-called `corner-clippers') they simply leave a very small number
-of ions in the cell and thus have a small signal.
-
-In Fig.~\ref{effcy-vs-doca} we plot the layer efficiency as a function of the distance-of-closest-approach (DOCA) and
-you can see the characteristic rise of the ineffiency near to and far from the sense wire.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{5cm}
-\begin{picture}(50,50)
-\put(-10,10)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/trace-routing-schematic.jpg}}}
-\end{picture}
-\caption{\small{Layer efficiency plotted versus DOCA.}}
-\label{effcy-vs-doca}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

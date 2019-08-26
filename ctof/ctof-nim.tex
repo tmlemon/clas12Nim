@@ -21,8 +21,8 @@
 \author[JLAB]{D.S. Carman\thanksref{corresponding}},
 \author[JLAB]{G. Asryan},
 \author[JLAB]{V. Baturin},
-\author[Glasgow]{L. Clark}
-\author[INFN]{R. De Vita}
+\author[Glasgow]{L. Clark},
+\author[INFN]{R. De Vita},
 \author[KNU]{W. Kim}, 
 \author[JLAB]{B. Miller}, and
 \author[JLAB]{C. Wiggins} 
@@ -102,7 +102,7 @@ of the original CLAS spectrometer~\cite{clas-nim} that operated in Hall~B in the
 to 2012 when it was decommissioned.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
+\begin{figure}[t]
 \vspace{5.7cm}
 \begin{picture}(50,50) 
 \put(20,250)
@@ -1896,17 +1896,19 @@ each counter within the RF time window. In the second step, coarse time offsets 
 RF period $T_{RF}$ are determined to select the specific RF beam bucket associated with the event.
 
 The fine time alignment algorithm uses the CTOF hit time traced to the event vertex relative to the
-RF time to align the vertex times of all CTOF hits (modulo $T_{RF}$). This algorithm uses the average
+start time to align the vertex times of all CTOF hits (modulo $T_{RF}$). This algorithm uses the average
 counter hit times, 
 
 \begin{equation}
 t_{res}' = mod \left[ \left( \left(\overline{t}_{hit} - \frac{L}{\beta c} \right) -
-\left(t_{RF} + \frac{z_{vert}}{\beta_e c} \right) \right), T_{RF} \right].
+\left(t_{ST} + \frac{z_{vert}}{\beta_e c} \right) \right), T_{RF} \right].
 \end{equation}
 
 \noindent
-The term $z_{vert}/(\beta_e c)$ is a term to shift the RF reference time $t_{RF}$ to the actual event
-vertex location along the $z$-axis of the extended target.
+The term $z_{vert}/(\beta_e c)$ shifts the start time to the actual event vertex location along the
+$z$-axis of the extended target and $L/(\beta c)$ represents the particle flight time based on the
+path length $L$ from the event vertex to the CTOF counter (from central tracking information
+extrapolated to the location of the CTOF hit) and the speed $v$ of the particle as $\beta c = v$.
 
 Figure~\ref{rfp-plot} shows the $t_{res}'$ distribution for one representative CTOF counter. The
 centroid of the Gaussian fit gives the fine time offset. The width of the Gaussian fit represents
