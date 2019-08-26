@@ -20,8 +20,8 @@
 
 \author[JLab]{D.S. Carman\thanksref{corresponding}},
 \author[USC]{R.W. Gothe},
-\author[Glasgow]{L. Clark}
-\author[INFN]{R. De Vita}
+\author[Glasgow]{L. Clark},
+\author[INFN]{R. De Vita},
 \author[JLab]{B. Miller}, and
 \author[JLab]{C. Wiggins}
 
@@ -776,15 +776,16 @@ D(t) = \int \frac{t}{LSB},
 \end{equation}
 
 \noindent
-where $D$ is the output data, $t$ is the input time, and $LSB$ is the intrinsic bin size. The compensation
-tables for the CAEN V1190A and VX1290A TDCs are stored as tables in the unit SRAM memory. Initial
-tables are measured at the factory and come preloaded on the modules. These tables are reasonably
-accurate when operating the module using its internal 40~MHz/25~ns period clock. However, in CLAS12,
-the modules are strobed with an external clock of a slightly larger frequency of 41.67~MHz. This difference
-in the frequency has a non-negligible affect on the INL tables. For our purposes we use a high frequency pulser
-to populate the full dynamic range of the TDC within the CLAS12 readout clock. The measured INL tables that
-were derived from this calibration were written into the TDC memory to replace the factory-loaded values.
-Details on the procedure and the residual non-linearity affects are given in Ref.~\cite{inl-tables}.
+where $D$ is the output data, $t$ is the input time, and $LSB$ (least significant bit) is the intrinsic bin
+size. The compensation tables for the CAEN V1190A and VX1290A TDCs are stored as tables in the unit
+SRAM memory. Initial tables are measured at the factory and come preloaded on the modules. These
+tables are reasonably accurate when operating the module using its internal 40~MHz/25~ns period clock.
+However, in CLAS12, the modules are strobed with an external clock of a slightly larger frequency of
+41.67~MHz. This difference in the frequency has a non-negligible affect on the INL tables. For our
+purposes we use a high frequency pulser to populate the full dynamic range of the TDC within the CLAS12
+readout clock. The measured INL tables that were derived from this calibration were written into the
+TDC memory to replace the factory-loaded values. Details on the procedure and the residual non-linearity
+affects are given in Ref.~\cite{inl-tables}.
 
 The PMT dynode outputs are connected to the FADCs for the pulse charge measurement. The readout
 employs JLab-designed FADC250 16-channel VME 250-MHz flash ADCs~\cite{fadc-manual}. These units
@@ -1096,7 +1097,7 @@ must be determined by the experiment.
 The full calibration of each of the FTOF counters involves a number of discrete steps that are carried out
 separately for a given data run (where a run typically lasts for about two hours). The calibration constants
 for each run are stored in the CLAS12 calibration database. The calibrations are redone whenever there is
-a response shift outside of our allow timing or energy tolerances. The steps to the FTOF calibration are
+a response shift outside of our allowed timing or energy tolerances. The steps to the FTOF calibration are
 carried out in a particular sequence~\cite{ftof-calib}.
 
 \begin{enumerate}
@@ -1932,7 +1933,7 @@ Bicron, 12345 Kinsman Road, Newbury, OH 44065, http://www.bicron.com.
 Hamamatsu Photonics, http://www.hamamatsu.com.
   
 \bibitem{nim-p1b}
-R. Gothe {\it et al.}, {\it A New Time-of-Flight System for CLAS12''}, to be submitted to Nucl. Inst.
+R. Gothe {\it et al.}, {\it A New Time-of-Flight System for CLAS12}, to be submitted to Nucl. Inst.
 and Meth A, (2020).
 
 \bibitem{ftof-geom}
