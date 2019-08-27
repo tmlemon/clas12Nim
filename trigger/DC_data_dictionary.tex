@@ -1,3 +1,11 @@
+
 \subsection{Drift Chamber-Based Trigger Component and Data-Based Dictionary}
 
-The road dictionary for the Drift Chambers used within the Trigger System was initially generated using the CLAS12 GEMC package as described in Section \ref{simulated_data_preparation}. GEMC uses the geometry and magnetic field obtained by different measurement procedures that have certain accuracy limitations. Since an incomplete road dictionary may cause significant trigger inefficiencies, we decided to generate the road dictionary using data obtained with beam.
+The road dictionary for the Drift Chambers used within the Trigger System was initially generated using a fast Monte Carlo approach, where positive and negative particles in a selected momentum and angular range were randomly generated, tracked in the CLAS12 magnetic field using the CLAS ``swimmer'' developed for the offline reconstruction based on a 4th-order Runge-Kutta approach, and projected onto the DC wire planes to determine the hit position and therefore the DC wire IDs. This method has intrinsic limitation because of the approximation done in tracking the particle through the detector that does not include energy loss, multiple scattering or other effects due to the particle interaction with the detector material.
+
+To overcome these limitations, roads were also generated from full GEANT4 simulations of the CLAS12 detector based on the GEMC package as described in Section \ref{simulated_data_preparation}. This provides an accurate description of the relevant materials particles travel through resulting in a more accurate road dictionary at the expenses of a significantly higher computing time to generated the same size dictionary.
+
+The effectiveness of these two approaches was tested by using real tracks from beam data to evaluate the completeness of the dictionaries, i.e. the fraction of tracks for which a matching road is found. This study indicated that very large statistics is needed in the dictionary making to populate specific regions of the phase space.
+
+As a third alternative approach, dictionaries were also produced from real tracks from beam data: in this case dictionaries with very large statistics can be produced in limited computing time with the advantage of the best accuracy in accounting both for particle interaction in matter and for the real detector geometry. These were the dictionaries that were used in the final trigger implementation.
+
