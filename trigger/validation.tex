@@ -21,7 +21,7 @@ These accidental ``good'' events are used to check whether the desired trigger b
 
 The technique of the trigger validation is as follows. The trigger logic is configured exactly as it will be set in an experiment, but it runs in ``tagging mode'', reporting trigger decisions into the data stream for every randomly generated event. After several hours of running we collect at least 100 million events.
 
-Fig. ~\ref{fig:htcc_fadc1} shows typical FADC pulses for the regular (not random) trigger, with pulse width below 50~ns. Reconstructing and analyzing the data, we select events with signal in the middle of the FADC window to make sure we do not have boundary effects when the signal region is selected. Based on the typical pulse shape, we ignore areas below 50~ns and above 150~ns (see Fig. ~\ref{fig:htcc_fadc2}).
+After the data is processed and the events are reconstructed, we select subset of events with correct trigger time. It is done using FADC spectra for detectors participating in the trigger logic. We need to select events with the FADC spectra similar to the one in the data obtained using regular trigger. Fig. ~\ref{fig:htcc_fadc1} shows typical FADC pulses for the regular (not random) trigger, with pulse width below 50~ns. Reconstructing and analyzing the data obtained using random trigger, we select events with signal in the middle of the FADC window to make sure we do not have boundary effects when the signal region is selected. Based on the typical pulse shape, we ignore areas below 50~ns and above 150~ns (see Fig. ~\ref{fig:htcc_fadc2}).
 
 \begin{figure}[hbt]
 	\centering
@@ -37,7 +37,7 @@ Fig. ~\ref{fig:htcc_fadc1} shows typical FADC pulses for the regular (not random
 	\label{fig:htcc_fadc2}
 \end{figure}
 
-After the data is processed and the events are reconstructed, we typically find several thousands events that accidently fell into the correct trigger window. These events can be used to obtain the trigger efficiency and purity assuming that our off-line reconstruction software works correctly. It should be mentioned that correctly working of the off-line reconstruction is an important pre-requisite for complete trigger validation.
+We typically find several thousands events that accidently fell into the correct trigger window. These events can be used to obtain the trigger efficiency and purity assuming that our off-line reconstruction software works correctly. It should be mentioned that correctly working of the off-line reconstruction is an important pre-requisite for complete trigger validation.
 
 
 \input{Validation_electron}
