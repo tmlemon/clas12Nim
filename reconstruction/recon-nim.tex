@@ -22,13 +22,19 @@
 \author[JLab]{V. Ziegler\thanksref{corresponding}},
 \author[JLab]{N. Baltzell},
 \author[JLab]{D.S. Carman},
+\author[Saclay]{P. Chatagnon},
 \author[INFN]{R. De Vita},
 \author[JLab]{G. Gavalian},
-\author[JLab]{V. Gyurjyan}, and
-\author[JLab]{M.D. Mestayer}
+\author[JLab]{V. Gyurjyan}, 
+\author[JLab]{M.D. Mestayer}, 
+\author[Saclay]{S. Niccolai}, and
+\author[Glasgow]{D. Sokhan}
 
 \address[JLab]{Thomas Jefferson National Accelerator Facility, Newport News, VA 23606, USA}
 \address[INFN]{INFN, Sezione di Genova, 16146 Genova, Italy}
+\address[Saclay]{Institut de Physique Nucl\'eaire, CNRS-IN2P3, Univ. Paris-Sud, Universit\'e Paris-Saclay,
+  91406 Orsay Cedex, France}
+\address[Glasgow]{University of Glasgow, Glasgow G12 8QQ, United Kingdom}
 \thanks[corresponding]{Corresponding author. Address: 12000 Jefferson Ave., Newport News, VA; 
 e-mail: carman@jlab.org.}
 
@@ -37,7 +43,10 @@ e-mail: carman@jlab.org.}
 %\maketitle
 
 \begin{abstract}
-Abstract goes here
+  The event reconstruction framework for the large-acceptance CLAS12 spectrometer is described including
+  the data formats, the software tools, the data processing scheme, code management, and the algorithms
+  for event reconstruction associated with the individual detector subsystems and the overall scheme for the
+  data event builder.
 \end{abstract}
 
 \end{frontmatter}
@@ -54,11 +63,60 @@ Keywords: CLAS12, event reconstruction
 
 \section{Reconstruction Framework and Tools}
 
-\subsection{Clara}
+Software in nuclear physics tends to grow in complexity over time. Because of the tight coupling between
+the internal components, it becomes hard to maintain and add new features over time. Modifying a feature
+in one class often involves changes in several other classes, thereby increasing the needed development
+time and effort. What starts small and simple, inevitably grows into a complicated scheme of interconnected
+algorithms. At some point, to prevent further growth in complexity, the software has to be shielded from
+contributors, preventing essential software evolution and optimization. The only way to bypass this highly
+guarded system is software fragmentation, making the physics data processing validation process quite
+arduous.
 
-\subsubsection{Service Composition}
+\subsection{CLARA}
+
+We have developed a reactive, data-stream processing framework called CLARA
+\cite{clara-2011,clara-service,framework,clara-2016} that addresses these issues by simply deploying a true
+“divide and conquer” principle to the software application, and insures continuous evolution and contribution of
+software applications. Nuclear physics data processing applications have a very long lifetime, and the ability to
+upgrade technologies is therefore essential. Hence, data processing applications must be organized in a way 
+that easily permits the discarding of aged software components and the inclusion of new ones without having to
+redesign entire software packages at each change. The addition of new modules and removal of unsatisfactory
+ones is a natural process of a software application evolution over time.  Software evolution and diversification
+(e.g. using heterogeneous hardware structures, such as FPGAs, GPGPUs, etc.) is important and results in more
+efficient and robust data processing applications.
+
+Software applications designed within the CLAS12 CLARA data processing framework differ from a traditional
+approach in two major ways. First, software applications are composed of interlocking software building blocks
+(bricks) called micro-services. Micro-services are linked together by data-stream pipes and are hiding technology
+(e.g. high-level programming language, hardware deployment details) and algorithmic solutions used to process
+data (see Fig.~\ref{clara-overview}). A micro-service has inputs, is capable of processing data, and producing the
+output data. A micro-service reacts on a streaming data quantum in its input, processes it, and passes processed
+data quantum to the next micro-service in the data-flow path. The second and critical difference is that CLAS12
+data processing applications execute according to the rules of data-flow instead of a more traditional programming
+approach, where sequential series of instructions (lines of code) are written to perform a required algorithm. In
+this respect CLAS12 data processing framework application design promotes a data-flow as the main concept
+behind any data processing algorithm.   The flow of data between micro-services in the application determines
+the execution order of micro-services within the application. These differences may seem minor at first, but
+the impact is revolutionary because it allows the data paths between application building blocks to be the
+application designer’s main focus. As a result, CLAS12 data processing application is more robust and agile, since
+application building blocks can be improved individually and be replaced.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{5.0cm}
+\begin{picture}(50,50) 
+\put(45,-5)
+{\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/clara-overview.pdf}}}
+\end{picture} 
+\caption{Overview of the CLAS12 CLARA data processing framework that links the detector subsystem
+event reconstruction applications to the data processing and data quality assurance monitoring applications
+to the physics analysis applications.}
+\label{clara-overview}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Common Tools}
+\label{common-tools}
 
 \subsubsection{Packages and Functionalities}
 
@@ -85,8 +143,8 @@ Keywords: CLAS12, event reconstruction
 \subsection{Calibration Suites}
 
 The software programs used for the CLAS12 detector subsystem energy and time calibrations are
-Java-based suites that employ the common tool developments discussed in Section~\ref{XX}. These
-tools allowed for streamlined development of applications that are used across the different
+Java-based suites that employ the common tool developments discussed in Section~\ref{common-tools}.
+These tools allowed for streamlined development of applications that are used across the different
 subsystem suites including a COATJAVA calibration constant database interface, tools for detector
 visualization, a data processing interface, and tools for fitting, plotting, and display with a standard
 graphical user interface environment. Fig.~\ref{suites} shows representative screenshots of several
@@ -139,7 +197,7 @@ the detailed magnetic field map.
 
 The Drift Chamber (DC) wire hit information is given by the wire geometrical location and the drift time
 to the wire. Track-dependent corrections to the hit, such as left-right ambiguity and time-walk must then
-be performed. Pattern recognition for the DC is done to first order on a "hit-based" basis. In hit-based
+be performed. Pattern recognition for the DC is done to first order on a ``hit-based'' basis. In hit-based
 tracking, a hit is defined as a wire with a recorded signal.  No timing information is incorporated at the
 preliminary stage of the reconstruction.  Uncorrelated hit noise in the DC are identified by a Simple Noise
 Removal (SNR) algorithm and rejected. SNR stores all the data for a drift chamber layer (112 sense wires)
@@ -180,14 +238,15 @@ in a local coordinate system with the z-axis perpendicular to the chambers wire 
 $ty=py$/$pz$, in that frame~\cite{spiri} .  The equations of motion of the track in the torus field are solved u
 sing a Runge-Kutta 4 numerical method.  The measurements used in the fit are the drift distances to the wires
 taking into account the left/right position of the track with respect to the wire. Time corrections are applied
-after hit-based tracking to account for the event start time, cable delays, propagation times along the wires,
-event flight times to the hit location along the wires, beta-dependent corrections, and the effect of the magnetic
-field on the cell isochrones which modify the drift times.  
+after ``hit-based'' tracking to account for the event start time, cable delays, propagation times along
+the wires, event flight times to the hit location along the wires, beta-dependent corrections, and the effect of
+the magnetic field on the cell isochrones which modify the drift times.  
 
 After the times are corrected, the drift distance is computed using a tabulated distance-to-times
 multi-dimentional arrays.  The drift distances are computed using a multi-dimentional interpolation method
 using the segment local angle, the value of the magnetic field at the location of the hit and the corrected
-times.  The Kalman fit is redone at time-based level using hits with corrected times and computed drift distances. 
+times.  The Kalman fit is redone at ``time-based'' level using hits with corrected times and computed drift
+distances. 
 
 A graphical representation of tracks in the CLAS Event Display is shown in figure~\ref{fig:dcTracks}.  The
 display shows a longitudinal view of the chambers trapezoidal shapes. The field intensity is represented by a
@@ -200,8 +259,8 @@ as an electron.
 \begin{figure}[htbp]
 \vspace{4.5cm}
 \begin{picture}(50,50) 
-\put(55,-5)
-{\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/dcTracks.png}}}
+\put(125,-5)
+{\hbox{\includegraphics[width=1.3\textwidth,natwidth=610,natheight=642]{pics/dcTracks.png}}}
 \end{picture} 
 \caption{Event display of charged particle tracks in the Drift Chambers.}
 \label{fig:dcTracks}
@@ -369,6 +428,206 @@ panel-1a (panel-1b) hit, the hit time is defined solely by the panel-1b (panel-1
 
 \subsection{Central Neutron Detector}
 
+The reconstruction of the Central Neutron Detector (CND) is done in three steps:
+
+\begin{itemize}
+\item{the reconstruction of the time and position of the hit in the paddle;}
+\item{the reconstruction of the deposited energy;}
+\item{the matching of CND hits with tracks coming from the interaction vertex.}
+\end{itemize}
+
+The reconstruction makes use of the calibration constants of the CND summarized in
+Table~\ref{table_cnd_constants}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline
+Constant Name & Number of Constants  & Units \\ \hline
+$t_{\rm{LR}}$ & 72 & ns\\ \hline
+$v_{\rm{eff}}$ & 144 & cm/ns \\ \hline
+$u_{\rm{t}}$ & 72 & ns \\ \hline
+$t_{\rm{LR}_{\rm{ad}}}$ & 72 & ns \\ \hline
+$t_{\rm{off}}$ &72 & ns\\ \hline
+$A_{\rm{L}}$ & 144 & cm\\ \hline
+$MIP_{\rm{D}}$, $MIP_{\rm{I}}$ & 144 each & no units \\ \hline
+\end{tabular}
+\caption{The constants computed in the CND calibration.}
+\label{table_cnd_constants}
+\end{center}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Timing Calibration}
+
+The paddle in which the hit occurs must be determined before all other reconstruction steps. The raw hit
+times are obtained from the measured TDC channel using a slope constant of 0.0234~ns/channel for all
+channels.
+
+The left and right times of a hit in the left paddle (we label them as $t_{{\rm{L}}/{\rm{L}}}$ and
+$t_{\rm{R}/{\rm{L}}}$ where the first index corresponds to the paddle under exam, while the second indicates
+the paddle in which the primary hit happened) are given by:
+
+\begin{equation}
+\label{eq_time_hit_lr}
+t_{{\rm{L}}/{\rm{L}}}=t_{\rm{off}}+t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_L}}+t_{\rm{S}}+t_{\rm{off}_{\rm{L}}}+{\rm{TDC}}_{\rm{j}},
+\end{equation}
+
+\begin{equation}
+\label{eq_time_hit_lr1}
+t_{{\rm{R}/{\rm{L}}}}=t_{\rm{off}}+t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_L}}+\frac{L}{v_{\rm{eff}_L}}
++\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}+t_{\rm{S}}+t_{\rm{off}_{\rm{R}}}+{\rm{TDC}}_{\rm{j}},
+\end{equation}
+
+\noindent
+where $t_{\rm{tof}}$ is the time of flight, $z$ is the position of the hit measured from the upstream end of the
+paddle, $L$ is the length of the paddle, $t_{\rm{S}}$ is the start time of the event, $t_{\rm{off}_{\rm{L}}}$ and
+$t_{\rm{off}_{\rm{R}}}$ are time offsets associated to the left and right coupled paddles, and ${\rm{TDC}}_{\rm{j}}$
+is the TDC clock jitter. Similarly if the hit happened in the right paddle one can write:
+
+\begin{equation}
+  t_{{\rm{L}}/{\rm{R}}}=t_{\rm{off}}+t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_{\rm{R}}}}+\frac{L}{v_{\rm{eff}_L}}
+  +\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}+t_{\rm{S}}+t_{\rm{off}_{\rm{L}}}+{\rm{TDC}}_{\rm{j}},
+\end{equation}
+
+\begin{equation}
+t_{R/R}=t_{\rm{off}}+t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_{\rm{R}}}}+t_{\rm{S}}+t_{\rm{off}_{\rm{R}}}+{\rm{TDC}}_{\rm{j}}.
+\end{equation}
+
+Defining $\Delta$ and $\Delta'$ as:
+
+\begin{equation}
+\Delta=\frac{L}{v_{\rm{eff}_L}}-\frac{L}{v_{\rm{eff}_{\rm{R}}}},
+\end{equation}
+
+\begin{equation}
+\Delta'=t_{\rm{L}/{\rm{X}}}-t_{\rm{R}/{\rm{X}}}+t_{\rm{off}_{\rm{R}}}-t_{\rm{off}_{\rm{L}}},
+\end{equation}
+
+\noindent
+where the index X can be R or L, one can compute $\Delta-\Delta'$ for both cases (hit in the left paddle or hit
+in the right paddle). If the hit is in the left paddle:
+
+\begin{equation}
+\Delta'-\Delta= \frac{2z}{v_{\rm{eff}_L}} - \frac{2L}{v_{\rm{eff}_L}} -u_{\rm{t}} <0.
+\end{equation}
+
+\noindent
+If the hit is in the right paddle:
+
+\begin{equation}
+\Delta'-\Delta= \frac{2L}{v_{\rm{eff}_{\rm{R}}}}-\frac{2z}{v_{\rm{eff}_{\rm{R}}}} +u_{\rm{t}} >0.
+\end{equation}
+
+\noindent
+If $\Delta'<\Delta$, the paddle in which the hit happened is the left one, otherwise it is the right one.
+
+\subsubsection{Hit Position and Time Reconstrution}
+
+The reconstruction of the time and position of a hit will be shown for the case of a hit in the left paddle. In
+case of a hit in the right paddle the applicable equations are obtained by switching the $L/R$ indices.
+
+Starting from $t_{\rm{L}}$ and $t_{\rm{R}}$, defined in Eq.~\ref{eq_time_hit_lr} and Eq.~\ref{eq_time_hit_lr1}
+and substracting the time offsets obtained from the calibrations, the start time and the time jitter, one can
+define the propagation times $t_{\rm{L}_{\rm{prop}}}$ and $t_{\rm{R}_{\rm{prop}}}$ as:
+
+\begin{equation}
+t_{\rm{L}_{\rm{prop}}}=t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_{\rm{L}}}},
+\end{equation}
+
+\begin{equation}
+t_{\rm{R}_{\rm{prop}}}=t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_{\rm{L}}}}+\frac{L}{v_{\rm{eff}_{\rm{L}}}}
++\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}.
+\end{equation}
+
+The position of the hit is then obtained as the difference of the propagation times:
+
+\begin{equation}
+z=\frac{v_{\rm{eff}_{\rm{L}}}}{2} \left(t_{\rm{L}_{\rm{prop}}}-t_{\rm{R}_{\rm{prop}}}
++ L \cdot \left(\frac{1}{v_{\rm{eff}_{\rm{L}}}}+\frac{1}{v_{\rm{eff}_{\rm{R}}}}\right)  +u_{\rm{t}}\right).
+\end{equation}
+
+The $x$ and $y$ coordinates of the hit are obtained from the radius and the azimuthal angle of the hit, which
+are, in turn, determined by knowing the layer, sector, and component (left or right) of the hit.  Finally, the time
+of flight of the particle that produced the hit is obtained as:
+
+\begin{equation}
+t_{\rm{tof}}= \frac{1}{2}\left(t_{\rm{L}_{\rm{prop}}}+t_{\rm{R}_{\rm{prop}}}- L \cdot \left(\frac{1}{v_{\rm{eff}_{\rm{L}}}}
++\frac{1}{v_{\rm{eff}_{\rm{R}}}}\right)  -u_{\rm{t}}\right).
+\end{equation}
+
+\subsubsection{Energy Reconstruction}
+
+For hits in the left paddle, the two associated ADCs can be written as:
+
+\begin{equation}
+\label{eq_rec_3}
+ADC_{\rm{L}}=\frac{E_{\rm{L}}}{E_0}\cdot MIP_{\rm{D}}\cdot e^{\frac{-z}{A_{\rm{L}}}},
+\end{equation}
+
+\begin{equation}
+\label{eq_rec_4}
+ADC_{\rm{R}}=\frac{E_{\rm{R}}}{E_0}\cdot MIP_{\rm{I}}\cdot e^{\frac{-(L-z)}{A_{\rm{L}}}},
+\end{equation}
+
+\noindent
+where $E_{L/R}$ is half the energy deposited by the particle in the left/right paddle and $E_0$ is given by
+Eq.~\ref{eq_def_e0}.
+
+\begin{equation}\label{eq_def_e0}
+E_0=\frac{h\cdot 1.956}{2}~\rm{MeV},
+\end{equation}
+
+\noindent
+where $h$ is the thickness of each scintillator. The above equations are valid for hits in the left paddles, while
+for hits in the right paddles, the applicable equations are obtained by switching the $L/R$ indices. From
+Eqs.~\ref{eq_rec_3} and \ref{eq_rec_4} follows the relations:
+
+\begin{equation}
+E_{\rm{L}}=\frac{ADC_{\rm{L}} \cdot E_0}{MIP_{\rm{D}}}\cdot e^{\frac{z}{A_{\rm{L}}}},
+\end{equation}
+
+\begin{equation}
+E_{\rm{R}}=\frac{ADC_{\rm{R}} \cdot E_0}{MIP_{\rm{I}}}\cdot e^{\frac{L-z}{A_{\rm{R}}}}.
+\end{equation}
+
+\noindent
+The total deposited energy is given by the sum of $E_{\rm{L}}$ and $E_{\rm{R}}$:
+
+\begin{equation}
+E_{\rm{dep}}=E_{\rm{L}}+E_{\rm{R}}.
+\end{equation}
+
+\subsubsection{Hit/Track Matching}
+
+Tracks from charged particles crossing the CLAS12 Central Vertex Tracker (CVT) are associated to hits in
+the CND. This allows, for each CND hit matched with a CVT track, to calculate the position of the hit from the
+extrapolated track, the pathlength between the track vertex and the hit and the path travelled in the hit
+paddle. This information is used in the calibration, as well as to veto charged particles when looking for neutrons
+in the CND. CVT tracks are extrapolated to radii corresponding to the entry point, middle point and exit point of
+the track in the paddle. These points are defined as the intersections between the helix of the track and cylinders
+of radii corresponding to the distances between the center of the CD and the three CND layers. A CVT track and
+a CND hit are matched if the hit coordinates ($x$, $y$, and $z$) and the extrapolated coordinates ($x_{m}$,
+$y_{m}$, and $z_{m}$) verify the relations:
+
+\begin{equation}
+\mid x-x_{m} \mid < \sigma_x ,~~~~\mid y-y_{m} \mid < \sigma_y , ~~~~z_{m}  \in [-\sigma_z,L+\sigma_z],
+\end{equation}
+
+\noindent
+where $\sigma_z=1.5$ cm, $ L$ is the length of a paddle, and $\sigma_x$ and $\sigma_y$ are given by:
+
+\begin{equation}
+\sigma_x= \sqrt{x^{2}\frac{\sigma_{R}^{2}}{R^2}+y^{2}\sigma_{\phi}^{2}},~~~~
+\sigma_y= \sqrt{y^{2}\frac{\sigma_{R}^{2}}{R^2}+x^{2}\sigma_{\phi}^{2}},
+\end{equation}
+
+\noindent
+where $R$ is the radius of the hit, $\sigma_R$ is half the thickness of a paddle (1.5 cm) and $\sigma_{\phi}$
+is the azimuthal resolution of each paddle (3.75$^{\circ}$). The path travelled by the particle in the paddle is
+approximated as the distance between the entry and exit points. The path length between the vertex and the
+hit is given by the helix parameters.
+
 \subsection{Forward Tagger}
 
 \subsection{Event Builder}
@@ -402,6 +661,20 @@ panel-1a (panel-1b) hit, the hit time is defined solely by the panel-1b (panel-1
 This work was supported in part by DOE Contract DE-AC05-84ER40150.
 
 \begin{thebibliography}{99}
+
+\bibitem{clara-2011}
+V. Gyurjyan {\it et al.}, CLARA: A Contemporary Approach to Physics Data Processing, J. Phys. Conf. Ser.
+{\bf 331}, 032013 (2011).
+
+\bibitem{clara-service}
+J. Carbonneau, M. Moog,  J. Gilfoyle {\it et al.}, 2011 APS Division of Nuclear Physics Meeting Abstracts, EA.024.
+
+\bibitem{framework}
+  Component Based Dataflow Processing Framework, 2015, IEEE DOI: 10.1109/BigData.2015.7363971,
+  ISBN: 978 1-4799-9926-2
+
+\bibitem{clara-2016}
+CLARA: The CLAS12 Reconstruction and Analysis framework, 2016, J. Phys. Conf. Ser. {\bf 762}, 012009 (2016).
 
 \bibitem{clas12-nim}
 V.D. Burkert {\it et al.}, ``The CLAS12 Spectrometer at Jefferson Laboratory'', to be published in Nucl.
