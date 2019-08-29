@@ -1,15 +1,15 @@
 \section{Electronics and readout}
 
-\F{electronicScheme} shows a schematic diagram of the electronics and readout used for the Cherenkov detector.
+\F{electronicScheme} shows a schematic diagram of the electronics and readout used for the LTCC detector.
 
-The XP4500B Photonis photomultipliers are powered in positive polarity by a CAEN SY4527 outfitted with 1501P boards.
+The XP4500B Photonis PMTs are powered with positive polarity by a CAEN SY4527 high voltage mainframe outfitted with 1501P boards.
 
-There are two anode signals from the tubes. One of them is connected directly to Flash ADC
-boards built at Jefferson Lab, the Flash ADC module FADC250. The FADC250 sampling frequency is $250 MHz$.
-The other signals is discriminated by a DSC2 unit and connected to CAEN v1190 TDC modules.
-The TDCs were set to have 50ps/channel timing resolution.
+There are two anode signals from the PMT output. One of them is connected directly to flash ADC
+boards built at Jefferson Lab, the Flash ADC module FADC250. The FADC250 sampling frequency is 250 $MHz$.
+The other signal is discriminated by a Jefferson Lab made discriminator unit (named DSC2) and connected to CAEN v1190 TDC modules.
+The TDCs were set to have 50 ps/channel timing resolution.
 
-The Cherenkov FADC250 and TDC information is read out using the CEBAF Online Data Acquisition system (CODA).
+The LTCC FADC250 and TDC information are read out using the CLAS12 Data Acquisition system \cite{daq2019}.
 
 \begin{figure}
 	\centering
