@@ -11,7 +11,7 @@ A series of Monte Carlo simulations have been used to calculate the acceptance o
 \label{fig:svt3dview}
 \end{figure}
 
-According to the results of GEANT simulation of the SVT, a resolution of 50~$\mu$m in the bending plane is needed to measure, with a precision better than 5$\%$, tracks with momentum up to 1~GeV (see Fig.~\ref{fig:PtRes}) \cite{MC1,MC2}. At low momenta the degradation of the resolution is caused by multiple scattering.
+According to the results of Geant simulation of the SVT, a resolution of 50~$\mu$m in the bending plane is needed to measure, with a precision better than 5$\%$, tracks with momentum up to 1~GeV (see Fig.~\ref{fig:PtRes}) \cite{MC1,MC2}. At low momenta the degradation of the resolution is caused by multiple scattering.
 
 \begin{figure}[hbt]
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{PtResol.jpg}
@@ -29,41 +29,55 @@ The centroid residual distribution for the simulated muon tracks generated in th
 
 \subsection{Backgrounds, Energy Deposition, Dose Rates}
 
-Radiation-induced bulk and surface detector damage studies have been conducted with charged hadrons, leptons, neutrons, and $\gamma$-ray photons. The damage can be due to ionizing radiation, affecting the surface, and non-ionizing energy loss from the hadrons interacting with the sensors and introducing lattice defects. The new energy levels within the band gap lead to increase of the leakage current, charge trapping, and change of the effective doping concentration. The radiation damage produced by different particles with different energies is scaled under the assumption of the Non-Ionizing Energy Loss (NIEL) hypothesis as the radiation damage in the silicon bulk depends only on the non-ionizing energy loss. The damage caused by different particles is referenced to the damage from 1 MeV neutrons. The standard value for the NIEL of 1 MeV neutrons is 95 MeVmb. 
+Radiation-induced bulk and surface detector damage studies have been conducted with charged hadrons, leptons, neutrons, and $\gamma$-ray photons. The damage can be due to ionizing radiation, affecting the surface, and non-ionizing energy loss from the hadrons interacting with the sensors and introducing lattice defects. The new energy levels within the band gap lead to increase of the leakage current, charge trapping influencing the charge collection efficiency and depletion voltage, and change of the effective doping concentration. The surface damage affects strip isolation and leads to lower position resolution. The bulk damage may occur in point-like and cluster-like shapes depending on the type and the energy of the particle. Protons and pions introduce more likely point-like defects below a transferred momentum of 5~keV. The lower threshold to produce a single point defect is $\sim$25~eV\cite{ROHE}. Neutrons interact only via the strong force, damaging the lattice and creating isolated cluster defects. The radiation damage produced by different particles with different energies is scaled under the assumption of the Non-Ionizing Energy Loss (NIEL) hypothesis as the radiation damage in the silicon bulk depends only on the non-ionizing energy loss. The damage caused by different particles is referenced to the damage from 1~MeV neutrons. The standard value for the NIEL of 1 MeV neutrons is 95 MeVmb. This unit is taken in order to compare different particle energies and interaction mechanisms following the NIEL damage law.
 
 \begin{figure}[hbt] 
-\centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{Pb_1MeVeq.jpg}
-\caption{Accumulated 1~MeV equivalent neutron fluence for a 140-$\mu$m thick lead target. $R$ is the radius, $z$ axis is along the beamline.}
+\caption{Accumulated 1~MeV equivalent neutron fluence for a 140-$\mu$m-thick lead target. $R$ is the radius, $z$ axis is along the beamline.}
 \label{fig:fluka1}
 \end{figure}
 
-To calculate the effects of different target configurations on the SVT detector,  FLUKA~\cite{FLUKA1, FLUKA2} simulations have been performed. In order to include hadron electro-nuclear production, a dedicated source term has been used to enhance the physics production from the target, since it is of key importance in radiation estimates for targets with radiation length below 4$\%$. To assess the radiation damage to the SVT, the accumulated 1~MeV neutron equivalent fluence has been recorded corresponding to the planned run conditions. For the experiment with the lead target, the expected exposure was 240 hours at a beam current of 38~nA with an electron beam energy of 6.6~GeV (see Fig.~\ref{fig:fluka1}). For a deuterium target, the study has been done for the accumulated charge of 108 mC at 11 GeV (see Fig.~\ref{fig:fluka2}). In both scenarios the expected doses should not cause substantial degradation of the silicon sensors.
+To estimate the expected particle fluence and calculate the effects of different target configurations on the SVT detector,  FLUKA~\cite{FLUKA1, FLUKA2} simulations have been performed. With the help of this tool, the radiation level in the CLAS12 Central Detector can be visualized. In order to include hadron electro-nuclear production, a dedicated source term has been used to enhance the physics production from the target, since it is of key importance in radiation estimates for targets with radiation length below 4$\%$. To assess the radiation damage to the SVT, the accumulated 1~MeV neutron equivalent fluence has been recorded corresponding to the planned run conditions. 
 
 \begin{figure}[hbt] 
-\centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{Deuterium_1MeVeq.jpg}
-\caption{Accumulated 1~MeV equivalent neutron fluence for a 5-cm long liquid-deuterium target. $R$ is the radius, $z$ axis is along the beamline.}
+\caption{Accumulated 1~MeV equivalent neutron fluence for a 5-cm-long liquid-deuterium target. $R$ is the radius, $z$ axis is along the beamline.}
 \label{fig:fluka2}
 \end{figure}
 
-FLUKA simulations of radiation damage levels have been performed in terms of 1~MeV equivalent neutron fluence and high energy hadron equivalent fluence that is proportional to the rate of Single Event Effects (SEE)~\cite{FLUKA3}. Estimated levels of radiation damage in the radial direction are presented in Fig.~\ref{fig:rad-levels-radial} for liquid hydrogen and carbon targets at nominal beam currents. Also shown are the radiation levels for the tagger magnet yoke during the beam tuning~\cite{BEAMLINENIM}.
+For the experiment with the lead target, the expected exposure was 240~hours at a beam current of 38~nA with an electron beam energy of 6.6~GeV (see Fig.~\ref{fig:fluka1}). For a liquid-deuterium target, the study has been done for the accumulated charge of 108~mC at 11~GeV (see Fig.~\ref{fig:fluka2}). The target is at point (0, 0). The innermost SVT layer is located in $z$ from -22~cm to 12~cm at a radius of 6.5~cm. The maximum fluence on the sensors depends on their position in the tracker. In both scenarios the expected doses should not cause substantial degradation of the silicon sensors. Figure~\ref{fig:fluka3} shows the ratio of 1~MeV equivalent neutron fluences for a 5-cm-long liquid-deuterium and liquid-hydrogen targets. The location of the SVT sensors is indicated by the horizontal lines. The difference in the estimated fluences comes from the flux of neutrons produced in the liquid-deuterium target. The largest dose is expected in the intermediate sensors of Region 1.
 
 \begin{figure}[hbt] 
-\centering 
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{Deuterium_hydrogen_ratio.jpg}
+\caption{The ratio of 1~MeV equivalent neutron fluences for a 5-cm-long liquid-deuterium and liquid-hydrogen targets. $R$ is the radius, $z$ axis is along the beamline.}
+\label{fig:fluka3}
+\end{figure}
+
+FLUKA simulations of radiation dose have been performed also in terms of high energy hadron equivalent fluence that is proportional to the rate of Single Event Effects (SEE)~\cite{FLUKA3}. Hadrons, neutrons, photons and electrons are implemented depending on their spectra. Figure~\ref{fig:fluka4} shows the accumulated dose for a liquid-deuterium target in the same conditions. The rate of the SEE should not cause issues with readout electronics.
+
+\begin{figure}[hbt] 
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{Deuterium_rad.jpg}
+\caption{Accumulated radiation dose for a 5-cm-long liquid-deuterium target. $R$ is the radius, $z$ axis is along the beamline.}
+\label{fig:fluka4}
+\end{figure}
+
+Estimated levels of radiation damage in terms of 1~MeV equivalent neutron fluence in silicon in the radial direction are presented in Fig.~\ref{fig:rad-levels-radial} for liquid-hydrogen and carbon targets at nominal beam currents. Also shown are the radiation levels for the tagger magnet yoke during the beam tuning~\cite{BEAMLINENIM}.
+
+\begin{figure}[hbt] 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{rad-levels-radial.jpg}
 \caption{Estimated levels of radiation damage in radial direction in terms of 1MeV neutron equivalent fluence in silicon.}
 \label{fig:rad-levels-radial}
 \end{figure}
- 
+
+Geant-4-based calculations of fluences, radiation doses, and damage rates in the SVT were performed for different particles using CLAS12 GEMC~\cite{MCNIM}. The SVT rates were estimated for liquid hydrogen, liquid deuterium, carbon, iron, and lead targets. For each event, 124,000 electrons going through the target within a 248.5-ns time window were simulated. This corresponds to the full CLAS12 10$^{35}$cm$^{-2}$s$^{-1}$ luminosity on a 5-cm-long liquid-hydrogen target at 11~GeV beam energy. Rates in the first SVT layer for a 5-cm-long liquid-hydrogen target are shown in Fig.~\ref{fig:rates-lh2}. For a carbon target at a threshold of 40~keV the hadronic rate was estimated to be 5~MHz (total rate 40~MHz) with strip hit rates of 3.1~kHz (Region 1), 2.2~kHz (Region 2), and 1.7~kHz (Region 3). The energy deposited in layer 1 for the electromagnetic and the hadronic particles is shown in Fig.~\ref{fig:energy-deposited-l1}. At a threshold of 30~keV, 92$\%$ of the electromagnetic background is rejected while preserving  99.5$\%$ of the signals coming from the hadrons~\cite{TDRSVT}.
+
 \begin{figure}[hbt] 
-\centering 
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{rates-lh2.jpg}
-\caption{Rates in the first SVT layer for a 5-cm long liquid hydrogen target at the nominal CLAS12 operating luminosity of 10$^{35}$cm$^{-2}$s$^{-1}$.}
+\caption{Rates in the first SVT layer for a 5-cm-long liquid hydrogen target at the nominal CLAS12 operating luminosity of 10$^{35}$cm$^{-2}$s$^{-1}$.}
 \label{fig:rates-lh2}
 \end{figure}
 
-Geant 4-based calculations of fluences, radiation doses, and 1 MeV neutron damage rates in the SVT were performed for different particles using CLAS12 GEMC (see simulations section in this volume). The SVT rates were estimated for liquid hydrogen, liquid deuterium, carbon, iron, and lead targets. For each event, 124,000 electrons going through the target within a 248.5-ns time window were simulated. This corresponds to the full CLAS12 10$^{35}$cm$^{-2}$s$^{-1}$ luminosity on a 5-cm-long liquid-hydrogen target at 11 GeV beam energy. Rates in the first SVT layer for a 5-cm thick liquid-hydrogen target are shown in Fig.~\ref{fig:rates-lh2}. For a carbon target at a threshold of 40 keV the hadronic rate was estimated to be 5 MHz (total rate 40 MHz) with strip hit rates of 3.1 kHz (Region 1), 2.2 kHz (Region 2), and 1.7 kHz (Region 3). The energy deposited in layer 1 for the electromagnetic and the hadronic particles is shown in Fig.~\ref{fig:energy-deposited-l1}. At a threshold of 30 keV, 92$\%$ of the electromagnetic background is rejected while preserving  99.5$\%$ of the signals coming from the hadrons~\cite{TDRSVT}.
+Simulations of beam-related backgrounds were performed for several thicknesses of a tungsten shielding cylinder around the CLAS12 target covering the first SVT layer. A tungsten shield 51~$\mu$m thick is installed on the target scattering chamber. The shield consists of 2 sheets mounted over the top and bottom halves of the foam cylinder referenced to the SVT common ground. The SVT rates and radiation damage benefit from the inclusion of the tungsten shield. The rates have been compared with physics run data at several beam currents.
 
 \begin{figure}[hbt] 
 \centering 
@@ -72,9 +86,7 @@ Geant 4-based calculations of fluences, radiation doses, and 1 MeV neutron damag
 \label{fig:energy-deposited-l1}
 \end{figure}
 
-Simulations of beam-related backgrounds were performed for several thicknesses of a tungsten shielding cylinder around the CLAS12 target covering the first SVT layer. A tungsten shield 51~$\mu$m thick is installed on the target scattering chamber. The shield consists of 2 sheets mounted over the top and bottom halves of the foam cylinder referenced to the SVT common ground. The SVT rates and radiation damage benefit from the inclusion of the tungsten shield. The rates have been compared with physics run data at several beam currents.
-
-While the gamma fluences / doses show a dramatic decrease with the introduction of shielding, the total fluences and doses decrease significantly for the thinner configuration and do not vary much for thicker tungsten (see Fig.~\ref{fig:rates-l1}). The photon radiation dose becomes negligible for 50 $\mu$m or more of tungsten with total 1 MeV equivalent radiation dose about 65 krad per year on a liquid-hydrogen target. For 15 years of running the experiment on a carbon target the estimated radiation dose for the sensors is 2.5~Mrad (with 50 $\%$ operation) \cite{TDRSVT}. 
+While the gamma fluences / doses show a dramatic decrease with the introduction of shielding, the total fluences and doses decrease significantly for the thinner configuration and do not vary much for thicker tungsten (see Fig.~\ref{fig:rates-l1}). The photon radiation dose becomes negligible for 50~$\mu$m or more of tungsten with total 1~MeV equivalent radiation dose about 65~krad per year on a liquid-hydrogen target. For 15 years of running the experiment on a carbon target the estimated radiation dose for the sensors is 2.5~Mrad (with 50 $\%$ operation) \cite{TDRSVT}. 
 
 \begin{figure}[hbt] 
 \centering 
@@ -87,7 +99,7 @@ An estimate of the double hit rate from background was performed. Figure~\ref{fi
 
 \begin{figure}[hbt] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{double-hit-rate.jpg}
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{double-hit-rate.jpg}
 \caption{Double hit fraction in Region 1 with the 5-cm long liquid-hydrogen target.}
 \label{fig:double-hit-rate}
 \end{figure}

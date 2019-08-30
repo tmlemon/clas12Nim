@@ -64,7 +64,7 @@ The HIS is the last line of protection for the detector. If the main EPICS slow 
 The front panel of the HIS has two interlock keys. These keys allow system experts to update the cRIO system while the SVT detector is powered. These keys are normally locked in the enabled position during detector operation.
 The user interface to the HIS allows the operator to remotely monitor the SVT and to set interlock trip levels. The user interface is also used to reset the system after an interlock trip event. 
 
-The performance and stability of the system is tested at various operation temperatures. The observed sensor leakage currents remain below 400 nA in normal operating conditions with coolant at -20$\degree$C. Humidity inside the barrel is kept at $2\%$ by purging dry air. All critical detector operational conditions (currents, voltages, ambient sensor readings, interlocks, etc.) are recorded in a MYA database \cite{MYA} to evaluate system performance and stability. 
+The performance and stability of the system is tested at various operation temperatures. The observed sensor leakage currents remain below 400 nA in normal operating conditions with coolant at -20$\degree$C. The monitoring of sensor leakage currents is done per each side of the module (three individual silicon sensors are connected in parallel). Humidity inside the barrel is kept at $2\%$ by purging dry air. All critical detector operational conditions (currents, voltages, ambient sensor readings, interlocks, etc.) are recorded in a MYA database \cite{MYA} to evaluate system performance and stability. Depletion voltage monitoring is based on the cluster size and cluster charge data taken during the full bias scans.
 
 \begin{figure}[hbt] 
 \centering 
@@ -73,5 +73,5 @@ The performance and stability of the system is tested at various operation tempe
 \label{fig:svt-monitor}
 \end{figure}
 
-Java-based data quality monitoring tools were developed to check detector performance both online and offline. The SVT detector monitoring interface is shown in Fig.~\ref{fig:svt-monitor}. The tools allow for checking the status of track reconstruction and performance of the individual modules. Individual sensors can be selected from the SVT layout canvas on the left side of the interface. On the right side a specific set of histograms can be selected with the tabs. The selected tab shows the position of the reconstructed crosses on the surface of the sensors for the first SVT region. The gaps between the sensors are visible.
+Java-based data quality monitoring tools were developed to check detector performance both online and offline. The SVT detector monitoring interface is shown in Fig.~\ref{fig:svt-monitor}. The tools allow for checking the status of track reconstruction and performance of the SVT modules. Individual sensors can be selected from the SVT layout canvas on the left side of the interface. On the right side a specific set of histograms can be selected with the tabs. The selected tab shows the position of the reconstructed crosses on the surface of the sensors for the first SVT region. The gaps between the sensors are visible.
 
