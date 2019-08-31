@@ -37,18 +37,20 @@ The pixel trigger pipeline executes these steps in parallel, with user configura
   3) Evaluate multiplicity \textbf{EVALDELAY}*4~ns clock cycles after the leading edge of a candidate pixel from step 2.
   4) Generate a pixel trigger if the multiplicity requirement is met and we still have a hit on U,V, and W. 
 
-Additional configurable trigger elements were introduced, including a total energy sum threshold \textbf{ESUM} and a lookup table for triplets of strips that satisfy the geometrical constraint $dU+dV+dW=\textbf{DALITZ}$, where $d$ is the normalized distance to the hit strip indicated by the arrows in Fig.\ref{} and $\textbf{DALITZ}=2$ for perfect pixels.  The latter test was sometimes necessary to prevent noisy PMTs from saturating the multiplicity (N=3) trigger condition.  Offline analysis showed that about $90\%$ of pixel triggers satisfied the Dalitz test (Fig.\ref{}), while adjacent calorimeter elements that did not use the trigger had a much smaller pixel fraction.  This suggests the pixel trigger helps to suppress events that undergo multiple scattering, which would trigger adjacent strips and violate the multiplicity requirement.
+Additional configurable trigger elements were introduced, including a total energy sum threshold \textbf{ESUM} and a lookup table for triplets of strips that satisfy the geometrical constraint $dU+dV+dW=\textbf{DALITZ}$, where $d$ is the normalized distance to the hit strip indicated by the arrows in Fig.\ref{fig:pcal_cosmic_1} and $\textbf{DALITZ}=2$ for perfect pixels.  The latter test was sometimes necessary to prevent noisy PMTs from saturating the multiplicity (N=3) trigger condition.  Offline analysis showed that about $90\%$ of pixel triggers satisfied the Dalitz test (Fig.\ref{fig:ec_offline}), while adjacent calorimeter elements that did not use the trigger had a much smaller pixel fraction.  This suggests the pixel trigger helps to suppress events that undergo multiple scattering, which would trigger adjacent strips and violate the multiplicity requirement.
 
 \begin{figure}[!htb]
- \centering
-  \includegraphics[width=0.95\columnwidth,keepaspectratio]{img/TwoClusters.png}
- \caption{Examples of clusters from cosmic muon triggers.  Desired trajectory (left) is normally incident on the face of PCAL and satisfies the single pixel multiplicity condition (N$_u$=N$_v$=N$_w$=1) in the FPGA pixel trigger.  Event at right shows a more vertical trajectory rejected by this trigger.}
+ 	\centering
+  	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/TwoClusters.png}
+ 	\caption{Examples of clusters from cosmic muon triggers.  Desired trajectory (left) is normally incident on the face of PCAL and satisfies the single pixel multiplicity condition (N$_u$=N$_v$=N$_w$=1) in the FPGA pixel trigger.  Event at right shows a more vertical trajectory rejected by this trigger.}
+	\label{fig:pcal_cosmic_1}
 \end{figure}
 
 \begin{figure}[!htb]
- \centering
-  \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/PixelFraction.png}
- \caption{Offline analysis of events which satisfied the pixel trigger on ECINNER calorimeter.  Left plot shows 89$\%$ of ECINNER triggers satisfied the pixel test $dU+dV+dW=2$.  Right plot shows only 14$\%$ of the ECINNER triggers found an ECOUTER event that satisfied both the $N=3$ and pixel test.}
+ 	\centering
+  	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/PixelFraction.png}
+ 	\caption{Offline analysis of events which satisfied the pixel trigger on ECINNER calorimeter.  Left plot shows 89$\%$ of ECINNER triggers satisfied the pixel test $dU+dV+dW=2$.  Right plot shows only 14$\%$ of the ECINNER triggers found an ECOUTER event that satisfied both the $N=3$ and pixel test.}
+	\label{fig:ec_offline}
 \end{figure}
 
 

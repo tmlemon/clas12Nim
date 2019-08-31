@@ -95,10 +95,10 @@ The CLAS12 Forward Tagger Calorimeter and Hodoscope (FT, \cite{ft-ref}) trigger 
 
 \subsection{Stage 2 Trigger}
 
-The Stage 2 trigger collects data from Stage 1 using fiber optics. It is based on the number of SubSystem Processor boards (SSP, see Section \ref*{sec:ssp_board}) all installed in one VXS crate. After receiving the Stage 1 trigger streams, the SSPs form subsystem coincidences for the six identical sets of forward detectors (called sectors) and the central detectors (all separately). Each subsystem trigger stream goes through a programmable delay that provides 4~ns resolution when deskewing to optimize the time coincidence. Next follows a programmable coincident window for each subsystem trigger stream, also with a 4~ns step resolution, to ensure that the different subdetector signals will remain stable long enough to form a time coincidence regardless of jitter due to particle time-of-flight, detector response, and trigger jitter.
+The Stage 2 trigger collects data from Stage 1 using fiber optics. It is based on the number of SubSystem Processor boards (SSP, see Section \ref*{sec:ssp_board}) all installed in one VXS crate. After receiving the Stage 1 trigger streams, the SSPs form subsystem coincidences for the six identical sets of forward detectors (called sectors) and the central detectors (all separately). Each subsystem trigger stream goes through a programmable delay that provides 4~ns resolution when deskewing to optimize the time coincidence. Next follows a programmable coincidence window for each subsystem trigger stream, also with a 4~ns step resolution, to ensure that the different subdetector signals will remain stable long enough to form a time coincidence regardless of jitter due to particle time-of-flight, detector response, and trigger jitter. Stage 2 Trigger specifications are shown in Table~\ref{tab:stage_2_specs}.
 
+\begin{table}
 \begin{center}
-	Stage 2 Trigger Specs\\
 	\begin{tabular}{| l | l |}
 		\hline \hline
 		Name				& Specification	\\
@@ -113,11 +113,14 @@ The Stage 2 trigger collects data from Stage 1 using fiber optics. It is based o
 		\hline \hline
 	\end{tabular}
 \end{center}
+\caption{Stage 2 Trigger Specifications}
+\label{tab:stage_2_specs}
+\end{table}
 
-The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, and DC. A single SSP collects all forward detector trigger streams from a single sector of CLAS12. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable sector trigger bits. Each sector trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be tailored for a particular trigger type. The sector trigger bits are computed and sent to the final Stage 3 trigger.
+The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, and DC. A single SSP collects all forward detector trigger streams from a single sector of CLAS12. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable sector trigger bits. Each sector trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be tailored for a particular trigger type. The sector trigger bits are computed and sent to the final Stage 3 trigger. Forward Detector Trigger primitives are shown in Table~\ref{tab:fd_trig_primitives}.
 
+\begin{table}
 \begin{center}
-	Forward Detector Trigger Primitives\\
 	\begin{tabular}{| l | l |}
 		\hline \hline
 		Primitive Name			& Trigger Bit Parameters	\\
@@ -134,11 +137,14 @@ The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, and DC. A 
 		\hline \hline
 	\end{tabular}
 \end{center}
+\caption{Forward Detector Trigger Primitives}
+\label{tab:fd_trig_primitives}
+\end{table}
 
-The central detectors participating in the trigger consist of CTOF, CND, and FT. A single SSP collects all central detector trigger streams. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable central trigger bits. Each central trigger bit contains a variety of trigger primitives and customizable thresolds/cuts that can be tailored for a particular trigger type. The central trigger bits are computed and sent to the final Stage 3 trigger where all sector and central trigger bits arrive to compute the global trigger bits.
+The central detectors participating in the trigger consist of CTOF, CND, and FT. A single SSP collects all central detector trigger streams. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable central trigger bits. Each central trigger bit contains a variety of trigger primitives and customizable thresolds/cuts that can be tailored for a particular trigger type. The central trigger bits are computed and sent to the final Stage 3 trigger where all sector and central trigger bits arrive to compute the global trigger bits. Central Detector Trigger primitives are shown in Table~\ref{tab:cd_trig_primitives}.
 
+\begin{table}
 \begin{center}
-	Central Detector Trigger Primitives\\
 	\begin{tabular}{| l | l |}
 		\hline \hline
 		Primitive Name			& Trigger Bit Parameters	\\
@@ -152,14 +158,17 @@ The central detectors participating in the trigger consist of CTOF, CND, and FT.
 		\hline \hline
 	\end{tabular}
 \end{center}
+\caption{Central Detector Trigger Primitives}
+\label{tab:cd_trig_primitives}
+\end{table}
 
 
 \subsection{Stage 3 Trigger}
 
-The Stage 3 trigger is the final stage and collects all sector and central trigger bit streams in a single module where they can be combined in a variety of ways to generate the global trigger bits used for reading out the Data Acquisition System (DAQ). It is implemented on a single VTP board installed in the switch slot on the same VXS crate where all Stage 2 trigger SSPs reside. There are 32 independent trigger bits that can form a trigger based on any combination of sector and/or central trigger bits. Each trigger bit contains two sector trigger bit conditions (required to both be true) and a signle central trigger bit condition. Additionally, each trigger bit contains a 16~bit prescaler, final pulse width, and scaler.
+The Stage 3 trigger is the final stage and collects all sector and central trigger bit streams in a single module where they can be combined in a variety of ways to generate the global trigger bits used for reading out the Data Acquisition System (DAQ). It is implemented on a single VTP board installed in the switch slot on the same VXS crate where all Stage 2 trigger SSPs reside. There are 32 independent trigger bits that can form a trigger based on any combination of sector and/or central trigger bits. Each trigger bit contains two sector trigger bit conditions (required to both be true) and a signle central trigger bit condition. Additionally, each trigger bit contains a 16~bit prescaler, final pulse width, and scaler. Stage 3 Trigger specifications are shown in Table~\ref{tab:stage_3_specs}.
 
+\begin{table}
 \begin{center}
-	Stage 3 Trigger Specs\\
 	\begin{tabular}{| l | l |}
 		\hline \hline
 		Name				& Specification	\\
@@ -173,6 +182,9 @@ The Stage 3 trigger is the final stage and collects all sector and central trigg
 		\hline \hline
 	\end{tabular}
 \end{center}
+\caption{Stage 3 Trigger Specifications}
+\label{tab:stage_3_specs}
+\end{table}
 
 
 \subsection{Trigger Information in Data Stream}

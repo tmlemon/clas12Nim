@@ -88,18 +88,18 @@ The clock uncertainty is set as 30\% of the main clock, which we found forces HL
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/hls.png}
-	\caption{Typical HLS project for one of the ECAL trigger elements.}
+	\caption{Typical HLS project for one of the PCAL trigger elements. 4\% LUTs is close to the maximum possible to meet timing requirements on the following steps.}
 	\label{fig:hls}
 \end{figure}
 
 \subsection{VIVADO Settings}
 
-Common settings for VIVADO were used as shown in Fig. ~\ref{fig:vivado}. It usually takes 3+ hours to compile the ECAL  project on a Dell R730 server under RHEL7. For some firmware versions, we were able to utilize 100\% of the LUTs and still meet the timing requirements if the clock domain was 125~MHz or lower. The VIVADO project for the PCAL trigger is shown in Fig. ~\ref{fig:vivado}.
+Common settings for VIVADO were used as shown in Fig. ~\ref{fig:vivado}. It usually takes 3+ hours to compile the PCAL project on a Dell R730 server under RHEL7. For some firmware versions, we were able to utilize 100\% of the LUTs and still meet the timing requirements if the clock domain was 125~MHz or lower. The VIVADO project for the PCAL trigger is shown in Fig. ~\ref{fig:vivado}.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/vivado.png}
-	\caption{VIVADO project for PCAL trigger.}
+	\caption{VIVADO project for PCAL trigger. Strategies used were ``Vivado Synthesis Defaults'' and ``Performance\_ExplorePostRoutePhysOpt''. LUT utilization is about 2/3 of the total balance.}
 	\label{fig:vivado}
 \end{figure}
 

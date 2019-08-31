@@ -43,10 +43,10 @@ Another example (see Fig.~\ref{fig:ecal_sim3}) shows the absolute EC cluster ene
 
 A cycle accurate simulator was setup to model, test, and debug the full Trigger System using Aldec Riviera. This tool is able to perform simulations of the full Trigger System in a mixed language environment (VHDL, Verilog, C/C++) for all FPGA components used in CLAS12 (Xilinx series 5, 6,and 7 components). VHPI was used to interface external C/C++ programs from the DAQ to the VHDL test bench. Using VHPI, calls to the DAQ EVIO (the native DAQ data format) C/C++ libraries were possible from VHDL, making it possible to feed detector waveform data into the trigger simulation directly from Monte Carlo, data files taken with beam, or from user-created text files. Simulation intensive components, primarily gigabit SerDes components, were replaced with fast, simple models once verified to improve the simulation performance. The simulator is single-threaded and requires a license for each running instance, making it costly to parallelize. Even so, it was capable of processing 1 event every 30~s on a typical desktop PC simulating the CLAS12 forward and central Trigger System comprised of 24,192 drift chamber wires and about 3400 FADC channels.
 
-The simulation was built from the actual HDL firmware source files compiled for the various modules used in the trigger system (DCRB, FADC, VTP, SSP). HDL wrappers were created to model the VXS crates which include: backplane, fiber interconnect, trigger distribution, clock distribution, configuration, and readout. The following table summarizes the trigger simulation components:
+The simulation was built from the actual HDL firmware source files compiled for the various modules used in the trigger system (DCRB, FADC, VTP, SSP). HDL wrappers were created to model the VXS crates which include: backplane, fiber interconnect, trigger distribution, clock distribution, configuration, and readout. The Table~\ref{tab:trig_sim_crates} summarizes the trigger simulation components:
 
+\begin{table}
 \begin{center}
-	Trigger Simulation crates\\
 	\begin{tabular}{| l | l | l | l | l |}
 		\hline \hline
 		System		& Crates	& ModType	& ModCnt	& ChCnt		\\
@@ -64,6 +64,9 @@ The simulation was built from the actual HDL firmware source files compiled for 
 		\hline \hline
 	\end{tabular}
 \end{center}
+\caption{Trigger Simulation crates}
+\label{tab:trig_sim_crates}
+\end{table}
 
 Each of the front-end crates uses a VTP trigger module that runs the detector-specific trigger algorithm. The front-end VTP modules feed the trigger data to the global trigger (GT) crate Stage 2 (SSP). The SSP modules feed the trigger data into the final trigger Stage 3 (GTP). There are 10 different VTP firmware types to support the Stage 1 (front-end) and Stage 3 (GTP) algorithm. There are 2 different SSP firmware types that support the Stage 2 CLAS12 Forward and Central Detector trigger logic.
 
