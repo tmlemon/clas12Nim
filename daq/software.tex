@@ -2,7 +2,7 @@
 
 \subsection{CODA DAQ Software}
 
-The CLAS12 DAQ system is based on CODA (see Fig.~\ref{fig:coda_diagram}), short for CEBAF Online Data Acquisition. It is a kit of parts that allows the implementaion of a data acquisition system. The scale of the system can range from a few detector channels in a test stand to tens of thousands of channels in a large detector installation in one of the experimental halls. CODA achieves this scaling through modularity and provides a set of hardware components along with complementary software components.
+The CLAS12 DAQ system is based on CODA (\cite{coda-ref}, see Fig.~\ref{fig:coda_diagram}), short for CEBAF Online Data Acquisition. It is a kit of parts that allows the implementaion of a data acquisition system. The scale of the system can range from a few detector channels in a test stand to tens of thousands of channels in a large detector installation in one of the experimental halls. CODA achieves this scaling through modularity and provides a set of hardware components along with complementary software components.
 
 \begin{figure}[hbt]
 	\centering
@@ -14,8 +14,7 @@ The CLAS12 DAQ system is based on CODA (see Fig.~\ref{fig:coda_diagram}), short 
 
 \subsection {Run Control}
 
-The CODA DAQ system includes a run control facility consisting of a back-end run control supervisor and a front-end graphical operator display that connects to the supervisor and controls its operation. The supervisor in turn controls operation of the many CODA components that participate in the run. The latter are defined in run configuration files that the operator chooses at startup. The Run Control Graphic User Interface (see Fig.~\ref{fig:runcontrol1}) presents the operator with a choice of possible actions that depend on the current state of the run. The supervisor translates the operator choice into appropriate commands to the individual components. Alternatively, limited communication with the supervisor can be performed via command-line scripts.
-In addition, the supervisor monitors the health and operation of the CODA components and warns the operator or pauses the run if problems are detected.
+The CODA DAQ system includes a run control facility consisting of a back-end run control supervisor and a front-end graphical operator display that connects to the supervisor and controls its operation. The supervisor in turn controls operation of the many CODA components that participate in the run. The latter are defined in run configuration files that the operator chooses at startup. The Run Control Graphic User Interface (see Fig.~\ref{fig:runcontrol1}) presents the operator with a choice of possible actions that depend on the current state of the run. The supervisor translates the operator choice into appropriate commands to the individual components. Alternatively, limited communication with the supervisor can be performed via command-line scripts. In addition, the supervisor monitors the health and operation of the CODA components and warns the operator or pauses the run if problems are detected.
 
 \begin{figure}[hbt]
 	\centering
