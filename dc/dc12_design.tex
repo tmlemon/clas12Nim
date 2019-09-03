@@ -1,6 +1,9 @@
 \section{Drift Chamber System Conceptual Design}
 
-
+When the CLAS detector was upgraded to the CLAS12 detector, the
+drift chambers were re-designed.  We kept many of the design concepts
+of the original CLAS chambers, but made improvements in a number
+of areas.
 
 \subsection{Physics Requirements for {\tt CLAS12} Forward Tracking}
 
@@ -36,11 +39,12 @@ virtual photon flux factor, $\Gamma_v$, to an accuracy of a few percent.
 Equally important, we must have good momentum resolution on the scattered
 electron (with momentum up to 10 GeV/c) to be able to identify particles
 by missing mass, an important technique in exclusive reaction studies.
-A fractional momentum resolution of 0.3\% is required at a track momentum 
-of 10~GeV and an angle of 7$^\circ$.  Angular resolutions of 1~mrad are required for the electron 
+Our design specification on the fractional momentum resolution was set to
+$dp/p = 0.3\%$ for electrons emitted at small angles ($~ 7^{circ}$) and high
+momentum ($~ 10 GeV/c$) to insure our ability to efficiently identify
+particles by missing mass.  Angular resolutions of 1~mrad are required for the electron 
 in order to know the virtual photon flux factor, and hence, the cross section, 
-to a few percent. Finally, good vertex resolution will allow detection of 
-secondary decay vertices and serve as a good marker for strangeness production.
+to a few percent. 
 
 Table~\ref{fwd-dc-physics-specifications} lists the physics goals for the CLAS12 program
 main and the resulting design specifications that will allow us to achieve these goals.
@@ -159,8 +163,7 @@ To improve the chambers' peformance we made some important changes to the design
 \begin{itemize}
 \item all chambers have the same, roughly equilateral triangular, shape
 \item all chambers are independent and self-supporting, allowing easy
-maintenance and repair
-\item all chambers are attached to the torus cryostat using 6 independent
+maintenance and repair.  The chambers are attached to the torus cryostat using 6 independent
 rods with ``ball and socket'' ends, meaning that the chambers can be
 moved out to maintenance position and moved back to the operating 
 postion by turning one precision turn-buckle assembly
