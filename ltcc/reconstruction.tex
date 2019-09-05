@@ -5,22 +5,21 @@ leave a signal in the detector while the heavier kaons pass through the detector
 leaving a signal.
 To accomplish this, it is necessary to associate the hits in the detector with their
 corresponding tracks.
-On average, the Cherenkov light from a charged light particle will hit between 1 and 3
+On average, the Cherenkov light from a charged particle will hit between 1 and 3
 adjacent PMTs.
 The task of the reconstruction program is therefore to (a) cluster together the hits that
 belong to a single track and (b) provide the positional information needed to match the
 cluster with the correct reconstructed track.
-The reconstruction program is implemented as an engine in the CLAS12 offline software
-framework COATJAVA.
+The reconstruction program is implemented as an engine in the CLAS12 event reconstruction framework \cite{reco2019}
 
 \subsection{Clustering algorithm}
 The Cherenkov cone associated with a charged particle is in all cases contained within a
 single sector of the LTCC. This allows for a relatively straightforward clustering
 algorithm:
 \begin{enumerate}
-    \item Scan for the highest multiplicity hits, identified as the cluster center
+	\item Scan for the highest multiplicity hits, identified as the cluster center;
     \item Grow the cluster by adding all neighboring hits within this sector that arrived
-      in-time with the cluster center.
+		  in-time with the cluster center;
     \item Repeat the procedure until all hits have been assigned to a cluster.
 \end{enumerate}
 
@@ -29,9 +28,9 @@ algorithm:
 The \textit{true} cluster center can be defined as the position where the charged particle
 (and its Cherenkov cone) crossed the eliptical mirror of the LTCC.
 Due to the geometry of the LTCC, this position does not uniquely correspond to a single
-PMT, as the angle with which a particle crosses the eleptical mirrors depends on the
-particle momentum, position, charge and the magnet current in the torus.
-The implication of this is that, based on solely the LTCC hits, the \textit{true} cluster
+PMT, as the angle with which a particle crosses the elliptical mirrors depends on the
+particle momentum, position, charge, and the current in the torus.
+The implication of this is that, based solely on the LTCC hits, the \textit{true} cluster
 position cannot be uniquely constrained.
 This is illustrated in \F{trackmatching}.
 
@@ -44,9 +43,9 @@ This is illustrated in \F{trackmatching}.
 \end{figure}
 
 The track matching is performed in a stage of the reconstruction where the tracking
-information is already available. In order to perform the track matching, the estimated
+information is available. In order to perform the track matching, the estimated
 \textit{true} cluster position is recalculated for each track, leveraging the Monte-Carlo
 simulation of the LTCC to correctly associate a tentative \textit{true} cluster position
 with the measured hits.
-The the track that passes the closest to the tentative \textit{true} cluster position is
+The track that passes the closest to the tentative \textit{true} cluster position is
 then chosen as the true match for this cluster.

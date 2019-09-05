@@ -5,13 +5,19 @@ Since the SVT modules are designed with a binary readout system, the analog chan
 \begin{figure}[hbt] 
 	\centering 
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{threshold-scan.jpg}
-	\caption{Threshold scan on a single representative SVT channel. Three occupancy plots taken at different pulser amplitudes and the response plot are shown. The results of $erf$ and linear fits are presented.}
+	\caption{Threshold scan on a single representative SVT channel. Three occupancy plots taken at different pulser amplitudes and the response plot are shown. The results of $erfc$ and linear fits are presented.}
 	\label{fig:threshold-scan}
 \end{figure}
 
 The output signals from the FSSR2 chip can be converted to charge using either internal or external calibration pulses. Because the external pulser can be set to higher frequency than internal pulser without affecting the calibration process, the external pulser circuit was added to the HBCB and the VSCM. Noise is measured using external, low frequency calibration charge injected in the absence of signal. The injected charge is shaped and amplified in the analog circuitry to form an output signal. The discriminator threshold determines whether or not the output signal corresponds to a hit. The probability that the injected charge produces a hit depends on the setting of the discriminator threshold. The average hit probability is measured by repeating the process of injecting charges and counting the fraction of readout triggers that produced a hit. This measurement is repeated over a range of threshold settings to produce an occupancy plot. 
 
-The occupancy plots are measured setting the pulser amplitude at fixed values and changing the comparator thresholds. Each point of an occupancy plot represents the percentage of times that the comparator fires for a certain value of injected charge. In Fig.~\ref{fig:threshold-scan} three occupancy plots taken at different pulser amplitudes are presented. The response plot shows the linear dependence of the output pulse height on the input charge in the operation region of the preamplifier. The slope and the offset parameters of the linear fit are shown. In between the high and low threshold regions, the occupancy curve is described by an error function, or S-curve, which can be fitted to the occupancy histogram for each channel, producing a mean value (discriminator threshold) and standard deviation (noise). The parameters for the mean and $\sigma$ of the $erf$ fits are shown. The conversion from mV to electrons is performed considering a nominal value for the FSSR2 injection capacitance of 40~fF. 
+The noise occupancy plots are measured by setting the pulser amplitude at fixed values and changing the comparator thresholds. Each point of an occupancy plot represents the percentage of times that the comparator fires for a certain value of injected charge. In Fig.~\ref{fig:threshold-scan} three occupancy plots taken at different pulser amplitudes are presented. The noise occupancy as a function of threshold in case of Gaussian noise is described by the complementary error function and the probability $p$ of surpassing a threshold $\tau$ is given by Eq. (\ref{eq:erfc}). 
+
+\begin{equation} p(\tau)=\frac{1}{2} erfc(\frac{\tau}{\sqrt{2}\sigma})  \label{eq:erfc},
+\end{equation}
+where $\sigma$ is the standard deviation of the Gaussian distribution.
+
+In between the high and low threshold regions, the occupancy histogram for each channel is well described by an error function, or S-curve, producing a mean value (discriminator threshold) and standard deviation (noise). The parameters for the mean and $\sigma$ of the $erfc$ fits are shown. The conversion from mV to electrons is performed considering a nominal value for the FSSR2 injection capacitance of 40~fF. The response plot shows the linear dependence of the output pulse height on the input charge in the operation region of the preamplifier. The slope and the offset parameters of the linear fit are shown. 
 
 \begin{figure}[hbt] 
 	\centering 
