@@ -1,6 +1,21 @@
 \section{Overview}
 
-GEMC \cite{gemc} is a c++ framework that uses Geant4 \cite{geant4} to simulate the passage of particles through matter. It provides:
+The CEBAF Large Acceptance Spectrometer for operation at 12 GeV beam energy (CLAS12) \cite{overview2019}  at Jefferson Laboratory was designed to study
+electro-induced nuclear and hadronic reactions by providing efficient detection of charged and neutral particles over a large
+fraction of the full solid angle. The spectrometer have met the performance criteria of instantaneous luminosity up to $10^35$ cm$^{-2}$s$^-1$ and momentums resolution
+in the forward direction using drift chambers and in the central direction using vertex tracker $< 1\%$ and $< 3\%$, respectively.
+
+The CLAS12 collaboration has implemented a detector simulation within the GEMC software framework \cite{gemc2019}.
+During the design phase of the various CLAS12 detectors, shielding, magnets, and passive elements, GEMC allowed studying the performance of the
+various components with respect to the desired science objectives. GEMC enabled the optimization of the design thanks to
+trade-off studies between variation of the hardware setup and placement, various material and shielding thicknesses.
+In addition, it was instrumental in determining the rates, PMTs currents and radiation doses to ensure the various detectors survived the operations during the spectrometer
+lifetime. Before and during the experiment data taking GEMC helped prepare and understand the calibration and measurements of the CLAS12 detectors. Finally, GEMC
+is used to accurately calculate the CLAS12 acceptance, including detector response, geometrical acceptance, tracking efficiency, needed for the physics results
+and science goals.
+
+
+GEMC is a c++ framework that uses Geant4 \cite{geant4} to simulate the passage of particles through matter. It provides:
 \begin{itemize}
 	\item an application-independent geometry description
 	\item an easy interface to build / run experiments
