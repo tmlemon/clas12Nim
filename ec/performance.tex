@@ -34,7 +34,7 @@ The variance of the sampling fraction can be expanded as a function of energy wi
 \item $\sigma_3$ - Shower leakage fluctuations.
 \end{itemize}
 
-Typically $\sigma_0$ is ignored although during MIP based calibration runs the contribution may be non-negligible.  To minimize this contribution all CLAS12 PMT data are taken with fADC pedestals measured and subtracted event-by-event.  Shower leakage contributions to $\sigma_3$ are most important for inbending electrons impacting the FEC at the forwardmost angles, where there is incomplete overlap of PCAL and EC and vanishing acceptance.  
+Typically $\sigma_0$ is ignored although for MIP-based calibration analysis the contribution may be non-negligible.  To minimize this contribution all CLAS12 PMT data are taken with fADC pedestals measured and subtracted event-by-event.  Shower leakage contributions to $\sigma_3$ are most important for inbending electrons impacting the FEC at the forwardmost angles, where there is incomplete overlap of PCAL and EC and vanishing acceptance.  
 
 Estimates of the contributions from $\sigma_1$ and $\sigma_2$ were performed using fits to the expected linear dependence of the total relative variance on the inverse of the electron energy as shown in Fig.~\ref{fig:S10_1_1}.  The summary of these fits show an average energy resolution of 0.09~GeV$^{1/2}$ which is consistent with expectations from GEANT.   The fit results for $\sigma_2$ of around $4\%$ is typical of the present instabilities of PMT gain matching.
  
@@ -97,9 +97,9 @@ Using Eq.~\ref{eq:sigma2} it is possible to identify the contributions to $\sigm
 The analysis of symmetric decays, which are kinematically over-constrained, also permits an estimate for the photon energy correction~\cite{2006015}, under the assumption that unphysical values of the invariant mass arise solely from this dependence.  The GEMC prediction of the photon sampling fraction for FEC is shown by the solid line in Fig.~\ref{fig:fx-study-summary-2}.   The calculated energy dependence and absolute magnitude depend largely on the lead-scintillator design and details of the inert material between PCAL and EC and pre-radiation in the materials in front of FEC.  The fitted photon energy correction from the symmetric decay analysis is seen to follow the GEMC parameterization, with some systematic deviations which are being studied.  Our current physics analysis uses the GEMC result.
 
 \subsection{Neutron detection}
-Clusters in the FEC not associated with any reconstructed track in the forward (DC) tracking system are designated neutrals by the event builder service.  Association of neutral PCAL clusters with ECIN and ECOU clusters are based on proximity to straight line trajectories from the CLAS12 origin.  Photons and neutrons are distinguished on the basis of the timing response, with neutrons defined as $\beta < 0.9$.  Experiments which require the exclusive measurement of neutrons in the FEC therefore require both good timing resolution and sufficient detection efficiency. 
+Clusters in the FEC not associated with any reconstructed track in the forward (DC) tracking system are designated neutrals by the event builder service.  Association of neutral PCAL clusters with ECIN and ECOU clusters are based on proximity to straight line trajectories from the CLAS12 origin.  Photons and neutrons are distinguished on the basis of the timing response, with neutrons defined as having velocity $\beta < 0.9$.  Experiments which require the exclusive measurement of neutrons in the FEC therefore require both good timing resolution and sufficient detection efficiency. 
 
-Neutron detection in the FEC was measured by tagging neutrons using the $p\,(\,e,e'\,\pi^+\,)\,n$ reaction. Events with missing momentum pointing into the fiducial region of the FEC were selected.  True neutron hits were identified by requiring the direction of the missing momentum to be the same as the direction of a measured neutral cluster within the expected angular resolution, assuming the target center as origin (Fig.~\ref{S10_4_1}).  
+Neutron detection in the FEC was studied using the $p\,(\,e,e'\,\pi^+\,)\,n$ reaction to provide a source of tagged neutrons. Data were taken with a 7.6 GeV beam energy from the RG-K run period.  Events with missing momentum pointing into the fiducial region of the FEC were selected.  True neutron hits were identified by requiring the direction of the missing momentum to coincide with the direction of a measured neutral cluster within the expected angular resolution, assuming the target center as origin.  Typical results are shown in (Fig.~\ref{fig:S10_4_1}) for the polar and azimuthal angles of the neutron momentum vector.  Using the angle cuts indicated the observed correlation of the neutral cluster velocity with the tagged neutron momentum is shown in Fig.~\ref{fig:S10_4_2} compared to the expected correlation for a particle with the neutron mass.   
 
 \begin{figure}[hbt]
 \centering
@@ -132,12 +132,9 @@ Neutron detection in the FEC was measured by tagging neutrons using the $p\,(\,e
 \begin{figure}[hbt]
 \centering
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S10_4_2.png}
-\caption[]{Correlation between the measured velocity $\beta$ calculated from neutral clusters in the FEC and the missing momentum of the tagged neutron, subject to the $\Delta\theta,\Delta\phi$ cuts shown in Figure 13.  The white line shows the expected correlation from neutrons.}
+\caption[]{Correlation between the measured velocity $\beta$ calculated from neutral clusters in the FEC and the missing momentum of the tagged neutron, subject to the $\Delta\theta,\Delta\phi$ cuts shown in Figure~\ref{fig:S10_4_1}.  The white line shows the expected correlation from neutrons.}
 \label{fig:S10_4_2}
 \end{figure}
-
-
-
 
 
 

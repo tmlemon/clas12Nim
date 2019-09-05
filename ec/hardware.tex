@@ -1,8 +1,33 @@
 \section{Hardware Components}
 
-A design goal for the FEC upgrade was to obtain a higher light yield for PCAL compared to EC, but at a lower cost.  Since the early 1990s when EC was designed, lowered costs for the production of wavelength shifting (WLS) fibers combined with new techniques for the production of high light yield extruded scintillator, has enabled this cost savings.  Use of embedded WLS fibers bypasses the need for highly transparent scintillator (such as the long attenuation length BC-412 used in EC) and simplifies the readout which further improves the light yield.
+A design goal for the PCAL upgrade of the FEC was an improvement in both light yield and spatial resolution within a more limited budget.  Compared to the early 1990s when EC was designed, the lower price of wavelength shifting (WLS) fibers combined with new techniques for the production of high light yield extruded scintillator has enabled this cost savings.  Use of embedded WLS fibers bypasses the need for costly low attenuation scintillator (such as the BC-412 used in EC) while the readout simplification enables further improvement in light yield.
 
-Several studies were performed \cite{2007002,2007007,2009018} to select the optimal combination of light readout components (scintillator, WLS fiber and photomultiplier) needed to maximize the light yield.  Based on the results of measurements and the available price estimates, we concluded that the best choice for the PCAL components were: Fermilab (FNAL) extruded scintillator, the KURARAY Y11 1 mm diameter, multiclad WLS fiber, and the HAMAMATSU R6095 PMT, selected to have quantum efficiency $>$ 16$\%$ at 500 nm. It should be noted that the performance and price of extruded scintillators from Amcrys-Plast/Kharkov (Ukraine), WLS fibers G91A from BICRON and the HAMAMATSU PMT R1450 (selected to have $>$ 18$\%$ quantum efficiency at 500 nm) were not far from the best choice set and generally met the requirements for PCAL.    
+Several studies were performed \cite{2007002,2007007,2009018} to select the optimal combination of light readout components (scintillator, WLS fiber and photomultiplier) needed to maximize the light yield.  Based on the results of measurements and the available price estimates, we concluded that the best choice for the PCAL components were: Fermilab (FNAL) extruded scintillator, the KURARAY Y11 multiclad 1 mm diameter WLS fiber, and the HAMAMATSU R6095 PMT, selected to have quantum efficiency $>$ 16$\%$ at 500 nm. It should be noted that the performance and price of extruded scintillators from Amcrys-Plast/Kharkov (Ukraine), WLS fibers G91A from BICRON and the HAMAMATSU PMT R1450 (selected to have $>$ 18$\%$ quantum efficiency at 500 nm) were not far from the best choice set and generally met the requirements for PCAL. 
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S4_0.png}
+\caption{CAD model of the PCAL box showing the front/rear composite windows, sidewall supports and lead/scintillator sandwich.}
+\label{fig:S4_0}
+\end{figure}
+
+\subsection{Mechanical Support}
+The PCAL box consists of two composite windows of 25.4~mm ROHACELL structural foam core (FR-3715 Last-A-Foam, density 0.24~g~cm$^{-3}$) sandwiched between two 2 mm stainless steel sheets.  Each window set is held together by a stainless steel "L" frame welded around the perimeter.  The front and rear windows are bolted to three aluminum sidewalls which complete the structural members of the box (Fig.~\ref{fig:S4_0}).  All lead and scintillator layers inside the box are held in position by a retaining assembly attached to two of the sidewalls.  These retainers also create a space between the sidewall and the end of the scintillator strips.  This space together with machined slots and channels route the light readout fibers out of the box to the PMT housings (Fig. \ref{fig:S3_6}).  At the PMT readout end, the fibers pass through the three holes of the black PVC adapters to which the PMT will be mounted.  There the fibers are glued into the adapter, then milled, polished and coupled to the PMTs with optical grease (Fig. \ref{fig:S3_5}). The opposite ends of the fibers extend from the far end of the strips by $\sim 1$ mm and are spot glued to the scintillator.  
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S3_6.png}
+\caption[PCAL UVW Layers]{Retainer assembly at the corner of the VW and U readout sides of the PCAL box. Yellow mylar tape is applied at locations of potential abrasion of the WLS fibers.}
+\label{fig:S3_6}
+\end{figure}
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.9\columnwidth,keepaspectratio]{img/S3_5a.png}
+\includegraphics[width=0.9\columnwidth,keepaspectratio]{img/S3_5b.png}
+\caption[PCAL UVW Layers]{Top: WLS fibers from scintillators extending from PMT attachment mounts fixed to the PCAL bulkhead. Bottom: WLS fibers after gluing, milling and polishing prior to PMT installation.}
+\label{fig:S3_5}
+\end{figure}
 
 \subsection{Scintillators}
 
@@ -11,9 +36,9 @@ The scintillator strips used in PCAL were manufactured at the FNAL-NICADD Extrus
 Scintillators from FNAL were delivered to JLAB with two lengths: 420 cm (1450 strips used for U-views) and 450 cm (2710 strips used for V,W-views).   Cutting of the strips was performed at JLAB and at the College of William and Mary (WM). The average width for scintillators to be used in a given layer was measured before the scintillators were cut, and the final cut length of the strips needed to fit within the triangular area was chosen based on this average to avoid buildup of errors during stacking.  The largest deviation from the design width of 45 mm was less than 0.3 mm, compared to the specified  tolerance for this dimension of $\pm$~1 mm.
 
 \subsection{Wave Shifting Fibers}
-Charged particles traversing the scintillator strips excite an emission spectrum ranging between 370-450 nm. The photons are down-converted and transported to the photomultipliers via the WLS fibers. An initial design for the fiber readout proposed using three WLS green fibers embedded in straight grooves running the length of the scintillator surface, and the R$\&$D studies discussed above \cite{2007007} were based on prototypes of this configuration.  A later study \cite{2009018} showed that through-holes inside the scintillator would enhance the light yield, since the fiber would be fully enclosed. The question arose as to how the holes can be efficiently filled with epoxy for the large scintillator pieces avoiding air bubbles and pockets. Also it was important to characterize the light tranmission characteristics of the scintillator with and without epoxy.
+Charged particles traversing the scintillator strips produce an emission spectrum ranging between 370-450 nm. The photons are down-converted and transported to the photomultipliers via the WLS fibers. An initial design for the fiber readout proposed using three WLS green fibers embedded in straight grooves running the length of the scintillator surface, and the R$\&$D studies discussed above \cite{2007007} were based on prototypes of this configuration.  A later study \cite{2009018} showed that through-holes inside the scintillator would enhance the light yield, since the fiber would be fully enclosed. The question arose as to how the holes can be efficiently filled with epoxy for the large scintillator pieces avoiding air bubbles and pockets. Also it was important to characterize the light tranmission characteristics of the scintillator with and without epoxy.
 
-Finally it was concluded \cite{2010012} that while a gluing procedure could be developed with good reproducibility, careful and time consuming attention was required for large scale production.  These same studies also showed that two WLS fibers per hole without glue gives approximately the same transmission characteristics as a single fiber with glue (Fig. \ref{fig:S4_4}.  It was also found that greater attenuation lengths were produced without gluing the fibers. The added expense of extra fiber was more than offset by a much faster and simplier assembly procedure together with a likely more uniform light collection efficiency. 
+Finally it was concluded \cite{2010012} that while a gluing procedure could be developed with good reproducibility, careful and time consuming attention was required for large scale production.  These same studies also showed that two WLS fibers per hole without glue gives approximately the same transmission characteristics as a single fiber with glue (Fig. \ref{fig:S4_4}.  It was also found that less attenuation was produced without glued fibers. The added expense of extra fiber was more than offset by a much faster and simplier assembly procedure together with a likely more uniform light collection efficiency. 
 
 \begin{figure}[hbt]
 \centering
@@ -23,10 +48,25 @@ Finally it was concluded \cite{2010012} that while a gluing procedure could be d
 \end{figure}
 
 \subsection{Photomultiplier tubes}
+Assembly of all 1200 of the Hamamatsu R6095 PMTs assigned to PCAL was performed at James Madison University. Fig.~\ref{fig:S4_PMT} shows the individual elements of each PMT assembly. Each HV divider supplied with the PMT was tested for correct voltage at the pins.   Base assembly consisted of soldering HV, signal and ground cables between the divider and connector terminals on the end cap.  Spacers were cut and installed on either side of the spring to provide the desired compression force between the PMT and fiber adapter upon installation.  DC dark current measurements were made at 1000V for PMT acceptance testing and stored in a MYSQL database for later reference.  The  JMU dark current measurements showed a considerably small mean and variance compared to the test data from Hamamatsu as shown in Fig.~\ref{fig:S4_PMT_2}. 
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.85\columnwidth,keepaspectratio]{img/S4_PMT.png}
+\caption{Photograph and schematic shows housing assembly for Hamamatsu R6095 1" diameter PMT used in PCAL.}
+\label{fig:S4_PMT}
+\end{figure}
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S4_PMT_2.png}
+\caption{LEFT: Typical measurement of anode dark current vs voltage for Hamamatsu R6095 PMTs used in PCAL. Acceptance testing was performed at 1000 V.  RIGHT: Distribution of PMT anode dark current measurements from JMU and from Hamamatsu.  The JMU distribution mean is 0.2 nA.}
+\label{fig:S4_PMT_2}
+\end{figure}
 
 \subsection{Lead}
 
-Between two scintillator layers, there is one lead layer. For each PCAL module, there are a total of 14 lead layers. Each layer consists of two right-angle triangle shaped sheets, where the hypotenuse of each triangle is parallel to the V or W sidewall. Thickness uniformity of each layer was checked using a CHECK·LINE TI-25DL ultrasonic thickness gauge with 72 sample points measured per layer (36 for each half-layer).  Distributions of these sample points from all 14 layers in each module is shown in Fig. \ref{fig:S4_5}.
+Between two scintillator layers, there is one lead layer. For each PCAL module, there are a total of 14 lead layers. Each layer consists of two right-angle triangle shaped sheets, where the hypotenuse of each triangle is parallel to the V or W sidewall. Thickness uniformity of each layer was checked using a CHECK·LINE TI-25DL ultrasonic thickness gauge with 72 sample points measured per layer (36 for each half-layer).  A droplet of coupling liquid between the transducer and lead was used to  ensure reproducible sound transmission for each measurement.  Distributions of these sample points from all 14 layers in each module is shown in Fig. \ref{fig:S4_5}.
 
 \begin{figure}[hbt]
 \centering
@@ -36,30 +76,54 @@ Between two scintillator layers, there is one lead layer. For each PCAL module, 
 \end{figure}
 
 
-\section{Construction and Installation}
-Construction steps include cleaning and assembly of the PCAL box, followed by stacking of the scintillator strips and lead sheets, routing of WLS fibers and spot gluing at both ends, milling and polishing of WLS fibers at the PMT readout housing and ending with final shimming and installation of the last composite window. Prior to installation, light transmission properties of the scintillators and WLS fibers were obtained in a test setup. 
+\section{Assembly}
+Construction and acceptance testing of each PCAL module was performed at JLAB.  Procedures included cleaning and assembly of the PCAL box, followed by stacking of the scintillator strips and lead sheets, routing of WLS fibers and spot gluing at both ends, milling and polishing of WLS fibers at the PMT readout adapter and ending with final shimming and installation of the last composite window.  Scintillator and fiber acceptance testing occurred in parallel in the same work area.
+
+
+\subsection{Scintillator and fiber testing}
+Prior to assembly of each PCAL module, acceptance testing of the transmission properties of both scintillator strips and WLS fibers was performed in a light-proof box using a computer automated system.  The apparatus used a PMT to measure the light output of the scintillator-fiber combination in response to a $^{90}$Sr beta source that was moved along the length of the scintillator strip. During scintillator testing, a set of four test fibers, glued to a plastic adapter in contact with the PMT photocathode, were inserted into the scintillator (two fibers per hole).  The PMT anode current was measured using a Keithley multimeter with 500 samples taken at 10 cm intervals along the strip.  Quality acceptance was based on uniformity of response and a typical exponential dependence on source position. Measurements were made for all of the longest ($>$200 cm) scintillator strips used in PCAL.
+
+Studies at fixed distances of $x=10$~cm and $x=170$~cm showed light yield variations $<5\%$, while transverse variations at $x=10$~cm for four different source  position was also $<5\%$, indicating good uniformity of the scintillator batch and no strong transverse dependence in fiber light collection efficiency.  More complete measurements of the light yield of the shortest and longest strips tested are shown in Fig.~\ref{fig:S5_0} where the position dependence $I(x)$ of the PMT current is shown fitted to a double exponential,
+
+\begin{equation}
+I(x) = A_S \exp(-x/\lambda_S)+A_L \exp(-x/\lambda_L)
+\end{equation}
+
+By fixing the short and long attenuation factors at their nominal values of $\lambda_S=70$~cm and $\lambda_L=400$~cm and refitting, it was found that the stability of the fitted amplitudes was around $17\%$ for $A_S$ and $5\%$ for $A_L$ for the group of scintillators studied. 
+
 \begin{figure}[hbt]
 \centering
-\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S5_1.png}
-\caption{Three dimensional CAD model of the PCAL box showing the front/rear composite windows, sidewall supports and lead/scintillator sandwich.}
-\label{fig:S5_1}
+\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S5_0.png}
+\caption{Measurements of PMT anode current versus $^{90}$Sr source position for PCAL scintillator fitted with 4 WLS readout test fibers. Here a double exponential is fitted to the shortest (LEFT) and longest (RIGHT) strips studied. }
+\label{fig:S5_0}
 \end{figure}
 
-\subsection{Mechanical support}
-
-\subsection{Cutting of scintillator strips}
-Scintillator strips for PCAL were received from FNAL in two lengths, 420 cm (1450 strips) and 450 cm (2710 strips). The shorter strips were used for the U view and the longer strips for the V- and W-views. To fit within the isosceles triangle shape, U strips have the same $27.1^\circ$ angle cut at both ends, while one end of the V- and W-strips has a $27.1^\circ$ cut, and the second end at the base of the triangle has a $35.8^\circ$ angle cut.
-
-\subsection{Scintillator and WLS fiber testing}
-In order to achieve a uniform response over the area covered by the PCAL, the transmission properties of the scintillator bars needs to be characterized. To minimize the data acquisition time, we will measure the PMT anode average current produced as a result of the irradiation of a radioactive source (90Sr beta source) at different positions of the scintillator bar. For the first sector, we will do the measurements for all of the longest (>200 cm) scintillator bars. The apparatus consists of a PMT to measure the response of the scintillator-fiber system and a radioactive source, which is mounted on a holder that is positioned on the top of a system that can be moved automatically along the length of the scintillator strip (see Figure 7 below).
-
+Testing of the WLS readout fibers was performed with the same apparatus, using a test scintillator 30 cm in length.  Five sets of four fibers each were selected at random for testing from each packaged bundle of 100.  A single measurement of the PMT current with and without fibers inserted was made at the midpoint of the scintillator.  In all cases fibers whose response was below the nominal measurement by $>15\%$ were found to have mechanical damage, although other fibers from the package were tested to double-check batch uniformity. Overall light yield stability of the fiber response was better than $7\%$.
+ 
 \subsection{Lead-scintillator stacking}
-Various elements of the PCAL box were cleaned with isopropanol to remove grease and debris from machining.  The bottom window was placed on a support table and side walls and retainers installed. Prior to scintillator stacking a 50$\mu$ Teflon sheet was laid down, followed by placement of the first U layer of 84 scintillator strips, beginning with the longest strip.
-\subsection{WLS fiber routing}
+Each PCAL box were cleaned with isopropanol to remove grease and debris from machining.  The bottom window was placed on a support table and side walls and retainers installed. Prior to scintillator stacking a 50$\mu$ Teflon sheet was laid down, followed by placement of the first U layer of 84 scintillator strips, beginning with the longest strip.  Gaps between scintillators were minimized both during placement and after each layer was complete using shimmed triangle pieces in the corners to push strips together.  Strips were also tightly bound between the retainers at the fiber readout end and flat spring clips at the opposite end to accomodate thermal expansion.
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S5_2.png}
+\caption{LEFT: Interior of PCAL box during scintillator/lead stacking.  Half layer of lead shown in place. RIGHT: WLS fiber routing and gluing operations.}
+\label{fig:S5_2}
+\end{figure}
+
+Once all the scintillator strips were in place for a given layer, four WLS readout fibers were inserted one at a time into the two holes for each strip.  After scintillator insertion each fiber was cut to a length which was predetermined to allow the fiber to reach the PMT adapter holes and extend beyond by about 3 cm. (Fig.~\ref{fig:S5_2}).  This customized length was also designed to prevent sharp turns which fall below the minimum bend radius for these fibers for the particular routing needed.  After fiber installation and routing for all scintillators in the layer was complete, continuity and correct placement of each fiber was checked using a blue LED at the far end of ths trip and a photometer at the PMT base.  The final step was to spot glue all fibers at the far end to the scintillator.  This was done using DYMAX optical UV curing adhesive OP-4-20632.  Care was taken to leave an air hole to permit the flowing of dry nitrogen through the PCAL volume during its lifetime. 
+
+Lead sheets were stored on a pallet and positioned into the PCAL box using a movable gantry and a crane with fine position control.  Suspended from the crane was a strongback with 12 vacuum pumped suction cups to uniformly lift the sheet and place it precisely in position, making sure the edge of the scintillator matched the edge of the lead plate.  Each lead layer was divided into two half-sheets to make installation more manageable.  For each PCAL module a total of 14 lead sheets and 15 scintillator/WLS layers were installed.
 
 \subsection{PMT installation}
 \subsection{Installation in Hall B}
+Each PCAL module was mounted on the forward carriage (FC) directly in front of the existing EC module, using an installation tool suspended from the overhead crane consisting of a strongback and a counterweight to offset the 8 ton PCAL weight (Fig.~\ref{fig:S5_1}).  The PCAL nose was bolted to a central hub on the FC apex, while brackets on the V and W corners mounted to arms welded to the FC.   
 
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S5_1.png}
+\caption{LEFT: Installation of PCAL module onto the forward carriage in Hall B at the Sector 5 position. U PMTs fit into the gap between the EC modules. RIGHT: PCAL module installed in front of the existing Sector 5 EC module. Yellow lifting fixtures were later removed. }
+\label{fig:S5_1}
+\end{figure}
 
 
 
