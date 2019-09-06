@@ -1,4 +1,9 @@
 \section{Drift Chamber Tracking System Performance}
+In this section, we document the drift chamber system's
+efficiency at reconstructing charge particle tracks and
+its spatial resolution of such tracks.
+
+
 
 
 \subsection{Chamber Lifetime}
@@ -28,15 +33,59 @@ of aging.  We expect the present
 chambers to perform well for at least 10 years.
 
 
-\subsection{Efficiency}
+\subsection{Tracking Efficiency}
 
 \hskip 0.15in
 The probability of reconstructing a track due to a charged particle within
 our fiducial volume is referred to as the ``tracking efficiency''.
-There are three categories of inefficiency: the ``intrinsic layer inefficiency'',
-the ``background-related inefficiency'' and the ``malfunction related 
-inefficiency''.
 
+The tracking inefficiency has three root causes:
+\begin{enumerate}
+\item {\bf intrinsic layer inefficiency}: the failure to record
+a hit for a track crossing a layer, when all wires and electronics
+are operating properly
+\item {\bf malfunction-related inefficiency}: loss of hits and sometimes
+whole track segments because of equipment malfunctions
+\item {\bf background-related inefficiency}: out of time background
+can interfere with the segment-finding algorithms when a background-related
+track segment lies ``on top'' of a real, in-time, segment
+\end{enumerate}
+
+
+
+
+
+\subsubsection{Simulation of Inefficiencies}
+In our generation and reconstruction of simulated events, we estimate the size of
+the three types of inefficiency in the following manner:
+
+\begin{enumerate}
+\item {\bf simulation of intrinsic layer inefficiency}: this is a random process
+and, as such, it is handled at event generation time by our GEMC simulation
+program.  For each superlayer (1-6), we have defined a DOCA-dependent
+layer inefficiency function, as determined from the data.  At hit-generation
+time in GEMC a random number (between 0 and 1) is generated, and if it is
+smaller than the layer inefficiency function, the hit is not digitized.
+\item {\bf simulation of malfunction-related inefficiency}: the GEMC Monte
+Carlo hits are generated as if there are no malfunctions of the wires.
+During the Monte Carlo reconstruction, however, a status table for each
+hit wire is queried and if the wire is in the ``bad status'' list, that
+hit is not used in the tracking.  The malfunction-related inefficiency  is small.  
+At the time of publication,
+roughly $0.5\%$ of our wires are not operating properly.  
+\item {\bf simulation of background-related inefficiency}: rather than try
+to simulated out-of-time background due to all physics processes, we merge
+``random-trigger'' events with low-luminosity runs and calculate the
+efficiency of these merged events with un-merged low-luminosity events.
+\end{enumerate}
+
+We will not further discuss the {\bf malfunction-related inefficiency} or
+the {\bf background-related inefficiency} further in this article.  See
+our companion article on {\bf Track Reconstruction} for more details.
+
+Now we present our results on measuring the {\bf intrinsic layer  inefficiency}.
+
+\subsubsection{Intrinsic Layer Inefficiency}
 The layer efficiency is the probability that a
 good hit is recorded in a wire layer through which the track has passed, based on 
 the evidence from all other layers in the superlayer.  This is called the 
@@ -48,10 +97,26 @@ In the section on commissioning we discussed our `high voltage plateau'.
 We took data at successively higher values of high voltage and measured the
 layer efficiency at each point.  We set the high-voltage operating points such that
 the average layer efficiency is $>$98$\%$. 
-Fig.~\ref{hit-effcy-vs-doca} reveals that a large contribution to the 2$\%$ inefficiency comes 
+Fig.~\ref{hit-effcy-vs-doca} reveals that a large contribution to the $2\%$ inefficiency comes 
 from tracks that pass close to the sense wire.  These tracks give rise to signals 
 that have low pulse height and long duration, and thus may escape detection.
-
+We fit this observed DOCA-dependent inefficiency to a functional form which is
+used in our GEMC Monte Carlo hit digitization routine to randomly throw out
+this percentage of hits.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{5cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/hit-effcy-vs-doca.png}}}
+\end{picture}
+\caption{\small{The observed ``layer efficiency'' as a function of DOCA.  Hits from tracks
+which pass close to or far from the wire have the hits spread out in time, and the resulting
+voltage pulse from the pre-amplifiers may fail to cross the discriminator threshold, resulting
+in a ``lost hit''.}}
+\label{hit-effcy-vs-doca}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Chamber Resolution}
 
@@ -82,7 +147,7 @@ The bottom sub-figure is a histogram of the tracks' DOCA distribution.  It is ap
 expected, since the particle luminosity is approximately constant over the small solid
 angle of a single drift cell.  It shows a dip at zero, which is a real effect and is
 due to a spreading out of the arrival time of ionized electrons when the track is
-very close to the wire.
+very close to the wire as explained in the preceding section on intrinsic layer inefficiency.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{5cm}
