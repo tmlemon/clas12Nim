@@ -137,7 +137,7 @@ results of this procedure indicated that the best-fit position of the chambers
 along the three coordinate axes varied by up to several millimeters relative 
 to the surveyed positions.  
 
-\subsection{Geometrical Distortions}
+\subsubsection{Geometrical Distortions}
 The drift chamber internal geometry (placement of wires, etc.) was checked by detailed
 surveys of the endplate, and of the endplates position with respect to the survey holes
 located on the `nose' and `back' plates during construction of the full chamber assembly
@@ -294,7 +294,7 @@ values of distance for use in the simulation by GEMC and one of
 distance indexed by time for use by the track reconstruction code.
 
 
-\subsection{Choice of Mathematical Form for the Distance to Time Function}
+\subsubsection{Choice of Mathematical Form for the Distance to Time Function}
 We use a 4th order polynomial to model the distance to time relationship.
 
 \begin{equation}
@@ -305,7 +305,7 @@ t(x) =  a x^4 + b x^3 + c x^2 + d x,
 By the use of simple calculus we convert the parameters a, b, c and d to equivalent parameters which have
 a physically intuitive meaning.
 
-\subsection{Physical Constraints on the Drift Velocity Function}
+\subsubsection{Physical Constraints on the Drift Velocity Function}
 
 Inspection of  Fig.~\ref{garfield}a reveals that for tracks near the outer
 edge of the cell, the first arriving ions follow the electric-field line from 
@@ -349,7 +349,7 @@ parameters $t_{max}, V_0, r, and V_{mid}$ where $r$ is the value 0.615 (the frac
 at which the inflection point occurs) which can in principle also be varied.
 
 
-\subsection{Dependence of Distance to Time Function on Local Angle}
+\subsubsection{Dependence of Distance to Time Function on Local Angle}
 \noindent
 The preceding was the derivation for the function of time as a function
 of drift distance for tracks with a local angle, $\alpha = 30^0$.  
@@ -396,7 +396,7 @@ t(x,\alpha) = a_{\alpha} x^4 + b x^3 + c x^2 + d x
 
 
 
-\subsection{Dependence of Distance to Time Function on Magnetic Field Strength}
+\subsubsection{Dependence of Distance to Time Function on Magnetic Field Strength}
 Since the R2 chambers are located within the field region of the CLAS torus, the 
 magnetic field affects the drift velocity as shown in 
 Fig.~\ref{xvst}b.  In particular, the field rotates and shrinks the isochrones
@@ -472,7 +472,7 @@ cryostats in regions that are relatively field-free.
 We determine the experimental values of the function parameters by fitting
 a histogram of $TRKDOCA$ vs. time.
 
-\subsection{Method of Calibrating the Time-to-Distance Function}
+\subsubsection{Method of Calibrating the Time-to-Distance Function}
 \label{tdistcal}
 
 Each hit on a track is characterized by two parameters, the measured drift 
@@ -487,7 +487,7 @@ of time.  However, as explained in the previous paragraph, we will have calibrat
 the observed time as a function of distance.  So, we need to NUMERICALLY INVERT the t=f(x)
 function in order to fill a table of X (real number) as a function of the time index (integer).
 
-\subsection{Filling the Time to Distance and Distance to Time Tables}
+\subsubsection{Filling the Time to Distance and Distance to Time Tables}
 We calibrate the distance to time function by fitting the drift time versus
 TRKDOCA at a particular local angle, $\alpha$.  We write the independent parameters,
 $V_0, ~V_{mid}$ and $T_{max}$ to the data-base.  At the beginning of a reconstruction program,
@@ -495,7 +495,7 @@ an {\bf inversion program} is run to numerical invert the function to produce a 
 of distance indexed by time.
 
 
-\subsection{How to Interpolate and Extrapolate in Local Angle}
+\subsubsection{How to Interpolate and Extrapolate in Local Angle}
 Please refer back to Fig.~\ref{xvst} in order to understand the local-angle dependence
 of distance versus time.  When the time is equal to $t_{max}$ the distance is equal to
 the largest value for the local angle; that is, $dmax_{\alpha}$.  Also note that by
@@ -517,5 +517,43 @@ and ``$X_{30}$'' is the corresponding quantity for a table of 30 degree tracks, 
 X(t,\alpha) = X_0 + (X_{30}-X_0) (cos(30-\alpha) - cos(30)) / (1. - cos(30))
 \end{equation}
 
+\subsection{Magnetic Field Model: A Comparison to Measurement}
+In the Fall of 2016, we mapped the magnetic field of the torus magnet.
+We documented the equipment and measurements in an article on the
+construction of the torus (see Ref.~\cite{torus-ieee}) and in internal
+documents (see Ref.~\cite{magmapping}).
 
+We used three independent 1-dimensional Hall probes mounted in a precision-machined
+Teflon holder.  The holder was a cylindrical solid which was pushed down a precision
+Carbon fiber tube.  The probes were precisely spaced to be 5cm apart in the z-dimension,
+with one oriented perpendicular to the z-axis, another perpendicular to the y-axis and
+the third perpendicular to the x-axis.  In this way, we measured the x, y and z components
+of the magnetic field at z-points separated by 5 cm along the axis of the toroid.
+
+The Carbon fiber tube was positioned in x and y by precision machined ``endplates'' at the
+upstream and downstream ends of the torus.  There were 24 precise hole locations on each
+plate  (4 between each pair of torus coils).  We measured $B_x, ~B_y, ~B_z$ at 40 
+locations in z at each of the 24 x, y locations, resulting in 2880 measurements.
+
+By adjusting the six coils' shapes and locations, we were able to match our
+magnetic model to the measurements to an accuracy of $0.5\%$.  Details of this
+analysis will be available in a future publication, but in summary we
+show in Fig.~$\ref{bmodel-bmeasured}$ the fractional difference between
+the magnetic field from our model to that measured for the $40 X 6 = 240$ measurements
+taken at 30 cm radius.  This is the region of the highest magnetic field (approx. 2 T)
+and is most important for our low-angle, high-momentum tracks.  At the time of publication,
+the average fractional difference was about 0.5\%.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{5cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/bmodel-bmeasured.png}}}
+\end{picture}
+\caption{\small{A plot of (Bmodel - Bmeasured) / Bmodel versus z for the 240 measurement points
+located at a radius of 30 cm and at the midplane between the 6 torus coils.}}
+\label{bmodel-bmeasured}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
