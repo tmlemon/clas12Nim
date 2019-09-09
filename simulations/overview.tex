@@ -42,9 +42,10 @@ The design of the framework is summarized in \F{gemcDesign}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/gemcDesign.png}
-	\caption{The architecture of GEMC. The Geant4 objects are defined in an external database. Geant4 is used to simulate the
-             passage of particles through materials, and hits are digitized with plugins defined by the user
-             and collected in user-defined outputs. }
+	\caption{The architecture of GEMC. The simulation parameters are stored in an external database. GEMC collects
+             them and organize the necessary Geant4 ingredients used to simulate the
+             passage of particles through materials and sensitive regions. The hits are digitized with
+             plugins defined by the user and collected in user-defined outputs.  }
 	\label{fig:gemcDesign}
 \end{figure}
 
@@ -56,9 +57,9 @@ The databases can be defined using the following factories:
 
 \begin{itemize}
 	\item GEMC native API (Perl or Python)
-	\item geometry service
-	\item cad (stl, ply, obj formats)
-	\item gdml, c++ plugins (not used in CLAS12)
+	\item java algorithms used by both simulation and the CLAS12 Event Reconstruction software \cite{reco2019}, or ``geometry services''
+	\item CAD (stl, ply, obj formats)
+	\item GDML, c++ plugins (not used in CLAS12)
 \end{itemize}
 
 The GEMC native API repository is \url{https://github.com/gemc/api}. The geometry service code repository is
@@ -67,24 +68,24 @@ The GEMC native API repository is \url{https://github.com/gemc/api}. The geometr
 
 \subsubsection{Geometry database using native API or geometry service}
 
-An example of the code to define and store a Geant4 volume in external databases is shown below. The
-numbers are typically hardcoded, come from a calibration databases or are defined in the geometry service. The material
+An example of the code to define and store a Geant4 volume in an external database is shown below. The
+numbers come typically from a calibration database or are defined in the geometry service. The material
 has a similar interface.
 
 \begin{lstlisting}[language=Perl]
 my %detector = init_det();
 
-$detector{"name"}        = "shield";
-$detector{"mother"}      = "root";
-$detector{"description"} = "bst";
-$detector{"color"}       = "88aaff";
-$detector{"pos"}         =  "0*cm 1*cm 2*cm" ;
-$detector{"material"}    = "G4_W";
-$detector{"type"}        = "Tube";
-$detector{"dimensions"}  = "0*mm 10*mm 20*mm 0*deg 260*deg";
-$detector{"visible"}     = 1;
-$detector{"style"}       = 1;
-print_det(\%configuration, \%detector);
+$d{"name"}       = "shield";
+$d{"mother"}     = "root";
+$d{"descr"}      = "bst";
+$d{"color"}      = "88aaff";
+$d{"pos"}        = "0*cm 1*cm 2*cm" ;
+$d{"material"}   = "G4_W";
+$d{"type"}       = "Box";
+$d{"dimensions"} = "1*mm 2*mm 3*mm ";
+$d{"visible"}    = 1;
+$d{"style"}      = 1;
+print_det(\%configuration, \%d);
 
 \end{lstlisting}
 
@@ -94,47 +95,59 @@ print_det(\%configuration, \%detector);
 The Hall B detectors and their supports are designed with 3D CAD software. This includes a reference system and the
 hierarchy of all detector elements, down to details like nuts and bolts.
 
-The CAD models are exported into STP files \cite{stepFiles}.
-In order to import them into a Geant4 simulation, first the volumes relevant to the simulation are selected, see \F{cadSelection}.
-
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/cadSelection.png}
-	\caption{The selection of the volumes that will be used in the GEMC Geant4 simulation.
-             This typically involves filtering out unnecessary volumes that are not in the active region.}
+	\caption{The engineering model of one of the CLAS12 detectors, before importing it into GEMC.
+             The model may be composed by thousands of elements, not all of them relevant to the the GEMC Geant4 simulation.
+             The import process involves filtering out unnecessary volumes that are not in the active region.}
 	\label{fig:cadSelection}
 \end{figure}
 
-The elements in the STP file are then ``tessellated'': several polygon shapes are created to define a Geant4 volume.
-The software used to do this is FreeCad \cite{freeCad}. An example of tessellation showing the polygon shapes
+The CAD models are exported into STP files \cite{stepFiles}.
+In order to import them into a Geant4 simulation, the volumes relevant to the simulation are selected from the engineering
+model stored in one of the CAD data exchange format (typically a STEP file) \cite{cadExchange}, see \F{cadSelection}.
+
+
+The elements in the STP file are then ``tessellated'', in which polygonal shapes are created to define a Geant4 volume
+that best represent the original CAD element.
+The software used to do this is FreeCad \cite{freeCad}. An example of tessellation showing the polygonal shapes
 is shown in \F{targetScatteringChamber}.
 
 The simulated CAD import is as close to reality as the engineering model is close to reality.
-We did encounter differences between the STP files, the drawings and reality in a few occasions and worked
-out a workflow to eliminate any discrepancy, see \F{cadValidation}.
-
+We did encounter differences between the STP files, the drawings, and reality in a few occasions and designed
+a workflow to eliminate any discrepancies, see \F{cadValidation}.
+An example of the CAD validation is shown in \F{cadValidationExample}.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/cadValidation.png}
-	\caption{There are four possible representation of a volume: the one coming from the STP file
-             and the tessellated one are exactly the same object (within the tessellation precision).
-             In some cases, certain elements and their sizes and positions did not match the drawings.
-             In other cases, they did not match what was built and measured, or their position did not
-             match the survey. To eliminate these occurrences physicists and engineers worked until
-             the final iteration of a volume was the same in all 4 models: STP/GEMC, Drawings and Reality}
-	\label{fig:cadValidation}
+	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/targetScatteringChamber.png}
+	\caption{An example of volume from a STP file tessellated in GEMC. The volume that is shown is the target scattering chamber.
+            Top: the CAD representation in the engineering model. Bottom: the tessellation. }
+	\label{fig:targetScatteringChamber}
 \end{figure}
 
-An example of the cad validation is shown in \F{cadValidationExample}.
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/cadValidation.png}
+%	\caption{There are four possible representation of a volume: the one coming from the STP file
+%            and the tessellated one are exactly the same object (within the tessellation precision).
+%             In some cases, certain elements and their sizes and positions did not match the drawings.
+%             In other cases, they did not match what was built and measured, or their position did not
+%             match the survey. To eliminate these occurrences physicists and engineers worked until
+%             the final iteration of a volume was the same in all 4 models: STP/GEMC, Drawings and Reality}
+%	\label{fig:cadValidation}
+%\end{figure}
+
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/cadValidationExample.png}
-	\caption{An example of comparing the GEMC simulation to the drawings. Top: engineering drawings of
-             the CLAS12 beamline and shielding. The start of the Moeller shielding is 87.77 cm downstream
-             of the target center. Bottom: a geantino is shot vertically at z=87.77 cm, showing that the
-             Geant4 cone position agrees with the drawings.}
+	\caption{An example of comparing the GEMC simulation to the drawings and validating the geometry.
+             Top: engineering drawings of the CLAS12 beamline and shielding. The start of the M\"oller shielding is 87.77 cm downstream
+             of the target center. Bottom: a geantino (a special Geant4 particle that does not interact with materials or fields)
+             is shot vertically at z=87.77 cm, showing that the Geant4 cone position agrees with the drawings.}
 	\label{fig:cadValidationExample}
 \end{figure}
 
@@ -145,9 +158,10 @@ The magnetic fields are loaded from ascii files. The following Geant4 parameters
 command line options or configuration files at run time:
 
 \begin{itemize}
-	\item minStep: minimum step in the magnetic field
-	\item integralAlgorithm: compute the field value from the closest cell or using a linear interpolation
-	\item interpolationMethod: interpolation algorithm, such as G4ClassicalRK4, G4SimpleRunge, etc
+	\item minStep: minimum track distance in the magnetic field (step) before re-computing its value
+	\item integralAlgorithm: compute the field value from the closest cell or using a linear (or bi-linear) interpolation
+	\item interpolationMethod: interpolation algorithm used to transport tracks in magnetic fields, typically
+		  a variation (choice of order and/or precision) of Runge Kutta \cite{rungeKutta} methods
 \end{itemize}
 
 The implementation of the CLAS12 magnetic fields is described in \ref{clas12FieldMaps}.
