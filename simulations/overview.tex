@@ -2,16 +2,18 @@
 
 The CEBAF Large Acceptance Spectrometer for operation at 12 GeV beam energy (CLAS12) \cite{overview2019}  at Jefferson Laboratory was designed to study
 electro-induced nuclear and hadronic reactions by providing efficient detection of charged and neutral particles over a large
-fraction of the full solid angle. The spectrometer have met the performance criteria of instantaneous luminosity up to $10^35$ cm$^{-2}$s$^-1$ and momentums resolution
-in the forward direction using drift chambers and in the central direction using vertex tracker $< 1\%$ and $< 3\%$, respectively.
+fraction of the full solid angle. The spectrometer have met the performance criteria of instantaneous luminosity up
+to $10^35$ cm$^{-2}$s$^-1$ and momentums resolution in the forward direction using drift chambers and in the central
+direction using vertex tracker $< 1\%$ and $< 3\%$, respectively.
 
 The CLAS12 collaboration has implemented a detector simulation within the GEMC software framework \cite{gemc2019}.
-During the design phase of the various CLAS12 detectors, shielding, magnets, and passive elements, GEMC allowed studying the performance of the
-various components with respect to the desired science objectives. GEMC enabled the optimization of the design thanks to
-trade-off studies between variation of the hardware setup and placement, various material and shielding thicknesses.
-In addition, it was instrumental in determining the rates, PMTs currents and radiation doses to ensure the various detectors survived the operations during the spectrometer
-lifetime. Before and during the experiment data taking GEMC helped prepare and understand the calibration and measurements of the CLAS12 detectors. Finally, GEMC
-is used to accurately calculate the CLAS12 acceptance, including detector response, geometrical acceptance, tracking efficiency, needed for the physics results
+During the design phase of the various CLAS12 detectors, shielding, magnets, and passive elements, GEMC allowed studying the
+performance of the various components with respect to the desired science objectives. GEMC enabled the optimization of the design
+thanks to trade-off studies between variation of the hardware setup and placement, various material and shielding thicknesses.
+In addition, it was instrumental in determining the rates, PMTs currents and radiation doses to ensure the various detectors
+survived the operations during the spectrometer lifetime. Before and during the experiment data taking GEMC helped prepare
+and understand the calibration and measurements of the CLAS12 detectors. Finally, GEMC is used to accurately calculate the
+CLAS12 acceptance, including detector response, geometrical acceptance, tracking efficiency, needed for the physics results
 and science goals.
 
 
@@ -33,15 +35,15 @@ The simulation parameters are stored in external databases and are used to defin
 	\item electromagnetic fields
 \end{itemize}
 
-Particles are transported through matters and produce radiation, hits, secondaries.
-gemc then collects the Geant4 results and produce the output specified by the user.
-The design of the framework is summarized in \F{gemcDesign}
+Particles are transported through the detector materials and produce radiation, hits, and secondaries.
+GEMC then collects the Geant4 results and produces the output specified by the user.
+The design of the framework is summarized in \F{gemcDesign}.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/gemcDesign.png}
-	\caption{The architecture of GEMC. The Geant4 objects are defined in external database. Geant4 is used to simulate the
-             passage of particles through materials, and hits are digitized with plugins defined by users
+	\caption{The architecture of GEMC. The Geant4 objects are defined in an external database. Geant4 is used to simulate the
+             passage of particles through materials, and hits are digitized with plugins defined by the user
              and collected in user-defined outputs. }
 	\label{fig:gemcDesign}
 \end{figure}
@@ -49,11 +51,11 @@ The design of the framework is summarized in \F{gemcDesign}
 
 \subsection{Geometry and Materials Import}
 
-The geometry and material are stored external databases that can be mysql tables or text files that mimic the mysql tables.
+The geometry and system materials are stored in external databases that can be MYSQL tables or text files that mimic the MYSQL tables.
 The databases can be defined using the following factories:
 
 \begin{itemize}
-	\item GEMC native API (perl or python)
+	\item GEMC native API (Perl or Python)
 	\item geometry service
 	\item cad (stl, ply, obj formats)
 	\item gdml, c++ plugins (not used in CLAS12)
@@ -89,7 +91,7 @@ print_det(\%configuration, \%detector);
 
 \subsubsection{Importing CAD volumes from the engineering model}
 
-The Hall-B detectors and their supports are designed with 3D CAD software. This includes a reference system and the
+The Hall B detectors and their supports are designed with 3D CAD software. This includes a reference system and the
 hierarchy of all detector elements, down to details like nuts and bolts.
 
 The CAD models are exported into STP files \cite{stepFiles}.
