@@ -119,15 +119,63 @@ to the physics analysis applications.}
 \subsection{Common Tools}
 \label{common-tools}
 
-\subsubsection{Packages and Functionalities}
+CLAS12 consists of many detectors for particle tracking and identification. At the start of this project software
+group decided to develop common software packages that can be shared between different detector reconstruction
+packages to avoid code replication and aid in software maintainability.
 
-\paragraph{Geometry}
+The common software was divided into packages each having specific purpose and functionality. Below we discuss
+the main packages used in reconstruction software.
 
-\paragraph{Databases}
+\subsubsection{Geometry}
 
-\paragraph{Plotting}
+Due to complex geometry of CLAS12 detectors it was decided to implement a common interface how detector
+geometries will be implemented in the software. One of the challenges we were trying to overcome is consistency
+of geometry implementation in different components of reconstruction software. The geometry of the detectors
+are used in GEANT4 simulation, in reconstruction application as well as in CLAS12 Event Display (CED) application
+that is used for online reconstruction monitoring and debugging.
 
-\paragraph{Analysis Tools}
+A common geometry primitives library was developed implementing simple objects, such as lines, planes and shapes.
+The library provides all functionality that geometrical objects need, such as line to surface intersections, line closest
+approach and ray tracing through objects. Geometrical shapes are implemented using geometry primitives (such as
+cubes, trapezoids, etc.) and are equipped with methods to track particles through objects.
+
+The higher level library contains interfaces for implementing detector geometries. Detectors consist of sensors,
+combined into layers and sectors to form one detector. Abstract interfaces were developed for detector
+implementation, and interaction with any of the CLAS12 detectors standardized.
+
+The CLAS12 geometry library is initialized through database, and provides output for GEANT4 simulations package
+(GEMC), is used in reconstruction application and in CED.
+
+\subsubsection{Databases}
+
+In CLAS12 reconstruction software databases are used for detector geometries and for calibration constants. For
+storing calibration constants for reconstruction the Calibration Constant Data Base (CCDB) software package was used
+that is developed at Jefferson Lab for GlueX experiment (Hall-D). The software provides interface for storing
+structured tables in MySQL based databases, it also supports SQLite portable databases. CCDB package creates
+tables that link constants to specific run (time) and will store different variations of constants depending on run
+conditions. For CLAS12 common tools we implemented higher level API, which parses database tables and creates a
+structured map of the constants in the memory by sector, layer and component number for ease of access.
+
+Since CLAS12 reconstruction software is service based multi-threaded application the database access has to be unified
+to avoid bottlenecks when several services try to retrieve the constants. A unified interface was developed which will
+fetch calibration constants on demand and cache them for further requests. In this approach each service will request
+calibration constant set and each subsequent request by a new thread will be provided by the cached values.
+
+\subsubsection{Plotting}
+
+The majority of CLAS12 reconstruction and monitoring software is written in JAVA. In the early stages of development
+collaboration tried to use existing JAVA plotting packages. Most of them have limitations that made them unusable for
+our purposes, some of them were no longer being developed. In an attempt to unify calibration and monitoring software
+it was decided to develop custom plotting package that can serve in reconstruction monitoring, calibration and data analysis
+software.
+
+Plotting software (called groot) was developed from scratch using JAVA. It was tailored to have similar interface as ROOT
+(CERN data analysis package) to make it easy to use. The package provides all functionality needed in our field including
+fitting, using JAVA based MINUIT library from JHEP repositories.
+
+\subsubsection{Analysis Tools}
+
+Analysis Tools are under construction.
 
 \section{Data Formats}
 
@@ -135,9 +183,32 @@ to the physics analysis applications.}
 
 \subsection{HIPO}
 
+For CLAS12 data a new format was developed to provide needed functionality. The High Performance Output (HiPO)
+format was designed to provide data compression, using LZ4 (fastest compression algorithm available), and random
+access. The design goal was to provide more flexible data container format with features needed to minimize disk
+access for most common tasks in data analysis.
+
+HiPO stores data in separate records (with adjustable size), with tag associated with each record. Each record is
+compressed and pointer to the record is kept in the file's index table. This feature allows separating events during
+reconstruction based on the content of the event, such as number of reconstructed particles. Users can read portions
+of the file depending on final state that has to be analyzed, while the meta-data of the file, describing detector and
+beam conditions are common for all analysis.
+
+C++ interface is also provided with ROOT wrappers, allowing users to read HiPO files and analyze them in ROOT
+environment.
+
 \section{Monitoring and Calibration Suites}
 
 \subsection{Framework}
+
+For detector calibration a software framework was developed to implement common visualization aspects of calibration
+software. Standard views were developed using Java Swing to visualize detector components and provide callback
+mechanism for developers to display relevant plots for given detector component. The framework is built on top of all
+existing libraries: geometry package, plotting package and database utilities and provides uniform Graphical User
+Interface for all calibration applications.
+
+Common data streaming interface is implemented with software level abstraction that allows calibration and monitoring
+code to run on variety of supported data formats used in CLAS12.
 
 \subsection{Data Monitoring}
 
@@ -711,54 +782,72 @@ paddle. This information is used in the calibration, as well as to veto charged 
 in the CND. CVT tracks are extrapolated to radii corresponding to the entry point, middle point and exit point of
 the track in the paddle. These points are defined as the intersections between the helix of the track and cylinders
 of radii corresponding to the distances between the center of the CD and the three CND layers. A CVT track and
-a CND hit are matched if the hit coordinates ($x$, $y$, and $z$) and the extrapolated coordinates ($x_{m}$,
-$y_{m}$, and $z_{m}$) verify the relations:
+a CND hit are matched if the hit coordinates ($x$, $y$, and $z$) and the extrapolated coordinates ($x_m$,
+$y_m$, and $z_m$) verify the relations:
+
+\vfil
+\eject
 
 \begin{equation}
-\mid x-x_{m} \mid < \sigma_x ,~~~~\mid y-y_{m} \mid < \sigma_y , ~~~~z_{m}  \in [-\sigma_z,L+\sigma_z],
+\mid x-x_m \mid < \sigma_x ,~~~~\mid y-y_m \mid < \sigma_y , ~~~~z_m  \in [-\sigma_z,L+\sigma_z],
 \end{equation}
 
 \noindent
-where $\sigma_z=1.5$ cm, $ L$ is the length of a paddle, and $\sigma_x$ and $\sigma_y$ are given by:
+
+where $\sigma_z=1.5$~cm, $ L$ is the length of a paddle, and $\sigma_x$ and $\sigma_y$ are given by:
 
 \begin{equation}
-\sigma_x= \sqrt{x^{2}\frac{\sigma_{R}^{2}}{R^2}+y^{2}\sigma_{\phi}^{2}},~~~~
-\sigma_y= \sqrt{y^{2}\frac{\sigma_{R}^{2}}{R^2}+x^{2}\sigma_{\phi}^{2}},
+\sigma_x= \sqrt{x^2\frac{\sigma_R^2}{R^2}+y^2\sigma_\phi^2},~~~~
+\sigma_y= \sqrt{y^2\frac{\sigma_R^2}{R^2}+x^2\sigma_\phi^2},
 \end{equation}
 
 \noindent
-where $R$ is the radius of the hit, $\sigma_R$ is half the thickness of a paddle (1.5 cm) and $\sigma_{\phi}$
-is the azimuthal resolution of each paddle (3.75$^{\circ}$). The path travelled by the particle in the paddle is
+where $R$ is the radius of the hit, $\sigma_R$ is half the thickness of a paddle (1.5~cm) and $\sigma_\phi$
+is the azimuthal resolution of each paddle (3.75$^\circ$). The path travelled by the particle in the paddle is
 approximated as the distance between the entry and exit points. The path length between the vertex and the
 hit is given by the helix parameters.
 
 \subsection{Forward Tagger}
+~~
 
 \subsection{Event Builder}
+~~
 
 \subsubsection{Particle Identification Performance}
+~~
 
 \section{Data Processing}
+~~
 
 \subsection{Data Processing Workflow}
+~~
 
 \subsection{DSTs and Analysis Trains}
+~~
 
 \subsection{Computing Tools}
+~~
 
 \subsection{Resources}
+~~
 
 \section{Code Management}
+~~
 
 \subsection{Repositories}
+~~
 
 \subsection{Releases}
+~~
 
 \subsection{Unit Tests}
+~~
 
 \subsection{Code Validation Suites}
+~~
 
 \section{Conclusions}
+~~
 
 \ack
 
