@@ -23,7 +23,7 @@ the PCB with the readout strips, the kapton support, the mesh layer and the ioni
 The sensitive volume containing the gas is assigned the argon isobutan gas and associated with the BMT hit process routine.
 The geometry is summarized in \F{bmtGeometry}
 
-The strip identification is performed in the Process ID routine.
+The strip IDentification is performed in the Process ID routine.
 
 \begin{figure}
 	\centering
@@ -42,7 +42,7 @@ The Github location of the GEMC perl API script is \url{https://github.com/gemc/
 
 
 \subsection{Process ID}
-At each Geant4 step, the local coordinate in the sensor volume are used to calculate the strip id.
+At each Geant4 step, the local coordinate in the sensor volume are used to calculate the strip ID.
 The algorithm includes the Lorentz angle based on the magnetic field strength, the particle direction, pitch between the strips,
 the dead zones of the sensitive parts. A virtual electron avalanche is simulated based the energy deposited. The avalanche
 is deposited onto one strip or distributed among several to account for the energy sharing.
@@ -92,7 +92,7 @@ The digitized output bank has $ID=500$, and the variables are summarized in Tabl
 \end{table}
 
 \subsubsection{Time Window}
-The time window  of the Micromegas is set to to 132 ns.
+The time window  of the Micromegas is set to to 132 ns: all geant4 steps within the same strip and time window will be collected on one hit.
 
 \subsubsection{Process Routine Git Repository Location}
 The BST hit process routines are located in the repository: \url{https://github.com/gemc/source/tree/master/hitprocess/clas12/micromegas}
