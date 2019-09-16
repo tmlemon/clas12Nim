@@ -3,16 +3,17 @@
 \subsection{Geometry}
 
 The HTCC geometry is implemented through the native GEMC geometry API. The elliptical mirrors are made through a subtraction of
-two G4Ellipsoid. They are contained inside an HTCC mother volume made with a G4Polycone, see \F{htccGeometry}.
+two G4Ellipsoids (a Geant4 volume outlined by the 3D ellipse equation).
+They are contained inside an HTCC mother volume made with a G4Polycone, see \F{htccGeometry}.
 The faces of the PMT are the sensitive volumes, associated with the quartz-glass material and associated with the HTCC digitization routine.
 
 The refractive index of the $CO_2$ and its transparency is included in the material optical properties and taken
 into account during the Geant4 transportation of the photons.
 
-The mirror and Winston cones reflectivity is associated with the mirror optical properties and are taken into
-account and taken into account during the Geant4 transportation of the photons.
+The reflectivity of the mirrors and Winston cones is associated with the respective material optical properties and is taken into
+account during the Geant4 transportation of the photons.
 
-The quartz window PMT quantum efficiency are associated with the PMT face optical properties and are taken into account in
+The quantum efficiency associated with the PMT photocathode is taken into account in
 the digitization routine.
 
 
@@ -22,9 +23,9 @@ the digitization routine.
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/htccDetail.png}
 	\caption{Top: an electron passing through the HTCC gas volume and emitting Cherenkov photons. The light cone
             hits two mirrors and it is re-directed to the corresponding PMTs.
-            Bottom: details of the mirrors implementation. These are subtractions of ellipsoid Geant4 volumes along
-            cetain planes between two adjacent mirror substrates. Each plane is defined by a second order
-            curve along which the two substrates intersect. The curve is ``flat'', i.e. lies entirely in on that plane.}
+            Bottom: details of the mirror implementation. These are subtractions of ellipsoid Geant4 volumes along
+            certain planes between two adjacent mirror substrates. Each plane is defined by a second order
+            curve along which the two substrates intersect.}
 	\label{fig:htccGeometry}
 \end{figure}
 
@@ -34,8 +35,9 @@ The Github location of the GEMC perl API script is \url{https://github.com/gemc/
 
 
 \subsection{Digitization}
-Photons that impinged on the PMT faces are processed with the digitization routine.
-For each photon collected undergoes the quantum efficiency algorithm at its wavelength to decided if it's finally detected.
+Photons that impinge on the PMT faces are processed with the digitization routine.
+Each photon collected is input to the quantum efficiency algorithm at its wavelength to decide if it is finally detected.
+
 The time average of all the photons is saved in the output after a time shift coming from the calibration database.
 The digitized output bank variables are summarized in Table \ref{tab:htccBank}.
 
