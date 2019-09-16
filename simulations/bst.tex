@@ -9,22 +9,22 @@ to the reconstruction software \cite{reco2019}.
 This service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
 
 There are three SVT regions, with 10, 14, and 18 sectors/modules for Region 1, 2, and 3, respectively, see \F{bstGeometry}.
-Each module has six sensors, four readout chips, and several layers of material listed in order below.
+Each module has six sensors, four readout chips, and several layers of material, listed in order below:
 
 \begin{itemize}
-	\item -- wirebond
-	\item ---- silicon
-	\item ------ epoxy
-	\item -------- rail
-	\item ---------- bus cable
-	\item ------------ carbon fiber
-	\item -------------- ROHACELL
-	\item ------------ carbon fiber
-	\item ---------- bus cable
-	\item -------- rail
-	\item ------ epoxy
-	\item ---- silicon
-	\item -- wirebond
+	\item wirebond
+	\item silicon
+	\item epoxy
+	\item rail
+	\item bus cable
+	\item carbon fiber
+	\item ROHACELL
+	\item carbon fiber
+	\item bus cable
+	\item rail
+	\item epoxy
+	\item silicon
+	\item wirebond
 \end{itemize}
 
 The active area of the silicon sensor is associated with the SVT hit process routine.
@@ -119,26 +119,41 @@ Given the nominal operating luminosity $L=10^{35}$ cm$^{-2}$s$^{-1}$, and the li
 is $R=4.7 \times 10^{11} Hz$. This corresponds to about 62,000 electrons in the SVT 128 ns time window.
 
 Simulations using 62,000 11 GeV electrons per event impinging on the liquid-hydrogen target were analyzed.
-The rates were calculated for the various Regions and for different thresholds.
+The rates were calculated for the various Regions and for different thresholds, see \F{radStudyThreshold}.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstHitDisplay.png}
+	\caption{The occupancy in the various SVT layers for different thresholds for one event containing a proton track (direction indicated
+             by the arrow). The hits are represented by the circles.
+             Top left: with no energy cut, all SVT layers are hit wih numerous hits. Many are photons leaving no energy, as shown in
+             bottom left where the condition of some energy deposition is required. Top right: 20 KeV energy threshold. Bottom right:
+             with 40 KeV energy threshold, the proton track hits survive and only a handful of background hits are visible.}
+	\label{fig:radStudyThreshold}
+\end{figure}
+
+
 The radiation dose and the 1 MeV neutron equivalent damage was estimated. Most of the radiation
 is released in the first two layers of the SVT.
 The 370 rad / year are low enough to grant the SVT operation for 15 years. The results of the study
 are summarized in \F{radStudy}.
 
-In addition a thin layer of tungsten (51 $\mu$m) was added between the target and the inner SVT layer aimed at reducing the electromagnetic
-background \cite{bstDose}.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bstHitDisplay.png}
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bstRates.png}
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/bstRadSummary.png}
-	\caption{Summary of radiation doses and background rates in the SVT. Top: the occupancy in the various SVT layers
-            for different thresholds. Middle: the rate breakdown for different particles for a threshold of 20 keV.
-            The current hardware threshold is 30 keV. Bottom: table showing the fluences and radiation doses in the SVT
-            layers. }
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstRates.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstRadSummary.png}
+	\caption{Summary of radiation doses and background rates in the SVT. Top: the rate breakdown for different particles
+             for a threshold of 20 keV (t)he current hardware threshold is 30 keV).
+             Bottom: table showing the fluences and radiation doses in the SVT layers. }
 	\label{fig:radStudy}
 \end{figure}
+
+In addition a thin layer of tungsten (51 $\mu$m) was added between the target and the inner SVT layer aimed at reducing the electromagnetic
+background \cite{bstDose}.
+
+
 
 
 
