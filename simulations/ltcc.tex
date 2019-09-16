@@ -63,5 +63,6 @@ The digitized output bank variables are summarized in Table \ref{tab:ltccBank}.
 	\caption{The digitized LTCC bank.}\label{tab:ltccBank}
 \end{table}
 
-The time window  of the LTCC is set to 5 ns.
+The time window  of the LTCC is set to 5 ns: all geant4 steps within the same PMT and time window will be collected on one hit.
+
 The LTCC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ltcc_hitprocess.cc}

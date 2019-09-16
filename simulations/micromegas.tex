@@ -27,9 +27,9 @@ The geometry is summarized in \F{bmtGeometry}. The strip IDentification is perfo
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bmtGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bmtDetail.png}
-	\caption{Top: an overall view of the central detector trackers. The target is surrounded by 3 layers of silicon vertex trackers and
-            6 layers of micromegas, 3 with Z-trips, 3 with C-strips. On the front the Forward Micromega Tracker disks are visible.
-            Bottom: detail of the micromegas GEMC geometry, showing the overlay cover, the copper ground and pcb strips}
+	\caption{Top: an overall view of the CLAS12 Central Detector trackers. The target is surrounded by 3 layers of SVT and
+            6 layers of micromegas, 3 with ```Z'''-strips, 3 with ```C'''-strips. On the front the Forward Micromega Tracker disks are visible.
+            Bottom: detail of the micromegas GEMC geometry, showing the overlay cover, the copper ground, and the PCB.}
 	\label{fig:bmtGeometry}
 \end{figure}
 
@@ -55,17 +55,17 @@ The digitized output bank variables are summarized in Table \ref{tab:mmBank}.
 	\begin{center}
 		\begin{tabular}{| c | c | c |}
 			\hline \hline
-			Variable         & Description  \\
+			Variable & Description  \\
 			\hline
-              layer  &                                      layer number   \\
-             sector  &                                     sector number   \\
-              strip  &                                      strip number   \\
-               Edep  &                                  energy deposited   \\
-                ADC  &                                               ADC   \\
+              layer  &      layer number   \\
+             sector  &     sector number   \\
+              strip  &      strip number   \\
+               Edep  &  energy deposited   \\
+                ADC  &               ADC   \\
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{The digitized micromegas bank.}\label{tab:mmBank}
+	\caption{The digitized BMT bank.}\label{tab:mmBank}
 \end{table}
 
 The time window  of the Micromegas is set to to 132 ns: all geant4 steps within the same strip and time window will be collected on one hit.
