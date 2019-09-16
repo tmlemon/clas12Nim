@@ -29,7 +29,6 @@ the digitization routine.
 \end{figure}
 
 
-\subsubsection{Geometry Location on GitHub}
 The Github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/htcc}.
 
 
@@ -37,21 +36,8 @@ The Github location of the GEMC perl API script is \url{https://github.com/gemc/
 \subsection{Digitization}
 Photons that impinged on the PMT faces are processed with the digitization routine.
 For each photon collected undergoes the quantum efficiency algorithm at its wavelength to decided if it's finally detected.
-
-\subsubsection{Timing}
-
 The time average of all the photons is saved in the output after a time shift coming from the calibration database.
-
-
-\subsubsection{Summary of CCDB Table Used}
-\begin{itemize}
-	\item /calibration/htcc/status
-	\item /calibration/htcc/time
-	\item /daq/tt/htcc
-\end{itemize}
-
-\subsection{Digitized Bank}
-The digitized output bank has $ID=600$, and the variables are summarized in Table \ref{tab:htccBank}.
+The digitized output bank variables are summarized in Table \ref{tab:htccBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -71,8 +57,6 @@ The digitized output bank has $ID=600$, and the variables are summarized in Tabl
 	\caption{The digitized HTCC bank.}\label{tab:htccBank}
 \end{table}
 
-\subsubsection{Time Window}
 The time window  of the HTCC is set to 5 ns.
 
-\subsubsection{Process Routine Git Repository Location}
 The HTCC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/htcc_hitprocess.cc}

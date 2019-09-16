@@ -49,22 +49,7 @@ is deposited onto one strip or distributed among several to account for the ener
 
 The Micromegas digitization provides the ADC value calculated using the total energy deposited (after hit sharing).
 There is no timing information in the output.
-
-\subsubsection{Summary of CCDB Table Used}
-
-\begin{itemize}
-	\item /geometry/cvt/mvt/bmt\_layer\_noshim
-	\item /geometry/cvt/mvt/bmt\_strip\_L1
-	\item /geometry/cvt/mvt/bmt\_strip\_L2
-	\item /geometry/cvt/mvt/bmt\_strip\_L3
-	\item /geometry/cvt/mvt/bmt\_strip\_L4
-	\item /geometry/cvt/mvt/bmt\_strip\_L5
-	\item /geometry/cvt/mvt/bmt\_strip\_L6
-\end{itemize}
-
-
-\subsection{Digitized Bank}
-The digitized output bank has $ID=500$, and the variables are summarized in Table \ref{tab:mmBank}.
+The digitized output bank variables are summarized in Table \ref{tab:mmBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -83,9 +68,7 @@ The digitized output bank has $ID=500$, and the variables are summarized in Tabl
 	\caption{The digitized micromegas bank.}\label{tab:mmBank}
 \end{table}
 
-\subsubsection{Time Window}
 The time window  of the Micromegas is set to to 132 ns: all geant4 steps within the same strip and time window will be collected on one hit.
 
-\subsubsection{Process Routine Git Repository Location}
 The BST hit process routines are located in the repository: \url{https://github.com/gemc/source/tree/master/hitprocess/clas12/micromegas}
 

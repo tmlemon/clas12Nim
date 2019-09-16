@@ -35,10 +35,8 @@ account wire sagging, the wire ID is given by $n_i = y / \delta y$.
 
 \subsection{Digitization}
 
-\subsubsection{ADC}
 There is no ADC calculation.
 
-\subsubsection{TDC}
 First, the distance of closest approach $DOCA$ is extrapolated for the hit. At each Geant4 step, the distance of the track from the wire is calculated.
 The $DOCA$ is extracted among the points with energy deposited larger than $50 eV$, for which the sum of the step time + $DOCA / DV$ (where DV is the drift velocity) is minimal.
 
@@ -76,18 +74,8 @@ Finally, a random number is thrown (between 0 and 1) and if it's above the effic
 \end{figure}
 
 
-\subsubsection{Summary of CCDB Table Used}
-\begin{itemize}
-	\item /calibration/dc/signal\_generation/intrinsic\_inefficiency
-	\item /calibration/dc/signal\_generation/dc\_resolution
-	\item /calibration/dc/time\_to\_distance/time2dist
-	\item /geometry/dc/superlayer
-\end{itemize}
 
-
-\subsection{Digitized Bank}
-
-The digitized output bank has $ID=1300$, and the variables are summarized in Table \ref{tab:dcBank}.
+The digitized output bank variables are summarized in Table \ref{tab:dcBank}.
 
 \begin{table}[h]
 	\begin{center}

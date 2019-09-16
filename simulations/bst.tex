@@ -73,7 +73,7 @@ is reproduced in the GEMC simulation using the hit sharing algorithm, see \F{bst
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstHitSharing.png}
+	\includegraphics[width=0.99\columnwidth, height=0.65\columnwidth]{img/bstHitSharing.png}
 	\caption{The SVT hit sharing algorithm. If a step in a given strip happens within 39 $\mu$m the adjacent strip, then
              $90\%$ of the energy deposited will be shared equally between them ($45\%$ each), with a $10\%$ energy loss due
 	         to capacitive coupling between the strip and the backplane.}
@@ -86,7 +86,7 @@ is reproduced in the GEMC simulation using the hit sharing algorithm, see \F{bst
 The SVT digitization provides a 3-bit ADC, using the total energy deposited (after hit sharing) between 26 and 117 keV.
 The Bunch Cross Oscillator quantity (BCO), a random number between 0 and 255,
 provides the TDC timing info associated with the hit.
-The digitized output bank has $ID=100$, and the variables are summarized in Table \ref{tab:bstBank}.
+The digitized output bank variables are summarized in Table \ref{tab:bstBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -145,7 +145,7 @@ are summarized in \F{radStudy}.
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstRates.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstRadSummary.png}
 	\caption{Summary of radiation doses and background rates in the SVT. Top: the rate breakdown for different particles
-             for a threshold of 20 keV (t)he current hardware threshold is 30 keV).
+             for a threshold of 20 keV (the current hardware threshold is 30 keV) at the full luminosity of CLAS12.
              Bottom: table showing the fluences and radiation doses in the SVT layers. }
 	\label{fig:radStudy}
 \end{figure}
