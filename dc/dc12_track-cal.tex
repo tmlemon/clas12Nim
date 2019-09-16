@@ -1,5 +1,5 @@
 \section{Drift Chamber Calibration Procedures}
-In this section, we discuss the calibration procedures to obtain the 
+In this section, we discuss the calibration procedures used to obtain the 
 best possible spatial resolution for reconstructing the trajectory of
 a forward-going charged particle.  We need to know three things to 
 accurately reconstruct a trajectory: the location of the wires, the
@@ -11,52 +11,6 @@ value of the magnetic field traversed.  These were determined by
 \item magnetic field mapping and modelling
 \end{itemize}.  
 
-\subsection{Track Reconstruction Overview}
-
-\hskip 0.15 in
-The reconstruction of charged-particle tracks is performed in several stages.  In 
-the first stage, individual tracks are fit only to hit-wire positions in a 
-procedure known as ``hit-based'' tracking.  Hit-based tracking proceeds
-in the following steps:
-\begin{itemize}
-\item in each superlayer, ``clusters'' of hits which are consistent with
-being part of a track are identified
-\item a ``noise rejection algorithm'' is then applied to the clusters, 
-with one of the more efficient algorithms being the removal of the
-interior hits from horizontal ``strings'' of hits along a layer.
-\item the resulting trimmed clusters are then fit to a straight-line hypothesis,
-and those hits with acceptable residuals are kept and identified collectively
-as a ``track segment''.  This fit uses the wire position as the assumed hit
-position and is called ``hit-based tracking''.
-\item because the ``hits'' in a track segment are 2-dimensional objects (we
-do not know their location along the wire direction) a track segment is not
-a line but a plane.  Thus pairs of segments in neighboring superlayers within
-one chamber (with superlayers of +/- $6^\circ$ stereo angle) represent the
-intersection of two planes; that is a line.  This line's coordinates 
-are evaluated midway between the two superlayers, and is a 6-dimensional
-object (x,y,z and 3 angles) which we call a ``cross''.
-\item in the first pattern-recognition step to find a track candidate,
-the positions of 3 crosses (1 each in R1, R2 and R3) are fit to a
-parabolic functional form to give us a ``track candidate''.
-\item the track candidate is the initial ``state vector'' of our
-Kalman filter tracking program 
-\end{itemize} 
-
-Due to the comparatively small size of the drift cells and the large 
-number of wire layers, the track momenta can already be reconstructed 
-at the ``hit-based'' level with a 
-resolution of 3$\%$ to 5$\%$.  Additional information on these tracks, derived
-from the {\v C}erenkov, time-of-flight, and electromagnetic calorimeter 
-detectors, allows for determination of the identities and speeds of the 
-charged particles.  In the second stage of the analysis, flight-time 
-information of the particles from the target to the outer scintillators is 
-used to correct the measured drift times.  A pre-determined table is then used
-to convert the corrected drift times to drift distances (see section~\ref{tdistcal} 
-for details of the function). These corrected 
-track positions in each drift cell are input data to our Kalman filter
-fit to determine the final track parameters.  This is colloquially referred
-to as ``time-based tracking''.
-The full track reconstruction procedure will be discussed in a separate paper.
 
 \subsection{Alignment Procedures}
 \label{align}
@@ -65,20 +19,25 @@ The full track reconstruction procedure will be discussed in a separate paper.
 Each of the 18 drift chambers was 
 surveyed with millimeter to sub-millimeter
 accuracy, but we wanted an independent check of the chambers' positions and 
-we needed to know the absolute position to better than 0.1 mm in order to 
+we needed to know the absolute position to about 0.1 mm in order to 
 achieve momentum resolutions on the order of 0.3\%.  For 
 these reasons, the survey values for the chamber geometry were viewed only as 
 a reasonable starting point to be refined by comparisons with data.
 
 To adjust the chamber geometry parameters to improve the tracking resolution,
-``straight-track'' data with the torus magnetic field off were analyzed.  
+``straight-track'' data, with the torus magnetic field off, were analyzed.  
 Tracks were found and fitted with our standard track reconstruction package.
 For various bins in the angle of the track, we measured the shifts of the
 track residual means as a function of layer number. 
 Before correcting for mis-alignment in software, the data showed significant 
 displacements of the means from zero, as large as 2 mm.  
 
-Our procedure for aligment was straight-forward.  On a first pass through
+Our alignment procedure considered only the relative alignment of the
+three drift chambers in any particular sector to each other.
+Our only inter-sector constraint was that all sectors, after alignment,
+should point to a common target vertex.
+
+Our procedure was straight-forward.  On a first pass through
 the data we used misaligment parameters (shifts and rotations of individual
 chambers) set to zero.  On subsequent passes, we deliberately misaligned
 a particular chamber by a particular offset in position or angle and 
@@ -117,6 +76,13 @@ R3 from 25-36).
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Because our ``unit distortions'' are not orthogonal functions, we needed to do a simultaneous
+fit over four angular ranges; because two ``unit distortions'' which are highly correlated in
+one angular range were usually not in other ranges.  In addition to minimizing the residuals
+from our 36 drift chamber layers, we also include a 37th term in the residual sum: the 
+distance of closest approach to the beam target vertex.  As mentioned before this helped
+to align the chambers sector to sector.
+
 Figure~\ref{resids-vs-layer-before} is the misalignment before our aligning procedure, while
 Fig.~\ref{resids-vs-layer-after} shows the shifts of the means which remain after we have
 aligned the chambers.
@@ -135,7 +101,8 @@ aligned the chambers.
 The 
 results of this procedure indicated that the best-fit position of the chambers 
 along the three coordinate axes varied by up to several millimeters relative 
-to the surveyed positions.  
+to the surveyed positions.  Our best estimate of the final average offset of 
+the chambers after alignment was approximately $65\mu m$.
 
 \subsubsection{Geometrical Distortions}
 The drift chamber internal geometry (placement of wires, etc.) was checked by detailed
@@ -187,8 +154,13 @@ for a R2 enplate which agreed well with our direct surveys.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Time to Distance Calibration}
-The drift chamber TDC's measure time.  This time is corrected for a number
-of effects, and this corrected time is converted to a distance, DOCA, by 
+The drift chamber Time to Digital Converters (TDC) measure time.  
+These TDC units are part of our overall Drift Chamber Readout Boards (DCRB) and
+have an intrinsic resolution of 1 ns or better; too small to be relevant to
+our overall time to distance calibration.
+
+First, the digitized time is corrected for a number
+of effects, and this corrected time is converted to a Distance of Closest Approach (DOCA), by 
 a pre-calculated time to distance function.  In this subsection we 
 explain the time corrections, the function used to calculate time as a 
 function of DOCA and how we calibrate the parameters of this function.
@@ -232,8 +204,12 @@ or new configuration of readout boards.
 
 \hskip 0.15in
 Each hit on a track is characterized by two variables, the measured drift 
-time from the sense wire and the distance-of-closest-approach (DOCA) to the 
-sense wire resulting from the track fit.  
+time from the sense wire and the Distance of Closest Approach to the 
+sense wire resulting from the track fit. 
+Note, we refer to variants of DOCA: one is ``TRKDOCA'' which is the
+fit value of the track's closest approach to the wire and ``DOCA''
+which is the best estimate of this distance, as calculated from the time.
+ 
 A best fit to the dependence of DOCA on time defines the 
 drift-velocity function of the drift cells. However, several factors 
 complicate this analysis. For example, the DOCAs obtained from the fitted 
@@ -246,6 +222,11 @@ ionization densities of the tracks from particles with different velocities
 leads to substantial time-walk corrections for tracks near the wire.  Each of 
 these points is briefly discussed in this section.
 
+Fig.~\ref{garfield-isochrones} shows the isochrone contours and electric-field lines for 
+a representative R3 and R2 cell.  Note that the contours are circular close 
+to the wire but become hexagonal near the outer boundaries of the cell.  This 
+illustrates the necessity of knowing the entry angle of the track in order to 
+determine the drift distance to the sense wire from the measured drift time.
 
 %%%%%%%%%%%%%%%%%%%%%% Figure : Garfield Picture %%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htpb]
@@ -260,12 +241,6 @@ direction.}}
 \label{garfield-isochrones}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Fig.~\ref{garfield-isochrones} shows the isochrone contours and electric-field lines for 
-a representative R3 and R2 cell.  Note that the contours are circular close 
-to the wire but become hexagonal near the outer boundaries of the cell.  This 
-illustrates the necessity of knowing the entry angle of the track in order to 
-determine the drift distance to the sense wire from the measured drift time.
 
 \subsubsection{Function Parameterization}
 \label{funcpar} 
@@ -314,17 +289,13 @@ corresponding drift time is referred to as $t_{max}$ and occurs when DOCA is at 
 
 A second constraint is that the velocity near the wire is the ``saturated drift
 velocity'' for our gas mixture, 90$\%$ argon - 10$\%$ CO$_2$.  We call this parameter $V_0$.
+
 A third constraint is imposed by the fact that there is a definite point in the
 cell at which the electric field is a minimum.  This implies that this is the point
 of minimum velocity and is thus an inflection point.  This occurs at a value
-$r = (x/x_{max}) = 0.615$ and the drift velocity at this point is termed $V_{mid}$.
+$r = (x/x_{max}) /approx 0.64$ and the drift velocity at this point is termed $V_{mid}$.
 
-\subsubsection{Constraints on the Parameters for the Polynomial Form}
-In this subsection, we present the algebra for the constraints on the parameters
-(a, b, c and d) of the polynomial form.  Because there are four free parameters, we
-have imposed four constraints.
-
-Constraints on the function coefficients:
+A summary of constraints on the function coefficients:
 \begin{itemize}
 \item  $t(x)$ must equal $t_{max}$ when $x = x_{max} $.
 \item  the drift velocity near the sense wire ($x = 0$)
@@ -332,20 +303,20 @@ must equal the saturated value, $V_0$
 \item the function has an inflection point (a
 mininum in velocity) at the point in the cell with the lowest electric field
 strength.  From the geometry of our cells, this occurs at a distance
-of $ 0.615 \times x_{max}$.  Finally,
+of $\approx 0.64 \times x_{max}$.  Finally,
 \item the velocity equals $V_{mid}$ at the inflection point.
 \end{itemize}
 
-To summarize, these are the four constraints on the distance to time functions:
+These are the equations defining the constraints:
 \begin{enumerate}
 \item $t(x = x_{max}) = t_{max}$
 \item $dt / dx (x = 0) = 1 / V_0$
-\item $d^2 t / dx^2 (\hat{x} = 0.615 ) = 0$   
-\item $dt / dx (\hat{x} = 0.615 ) = 1/V_{mid}$  
+\item $d^2 t / dx^2 (\hat{x} = 0.64 ) = 0$   
+\item $dt / dx (\hat{x} = 0.64 ) = 1/V_{mid}$  
 \end{enumerate}
 
 In this way we convert our original parameters, a, b, c and d to the physically meaningful
-parameters $t_{max}, V_0, r, and V_{mid}$ where $r$ is the value 0.615 (the fractional distance
+parameters $t_{max}, V_0, r, and V_{mid}$ where $r$ is the value 0.64 (the fractional distance
 at which the inflection point occurs) which can in principle also be varied.
 
 
@@ -392,9 +363,6 @@ is given by
 \label{tfunctionofxandlocalangle}
 t(x,\alpha) = a_{\alpha} x^4 + b x^3 + c x^2 + d x
 \end{equation}
-
-
-
 
 \subsubsection{Dependence of Distance to Time Function on Magnetic Field Strength}
 Since the R2 chambers are located within the field region of the CLAS torus, the 
@@ -467,18 +435,14 @@ second term is the time increase due to the B field.  For the R1 and R3 function
 dependence is included, as the chambers are located outside the torus 
 cryostats in regions that are relatively field-free.
 
-
 \section{Determining the Distance to Time Function Parameters}
-We determine the experimental values of the function parameters by fitting
-a histogram of $TRKDOCA$ vs. time.
-
-\subsubsection{Method of Calibrating the Time-to-Distance Function}
-\label{tdistcal}
-
 Each hit on a track is characterized by two parameters, the measured drift 
 time from the sense wire and the distance-of-closest-approach (TRKDOCA) to the 
 sense wire.  A best fit to the dependence of time on TRKDOCA determines the
 values of the parameters of the drift-velocity function. 
+We determine the optimized values of these function parameters by fitting
+a histogram of $TRKDOCA$ vs. time, data-basing the fit paramters, re-doing
+the track fitting, and iterating.
 
 
 \section{Using the Distance to Time Function in Reconstruction}
