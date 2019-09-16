@@ -3,15 +3,16 @@
 \subsection{Geometry}
 
 The CND geometry is implemented through the native GEMC geometry API.
-The paddles are Geant4 generic trapezoids, see \F{cndGeometry}. The u-turn light guides are G4Polycons.
+The paddles are Geant4 generic trapezoids, see \F{cndGeometry}. The u-turn light guides are G4Polycons (volumes with cylindrical symmetry
+with varying radius along one axis).
 The paddles are assigned the scintillator material and associated with the CND hit process routine.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/cndGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/cndDetail.png}
-	\caption{Top: overall view of the CND detector. Three layers of scintillators are placed at increasing z. Pairs of scintillators
-            are connected through a scintillator u-shaped junction. Bottom: enlarged view of the junctions. }
+	\caption{Top: overall view of the CND detector. Three layers of scintillators are placed at increasing ``z''. Pairs of scintillators
+            are connected through a scintillator u-turn junction. Bottom: enlarged view of the junctions. }
 	\label{fig:cndGeometry}
 \end{figure}
 
@@ -22,33 +23,31 @@ The Github location of the GEMC perl API script is \url{https://github.com/gemc/
 
 \subsection{Digitization}
 
-\subsubsection{ADC}
 
-The energy deposited is reduced based on the position on the paddle using the calibration attenuation length. Two signals are then propagated, one directly
-to the PMT and one through the scintillator junction.
-Layer-dependent factors, applied to the two  signals, account for the light loss in the u-turn and in the neighbouring paddle.
-These factors were determined during cosmics-ray tests.
+The energy deposited is reduced based on the position in the paddle using the calibrated attenuation length.
+Two signals are then propagated, one directly to the PMT and one through the scintillator junction.
+Layer-dependent factors, applied to the two  signals, account for the light loss in the u-turn and in the neighboring paddle.
+These factors were determined during cosmic-ray tests.
 
-The corrected energy is converted to the theoretical number of photons $N_{th}$ using the constant 1210 $\gamma$ / MeV which accounts for light
+The corrected energy is converted to the theoretical number of photons $N_{th}$ using the constant 1210 $\gamma$ / MeV, which accounts for light
 propagation in the 1.4 m long light guides, for losses at the junctions and for the quantum efficiency of the photomultiplier.
 A Poissonian is used to
-calculate the actual number of photons $N_{actual}$ and the resulting ``smeared`` energy is the converted to ADC using the FADC conversion factor.
+calculate the actual number of photons $N_{actual}$ and the resulting ``smeared'' energy is the converted to ADC using the FADC conversion factor.
 
-\subsubsection{TDC}
 
 The absolute hit time is corrected by:
 
 \begin{itemize}
 	\item the effective velocity (from CCDB)
 	\item a left/right time offset factor (from CCDB)
-	\item the Birks Attenuation factor
+	\item the Birks-attenuation factor
 	\item the position and corresponding paddle length of the indirect hit
 \end{itemize}
 
-The time is then smeared by a $\sigma$ resolution read from CCDB using a Gaussian function and then digitized using a TDC conversion factor.
+The time is then smeared by a resolution read from CCDB using a Gaussian function and then digitized using a TDC conversion factor.
 The Birks factor, reducing the deposited
 energy depending on the particle type, enters in the timing calculation as
-follows: the direct and indirect times are smeared with a gaussian
+follows: the direct and indirect times are smeared with a Gaussian
 function having a width directly proportional to an empirically determined
 constant, and inversely proportional to the square root of the measured
 light (which is, in turn, proportional to the attenuated energy).
@@ -61,16 +60,16 @@ The digitized output bank variables are summarized in Table \ref{tab:cndBank}.
 	\begin{center}
 		\begin{tabular}{| c | c | c |}
 			\hline \hline
-			Variable         & Description   \\
+			Variable  &          Description     \\
 			\hline
-              sector  &                                     sector number     \\
-               layer  &                                      layer number     \\
-           component  &                                  component number     \\
-                ADCL  &                                          ADC Left     \\
-                ADCR  &                                         ADC Right     \\
-                TDCL  &                                          TDC Left     \\
-                TDCR  &                                         TDC Right     \\
-                hitn  &                                        hit number     \\
+              sector  &        sector number     \\
+               layer  &         layer number     \\
+           component  &     component number     \\
+                ADCL  &             ADC Left     \\
+                ADCR  &            ADC Right     \\
+                TDCL  &             TDC Left     \\
+                TDCR  &            TDC Right     \\
+                hitn  &           hit number     \\
 			\hline \hline
 		\end{tabular}
 	\end{center}
