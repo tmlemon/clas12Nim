@@ -177,7 +177,7 @@ t_{drift} = t_{tdc} - t_{start} - t_{0} - t_{flight} - t_{prop} - t_{walk},
 \end{equation}
 
 \noindent
-where $t_{TDC}$ is the raw time measured by the TDC, $t_{start}$ is the event start time, 
+where $t_{tdc}$ is the raw time measured by the TDC, $t_{start}$ is the event start time, 
 $t_0$ is the fixed-time (cable) delay for the wire, $t_{flight}$ is the 
 flight time of the particle from the interaction vertex to the wire, $t_{prop}$ 
 is the signal propagation time along the wire, and $t_{walk}$ is a time-walk 
@@ -285,7 +285,8 @@ a physically intuitive meaning.
 Inspection of  Fig.~\ref{garfield}a reveals that for tracks near the outer
 edge of the cell, the first arriving ions follow the electric-field line from 
 the field wire to the sense wire, independent of track entrance angle.  The
-corresponding drift time is referred to as $t_{max}$ and occurs when DOCA is at its maximum value.
+corresponding drift time is referred to as $t_{max}$ and occurs when DOCA is at its maximum value,
+called ``Dmax''.
 
 A second constraint is that the velocity near the wire is the ``saturated drift
 velocity'' for our gas mixture, 90$\%$ argon - 10$\%$ CO$_2$.  We call this parameter $V_0$.
@@ -293,23 +294,23 @@ velocity'' for our gas mixture, 90$\%$ argon - 10$\%$ CO$_2$.  We call this para
 A third constraint is imposed by the fact that there is a definite point in the
 cell at which the electric field is a minimum.  This implies that this is the point
 of minimum velocity and is thus an inflection point.  This occurs at a value
-$r = (x/x_{max}) /approx 0.64$ and the drift velocity at this point is termed $V_{mid}$.
+$r = (x/Dmax) /approx 0.64$ and the drift velocity at this point is termed $V_{mid}$.
 
 A summary of constraints on the function coefficients:
 \begin{itemize}
-\item  $t(x)$ must equal $t_{max}$ when $x = x_{max} $.
+\item  $t(x)$ must equal $t_{max}$ when $x = Dmax $.
 \item  the drift velocity near the sense wire ($x = 0$)
 must equal the saturated value, $V_0$
 \item the function has an inflection point (a
 mininum in velocity) at the point in the cell with the lowest electric field
 strength.  From the geometry of our cells, this occurs at a distance
-of $\approx 0.64 \times x_{max}$.  Finally,
+of $\approx 0.64 \times Dmax$.  Finally,
 \item the velocity equals $V_{mid}$ at the inflection point.
 \end{itemize}
 
 These are the equations defining the constraints:
 \begin{enumerate}
-\item $t(x = x_{max}) = t_{max}$
+\item $t(x = Dmax) = t_{max}$
 \item $dt / dx (x = 0) = 1 / V_0$
 \item $d^2 t / dx^2 (\hat{x} = 0.64 ) = 0$   
 \item $dt / dx (\hat{x} = 0.64 ) = 1/V_{mid}$  
