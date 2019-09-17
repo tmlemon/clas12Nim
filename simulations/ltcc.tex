@@ -2,13 +2,13 @@
 
 \subsection{Geometry}
 The LTCC mirror geometry is implemented through the native GEMC geometry API. The elliptical mirrors are made through a subtraction of
-two G4Ellipsoid. The hyperbolic mirror are built using Geant4 polycone approximating the mathematical shape using about 30 segments.
-The cylindrical mirrors are made of G4Tubs.
+two G4Ellipsoids. The hyperbolic mirrors are built using Geant4 polycones approximating the mathematical shape using about 30 segments.
+The cylindrical mirrors are made of G4Tubes.
 
-The LTCC Winston cones are of three types: small, medium and large. Three CAD models are tessellated and imported in the simulation, and
-then are copied into 36 WC / sectors using the perl api.
+The LTCC Winston cones are of three types: small, medium, and large. Three CAD models are tessellated and imported in the simulation, and
+then copied into 36 WC / sectors using the perl API.
 
-Finally, the LTCC Box, mirror support structure and additional support hardware are imported directly from the engineering CAD models.
+Finally, the LTCC box, mirror support structure, and additional support hardware are imported directly from the engineering CAD models.
 The \F{ltccGeometry} shows details of the geometry implementation.
 
 \begin{figure}
@@ -22,16 +22,15 @@ The \F{ltccGeometry} shows details of the geometry implementation.
 	\label{fig:ltccGeometry}
 \end{figure}
 
-The refractive index of the $C_4F_10$ and its transparency is included in the material optical properties and taken
+The refractive index of the $C_4F_{10}$ and its transparency is included in the material optical properties and taken
 into account during the Geant4 transportation of the photons.
 
-The mirror and Winston cones reflectivity is associated with the mirror optical properties and are taken into
-account and taken into account during the Geant4 transportation of the photons.
+The reflectivity of the mirrors and Winston cones is associated with the optical properties of their material and
+is taken into account during the Geant4 transportation of the photons.
 
-The quartz window PMT quantum efficiency are associated with the PMT face optical properties and are taken into account in
+The quantum efficiency associated with the PMT photocathode is taken into account in
 the digitization routine.
 
-\subsubsection{Geometry Location on GitHub}
 The Github location of the GEMC perl API script is  \url{https://github.com/gemc/detectors/tree/master/clas12/ltcc}.
 
 
