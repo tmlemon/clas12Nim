@@ -275,7 +275,25 @@ A Xilinx Spartan 3A FPGA is used to implement the VME interface, scalers, discri
 
 \subsection{TDC Modiles (v1190/v1290)}
 
-Commercial CAEN V1190/V1290/V1290N TDC \cite{tdc-ref} boards are used for timing measurements in the PMT-based CLAS12 detectors (see Fig.~\ref{fig:v1190_board}). The V1190 has timing resolution about 100~ps and the V1290 about 35~ps. All boards installed in CLAS12 run on an external 250/6=41.666~MHz clock rather than the internal 40~MHz clock. The use of a different clock required compensation table remeasuring and reloading.
+Commercial CAEN V1190/V1290/V1290N TDC \cite{tdc-ref} boards are used for timing measurements in the PMT-based CLAS12 detectors (see Fig.~\ref{fig:v1190_board}). The V1190 has timing resolution about 100~ps and the V1290 about 35~ps.
+
+All boards installed in CLAS12 run on an external 250/6=41.666~MHz clock rather than the internal 40~MHz clock. The use of a different clock required compensation table remeasuring and reloading. That table is implemented to compensate for the  integral non-linearity (INL). The INL of the TDCs represents the accumulated error of the input-output characteristic of the TDC with respect to the ideal response and is defined by:
+
+\begin{equation}
+D(t) = \int \frac{t}{LSB},
+\end{equation}
+
+\noindent
+where $D$ is the output data, $t$ is the input time, and $LSB$ (least significant bit) is the intrinsic bin
+size. The compensation tables for the CAEN V1190A and VX1290A TDCs are stored as tables in the unit
+SRAM memory. Initial tables are measured at the factory and come preloaded on the modules. These
+tables are reasonably accurate when operating the module using its internal 40~MHz/25~ns period clock.
+However, in CLAS12, the modules are strobed with an external clock of a slightly larger frequency of
+41.67~MHz. This difference in the frequency has a non-negligible affect on the INL tables. For our
+purposes we use a high frequency pulser to populate the full dynamic range of the TDC within the CLAS12
+readout clock. The measured INL tables that were derived from this calibration were written into the
+TDC memory to replace the factory-loaded values. Details on the procedure and the residual non-linearity
+affects are given in Ref.~\cite{inl-tables}.
 
 \begin{figure}[hbt]
 	\centering
