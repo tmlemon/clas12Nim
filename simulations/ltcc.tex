@@ -13,8 +13,8 @@ The \F{ltccGeometry} shows details of the geometry implementation.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ltccGeometry.png}
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ltccDetail.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ltccGeometry.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ltccDetail.png}
 	\caption{Top: a 6 GeV pion passing through the TCC gas volume and emitting Cherenkov photons. The light cone
             bounces from the elliptical to the hyperbolic to the Winston cone and finally reaches the PMT. The
             frame of the LTCC, imported from the CAD engineering model, is visible.
@@ -40,21 +40,8 @@ The Github location of the GEMC perl API script is  \url{https://github.com/gemc
 Photons that impinged on the PMT faces are processed with the digitization routine.
 For each photon collected undergoes the quantum efficiency algorithm at its wavelength to decided if it's finally detected.
 The ADC is calculated and smeared using the single photo-electron peak position and sigma from the calibration database.
-
-
-\subsubsection{Timing}
-
 The time average of all the photons is saved in the output.
-
-\subsubsection{Summary of CCDB Table Used}
-
-\begin{itemize}
-	\item /calibration/ltcc/spe
-\end{itemize}
-
-\subsection{Digitized Bank}
-
-The digitized output bank has $ID=1400$, and the variables are summarized in Table \ref{tab:ltccBank}.
+The digitized output bank variables are summarized in Table \ref{tab:ltccBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -76,8 +63,6 @@ The digitized output bank has $ID=1400$, and the variables are summarized in Tab
 	\caption{The digitized LTCC bank.}\label{tab:ltccBank}
 \end{table}
 
-\subsubsection{Time Window}
-The time window  of the LTCC is set to 5 ns.
+The time window  of the LTCC is set to 5 ns: all geant4 steps within the same PMT and time window will be collected on one hit.
 
-\subsubsection{Process Routine Git Repository Location}
 The LTCC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ltcc_hitprocess.cc}

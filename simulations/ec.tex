@@ -10,8 +10,8 @@ Each scintillator is a G4Trap embedded in a G4Trapezoid mother volume made of ai
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ecGeometry.png}
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ecDetail.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ecGeometry.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ecDetail.png}
 	\caption{Top: a 4 GeV electron (cyan track) showering in the GEMC implementation of the EC geometry.
             The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
             The paddles layers are alternating with trapezoid made of lead, for a sampling fraction of about 0.3.
@@ -21,8 +21,8 @@ Each scintillator is a G4Trap embedded in a G4Trapezoid mother volume made of ai
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/pcalGeometry.png}
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/pcalDetail.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/pcalGeometry.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/pcalDetail.png}
 	\caption{Top: a 4 GeV $\pi^0$ decayed in two photons hitting the GEMC implementation of the PCAL geometry.
             The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
             The paddles layers are alternating with trapezoid made of lead, for a sampling fraction of about 0.3.
@@ -46,33 +46,16 @@ EC and PCAL respectively.
 \subsection{Digitization}
 The digitization is the same for both the EC and the PCAL calorimeters.
 
-\subsubsection{ADC}
 
 The energy deposited is reduced based on the position on the paddle using the calibration attenuation length.
 A number of photoelectrons is generated using a Poissonian distribution based on the attenuated energy.
 After a paddle resolution $\sigma_{res}$ is calculated from the calibration constants, fluctuations in PMT gain
 are taking into account using a Gaussian form with $\sigma_{res}$. A conversion factor is used to produce an ADC output.
 
-\subsubsection{TDC}
 The absolute hit time is corrected using the attenuation length and an additional factor accounts for the time-walk correction.
 
-\subsubsection{Summary of CCDB Table Used}
 
-These CCDB tables are used for both EC and PCAL:
-
-\begin{itemize}
-	\item /calibration/ec/gain
-	\item /calibration/ec/attenuation
-	\item /calibration/ec/timing
-	\item /calibration/ec/effective\_velocity
-	\item /daq/tt/ec
-\end{itemize}
-
-\subsection{Digitized Bank}
-The EC digitized output bank has $ID=1600$.
-The PCAL digitized output bank has $ID=1500$.
-
-For both systems the variables are summarized in Table \ref{tab:ecBank}.
+The digitized output bank variables for both systems are summarized in Table \ref{tab:ecBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -94,10 +77,7 @@ For both systems the variables are summarized in Table \ref{tab:ecBank}.
 \end{table}
 
 
-\subsubsection{Time Window}
-The time window of both PCAL and EC is set to 400 ns.
-
-\subsubsection{Process Routine Git Repository Location}
+The time window of both PCAL and EC is set to 400 ns: all geant4 steps within the same paddle and time window will be collected on one hit.
 The calorimeter hit process routines are \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ec_hitprocess.cc} and
 \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/pcal_hitprocess.cc}.
 

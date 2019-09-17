@@ -16,8 +16,8 @@ The wire identification is performed in the Process ID routine.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/dcGeometry.png}
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/dcDetail.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcGeometry.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcDetail.png}
 	\caption{Top: the GEMC implementation of the DC geometry. The red trapezoids are the mother volumes corresponding to DC regions 1, 2 and 3. The cyan track is an electron, hitting the various
 		      layers inside each region (a red dot / layer is a hit). Bottom: a zoom in near the beamline shows the Stereo angle layers. Six layers represent a DC superlayer.}
 	\label{fig:dcGeometry}
@@ -35,10 +35,8 @@ account wire sagging, the wire ID is given by $n_i = y / \delta y$.
 
 \subsection{Digitization}
 
-\subsubsection{ADC}
 There is no ADC calculation.
 
-\subsubsection{TDC}
 First, the distance of closest approach $DOCA$ is extrapolated for the hit. At each Geant4 step, the distance of the track from the wire is calculated.
 The $DOCA$ is extracted among the points with energy deposited larger than $50 eV$, for which the sum of the step time + $DOCA / DV$ (where DV is the drift velocity) is minimal.
 
@@ -70,24 +68,14 @@ Finally, a random number is thrown (between 0 and 1) and if it's above the effic
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/dcResolution.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcResolution.png}
 	\caption{The fit to the data resolution provides parameters that are put in the CCDB database and read by the digitization routine at simulation run time.}
 	\label{fig:dcResolution}
 \end{figure}
 
 
-\subsubsection{Summary of CCDB Table Used}
-\begin{itemize}
-	\item /calibration/dc/signal\_generation/intrinsic\_inefficiency
-	\item /calibration/dc/signal\_generation/dc\_resolution
-	\item /calibration/dc/time\_to\_distance/time2dist
-	\item /geometry/dc/superlayer
-\end{itemize}
 
-
-\subsection{Digitized Bank}
-
-The digitized output bank has $ID=1300$, and the variables are summarized in Table \ref{tab:dcBank}.
+The digitized output bank variables are summarized in Table \ref{tab:dcBank}.
 
 \begin{table}[h]
 	\begin{center}
@@ -113,7 +101,8 @@ The digitized output bank has $ID=1300$, and the variables are summarized in Tab
 
 \subsubsection{Time Window}
 
-The time window  of the DC is set to 500 ns.
+The time window  of the DC is set to 500 ns: all geant4 steps within the same cell and time window will be collected on one hit.
+
 
 \subsubsection{Process Routine Git Repository Location}
 The DC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/dc_hitprocess.cc}
@@ -133,7 +122,7 @@ The results are summarized in \F{dcOccupancy}.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/dcOccupancy.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcOccupancy.png}
 	\caption{Results for DC rates for electron in-bending (left column) and out-bending (right column).
 				Top: the occupancies are below $3\%$ for region 1 and below $1.2\%$ for region 3. Bottom: layer
 				versus wire hit distribution: the two torus polarities show very similar distributions.}
