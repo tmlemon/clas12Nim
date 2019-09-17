@@ -76,7 +76,7 @@ Between two scintillator layers, there is one lead layer. For each PCAL module, 
 \end{figure}
 
 
-\section{Assembly}
+\section{Assembly and Installation}
 Construction and acceptance testing of each PCAL module was performed at JLAB.  Procedures included cleaning and assembly of the PCAL box, followed by stacking of the scintillator strips and lead sheets, routing of WLS fibers and spot gluing at both ends, milling and polishing of WLS fibers at the PMT readout adapter and ending with final shimming and installation of the last composite window.  Scintillator and fiber acceptance testing occurred in parallel in the same work area.
 
 
@@ -114,7 +114,31 @@ Once all the scintillator strips were in place for a given layer, four WLS reado
 
 Lead sheets were stored on a pallet and positioned into the PCAL box using a movable gantry and a crane with fine position control.  Suspended from the crane was a strongback with 12 vacuum pumped suction cups to uniformly lift the sheet and place it precisely in position, making sure the edge of the scintillator matched the edge of the lead plate.  Each lead layer was divided into two half-sheets to make installation more manageable.  For each PCAL module a total of 14 lead sheets and 15 scintillator/WLS layers were installed.
 
-\subsection{PMT installation}
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S5_3.png}
+\caption{Comparison of pedestal subtracted fADC waveforms for PMTs in PCAL (top) and EC (bottom) PMTs.  Energy deposition resulted from cosmic triggers, where larger than typical amplitudes were selected to illustrate waveform shape. Fits to the PCAL shape used the expression shown, with typical fit parameters indicating the prompt and delayed components.   }
+\label{fig:S5_3}
+\end{figure}
+
+\subsection{Cosmic Tests}
+Initial evaluation of PCAL performance was performed immediately after construction of each module using a test DAQ setup adjacent to the assembly area.  PMT installation and cabling was followed by gradual application of HV and the use of raw discriminator scaler data to identify dead PMTs and to repair sources of excessive PMT noise.  These included variable noise due to cold solder joints of ground braids within the HV dividers, and pinhole light leaks in the RTV beads used to seal external sheet metal housings. 
+
+Test procedures included using cosmic muon data to establish digitization parameters for the fADCs based on measurement of the PMT pulse waveforms and to perform initial PMT gain matching.  Fig.~\ref{fig:S5_3} (top) shows an example PCAL waveform for a 100 sample window aperture, where each sample is 4 ns.  Location of the pulse within the window was offset to reserve the first 15-30 samples for mean pedestal measurements needed to provide a baseline for setting the readout threshold.  Thresholds were set at 20 counts above the mean pedestal for calibration runs, and at about 70 counts for production runs at high luminosity.  All calibration and production fADC data were taken without compression or firmware integation to enable offline analysis for optimization of pulse integration, timing and background suppression for initial CLAS12 data taking.
+
+Compared to the EC PMT waveform shown at the bottom of Fig.~\ref{fig:S5_3}, which has a very short duration and risetime of 2-3 ns, the PCAL waveform leading edge has a 6 ns rise and a subtantially extended duration, with both prompt and delayed components.  The PCAL prompt response is likely due to the convolution of both the slower polystyrene ($t_{1/2}=2-3$~ns) and Kuraray Y11 fiber ($t_{1/2}=7-12$~ns) response times compared to the much faster BC-412 ($t_{1/2}=1$~ns) scintillator used in EC.  About 35 samples above threshold were necessary to capture 97$\%$ of the integrated PCAL waveform.  
+
+The next step was to obtain an initial set of HV settings which gain matched the PMTs.  After a short period of PMT stabilization, each assembled module was calibrated using a loose cosmic trigger requiring hits in 2 out of 3 of the U,V,W views.  The 1.2 kHz trigger rate was reduced by a factor of 20 using a software multiplicity cut to select near vertical muons before writing data to disk.  This ensured a uniform minimum ionizing energy deposition of 10 MeV for the five scintillators viewed by each of the U,V,W PMTs. Events were selected close to the readout end to minimize light attenuation and PMT HV settings were adjusted to normalize all MIP Landau distributions to the same ADC channel (Fig.~\ref{fig:S5_4} using a power law relation between voltage and the desired relative gain change $\Delta V/V = (\Delta G/G)^{1/n}$.  The value of the exponent $n$ need to obtain rapid convergence was obtained with a few trial runs.  Overall gain matching at the level of 3-5$\%$ was achieved.
+
+These preliminary studies provided the starting point for more extensive calibrations in Hall B described in Section \ref{Calibration}.  Also information on gain stability over the substantial storage time of some PCAL modules between contruction and installation in Hall B was desirable, as well as on any systematic differences in the response to muons with PCAL in a horizontal test position compared to the vertical position on the Forward Carriage.  Finally studies of long term changes in light attenuation of the WLS fibers in PCAL will include these first measurements.
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S5_4.png}
+\caption{TOP: Schematic shows method used to perform PMT gain matching.  The U strip PMTs use crossing W strips as a proxy for light readout distance, while a multiplicity cut $N_u=N_v=N_w=1$ vetos non-vertical muons.   The left plot shows the attenuation of readout light in a U PMT from cosmic hits when plotted versus W PMT strip number.  All U PMT gains are adjusted to center the Minimum Ionizing Particle (MIP) ADC peak at channel 200, using W strip 61 to fix the readout distance at minimum attenuation.  BOTTOM: Summary of MIP calibration for all U strips.  Edge strips U1 and U68 show contributions from non-vertical muon trajectories which cannot be vetoed.}
+\label{fig:S5_4}
+\end{figure}
+
 \subsection{Installation in Hall B}
 Each PCAL module was mounted on the forward carriage (FC) directly in front of the existing EC module, using an installation tool suspended from the overhead crane consisting of a strongback and a counterweight to offset the 8 ton PCAL weight (Fig.~\ref{fig:S5_1}).  The PCAL nose was bolted to a central hub on the FC apex, while brackets on the V and W corners mounted to arms welded to the FC.   
 
@@ -125,8 +149,16 @@ Each PCAL module was mounted on the forward carriage (FC) directly in front of t
 \label{fig:S5_1}
 \end{figure}
 
+The FC VME/VMX crates and HV mainframes are installed in six groups of racks on three levels which are located behind each of six sectors containing the PCAL/EC/FTOF/LTCC modules (and RICH in sector 4).  
+The calorimeters use both CAEN 1527LC and 4527 HV supplies
+outfitted with negative polarity 24-channel A1535N cards which fit into slots at the rear of each
+mainframe. The PCAL HV cards are housed in the same mainframe used by FTOF.  
 
+Output signals from PCAL PMTs are routed to the FC with a single run of RG-58 coaxial cable. The EC PMT signals use RG-8 cable with RG-58 patch cables at both ends for a more flexible routing geometry.  Both EC and PCAL rely on passive resistive splitters to distribute signals to the TDC and ADC VME/VXS crates.  The split ratio is 2:1 for PCAL and 3:1 for EC.  For both calorimeters the larger signal goes to the ADC modules.  Mapping of patch cables from the splitter to electronics follows exactly the sequence used for the splitters.
 
+From the splitter, thin coax patch cables are routed to JLab DSC2 leading edge discriminators for pulse timing measurements and JLab 250~MHz 12-bit flash ADCs (fADC250) for pulse amplitude measurements.  Ribbon cables connect the DSC2 with CAEN 1190A TDCs which have 100~ps LSB resolution. The fADC250 and DSC2/TDC modules are housed in separate VXS crates.  The fADC250/VXS crate contains the
+Virtual Trigger Processor (VTP) in a special switched slot which is used to process energy and hit data for
+trigger decision making.
 
 
 
