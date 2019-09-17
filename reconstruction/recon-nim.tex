@@ -287,28 +287,53 @@ interior hits from horizontal ``strings'' of hits along a layer~\footnote{The ef
   from the observation that high-momentum tracks from hadrons typically cross the superlayers at a large angle,
   while ``curlers'' from low-momentum background follow curling trajectories with a significant part of the
   pattern being along layers.}, overlapping segments resolving, attached noise hits (resolved mostly using timing
-information). The resulting trimmed clusters are then fit to a straight-line hypothesis, and those hits with
+information). Overlapping segments are produced when the trajectories of tracks cross each other 
+or when the tracks are almost parallel and very close to each other in a given region. 
+A hough transform is employed to find hits on a line in the cluster which allows splitting the cluster into 
+segments.  The resulting trimmed clusters are then fit to a straight-line hypothesis, and those hits with
 acceptable residuals are kept and identified collectively as a ``track segment''. 
 
-Fits to the segments with a linear function serve as cluster refiners and are a preliminary step to estimating
+Fits to the segments with a linear function are a preliminary step to estimating
 a track trajectory. Track parameters are estimated in the local coordinate system of the chamber sector from
-this trajectory.
+this trajectory. 
 
-Superlayers in a given region are linked a track segment is not a line but a plane.  Thus pairs of segments in
+Using the wire direction in a given superlayer along with the line fit to a segment in that superlayer, a plane can be constructed. 
+Thus pairs of segments in
 neighboring superlayers within one chamber (with superlayers of $\pm$6$^\circ$ stereo angle) represent the
-intersection of two planes; that is a line.  This line's coordinates are evaluated midway between the two
-superlayers, and is a 6-dimensional object (x,y,z and 3 angles) which we call a ``cross''. The first stage of
-pattern-recognition consists of finding a track candidate, from a set of 3 crosses (1 each in R1, R2 and R3) that
-are fit to a parabolic functional form to give us a ``track candidate''.
+intersection of two planes, that is a line whose coordinates are evaluated midway between the two
+superlayers, and is a 6-dimensional object (x,y,z and 3 angles) which we call a ``cross''. 
+A segment slope coincidence algorithm is used to match neighboring segments in a region.  Selection cuts are subsequently applied on the 
+reconstructed cross to ensure that it is within the fiducial sector volume within resolution. 
 
-An additional  pattern reconstruction algorithm  matches of segments within even and odd superlayers to form
-a track candidate where an entire superlayer can be missing by forming. The output of the pattern recognition
-is a seed with initial parameters used to initialize the Kalman Filter.
+An additional  pattern reconstruction algorithm  matches segments within even and odd superlayers, respectively, to form
+a track candidate where an entire superlayer can be missing.  The matching algorithm returns an estimates of where the missing
+superlayers hits should be and forms a pseudo-segment from the wire locations corresponding to these hits.  Subsequently 
+a pseudo-cross is formed using the pseudo-segment and the neighboring reconstructed segment in that region. 
 
+The first stage of
+pattern-recognition consists of finding a track candidate, from a set of 3 crosses (one each in R1, R2 and R3) that
+are fit to a parabolic functional form to give us a ``track candidate''.  
+Using the parameters of the parabolic function between the first and the third cross and obtaining the magnetic field 
+intensity at each step along this trajectory we obtain an estimate for $\int B dl$. 
+From the local angles of the crosses in the $x-z$ plane for R1 ($\theta_1$) and R3 ($\theta_3$) we estimate the track momentum ($p$)
+and the particle's charge ($q$),
+as follows:
+$$\frac{q}{p} = \frac{\theta_3 - \theta_1}{0.3\int{B dl}},$$ where the angles are in radians, the magnetic field 
+intensity ($B$) is in Tesla, and the pathlength ($dl$) in cm.  
+ The cross position and angles in region 1 together with the 
+momentum and the charge provide all the necessary information to define the track parameters at a given location in the detector, 
+and therefore to start track fitting.
+
+The output of the pattern recognition
+is a seed with initial parameters used to start the track propagation from one measurement site to the next in the fit.
 Track fitting uses a Kalman Filter method with a 5-parameter track representation (x, y, tx, ty, q/p), defined
 in a local coordinate system with the z-axis perpendicular to the chambers wire planes; where $tx=px$/$pz$,
-$ty=py$/$pz$, in that frame~\cite{spiri} .  The equations of motion of the track in the torus field are solved u
-sing a Runge-Kutta 4 numerical method.  The measurements used in the fit are the drift distances to the wires
+$ty=py$/$pz$, in that frame.  
+In that frame the state vector (representing the track parameters) and the measurement are defined at each layer 
+at which there is a hit on track. Hence as in ref~\cite{spiri} we can express the equations of motion of the track in the torus field
+and the propagation of the state vector covariance matrix as derivatives with respect to $z$. 
+These equations  are solved using a Runge-Kutta 4 numerical method.  
+The measurements used in the fit correspond to the drift distances to the wires
 taking into account the left/right position of the track with respect to the wire. Time corrections are applied
 after ``hit-based'' tracking to account for the event start time, cable delays, propagation times along the
 wires, event flight times to the hit location along the wires, beta-dependent corrections, and the effect of
@@ -331,8 +356,8 @@ and is identified as an electron.
 \begin{figure}[htbp]
 \vspace{4.5cm}
 \begin{picture}(50,50) 
-\put(125,-5)
-{\hbox{\includegraphics[width=1.3\textwidth,natwidth=610,natheight=642]{pics/dcTracks.png}}}
+\put(120,-5)
+{\hbox{\includegraphics[width=0.6\textwidth,natwidth=610,natheight=642]{pics/dcTracks.png}}}
 \end{picture} 
 \caption{Event display of charged particle tracks in the Drift Chambers.}
 \label{fig:dcTracks}

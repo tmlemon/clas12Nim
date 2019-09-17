@@ -1,6 +1,6 @@
 \section{Drift Chamber System Conceptual Design}
 
-When the CLAS detector was upgraded to the CLAS12 detector, the
+When the CLAS detector was upgraded to become the CLAS12 detector, the
 drift chambers were re-designed.  We kept many of the design concepts
 of the original CLAS chambers, but made improvements in a number
 of areas.
@@ -18,7 +18,7 @@ The cross sections for these processes are small, necessitating high-luminosity
 experiments.  A variety of simulated experiments rely on luminosities of 
 10$^{35}$~cm$^{-2}$s$^{-1}$ to achieve the desired statistical accuracy in 
 runs of a few months duration.  This is an order of magnitude increase
-in beam flux compared to the previous CLAS detector.  
+compared to the previous CLAS detector.  
 
 The new kinematic range available to the CLAS12 experiment is
 characterized not only by smaller cross sections, but also by more outgoing 
@@ -40,8 +40,8 @@ Equally important, we must have good momentum resolution on the scattered
 electron (with momentum up to 10 GeV/c) to be able to identify particles
 by missing mass, an important technique in exclusive reaction studies.
 Our design specification on the fractional momentum resolution was set to
-$dp/p = 0.3\%$ for electrons emitted at small angles ($~ 7^{circ}$) and high
-momentum ($~ 10 GeV/c$) to insure our ability to efficiently identify
+$dp/p = 0.3\%$ for electrons emitted at small angles (7$^{\circ}$) and high
+momentum (10 GeV/c) to enable our ability to efficiently identify
 particles by missing mass.  Angular resolutions of 1~mrad are required for the electron 
 in order to know the virtual photon flux factor, and hence, the cross section, 
 to a few percent. 
@@ -58,8 +58,8 @@ main and the resulting design specifications that will allow us to achieve these
 Measure $\Gamma_v$  & $d \theta < 1mrad$   & planar chambers \\ 
 accurately  & $dp/p < 1\% $ & identical cells (each superlayer)  \\ \hline
 Select an exclusive  &    & $250~\mu$m  accuracy \\ 
-reaction; e.g. only one    & $dp/p < .3\% at 10 GeV/c$ &    $+/- 6^\circ$ stereo angle  \\ 
-missing pion       & & chamber alignment $<100\mu$ \\ \hline
+reaction; e.g. only one    & $dp/p < .3\%$ at 10 GeV/c &    $+/- 6^\circ$ stereo angle  \\ 
+missing pion       & & chamber alignment $<100\mu m$ \\ \hline
 Small       & L = $10^{35}$~cm$^{-2}$s$^{-1}$  & six 6-layer superlayers \\ 
 cross sections  & high efficiency & 95\% layer efficiency \\ \hline
 good acceptance   & $\delta\phi = 50\%$ at $5^\circ$ & thin endplates\\ \hline
@@ -75,7 +75,7 @@ good acceptance   & $\delta\phi = 50\%$ at $5^\circ$ & thin endplates\\ \hline
 
 The overall tracking requirements:
 \begin{itemize}
-\item $0.3\%$ fractional momentum resolution at $7^{circ}$ and 10~GeV, and 
+\item $0.3\%$ fractional momentum resolution at $7^{\circ}$ and 10~GeV/c, and 
 \item efficient tracking at a luminosity of 
 10$^{35}$~cm$^{-2}$s$^{-1}$) 
 \end{itemize}
@@ -94,8 +94,8 @@ previous detector and chambers.
 We kept the same chamber layout as in {\tt CLAS}:
 the forward tracking system consists of three regions divided into six
 sectors as shown in Fig.~\ref{chambers-and-torus}; located just before, inside, 
-and just outside the torus field volume, and referred to as Regions~1, 2, 
-and 3, respectively.  
+and just outside the torus field volume, named Regions~1, 2, 
+and 3 (and referred to as R1, R2 and R3), respectively.  
 Each chamber has its wires arranged in two superlayers (SL) of
 six layers each, with the wires in the two superlayers strung with 
 $\pm$6$^\circ$ stereo angles, respectively.  The cell structure is 
@@ -166,24 +166,24 @@ To improve the chambers' peformance we made some important changes to the design
 \item Mechanical Design
 \begin{itemize}
 \item all chambers have the same, roughly equilateral triangular, shape
+\item the previous CLAS chambers were interconnected to each other (R1) or 
+connected directly to the torus (R2).  In the present chambers all of the wire tension
+is borne by the endplates and thus they can be independently mounted.
+The key to this improvement is the use of  
+ultra-stiff endplate assemblies that obtain their stiffness 
+by a flanged design
 \item all chambers are independent and self-supporting, allowing easy
 maintenance and repair.  The chambers are attached to the torus cryostat using 6 independent
 rods with ``ball and socket'' ends, meaning that the chambers can be
 moved out to maintenance position and moved back to the operating 
 postion by turning one precision turn-buckle assembly
-\item The previous CLAS chambers were interconnected to each other (R1) or 
-connected directly to the torus (R2).  In the present chambers all of the wire tension
-is borne by the endplates and thus they can be independently mounted.
-The key to this improvement is the use of  
-ultra-stiff endplate assemblies that obtain their stiffness 
-by a flanged design.
 \end{itemize}
 \item Cell Design and Wire Layout
 \begin{itemize}  
 \item For the previous CLAS detector, the $\phi$ resolution times $\sin \theta$ was about two 
 times larger than the $\theta$ resolution.  To have more equal resolution in 
 the two angles, we doubled our stereo angle from 0 and 6$^\circ$ to 
-$\pm$6$^\circ$.
+$\pm$6$^\circ$
 \item all chambers are planar, with the first ``superlayer'' (of 6 layers)
 tilted at a 6$^\circ$ stereo angle, and the second superlayer at a -6$^\circ$ stereo
 angle
@@ -193,13 +193,13 @@ and fit the distance to time response
 \end{itemize}
 \item Wire Choice
 \begin{itemize}
-\item all chambers are strung with 30 micron gold-plated Tungsten wire,
+\item all chambers are strung with 30 $\mu m$ gold-plated Tungsten wire,
 considerably tougher and easier to handle than our previous choice 
-of 20 micron wire
-\item the choice of the cathode (``field'') wire is 80 micron gold-plated
+of 20 $\mu m$ wire
+\item the choice of the cathode (``field'') wire is 80 $\mu m$ gold-plated
 Cu-Be wire, tougher and with better surface properties than our previous
-choice of 140 micron gold-plated Aluminum wire
-\item  Our choice of guard wire is 140-$\mu$m diameter, gold-plated
+choice of 140 $\mu m$ gold-plated Aluminum wire
+\item  Our choice of guard wire is 140 $\mu m$ diameter, gold-plated
 copper-beryllium.  These wires were strong enough that we pre-tensioned 
 the chambers using only the guard wires; a simplification in the process.
 \end{itemize}
@@ -217,8 +217,8 @@ of various design features.
 ``All-wire design'' & Little cathode emission & \\ \hline
 Small Cells & Robust track-finding  & Many wires to string \\ \hline
 Hexagonal Cells & Minimum number of wires  & Angle-dependence of time to distance  \\ \hline
-30-Micron diameter sense wire & Resistant to wire breakage & Higher operating voltage \\ \hline
-80-Micron diameter field wire & Lower total wire tension & Higher fields on cathode wires \\ \hline
+30 $\mu m$ diameter sense wire & Resistant to wire breakage & Higher operating voltage \\ \hline
+80 $\mu m$ diameter field wire & Lower total wire tension & Higher fields on cathode wires \\ \hline
 Shared, opposite voltage  & Identical fields & More HV \\
 for sense and field & for all layers & channels required \\ \hline
 Self-supporting design & Easier maintenance & 1 - 2 mm bowing of endplates \\ \hline
@@ -252,7 +252,7 @@ chamber occupancy.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{10.0cm}
+\vspace{13.0cm}
 \special{psfile=img/garfield1.eps hscale=30 vscale=27 hoffset=40 voffset=165}
 \special{psfile=img/garfield2.eps hscale=30 vscale=27 hoffset=40 voffset=-5}
 \special{psfile=img/garfield3.eps hscale=30 vscale=27 hoffset=230 voffset=165}
@@ -275,7 +275,7 @@ configuration.}}
 %{\hbox{\includegraphics[width=0.5\columnwidth,natwidth=610,natheight=642]{garfield-20-30-micron.png}}}
 %\end{picture}
 %\caption{\small{Plots of field lines and isochrones (top) or drift time vs.
-%distance (bottom).  Calculations are for 20 micron wire (left) or 30 micron (right).}}
+%distance (bottom).  Calculations are for 20 $\mu m$ wire (left) or 30 $\mu m$ (right).}}
 %\end{figure}   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
