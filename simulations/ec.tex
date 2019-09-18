@@ -1,59 +1,53 @@
-\subsection{Electromagnetic Calorimeter (EC) and pre-shower calorimeter (PCAL)}
+\subsection{Electromagnetic Calorimeter (EC) and Pre-Shower Calorimeter (PCAL)}
 
 \subsection{Geometry}
 
-Both EC and PCAL calorimeters geometry is implemented through the COATJAVA geometry service.
+Both the EC and PCAL calorimeter geometry is implemented through the java geometry service.
 The service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
 
 All scintillators are Geant4 volumes. The paddles are assigned the scintillator material and associated with the EC hit process routine.
-Each scintillator is a G4Trap embedded in a G4Trapezoid mother volume made of air, see \F{ecGeometry} and  \F{pcalGeometry}.
+Each scintillator is a G4Trap embedded in a G4Trapezoid mother volume made of air, see \F{ecGeometry}.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ecGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ecDetail.png}
-	\caption{Top: a 4 GeV electron (cyan track) showering in the GEMC implementation of the EC geometry.
-            The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
-            The paddles layers are alternating with trapezoid made of lead, for a sampling fraction of about 0.3.
-            Bottom: a zoom-in transverse view of electron shower.}
+	\caption{Top: a 4 GeV electron track (dotted line) showering in the GEMC implementation of the EC geometry.
+            The paddles are G4Boxes, embedded in a trapezoid representing the mother volume of each panel.
+            The scintillator layers alternate with a layer of lead, for a sampling fraction of about 0.3.
+            Bottom: a zoom-in transverse view of the electron shower.}
 	\label{fig:ecGeometry}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/pcalGeometry.png}
-	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/pcalDetail.png}
-	\caption{Top: a 4 GeV $\pi^0$ decayed in two photons hitting the GEMC implementation of the PCAL geometry.
-            The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
-            The paddles layers are alternating with trapezoid made of lead, for a sampling fraction of about 0.3.
-            Bottom: a zoom-in transverse view of showers.}
-	\label{fig:pcalGeometry}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/pcalGeometry.png}
+%	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/pcalDetail.png}
+%	\caption{Top: a 4 GeV $\pi^0$ decayed in two photons hitting the GEMC implementation of the PCAL geometry.
+%           The paddles are G4Boxes, embedded in trapezoid representing the mother volumes of each panel.
+%            The paddles layers are alternating with trapezoid made of lead, for a sampling fraction of about 0.3.
+%            Bottom: a zoom-in transverse view of showers.}
+%	\label{fig:pcalGeometry}
+%\end{figure}
 
 
-
-
-\subsubsection{Geometry Location on GitHub}
 The Github location of the GEMC perl API script for EC  is \url{https://github.com/gemc/detectors/tree/master/clas12/ec} and
 for PCAL is \url{https://github.com/gemc/detectors/tree/master/clas12/pcal}
 The java geometry services are at 
 \url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/ECGeant4Factory.java} and
-\url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/PCALGeant4Factory.java} for
-EC and PCAL respectively.
-
+\url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/PCALGeant4Factory.java}
+for the EC and PCAL, respectively.
 
 
 \subsection{Digitization}
 The digitization is the same for both the EC and the PCAL calorimeters.
 
-
-The energy deposited is reduced based on the position on the paddle using the calibration attenuation length.
+The energy deposited is reduced based on the position on the scintillator using the calibrated attenuation length.
 A number of photoelectrons is generated using a Poissonian distribution based on the attenuated energy.
-After a paddle resolution $\sigma_{res}$ is calculated from the calibration constants, fluctuations in PMT gain
-are taking into account using a Gaussian form with $\sigma_{res}$. A conversion factor is used to produce an ADC output.
+The scintillator resolution $\sigma_{res}$ is obtained from the calibration constants, after the fluctuations in PMT gain
+are taken into account using a Gaussian form with $\sigma_{res}$. A conversion factor is used to produce an ADC output.
 
-The absolute hit time is corrected using the attenuation length and an additional factor accounts for the time-walk correction.
-
+The absolute hit time is corrected using the attenuation length and an additional factor that accounts for the time-walk correction.
 
 The digitized output bank variables for both systems are summarized in Table \ref{tab:ecBank}.
 
@@ -73,11 +67,11 @@ The digitized output bank variables for both systems are summarized in Table \re
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{The digitized EC bank.}\label{tab:ecBank}
+	\caption{The digitized EC and PCAL banks.}\label{tab:ecBank}
 \end{table}
 
 
 The time window of both PCAL and EC is set to 400 ns: all geant4 steps within the same paddle and time window will be collected on one hit.
-The calorimeter hit process routines are \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ec_hitprocess.cc} and
+The calorimeter hit process routine locations in git are \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ec_hitprocess.cc} and
 \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/pcal_hitprocess.cc}.
 
