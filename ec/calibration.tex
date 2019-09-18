@@ -4,7 +4,7 @@ Preliminary energy and timing calibrations of the FEC were performed in preparat
 
 $\bullet$ Differences in the U,V,W readout geometry of PCAL imposed the need to incorporate light attenuation corrections in the trigger firmware to ensure efficiency and spatial uniformity in the cluster energy reconstruction.
 
-$\bullet$ Trigger efficiency studies and overall physics requirements required well-defined cluster energy thresholds for both electron and MIP triggers in each calorimeter layer (PCAL,ECIN,ECOU).
+$\bullet$ Trigger efficiency studies and overall physics requirements required well-defined cluster energy thresholds for both electron and MIP triggers in each calorimeter layer (PCAL, ECIN, ECOU).
 
 $\bullet$ Introduction of WLS fibers in the PCAL readout required more accurate time-walk corrections to compensate for the slower scintillator risetimes in the PMT pulse.
 
@@ -24,7 +24,7 @@ in view $\it{v}$ and stack $\it{s}$, and $\it{k}$ is a conversion from fADC unit
 
 Since the energy of an electron incident on the FEC is known from forward tracking, energy calibration of the FEC is in principle possible by adjusting the $a,b,c$ parameters and the sampling fraction $f_{s}$ until the reconstructed energy matches the known energy.  However compared to conventional readout geometries, the relationship in the FEC between the total deposited energy $E_{tot}$ and the partial energies $E_{n}^{sv}$ is non-trivial for EM showers.  A global optimization would require fitting hundreds of parameters per sector and might be very slow to converge.
 
-A simpler approach used successfully in CLAS with the EC is to proceed iteratively, using minimum ionizing particles (MIP) such as cosmic muons to simplify the energy deposition profile and allow an independent determination of the $a,b,c$ parameters for each PMT, then adjust the PMT HV to produce a uniform overall response.  Later, beam data taken with electrons and pions is used to estimate $\it{f_s}$ and to cross-check the MIP calibration.  With the addition of PCAL to CLAS12 and the introduction of cluster reconstruction in the trigger, pre-calibration with cosmics is critical for evaluating the trigger performance of the FEC.
+A simpler approach used successfully in CLAS with the EC and demonstrated with the PCAL post-contruction testing described in section \ref{CRT}, is to proceed iteratively, using minimum ionizing particles (MIP) such as cosmic muons to simplify the energy deposition profile and allow an independent determination of the $a,b,c$ parameters for each PMT, then adjust the PMT HV to produce a uniform overall response.  Later, beam data taken with electrons and pions is used to estimate $\it{f_s}$ and to cross-check the MIP calibration.  With the addition of PCAL to CLAS12 and the introduction of cluster reconstruction in the trigger, pre-calibration with cosmics is critical for evaluating the trigger performance of the FEC.
 
 Cosmic runs are performed using a special FPGA trigger that accepts only events where a single pixel has been activated. A pixel is the simplest possible cluster, and is the smallest unit of x-y position resolution in the FEC calorimeters, defined by the overlap of 3 scintillator stacks, one from each of the U,V and W views.  Requiring the muon to pass through a single pixel places the most restrictive cut possible on the particle track path length, thereby minimizing the spread in the MIP energy deposition.   
 \begin{figure}[hbt]
