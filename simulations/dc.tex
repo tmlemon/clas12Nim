@@ -18,10 +18,11 @@ The wire identification is performed in the Process ID routine.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcGeometry.png}
 %	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcDetail.png}
-	\caption{The GEMC implementation of the DC geometry.
-             The trapezoids are the mother volumes corresponding to DC regions 1, 2, and 3. The track is negative pion,
+	\caption{The GEMC implementation of the DC geometry. The solenoid volume and HTCC are also visible.
+             Geant4 trapezoids are the mother volumes corresponding to DC regions 1, 2, and 3. The track is negative pion,
 			 hitting the various layers inside each region. The hit are indicated by the black markers. Due to the high DC
-             efficiency most tracks produce at least one hit each layer. The wire inefficencies are incorporated in the simulation parameters. }
+             efficiency most tracks produce at least one hit each layer (12 hits / region).
+             The wire inefficencies are incorporated in the simulation parameters, so wires can ``miss'' a hit just as in the experimental data.}
 	\label{fig:dcGeometry}
 \end{figure}
 
