@@ -1,6 +1,6 @@
 import os
 
-env = Environment(PDFLATEXFLAGS = "-halt-on-error")  # stops log where error occurs
-env['ENV']['max_print_line']='1048576'               # log output does not break single lines into multiples
+env = Environment(ENV=os.environ)
+env['ENV']['TEXINPUTS']='..:'
 
-env.Command('overview.pdf', 'overview.tex', 'latex -r $SOURCE > /dev/null; latex $SOURCE > /dev/null; latex $SOURCE ; dvipdfm overview.dvi')
+pdf = env.PDF(target  = 'overview.pdf',  source = 'overview.tex')
