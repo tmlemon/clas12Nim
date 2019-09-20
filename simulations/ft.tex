@@ -55,24 +55,24 @@ The digitized output bank variables are summarized in Table \ref{tab:ftBank}
 	\begin{center}
 		\begin{tabular}{| c | c | c |}
 			\hline \hline
-			Variable         & Description    \\
+			Variable            & Description      \\
 			\hline
-		            & Tracker  &   \\
+		                         & Tracker         \\
 			\hline
-                       sector  &     sector     \\
-                        layer  &      layer     \\
-                    component  &  component     \\
-                          ADC  &        ADC     \\
+                         sector  &     sector      \\
+                          layer  &      layer      \\
+                      component  &  component      \\
+                            ADC  &        ADC      \\
 			\hline
-		          & Hodoscope  &   \\
+		                         & Hodoscope       \\
 			\hline
-					   sector  &     sector     \\
-                        layer  &      layer     \\
-                    component  &  component     \\
-                          ADC  &        ADC     \\
-                          tdc  &        TDC     \\
+						 sector  &     sector      \\
+                          layer  &      layer      \\
+                      component  &  component      \\
+                            ADC  &        ADC      \\
+                            tdc  &        TDC      \\
 			\hline
-				  & Calorimeter  &   \\
+								 & Calorimeter     \\
 			\hline
 				         sector  &     sector      \\
 				   	      layer  &      layer      \\
@@ -89,5 +89,5 @@ The digitized output bank variables are summarized in Table \ref{tab:ftBank}
 The time window of the hodoscope and calorimeters are set to 400 ns: all geant4 steps within the same paddles and time window
 will be collected on one hit in each system.
 
-The FT hit process routines are: \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ft_cal_hitprocess.cc} and
+The FT hit process routine locations in git are \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ft_cal_hitprocess.cc} and
 \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ft_hodo_hitprocess.cc}.

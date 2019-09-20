@@ -52,7 +52,7 @@ The java geometry service is at
 
 At each Geant4 step, the local coordinates in the sensor volume are used to calculate the strip ID.
 The algorithm includes: the dead zone around the sensor, the pitch between the strips (156 $\mu$m) and the angle
-between the strips that varies from 0 (strip $\# 1$) to 3$^0$ (for strip  $\# 256$). A showcase of the strip ID assignment
+between the strips that varies from 0\mdeg (strip $\# 1$) to 3\mdeg (for strip  $\# 256$). A showcase of the strip ID assignment
 is summarized in \F{processID}.
 
 \begin{figure}
@@ -92,15 +92,15 @@ The digitized output bank variables are summarized in Table \ref{tab:bstBank}.
 	\begin{center}
 		\begin{tabular}{| c | c | c |}
 			\hline \hline
-			Variable         & Description   \\
+			Variable  & Description   \\
 			\hline
-               layer  &                                      layer number    \\
-              sector  &                                     sector number    \\
-               strip  &                                      strip number    \\
-                 ADC  &                                         3 bit ADC    \\
-                 bco  &                                   8 bit time info    \\
-               ADCHD  &                                        13 bit ADC    \\
-                hitn  &                                        hit number    \\
+               layer  &        layer number    \\
+              sector  &       sector number    \\
+               strip  &        strip number    \\
+                 ADC  &           3 bit ADC    \\
+                 bco  &     8 bit time info    \\
+               ADCHD  &          13 bit ADC    \\
+                hitn  &          hit number    \\
 			\hline \hline
 		\end{tabular}
 	\end{center}
@@ -108,7 +108,7 @@ The digitized output bank variables are summarized in Table \ref{tab:bstBank}.
 \end{table}
 
 \noindent The time window  of the SVT is set to to 128 ns: all geant4 steps within the same strip and time window will be collected on one hit.
-The SVT hit process routines are located in the repository: \url{https://github.com/gemc/source/tree/master/hitprocess/clas12/svt}
+The SVT hit process routines location in git is \url{https://github.com/gemc/source/tree/master/hitprocess/clas12/svt}
 
 \subsubsection{Radiation dose and background rates}
 A detailed study of the background rates coming from beam interacting with the target was done to ensure that the silicon sensor
@@ -142,6 +142,7 @@ are summarized in \F{radStudy}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstRates.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/blank.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstRadSummary.png}
 	\caption{Summary of radiation doses and background rates in the SVT. Top: the rate breakdown for different particles
              for a threshold of 20 keV (the current hardware threshold is 30 keV) at the full luminosity of CLAS12.

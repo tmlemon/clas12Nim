@@ -45,14 +45,14 @@ The digitized output bank variables are summarized in Table \ref{tab:htccBank}.
 	\begin{center}
 		\begin{tabular}{| c | c | c |}
 			\hline \hline
-			Variable         & Description    \\
+			Variable  & Description                         \\
 			\hline
-             sector &                                     clas12 sector     \\
-             ring   &                                       theta index     \\
-             half   &                                       half-sector     \\
-             nphe   &                          number of photoelectrons     \\
-             time   &                           average time of the hit     \\
-             hitn   &                                        hit number     \\
+             sector   &                   clas12 sector     \\
+             ring     &                     theta index     \\
+             half     &                     half-sector     \\
+             nphe     &        number of photoelectrons     \\
+             time     &         average time of the hit     \\
+             hitn     &                      hit number     \\
 			\hline \hline
 		\end{tabular}
 	\end{center}
@@ -60,6 +60,4 @@ The digitized output bank variables are summarized in Table \ref{tab:htccBank}.
 \end{table}
 
 The time window  of the HTCC is set to 5 ns: all geant4 steps within the same PMT and time window will be collected on one hit.
-
-
 The HTCC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/htcc_hitprocess.cc}

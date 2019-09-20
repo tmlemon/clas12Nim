@@ -103,25 +103,40 @@ differences of 2100, 2325 and 2475 V, respectively for R1, R2 and R3
 We calculate that our total gas gain is approximately 2.7~$10^4$, 3.7~$10^4$, and 4.4~$10^4$,  
 respectively, for R1, R2 and R3.
 
-The single layer inefficiency is not uniform across the drift cell.  It is higher near the sense wire and also near the outer
-edge of the cell.  A track passing close to a sense wire leave many ions in the cell, but the ion arrival times are stretched
-out from near-zero to the maximum drift time, Tmax.  The result is that the pre-amplifier's output signal has a low voltage
-amplitude but persists for a long time.  So, even though the collected charge is large the voltage put out by our trans-impedance
-pre-amplifiers may not be large enough to exceed the voltage discriminator threshold of the DCRB,
-For the case of tracks near the outer edge of the cell (so-called `corner-clippers') they simply leave a very small number
-of ions in the cell and thus have a small signal.
+\subsection{In-Run Performance Monitoring}
+The CLAS12 detector records 10,000 - 20,000 events/sec during a typical experiment.
+It is important that the experimenters who are running the data-taking be quickly
+aware of any equipment malfunctions.
 
-In Fig.~\ref{effcy-vs-doca} we plot the layer efficiency as a function of the distance-of-closest-approach (DOCA) and
-you can see the characteristic rise of the ineffiency near to and far from the sense wire.
+Our first level of monitoring comes from our hardware alarms; see our section on
+Gas, LV and HV Utilities to see the control panels for our gas system and power
+supplies.  Should these malfunction, an alarm is instantly shown on alarm summary
+screen with GUI-driven information on the lower-lying hardware monitoring screens.
+An experimenter is thus able to detect an alarm and in most cases, reset the
+alarming supply, within minutes.
+
+Our second level of monitoring comes from on-line accumulating histograms.
+Of these, the most important are our so-called ``Occupancy Plots'', which
+are simply 2-dimensional histgrams of wire hits.  Malfunctions show up
+as depeleted areas on the plots.
+
+Fig.~\ref{layer-vs-wire} is a histogram of wire hits for all of
+the drift chamber wires; 24192 in total.  At a glance, one can see
+that $>99\%$ of wires are functioning properly.  A few areas on inefficiency
+are visible in the upper middle part of the graph.  These correspond to
+an area in the HV was disconnected to stop excessive current draw due
+to a broken wire.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{5cm}
 \begin{picture}(50,50)
 \put(-10,10)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/trace-routing-schematic.jpg}}}
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/layer-vs-wire.png}}}
 \end{picture}
-\caption{\small{Layer efficiency plotted versus DOCA.}}
-\label{effcy-vs-doca}
+\caption{\small{An ``occupancy plot'' showing the number of wire hits accumulated over many events.
+A few malfunctioning wire groups can be seen in the upper middle of the graph.}}
+\label{layer-vs-wire}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

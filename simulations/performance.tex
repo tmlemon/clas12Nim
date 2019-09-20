@@ -1,18 +1,17 @@
 \section{Performance}
 
 The performance of the CLAS12 simulations is measured by comparing the predicted background rates from beam interactions
-with the target with the actual experiment rates. The benchmarks are also quantified for each detector geometry and digitization routine.
+with the target with the actual experimental rates. The benchmarks are also quantified for each detector geometry and digitization routine.
 
 \subsection{Comparison of rates with data}
-On December 17 2017, the nominal luminosity of $10^{35} s{-1}cm{-2}$
-(75 nA on a 5 cm liquid hydrogen target) was achieved in CLAS12.
-The rates in various detectors were measured.
+On December 17 2017, the nominal luminosity of 10$^{35}$ s$^{-1}$cm$^{-2}$
+(75 nA on a 5-cm long liquid-hydrogen target) was achieved in CLAS12.
+The rates in each of the CLAS12 detectors were measured.
 
-The Drift Chamber occupancy was compared for both FTon and FTOff configurations. The integrated occupancy
-in region 1, 2 and 3 are summarized in tables \ref{tab:ftOnComparison} and \ref{tab:ftOffComparison}. The
+The drift chamber occupancy was compared for both the FTon and FTOff configurations. The integrated occupancy
+in region 1, 2, and 3 are summarized in Tables \ref{tab:ftOnComparison} and \ref{tab:ftOffComparison}. The
 time window of the experiment at the time was different than what was in the simulation, so the data has been scaled
-accordingly. The predicted rates agree quite well with the measured ones. The occupancy distribution in the different layers
-and wires also show good agreement between simulation and experiment, see \F{ftOnComparison} and  \F{ftOffComparison}.
+accordingly. The predicted rates agree quite well with the measured ones.
 
 \begin{table}[h]
 	\begin{center}
@@ -24,7 +23,7 @@ and wires also show good agreement between simulation and experiment, see \F{ftO
 			3 &  $1.5\%$  & $1.18\%$ \\
 		\end{tabular}
 	\end{center}
-	\caption{Drift Chambers rates comparison between simulation and real data for the FT On configuration}\label{tab:ftOnComparison}
+	\caption{Drift chamber rate comparison between simulation and data for the FTOn configuration at full luminosity.}\label{tab:ftOnComparison}
 \end{table}
 
 \begin{table}[h]
@@ -37,54 +36,60 @@ and wires also show good agreement between simulation and experiment, see \F{ftO
 			3 &  $0.9\%$  & $0.73\%$ \\
 		\end{tabular}
 	\end{center}
-	\caption{Drift Chambers rates comparison between simulation and real data for the FT Off configuration}\label{tab:ftOffComparison}
+	\caption{Drift chambers rate comparison between simulation and data for the FTOff configuration at full luminosity}\label{tab:ftOffComparison}
 \end{table}
 
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftOnGemcDCRates.png}
-	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftOnDataDCRates.png}
-	\caption{Distribution of background events in the Drift Chamber region 1 for the FT On configuration.
-             Top: GEMC. Bottom: data.}
-	\label{fig:ftOnComparison}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftOnGemcDCRates.png}
+%	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftOnDataDCRates.png}
+%	\caption{Distribution of background events in the Drift Chamber region 1 for the FT On configuration.
+%             Top: GEMC. Bottom: data.}
+%	\label{fig:ftOnComparison}
+%\end{figure}
 
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftOffGemcDCRates.png}
-	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftOffDataDCRates.png}
-	\caption{Distribution of background events in the Drift Chamber region 1 for the FT Off configuration.
-             Top: GEMC. Bottom: data.}
-	\label{fig:ftOffComparison}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftOffGemcDCRates.png}
+%	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftOffDataDCRates.png}
+%	\caption{Distribution of background events in the Drift Chamber region 1 for the FT Off configuration.
+%             Top: GEMC. Bottom: data.}
+%	\label{fig:ftOffComparison}
+%\end{figure}
 
-Similar agreements were found in rates in other CLAS12 detectors: HTCC, EC and PCAL, FTOF and FT.
+Similar agreements were found in rates in the other CLAS12 detectors. In particular:
+
+\begin{itemize}
+	\item FTOF: good agreement with data for the PMT currents \cite{ftof2019}.
+	\item CTOF good agreement with data for the upstream PMT counter rates, while the downstream counter rates
+		  are about a factor of three lower, probably due to not handling signals produced in the light guides \cite{ctof2019}.
+	\item FT: goot agreement with data for PMT currents and radiation doses \cite{ft2019}.
+\end{itemize}
+
 
 \subsection{Benchmarks}
 
-The event rate has been measured in a single core for single and multiple tracks. The numbers reported here
-refer to averages over several 2017 laptop and desktops and farm nodes.
-
-The full CLAS12 geometry has been used, with Runge-Kutta field integration algorithm
-and linear interpolation for both solenoid and torus fields.
-
+The GEMC event simulation rate has been measured for single and multiple tracks. The numbers reported here
+refer to averages over several 2017 laptops, desktops, and computing farm nodes, and refer to running GEMC in single-threaded mode.
+The full CLAS12 geometry has been used, with a Runge-Kutta field integration algorithm
+and linear interpolation for both the solenoid and the torus fields.
 Single meson tracks in the forward region are simulated with an event rate of about 10 Hz.
-Electron rates are about half as fast due to shower in the EC and PCAL calorimeters and
-Cherenkov photons production in both HTCC and LTCC, for an average of 5 Hz.
+Electron rates are about half as fast due to shower simulations in the EC and PCAL calorimeters and
+Cherenkov photon production in both the HTCC and the LTCC, for an average of 5 Hz.
 
-A quantitative study of the event rate for 3 particles (2 in the forward detector, one in the central)
-details the time spend in each detector geometry and digitization and in each magnetic field.
+A quantitative study of the event rate for 3 particles (2 in the Forward Fetector, one in the Central Detector)
+details the time spent in each detector geometry and digitization and in each magnetic field.
 The particles generated are:
 
 \begin{itemize}
-	\item one 7 GeV electron between 15 and 25 degrees in theta.
-	\item one 2 GeV gamma between 15 and 25 degrees in theta
-	\item one 2 GeV proton at 90 degrees in theta
+	\item one 7 GeV electron between polar angles 15\mdeg and 25\mdeg;
+	\item one 2 GeV gamma between polar angles 15\mdeg and 25\mdeg;
+	\item one 2 GeV proton at $\theta=$90\mdeg.
 \end{itemize}
 
-The results are shown in table \ref{tab:benchmarks}. The final rate for the 3 particles in the
+The results are shown in Table \ref{tab:benchmarks}. The final rate for the 3 particles in the
 complete CLAS12 setup is 1.9 Hz.
 
 \begin{table}[h]
@@ -107,12 +112,13 @@ EC       &  2.0    &   134.5 & 25.4 \\
 Torus    &  1.9    &   34.7  & 6.6  \\
 		\end{tabular}
 	\end{center}
-	\caption{Drift Chambers rates comparison between simulation and real data for the FT Off configuration}\label{tab:benchmarks}
+	\caption{GEMC CLAS12 simulation benchmarks in each CLAS12 detector. The calorimeters are responsible for more than
+             half the computing time, due to shower simulations. Swimming in the smagnetic fields account for about 15$\%$ CPU.}
+\label{tab:benchmarks}
 \end{table}
 
-Background rate can be estimated by setting a time window to define the time length of one event, and
-generating a number of electrons proportional to the proposed beam current. For the nominal luminosity of $10^{35} s{-1}cm{-2}$
-this correspond to 124,000 electrons in a 250 ns time window. In this case the time to complete one event varies
+\noindent Simulations that include the complete beam-target interactions using the full nominal luminosity
+of 10$^{35}$ s$^{-1}$cm$^{-2}$ are made using 124,000 electrons per event. In this case the time to complete one event varies
 between one and two minutes depending on CPU flavor and available memory.
 
 

@@ -93,10 +93,19 @@ the evidence from all other layers in the superlayer.  This is called the
 cell efficiency for the particular choice of gas mixture, high-voltage set point, and 
 discriminator level.  
 
-In the section on commissioning we discussed our `high voltage plateau'.
+In the section on operations and monitoring we discussed our `high voltage plateau'.
 We took data at successively higher values of high voltage and measured the
 layer efficiency at each point.  We set the high-voltage operating points such that
 the average layer efficiency is $>$98$\%$. 
+
+The single layer inefficiency is not uniform across the drift cell.  It is higher near the sense wire and also near the outer
+edge of the cell.  A track passing close to a sense wire leave many ions in the cell, but the ion arrival times are stretched
+out from near-zero to the maximum drift time, Tmax.  The result is that the pre-amplifier's output signal has a low voltage
+amplitude but persists for a long time.  So, even though the collected charge is large the voltage put out by our trans-impedance
+pre-amplifiers may not be large enough to exceed the voltage discriminator threshold of the DCRB,
+For the case of tracks near the outer edge of the cell (so-called `corner-clippers') they simply leave a very small number
+of ions in the cell and thus have a small signal.
+
 Fig.~\ref{hit-effcy-vs-doca} reveals that a large contribution to the $2\%$ inefficiency comes 
 from tracks that pass close to the sense wire.  These tracks give rise to signals 
 that have low pulse height and long duration, and thus may escape detection.
@@ -139,9 +148,7 @@ each of the different chamber Regions.  The single-wire resolution worsens near 
 wire and also at the outer edge of the cell.  This arises due to finite cluster sizes 
 due to the Poisson distribution of ion-pair production along the path of the primary ion 
 near the sense wire along with time walk effects and the divergent nature of the electric
-field lines near the field wire.  The average single-wire resolution in the middle 
-portion of the cell for each Region is presently about 200 to 250~$\mu$m.  The whole-cell 
-average is about 310, 315 or 380~$\mu$m for R1, R2, and R3, respectively.
+field lines near the field wire.  
 
 The bottom sub-figure is a histogram of the tracks' DOCA distribution.  It is approximately flat as
 expected, since the particle luminosity is approximately constant over the small solid
@@ -155,11 +162,34 @@ very close to the wire as explained in the preceding section on intrinsic layer 
 \put(-10,10)
 {\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/resolution-vs-doca.png}}}
 \end{picture}
-\caption{\small{Top sub-plot: Resoluton plotted versus the track DOCA (cm).  Bottom sub-plot:  The 1-d plot
+\caption{\small{Top sub-plot: Resolution plotted versus the track DOCA (cm).  Bottom sub-plot:  The 1-d plot
 of track DOCA (cm).}}
 \label{resolution-vs-doca}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A more quantitative look at the resolution as a function of doca is given in Fig.~\ref{resid-vs-doca},
+in this case for one particular superlayer (sector 4, superlayer 5).
+Once again we plot the 2-d distribution of the fit residual (TRKDOCA - DOCA) vesus TRKDOCA.
+Overplotted are line plots of the results of slice Gaussian fits to the distribution showing
+the sigma of the fit (top line) and the mean of the fit (bottom line near zero).
+Here you can quantitatively see that the average single-wire resolution in the middle 
+portion of the cell is about 350~$\mu$m, with a whole cell resolution of about 450~$\mu$m. 
+Looking at similar fits for all of the chamber, we conclude that the whole-cell 
+average is about 310, 315 or 380~$\mu$m for R1, R2, and R3, respectively.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{5cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/resid-vs-doca.png}}}
+\end{picture}
+\caption{\small{A plot of residual vs. TRKDOCA with Gaussian slice fits done, showing the sigma and
+mean as dark lines.}}
+\label{resid-vs-doca}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \subsection{Conclusions}
 
