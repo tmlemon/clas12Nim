@@ -28,7 +28,7 @@
 %%\documentclass[final,1p,times,authoryear]{elsarticle}
 %%\documentclass[final,1p,times,twocolumn,authoryear]{elsarticle}
 %%\documentclass[final,3p,times,authoryear]{elsarticle}
-\documentclass[final,3p,times,twocolumn,authoryear]{elsarticle}
+\documentclass[final,3p,twocolumn]{elsarticle}
 %%\documentclass[final,5p,times,authoryear]{elsarticle}
 %%\documentclass[final,5p,times,twocolumn,authoryear]{elsarticle}
 
@@ -36,20 +36,24 @@
 %% elsarticle.cls. If you prefer to use the old commands use
 %%\usepackage{epsfig}
 %% The amssymb package provides various useful mathematical symbols
-%\usepackage{amssymb}
+\usepackage{amssymb}
 %% The amsthm package provides extended theorem environments
-%% \usepackage{amsthm}
-\usepackage{graphicx}% Include figure files
+ \usepackage{amsthm}
+%\usepackage{graphicx}% Include figure files
 %\usepackage{pdflscape}
-\usepackage{rotating}
-\usepackage{array}
-\usepackage{dcolumn,multirow}
+ \usepackage[figuresright]{rotating}
+ \usepackage{hyperref}
+ \usepackage{subfig}
+ \usepackage{lineno}
+ \usepackage{natbib}
+%\usepackage{array}
+%\usepackage{dcolumn,multirow}
 % Align table columns on decimal point
 %% The lineno packages adds line numbers. Start line numbering with \begin{linenumbers} and end with \end{linenumbers}
 %% Or switch it on
-\usepackage{lineno}
-\linenumbers
-\journal{Nuclear Instruments and Methods A}
+
+%\linenumbers
+%\journal{Nuclear Instruments and Methods A}
 \begin{document}
 \begin{frontmatter}
 %% Title, authors and addresses
@@ -173,15 +177,13 @@ The entire CLAS12 detector extends for 20~m along the beamline.  }
 %\centering
 \centerline{\includegraphics[width=1.4\columnwidth]{CLAS12_photo-1.jpg}}
 \caption{\footnotesize The CLAS12 detector in the Hall B beamline. The beam is entering from the right near the upstream end of the Solenoid magnet and 
-the cryogenics service tower, followed by the HTCC and the Torus magnet with the forward tracking detectors.  LTCC and the calorimeters, PCAL and EC are seen at the down stream end to the left.  
-}
+the cryogenics service tower, followed by the HTCC and the Torus magnet with the forward tracking detectors.  LTCC and the calorimeters, PCAL and EC are seen at the down stream end to the left.}
 \label{clas12-photo}
 \end{figure*}
 
  This paper provides a general description of the design, construction, and performance of CLAS12 and how it expands upon the capabilities provided by the JLab 12 GeV energy upgrade.   
 The CEBAF accelerator and experimental halls are shown for the energy upgraded configuration in Fig.~\ref{cebaf12}. CEBAF is designed from 
-two parallel linear accelerators based 
-on superconducting radio frequency (RF) technology, and arranged in a race-track configuration~\cite{Leemann:2001dg}.
+two parallel linear accelerators based on superconducting radio frequency (RF) technology, and arranged in a race-track configuration~\cite{Leemann:2001dg}.
  Spin polarized electrons are generated in the gun,  
 pre-accelerated in the injector, and subsequently injected and accelerated in the north linac. They are then bent in a $180^\circ$ arc and injected 
 into the south linac. This is repeated four and a half more times to reach the final energy for Hall D and 
