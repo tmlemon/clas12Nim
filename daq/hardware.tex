@@ -35,7 +35,7 @@ There are many commercial off-the-shelf options for this type of controller, and
 
 We purchased VME controllers from several vendors for development purposes and made a significant investment in custom software that runs on all of the existing boards. We also benchmarked our code and have come to expect certain ``minimum'' requirements for performance from the chosen architecture within an specified Linux operating system.
 
-We also expect a certain minimum 10 year timeframe in which these controllers will be supported by the vendor with respect to the avilable parts, repair, and software updates. VME controller requirements are summerized in following list:
+We also expect a certain minimum 10 year timeframe in which these controllers will be supported by the vendor with respect to the available parts, repair, and software updates. VME controller requirements are summarized in following list:
 
 \begin{itemize}
 	\item Single slot VME form-factor - no required rear transition module
@@ -387,7 +387,7 @@ Fig.~\ref{fig:vscm_blockdiagram} shows the hardware block diagram of the module.
 
 \subsection{SSP Board as fiber Readout Module}
 
-The SubSystem Processor (SSP \cite{ssp-ref}) was originally designed to work as part of CLAS12 Trigger System. It is used to readout some front-end electronics in the DAQ system as well. The board description can be found in the CLAS12 Trigger System article \cite{trig-ref}.
+The SubSystem Processor (SSP \cite{ssp-ref}) was originally designed to work as part of CLAS12 Trigger System, but the optical transceivers, FPGA, and DDR2 memory are also suitable for remote front-end synchronization and readout. The SSP resides in a standard VXS crate configuration and acts as a bridge between custom front-end electronics (up to 32 remote front-ends per SSP) and the VME based CODA readout components. The RICH (\cite{rich-ref}), MVT (\cite{mvt-ref}), and FTT (\cite{ftt-ref}) CLAS12 subsystems utilize the SSP in fiber readout mode. The board description can be found in the CLAS12 Trigger System article \cite{trig-ref}.
 
 \subsubsection{Readout of the Micromegas trackers}
 
