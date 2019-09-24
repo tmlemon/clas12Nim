@@ -1,14 +1,14 @@
-\section{Pre-Installation Commissioning}
+\section{Pre-Commissioning and Installation}
 
 In this section we describe our procedures which took
 place after chamber stringing was complete to get the
-chambers ready for installation in the experiment.
+chambers ready for installation and to install them 
+in the experiment.
 
 \begin{enumerate}
 \item install electronics boards and ``on-chamber'' cables
 and gradually bring the chambers to full operating voltage 
 \item install and survey the chambers
-\item perform efficiency scans to determine the HV and discriminator operational settings
 \end{enumerate}
 
 \subsection{Electronics Installation and Turn-on}
@@ -16,22 +16,6 @@ After the chambers were strung and went through a mechanical quality
 check to insure that all wires are intact and properly tensioned, we
 installed the on-chamber electronics boards.
 
-There are two types of board: one is a High-Voltage Distribution Board (HVTB)
-which brings RC-filtered high voltage to the wires.  Because there are three
-types of wire: `sense', `field' and `guard' we supply three different voltages
-to each board.  
-
-On the other side of the chamber are our Signal Translator Boards (STB) 
-which support an individual Single Inline Package (SIP) transimpedance
-pre-amplifier for each sense wire.  This pre-amplifier takes the
-small current pulse (microAmps) and translates it into a voltage 
-pulse with a transimpedance of 2 mV/microAmp.  The signals (typically
-10's to 100's of mV and 10's to 100's of nanosecond duration) are
-transmitted down twisted-pair conducting wire to our downstream
-Drift Chamber Readout Boards (DCRB) which further amplifies and
-discriminates the voltage pulse and then converts the leading edge
-to a digital time signal.
-See figures (STB, HVTB) in the electroncis section for more details.
 
 After stringing was complete we did the following:
 \begin{enumerate}
@@ -59,6 +43,24 @@ our chambers (the voltage step which increases the gain by a factor
 of two).
 
 \subsection{Installation and Survey}
-- chambers attached by ball and socket joints to rods which are attached
-on the other end by ball and socket to the toroidal magnet frame
 
+The chambers are attached by ball and socket joints to rods which are attached
+on the other end by ball and socket to the toroidal magnet frame
+After an initial installation the chambers were moved to an approximate
+working location.  Then, with the survey crew's information, the chamber location
+was fine tuned by lengthening or shortening the rods with fine-pitch screw adjustments.
+In this way the initial installation was performed with sub-millimeter accuracies as
+determined by the survey group's laser positioning system.
+
+The installation of 18 chambers took months to accomplish and the survey crew's work
+was hindered at times by obscured views of some of the fiducial marks on the 
+chambers.  In fact, we checked and updated the survey information with a later 
+``straight-track'' alignment run and analysis procedure (see the Calibration section).
+Although most of alignment numbers were verified to sub-millimeter accuracy, there
+were a few parameters which were off by as much as 2 millimeters.
+
+Of particular note regarding the ``rod and ball and socket'' mounting scheme is that
+we showed that it is reproducible to sub-millimeter accuracy, thus reducing the time
+and manpower required for maintenace and repair.  In a matter of hours, a chamber 
+can be moved to ``maintenance position'', repaired, and moved back to installation
+position without the need for a survey.

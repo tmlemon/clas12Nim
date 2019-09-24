@@ -6,7 +6,23 @@ off-chamber drift chamber readout boards (DCRB) that re-amplify,
 discriminate the chamber signals received from the STB's and
 digitize their time of arrival.  
 
-\subsection{On-Chamber PCBs and Cables}
+There are two types of board: one is a High-Voltage Distribution Board (HVTB)
+which brings RC-filtered high voltage to the wires.  Because there are three
+types of wire: `sense', `field' and `guard' we supply three different voltages
+to each board.  
+
+On the other side of the chamber are our Signal Translator Boards (STB) 
+which support an individual Single Inline Package (SIP) transimpedance
+pre-amplifier for each sense wire.  This pre-amplifier takes the
+small current pulse (microAmps) and translates it into a voltage 
+pulse with a transimpedance of 2 mV/microAmp.  The signals (typically
+10's to 100's of mV and 10's to 100's of nanosecond duration) are
+transmitted down twisted-pair conducting wire to our downstream
+Drift Chamber Readout Boards (DCRB) which further amplifies and
+discriminates the voltage pulse and then converts the leading edge
+to a digital time signal.
+
+\subsection{Signal Translator Boards (STB)}
 After the drift chambers were built and the wires strung, we mounted
 on-chamber printed circuit boards onto the chamber endplates.
 The signal connections to the wires are made through printed-circuit 
@@ -53,13 +69,44 @@ and low voltage.}}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Signal Translator Boards (STB)}
 
+The signal side of each chamber was tiled with multi-layered printed circuit 
+boards called Signal Translation Boards (STBs).  These boards were  
+built in a 96-channel format, which requires seven 
+circuit boards for each superlayer (672 signals).   The boards  
+capacitively decoupled high voltage from the signals, and then routed 
+the signals to the single in-line package (SIP) transimpedance pre-amplifiers 
+mounted on the boards.  The amplified differential signals are then sent 
+via 20-m long twisted-pair lines to the main {\tt CLAS12} readout electronics.
 
-The circuit boards that interface the sense 
-wires to the pre-amplifiers (STBs) were  
-designed for a 96-channel format.  This format requires seven 
-circuit boards for each superlayer (672 signals).   
+The connections between the sense-wire crimp pins and the plated-through holes 
+of the STB boards were made using short conductive-rubber tubes.  This material 
+consists of silver-plated and/or nickel-plated glass spheres embedded in a 
+silicon-rubber matrix.  These tubes pass through the plated-through hole and 
+over the end of the crimp pins, making the electrical contract between the 
+wire and the circuit board.  A small plastic cap inserted into the end of the 
+tube ensures good contact with the circuit board.  This approach has the 
+advantages of reducing the space needed for connections, preventing crimp pins 
+from being pulled from the feedthroughs when disconnecting the boards from the 
+wires, and reducing the cost compared to metal connectors.  This detail is 
+shown in Fig.~\ref{wire-to-amplifier}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{8cm}
+\begin{picture}(50,50)
+\put(20,20)
+{\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{img/wire-to-amplifier.jpg}}}
+\end{picture}
+\caption{\small{ An assembly drawing showing how the crimp pin was inserted
+into the feedthrough and how the conductive elastomer tube fits over the 
+crimp pin and inside the plated-through hole on the printed circuit board to 
+make the electrical connection. Also shown is the signal path from the wire's
+crimp pin to the pre-amplifier.  }}
+\label{wire-to-amplifier}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Fig.~\ref{trace-routing-schematic} shows the traces 
 routed from the signal pick-up at the plated-through holes to the signal 
@@ -78,6 +125,7 @@ designed.}}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsubsection{Single In-line Package (SIP) Preamplifiers}
 The heart of the STB board is an individually packaged
 single in-line package (SIP) preamplifer which was modified
 from the design of the previous CLAS detectors and 
@@ -95,7 +143,7 @@ CP01 pre-amplifier.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5cm}
+\vspace{8cm}
 \begin{picture}(50,50)
 \put(10,-10)
 {\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=64]{img/CP01-description.jpg}}}
@@ -114,46 +162,6 @@ twisted-pair readout because of its immunity to electronic noise.
 The cables are round-jacketed with a 
 0.025-in pitch so that the overall cable dimension is smaller than the 
 standard 17-pair cable.  
- 
-
-
-\subsubsection{Mounting Electronics Boards onto the Chamber}
-
-The signal side of each chamber was tiled with multi-layered printed circuit 
-boards called Signal Translation Boards (STBs).  These boards were designed 
-to capacitively decouple high voltage from the signals, and then to route 
-the signals to the single in-line package (SIP) transimpedance pre-amplifiers 
-mounted on these boards.  The amplified differential signals are then sent 
-via 20-m long twisted-pair lines to the main {\tt CLAS12} readout electronics.
-
-The connections between the sense-wire crimp pins and the plated-through holes 
-of the STB boards were made using short conductive-rubber tubes.  This material 
-consists of silver-plated and/or nickel-plated glass spheres embedded in a 
-silicon-rubber matrix.  These tubes pass through the plated-through hole and 
-over the end of the crimp pins, making the electrical contract between the 
-wire and the circuit board.  A small plastic cap inserted into the end of the 
-tube ensures good contact with the circuit board.  This approach has the 
-advantages of reducing the space needed for connections, preventing crimp pins 
-from being pulled from the feedthroughs when disconnecting the boards from the 
-wires, and reducing the cost compared to metal connectors.  This detail is 
-shown in Fig.~\ref{wire-to-amplifier}.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{5cm}
-\begin{picture}(50,50)
-\put(20,20)
-{\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{img/wire-to-amplifier.jpg}}}
-\end{picture}
-\caption{\small{ An assembly drawing showing how the crimp pin was inserted
-into the feedthrough and how the conductive elastomer tube fits over the 
-crimp pin and inside the plated-through hole on the printed circuit board to 
-make the electrical connection. Also shown is the signal path from the wire's
-crimp pin to the pre-amplifier.  }}
-\label{wire-to-amplifier}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \subsection{Off-Chamber Amplification, Time Digitization and Readout}
 

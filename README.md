@@ -120,7 +120,7 @@ To include a picture "examplePic.png" use the following code:
 ```
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ftGeometry.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftGeometry.png}
 	\caption{The three detectors in the FT geometry }
 	\label{fig:ftGeometry}
 \end{figure}
@@ -138,7 +138,7 @@ For example:
 ```
 \begin{figure*}
 	\centering
-	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/ftGeometry.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftGeometry.png}
 	\caption{The three detectors in the FT geometry }
 	\label{fig:ftGeometry}
 \end{figure*}

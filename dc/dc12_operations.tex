@@ -1,7 +1,6 @@
 \section{Chamber Operation and Performance Monitoring}
 
 \subsection{Choice of Gas}
-\hskip 0.15in
 
 The main requirements for the chamber gas were that it have reasonably low 
 multiple scattering, allow for reasonable gas gains, have short collection 
@@ -20,9 +19,8 @@ provides good efficiency, adequate resolution, and reasonable collection times.
 
 
 \subsection{Selecting the Proper Operating Voltage}
-\hskip 0.15in
-In this section we discuss our operating voltages and how it was selected.
 
+In this section we discuss our operating voltages and how it was determined.
 First, we discuss how we divide the total voltage between our sense, field 
 and guard wires in order to mimic a cell layout with an infinite number of
 layers, to achieve a situation in which all wires, regardless of layer, have
@@ -39,7 +37,7 @@ which the field wires, for example, are held at ground potential:
 \begin{itemize}
 \item fewer field lines run from the sense wire to the endplate which
 is grounded.  This reduces the likelihood of producing a `Malter effect'
-(Ref.~\cite{Malter}) in which an accidental source of cathode emission
+(Ref.~\cite{malter}) in which an accidental source of cathode emission
 (due to an insulating contaminant on the endplate, for example) causes
 a self-sustaining discharge
 \item the sense to ground potential and the field to ground potentials 
@@ -64,11 +62,7 @@ electric field through the bag which is the case if the enclosed net charge
 is zero.
 So, the ratio of voltages from Sense to Field to Guard wires is 1 : -1/2 : 5/14.
 
-\subsubsection{Operating Voltage, Gas Gain and Layer Efficiency}
-The gas gain varies exponentially with the total sense to field wire voltage
-difference, with a doubling voltage of about 100, 110 or 120V respectively, for
-R1, R2 and R3.  During our Fall 2019 run, we ran with sense - field wire voltage
-differences of 2100, 2325 and 2475 V, respectively for R1, R2 and R3
+
 
 
 \subsection{Determining the Operating Values of the Discriminator Thresholds and High Voltage Settings}
@@ -100,32 +94,51 @@ and superlayer.  The layer efficiency at the chosen operating high voltage poion
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-The single layer inefficiency is not uniform across the drift cell.  It is higher near the sense wire and also near the outer
-edge of the cell.  A track passing close to a sense wire leave many ions in the cell, but the ion arrival times are stretched
-out from near-zero to the maximum drift time, Tmax.  The result is that the pre-amplifier's output signal has a low voltage
-amplitude but persists for a long time.  So, even though the collected charge is large the voltage put out by our trans-impedance
-pre-amplifiers may not be large enough to exceed the voltage discriminator threshold of the DCRB,
-For the case of tracks near the outer edge of the cell (so-called `corner-clippers') they simply leave a very small number
-of ions in the cell and thus have a small signal.
 
-In Fig.~\ref{effcy-vs-doca} we plot the layer efficiency as a function of the distance-of-closest-approach (DOCA) and
-you can see the characteristic rise of the ineffiency near to and far from the sense wire.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{5cm}
-\begin{picture}(50,50)
-\put(-10,10)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/trace-routing-schematic.jpg}}}
-\end{picture}
-\caption{\small{Layer efficiency plotted versus DOCA.}}
-\label{effcy-vs-doca}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+\subsubsection{Operating Voltage, Gas Gain and Layer Efficiency}
+The gas gain varies exponentially with the total sense to field wire voltage
+difference, with a doubling voltage of about 100, 110 or 120V respectively, for
+R1, R2 and R3.  During our Fall 2019 run, we ran with sense - field wire voltage
+differences of 2100, 2325 and 2475 V, respectively for R1, R2 and R3
 We calculate that our total gas gain is approximately 2.7~$10^4$, 3.7~$10^4$, and 4.4~$10^4$,  
 respectively, for R1, R2 and R3.
 
+\subsection{In-Run Performance Monitoring}
+The CLAS12 detector records 10,000 - 20,000 events/sec during a typical experiment.
+It is important that the experimenters who are running the data-taking be quickly
+aware of any equipment malfunctions.
+
+Our first level of monitoring comes from our hardware alarms; see our section on
+Gas, LV and HV Utilities to see the control panels for our gas system and power
+supplies.  Should these malfunction, an alarm is instantly shown on alarm summary
+screen with GUI-driven information on the lower-lying hardware monitoring screens.
+An experimenter is thus able to detect an alarm and in most cases, reset the
+alarming supply, within minutes.
+
+Our second level of monitoring comes from on-line accumulating histograms.
+Of these, the most important are our so-called ``Occupancy Plots'', which
+are simply 2-dimensional histgrams of wire hits.  Malfunctions show up
+as depeleted areas on the plots.
+
+Fig.~\ref{layer-vs-wire} is a histogram of wire hits for all of
+the drift chamber wires; 24192 in total.  At a glance, one can see
+that $>99\%$ of wires are functioning properly.  A few areas on inefficiency
+are visible in the upper middle part of the graph.  These correspond to
+an area in the HV was disconnected to stop excessive current draw due
+to a broken wire.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{10cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/layer-vs-wire.png}}}
+\end{picture}
+\caption{\small{An ``occupancy plot'' showing the number of wire hits accumulated over many events.
+A few malfunctioning wire groups can be seen in the upper middle of the graph.}}
+\label{layer-vs-wire}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 References: `A study of electron drift velocity in Ar-CO2 and AR-CO2-CF4 gas
 mixtures', NIM A340 (1994) p.485-490

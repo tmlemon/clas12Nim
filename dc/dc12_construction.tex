@@ -19,18 +19,18 @@ of 2 between R3 and R1.
 Each chamber is a solid trapezoid in shape, with  
 a pair of wire-supporting endplates that bear both the load of the 
 wire tensions and the weight of all associated hardware. A representative 
-chamber is shown in Fig.~\ref{generic-chamber-sketch}, with parts indicated.
+chamber is shown in Fig.~\ref{chamber-exploded}, with parts indicated.
 
 %%%%%%%%%%%%%%%%%%%%%% Figure : generic chamber sketch %%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htpb]   
-\vspace{4.5cm}
-\begin{picture}(50,50)
+\vspace{10cm}
+\begin{picture}(35,35)
 \put(10,-10)
-{\hbox{\includegraphics[width=0.5\columnwidth,natwidth=610,natheight=642]{img/generic-chamber-sketch.png}}}
+{\hbox{\includegraphics[width=0.5\columnwidth,natwidth=610,natheight=642]{img/chamber-exploded.png}}}
 \end{picture}
 \caption{\small{Assembly of a typical drift-chamber
-(here a R3 sector) highlighting the common components.}}
-\label{generic-chamber-sketch}
+(here a R1 sector) highlighting the common components.}}
+\label{chamber-exploded}
 \end{figure}   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -51,7 +51,6 @@ for R2 the plates were G10 and the bars stainless steel and for R3
 the plates were an assembly of thin steel plates with a foam interior.
 
 \subsection{Endplate Design and Construction}
-\hskip 0.15 in
 
 As noted above our chambers have wires strung from one endplate to 
 the other.  Holes are drilled into the endplates into which are
@@ -147,10 +146,12 @@ The 80-$\mu$m diameter was chosen because it is the smallest possible choice
 which will not initiate cathode emission at the surface.
 At our operating conditions, the surface field at the field wire
 surface is less than 50~kV/cm, and this will minimize 
-conditions which could cause unwanted cathode emissions and a noisy chamber.  We note that
-our choice violated the ``20~kV/cm rule'' proposed by 
-Fabio Sauli (Ref~\cite{sauli_cathode_emission}) and others
-to reduce cathode emission.  Our own studies showed that there was no cathode
+conditions which could cause unwanted cathode emissions and a noisy chamber.  
+We note that
+our choice violated the ``20~kV/cm rule'', the conventional wisdom that
+a surface field greater than $20 kV/cm$ an the cathode wire would lead to 
+a noisy chamber.
+Our own studies (ref~\cite{cathode-emission}) showed that there was no cathode
 emission below 50~kV/cm from any wire with good surface finish.  Each batch
 of wire was tested with our test device (ref~\cite{patent}) to ensure that at operating field 
 values there was no emission.  
