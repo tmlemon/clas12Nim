@@ -1,12 +1,12 @@
 \section{Overview}
 
-The CEBAF Large Acceptance Spectrometer for operation at 12 GeV beam energy (CLAS12) \cite{overview2019}  at Jefferson Laboratory was designed to study
+The CEBAF Large Acceptance Spectrometer for operation at 12 GeV beam energy (CLAS12) \cite{clas12-nim}  at Jefferson Laboratory was designed to study
 electro-induced nuclear and hadronic reactions by providing efficient detection of charged and neutral particles over a large
 fraction of the full solid angle. The spectrometer have met the performance criteria of instantaneous luminosity up
 to $10^35$ cm$^{-2}$s$^-1$ and momentums resolution in the forward direction using drift chambers and in the central
 direction using vertex tracker $< 1\%$ and $< 3\%$, respectively.
 
-The CLAS12 collaboration has implemented a detector simulation within the GEMC software framework \cite{gemc2019}.
+The CLAS12 collaboration has implemented a detector simulation within the GEMC software framework \cite{sim-nim}.
 During the design phase of the various CLAS12 detectors, shielding, magnets, and passive elements, GEMC allowed studying the
 performance of the various components with respect to the desired science objectives. GEMC enabled the optimization of the design
 thanks to trade-off studies between variation of the hardware setup and placement, various material and shielding thicknesses.
@@ -58,7 +58,7 @@ The databases can be defined using the following factories:
 
 \begin{itemize}
 	\item GEMC native API (Perl or Python)
-	\item java algorithms used by both simulation and the CLAS12 Event Reconstruction Software \cite{reco2019}, or ``java geometry services''
+	\item java algorithms used by both simulation and the CLAS12 Event Reconstruction Software \cite{recon-nim}, or ``java geometry services''
 	\item CAD (stl, ply, obj formats)
 	\item GDML, c++ plugins (not used in CLAS12)
 \end{itemize}
@@ -297,7 +297,7 @@ There are four different types of digitization, each with a different output str
 	\item integrated (one bank per hit): this is implemented for all CLAS12 detectors;
 	\item step-by-step (one bank per Geant4 step): used for debugging;
 	\item voltage: the analog signal versus time calculated as a response of the detector to tracks passing through it;
-	\item fadc: the same FADC bank from crate/slot/channel as written by the CLAS12 data acquisition system \cite{daq2019}.
+	\item fadc: the same FADC bank from crate/slot/channel as written by the CLAS12 data acquisition system \cite{daq-nim}.
           This is implemented for the CND, CTOF, FTOF, FT-CAL, ECAL.
 \end{itemize}
 
