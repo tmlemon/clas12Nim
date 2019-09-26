@@ -15,7 +15,6 @@ value of the magnetic field traversed.  These were determined by
 \subsection{Alignment Procedures}
 \label{align}
 
-\hskip 0.15in
 Each of the 18 drift chambers was 
 surveyed with millimeter to sub-millimeter
 accuracy, but we wanted an independent check of the chambers' positions and 
@@ -24,8 +23,8 @@ achieve momentum resolutions on the order of 0.3\%.  For
 these reasons, the survey values for the chamber geometry were viewed only as 
 a reasonable starting point to be refined by comparisons with data.
 
-To adjust the chamber geometry parameters to improve the tracking resolution,
-``straight-track'' data, with the torus magnetic field off, were analyzed.  
+To adjust the chamber geometry parameters we analyzed
+``straight-track'' data taken with the torus magnetic field turned off.  
 Tracks were found and fitted with our standard track reconstruction package.
 For various bins in the angle of the track, we measured the shifts of the
 track residual means as a function of layer number. 
@@ -37,7 +36,9 @@ three drift chambers in any particular sector to each other.
 Our only inter-sector constraint was that all sectors, after alignment,
 should point to a common target vertex.
 
-Our procedure was straight-forward.  On a first pass through
+To analyse the data we used the concept of simulating trial residual
+distributions by deliberately mis-aligning the chambers
+On a first pass through
 the data we used misaligment parameters (shifts and rotations of individual
 chambers) set to zero.  On subsequent passes, we deliberately misaligned
 a particular chamber by a particular offset in position or angle and 
@@ -49,7 +50,7 @@ a time.  The offsets in $x, y$ and $z$ were 2 mm, and the angular rotations
 were 0.2 degrees.  These 2mm shifts and 0.2 degree rotations were
 called ``unit distortions''.
 
-We then subtracted the pass1 residual distribution from a pass``i'' distribution
+We subtracted the pass1 (nominal) residual distribution from a pass``i'' distribution
 to give a ``change of residual'' distribution caused by a given ``unit distortion''.
 We then fit the observed residual distribution from the data to a weighted
 sum of the 18 ``change of residual'' distributions.  In principle, we
@@ -59,7 +60,8 @@ where $\theta y$ is a tilt of a chamber.  The yaw ($\theta x$) and roll ($\theta
 were not varied because they did not improve the fits.
 
 Fig.~\ref{resids-vs-layer-before} plots the mean of the residuals of a straight-line
-fit to the tracks versus layer (1 - 36 layers of the chambers), for each sector.
+fit to the tracks versus layer (1 - 36 layers of the chambers), for one sector (in this
+case sector 2).
 The misalignment is plainly visible as a noticeable shift of the residual means
 from zero.  The bulk of the offsets occurs in shifts of groups of 12 layers which
 corresponds to one physical chamber (a R1 chamber has layers 1-12, R2 from 13-24 and
@@ -80,9 +82,9 @@ R3 from 25-36).
 Because our ``unit distortions'' are not orthogonal functions, we needed to do a simultaneous
 fit over four angular ranges; because two ``unit distortions'' which are highly correlated in
 one angular range were usually not in other ranges.  In addition to minimizing the residuals
-from our 36 drift chamber layers, we also include a 37th term in the residual sum: the 
-distance of closest approach to the beam target vertex.  As mentioned before this helped
-to align the chambers sector to sector.
+from our 36 drift chamber layers, we also include a 37th term in the sum of squared residuals: the 
+distance of closest approach to the beam target vertex.  As mentioned before this is how we
+aligned the chambers sector to sector.
 
 Figure~\ref{resids-vs-layer-before} is the misalignment before our aligning procedure, while
 Fig.~\ref{resids-vs-layer-after} shows the shifts of the means which remain after we have
@@ -92,8 +94,8 @@ aligned the chambers.
 \begin{figure}[bhtp]
 \vspace{6cm}
 \begin{picture}(50,50)
-\put(-60,10)
-{\hbox{\includegraphics[width=.5\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-after.png}}}
+\put(-30,10)
+{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-after.png}}}
 \end{picture}
 \caption{\small{A plot of the fit residual mean versus layer, after alignment.}}
 \label{resids-vs-layer-after}
@@ -136,7 +138,7 @@ small `nose' plate and a fixed support at the 'back' plate.
 
 We did extensive engineering analysis and also post-stringing survey to determine the
 size and pattern of this bowing.  Because our endplate planes are not perpendicular to
-the wires, when they bow they move the wire endpoints outward.  The amount varies
+the wires, when they bow they move the wire endpoints radially outward.  The amount varies
 according to the chamber position because the weight of the endplates also plays a role,
 but the bowing in the direction perpendicular to the wire could be as large as 1.5 mm.
 This point of maximum deflection occurs about a fourth of the way between the `nose' and
@@ -208,13 +210,14 @@ or new configuration of readout boards.
 Each hit on a track is characterized by two variables, the measured drift 
 time from the sense wire and the Distance of Closest Approach to the 
 sense wire resulting from the track fit. 
-Note, we refer to variants of DOCA: one is ``TRKDOCA'' which is the
+Note, we refer to two variants of DOCA: one is ``TRKDOCA'' which is the
 fit value of the track's closest approach to the wire and ``DOCA''
-which is the best estimate of this distance, as calculated from the time.
+which is the best estimate of this distance, as calculated from the measured 
+time for the wire hit.
  
-A best fit to the dependence of DOCA on time defines the 
+A best fit to the dependence of TRKDOCA on time defines the 
 drift-velocity function of the drift cells. However, several factors 
-complicate this analysis. For example, the DOCAs obtained from the fitted 
+complicate this analysis. For example, the TRKDOCAs obtained from the fitted 
 tracks are biased quantities since an initial estimate of the drift-velocity 
 function is used in the track determination.  Moreover, the drift cells are 
 not circular, as the analysis implicitly assumes, but are hexagonal, leading 
@@ -249,7 +252,7 @@ direction.}}
 
 In the CLAS detector, the drift distance was parameterized and fit as a function
 of drift time.~\cite{mdm95}
-For CLAS12, we have instead chosen to parameterize the time as a function of
+In contrast, for CLAS12, we have instead chosen to parameterize the time as a function of
 distance.  This is a more natural description of the drift chamber signal
 for several reasons:
 \begin{itemize}
@@ -266,7 +269,7 @@ particle $\beta$ and a time correction for wires in a magnetic field, $B$ which
 scales like $B^2$) can simply be added to the nominal functional form.
 \end{itemize}
 
-A {\bf single functional form} is used to fill two tables: one of time indexed by discrete
+This single functional form is used to fill two tables: one of time indexed by discrete
 values of distance for use in the simulation by GEMC and one of 
 distance indexed by time for use by the track reconstruction code.
 
@@ -464,7 +467,7 @@ is the calculated distance (CALCDOCA) vs. time.}}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Using the Distance to Time Function in Reconstruction}
+\subsection{Using the Distance to Time Function in Reconstruction}
 The track reconstruction program needs to know the expected distance as a function
 of time.  However, as explained in the previous paragraph, we will have calibrated and fitted
 the observed time as a function of distance.  So, we need to NUMERICALLY INVERT the t=f(x)
@@ -473,7 +476,7 @@ function in order to fill a table of X (real number) as a function of the time i
 \subsubsection{Filling the Time to Distance and Distance to Time Tables}
 We calibrate the distance to time function by fitting the drift time versus
 TRKDOCA at a particular local angle, $\alpha$.  We write the independent parameters,
-$V_0, ~V_{mid}$ and $T_{max}$ to the data-base.  At the beginning of a reconstruction program,
+$V_0, ~V_{mid}, r$ and $T_{max}$ to the data-base.  At the beginning of a reconstruction program,
 an {\bf inversion program} is run to numerical invert the function to produce a table
 of distance indexed by time.
 
@@ -499,6 +502,8 @@ and ``$X_{30}$'' is the corresponding quantity for a table of 30 degree tracks, 
 \label{eq-extrap30}
 X(t,\alpha) = X_0 + (X_{30}-X_0) (cos(30-\alpha) - cos(30)) / (cos(0) - cos(30))
 \end{equation}
+
+In the Performance Section we describe the spatial resolution we were able to achieve.
 
 \subsection{Magnetic Field Model: A Comparison to Measurement}
 In the Fall of 2016, we mapped the magnetic field of the torus magnet.
