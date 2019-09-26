@@ -1,47 +1,35 @@
 \section{Drift Chamber Electronics}
 In this section we describe the drift chamber electronics:
-the on-chamber signal distribution and amplification boards (STB),
-the on-chamber high voltage distribution boards (HVTB) and the
+the on-chamber signal distribution and amplification boards which
+we named ``Signal Translator Boards'', (STB),
+the on-chamber high voltage translator boards (HVTB) and the
 off-chamber drift chamber readout boards (DCRB) that re-amplify,
 discriminate the chamber signals received from the STB's and
 digitize their time of arrival.  
 
-There are two types of board: one is a High-Voltage Distribution Board (HVTB)
-which brings RC-filtered high voltage to the wires.  Because there are three
+On one endplate of each chamber is a set of 14 High-Voltage Distribution Board (HVTB)
+which distributes RC-filtered high voltage to the wires.  Because there are three
 types of wire: `sense', `field' and `guard' we supply three different voltages
 to each board.  
 
-On the other side of the chamber are our Signal Translator Boards (STB) 
+On the other side of the chamber are 14 Signal Translator Boards (STB) 
 which support an individual Single Inline Package (SIP) transimpedance
 pre-amplifier for each sense wire.  This pre-amplifier takes the
-small current pulse (microAmps) and translates it into a voltage 
+small current pulse (as small as a few microAmps) and translates it into a voltage 
 pulse with a transimpedance of 2 mV/microAmp.  The signals (typically
 10's to 100's of mV and 10's to 100's of nanosecond duration) are
 transmitted down twisted-pair conducting wire to our downstream
-Drift Chamber Readout Boards (DCRB) which further amplifies and
-discriminates the voltage pulse and then converts the leading edge
+Drift Chamber Readout Boards (DCRB) which further amplify and
+discriminate the voltage pulses and then convert the leading edge
 to a digital time signal.
 
-\subsection{Signal Translator Boards (STB)}
-After the drift chambers were built and the wires strung, we mounted
-on-chamber printed circuit boards onto the chamber endplates.
-The signal connections to the wires are made through printed-circuit 
-boards mounted along one side of each chamber, called Signal Translator 
-Boards (STBs).  These boards are responsible for signal routing and 
-pre-amplification.  
 
-On the opposite side of each sector, another set of 
-circuit boards called the High Voltage Translator Boards (HVTBs) is used 
-to make the high-voltage connections to the wires (see the subsection
-on gas, low voltage and high voltage for more details on the high
-voltage system).
-
-The drift chamber signal amplification and readout consists of the 
-following subsystems:
+The drift chamber signal amplification and readout system consists of the 
+following:
 \begin{itemize}
 \item  chamber-mounted printed circuit boards with a single in-line package
 (SIP) amplifier for each signal wire; these are the STB's
-\item  chamber printed circuit boards which distribute high voltage
+\item  chamber-mounted printed circuit boards which distribute high voltage
 to all of the wires; these are the HVTB's
 \item a single 17-pair twisted-pair readout cable for each group of 16
 SIP's, and
@@ -49,7 +37,7 @@ SIP's, and
 of 6 cables (96 signal wires)
 \end{itemize}
 
-
+Table ~\ref{electronic-components} gives a channel count for our electronic components.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[htbp]
 \begin{center}
@@ -71,7 +59,7 @@ and low voltage.}}
 
 \subsection{Signal Translator Boards (STB)}
 
-The signal side of each chamber was tiled with multi-layered printed circuit 
+The signal side of each chamber was tiled with 14 multi-layered printed circuit 
 boards called Signal Translation Boards (STBs).  These boards were  
 built in a 96-channel format, which requires seven 
 circuit boards for each superlayer (672 signals).   The boards  
@@ -156,8 +144,7 @@ CP01 pre-amplifier.
 Each group of 16 pre-amplifier output signals were routed to a 17 pair connector.
 Sixteen of the pairs are used as differential signal paths which are routed from the STB's to the 
 drift chamber readout boards (DCRB) over individual cables consisting of 16 twisted pairs.  
-The seventeenth pair is used to send a calibration pulse from the DCRB
-to the STB preamplifier group. We chose
+We chose
 twisted-pair readout because of its immunity to electronic noise.
 The cables are round-jacketed with a 
 0.025-in pitch so that the overall cable dimension is smaller than the 
