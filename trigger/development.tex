@@ -56,7 +56,14 @@ Additional configurable trigger elements were introduced, including a total ener
 
 \subsubsection{Development and Validation of Drift Chamber Component of the Trigger System with Cosmic Data}
 
-%% TO BE WRITTEN
+Early tests of the drift chamber tracking trigger were done using cosmic events triggered from the PCAL and ECAL. A small fraction of events had tracks near the target location where the road dictionary was defined, but within a day enough statistics could be collected to do checks that the tracking trigger was functioning. Offline reconstruction processed the events and events with reconstructed tracks were checked to see if the tracking trigger fired shown in Fig.\ref{fig:dc_cosmic_efficiency}. Any events with tracks that passed throught the target, but failed to be tagged by the tracking trigger were run through simulations to identify the reason. The tests clearly showed very loose acceptance and motivated tighter kinematic constraints on the dictionary generation that were eventually done when studies with beam were later performed.
+
+\begin{figure}[!htb]
+ 	\centering
+  	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/dc_cosmic_efficiency.png}
+ 	\caption{DC negative cosmic tracks accepted and rejected by the tracking trigger. Any track rejected above 1GeV and vertex withing +/-20cm would indicate a trigger failure, but tests showed 100\% efficiency}
+	\label{fig:dc_cosmic_efficiency}
+\end{figure}
 
 
 \subsubsection{Development and Validation of Entire Trigger System with Cosmic Data} 
