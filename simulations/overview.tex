@@ -2,26 +2,28 @@
 
 The CEBAF Large Acceptance Spectrometer for operation at 12 GeV beam energy (CLAS12) \cite{clas12-nim}  at Jefferson Laboratory was designed to study
 electro-induced nuclear and hadronic reactions by providing efficient detection of charged and neutral particles over a large
-fraction of the full solid angle. The spectrometer have met the performance criteria of instantaneous luminosity up
-to $10^35$ cm$^{-2}$s$^-1$ and momentums resolution in the forward direction using drift chambers and in the central
-direction using vertex tracker $< 1\%$ and $< 3\%$, respectively.
+fraction of the full solid angle. The spectrometer has met the performance criteria of instantaneous luminosity up
+to $10^{35}$ cm$^{-2}$s$^{-1}$ and momentum resolution in the forward direction using the drift chambers and in the central
+direction using the vertex tracker of $< 1\%$ and $< 3\%$, respectively.
 
-The CLAS12 collaboration has implemented a detector simulation within the GEMC software framework \cite{sim-nim}.
-During the design phase of the various CLAS12 detectors, shielding, magnets, and passive elements, GEMC allowed studying the
-performance of the various components with respect to the desired science objectives. GEMC enabled the optimization of the design
-thanks to trade-off studies between variation of the hardware setup and placement, various material and shielding thicknesses.
-In addition, it was instrumental in determining the rates, PMTs currents and radiation doses to ensure the various detectors
-survived the operations during the spectrometer lifetime. Before and during the experiment data taking GEMC helped prepare
-and understand the calibration and measurements of the CLAS12 detectors. Finally, GEMC is used to accurately calculate the
-CLAS12 acceptance, including detector response, geometrical acceptance, tracking efficiency, needed for the physics results
-and science goals.
+The CLAS12 Collaboration has implemented a detector simulation within the GEMC software framework \cite{GEMC}.
+During the design phase of the various CLAS12 detectors, shielding, magnets, and passive elements, GEMC allowed for studies of the
+performance of the various components with respect to the desired science objectives.
+GEMC enabled the optimization of the design from trade-off studies between variation of the hardware setup and placement
+and various materials and shielding thicknesses.
+In addition, it was instrumental in determining the rates, PMT currents, and radiation doses to ensure the various detectors
+survived operations during the expected spectrometer lifetime.
+Before and during the experiment data taking, GEMC was instrumental in preparing and understanding the calibration
+and measurements of the CLAS12 detectors.
+Finally, GEMC is used to accurately calculate the CLAS12 acceptance, including the detector response, geometrical acceptance,
+and tracking efficiency needed for the physics results and science goals.
 
 
 GEMC is a c++ framework that uses Geant4 \cite{geant4} to simulate the passage of particles through matter. It provides:
 \begin{itemize}
-	\item an application-independent geometry description
-	\item an easy interface to build / run experiments
-	\item CAD/GDML imports
+	\item an application-independent geometry description;
+	\item an easy interface to build / run experiments;
+	\item CAD/GDML imports.
 \end{itemize}
 
 The simulation parameters are stored in external databases and are used to define the Geant4 objects at run time. This includes:
@@ -43,7 +45,7 @@ The design of the framework is summarized in \F{gemcDesign}.
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/gemcDesign.png}
 	\caption{The architecture of GEMC. The simulation parameters are stored in an external database. GEMC collects
-             them and organize the necessary Geant4 ingredients used to simulate the
+             them and organizes the necessary Geant4 ingredients used to simulate the
              passage of particles through materials and sensitive regions. The hits are digitized with
              plugins defined by the user and collected in user-defined outputs.  }
 	\label{fig:gemcDesign}
