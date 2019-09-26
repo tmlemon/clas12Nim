@@ -381,7 +381,7 @@ Fig.~\ref{fig:vscm_blockdiagram} shows the hardware block diagram of the module.
 
 \subsection{SSP Board as fiber Readout Module}
 
-The SubSystem Processor (SSP \cite{ssp-ref}) was originally designed to work as part of CLAS12 Trigger System, but the optical transceivers, FPGA, and DDR2 memory are also suitable for remote front-end synchronization and readout. The SSP resides in a standard VXS crate configuration and acts as a bridge between custom front-end electronics (up to 32 remote front-ends per SSP) and the VME based CODA readout components. The RICH (\cite{rich-ref}), MVT (\cite{mvt-ref}), and FTT (\cite{ftt-ref}) CLAS12 subsystems utilize the SSP in fiber readout mode. The board description can be found in the CLAS12 Trigger System article \cite{trig-ref}.
+The SubSystem Processor (SSP \cite{ssp-ref}) was originally designed to work as part of CLAS12 Trigger System, but the optical transceivers, FPGA, and DDR2 memory are also suitable for remote front-end synchronization and readout. The SSP resides in a standard VXS crate configuration and acts as a bridge between custom front-end electronics (up to 32 remote front-ends per SSP) and the VME based CODA readout components. It collects event data from up to 32 fiber optic links, buffers events in the 4GByte DDR2 memory, and readout by the crate controller using the 2eSST VME protocol at up to to 200MB/sec. The RICH (\cite{rich-ref}), MVT (\cite{mvt-ref}), and FTT (\cite{ftt-ref}) CLAS12 subsystems utilize the SSP in fiber readout mode. The board description can be found in the CLAS12 Trigger System article \cite{trig-ref}.
 
 \subsubsection{Readout of the Micromegas trackers}
 
@@ -408,3 +408,18 @@ The 512-channel mixed analog-digital FEU includes 8 Dream ASICs, an 8-channel se
 The backend electronics is based on the standard VXS crates including the crate controller SBC, TI and SD modules and the SSP boards described in the previous sections. A dedicated SSP firmware has been developed to implement synchronous distribution of the system clock, trigger and control signals from SSP-s to FEUs over the 2.5 Gbit/s optical links. For each trigger, the SSPs perform local event building tasks assembling FEU event fragments. Multi-event buffers are formed and transferred from SSPs to the crate controller SBC over the VME64 backplane using the 2SST protocol. The transmission rates of 200 Mbyte/s are routinely achieved. A single SSP can communicate with up to 24 front end units.
 
 The SBC runs the read-out controller (ROC) application of the Clas12 CODA data acquisition framework [CODA]. It completes the data integrity checks performed in the SSP firmware, disentangles multi-event buffers, forms MVT and FTT events and sends them to the event builder over a 10 GB/s Ethernet link. The MVT and FTT readout electronics is continuously surveyed by the Clas12 detector monitoring system using the EPICS framework.
+
+\subsubsection{Readout of the Ring-Imaging Cherenkov Detector}
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/rich_tile_128ch.png}
+	\caption{RICH front-end tile (128 channel version).}
+	\label{fig:rich1}
+\end{figure}
+
+The CLAS12 Ring-Imaging Cherenkov Detector (RICH, \cite{rich-ref}) contains 391 MAPMTs, corresponding to 25024 channels of readout. The front-end electronics are equipped on-detector forming compact modules called ``tiles'', see Fig.~\ref{fig:rich1}, comprised of the MAPMT, adapter, ASIC, and FPGA boards. There are 138 tiles needed to readout a single sector of the detector (currently there is only a single sector installed). Each tile contains either 128 or 192 channels and uses the MAROC3A ASIC for gain equalization, shaping, and discrimination of PMT pulses. Each tile also has an FPGA board that performs a 1ns time-to-digital conversion measurement for leading and trailing edges of the amplified and discriminated PMT pulses.
+
+All 138 tiles are distributed across 5 SSP located in a single VXS crate using ~20m 2.5Gbps optical links. The tile FPGA buffers the TDC hits in onchip memory waiting up to ~8~$\mu$s for a fixed latency trigger. Given the low hit occupancy of events, the RICH DAQ can accept trigger rates close to 100kHz before contributing to significant deadtime. The data rate for the single RICH sector are typically under 10MB/s for CLAS12 trigger rates around 15kHz.
+
+
