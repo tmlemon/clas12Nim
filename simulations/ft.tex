@@ -23,7 +23,7 @@ The Github location of the GEMC perl API script is \url{https://github.com/gemc/
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftGeometry.png}
-	\caption{The three detectors in the FT geometry implementation in GEMC.
+	\caption{(Color Online) The three detectors in the FT geometry implementation in GEMC.
              The disks form the micromegas tracker (FT-TRK). The hodoscope (FT-HODO) crystals are the boxes just behind the tracker,
 			 while the calorimeter (FT-CAL) is encompassed in the cone. The volumes surrounding (FT-CAL) contain the electronics.}
 	\label{fig:ftGeometry}
@@ -85,8 +85,8 @@ The digitized output bank variables are summarized in Table \ref{tab:ftBank}
 	\caption{The digitized FT banks for the tracker, hodoscope and calorimeter}\label{tab:ftBank}
 \end{table}
 
-\noindent The time window  of the Tracker is set to to 132 ns: all geant4 steps within the same strip and time window will be collected on one hit.
-The time window of the hodoscope and calorimeters are set to 400 ns: all geant4 steps within the same paddles and time window
+\noindent The time window  of the Tracker is set to to 132 ns: all Geant4 steps within the same strip and time window are collected in one hit.
+The time window of the hodoscope and calorimeters are set to 400 ns: all Geant4 steps within the same paddles and time window
 will be collected on one hit in each system.
 
 The FT hit process routine locations in git are \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ft_cal_hitprocess.cc} and

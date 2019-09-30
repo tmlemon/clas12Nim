@@ -12,7 +12,7 @@ Each scintillator is a G4Box embedded in a G4Trapezoid mother volume made of air
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftofGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftofDetail.png}
-	\caption{Top: the GEMC implementation of the FTOF geometry. The paddles are G4Boxes embedded in trapezoid
+	\caption{(Color Online) Top: the GEMC implementation of the FTOF geometry. The paddles are G4Boxes embedded in trapezoid
              representing the mother volumes of each panel. A 6 GeV pion is shown, producing one hit (white circle) in each FTOF panel
              in the CLAS12 Forward Detector sector 4.
              Bottom: a zoom-in of the implementation shows the details of the individual paddles for panel-1b (front)
@@ -41,7 +41,7 @@ An example of the smeared ADC for the right paddles as a function of hit positio
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftofAtten.png}
-	\caption{The ADC of the FTOF right paddle PMTs as a function of the relative position of the hit in the paddle. The effects of attenuation
+	\caption{(Color Online) The ADC of the FTOF right paddle PMTs as a function of the relative position of the hit in the paddle. The effects of attenuation
 				length and smearing using realistic constants from the CCDB database make the FTOF simulation response very similar to the real data.}
 	\label{fig:ftofAtten}
 \end{figure}
@@ -82,7 +82,7 @@ The digitized output bank variables are summarized in Table \ref{tab:ftofBank}.
 \end{table}
 
 
-The time window  of the FTOF is set to 400 ns: all geant4 steps within the same paddle and time window will be collected on one hit.
+The time window  of the FTOF is set to 400 ns: all Geant4 steps within the same paddle and time window are collected in one hit.
 The FTOF hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ftof_hitprocess.cc}
 
 

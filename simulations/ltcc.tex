@@ -15,7 +15,7 @@ The \F{ltccGeometry} shows details of the geometry implementation.
 	\centering
 	\includegraphics[width=0.99\columnwidth, keepaspectratio]{img/ltccGeometry.png}
 	\includegraphics[width=0.99\columnwidth, keepaspectratio]{img/ltccDetail.png}
-	\caption{Top: a 6 GeV pion passing through the LTCC gas volume and emitting Cherenkov photons. The light cone
+	\caption{(Color Online) Top: a 6 GeV pion passing through the LTCC gas volume and emitting Cherenkov photons. The light cone
             bounces from the elliptical to the hyperbolic to the Winston cone and finally reaches the PMT.
             Bottom: details of the hardware inside the LTCC simulation system: the box frame and the WC are
             imported from CAD. The mirrors, shields, and PMTs are made with Geant4 volumes. One of the PMT shield
@@ -63,6 +63,6 @@ The digitized output bank variables are summarized in Table \ref{tab:ltccBank}.
 	\caption{The digitized LTCC bank.}\label{tab:ltccBank}
 \end{table}
 
-The time window  of the LTCC is set to 5 ns: all geant4 steps within the same PMT and time window will be collected on one hit.
+The time window  of the LTCC is set to 5 ns: all Geant4 steps within the same PMT and time window are collected in one hit.
 
 The LTCC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ltcc_hitprocess.cc}

@@ -14,7 +14,7 @@ junctions, see \F{ctofGeometry} bottom.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ctofGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ctofDetail.png}
-	\caption{Top: the GEMC implementation of the CTOF geometry. The paddles and light guides are imported directly from the engineering model.
+	\caption{(Color Online) Top: the GEMC implementation of the CTOF geometry. The paddles and light guides are imported directly from the engineering model.
 			 The black line is a 2 GeV proton leaving a hit (white circle) in one of the paddles.
 			 Bottom: a zoom-in of the implementation shows the details of downstream scintillator/light guide junctions:
 			 the scintillator bend near the junction, the light guide starting with a a rectangular shape, and morphing into a circular cross section.}
@@ -73,7 +73,7 @@ The digitized output bank variables are summarized in Table \ref{tab:ctofBank}.
 	\caption{The digitized CTOF bank.}\label{tab:ctofBank}
 \end{table}
 
-The time window of the CTOF is set to to 400 ns: all geant4 steps within the same paddle and time window will be collected on one hit.
+The time window of the CTOF is set to to 400 ns: all Geant4 steps within the same paddle and time window are collected in one hit.
 
 The CTOF hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ctof_hitprocess.cc}
 
