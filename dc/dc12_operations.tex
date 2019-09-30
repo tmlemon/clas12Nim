@@ -13,17 +13,14 @@ mixtures.  Ultimately a 90$\%$ argon - 10$\%$ CO$_2$ mixture was employed
 for several reasons: the gas has a fairly high saturated drift velocity 
 ($>$ 5~cm/$\mu$s), and it has an operating voltage plateau of several hundred 
 volts before breakdown occurs.  The 90$\%$/10$\%$ mixture 
-provides good efficiency, adequate resolution, and reasonable collection times.
-
-
-
+provides good efficiency and resolution, and reasonable collection times.
 
 \subsection{Selecting the Proper Operating Voltage}
 
 In this section we discuss our operating voltages and how it was determined.
-First, we discuss how we divide the total voltage between our sense, field 
+First, we discuss how we divided the total voltage between our sense, field 
 and guard wires in order to mimic a cell layout with an infinite number of
-layers, to achieve a situation in which all wires, regardless of layer, have
+layers, achieving a situation in which all wires, regardless of layer, have
 the same gain.  Then we discuss our choice of the total sense to field
 wire difference in voltage; including the resulting gas gain and efficiency.
 
@@ -36,7 +33,7 @@ This mixed-voltage scheme has a couple of advantgages over a scheme in
 which the field wires, for example, are held at ground potential:
 \begin{itemize}
 \item fewer field lines run from the sense wire to the endplate which
-is grounded.  This reduces the likelihood of producing a `Malter effect'
+is grounded.  This reduces the likelihood of producing a ``Malter effect''
 (Ref.~\cite{malter}) in which an accidental source of cathode emission
 (due to an insulating contaminant on the endplate, for example) causes
 a self-sustaining discharge
@@ -62,9 +59,6 @@ electric field through the bag which is the case if the enclosed net charge
 is zero.
 So, the ratio of voltages from Sense to Field to Guard wires is 1 : -1/2 : 5/14.
 
-
-
-
 \subsection{Determining the Operating Values of the Discriminator Thresholds and High Voltage Settings}
 
 We set the discriminator levels in the DCRB's to reduce the accidental hit rate (with no beam) due to electronic
@@ -79,7 +73,7 @@ We determined the layer efficiency using the `excluded layer' method.  In one su
 segments by our usual fitting method, but ignoring the data from a pre-selected layer (layer 3, for example).  We then
 projected the track segment through that layer and determined whether or not the indicated wire (or an adjacent one) had a good hit.
 Fig.~\ref{effcy-vs-voltage} shows the `plateau curve' of efficiency plotted versus voltage for one typical chamber 
-and superlayer.  The layer efficiency at the chosen operating high voltage poiont was between 97\% and 98\%.
+and superlayer.  The layer efficiency at the chosen operating high voltage point was between 97\% and 98\%.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -110,7 +104,7 @@ aware of any equipment malfunctions.
 
 Our first level of monitoring comes from our hardware alarms; see our section on
 Gas, LV and HV Utilities to see the control panels for our gas system and power
-supplies.  Should these malfunction, an alarm is instantly shown on alarm summary
+supplies.  Should these malfunction, an alarm is instantly shown on an alarm summary
 screen with GUI-driven information on the lower-lying hardware monitoring screens.
 An experimenter is thus able to detect an alarm and in most cases, reset the
 alarming supply, within minutes.
@@ -120,12 +114,14 @@ Of these, the most important are our so-called ``Occupancy Plots'', which
 are simply 2-dimensional histgrams of wire hits.  Malfunctions show up
 as depeleted areas on the plots.
 
-Fig.~\ref{layer-vs-wire} is a histogram of wire hits for all of
-the drift chamber wires; 24192 in total.  At a glance, one can see
-that $>99\%$ of wires are functioning properly.  A few areas on inefficiency
-are visible in the upper middle part of the graph.  These correspond to
-an area in the HV was disconnected to stop excessive current draw due
-to a broken wire.
+Fig.~\ref{layer-vs-wire} is a histogram of wire hits plotted as
+a function of layer (1 - 36 on the vertical scale) for each of the six
+sectors.  Note a R1 chamber contains layers 1 - 12, an R2 layers 13-24 and an 
+R3 layers 25 - 36. The horizontal axis shows the wire number in each layer (1 - 112).  
+At a glance, one can inspect our ~ 24,000 wires and determine
+that $>99\%$ of wires are functioning properly.  A few areas of inefficiency
+are visible in the upper middle graph.  These correspond to
+two areas in which the HV was disconnected to stop excessive current draw.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -135,7 +131,7 @@ to a broken wire.
 {\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/layer-vs-wire.png}}}
 \end{picture}
 \caption{\small{An ``occupancy plot'' showing the number of wire hits accumulated over many events.
-A few malfunctioning wire groups can be seen in the upper middle of the graph.}}
+A few malfunctioning wire groups can be seen in the upper middle graph.}}
 \label{layer-vs-wire}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
