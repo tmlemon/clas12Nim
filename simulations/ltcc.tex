@@ -1,6 +1,6 @@
 \subsection{Low Threshold Cherenkov Counter}
 
-\subsection{Geometry}
+\subsubsection{Geometry}
 The LTCC mirror geometry is implemented through the native GEMC geometry API. The elliptical mirrors are made through a subtraction of
 two G4Ellipsoids. The hyperbolic mirrors are built using Geant4 polycones approximating the mathematical shape using about 30 segments.
 The cylindrical mirrors are made of G4Tubes.
@@ -15,7 +15,7 @@ The \F{ltccGeometry} shows details of the geometry implementation.
 	\centering
 	\includegraphics[width=0.99\columnwidth, keepaspectratio]{img/ltccGeometry.png}
 	\includegraphics[width=0.99\columnwidth, keepaspectratio]{img/ltccDetail.png}
-	\caption{Top: a 6 GeV pion passing through the LTCC gas volume and emitting Cherenkov photons. The light cone
+	\caption{(Color Online) Top: a 6 GeV pion passing through the LTCC gas volume and emitting Cherenkov photons. The light cone
             bounces from the elliptical to the hyperbolic to the Winston cone and finally reaches the PMT.
             Bottom: details of the hardware inside the LTCC simulation system: the box frame and the WC are
             imported from CAD. The mirrors, shields, and PMTs are made with Geant4 volumes. One of the PMT shield
@@ -35,7 +35,7 @@ the digitization routine.
 The Github location of the GEMC perl API script is  \url{https://github.com/gemc/detectors/tree/master/clas12/ltcc}.
 
 
-\subsection{Digitization}
+\subsubsection{Digitization}
 
 Photons that impinge on the PMT faces are processed with the digitization routine.
 Each photon collected is input to the quantum efficiency algorithm at its wavelength to decide if it is detected.
@@ -63,6 +63,6 @@ The digitized output bank variables are summarized in Table \ref{tab:ltccBank}.
 	\caption{The digitized LTCC bank.}\label{tab:ltccBank}
 \end{table}
 
-The time window  of the LTCC is set to 5 ns: all geant4 steps within the same PMT and time window will be collected on one hit.
+The time window  of the LTCC is set to 5 ns: all Geant4 steps within the same PMT and time window are collected in one hit.
 
 The LTCC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/ltcc_hitprocess.cc}

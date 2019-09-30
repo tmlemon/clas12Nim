@@ -1,12 +1,12 @@
 \subsection{Solenoid and Torus Magnets}
 
 
-\subsection{Geometry}
+\subsubsection{Geometry}
 The solenoid geometry is produced with the GEMC perl API. The solenoid is a single polycone volume, shown in \F{solenoid}.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/solenoid.png}
-    \caption{The solenoid volume surrounding the CLAS12 Central Detector.}
+    \caption{(Color Online) The solenoid volume surrounding the CLAS12 Central Detector.}
 	\label{fig:solenoid}
 \end{figure}
 
@@ -27,7 +27,7 @@ The torus geometry is shown in \F{torus}.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/torusGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/torusDetail.png}
-	\caption{Top: the GEMC implementation of the torus hardware. The volumes are imported from the CAD engineering model.
+	\caption{(Color Online) Top: the GEMC implementation of the torus hardware. The volumes are imported from the CAD engineering model.
              The stainless steel vacuum jacket embeds the Geant4 coil volumes.
 			 Bottom: a section view of the torus in the vicinity of the beamline. The warm and cold hubs are visible, along with the
 			 tungsten shielding in the innermost part of the hub.}
@@ -35,7 +35,7 @@ The torus geometry is shown in \F{torus}.
 \end{figure}
 
 
-\subsection{Magnetic Field Maps} \label{clas12FieldMaps}
+\subsubsection{Magnetic Field Maps} \label{clas12FieldMaps}
 
 The CLAS12 torus and solenoid field maps are imported into the simulation using ascii files. Both fields can be scaled by an arbitrary factor.
 Both fields are defined in the Hall-B coordinate system and both can be shifted and tilted by additional delta amounts.
@@ -76,7 +76,7 @@ of the solenoid in providing electromagnetic shielding to M\"oller electrons.
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/solenoidOFF.png}
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/solenoidON.png}
-    \caption{An 11 GeV electron beam impinges on a 5-cm long liquid-hydrogen target. The SVT detector is shown.
+    \caption{(Color Online) An 11 GeV electron beam impinges on a 5-cm long liquid-hydrogen target. The SVT detector is shown.
              At the full 10$^{35}$ cm$^{-2}$ s$^{-1}$ luminosity, this correspond to 124,000 electrons in a 250 ns time window.
 			 Top: no solenoid field. One full luminosity event in a 250 ns time window produce a storm of M\"oeller electrons that
              saturates the SVT. Each red point is a recorded hit above the SVT threshold.
@@ -94,7 +94,7 @@ movements or imperfections \cite{GhoshalSolenoid}.
 
 The field map has 251 points along the $z$-axis, from 1 m to 3 m. It has 2501 points in the transverse coordinate, from 0 to 5 m.
 It has 16 azimuthal points from 0\mdeg to 30\mdeg. The field grid values are linearly interpolated to the $(x,y,z)$
-coordinate requested by geant4.
+coordinate requested by Geant4.
 
 The torus field in the sector mid-plane is perpendicular to the $z$-axis and is typically $2.058$ T.
 Table \ref{tab:torMap} shows the field map ascii data structure.

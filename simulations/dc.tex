@@ -1,6 +1,6 @@
 \subsection{Drift Chambers (DC)}
 
-\subsection{Geometry}
+\subsubsection{Geometry}
 
 The DC geometry is implemented through the java geometry service.
 The service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
@@ -18,7 +18,7 @@ The wire identification is performed in the Process ID routine.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcGeometry.png}
 %	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcDetail.png}
-	\caption{The GEMC implementation of the DC geometry. The solenoid volume and HTCC are also visible.
+	\caption{(Color Online) The GEMC implementation of the DC geometry. The solenoid volume and HTCC are also visible.
              Geant4 trapezoids are the mother volumes corresponding to DC regions 1, 2, and 3. The track is negative pion,
 			 hitting the various layers inside each region. The hit are indicated by the black markers. Due to the high DC
              efficiency most tracks produce at least one hit each layer (12 hits / region).
@@ -30,13 +30,13 @@ The Github location of the GEMC perl API script is \url{https://github.com/gemc/
 The java geometry service is at
 \url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/DCGeant4Factory.java}.
 
-\subsection{Process ID}
+\subsubsection{Process ID}
 At each Geant4 step, the local vertical position $y$ in the DC layer volume is computed. Knowing the distance
 between each wire $\delta Y$ (given by the total height of the trapezoid divided by the number of wires, $112$),
 The wire sagging due to gravity and mechanical deflections of the wire endplates due to the tension load is not taken into account.
 The wire ID is given by $n_i = y / \delta y$.
 
-\subsection{Digitization}
+\subsubsection{Digitization}
 
 First, the distance of closest approach ($DOCA$) is extrapolated for the hit.
 At each Geant4 step, the distance of the track from the wire is calculated.
@@ -102,7 +102,7 @@ The digitized output bank variables are summarized in Table \ref{tab:dcBank}.
 \end{table}
 
 
-The simulation time window of the DC is set to 500 ns: all geant4 steps within the same cell and time window will be collected on one hit.
+The simulation time window of the DC is set to 500 ns: all Geant4 steps within the same cell and time window are collected in one hit.
 The actual electronic time window is set to 250, 500 and 750 ns for Regions 1, 2, and 3 respectively. This must be taken into account
 The DC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/dc_hitprocess.cc}
 
@@ -126,7 +126,7 @@ is considered an optimal compromise between luminosity and reconstruction effici
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcOccupancy.png}
-	\caption{Results for DC rates for electron out-bending in the torus field.
+	\caption{(Color Online) Results for DC rates for electron out-bending in the torus field.
 		     Top: the occupancies are below $3\%$ for region 1 and below $1.2\%$ for region 3. Bottom: layer
 		     versus wire hit distribution. Results for the electron in-bending polarity shows very similar distributions.}
 	\label{fig:dcOccupancy}

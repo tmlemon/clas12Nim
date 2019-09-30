@@ -1,6 +1,6 @@
 \subsection{High Threshold Cherenkov Counter (HTCC)}
 
-\subsection{Geometry}
+\subsubsection{Geometry}
 
 The HTCC geometry is implemented through the native GEMC geometry API. The elliptical mirrors are made through a subtraction of
 two G4Ellipsoids (a Geant4 volume outlined by the 3D ellipse equation).
@@ -21,7 +21,7 @@ the digitization routine.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/htccGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/htccDetail.png}
-	\caption{Top: an electron passing through the HTCC gas volume and emitting Cherenkov photons. The light cone
+	\caption{(Color Online) Top: an electron passing through the HTCC gas volume and emitting Cherenkov photons. The light cone
             hits two mirrors and it is re-directed to the corresponding PMTs.
             Bottom: details of the mirror implementation. These are subtractions of ellipsoid Geant4 volumes along
             certain planes between two adjacent mirror substrates. Each plane is defined by a second order
@@ -34,7 +34,7 @@ The Github location of the GEMC perl API script is \url{https://github.com/gemc/
 
 
 
-\subsection{Digitization}
+\subsubsection{Digitization}
 Photons that impinge on the PMT faces are processed with the digitization routine.
 Each photon collected is input to the quantum efficiency algorithm at its wavelength to decide if it is finally detected.
 
@@ -59,5 +59,5 @@ The digitized output bank variables are summarized in Table \ref{tab:htccBank}.
 	\caption{The digitized HTCC bank.}\label{tab:htccBank}
 \end{table}
 
-The time window  of the HTCC is set to 5 ns: all geant4 steps within the same PMT and time window will be collected on one hit.
+The time window  of the HTCC is set to 5 ns: all Geant4 steps within the same PMT and time window are collected in one hit.
 The HTCC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/htcc_hitprocess.cc}
