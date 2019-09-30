@@ -21,19 +21,22 @@
 
 \author[JLab]{V. Ziegler\thanksref{corresponding}},
 \author[JLab]{N. Baltzell},
+\author[Saclay]{F. Boss\`u},
 \author[JLab]{D.S. Carman},
-\author[Saclay]{P. Chatagnon},
+\author[IPNO]{P. Chatagnon},
 \author[INFN]{R. De Vita},
+\author[Saclay]{M. Defurne},
 \author[JLab]{G. Gavalian},
 \author[JLab]{V. Gyurjyan},
 \author[JLab]{N. Markov},
 \author[JLab]{M.D. Mestayer}, 
-\author[Saclay]{S. Niccolai}, and
+\author[IPNO]{S. Niccolai}, and
 \author[Glasgow]{D. Sokhan}
 
 \address[JLab]{Thomas Jefferson National Accelerator Facility, Newport News, VA 23606, USA}
 \address[INFN]{INFN, Sezione di Genova, 16146 Genova, Italy}
-\address[Saclay]{Institut de Physique Nucl\'eaire, CNRS-IN2P3, Univ. Paris-Sud, Universit\'e Paris-Saclay,
+\address[Saclay]{CEA-Saclay, Univ. Paris-Sud, Universit\'e Paris-Saclay, Gif-sur-Yvettes, France}
+\address[IPNO]{Institut de Physique Nucl\'eaire, CNRS-IN2P3, Univ. Paris-Sud, Universit\'e Paris-Saclay,
   91406 Orsay Cedex, France}
 \address[Glasgow]{University of Glasgow, Glasgow G12 8QQ, United Kingdom}
 \thanks[corresponding]{Corresponding author. Address: 12000 Jefferson Ave., Newport News, VA; 
@@ -365,6 +368,96 @@ and is identified as an electron.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Central Tracking}
+
+Tracks whose angle with the beam direction is between $40^\circ$ and $135^\circ$ are reconstructed by the so called 
+Central Vertex Tracker (CVT). The CVT consists of twelve cylindrical layers of tracking detectors, numeroted from 1 for 
+the most inner layer to 12 for the most outer layer. The subset of tracking detectors forming layer 1 to 6 are silicon 
+strip detectors and will be referred as the Silicon Vertex Tracker (SVT) described in~\cite{svt-nim}. The layers from 7 
+to 12 are made of micromegas detectors and will be referred as the Barrel Micromegas Tracker (BMT) described 
+in~\cite{mm-nim}. The entire CVT surrounds the target and sits in a solenoid magnet able to produce a 5T-magnetic 
+field.  
+
+The revolution axis of the CVT coincides with the ideal beam axis which defines the z-axis of the CVT frame. The y-axis 
+points upward in the laboratory frame and the x-axis is defined such as the unit vectors of each axis form an direct 
+orthogonal basis. The origin of the CVT frame matches the center of the experimental Hall B. 
+
+The first step of the tracking algorithm is the formation of clusters from the raw hits. The SVT raw 3-bit ADC values 
+are transformed into deposited charge by randomly sampling a Landau distribution fitted on test-bench data. A cluster 
+is a collection of contiguous hit strips. Its centroid is either given by a spatial information (a z-coordinate for 
+BMTC, xy-coordinates for BMTZ) or an averaged strip number for SVT. This centroid is derived by performing an average of 
+the relevant strip information, weighted by the maximum of the ADC pulse for micromegas strips or the equivalent 
+deposited charge for the SVT.
+The time information associated to each hit is not used at the moment.
+
+Before feeding all the CVT clusters to a pattern recognition algorithm, spatial coordinates must be associated to the 
+SVT clusters. As described in~\cite{svt-nim}, SVT layers are mechanically paired and consequently form three regions. 
+The readout strips of the inner and outer layer of each region make a $3^\circ$-stereo angle. By associating one 
+cluster of the inner layer with one cluster of the outer layer, and by assuming that an infinite momentum track crossed 
+perpendicularly the two layers, a preliminary candidate of the xyz-coordinates of the particle between the two layers 
+is derived for this cluster pair. This pairing is performed over all clusters of inner layer with all clusters of the 
+outer layer. Pairs whose xyz-coordinates lives outside of the SVT sensor are automatically removed from the list of 
+xyz-candidate list. If one of the two layer of a region has not seen the particle, then the information of the active 
+layer is simply ignored for the reamining of the reconstruction process.
+
+The trajectory of a charged particle in a solenoidal magnetic field is an helix. Because BMT detectors offers either 
+xy- or z-coordinates but never both, the pattern recognition cannot be performed in 3 dimensions. For particles of 
+large enough momentum ($p_\perp \gtrsim 0.25 \text{GeV}/c$ for a 5T-solenoidal magnetic field), the xy-projection of an 
+helix is a circle, and the $rz$-projection is a straight line (where $r = \sqrt{x^2 + y^2}$). Therefore, a first 
+pattern recongition algorithm is run in xy-plane to look for circles and then a second pattern recognition algorithm is 
+run in rz-plane to search for straight lines.   
+
+The two pattern recognition algorithms are a modified version of the cellular automaton (CA) algorithm developed by the 
+Hera-B collaboration~\cite{CA-HeraB}. Here, the elementary cell of the CA is defined as a segment that connects two 
+2D-points.
+In the $(x,y)$ plane, cells are formed with SVT and BMTZ xy-information. Two xy-clusters form a cell if the angular 
+distance between them is lower than a threshold. This threshold has been derived by maximizing the reconstruction 
+efficiency on a single track Monte-Carlo simulation with background extracted from the data. Two clusters cannot form a 
+cell if they are separated by more than one layer. Finally,The CA is run sector-by-sector in the BMT and, as a 
+consequence, a cell cannot be formed with two clusters living in different BMT sectors. 
+The subsequent step is the neighbor finding. A cell ``a'' is neighbor of a cell ``b'' if they share one cluster and if
+the layer numbers in ``b'' are higher than the ones in ``a''. Tuned on single-track Monte-Carlo simulation without 
+background, cuts on the dot product between the cell directions are applied  as neighbor-forming criteria.
+Now that the neighborhood of a cell is defined, the CA is evolved over $N$-evolution stage: For evolution stage $n$, 
+the state of all cells is updated according to $S_n = max(S_{n-1}^j) + 1$, where $S_{n-1}^j$ is the state of the 
+j$^{th}$-neighbor of the considered cell at evolution time $n-1$. Therefore, at evolution stage $N$, the cells with the 
+highest state are outer than the cells with a smalle state.
+\color{red} \textbf{Caption of a figure to be produced to explain CA evolution} \color{black}
+
+Track candidates in the $(x,y)$ plane are then formed starting from the highest state cells and following the neighbor 
+chain with $\Delta S = 1$. In case of multiple neighboring cells with the same state, the one that has the lower dot 
+product with the original cell is chosen.
+
+Due to the poor $z$-resolution of the preliminary SVT 3D-points, the search for candidates in the $(z,r)$ plane is 
+performed by only using 
+the z-clusters of BMT. The CA algorithm trivially returns the track segments of two or three BMTC clusters.
+Due to the orthogonality of the BMTC and BMTZ, all the $(z,r)$ segments of a BMT sector are combined with the $(x,y)$ 
+candidates in the same sector. A line is fitted on the BMTC hits and its intersections with the three SVT regions are 
+computed. If the distance between the expected intersection and the preliminary 3D-point in the SVT region is greater 
+than two millimeters, then the two SVT clusters forming this preliminary point are removed from the track candidate.
+
+Each track candidate is then passed to a Kalman filter. The state vector to describe an helix is formed by five 
+parameters $(\varphi_0, d_0, \kappa, z_0, tan(\theta_{dip}))$, where:
+\begin{itemize}
+\item $d_0$ is the $(x,y)$ distance of closest approach to the CVT revolution axis,
+  \item $\varphi_0 = atan(p_y/p_x)$ at closest approach the the CVT revolution axis, 
+  \item $\kappa=Q/p_\perp$ and $Q$ is the electric charge and $p_\perp=\sqrt{p_x^2+p_y^2}$,
+  \item $z_0$ is the distance along the $z$ axis to the CVT center,
+  \item and $\theta_{dip}$ is the polar angle between the track and the xy-plane.
+\end{itemize}
+
+To initialize the Kalman Filter, a first estimate of these parameters are obtained from:
+\begin{itemize}
+\item a circle fit in the xy-plane with SVT preliminary 3D-points and BMT xy-clusters for $d_0$, $\varphi_0$ and 
+$\kappa$. To improve the initialization of the fit, the point (0,0) is included in the fit with an accuracy of 100~$\mu 
+m$.
+\item a line fit in rz-plane using only z-clusters of Micromegas to initialize $z_0$ and $\theta_{dip}$.
+\end{itemize}
+The covariance matrix of the two fits are merged into a 5$\times$5 matrix to initialize the covariance matrix for the 
+Kalman filter. Following transport equations in~\ref{ILC-Tracking}, the state vector is propagated from the CVT 
+revolution axis to the most outer layer of CVT, filtering at each measurement composing the track candidate. Once the 
+last measurement is reached, state vector and covariance matrix are brought back to the CVT revolution axis as they are 
+and the transport/filtering process is re-run. A maximum of five iterations is performed to make sure of the 
+convergence of the filtering process. 
 
 \subsubsection{Tracking Efficiency and Resolutions}
 
@@ -920,6 +1013,14 @@ Meth. A, (2020). (see this issue)
 
 \bibitem{spiri}
 Alexander Spiridonov, Optimized Integration of the Equations of Motion of a Particle in the HERA-B Magnet
+
+\bibitem{CA-HeraB}
+  I.~Abt, I.~Kisel, S.~Masciocchi and D.~Emelyanov,
+  ``CATS: A cellular automaton for tracking in silicon for the HERA-B vertex detector,''
+  Nucl.\ Instrum.\ Meth.\ A {\bf 489} (2002) 389.
+  doi:10.1016/S0168-9002(02)00790-8
+  %%CITATION = doi:10.1016/S0168-9002(02)00790-8;%%
+  %26 citations counted in INSPIRE as of 27 Sep 2019
 
 \end{thebibliography}
 
