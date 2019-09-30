@@ -1,6 +1,6 @@
 \subsection{Low Threshold Cherenkov Counter}
 
-\subsection{Geometry}
+\subsubsection{Geometry}
 The LTCC mirror geometry is implemented through the native GEMC geometry API. The elliptical mirrors are made through a subtraction of
 two G4Ellipsoids. The hyperbolic mirrors are built using Geant4 polycones approximating the mathematical shape using about 30 segments.
 The cylindrical mirrors are made of G4Tubes.
@@ -35,7 +35,7 @@ the digitization routine.
 The Github location of the GEMC perl API script is  \url{https://github.com/gemc/detectors/tree/master/clas12/ltcc}.
 
 
-\subsection{Digitization}
+\subsubsection{Digitization}
 
 Photons that impinge on the PMT faces are processed with the digitization routine.
 Each photon collected is input to the quantum efficiency algorithm at its wavelength to decide if it is detected.

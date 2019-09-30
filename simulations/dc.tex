@@ -1,6 +1,6 @@
 \subsection{Drift Chambers (DC)}
 
-\subsection{Geometry}
+\subsubsection{Geometry}
 
 The DC geometry is implemented through the java geometry service.
 The service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
@@ -30,13 +30,13 @@ The Github location of the GEMC perl API script is \url{https://github.com/gemc/
 The java geometry service is at
 \url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/DCGeant4Factory.java}.
 
-\subsection{Process ID}
+\subsubsection{Process ID}
 At each Geant4 step, the local vertical position $y$ in the DC layer volume is computed. Knowing the distance
 between each wire $\delta Y$ (given by the total height of the trapezoid divided by the number of wires, $112$),
 The wire sagging due to gravity and mechanical deflections of the wire endplates due to the tension load is not taken into account.
 The wire ID is given by $n_i = y / \delta y$.
 
-\subsection{Digitization}
+\subsubsection{Digitization}
 
 First, the distance of closest approach ($DOCA$) is extrapolated for the hit.
 At each Geant4 step, the distance of the track from the wire is calculated.

@@ -35,7 +35,7 @@ The geometry is summarized in \F{bmtGeometry}. The strip identification is perfo
 \end{figure}
 
 
-\subsection{Process ID}
+\subsubsection{Process ID}
 At each Geant4 step, the local coordinates in the sensor volume are used to calculate the strip number.
 The algorithm includes the Lorentz angle based on the magnetic field strength, the particle direction,
 the pitch angle between the strips, and the dead zones of the sensitive parts.
@@ -44,7 +44,7 @@ is deposited onto one strip or distributed among several to account for the ener
 
 
 
-\subsection{Digitization}
+\subsubsection{Digitization}
 
 The Micromegas digitization provides the ADC value calculated using the total energy deposited (after hit sharing).
 There is no timing information in the output.
