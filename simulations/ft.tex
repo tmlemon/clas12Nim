@@ -6,46 +6,50 @@
 The FT consists of three subsystems:
 
 \begin{itemize}
-	\item a micromegas tracker (FT-TRK)
-	\item a hodoscope (FT-HODO)
- 	\item a calorimeter (FT-CAL)
+	\item a micromegas tracker (FT-TRK);
+	\item a hodoscope (FT-HODO);
+ 	\item a calorimeter (FT-CAL).
 \end{itemize}
 
-The three structures are implemented in GEMC using the native perl API script, except for the inner shield (see beamline),
-which comes from the CAD engineering mode.
+The three subsystems are implemented in GEMC using the native perl API script, except for the inner shield (see Section \ref{sec:beamline}),
+which comes from the CAD engineering model.
 The FT geometry is shown in \F{ftGeometry}.
 
 \subsubsection{Digitization}
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftGeometry.png}
-	\caption{The three detectors in the FT geometry implementation in GEMC.
-             The disks form the micromegas tracker (FT-TRK). The hodoscope (FT-HODO) crystals are the boxes just behind the tracker,
-			 while the calorimeter (FT-CAL) is encompassed in the cone. The volumes surrounding (FT-CAL) contain the electronics.}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftDetails.png}
+	\caption{Top: the FT detector implementation in GEMC. The boxes surrounding FT-CAL contain the electronics.
+			 Bottom: details of the the three subsystems implementation. As seen by the beam (impinging from the left):
+             the disks form the FT-TRK; the FT-HODO scintillators just behind the tracker;
+			 and the FT-CAL crystals. }
 	\label{fig:ftGeometry}
 \end{figure}
 
-For FTCal hits, the energy deposited is converted first to the charge produced at the end of the electronics chain composed
-by the photosensor (APD) and pre-amplifier, and then to ADC.
+The FT-TRK digitization provides the ADC value calculated using the total energy deposited (after hit sharing).
+There is no timing information in the FT-TRK output.
+
+For FT-CAL hits, the energy deposited is converted first to the charge produced at the end of the electronics chain composed
+by an avalanche photodiode (APD) and pre-amplifier, and then to an ADC.
 The first conversion is based on the measured charge for cosmic rays that deposit a known energy in the crystals,
 while the second conversion is based on the FADC conversion factor. A smearing on the final ADC values is added,
 accounting for the Poisson distribution of photo-electrons produced by the photosensor, the Gaussian noise of the
-photosensor and of the preamplifier. All parameters, the number of photo-electrons per MeV of energy deposited,
+photosensor, and of the preamplifier. All parameters, the number of photo-electrons per MeV of energy deposited,
 the RMS width of the APD noise, and of the preamplifier input noise, have been tuned to the experimental data.
 
-The same approach is adopted to process FTHodo hits, in which the deposited energy is first converted to charge and then to ADC.
+The same approach is adopted to process FT-HODO hits, in which the deposited energy is first converted to charge and then to ADC.
 The smearing in this case accounts only for the Poisson distribution of the measured number of photo-electrons,
 which dominates over other sources because of the relatively small number of photo-electrons per MeV of energy deposition.
 
-The TDC of FTCal hits is computed from the time of the energy deposition, accounting for the speed of the scintillation light in
+The TDC of FT-CAL hits is computed from the time of the energy deposition, accounting for the speed of the scintillation light in
 the crystal and the distance to the photosensor, assuming a known time-to-TDC conversion factor. A Gaussian smearing on the
-resulting TDC is added based on a fixed RMS resoloution derived from the experimental measurements.
+resulting TDC is added based on a fixed RMS resolution derived from the experimental measurements.
 
-Similarly, the TDC of FTHodo hits is derived from the time of a given energy deposition, adding a fixed offset before the
+Similarly, the TDC of FT-HODO hits is derived from the time of a given energy deposition, adding a fixed offset before the
 conversion from time to TDC and a Gaussian smearing. As in previous cases, all relevant parameters have been tuned to the
 observed detector response.
-
 The digitized output bank variables are summarized in Table \ref{tab:ftBank}
 
 \begin{table}[h]
@@ -67,7 +71,7 @@ The digitized output bank variables are summarized in Table \ref{tab:ftBank}
                           layer  &      layer      \\
                       component  &  component      \\
                             ADC  &        ADC      \\
-                            tdc  &        TDC      \\
+                            TDC  &        TDC      \\
 			\hline
 								 & Calorimeter     \\
 			\hline
@@ -75,11 +79,11 @@ The digitized output bank variables are summarized in Table \ref{tab:ftBank}
 				   	      layer  &      layer      \\
 					  component  &  component      \\
 							ADC  &        ADC      \\
-							tdc  &        TDC      \\
+							TDC  &        TDC      \\
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{The digitized FT banks for the tracker, hodoscope and calorimeter}\label{tab:ftBank}
+	\caption{The digitized FT banks for the tracker, hodoscope, and calorimeter}\label{tab:ftBank}
 \end{table}
 
 \noindent The time window  of the Tracker is set to to 132 ns: all Geant4 steps within the same strip and time window are collected in one hit.
