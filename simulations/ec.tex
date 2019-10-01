@@ -6,16 +6,16 @@ Both the EC and PCAL calorimeter geometry is implemented through the java geomet
 The service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
 
 All scintillators are Geant4 volumes. The paddles are assigned the scintillator material and associated with the EC hit process routine.
-Each scintillator is a G4Trap embedded in a G4Trapezoid mother volume made of air, see \F{ecGeometry}.
+Each scintillator is a trapezoid embedded in a trapezoid mother volume made of air (\F{ecGeometry}).
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ecGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ecDetail.png}
 	\caption{Top: a 4 GeV electron track (dotted line) showering in the GEMC implementation of the EC geometry.
-            The paddles are G4Boxes, embedded in a trapezoid representing the mother volume of each panel.
-            The scintillator layers alternate with a layer of lead, for a sampling fraction of about 0.3.
-            Bottom: a zoom-in transverse view of the electron shower.}
+        	 Beam is incident from the left.
+             The scintillator layers alternate with a layer of lead, for a sampling fraction of about 0.3.
+             Bottom: a zoom-in transverse view of the electron shower.}
 	\label{fig:ecGeometry}
 \end{figure}
 
@@ -32,29 +32,27 @@ Each scintillator is a G4Trap embedded in a G4Trapezoid mother volume made of ai
 
 \subsubsection{Digitization}
 The digitization is the same for both the EC and the PCAL calorimeters.
-
 The energy deposited is reduced based on the position on the scintillator using the calibrated attenuation length.
 A number of photoelectrons is generated using a Poissonian distribution based on the attenuated energy.
 The scintillator resolution $\sigma_{res}$ is obtained from the calibration constants, after the fluctuations in PMT gain
 are taken into account using a Gaussian form with $\sigma_{res}$. A conversion factor is used to produce an ADC output.
 
 The absolute hit time is corrected using the attenuation length and an additional factor that accounts for the time-walk correction.
-
 The digitized output bank variables for both systems are summarized in Table \ref{tab:ecBank}.
 
 \begin{table}[h]
 	\begin{center}
 		\begin{tabular}{| c | c | c |}
 			\hline \hline
-			Variable & Description                                         \\
+			Variable &                Description   \\
 			\hline
-             sector  &                                     sector number   \\
-              stack  &                                      stack number   \\
-               view  &                                              view   \\
-              strip  &                                      strip number   \\
-                ADC  &                                          ADC Left   \\
-                TDC  &                                         TDC Right   \\
-               hitn  &                                        hit number   \\
+             sector  &              sector number   \\
+              stack  &  scintillator layer number   \\
+               view  &                       view   \\
+              strip  &               strip number   \\
+                ADC  &                        ADC   \\
+                TDC  &                        TDC   \\
+               hitn  &                 hit number   \\
 			\hline \hline
 		\end{tabular}
 	\end{center}
