@@ -44,10 +44,10 @@ e-mail: carman@jlab.org.}
 %\maketitle
 
 \begin{abstract}
-  The event reconstruction framework for the large-acceptance CLAS12 spectrometer is described including
-  the data formats, the software tools, the data processing scheme, code management, and the algorithms
-  for event reconstruction associated with the individual detector subsystems and the overall scheme for the
-  data event builder.
+  We describe offline event reconstruction for the Compact Large Acceptance Spectrometer at 12 GeV.
+  The present an overview of the offline reconstruction framework and software tools.  
+  We describe the algorithms developed for the individual detector subsystems and the overall scheme for the
+  particle identification.  We present the data processing scheme and code management procedures.
 \end{abstract}
 
 \end{frontmatter}
@@ -86,16 +86,16 @@ ones is a natural process of a software application evolution over time.  Softwa
 (e.g. using heterogeneous hardware structures, such as FPGAs, GPGPUs, etc.) is important and results in more
 efficient and robust data processing applications.
 
-Software applications designed within the CLAS12 CLARA data processing framework differ from a traditional
-approach in two major ways. First, software applications are composed of interlocking software building blocks
-(bricks) called micro-services. Micro-services are linked together by data-stream pipes and are hiding technology
-(e.g. high-level programming language, hardware deployment details) and algorithmic solutions used to process
-data (see Fig.~\ref{clara-overview}). A micro-service has inputs, is capable of processing data, and producing the
-output data. A micro-service reacts on a streaming data quantum in its input, processes it, and passes processed
-data quantum to the next micro-service in the data-flow path. The second and critical difference is that CLAS12
-data processing applications execute according to the rules of data-flow instead of a more traditional programming
-approach, where sequential series of instructions (lines of code) are written to perform a required algorithm. In
-this respect CLAS12 data processing framework application design promotes a data-flow as the main concept
+Software applications designed within the CLAS12 CLARA data processing framework differ from ones developed adopting 
+a traditional approach in two major ways. First, software applications are composed of interlocking software building blocks
+(bricks) called micro-services. Micro-services are linked together by data-stream pipes.  The technology
+(e.g. high-level programming language, hardware deployment details) as well as the algorithmic solutions used to process
+data (see Fig.~\ref{clara-overview}) are encapsulated. A micro-service has inputs, processes data and produces output data.
+A micro-service reacts on a streaming data quantum in its input, processes it, and 
+passes processed data quantum to the next micro-service in the data-flow path. The second and critical difference is 
+that CLAS12 data processing applications execute according to the rules of data-flow instead of a more traditional 
+programming approach, where sequential series of instructions (lines of code) are written to perform a required algorithm. 
+In this respect CLAS12 data processing framework application design promotes a data-flow as the main concept
 behind any data processing algorithm.   The flow of data between micro-services in the application determines
 the execution order of micro-services within the application. These differences may seem minor at first, but
 the impact is revolutionary because it allows the data paths between application building blocks to be the
@@ -123,55 +123,55 @@ CLAS12 consists of many detectors for particle tracking and identification. At t
 group decided to develop common software packages that can be shared between different detector reconstruction
 packages to avoid code replication and aid in software maintainability.
 
-The common software was divided into packages each having specific purpose and functionality. Below we discuss
-the main packages used in reconstruction software.
+The common software was divided into packages, each having a specific purpose and functionality. Below we discuss
+the main packages used in the reconstruction software.
 
 \subsubsection{Geometry}
 
-Due to complex geometry of CLAS12 detectors it was decided to implement a common interface how detector
-geometries will be implemented in the software. One of the challenges we were trying to overcome is consistency
-of geometry implementation in different components of reconstruction software. The geometry of the detectors
-are used in GEANT4 simulation, in reconstruction application as well as in CLAS12 Event Display (CED) application
-that is used for online reconstruction monitoring and debugging.
+Due to the complexity of the geometry of CLAS12 detector subsystems, an interface was developed 
+to provide classes and geometry software tools that are used to describe the geometry of all subsystem in an unified way.
 
-A common geometry primitives library was developed implementing simple objects, such as lines, planes and shapes.
-The library provides all functionality that geometrical objects need, such as line to surface intersections, line closest
-approach and ray tracing through objects. Geometrical shapes are implemented using geometry primitives (such as
-cubes, trapezoids, etc.) and are equipped with methods to track particles through objects.
+A library of primitives was developed to provide geometrical objects needed to represent by all geometry detector subsystem
+and for geometrical object transformations.  These primitives include lines, planes and various shapes (e.g. 
+cubes, trapezoids, etc.).  They provide the functionality needed
+to represent the detector subsystem components in the reconstruction frames, to take into account geometrical distortions
+and to translate and rotate detector components which is particularly relevant for alignment purposes. 
+Further more they provide methods to track particles through volumes, and return informations used to determine 
+track trajectories,
+such as line to surface intersections, ray tracing through objects, distance of closest approach to a line or surface.
 
-The higher level library contains interfaces for implementing detector geometries. Detectors consist of sensors,
-combined into layers and sectors to form one detector. Abstract interfaces were developed for detector
-implementation, and interaction with any of the CLAS12 detectors standardized.
-
-The CLAS12 geometry library is initialized through database, and provides output for GEANT4 simulations package
-(GEMC), is used in reconstruction application and in CED.
+The CLAS12 geometry library insures consistency between the geometry implementation used in CLAS12 simulation, reconstruction and 
+event visualization packages. It is initialized through database, and provides output for GEANT4 simulations package
+(GEMC), is used in reconstruction application and in the CLAS12 Event Display (CED) .
 
 \subsubsection{Databases}
 
-In CLAS12 reconstruction software databases are used for detector geometries and for calibration constants. For
-storing calibration constants for reconstruction the Calibration Constant Data Base (CCDB) software package was used
-that is developed at Jefferson Lab for GlueX experiment (Hall-D). The software provides interface for storing
-structured tables in MySQL based databases, it also supports SQLite portable databases. CCDB package creates
-tables that link constants to specific run (time) and will store different variations of constants depending on run
-conditions. For CLAS12 common tools we implemented higher level API, which parses database tables and creates a
-structured map of the constants in the memory by sector, layer and component number for ease of access.
+The Calibration Constant Data Base (CCDB) software package was developed at Jefferson Lab for the GlueX experiment 
+in HallD.  The CLAS12 reconstruction packages use the CCDB application programming interface to create and access 
+tables that contain detector geometry and calibration constants, as well as maps used for decoding raw data.
+CCDB provides the functionality for storing and accessing 
+structured tables in MySQL-based and SQLite portable databases. 
 
-Since CLAS12 reconstruction software is service based multi-threaded application the database access has to be unified
-to avoid bottlenecks when several services try to retrieve the constants. A unified interface was developed which will
-fetch calibration constants on demand and cache them for further requests. In this approach each service will request
-calibration constant set and each subsequent request by a new thread will be provided by the cached values.
+The CCDB package creates
+tables that link constants to specific runs (using timestamps) and store different variations of constants depending on run
+conditions. CLAS12 software tools employ an Application Programming Interface (API), that parses database tables and creates
+structured maps of constants stored in  memory by detector sector, layer and component. This allows fast retrieving of the 
+constants.
+
+The CLAS12 database access tools have been written to avoid bottlenecks that might result from multiple multi-threaded 
+services accessing the database to retrieve constants.  An interface has been designed to fetch the constants 
+on demand and cache them for further requests. In this approach each service will request the
+ constants it requires on one thread and each subsequent request by a new thread will be provided by the cached values.
 
 \subsubsection{Plotting}
 
-The majority of CLAS12 reconstruction and monitoring software is written in JAVA. In the early stages of development
-collaboration tried to use existing JAVA plotting packages. Most of them have limitations that made them unusable for
-our purposes, some of them were no longer being developed. In an attempt to unify calibration and monitoring software
-it was decided to develop custom plotting package that can serve in reconstruction monitoring, calibration and data analysis
-software.
+For ease of integration with the reconstruction software tools and packages, the plotting tools used for data 
+analysis, calibration and monitoring was written in the JAVA programming language. 
 
-Plotting software (called groot) was developed from scratch using JAVA. It was tailored to have similar interface as ROOT
-(CERN data analysis package) to make it easy to use. The package provides all functionality needed in our field including
-fitting, using JAVA based MINUIT library from JHEP repositories.
+The plotting software (called groot) developed at Jefferson Lab for CLAS12 is tailored to have a programming 
+interface similar to ROOT
+(CERN data analysis package) and provides the functionality necessary for 
+fitting using the JAVA-based MINUIT library available from the JHEP repositories.
 
 \subsubsection{Analysis Tools}
 
@@ -183,31 +183,38 @@ Analysis Tools are under construction.
 
 \subsection{HIPO}
 
-For CLAS12 data a new format was developed to provide needed functionality. The High Performance Output (HiPO)
-format was designed to provide data compression, using LZ4 (fastest compression algorithm available), and random
-access. The design goal was to provide more flexible data container format with features needed to minimize disk
-access for most common tasks in data analysis.
+The CLAS12 data format was designed to provide a flexible data container structure,
+ with features that minimize disk
+access for the most common tasks performed in data analysis. 
+The High Performance Output (HiPO)
+format developed for CLAS12 was designed to provide data compression, using LZ4 (fastest compression algorithm available), 
+and random access. 
 
-HiPO stores data in separate records (with adjustable size), with tag associated with each record. Each record is
-compressed and pointer to the record is kept in the file's index table. This feature allows separating events during
+HiPO stores data in separate records (with adjustable size), with tags associated with each record. Each record is
+compressed and a pointer to the record is kept in the file's index table. This feature allows separating events during
 reconstruction based on the content of the event, such as number of reconstructed particles. Users can read portions
-of the file depending on final state that has to be analyzed, while the meta-data of the file, describing detector and
+of the file depending on the final states to be analyzed.  The meta-data of the file, describing detector and
 beam conditions are common for all analysis.
 
-C++ interface is also provided with ROOT wrappers, allowing users to read HiPO files and analyze them in ROOT
+A C++ interface is also provided with ROOT wrappers, allowing users to read HiPO files and analyze them in ROOT
 environment.
 
 \section{Monitoring and Calibration Suites}
 
 \subsection{Framework}
 
-For detector calibration a software framework was developed to implement common visualization aspects of calibration
-software. Standard views were developed using Java Swing to visualize detector components and provide callback
-mechanism for developers to display relevant plots for given detector component. The framework is built on top of all
-existing libraries: geometry package, plotting package and database utilities and provides uniform Graphical User
-Interface for all calibration applications.
+A calibration framework was developed to implement visualization software tools needed for all detector 
+systems. Standard views were developed using the JAVA Swing application to visualize detector components and to provide callback
+mechanisms necessary to display detector-component specific information.  These software tools provide 
+functionality for data fitting, plotting and displaying using a graphical user interface environment. 
 
-Common data streaming interface is implemented with software level abstraction that allows calibration and monitoring
+The calibration framework makes use of the other CLAS12 libraries 
+(the geometry and plotting packages, as well as database utilities) and provides a uniform Graphical User
+Interface (GUI) for all calibration applications. The framework provides a data processing interface  
+and a calibration constant database interface used
+for on- and off-line data analysis.   
+
+A common data streaming interface is implemented with software level abstraction that allows calibration and monitoring
 code to run on variety of supported data formats used in CLAS12.
 
 \subsection{Data Monitoring}
@@ -215,12 +222,9 @@ code to run on variety of supported data formats used in CLAS12.
 \subsection{Calibration Suites}
 
 The software programs used for the CLAS12 detector subsystem energy and time calibrations are
-Java-based suites that employ the common tool developments discussed in Section~\ref{common-tools}.
-These tools allowed for streamlined development of applications that are used across the different
-subsystem suites including a COATJAVA calibration constant database interface, tools for detector
-visualization, a data processing interface, and tools for fitting, plotting, and display with a standard
-graphical user interface environment. Fig.~\ref{suites} shows representative screenshots of several
-different CLAS12 subsystem calibration suites.
+Java-based suites that employ the framework discussed in Section~\ref{common-tools}.
+The software tools provided by the framework facilitate the development of 
+detector-specific suites. Fig.~\ref{suites} shows representative views of CLAS12 subsystem calibration suites.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -229,16 +233,18 @@ different CLAS12 subsystem calibration suites.
 \put(55,-5)
 {\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/suites.png}}}
 \end{picture} 
-\caption{Representative subsystem calibration code suites for ECAL~\cite{ecal-nim} (upper left),
+\caption{Representative subsystem calibration GUIs for ECAL~\cite{ecal-nim} (upper left),
   DC~\cite{dc-nim} (upper right), FTOF~\cite{ftof-nim} (lower left),  and FT~\cite{ft-nim} (lower right).}
 \label{suites}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The suites read in raw or reconstructed data files (from either beam data or Monte Carlo simulation output) in
-either EVIO or HIPO data formats, display the various calibration quantities, fit the histograms to determine
-the calibration constants, and then output the parameters into ASCII files that are compatible with the tables
-defined in the CLAS12 Calibration Database (ccdb).
+The calibration applications take as input raw or reconstructed data files 
+(from either beam data or Monte Carlo simulations) in
+either EVIO or HIPO data formats.  They display the various quantities and histograms relevant to the 
+extraction of the calibration constants.  Each calibration suite performs fits to determine the detector subsystem 
+the calibration constants.  The calibration analysis parameters are saved into ASCII files 
+with the same structure as the tables defined in CCDB.
 
 \section{Event Reconstruction}
 
