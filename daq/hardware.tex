@@ -5,7 +5,7 @@ VXS was selected as the 12~GeV data acquisition back-plane foundation for the fr
 
 The trigger processor switch slot board manages the high-speed gigabit signaling from each of the payload slots, where eight differential pairs connect from the payload slots to the switch slots. The VXS crates are manufactured by WIENER and the back-plane can support up to 8~Gb/s. The payload boards use Xilinx Virtex V technology, and these FPGAs have up to 6.25~Gbps transceivers. The payload boards are designed to run these high-speed gigabit transceivers at a maximum of 5~Gpbs to transfer trigger data to the trigger processor module. 
 
-The design challenges for reliable and successful transmission of gigabit serial data over the VXS backplane requires the investment of high-speed circuit board layout and routing tools.  The FPGA selection requirements include at least four full duplex gigabit transceivers, user I/O pin count $>$~500, and fast integrated block memory with multi-rate FIFO logic. We use circuit board routing simulation tools such as Mentor Graphics HyperLynx [\ref], which are invaluable for critical simulation and verification of circuit board signal integrity for the gigabit transmission paths before the manufacturing process.  The FPGA devices that we use are capable of 6.25~Gb/s serial transfer, and we have designed our circuit boards with signal integrity techniques using standard FR4 circuit board material to achieve $>$~2.5~Gb/s, which meets the data transfer bandwidth requirements. 
+The design challenges for reliable and successful transmission of gigabit serial data over the VXS backplane requires the investment of high-speed circuit board layout and routing tools.  The FPGA selection requirements include at least four full duplex gigabit transceivers, user I/O pin count $>$~500, and fast integrated block memory with multi-rate FIFO logic. We use circuit board routing simulation tools from Mentor Graphics [\ref], which are invaluable for critical simulation and verification of circuit board signal integrity for the gigabit transmission paths before the manufacturing process.  The FPGA devices that we use are capable of 6.25~Gb/s serial transfer, and we have designed our circuit boards with signal integrity techniques using standard FR4 circuit board material to achieve $>$~2.5~Gb/s, which meets the data transfer bandwidth requirements. 
 Another significant investment required for the hardware verification of the gigabit transceivers was a digital signal analyzer with 8~GHz bandwidth to measure and record the backplane and fiber optic gigabit transceiver performance and to perform jitter analysis on the critical system clock and synchronization signals with at least 1~ps resolution.  We used the Tektronix jitter analysis software which is a critical tool for the verification of our system clock, and for measurements of the phase controlled jitter attenuated clock provided by the Signal Distribution (SD) switch card in every crate. The investment of firmware development tools from FPGA industry leaders Xilinx and Altera were also taken into consideration for the upgrade path to VXS. We use the Xilinx Aurora protocol for serial transmission as it is robust and simple, and is included with the FPGA development tools.  
 
 
@@ -35,7 +35,7 @@ There are many commercial off-the-shelf options for this type of controller, and
 
 We purchased VME controllers from several vendors for development purposes and made a significant investment in custom software that runs on all of the existing boards. We also benchmarked our code and have come to expect certain ``minimum'' requirements for performance from the chosen architecture within an specified Linux operating system.
 
-We also expect a certain minimum 10 year timeframe in which these controllers will be supported by the vendor with respect to the avilable parts, repair, and software updates. VME controller requirements are summerized in following list:
+We also expect a certain minimum 10 year timeframe in which these controllers will be supported by the vendor with respect to the available parts, repair, and software updates. VME controller requirements are summarized in following list:
 
 \begin{itemize}
 	\item Single slot VME form-factor - no required rear transition module
@@ -72,7 +72,7 @@ The TCS (TRIGGER, CLOCK, SYNC, and BUSY) distribution system \cite{tcs-ref} is t
 \end{figure}
 
 
-The main hardware components of the TCS distribution system includes a Trigger Supervisor (TS \cite{ts-ref}) board (see Fig.~\ref{fig:TSused} and ~\ref{fig:TSdiagram}), Signal Distribution (SD \cite{sd-ref}) boards, Trigger Distribution (TD \cite{td-ref}) boards  (see Fig.~\ref{fig:TDused}), Trigger Interface (TI \cite{ti-ref}) boards  (see Fig.~\ref{fig:TIused} and ~\ref{fig:TIdiagram}), VXS crates, and optic fibers.  The TS board, one SD board, and up to sixteen TD boards are located in the global TCS distribution VXS crate.  One TI board and one SD board and/or one FANIO board are located in each front-end crate.  The electronics boards were custom designed and produced for the 12 GeV upgrade.  Field Programmable Gate Arrays (FPGA) are used for TCS generation, control, and decoding.  Optical fibers are used to transmit signals at high speed over long distances and the high-speed serial backplane for internal crate distribution.  
+The main hardware components of the TCS distribution system includes a Trigger Supervisor (TS \cite{ts-ref}) board (see Fig.~\ref{fig:TSused} and ~\ref{fig:TSdiagram}), Signal Distribution (SD \cite{sd-ref}) boards, Trigger Distribution (TD \cite{titd-ref}) boards  (see Fig.~\ref{fig:TDused}), Trigger Interface (TI \cite{titd-ref}) boards  (see Fig.~\ref{fig:TIused} and ~\ref{fig:TIdiagram}), VXS crates, and optic fibers.  The TS board, one SD board, and up to sixteen TD boards are located in the global TCS distribution VXS crate.  One TI board and one SD board and/or one FANIO board are located in each front-end crate.  The electronics boards were custom designed and produced for the 12 GeV upgrade.  Field Programmable Gate Arrays (FPGA) are used for TCS generation, control, and decoding.  Optical fibers are used to transmit signals at high speed over long distances and the high-speed serial backplane for internal crate distribution.  
 
 \begin{figure}[hbt]
 	\centering
@@ -176,12 +176,6 @@ Because of the finite memory size and the randomness of the triggers, it is poss
 	\label{fig:DAQ_synchronization}
 \end{figure}
 
-
-%REFERENCES
-%[1] 	J. Gu etal. (2014, May). The TRIGGER/CLOCK/SYNC Distribution for TJNAF 12 GeV Upgrade Experiments    %https://coda.jlab.org/wiki/index.php/Trigger_distribution_overview
-% [2] 	J. Gu. Description and technical information for the Trigger Supervisor (TS) module.  TJNAF, VA, 2013.  %Available: https://coda.jlab.org/drupal/system/files/pdfs/HardwareManual/TS/TS.pdf 
-%[3] J. Gu, etal, 	“Design of the Trigger Interface and Distribution Board for TJNAF 12 GeV Upgrade,” IEEE Trans. Nucl. %Sci., Vol. 60, no. 5, pp 3714-3719, Oct. 2013
-
 	
 \subsection{Signal Distribution Module (SD)}
 
@@ -273,7 +267,7 @@ Inputs are single-ended LEMO and leading-edge discrimated by two different thres
 A Xilinx Spartan 3A FPGA is used to implement the VME interface, scalers, discriminator controls, and scaler event building features. Each channel and threshold has two scalers associated with it. The first scaler counts all threshold crossings for the input. The second scaler is gated using a front-panel input source, which can be useful to computing dead-time of channels and many other applications. Additionally, reference scalers are accumulated (a gated and ungated version) that count the elapsed time, which can be used to normalize inputs scalers to Hz. All together there are 68 scalers, which can be slow to read over VME if using single-cycle transfers. An event builder is implemented that can synchronously read (and optionally clear) all scalers and build an event with this data. Over 100 events can be buffered and readout using the VME 2eSST protocol at 200~MB/s.
 
 
-\subsection{TDC Modiles (v1190/v1290)}
+\subsection{TDC Modules (v1190/v1290)}
 
 Commercial CAEN V1190/V1290/V1290N TDC \cite{tdc-ref} boards are used for timing measurements in the PMT-based CLAS12 detectors (see Fig.~\ref{fig:v1190_board}). The V1190 has timing resolution about 100~ps and the V1290 about 35~ps.
 
@@ -387,4 +381,45 @@ Fig.~\ref{fig:vscm_blockdiagram} shows the hardware block diagram of the module.
 
 \subsection{SSP Board as fiber Readout Module}
 
-The SubSystem Processor (SSP \cite{ssp-ref}) was originally designed to work as part of CLAS12 Trigger System. It is used to readout some front-end electronics in the DAQ system as well. The board description can be found in the CLAS12 Trigger System article \cite{trig-ref}.
+The SubSystem Processor (SSP \cite{ssp-ref}) was originally designed to work as part of CLAS12 Trigger System, but the optical transceivers, FPGA, and DDR2 memory are also suitable for remote front-end synchronization and readout. The SSP resides in a standard VXS crate configuration and acts as a bridge between custom front-end electronics (up to 32 remote front-ends per SSP) and the VME based CODA readout components. It collects event data from up to 32 fiber optic links, buffers events in the 4GByte DDR2 memory, and readout by the crate controller using the 2eSST VME protocol at up to to 200MB/sec. The RICH (\cite{rich-ref}), MVT (\cite{mvt-ref}), and FTT (\cite{ftt-ref}) CLAS12 subsystems utilize the SSP in fiber readout mode. The board description can be found in the CLAS12 Trigger System article \cite{trig-ref}.
+
+\subsubsection{Readout of the Micromegas trackers}
+
+The Micromegas Vertex Tracker (MVT, [MVT]) is a part of the Clas12 central detector (see \cite{mvt-ref} and \cite{ftt-ref}). The 6 layers of the curved barrel detectors and the 6 forward discs account for about ~18 000 and ~6 000 readout channels respectively. Two double-sided Micromegas discs form the FTT tracker with some 4 000 channels, which is a part of the Clas12 Forward Tagger [FT]. Under the harsh operating environment of MVT and FTT (stringent space limitation, imposed low material budget, high radiation environment, up to 5T magnetic field) it has been decided to implement readout systems with off-detector frontends. Micro-coaxial cables of low 40pF/m linear capacitance transfer non-amplified signals from detectors to the front-end units (FEU) placed one to two meters away. Fig.~\ref{fig:mvt1} shows MVT/FTT block diagram.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/mvt1.png}
+	\caption{MVT/FTT Readout System.}
+	\label{fig:mvt1}
+\end{figure}
+
+The FEUs (see Fig.~\ref{fig:mvt2}) are equipped with the Dream ASIC, specially designed for the Clas12 application [DRM, \cite{dream-ref}]. Each of the 64-channels of the Dream chip includes a charge sensitive amplifier adapted to wide range of detector capacitances (up to 1nF), shaper with a wide range of programmable peaking times (75ns to 1~$\mu$s) and 512-cell deep Switched Capacitor Array (SCA) used as the trigger pipeline memory and de-randomization buffer. The input signals are continuously sampled and stored in the SCA. Upon reception of the trigger signal, a programmable number of samples of all channels is fetched from the memory locations corresponding in time to the event and is read-out serially. The sampling is not stopped during the readout process allowing nearly dead-timeless operation. With the 25 MHz sampling and readout frequencies and with 6 to 8 samples retained per event, the Dream channel memory is enough to stand the targeted 20 kHz event rate with ~8~$\mu$s trigger latency.
+
+The 512-channel mixed analog-digital FEU includes 8 Dream ASICs, an 8-channel serial AD9222 ADC from Analog Device, a Virtex-6 Xilinx FPGA, optical and electrical SFP modules and several other services and monitoring circuits. The FEU is responsible for the configuration and the readout of the Dreams, for analogue to digital conversion of the signals, for the pedestal equalization, coherent noise subtraction and zero suppression. The event fragments are then formed from the data of retained channels and transmitted to the backend electronics over a 2.5 Gbit/s optical link. A FEU consumes about 20W. The 48 MVT FEUs and the 6 FTT FEUs are housed in ad-hoc crates. Continuously flowing air ensures an ambient temperature of ~35$\degree$C within the crates. The MVT frontend electronics operates in up to 1T residual magnetic field of the CD solenoid.
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/mvt2.png}
+	\caption{512-channel frontend unit (FEU).}
+	\label{fig:mvt2}
+\end{figure}
+
+The backend electronics is based on the standard VXS crates including the crate controller SBC, TI and SD modules and the SSP boards described in the previous sections. A dedicated SSP firmware has been developed to implement synchronous distribution of the system clock, trigger and control signals from SSP-s to FEUs over the 2.5 Gbit/s optical links. For each trigger, the SSPs perform local event building tasks assembling FEU event fragments. Multi-event buffers are formed and transferred from SSPs to the crate controller SBC over the VME64 backplane using the 2SST protocol. The transmission rates of 200 Mbyte/s are routinely achieved. A single SSP can communicate with up to 24 front end units.
+
+The SBC runs the read-out controller (ROC) application of the Clas12 CODA data acquisition framework [CODA]. It completes the data integrity checks performed in the SSP firmware, disentangles multi-event buffers, forms MVT and FTT events and sends them to the event builder over a 10 GB/s Ethernet link. The MVT and FTT readout electronics is continuously surveyed by the Clas12 detector monitoring system using the EPICS framework.
+
+\subsubsection{Readout of the Ring-Imaging Cherenkov Detector}
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/rich_tile_128ch.png}
+	\caption{RICH front-end tile (128 channel version).}
+	\label{fig:rich1}
+\end{figure}
+
+The CLAS12 Ring-Imaging Cherenkov Detector (RICH, \cite{rich-ref}) contains 391 MAPMTs, corresponding to 25024 channels of readout. The front-end electronics are equipped on-detector forming compact modules called ``tiles'', see Fig.~\ref{fig:rich1}, comprised of the MAPMT, adapter, ASIC, and FPGA boards. There are 138 tiles needed to readout a single sector of the detector (currently there is only a single sector installed). Each tile contains either 128 or 192 channels and uses the MAROC3A ASIC for gain equalization, shaping, and discrimination of PMT pulses. Each tile also has an FPGA board that performs a 1ns time-to-digital conversion measurement for leading and trailing edges of the amplified and discriminated PMT pulses.
+
+All 138 tiles are distributed across 5 SSP located in a single VXS crate using ~20m 2.5Gbps optical links. The tile FPGA buffers the TDC hits in onchip memory waiting up to ~8~$\mu$s for a fixed latency trigger. Given the low hit occupancy of events, the RICH DAQ can accept trigger rates close to 100kHz before contributing to significant deadtime. The data rate for the single RICH sector are typically under 10MB/s for CLAS12 trigger rates around 15kHz.
+
+

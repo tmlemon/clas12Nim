@@ -1,47 +1,33 @@
 \section{Drift Chamber Electronics}
 In this section we describe the drift chamber electronics:
-the on-chamber signal distribution and amplification boards (STB),
-the on-chamber high voltage distribution boards (HVTB) and the
-off-chamber drift chamber readout boards (DCRB) that re-amplify,
-discriminate the chamber signals received from the STB's and
-digitize their time of arrival.  
+the on-chamber signal distribution and amplification boards which
+we named ``Signal Translator Boards'', (STB),
+the on-chamber high voltage translator boards (HVTB) and the
+off-chamber drift chamber readout boards (DCRB).
 
-There are two types of board: one is a High-Voltage Distribution Board (HVTB)
-which brings RC-filtered high voltage to the wires.  Because there are three
-types of wire: `sense', `field' and `guard' we supply three different voltages
-to each board.  
+On one endplate of each chamber is a set of High-Voltage Distribution Boards (HVTB's)
+which distributes RC-filtered high voltage to the wires.  Because there are three
+types of wire, `sense', `field' and `guard', we supply three different voltages
+to each HVTB board.  
 
-On the other side of the chamber are our Signal Translator Boards (STB) 
+On the other side of the chamber are Signal Translator Boards (STB) 
 which support an individual Single Inline Package (SIP) transimpedance
 pre-amplifier for each sense wire.  This pre-amplifier takes the
-small current pulse (microAmps) and translates it into a voltage 
+small current pulse (as small as a few microAmps) and translates it into a voltage 
 pulse with a transimpedance of 2 mV/microAmp.  The signals (typically
 10's to 100's of mV and 10's to 100's of nanosecond duration) are
-transmitted down twisted-pair conducting wire to our downstream
-Drift Chamber Readout Boards (DCRB) which further amplifies and
-discriminates the voltage pulse and then converts the leading edge
+transmitted down (17-pair) twisted-pair cables to our downstream
+Drift Chamber Readout Boards (DCRB) which further amplify and
+discriminate the voltage pulses and then convert the leading edge
 to a digital time signal.
 
-\subsection{Signal Translator Boards (STB)}
-After the drift chambers were built and the wires strung, we mounted
-on-chamber printed circuit boards onto the chamber endplates.
-The signal connections to the wires are made through printed-circuit 
-boards mounted along one side of each chamber, called Signal Translator 
-Boards (STBs).  These boards are responsible for signal routing and 
-pre-amplification.  
 
-On the opposite side of each sector, another set of 
-circuit boards called the High Voltage Translator Boards (HVTBs) is used 
-to make the high-voltage connections to the wires (see the subsection
-on gas, low voltage and high voltage for more details on the high
-voltage system).
-
-The drift chamber signal amplification and readout consists of the 
-following subsystems:
+The drift chamber signal amplification and readout system consists of the 
+following:
 \begin{itemize}
 \item  chamber-mounted printed circuit boards with a single in-line package
 (SIP) amplifier for each signal wire; these are the STB's
-\item  chamber printed circuit boards which distribute high voltage
+\item  chamber-mounted printed circuit boards which distribute high voltage
 to all of the wires; these are the HVTB's
 \item a single 17-pair twisted-pair readout cable for each group of 16
 SIP's, and
@@ -49,7 +35,7 @@ SIP's, and
 of 6 cables (96 signal wires)
 \end{itemize}
 
-
+Table ~\ref{electronic-components} gives a channel count for our electronic components.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[htbp]
 \begin{center}
@@ -69,9 +55,28 @@ and low voltage.}}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Signal Translator Boards (STB)}
+\subsection{Signal Translator Boards (STB) and High Voltage Translator Boards (HVTB)}
 
-The signal side of each chamber was tiled with multi-layered printed circuit 
+The high voltage side of each chamber was tiled with 14  multi-layered printed circuit 
+boards called High Voltage Translation Boards (HVTBs).  Although simple in design,
+the HVTB's were designed to distribute three separate voltages to the Sense, Field
+and Guard wires, respectively.  Each high voltage line was connected to the 
+input high voltage wire with a parallel RC circuit to absorb any AC noise on
+the lines.  The board layout is shown in Fig.~\ref{hvtb-layout}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{8cm}
+\begin{picture}(50,50)
+\put(20,20)
+{\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{img/hvtb-layout.png}}}
+\end{picture}
+\caption{\small{Board layout drawing for the high-voltage distribution boards.}}
+\label{stb-layout}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The signal side of each chamber was tiled with 14 multi-layered printed circuit 
 boards called Signal Translation Boards (STBs).  These boards were  
 built in a 96-channel format, which requires seven 
 circuit boards for each superlayer (672 signals).   The boards  
@@ -95,8 +100,6 @@ shown in Fig.~\ref{wire-to-amplifier}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{8cm}
-\end{figure}
-\begin{figure}[htbp]
 \begin{picture}(50,50)
 \put(20,20)
 {\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{img/wire-to-amplifier.jpg}}}
@@ -110,20 +113,28 @@ crimp pin to the pre-amplifier.  }}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Fig.~\ref{trace-routing-schematic} shows the traces 
-routed from the signal pick-up at the plated-through holes to the signal 
-inputs of the pre-amplifier.
+Fig.~\ref{stb-layout} shows the layout of an STB board.
+Important elements to note are the trace routings from the capacitively-coupled
+wire signal to the Single In-Line Package (SIP) preamplifier, and the
+placement of the SIP's into groups of 16 with the SIP outputs being
+routed to the 16-pin signal connectors.  Also shown are the low-voltage
+power traces with individual fuses for each group of 16 wires.
+The board shown is from a R1 chamber which had the tightest wire packing.
+We point out the critical dimensions required to prevent unwanted
+surface currents.  Because the sense wire voltage is on the order of 1500
+volts this required a minimum spacing between the signal capacitor
+leads of 0.1 in.  This spacing is pointed out in the figure.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{5cm}
 \begin{picture}(50,50)
 \put(-10,10)
-{\hbox{\includegraphics[width=0.25\textwidth,natwidth=610,natheight=642]{img/trace-routing-schematic.jpg}}}
+{\hbox{\includegraphics[width=0.25\textwidth,natwidth=610,natheight=642]{img/stb-layout.png}}}
 \end{picture}
 \caption{\small{Trace routing shown on one of the Region~1 STBs being
 designed.}}
-\label{trace-routing-schematic}
+\label{stb-layout}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -141,7 +152,8 @@ a transimpedance amplifier with a gain of $2 mV/\mu Amp$ and a rise-time
 less than $10 ns$.  Each SIP operates at 6V and draws about $13 mA$.   
 
 Fig.~\ref{CP01-description} shows the design and specifications of the
-CP01 pre-amplifier.
+CP01 pre-amplifier.  See Ref.~\cite{fjb92} for the original design of
+this SIP pre-amplifier.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -158,8 +170,7 @@ CP01 pre-amplifier.
 Each group of 16 pre-amplifier output signals were routed to a 17 pair connector.
 Sixteen of the pairs are used as differential signal paths which are routed from the STB's to the 
 drift chamber readout boards (DCRB) over individual cables consisting of 16 twisted pairs.  
-The seventeenth pair is used to send a calibration pulse from the DCRB
-to the STB preamplifier group. We chose
+We chose
 twisted-pair readout because of its immunity to electronic noise.
 The cables are round-jacketed with a 
 0.025-in pitch so that the overall cable dimension is smaller than the 
@@ -214,3 +225,12 @@ track-finding, the internal scaler functions allow the DCRB to be used in
 a stand-alone manner to efficiently monitor chamber operation during commissioning
 and testing.
 
+\subsection{Grounding Scheme}
+We used a ``one-point'' grounding scheme.  The drift chambers themselves were not
+grounded to the torus magnet through use of an insulating portion of the link
+mounting system.  The off-chamber readout boards (DCRB's) were likewise not grounded
+to the chambers themselves though the use of non-grounded twisted-pair signals.
+The low-voltage power supplies were floating, supplying a plus and minus line 
+to the STB's.
+The grounding point was at the High Voltage supply crates.  This was accomplished
+by the use of two ground wires for every high-voltage 34-wire multi-cable.

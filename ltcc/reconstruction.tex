@@ -10,7 +10,7 @@ adjacent PMTs.
 The task of the reconstruction program is therefore to (a) cluster together the hits that
 belong to a single track and (b) provide the positional information needed to match the
 cluster with the correct reconstructed track.
-The reconstruction program is implemented as an engine in the CLAS12 event reconstruction framework \cite{reco2019}
+The reconstruction program is implemented as an engine in the CLAS12 event reconstruction framework \cite{recon-nim}
 
 \subsection{Clustering algorithm}
 The Cherenkov cone associated with a charged particle is in all cases contained within a
@@ -18,8 +18,8 @@ single sector of the LTCC. This allows for a relatively straightforward clusteri
 algorithm:
 \begin{enumerate}
 	\item Scan for the highest multiplicity hits, identified as the cluster center;
-    \item Grow the cluster by adding all neighboring hits within this sector that arrived
-		  in-time with the cluster center;
+    \item Grow the cluster by adding all hits adjacent to the cluster center within this
+      sector.
     \item Repeat the procedure until all hits have been assigned to a cluster.
 \end{enumerate}
 
@@ -36,9 +36,12 @@ This is illustrated in \F{trackmatching}.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.99\columnwidth,keepaspectratio]{img/trackmatching.png}
-  \caption{Two different simulated LTCC hits for particles passing through the same mirror
-  \#9. Based on particle kinematics, either PMT \#9 (top) or PMT \#8 (bottom) is hit.}
+  \includegraphics[width=0.99\columnwidth,keepaspectratio]{img/LTCC-event-1.png}
+  \includegraphics[width=0.99\columnwidth,keepaspectratio]{img/LTCC-event-2.png}
+  \caption{Two different simulated LTCC hits for particles passing through the same
+  elliptical mirror.
+  Based on particle kinematics, either the PMT in the same segment (top) or a neighboring
+  segment (bottom) is hit.}
   \label{fig:trackmatching}
 \end{figure}
 

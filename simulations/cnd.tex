@@ -1,31 +1,27 @@
 \subsection{Central Neutron Detector (CND)}
 
-\subsection{Geometry}
+\subsubsection{Geometry}
 
 The CND geometry is implemented through the native GEMC geometry API.
-The paddles are Geant4 generic trapezoids, see \F{cndGeometry}. The u-turn light guides are G4Polycons (volumes with cylindrical symmetry
-with varying radius along one axis).
+The paddles are Geant4 generic trapezoids (see \F{cndGeometry}). The u-turn light guides are Geant4 ``polycones''
+(volumes with cylindrical symmetry with varying radius along one axis).
 The paddles are assigned the scintillator material and associated with the CND hit process routine.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/cndGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/cndDetail.png}
-	\caption{Top: overall view of the CND detector. Three layers of scintillators are placed at increasing ``z''. Pairs of scintillators
-            are connected through a scintillator u-turn junction. Bottom: enlarged view of the junctions. }
+	\caption{Top: overall view of the CND detector. Beam is incident from the left.
+	         Three layers of scintillators are placed at increasing $z$. Pairs of scintillators
+             are connected through a scintillator u-turn junction. Bottom: enlarged view of the junctions. }
 	\label{fig:cndGeometry}
 \end{figure}
 
-
-\subsubsection{Geometry Location on GitHub}
-The Github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/cnd}.
-
-
-\subsection{Digitization}
-
+\subsubsection{Digitization}
 
 The energy deposited is reduced based on the position in the paddle using the calibrated attenuation length.
-Two signals are then propagated, one directly to the PMT and one through the scintillator junction.
+Two signals are then propagated, one to the PMT attached to the scintillator (``direct hit''), and one traveling through the scintillator junction
+onto the other scintillator and its PMT (``indirect hit'').
 Layer-dependent factors, applied to the two  signals, account for the light loss in the u-turn and in the neighboring paddle.
 These factors were determined during cosmic-ray tests.
 
@@ -34,14 +30,13 @@ propagation in the 1.4 m long light guides, for losses at the junctions and for 
 A Poissonian is used to
 calculate the actual number of photons $N_{actual}$ and the resulting ``smeared'' energy is the converted to ADC using the FADC conversion factor.
 
-
 The absolute hit time is corrected by:
 
 \begin{itemize}
-	\item the effective velocity (from CCDB)
-	\item a left/right time offset factor (from CCDB)
-	\item the Birks-attenuation factor
-	\item the position and corresponding paddle length of the indirect hit
+	\item the effective velocity (from CCDB);
+	\item a left/right time offset factor (from CCDB);
+	\item the Birks-attenuation factor;
+	\item the position and corresponding paddle length of the direct and the indirect hit.
 \end{itemize}
 
 The time is then smeared by a resolution read from CCDB using a Gaussian function and then digitized using a TDC conversion factor.
@@ -51,9 +46,6 @@ follows: the direct and indirect times are smeared with a Gaussian
 function having a width directly proportional to an empirically determined
 constant, and inversely proportional to the square root of the measured
 light (which is, in turn, proportional to the attenuated energy).
-
-
-
 The digitized output bank variables are summarized in Table \ref{tab:cndBank}.
 
 \begin{table}[h]
@@ -76,6 +68,4 @@ The digitized output bank variables are summarized in Table \ref{tab:cndBank}.
 	\caption{The digitized CND bank.}\label{tab:cndBank}
 \end{table}
 
-
-The time window  of the CND is set to 5 ns: all geant4 steps within the same paddle and time window will be collected on one hit.
-The CND hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/cnd_hitprocess.cc}
+The time window  of the CND is set to 5 ns: all Geant4 steps within the same paddle and time window are collected in one hit.

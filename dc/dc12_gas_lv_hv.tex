@@ -5,19 +5,21 @@
 The chambers operate on a gas mixture consisting of 90\% Argon and 10\% CO$_2$.
 Using precision Mass-Flow Controllers (MFC), the gas is mixed and temporarily
 stored in large-volume buffer tanks.  From these tanks it is delivered
-to experimental hall B.  
+to experimental Hall B.  
 
 Argon is supplied via boil-off from a large, permanent Dewar and CO2 is supplied 
-via boil-off from several standard industry high-pressure Dewars. 2 identical mixing
-systems are used to mix the gas to 90Ar/10CO2 by mass using regulators and MKS G250 
-mass flow controllers (MFC).  The mixed gas is then stored at ~100psig in four large 
-volume ASME pressure vessels, also called buffer tanks. This large volume smooths out 
+via boil-off from several standard industry high-pressure Dewars.  Two identical mixing
+systems are used to mix the gas to 90\% Argon and 10\% CO$_2$ by mass using regulators and MKS G250 
+mass flow controllers (MFC).  The mixed gas is then stored at ~100psig in four large-volume 
+ASME pressure vessels, also called buffer tanks. This large volume smooths out 
 any minor fluctuations in the Argon/CO2 ratio. To control the gas ratio, the thermal 
 conductivity of the gas ratio is continually measured using Panametrics Thermal 
 Conductivity Units (TCUs) and then matched to the thermal conductivity of a mixed 
 gas calibration standard. Individual MFC flows are adjusted as needed if the gas mixture
-ratio changes. The mixed gas is supplied to the hall via 3 identical gas delivery systems, 
-one for each region. MFCs and pressure regulators set the gas flow and pressure from the 
+ratio changes. The mixed gas is supplied to the hall via two similar gas delivery systems, 
+one for R3 and for the combined flow through R1 and R2. 
+
+MFCs and pressure regulators set the gas flow and pressure from the 
 buffer tanks to the supply manifolds in the hall. In the hall, flow control for each 
 individual sector is set using rotameters located at the supply manifolds. The gas flows 
 into each detector at the nose and exits out of the back-plate and into the exhaust 
@@ -46,22 +48,29 @@ Fig.~\ref{dc-gas-system} is a schematic of the gas delivery system
 and a snapshot 
 of the control panel for monitoring the state of the system.
 
-%%%%%%%%%%%%%%%%%%%%%% Figure : DC Sector Schematic %%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htpb]   
-\vspace{4.5cm}
-\special{psfile=r3dc.eps hscale=55 vscale=55 hoffset=-30 voffset=-150} 
-\caption{\small{A schematic of the gas system and smapshot of the monitoring
-and control panel screen.}}
+%%%%%%%%% Figure : dc gas system %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{10cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{img/dc-gas-system.png}}}
+\end{picture}
+\caption{\small{A schematic of the drift chamber gas system showing key control and
+monitoring points.}}
 \label{dc-gas-system}
-\end{figure}   
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
  
 \subsection{Low Voltage System}
-We reused tha low voltage power supplies that were used for {\tt CLAS}.  
+We reused tha low voltage power supplies that were used for CLAS.  
 These units are robust and manufactured by Hewlett Packard.  
-The supplies are remotely programmable and monitored.   We 
-isolated the low voltage from 
+The supplies are remotely programmable and monitored.  The on-chamber 
+pre-amplifiers require 6V and approximately 18A per chamber
+(a total of 1344 pre-amps per chamber).  
+
+We isolated the low voltage from 
 ground loops by using local voltage regulators on the pre-amplifier interface 
 boards (STBs).  The segmentation of the low voltage distribution cables is 
 based on 32 preamplifier channels per supply cable.  Each of these supply 
@@ -79,18 +88,20 @@ In the event of a short circuit which causes a fuse to blow,
 a simple, external cable disconnect will reduce the size of the affected
 area to 16 signal wires without the need to access the chambers.
 
-The on-chamber pre-amplifiers require 6V and approximately 18A per chamber
-(a total of 1344 pre-amps per chamber).
-The low voltage power supplies are re-used from the original CLAS detector.  
-These units are robust and manufactured by Hewlett Packard.  
-The supplies are remotely programmable and monitored.   We 
-isolated the low voltage from 
-ground loops, using local voltage regulators on the pre-amplifier interface 
-boards (STBs).  
-
-Fig.~\ref{dc-low-voltage-system} is a schematic of the low voltage
+Fig.~\ref{dc-lv-system} is a schematic of the low voltage
 supply system and a snapshot 
 of the control panel for monitoring the state of the system.
+%%%%%%%%% Figure : dc low voltage system %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[hbtp]
+\vspace{10cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=1.2\textwidth,natwidth=610,natheight=642]{img/dc-lv-system.png}}}
+\end{picture}
+\caption{\small{A schematic of the low voltage control and monitoring scheme.}}
+\label{dc-lv-system}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{High Voltage System}
 
@@ -130,18 +141,20 @@ to all of the wires; these are the HVTB's
 
 
 
-Fig.~\ref{dc-high-voltage-system} is a schematic of the high voltage
+Fig.~\ref{dc-hv-system} is a schematic of the high voltage
 supply system and a snapshot 
 of the control panel for monitoring the state of the system.
-
-%%%%%%%%%%%%%%%%%%%%%% Figure : DC Sector Schematic %%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}
-\vspace{4.5cm}
-%\includegraphics[width=0.5\columnwidth]{dc-view.png}
-\caption{\small{A schematic of the high voltage supply system and smapshot of 
-the monitoring and control panel screen.}}
-\label{dc-high-voltage-system}
-\end{figure}   
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% Figure : dc high voltage system %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{10cm}
+\begin{picture}(50,50)
+\put(-10,10)
+{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/dc-hv-system.png}}}
+\end{picture}
+\caption{\small{A schematic of the high voltage control and monitoring scheme, showing
+the 1296 remotely controlled channels.}}
+\label{dc-hv-system}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 

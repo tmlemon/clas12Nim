@@ -13,17 +13,14 @@ mixtures.  Ultimately a 90$\%$ argon - 10$\%$ CO$_2$ mixture was employed
 for several reasons: the gas has a fairly high saturated drift velocity 
 ($>$ 5~cm/$\mu$s), and it has an operating voltage plateau of several hundred 
 volts before breakdown occurs.  The 90$\%$/10$\%$ mixture 
-provides good efficiency, adequate resolution, and reasonable collection times.
-
-
-
+provides good efficiency and resolution, and reasonable collection times.
 
 \subsection{Selecting the Proper Operating Voltage}
 
 In this section we discuss our operating voltages and how it was determined.
-First, we discuss how we divide the total voltage between our sense, field 
+First, we discuss how we divided the total voltage between our sense, field 
 and guard wires in order to mimic a cell layout with an infinite number of
-layers, to achieve a situation in which all wires, regardless of layer, have
+layers, achieving a situation in which all wires, regardless of layer, have
 the same gain.  Then we discuss our choice of the total sense to field
 wire difference in voltage; including the resulting gas gain and efficiency.
 
@@ -36,7 +33,7 @@ This mixed-voltage scheme has a couple of advantgages over a scheme in
 which the field wires, for example, are held at ground potential:
 \begin{itemize}
 \item fewer field lines run from the sense wire to the endplate which
-is grounded.  This reduces the likelihood of producing a `Malter effect'
+is grounded.  This reduces the likelihood of producing a ``Malter effect''
 (Ref.~\cite{malter}) in which an accidental source of cathode emission
 (due to an insulating contaminant on the endplate, for example) causes
 a self-sustaining discharge
@@ -49,6 +46,7 @@ In addition, by carefully selecting the values of the sense, field and
 guard wire voltages we can create potential distributions which mimic
 an infinite grid of cells, where the gain on any wire is the same as
 any other, regardless of whether is the first, last or middle layer.
+See an early reference (\cite{mdm92}) for a discussion of this.
 
 This optimum condition is reached when the sense voltage is twice the
 field voltage (and opposite sign).  This is because we have twice as many
@@ -61,9 +59,6 @@ have no net effect on the nearby wire planes if there is no net flux of
 electric field through the bag which is the case if the enclosed net charge
 is zero.
 So, the ratio of voltages from Sense to Field to Guard wires is 1 : -1/2 : 5/14.
-
-
-
 
 \subsection{Determining the Operating Values of the Discriminator Thresholds and High Voltage Settings}
 
@@ -79,7 +74,7 @@ We determined the layer efficiency using the `excluded layer' method.  In one su
 segments by our usual fitting method, but ignoring the data from a pre-selected layer (layer 3, for example).  We then
 projected the track segment through that layer and determined whether or not the indicated wire (or an adjacent one) had a good hit.
 Fig.~\ref{effcy-vs-voltage} shows the `plateau curve' of efficiency plotted versus voltage for one typical chamber 
-and superlayer.  The layer efficiency at the chosen operating high voltage poiont was between 97\% and 98\%.
+and superlayer.  The layer efficiency at the chosen operating high voltage point was between 97\% and 98\%.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -103,25 +98,42 @@ differences of 2100, 2325 and 2475 V, respectively for R1, R2 and R3
 We calculate that our total gas gain is approximately 2.7~$10^4$, 3.7~$10^4$, and 4.4~$10^4$,  
 respectively, for R1, R2 and R3.
 
-The single layer inefficiency is not uniform across the drift cell.  It is higher near the sense wire and also near the outer
-edge of the cell.  A track passing close to a sense wire leave many ions in the cell, but the ion arrival times are stretched
-out from near-zero to the maximum drift time, Tmax.  The result is that the pre-amplifier's output signal has a low voltage
-amplitude but persists for a long time.  So, even though the collected charge is large the voltage put out by our trans-impedance
-pre-amplifiers may not be large enough to exceed the voltage discriminator threshold of the DCRB,
-For the case of tracks near the outer edge of the cell (so-called `corner-clippers') they simply leave a very small number
-of ions in the cell and thus have a small signal.
+\subsection{In-Run Performance Monitoring}
+The CLAS12 detector records 10,000 - 20,000 events/sec during a typical experiment.
+It is important that the experimenters who are running the data-taking be quickly
+aware of any equipment malfunctions.
 
-In Fig.~\ref{effcy-vs-doca} we plot the layer efficiency as a function of the distance-of-closest-approach (DOCA) and
-you can see the characteristic rise of the ineffiency near to and far from the sense wire.
+Our first level of monitoring comes from our hardware alarms; see our section on
+Gas, LV and HV Utilities to see the control panels for our gas system and power
+supplies.  Should these malfunction, an alarm is instantly shown on an alarm summary
+screen with GUI-driven information on the lower-lying hardware monitoring screens.
+An experimenter is thus able to detect an alarm and in most cases, reset the
+alarming supply, within minutes.
+
+Our second level of monitoring comes from on-line accumulating histograms.
+Of these, the most important are our so-called ``Occupancy Plots'', which
+are simply 2-dimensional histgrams of wire hits.  Malfunctions show up
+as depeleted areas on the plots.
+
+Fig.~\ref{layer-vs-wire} is a histogram of wire hits plotted as
+a function of layer (1 - 36 on the vertical scale) for each of the six
+sectors.  Note a R1 chamber contains layers 1 - 12, an R2 layers 13-24 and an 
+R3 layers 25 - 36. The horizontal axis shows the wire number in each layer (1 - 112).  
+At a glance, one can inspect our ~ 24,000 wires and determine
+that $>99\%$ of wires are functioning properly.  A few areas of inefficiency
+are visible in the upper middle graph.  These correspond to
+two areas in which the HV was disconnected to stop excessive current draw.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5cm}
+\vspace{10cm}
 \begin{picture}(50,50)
 \put(-10,10)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/trace-routing-schematic.jpg}}}
+{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/layer-vs-wire.png}}}
 \end{picture}
-\caption{\small{Layer efficiency plotted versus DOCA.}}
-\label{effcy-vs-doca}
+\caption{\small{An ``occupancy plot'' showing the number of wire hits accumulated over many events.
+A few malfunctioning wire groups can be seen in the upper middle graph.}}
+\label{layer-vs-wire}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

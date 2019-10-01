@@ -1,19 +1,16 @@
 \subsection{High Threshold Cherenkov Counter (HTCC)}
 
-\subsection{Geometry}
+\subsubsection{Geometry}
 
-The HTCC geometry is implemented through the native GEMC geometry API. The elliptical mirrors are made through a subtraction of
-two G4Ellipsoids (a Geant4 volume outlined by the 3D ellipse equation).
-They are contained inside an HTCC mother volume made with a G4Polycone, see \F{htccGeometry}.
-The faces of the PMT are the sensitive volumes, associated with the quartz-glass material and associated with the HTCC digitization routine.
+The HTCC geometry is implemented through the native GEMC geometry API. The elliptical mirrors are subtractions of
+ellipsoid Geant4 volumes along certain planes between two adjacent mirror substrates. Each plane is defined by a second order
+curve along which the two substrates intersect.
+They are contained inside an HTCC mother volume made with a Geant4 ``polycone'' (\F{htccGeometry}).
+The faces of the PMTs are the sensitive volumes, associated with the quartz-glass material and with the HTCC digitization routine.
 
-The refractive index of the $CO_2$ and its transparency is included in the material optical properties and taken
-into account during the Geant4 transportation of the photons.
-
-The reflectivity of the mirrors and Winston cones is associated with the respective material optical properties and is taken into
-account during the Geant4 transportation of the photons.
-
-The quantum efficiency associated with the PMT photocathode is taken into account in
+The refractive index of the $CO_2$ radiator gas and its transparency is included in the material optical properties and taken
+into account during the Geant4 transportation of the photons. The same is true for the reflectivity of the mirrors and Winston cones.
+Finally, the quantum efficiency associated with the PMT photocathode is taken into account in
 the digitization routine.
 
 
@@ -21,20 +18,12 @@ the digitization routine.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/htccGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/htccDetail.png}
-	\caption{Top: an electron passing through the HTCC gas volume and emitting Cherenkov photons. The light cone
-            hits two mirrors and it is re-directed to the corresponding PMTs.
-            Bottom: details of the mirror implementation. These are subtractions of ellipsoid Geant4 volumes along
-            certain planes between two adjacent mirror substrates. Each plane is defined by a second order
-            curve along which the two substrates intersect.}
+	\caption{Top: the HTCC containment vessel. Bottom: an electron passing through the HTCC gas volume and emitting Cherenkov photons.
+	         The light cone hits two mirrors and it is re-directed to the corresponding PMTs.}
 	\label{fig:htccGeometry}
 \end{figure}
 
-
-The Github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/htcc}.
-
-
-
-\subsection{Digitization}
+\subsubsection{Digitization}
 Photons that impinge on the PMT faces are processed with the digitization routine.
 Each photon collected is input to the quantum efficiency algorithm at its wavelength to decide if it is finally detected.
 
@@ -45,21 +34,18 @@ The digitized output bank variables are summarized in Table \ref{tab:htccBank}.
 	\begin{center}
 		\begin{tabular}{| c | c | c |}
 			\hline \hline
-			Variable         & Description    \\
+			Variable  & Description                         \\
 			\hline
-             sector &                                     clas12 sector     \\
-             ring   &                                       theta index     \\
-             half   &                                       half-sector     \\
-             nphe   &                          number of photoelectrons     \\
-             time   &                           average time of the hit     \\
-             hitn   &                                        hit number     \\
+             sector   &                   CLAS12 sector     \\
+             ring     &                     theta index     \\
+             half     &                     half-sector     \\
+             nphe     &        number of photoelectrons     \\
+             time     &         average time of the hit     \\
+             hitn     &                      hit number     \\
 			\hline \hline
 		\end{tabular}
 	\end{center}
 	\caption{The digitized HTCC bank.}\label{tab:htccBank}
 \end{table}
 
-The time window  of the HTCC is set to 5 ns: all geant4 steps within the same PMT and time window will be collected on one hit.
-
-
-The HTCC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/htcc_hitprocess.cc}
+The time window  of the HTCC is set to 5 ns: all Geant4 steps within the same PMT and time window are collected in one hit.

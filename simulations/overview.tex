@@ -1,38 +1,40 @@
 \section{Overview}
 
-The CEBAF Large Acceptance Spectrometer for operation at 12 GeV beam energy (CLAS12) \cite{overview2019}  at Jefferson Laboratory was designed to study
+The CEBAF Large Acceptance Spectrometer for operation at 12 GeV beam energy (CLAS12) \cite{clas12-nim}  at Jefferson Laboratory was designed to study
 electro-induced nuclear and hadronic reactions by providing efficient detection of charged and neutral particles over a large
-fraction of the full solid angle. The spectrometer have met the performance criteria of instantaneous luminosity up
-to $10^35$ cm$^{-2}$s$^-1$ and momentums resolution in the forward direction using drift chambers and in the central
-direction using vertex tracker $< 1\%$ and $< 3\%$, respectively.
+fraction of the full solid angle. The spectrometer has met the performance criteria of instantaneous luminosity up
+to $10^{35}$ cm$^{-2}$s$^{-1}$ and momentum resolution in the forward direction using the drift chambers and in the central
+direction using the vertex tracker of $< 1\%$ and $< 3\%$, respectively.
 
-The CLAS12 collaboration has implemented a detector simulation within the GEMC software framework \cite{gemc2019}.
-During the design phase of the various CLAS12 detectors, shielding, magnets, and passive elements, GEMC allowed studying the
-performance of the various components with respect to the desired science objectives. GEMC enabled the optimization of the design
-thanks to trade-off studies between variation of the hardware setup and placement, various material and shielding thicknesses.
-In addition, it was instrumental in determining the rates, PMTs currents and radiation doses to ensure the various detectors
-survived the operations during the spectrometer lifetime. Before and during the experiment data taking GEMC helped prepare
-and understand the calibration and measurements of the CLAS12 detectors. Finally, GEMC is used to accurately calculate the
-CLAS12 acceptance, including detector response, geometrical acceptance, tracking efficiency, needed for the physics results
-and science goals.
+The CLAS12 Collaboration has implemented a detector simulation within the GEMC software framework \cite{GEMC}.
+During the design phase of the various CLAS12 detectors, shielding, magnets, and passive elements, GEMC allowed for studies of the
+performance of the various components with respect to the desired science objectives.
+GEMC enabled the optimization of the design from trade-off studies between variation of the hardware setup and placement
+and various materials and shielding thicknesses.
+In addition, it was instrumental in determining the rates, PMT currents, and radiation doses to ensure the various detectors
+survived operations during the expected spectrometer lifetime.
+Before and during the experiment data taking, GEMC was instrumental in preparing and understanding the calibration
+and measurements of the CLAS12 detectors.
+Finally, GEMC is used to accurately calculate the CLAS12 acceptance, including the detector response, geometrical acceptance,
+and tracking efficiency needed for the physics results and science goals.
 
 
 GEMC is a c++ framework that uses Geant4 \cite{geant4} to simulate the passage of particles through matter. It provides:
 \begin{itemize}
-	\item an application-independent geometry description
-	\item an easy interface to build / run experiments
-	\item CAD/GDML imports
+	\item an application-independent geometry description;
+	\item an easy interface to build / run experiments;
+	\item CAD/GDML imports.
 \end{itemize}
 
 The simulation parameters are stored in external databases and are used to define the Geant4 objects at run time. This includes:
 \begin{itemize}
-	\item geometry
-	\item materials
-	\item mirrors
-	\item physics list
-	\item database constants
-	\item digitization
-	\item electromagnetic fields
+	\item geometry;
+	\item materials;
+	\item mirrors;
+	\item physics list;
+	\item database constants;
+	\item digitization;
+	\item electromagnetic fields.
 \end{itemize}
 
 Particles are transported through the detector materials and produce radiation, hits, and secondaries.
@@ -43,13 +45,33 @@ The design of the framework is summarized in \F{gemcDesign}.
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/gemcDesign.png}
 	\caption{The architecture of GEMC. The simulation parameters are stored in an external database. GEMC collects
-             them and organize the necessary Geant4 ingredients used to simulate the
+             them and organizes the necessary Geant4 ingredients used to simulate the
              passage of particles through materials and sensitive regions. The hits are digitized with
              plugins defined by the user and collected in user-defined outputs.  }
 	\label{fig:gemcDesign}
 \end{figure}
 
+The following CLAS12 systems are implemented in the simulations:
 
+\begin{itemize}
+\item Various CLAS12 targets, including liquid-hydrogen, liquid-deuterium and various solid targets;
+\item Silicon Vertex Tracker (SVT) \cite{svt-nim};
+\item MicroMegas Tracker (MM) \cite{mm-nim};
+\item Central Time-of-Flight System (CTOF) \cite{ctof-nim};
+\item Central Neutron Detector (CND) \cite{cnd-nim};
+\item High Threshold Cherenkov Counter (HTCC) \cite{htcc-nim};
+\item Forward Tagger (FT) \cite{ft-nim};
+\item Drift Chamber System (DC) \cite{dc-nim};
+\item Low Threshold Cherenkov Counter (LTCC) \cite{ltcc-nim};
+\item Forward Time-of-Flight System (FTOF) \cite{ftof-nim};
+\item Electro-Magnetic Calorimeter (EC) \cite{Amarian:2001zs};
+\item Pre-Shower Calorimeter (PCAL)\cite{ec-nim};
+\item Ring Imaging Cherenkov Detector (RICH)\cite{rich-nim};
+\item Beamline \cite{beamline-nim};
+\item Superconducting Magnets \cite{magnets-nim}.
+\end{itemize}
+
+The simulation implementation is described in the sections below.
 
 \subsection{Geometry and Materials Import}
 
@@ -57,38 +79,13 @@ The geometry and system materials are stored in external databases that can be M
 The databases can be defined using the following factories:
 
 \begin{itemize}
-	\item GEMC native API (Perl or Python)
-	\item java algorithms used by both simulation and the CLAS12 Event Reconstruction Software \cite{reco2019}, or ``geometry services''
-	\item CAD (stl, ply, obj formats)
-	\item GDML, c++ plugins (not used in CLAS12)
+	\item GEMC native API (Perl or Python);
+	\item java algorithms used by both simulation and the CLAS12 Event Reconstruction Software \cite{recon-nim} or ``java geometry services'';
+	\item CAD (stl, ply, obj formats);
+	\item GDML, c++ plugins (not used in CLAS12).
 \end{itemize}
 
-The GEMC native API repository is \url{https://github.com/gemc/api}. The geometry service code repository is
-\url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/}
-
-
-\subsubsection{Geometry database using native API or geometry service}
-
-An example of the code to define and store a Geant4 volume in an external database is shown below. The
-numbers come typically from a calibration database or are defined in the geometry service. The material
-has a similar interface.
-
-\begin{lstlisting}[language=Perl]
-my %detector = init_det();
-
-$d{"name"}       = "shield";
-$d{"mother"}     = "root";
-$d{"descr"}      = "bst";
-$d{"color"}      = "88aaff";
-$d{"pos"}        = "0*cm 1*cm 2*cm" ;
-$d{"material"}   = "G4_W";
-$d{"type"}       = "Box";
-$d{"dimensions"} = "1*mm 2*mm 3*mm ";
-$d{"visible"}    = 1;
-$d{"style"}      = 1;
-print_det(\%configuration, \%d);
-
-\end{lstlisting}
+The GEMC native API and the CLAS12 geometry code source repositories are listed on the CLAS12 tags portal \cite{clas12Tags}.
 
 
 \subsubsection{Importing CAD volumes from the engineering model}
@@ -99,31 +96,31 @@ hierarchy of all detector elements, down to details like nuts and bolts.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/cadSelection.png}
-	\caption{The engineering model of one of the CLAS12 detectors, before importing it into GEMC.
-             The model may be composed by thousands of elements, not all of them relevant to the the GEMC Geant4 simulation.
+	\caption{ The engineering model of one of the CLAS12 detectors, before importing it into GEMC.
+             The model may be composed by thousands of elements, not all of them relevant to the GEMC Geant4 simulation.
              The import process involves filtering out unnecessary volumes that are not in the active region.}
 	\label{fig:cadSelection}
 \end{figure}
 
-The CAD models are exported into STP files \cite{stepFiles}.
+The CAD models are exported into STEP files \cite{stepFiles}.
 In order to import them into a Geant4 simulation, the volumes relevant to the simulation are selected from the engineering
-model stored in one of the CAD data exchange format (typically a STEP file) \cite{cadExchange}, see \F{cadSelection}.
+model stored in one of the CAD data exchange formats (typically a STEP file) \cite{cadExchange} (see \F{cadSelection}).
 
 
-The elements in the STP file are then ``tessellated'', in which polygonal shapes are created to define a Geant4 volume
-that best represent the original CAD element.
+The elements in the STEP file are then ``tessellated'', in which polygonal shapes are created to define a Geant4 volume
+that best represents the original CAD element.
 The software used to do this is FreeCad \cite{freeCad}. An example of tessellation showing the polygonal shapes
 is shown in \F{targetScatteringChamber}.
 
 The simulated CAD import is as close to reality as the engineering model is close to reality.
-We did encounter differences between the STP files, the drawings, and reality in a few occasions and designed
+We did encounter differences between the STEP files, the drawings, and reality in a few occasions and designed
 a workflow to eliminate any discrepancies.
 An example of the CAD validation is shown in \F{cadValidationExample}.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/targetScatteringChamber.png}
-	\caption{An example of a volume from an STP file tessellated in GEMC. The volume that is shown is the target scattering chamber.
+	\caption{An example of a volume from an STEP file tessellated in GEMC. The volume that is shown is the target scattering chamber.
             Top: the CAD representation in the engineering model. Bottom: the tessellation. }
 	\label{fig:targetScatteringChamber}
 \end{figure}
@@ -132,12 +129,12 @@ An example of the CAD validation is shown in \F{cadValidationExample}.
 %\begin{figure}
 %	\centering
 %	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/cadValidation.png}
-%	\caption{There are four possible representation of a volume: the one coming from the STP file
+%	\caption{There are four possible representation of a volume: the one coming from the STEP file
 %            and the tessellated one are exactly the same object (within the tessellation precision).
 %             In some cases, certain elements and their sizes and positions did not match the drawings.
 %             In other cases, they did not match what was built and measured, or their position did not
 %             match the survey. To eliminate these occurrences physicists and engineers worked until
-%             the final iteration of a volume was the same in all 4 models: STP/GEMC, Drawings and Reality}
+%             the final iteration of a volume was the same in all 4 models: STEP/GEMC, Drawings and Reality}
 %	\label{fig:cadValidation}
 %\end{figure}
 
@@ -148,7 +145,7 @@ An example of the CAD validation is shown in \F{cadValidationExample}.
 	\caption{An example of comparing volumes in the GEMC simulation to the engineering drawings, in this case to validate the cone shield
              position. Top: engineering drawings of the CLAS12 beamline and shielding. The start of the M\"oller shielding is 87.77 cm downstream
              of the target center. Bottom: a geantino (a special Geant4 particle that does not interact with materials or fields)
-             is shot vertically at z=87.77 cm, showing that the Geant4 cone position agrees with the drawings.}
+             is shot vertically at $z$=87.77~cm, showing that the Geant4 cone position agrees with the drawings.}
 	\label{fig:cadValidationExample}
 \end{figure}
 
@@ -165,7 +162,7 @@ command line options or configuration files at run time:
 		  a variation (choice of order and/or precision) of Runge Kutta \cite{rungeKutta} methods
 \end{itemize}
 
-The implementation of the CLAS12 magnetic fields is described in Section \ref{clas12FieldMaps}.
+The implementation of the CLAS12 magnetic fields is described in Section \ref{sec:clas12FieldMaps}.
 
 \subsection{Event Time Window and Hit Definition}
 
@@ -179,31 +176,31 @@ are part of the same GEMC hit. The algorithm is illustrated in \F{hitDefinition}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/hitDefinition.png}
-	\caption{The GEMC Hit Definition algorithm. The sensitive element Cell 2 is hit by three particles, two primaries and one secondary.
+	\caption{The GEMC hit definition algorithm. The sensitive element Cell 2 is hit by three particles, two primaries and one secondary.
              The Geant4 steps are drawn explicitly with circle and triangle symbols. The circle steps generated by both the primary track 1 and the secondary
              from track 2 are within the time window and therefore are part of the same GEMC hit ``Cell 2, Hit 1''.
              The single triangle step generated by the secondary from track 2 comes after and does not fall within the ``Cell 2, Hit 1``
-             time window, therefore it is part of a new GEMC hit, ``Cell 2, Hit 2''.}
+             time window; therefore it is part of a new GEMC hit, ``Cell 2, Hit 2''.}
 	\label{fig:hitDefinition}
 \end{figure}
 
-\subsection{Process ID}
+\subsection{Process Identification}
 
-A ``processID'' method can be implemented by some digitization algorithm to modify or add GEMC identifiers to each Geant4 step. For CLAS12 this happens in two
+A ``Process ID'' method can be implemented by some digitization algorithm to modify or add GEMC identifiers to each Geant4 step. For CLAS12 this happens in two
 cases, detailed for each detector:
 
 \begin{itemize}
 	\item a paddle is hit but two outputs are produced because there is one PMT at each end of the scintillator. This
           is the case for CTOF, CND, and FTOF.
     \item some hardware elements are not present in the simulation. This is the case for the drift chambers, where the volumes do not contain
-          the individual wires. In this case the wire id is calculated based on the position of the hit in the mother volume. In CLAS12 this mechanism
-          is adopted by the DC, SVT and Micromegas.
+          the individual wires. In this case the wire number is calculated based on the position of the hit in the mother volume. In CLAS12 this mechanism
+          is adopted by the DC, SVT, and Micromegas.
 \end{itemize}
 
 
 \subsection{Detectors and Hit Process Plugin Mechanism}
 
-The detectors are associated with c++ digitization routines at run time, see \F{pluginsAssociation}.
+The detectors are associated with c++ digitization routines at run time (see \F{pluginsAssociation}).
 This allows the routines to be developed independently from the core code. Abstract methods can be derived in
 the individual detector hit processes to define the treatment of the Geant4 steps within the detector
 time window to provide three kind of outputs:
@@ -223,13 +220,14 @@ time window to provide three kind of outputs:
 	\item a bank with an analog voltage versus time signal for each Geant4 hit.
 \end{itemize}
 
-The digitized banks are detailed in each detector subsystem, for example in section \ref{tab:bstBank}.
+The digitized banks are detailed below for each detector subsystem.
 
-\subsection{``Truth'' Information}
+\subsection{``True'' Information}
 
-The true information is saved in the output when requested, per detector. The true information can
-be integrated (one variable entry per GEMC hit) or verbose (one variable entry per Geant4 step).
-The true information variables are summarized in Table \ref{tab:trueInformation}.
+Various data such as particle id, momenta, hit positions, vertex of particle, etc, (true information) is stored in memory
+as the tracks progresses in each detector. The true information is integrated (one variable entry per GEMC hit) and/or
+verbose (one variable entry per Geant4 step). It is saved in the output at the end of each event.
+The list of variables in the true information bank is summarized in Table \ref{tab:trueInformation}.
 
 \begin{table}[h]
 	\small
@@ -262,7 +260,7 @@ The true information variables are summarized in Table \ref{tab:trueInformation}
 				mvz         &   $z$  of the FP mother's origin \\
 				avg\_t      &   Average time \\
 				nsteps      &   Number of Geant4 steps \\
-				procID      &   Process that created the FP.  \\
+				procID      &   Process that created the FP  \\
 				hitn        &   Hit ID \\
 			\hline \hline
 		\end{tabular}
@@ -274,9 +272,9 @@ The true information variables are summarized in Table \ref{tab:trueInformation}
 
 \subsection{Database Constants}
 
-The mechanism to read, store, and make available the CCDB \cite{ccdb} calibration constants is
+The mechanism to read, store, and make available the calibration constants from the CLAS12
+calibration constants database CCDB \cite{ccdb} is
 executed at the start of the run and every time the run number changes.
-Individual detector add their constants by implementing the corresponding abstract method.
 The list of constants loaded is detailed in each detector implementation section below.
 
 \subsection{Digitization}
@@ -284,10 +282,10 @@ The list of constants loaded is detailed in each detector implementation section
 The digitization routines are called at the end of each event, after the Geant4 navigation
 has propagated all tracks and GEMC has collected all the steps into hits.
 
-The process routines digitize each hit by iterating through all the steps in it and collecting
+The process routines digitize each hit by iterating through all the steps in the detector volume and collecting
 a number of variables into detector banks. This typically involves calculating a charge based
 on energy deposited and converting it into an ADC number, calculating a hit time based
-on various signal propagation models and converting that time into TDC, convertng a number
+on various signal propagation models and converting that time into TDC, calculating the number
 of collected photons into charge and then ADC, etc. It is at this stage that the calibration
 constants are used (for example, attenuation length in scintillator paddles).
 
@@ -297,47 +295,46 @@ There are four different types of digitization, each with a different output str
 	\item integrated (one bank per hit): this is implemented for all CLAS12 detectors;
 	\item step-by-step (one bank per Geant4 step): used for debugging;
 	\item voltage: the analog signal versus time calculated as a response of the detector to tracks passing through it;
-	\item fadc: the same FADC bank from crate/slot/channel as written by the CLAS12 data acquisition system \cite{daq2019}.
+	\item fadc: the same FADC bank from crate/slot/channel as written by the CLAS12 data acquisition system \cite{daq-nim}.
           This is implemented for the CND, CTOF, FTOF, FT-CAL, ECAL.
 \end{itemize}
 
 
-The digitization is detailed in each detector implementation section.
+The digitization is detailed in each of the detector implementation sections below.
 
 
 \subsection{Output}
 
 The GEMC output is available in two formats, identical in content: text (ascii) and evio \cite{evio}, the Jefferson Lab
 data acquisition format.
-Utilities were used to convert the evio format onto ROOT \cite{root}.
+Utilities were used to convert the evio format into ROOT \cite{root}.
 
 The various output banks include:
 
 \begin{itemize}
-	\item header: timestamp, event number, run number, etc.
+	\item header: timestamp, event number, run number, etc.;
 	\item generated: generated particle information as seen by Geant4. This bank includes summarized information of the interaction of
                      the particles with each detector such as the number of hits, total energy deposited, etc. This summary includes
-                     the interactions of all the primary particle secondaries.
-	\item generator extras: information stored in the generated file, not necessary used in Geant4, for example cross sections, weights, etc.
-	\item beam radio-frequency signal: mimics the accelerator bank, a 248 MHz signal
-	\item detector true info, per hit or per step
-	\item detector digitized info, per hit or per step
-	\item detector voltage vs. time
-	\item detector fadc signal
-	\item ancestors: the complete hierarchy of the primary and secondary particles
+                     the interactions of all the created secondaries from the primary particle;
+	\item generator extras: information stored in the generated file, not necessarily used in Geant4, for example cross sections, weights, etc.;
+	\item beam radio-frequency signal: mimics the accelerator bank, a 248 MHz signal;
+	\item detector true information, per hit or per step;
+	\item detector digitized information, per hit or per step;
+	\item detector voltage vs. time;
+	\item detector FADC signal;
+	\item ancestors: the complete hierarchy of the primary and secondary particles.
 \end{itemize}
 
 The various banks are organized using a unique integer identifier.
 
 \subsection{Background Merging}
 
-Real data can be merged with simulated events, typically from random trigger data to emulate physics and electronic background in
+Real data can be merged with simulated events, typically from random trigger data, to emulate physics and electronic background in
 the various detectors.
 The data is un\-digitized using the inverse digitization to calculate the energy and real timing from the ADC and TDC values.
 It is then saved in text files indexed by event number and detector ID. This also makes it possible to scale the background luminosity by grouping
-several events into one; for example, grouping two events at 50 nA beam current give one event with background from 100 nA current.
+several events into one; for example, grouping two events at 50 nA beam current gives one event with background from 100 nA current.
 The energy information is re-digitized using the same algorithm used for the Geant4 steps, producing additional hits to the ones coming from simulation.
-
 
 
 \section{CLAS12 Geometry Implementation}

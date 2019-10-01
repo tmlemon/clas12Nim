@@ -1,14 +1,14 @@
 \section{Simulation}
 
 A realistic model of the LTCC has been developed, describing the location and material composition
-of the support box, the mirrors, PMTs, Winston-Cones, magnetic shields and the $C_4F_{10}$ gas, see \cite{gemc2019}.
+of the support box, the mirrors, PMTs, Winston-Cones, magnetic shields and the $C_4F_{10}$ gas, see \cite{sim-nim}.
 A 3D view of the simulated geometry of the LTCC is shown in \F{simOverview}.
 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/simOverview.png}
-	\caption{The Geant4 model of the LTCC implemented in GEMC \cite{gemc2019}. This setup corresponds to the
+	\caption{The Geant4 model of the LTCC implemented in GEMC \cite{sim-nim}. This setup corresponds to the
              initial LTCC configuration for the first CLAS12 production running in spring 2018
 			 where the LTCC sectors 2, 3, 5 and 6 were present. In this picture the hyperbolic mirrors and some magnetic shields
              in sector 3 (upper right) have been made transparent to show details of the Winston cones (grey) and magnetic shields (black).}
@@ -44,7 +44,7 @@ collection on PMTs placed on the shadow of the torus magnet coil, near the LTCC 
 			 hyperbola at the bottom is the one that define the hyperbolic mirror.
              Bottom: zoomed in details of the setup above. The squares represent the mirrors left and right edges.
              These parameters are stored in databases and loaded in the software modeling the LTCC mirrors
-             in the GEMC simulation \cite{gemc2019}.}
+             in the GEMC simulation \cite{sim-nim}.}
 	\label{fig:mirrorMath}
 \end{figure}
 
@@ -56,7 +56,8 @@ In the Geant4 implementation the elliptical mirrors are produced in three steps,
 	\item place cut out mirrors: rotate and place the mirrors in the final position within the LTCC mother volume.
 \end{enumerate}
 
-The hyperbolic mirrors are made by Geant4 ``polycons'' that approximate the shape of the mirrors using a number of facets
+The hyperbolic mirrors are made by Geant4 ``polycones'' (volumes with cylindrical symmetry
+with varying radius along one axis) that approximate the shape of the mirrors using a number of facets
 varying from 10 (smallest mirror) to 30 (longest mirrors). The measured reflectivity is included in the simulation as
 an optical property of the mirror material.
 
