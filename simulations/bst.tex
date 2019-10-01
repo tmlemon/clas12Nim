@@ -34,18 +34,13 @@ The strip identification is performed in the Process ID routine.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstDetail.png}
-	\caption{(Color Online) Top: the GEMC implementation of the SVT geometry. The three regions are shown in the sliced view. The silicon sensors are
+	\caption{Top: the GEMC implementation of the SVT geometry. The three regions are shown in the sliced view. The silicon sensors are
            the grey color rectangles. The track is a 2 GeV proton, leaving hits (marked with white circles) in each module crossed. Bottom: detail of a module shows
            the various materials inside. The 320 $\mu$m silicon sensor is on top and bottom of the module.
            The material inside includes epoxy glue, the bus cable, and support material. The proton creates one hit
 		   in both the two silicon modules it transverses.}
 	\label{fig:bstGeometry}
 \end{figure}
-
-
-%The Github location of the GEMC perl API script is at \url{https://github.com/gemc/detectors/tree/master/clas12/bst}.
-%The java geometry service is at
-%\url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/SVTGeant4Factory.java}
 
 
 \subsubsection{Process ID}
@@ -60,7 +55,7 @@ is summarized in \F{processID}.
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstHit.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/blank.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstStrip.png}
-	\caption{(Color Online) Top: Process ID algorithm cartoon for SVT. The strip number is assigned based on the local position of the track
+	\caption{Top: Process ID algorithm cartoon for SVT. The strip number is assigned based on the local position of the track
             step within the sensitive module. If a step of the primary or the secondary particles happens between the boundary
             of the strip that was already hit, it will be assigned to that strip. Bottom: actual hit position of selected
             strips in the top and bottom silicon sensors of a module shows the fan-like distribution of the strips,
@@ -74,7 +69,7 @@ is reproduced in the GEMC simulation using the hit sharing algorithm described i
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.99\columnwidth, height=0.65\columnwidth]{img/bstHitSharing.png}
-	\caption{(Color Online) The SVT hit sharing algorithm. If a step in a given strip happens within 39 $\mu$m of the adjacent strip, then
+	\caption{The SVT hit sharing algorithm. If a step in a given strip happens within 39 $\mu$m of the adjacent strip, then
              $90\%$ of the energy deposited will be shared equally between them ($45\%$ each), with a $10\%$ energy loss due
 	         to capacitive coupling between the strip and the backplane.}
 	\label{fig:bstHitSharing}
@@ -122,7 +117,7 @@ The rates were calculated for the various Regions and for different thresholds (
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstHitDisplay.png}
-	\caption{(Color Online) The occupancy in the various SVT layers for different thresholds for one event containing a proton track (direction indicated
+	\caption{The occupancy in the various SVT layers for different thresholds for one event containing a proton track (direction indicated
              by the arrow). The hits are represented by the square.
              Top left: with no energy cut, all SVT layers have numerous hits. Many are photons leaving no energy, as shown in
              the remaining panels where the condition of some energy deposition is required. Top right: 30 keV energy threshold. Bottom right:

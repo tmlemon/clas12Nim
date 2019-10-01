@@ -18,7 +18,7 @@ The wire identification is performed in the Process ID routine.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcGeometry.png}
 %	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcDetail.png}
-	\caption{(Color Online) The GEMC implementation of the DC geometry. The solenoid volume and HTCC are also visible.
+	\caption{The GEMC implementation of the DC geometry. The solenoid volume and HTCC are also visible.
              Geant4 trapezoids are the mother volumes corresponding to DC regions 1, 2, and 3. The track is negative pion,
 			 hitting the various layers inside each region. The hit are indicated by the black markers. Due to the high DC
              efficiency most tracks produce at least one hit each layer (12 hits / region).
@@ -26,9 +26,6 @@ The wire identification is performed in the Process ID routine.
 	\label{fig:dcGeometry}
 \end{figure}
 
-The Github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/dc}.
-The java geometry service is at
-\url{https://github.com/JeffersonLab/clas12-offline-software/blob/development/common-tools/clas-jcsg/src/main/java/org/jlab/detector/geant4/v2/DCGeant4Factory.java}.
 
 \subsubsection{Process ID}
 At each Geant4 step, the local vertical position $y$ in the DC layer volume is computed. Knowing the distance
@@ -103,8 +100,7 @@ The digitized output bank variables are summarized in Table \ref{tab:dcBank}.
 
 
 The simulation time window of the DC is set to 500 ns: all Geant4 steps within the same cell and time window are collected in one hit.
-The actual electronic time window is set to 250, 500 and 750 ns for Regions 1, 2, and 3 respectively. This must be taken into account
-The DC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/dc_hitprocess.cc}
+The actual electronic time window is set to 250, 500 and 750 ns for Regions 1, 2, and 3 respectively. 
 
 
 \subsubsection{Background Rates}
@@ -126,7 +122,7 @@ is considered an optimal compromise between luminosity and reconstruction effici
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcOccupancy.png}
-	\caption{(Color Online) Results for DC rates for electron out-bending in the torus field.
+	\caption{Results for DC rates for electron out-bending in the torus field.
 		     Top: the occupancies are below $3\%$ for region 1 and below $1.2\%$ for region 3. Bottom: layer
 		     versus wire hit distribution. Results for the electron in-bending polarity shows very similar distributions.}
 	\label{fig:dcOccupancy}
