@@ -2,34 +2,31 @@
 
 \subsubsection{Geometry}
 The LTCC mirror geometry is implemented through the native GEMC geometry API. The elliptical mirrors are made through a subtraction of
-two G4Ellipsoids. The hyperbolic mirrors are built using Geant4 polycones approximating the mathematical shape using about 30 segments.
-The cylindrical mirrors are made of G4Tubes.
+two ellipsoids. The hyperbolic mirrors are built using Geant4 ``polycones'' approximating the mathematical shape using about 30 segments.
+The cylindrical mirrors are made from cuts of cylinder volumes.
 
-The LTCC Winston cones are of three types: small, medium, and large. Three CAD models are tessellated and imported in the simulation, and
-then copied into 36 WC / sectors using the perl API.
+The LTCC Winston cones (WC) are of three types: small, medium, and large. Three CAD models are tessellated and imported in the simulation, and
+then copied into 36 WC / sector using the perl API.
 
 Finally, the LTCC box, mirror support structure, and additional support hardware are imported directly from the engineering CAD models.
-The \F{ltccGeometry} shows details of the geometry implementation.
+\F{ltccGeometry} shows details of the geometry implementation.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth, keepaspectratio]{img/ltccGeometry.png}
 	\includegraphics[width=0.99\columnwidth, keepaspectratio]{img/ltccDetail.png}
 	\caption{Top: a 6 GeV pion passing through the LTCC gas volume and emitting Cherenkov photons. The light cone
-            bounces from the elliptical to the hyperbolic to the Winston cone and finally reaches the PMT.
+            bounces from the elliptical to the hyperbolic mirrors to the Winston cone, and finally reaches the PMT.
             Bottom: details of the hardware inside the LTCC simulation system: the box frame and the WC are
-            imported from CAD. The mirrors, shields, and PMTs are made with Geant4 volumes. One of the PMT shield
-            in this picture was removed to show the WC. The PMT is a simulated as a disk attached to the WC. }
+            imported from CAD. The mirrors, shields, and PMTs are made with Geant4 volumes. One of the PMT shields
+            in this picture was removed to show the WC. The PMT is simulated as a disk attached to the WC. }
 	\label{fig:ltccGeometry}
 \end{figure}
 
-The refractive index of the $C_4F_{10}$ and its transparency is included in the material optical properties and taken
+The refractive index of the $C_4F_{10}$ radiator gas and its transparency is included in the material optical properties and taken
 into account during the Geant4 transportation of the photons.
-
-The reflectivity of the mirrors and Winston cones is associated with the optical properties of their material and
-is taken into account during the Geant4 transportation of the photons.
-
-The quantum efficiency associated with the PMT photocathode is taken into account in
+Similarly for the reflectivity of the mirrors and Winston cones.
+The quantum efficiency associated with the PMT photocathodes is taken into account in
 the digitization routine.
 
 \subsubsection{Digitization}
@@ -46,7 +43,7 @@ The digitized output bank variables are summarized in Table \ref{tab:ltccBank}.
 			\hline \hline
 			Variable & Description                                         \\
 			\hline
-             sector  &                                     clas12 sector   \\
+             sector  &                                     CLAS12 sector   \\
                side  &                               left or right index   \\
             segment  &                                           segment   \\
                 ADC  &                                               ADC   \\
