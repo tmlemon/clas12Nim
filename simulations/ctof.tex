@@ -14,7 +14,7 @@ junctions, see \F{ctofGeometry} bottom.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ctofGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ctofDetail.png}
-	\caption{(Color Online) Top: the GEMC implementation of the CTOF geometry. Beam is incident from the left.
+	\caption{Top: the GEMC implementation of the CTOF geometry. Beam is incident from the left.
 	         The paddles and light guides are imported directly from the engineering model.
 			 The black line is a 2 GeV proton leaving a hit (white circle) in one of the paddles.
 			 Bottom: a zoom-in of the implementation shows the details of downstream scintillator/light guide junctions:
@@ -43,7 +43,7 @@ The absolute hit time is corrected by:
 \begin{itemize}
 	\item the effective velocity (from CCDB);
 	\item an upstream/downstream PMT time offset factor (from CCDB);
-	\item an RF correction (from CCDB),
+	\item an RF correction (from CCDB).
 \end{itemize}
 
 The time is then smeared by a resolution read from CCDB using a Gaussian function and then digitized using a TDC conversion factor.

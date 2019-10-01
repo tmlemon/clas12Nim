@@ -4,8 +4,8 @@
 
 The HTCC geometry is implemented through the native GEMC geometry API. The elliptical mirrors are made through a subtraction of
 two G4Ellipsoids (a Geant4 volume outlined by the 3D ellipse equation).
-They are contained inside an HTCC mother volume made with a G4Polycone, see \F{htccGeometry}.
-The faces of the PMT are the sensitive volumes, associated with the quartz-glass material and associated with the HTCC digitization routine.
+They are contained inside an HTCC mother volume made with a Geant4 ``polycone'' (\F{htccGeometry}).
+The faces of the PMTs are the sensitive volumes, associated with the quartz-glass material and with the HTCC digitization routine.
 
 The refractive index of the $CO_2$ and its transparency is included in the material optical properties and taken
 into account during the Geant4 transportation of the photons.
@@ -21,18 +21,13 @@ the digitization routine.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/htccGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/htccDetail.png}
-	\caption{(Color Online) Top: an electron passing through the HTCC gas volume and emitting Cherenkov photons. The light cone
+	\caption{Top: an electron passing through the HTCC gas volume and emitting Cherenkov photons. The light cone
             hits two mirrors and it is re-directed to the corresponding PMTs.
             Bottom: details of the mirror implementation. These are subtractions of ellipsoid Geant4 volumes along
             certain planes between two adjacent mirror substrates. Each plane is defined by a second order
             curve along which the two substrates intersect.}
 	\label{fig:htccGeometry}
 \end{figure}
-
-
-The Github location of the GEMC perl API script is \url{https://github.com/gemc/detectors/tree/master/clas12/htcc}.
-
-
 
 \subsubsection{Digitization}
 Photons that impinge on the PMT faces are processed with the digitization routine.
@@ -60,4 +55,3 @@ The digitized output bank variables are summarized in Table \ref{tab:htccBank}.
 \end{table}
 
 The time window  of the HTCC is set to 5 ns: all Geant4 steps within the same PMT and time window are collected in one hit.
-The HTCC hit process routine location in git is \url{https://github.com/gemc/source/blob/master/hitprocess/clas12/htcc_hitprocess.cc}

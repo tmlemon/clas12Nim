@@ -56,7 +56,8 @@ In the Geant4 implementation the elliptical mirrors are produced in three steps,
 	\item place cut out mirrors: rotate and place the mirrors in the final position within the LTCC mother volume.
 \end{enumerate}
 
-The hyperbolic mirrors are made by Geant4 ``polycons'' that approximate the shape of the mirrors using a number of facets
+The hyperbolic mirrors are made by Geant4 ``polycones'' (volumes with cylindrical symmetry
+with varying radius along one axis) that approximate the shape of the mirrors using a number of facets
 varying from 10 (smallest mirror) to 30 (longest mirrors). The measured reflectivity is included in the simulation as
 an optical property of the mirror material.
 

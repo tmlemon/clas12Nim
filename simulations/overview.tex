@@ -44,7 +44,7 @@ The design of the framework is summarized in \F{gemcDesign}.
 \begin{figure}
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/gemcDesign.png}
-	\caption{(Color Online) The architecture of GEMC. The simulation parameters are stored in an external database. GEMC collects
+	\caption{The architecture of GEMC. The simulation parameters are stored in an external database. GEMC collects
              them and organizes the necessary Geant4 ingredients used to simulate the
              passage of particles through materials and sensitive regions. The hits are digitized with
              plugins defined by the user and collected in user-defined outputs.  }
@@ -85,7 +85,7 @@ The databases can be defined using the following factories:
 	\item GDML, c++ plugins (not used in CLAS12).
 \end{itemize}
 
-The GEMC native API and the CLAS12 geometry code source repositories are listed on the CLAS12 tags portal \cite{clas12tags}.
+The GEMC native API and the CLAS12 geometry code source repositories are listed on the CLAS12 tags portal \cite{clas12Tags}.
 
 
 \subsubsection{Importing CAD volumes from the engineering model}
@@ -96,7 +96,7 @@ hierarchy of all detector elements, down to details like nuts and bolts.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/cadSelection.png}
-	\caption{(Color Online)  The engineering model of one of the CLAS12 detectors, before importing it into GEMC.
+	\caption{ The engineering model of one of the CLAS12 detectors, before importing it into GEMC.
              The model may be composed by thousands of elements, not all of them relevant to the GEMC Geant4 simulation.
              The import process involves filtering out unnecessary volumes that are not in the active region.}
 	\label{fig:cadSelection}
@@ -120,7 +120,7 @@ An example of the CAD validation is shown in \F{cadValidationExample}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/targetScatteringChamber.png}
-	\caption{(Color Online) An example of a volume from an STEP file tessellated in GEMC. The volume that is shown is the target scattering chamber.
+	\caption{An example of a volume from an STEP file tessellated in GEMC. The volume that is shown is the target scattering chamber.
             Top: the CAD representation in the engineering model. Bottom: the tessellation. }
 	\label{fig:targetScatteringChamber}
 \end{figure}
@@ -142,7 +142,7 @@ An example of the CAD validation is shown in \F{cadValidationExample}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/cadValidationExample.png}
-	\caption{(Color Online) An example of comparing volumes in the GEMC simulation to the engineering drawings, in this case to validate the cone shield
+	\caption{An example of comparing volumes in the GEMC simulation to the engineering drawings, in this case to validate the cone shield
              position. Top: engineering drawings of the CLAS12 beamline and shielding. The start of the M\"oller shielding is 87.77 cm downstream
              of the target center. Bottom: a geantino (a special Geant4 particle that does not interact with materials or fields)
              is shot vertically at $z$=87.77~cm, showing that the Geant4 cone position agrees with the drawings.}
