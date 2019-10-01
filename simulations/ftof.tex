@@ -6,13 +6,13 @@ The FTOF geometry is implemented through the java geometry service.
 The service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
 
 All scintillators are Geant4 volumes. The paddles are assigned the scintillator material and associated with the FTOF hit process routine.
-Each scintillator is a G4Box embedded in a G4Trapezoid mother volume made of air, see \F{ftofGeometry}. 
+Each scintillator is a box volume embedded in a trapezoid mother volume made of air (see \F{ftofGeometry}).
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftofGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftofDetail.png}
-	\caption{Top: the GEMC implementation of the FTOF geometry. The paddles are G4Boxes embedded in trapezoid
+	\caption{Top: the GEMC implementation of the FTOF geometry. Beam is incident from the left. The paddles are G4Boxes embedded in trapezoid
              representing the mother volumes of each panel. A 6 GeV pion is shown, producing one hit (white circle) in each FTOF panel
              in the CLAS12 Forward Detector sector 4.
              Bottom: a zoom-in of the implementation shows the details of the individual paddles for panel-1b (front)
@@ -28,7 +28,8 @@ The hits are then processed independently through the FTOF hit process routine.
 \subsubsection{Digitization}
 
 The energy deposited is reduced based on the hit position on the paddle using the calibrated attenuation length. It is then corrected by a gain factor
-to account for the fact that the HV are adjusted so that the geometric ADC mean sqrt(ADCL*ADCR) is independent of counter length and hit position.
+to account for the fact that the high voltages (HV) are adjusted so that
+the average left/right ADC geometric mean is independent of counter length and hit position.
 
 The corrected energy is converted to the data derived number of photos $N_{th}$ using the constant 500 $\gamma$ / MeV. A Poissonian is used to
 calculate the actual number of photons $N_{actual}$ and the resulting ``smeared'' energy is the converted to ADC using the FADC conversion factor.
@@ -45,15 +46,16 @@ An example of the smeared ADC for the right paddles as a function of hit positio
 The hit time is processed using:
 
 \begin{itemize}
-	\item the effective velocity (from CCDB)
-	\item the time walk correction, calculated from the smeared energy
-	\item a panel to panel timing offset factor (from CCDB)
-	\item a left/right time offset factor (from CCDB)
-	\item an RF correction (from CCDB)
+	\item the effective velocity (from CCDB);
+	\item the time walk correction, calculated from the smeared energy;
+	\item a panel to panel timing offset factor (from CCDB);
+	\item a left/right time offset factor (from CCDB);
+	\item an RF correction (from CCDB).
 \end{itemize}
 
 The time is then smeared by a resolution read from CCDB using a Gaussian function and then digitized using a TDC conversion factor.
-
+Note there is not time walk correction for the measured CTOF times (see Section \ref{sec:ctof}) as constant fraction discriminators
+are employed for the readout.
 The digitized output bank variables are summarized in Table \ref{tab:ftofBank}.
 
 \begin{table}[h]
