@@ -778,12 +778,9 @@ See Ref.~\cite{Software} for full details on the CLAS12 offline reconstruction s
 
 \begin{figure}[htbp!]
 \centerline {
-\includegraphics[width=0.96\columnwidth]{tracking_vertices.png}}
-\caption{(Color Online) Vertex reconstruction in the FD. The upper row shows the reconstructed vertices in the production frame along
-the beamline for negative tracks (left) and positive tracks (right). The Solenoid field causes the vertices to be shifted
-in opposite directions from the center depending on their respective charges. The bottom row shows the projected
-vertices within the sector frame. They exhibit a track occupancy that is symmetric inside their respective sectors. The
-sector boundaries are clearly visible.} 
+\includegraphics[width=0.96\columnwidth]{R1-vertex.png}}
+\caption{(Color Online) Electron vertex reconstruction in the FD before tracking it through the solenoid field. 
+The sector boundaries are clearly visible.} 
 \label{vertex}
 \end{figure}
 
@@ -818,7 +815,7 @@ data runs. See Ref.~\cite{GEMC} for details on the CLAS12 simulation package GEM
 magnetic field configurations and 50\% of design luminosity. Top left: Solenoid field is OFF and Torus field is OFF. Top
 right: Solenoid field is OFF and Torus field is ON. Bottom: right Close-up of Top: right.  Bottom left: Solenoid field is ON
 and Torus field is ON at 100\% design luminosity. Color code: cyan: primary electrons, red: energy loss in detectors, blue:
-photons, white: Cherenkov light.} 
+photons, white: Cherenkov light. {\bf TO BE REPLACED WITH CLEAR BACKGROUND } 
 \label{gemc-event}
 \end{figure*}
 
@@ -925,7 +922,7 @@ mass neutron excitations are also visible. The horizontal axes are in units of G
 peak is close to the proton mass in all sectors reflecting the good momentum calibration of all sectors. A fit to the
 elastic signal shows sector to sector variation of less then {\bf XX MeV} ({\bf need to replace after kinematic
 corrections have been applied}). The right panels show the mass distribution of the unmeasured final state X in
-$ep \to e'\pi^+ X$. The peak is due to the unmeasured neutron. {\bf Replace after kinematic corrections are applied.}
+$ep \to e'\pi^+ X$. The missing mass peak is due to the unmeasured neutron. {\bf Replace after kinematic corrections are applied.}
 The mass resolution is $\sigma_X = 45$~MeV/c$^2$. {\bf Clean up plots for publication.}} 
 \label{elastic-peak}
 \end{figure} 
@@ -1296,10 +1293,21 @@ statistics graphs}}
 
 The Central Detector system covers approximate regions in polar angles from $35^\circ$ to $125^\circ$ and the
 full $360^\circ$ in azimuth.  Figure~\ref{cvt-acceptance} shows the acceptance and reconstruction efficiency for
-charged tracks from simulations with background incorporated according to beam current. {\bf Need to add
-more graphs on performance of CD ??}. The limited space in the CD makes charged particle identification at high
+charged tracks from simulations with background incorporated according to beam current. Figure~\ref{cvt-vertex} 
+shows the reconstructed vertex along the beam line (z-axis) for charged particle coming from an empty 
+target cell. The target cell is 5~cm long, and the cell walls are well resolved with an approximate resolution 
+of $\sigma_z<2$~mm. The final vertex resolution should significantly improve with ultimate detector alignment and 
+calibrations. Events between the cell walls are from beam interactions with the residual hydrogen gas in the target cell.  
+
+The limited space in the CD makes charged particle identification at high
 momentum challenging. Current performance in terms of particle identification and tracking resolution has still some
 distance to go to be close to the expected performance parameters.   
+
+\begin{figure}[thbp!]
+\centerline{\includegraphics[width=1.0\columnwidth]{cvt-vertex.png}}
+\caption{Reconstructed z-vertex for charged tracks from an empty target cell. }
+\label{cvt-vertex}
+\end{figure}
 
 \begin{figure}[thbp!]
 \centerline{\includegraphics[width=1.0\columnwidth]{cvt-acceptance.png}}
