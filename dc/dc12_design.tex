@@ -22,8 +22,8 @@ compared to the previous CLAS detector.
 
 The new kinematic range available to the CLAS12 experiment is
 characterized not only by smaller cross sections, but also by more outgoing 
-particles per event, with those particles being emitted with higher values 
-of momentum and at smaller laboratory angles.  
+particles per event, with those particles being emitted at larger momenta
+and smaller laboratory angles.  
 A final state of a few high-momentum, forward-going particles (the electron as well as one 
 or more mesons), combined with a moderate-momentum baryon emitted at large 
 angles, is the typical event type that determines the specifications of the 
@@ -31,20 +31,20 @@ tracking system.
 
 To cover as much of the hadronic center-of-mass region as possible, the forward 
 detector must provide tracking for charged particles emitted at polar angles 
-from 5$^\circ$ to 40$^\circ$.  This matches well with the angular coverage of
-the central tracking system which covers polar angles from  35$^\circ$ to approximately 120$^{circ}$.
+from 5$^\circ$ to 40$^\circ$.  This is complemented by the angular coverage of
+the central tracking system which covers polar angles from  35$^\circ$ to approximately 120$^\circ$.
 
 In addition to large acceptance, our experimental program requires
 small systematic errors.  To measure our electroproduction cross-sections
 to an accuracy of a few percent, we must know the scattered electron's
-momentum to $1\%$ and its angle to $1 mrad$.  
+momentum to $1\%$ and its angle to 1 mrad.  
 We require even better momentum resolution on the scattered
 electron (with momentum up to 10 GeV/c) to be able to identify particles
 by missing mass, an important technique in exclusive reaction studies.
 This requirement to identify one (and only one) missing particle led to our 
 most stringent design specification on the fractional momentum resolution:
 $dp/p = 0.3\%$ for electrons emitted at small angles ($7^{\circ}$) and high
-momentum ($10 GeV/c$).  
+momentum (10 GeV/c).  
 
 Table~\ref{fwd-dc-physics-specifications} lists the physics goals for the CLAS12 program
 main and the resulting design specifications that will allow us to achieve these goals.
@@ -56,12 +56,12 @@ main and the resulting design specifications that will allow us to achieve these
 \begin{center}
 \begin{tabular}{||c|c|c||} \hline \hline
    {\bf Goal}         & {\bf Physics Specification} & {\bf Design Specification}\\ \hline
-Measure $\Gamma_v$  & $d \theta < 1mrad$   & planar chambers \\ 
-accurately  & $sin \theta ~d \phi < 1 mrad$ & $+/- 6^\circ$ stereo angle   \\ 
+Measure $\Gamma_v$  & $d \theta <$ 1mrad   & planar chambers \\ 
+accurately  & sin$\theta ~d \phi < $1 mrad & $+/- 6^\circ$ stereo angle   \\ 
   & $dp/p < 1\% $ & identical cells (each superlayer)  \\ \hline
 Select exclusive reaction; &    & $250~\mu$m  accuracy per cell\\ 
-only one missing particle    & $dp/p < .3\%$ at 10 GeV/c &    chamber alignment $<100\mu m$\\  \hline
-Small       & L = $10^{35}$~cm$^{-2}$s$^{-1}$  & six 6-layer superlayers \\ 
+only one missing particle    & $dp/p < 0.3\%$ at 10 GeV/c &    chamber alignment $<100\mu$m\\  \hline
+Small       & Luminosity = $10^{35}$~cm$^{-2}$s$^{-1}$  & six 6-layer superlayers \\ 
 cross sections  & high efficiency & $> 95\%$ layer efficiency \\ \hline
 large acceptance   & $\delta\phi = 50\%$ at $5^\circ$ & thin endplates\\ \hline
 \end{tabular}
@@ -85,9 +85,9 @@ are the main drivers for the drift chamber design.
 
 Because the previous {\tt CLAS} drift chamber system~\cite{dcnim} operated 
 successfully for 8~years, we re-used many of the design concepts and 
-most of the utility infrastructure.  For example, we re-used some
-parts of the gas mixing and handling system, and also the high-voltage 
-and low-voltage systems and many of the high voltage and signal cables. 
+most of the utility infrastructure, including
+parts of the gas mixing and handling system, the high-voltage 
+and low-voltage systems, and many of the high voltage and signal cables. 
 Refer to our 
 article on the previous {\tt CLAS} detector~\cite{clasnim} and our article 
 on the previous drift chambers themselves~\cite{dcnim} for details of the 
@@ -127,7 +127,7 @@ Distance from target & 2.3 m    & 3.5 m        & 4.9 m    \\ \hline
 Num. of superlayers  & 2        & 2            & 2        \\ \hline
 Layers/superlayer    & 6        & 6            & 6        \\ \hline
 Wires/layer          & 112      & 112          & 112      \\ \hline
-Cell radius (each SL) & 0.78, 0.81 cm  & 1.14. 1.32 cm      & 1.87, 1.96 cm  \\ \hline
+Cell radius (each SL) & 0.78, 0.81 cm  & 1.14, 1.32 cm      & 1.87, 1.96 cm  \\ \hline
 Active time window   & 150 ns   & 325 - 1000 ns & 750 ns   \\ \hline
 \end{tabular}
 \caption{\small{Design parameters for the {\tt CLAS12} drift chambers.}}
@@ -144,7 +144,7 @@ previous CLAS chambers:
 \item {\bf Wire Layout}
 \begin{itemize}
 \item ``brick-wall'' wire layout resulting in individual hexagonally-shaped
-drift cells
+drift cells in a plane perpendicular to the wire direction
 \item sense wire layers are grouped into two ``superlayers'' of 6 layers each
 \item the ``endplates'' on the two sides of the chamber are tilted 
 at approximately 60 deg. with respect to each other
@@ -221,7 +221,7 @@ Small Cells & Robust track-finding  & Many wires to string \\ \hline
 Hexagonal Cells & Minimum number of wires  & Angle-dependence of time to distance  \\ \hline
 30 $\mu m$ diameter sense wire & Resistant to wire breakage & Higher operating voltage \\ \hline
 80 $\mu m$ diameter field wire & Lower total wire tension & Higher fields on cathode wires \\ \hline
-Shared, opposite voltage  & Identical fields & More HV \\
+Opposite voltage  & Identical fields & More HV \\
 for sense and field & for all layers & channels required \\ \hline
 Self-supporting design & Easier maintenance & 1 - 2 mm bowing of endplates \\ \hline
 \end{tabular}
@@ -255,22 +255,26 @@ to use 30-$\mu$m diameter sense wire rather than the previously-used
 20~$\mu$m wire. 
 This should make the chambers more resistant to wire 
 breakage.  The larger radius of the sense wires means that higher 
-voltages will be required to achieve the same gas gain.
+voltages will be required to achieve the same gas gain, see Section \ref{operating_voltage}
+for more details.
 Prototypes were built to study possible negative side-effects of the 
 higher voltage operation, such as leakage currents on the circuit boards 
 and/or higher rates of cathode emission from the field wire surfaces.
 No such effects were seen.
 
-In addition to being tougher than 20-$\mu$m wire, the higher voltages
+In addition to being tougher than 20-$\mu$m wire, the higher voltages 
+(~ 250 V higher)
 required for 30-$\mu$m wire to achieve the same gain will result in
 higher and more constant drift velocities.
 Fig.~\ref{garfield-20-vs-30-micron} shows GARFIELD calculations for a Region~3 drift cell
 with both a 20-$\mu$m and a 30-$\mu$m diameter sense wire.  Here the
 cells with the thicker sense wire will have a significantly higher drift 
-velocity, which is desirable to reduce the time window, and hence the 
+velocity, which reduces the time window, and hence the 
 chamber occupancy.
 
-We discuss the wire choice in more detail in the ``Construction'' section.
+We discuss the wire choice in more detail in section\ref{construction}.
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%% Figure : garfield-20-30-micron %%%%%%%%%%%%%%%%%%%%%%
