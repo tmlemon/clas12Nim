@@ -2,7 +2,6 @@
 
 The GEMC framework is documented on the GEMC website \cite{GEMC}. This includes the latest news and releases,
 examples, procedure details, and documentation for all the available options.
-
 The software is distributed in two ways: with docker, or by downloading the source from the public git repository.
 
 
@@ -13,21 +12,21 @@ The container is tagged, and every tag contains a set version of these libraries
 \begin{itemize}
 	\item pythia-based event generators for various physics channels relevant to the CLAS12 analyses;
 	\item GEMC with the CLAS12 geometry;
-	\item The java reconstruction software \cite{recon-nim}.
+	\item the java reconstruction software \cite{recon-nim}.
 \end{itemize}
 
 
-The code git repository is \url{https://github.com/gemc/source}.
-The code repository is public. The development contributions mechanism is illustrated in \F{github}: collaborators fork the repository
-and make pull request that are validated by the code author.
+The code git repository is \url{https://github.com/gemc/source}, which is a public repository.
+The development contribution mechanism is illustrated in \F{github}: collaborators fork the repository
+and make pull requests that are validated by the code author.
 GEMC is released on a semi-annual cycle.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/github.png}
 	\caption{Typical workflow of contribution to the code: the main repository is forked and worked on. During the process comments
-             can be made part of the development process. When the users make the pull request, the changes are validated and then merged
-             to the master repository, or sent back with comments if there were problems.}
+             can be made part of the development process. When the users make the pull request, the changes are discussed, validated and then merged
+             to the master repository (or sent back with comments if there were problems).}
 	\label{fig:github}
 \end{figure}
 
@@ -35,12 +34,12 @@ GEMC is released on a semi-annual cycle.
 The list of software packages included in the GEMC framework is:
 
 \begin{itemize}
-	\item clhep: Class Library for High Energy Physics \cite{clhep}
-	\item xercesc: validating XML parser \cite{xercesc}
-	\item Geant4: the libraries to simulate the passage of particles through matter \cite{geant4}
-	\item qt: a C++ graphic library \cite{qt}
-	\item evio: the CLAS12 data format \cite{evio}
-	\item CCDB: the calibration database based on mysql \cite{ccdb}
+	\item clhep: Class Library for High Energy Physics \cite{clhep};
+	\item xercesc: validating XML parser \cite{xercesc};
+	\item Geant4: the libraries to simulate the passage of particles through matter \cite{geant4};
+	\item qt: a C++ graphic library \cite{qt};
+	\item evio: the CLAS12 data format \cite{evio};
+	\item CCDB: the calibration database based on mysql \cite{ccdb}.
 \end{itemize}
 
 The main documentation is on the GEMC website \cite{GEMC}. It includes examples of how to create and run a custom geometry
