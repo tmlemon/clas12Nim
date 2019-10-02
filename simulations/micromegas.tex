@@ -1,9 +1,12 @@
-\subsection{Barrel Micromegas Tracker (BMT)}
+\subsection{Barrel and Forward Micromegas Trackers (BMT and FMT)}
 
 \subsubsection{Geometry}
 
-The Micromegas geometry is implemented through the native GEMC geometry API.
-There are three micromegas regions, divided azimuthally in three identical sectors. Each sector contain a cover layer with copper ground,
+The Micromegas geometry is implemented through the native GEMC geometry API. There are two subsystems: a ``barrel'' micromegas
+between the SVT and the CTOF, made by are three concentric regions divided azimuthally in three identical sectors; and a ``forward'' micromegas
+made by three disk regions divided azimuthally in six identical sectors. In both subsystems each region is made by two layers, one with wires parallel to the beam and
+one with wires perpendicolar to the beam (see \F{bmtGeometry}).
+Each micromegas sector contain a cover layer with copper ground,
 the printed circuit board (PCB) with the readout strips, the Kapton support, the mesh layer, the ionizing gas, and other layers of material, listed in order below:
 
 \begin{itemize}
@@ -20,7 +23,7 @@ the printed circuit board (PCB) with the readout strips, the Kapton support, the
 	\item ground
 \end{itemize}
 
-The sensitive volume contains argon/isobutane gas and is associated with the BMT hit process routine.
+The sensitive volume contains argon/isobutane gas and is associated with the BMT and FMT hit process routines.
 The geometry is summarized in \F{bmtGeometry}. The strip identification is performed in the Process ID routine.
 
 \begin{figure}
@@ -64,7 +67,7 @@ The digitized output bank variables are summarized in Table \ref{tab:mmBank}.
 			\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{The digitized BMT bank.}\label{tab:mmBank}
+	\caption{The digitized BMT and FMT banks.}\label{tab:mmBank}
 \end{table}
 
 The time window  of the Micromegas is set to to 132 ns: all Geant4 steps within the same strip and time window are collected in one hit.
