@@ -146,7 +146,7 @@ the design, construction, and performance of CLAS12.
 
 \end{frontmatter}
 
-\linenumbers
+\nolinenumbers
 \section{Introduction}
 %\label{Intro}
 
@@ -362,17 +362,18 @@ vector of the charged particle.}
 \label{solenoid-torus}
 \end{figure}
 
-\begin{figure}[htbp!]
-\centerline{\includegraphics[width=1.0\columnwidth]{mag-field-1.png}}
-\caption{(Color Online) Solenoid magnetic stray fields with the magnet at full current and the Torus off. {\bf Dave Heddle is 
-working on full field map }}
-\label{stray-field1}
-\end{figure}
+%\begin{figure}[htbp!]
+%\centerline{\includegraphics[width=1.0\columnwidth]{mag-field-1.png}}
+%\caption{(Color Online) Solenoid magnetic stray fields with the magnet at full current and the Torus off. }}
+%\label{stray-field1}
+%\end{figure}
 
 \begin{figure}[htbp!]
-\centerline{\includegraphics[width=1.2\columnwidth]{mag-field-2.png}}
-\caption{(Color Online) Combined Solenoid and Torus magnetic stray fields with both magnets at full current. 
- {\bf Dave Heddle is working on full field map}}
+\centerline{\includegraphics[width=1.0\columnwidth]{magfield-2.png}}
+\caption{(Color Online) Combined Solenoid and Torus magnetic stray fields with both magnets at full current. The 
+color code shows the total magnetic field of both Solenoid and Torus at full current. The open boxes indicate the 
+locations and dimensions of the active detector elements. The Solenoid field is radially largely contained due to 
+the shielding coil. The Torus field is radially widely spread out due to the very open geometry of the Torus coils.  }
 \label{stray-field2}
 \end{figure}
 
@@ -394,9 +395,10 @@ Figure~\ref{dc-stringing} shows the wire stringing operation for the large R3 ch
 construction and performance, see Ref.~\cite{DC}.
 
 \begin{figure}[htbp!]
-\centerline{\includegraphics[width=0.65\columnwidth]{dc-view-4.png}}
-\caption{(Color Online) Drift chamber system in the CLAS12 forward tracking system from the design model. The R1 chambers
-are located just in front of the Torus magnet coils (gray shade). The R2 chambers are sandwiched between the coils 
+\centerline{\includegraphics[width=0.95\columnwidth]{dc-view-4.png}}
+\caption{(Color Online) Drift chamber system in the CLAS12 forward tracking system from the design model. 
+The R1 chambers (blue shades) are located just in front of the Torus magnet coils (gray shade). 
+The R2 chambers are sandwiched between the coils 
 of the magnet, and the R3 chamber are located just downstream of the magnet.}
 \label{clas12-dc}
 \end{figure}
@@ -820,7 +822,7 @@ photons, white: Cherenkov light. {\bf TO BE REPLACED WITH CLEAR BACKGROUND } }
 
 \begin{figure*}[htbp!]
 {\includegraphics[width=1.0\columnwidth]{htcc-dis.png}}
-{\includegraphics[width=1.0\columnwidth]{htcc-eff.png}}
+{\includegraphics[width=0.96\columnwidth]{htcc-eff.png}}
 \caption{(Color Online) Left: Distribution of electrons at the HTCC location in polar and azimuthal angle. Bin sizes increase with
 increasing polar angles. The gaps between sectors are not die to inefficiencies of the HTCC detector, but the result
 of scattered electrons being lost in the Torus coils. Right: Distribution of HTCC efficiencies in polar and in azimuthal
@@ -903,17 +905,17 @@ neutron at four different beam energies. Figure~\ref{elastic-peak} shows fits to
 missing neutron mass distributions in three sectors at a beam energy of 10.6~GeV. Figure~\ref{pip-pim-p} shows
 the invariant mass of $\pi^+\pi^-$ and the missing mass $M_X$ for the reaction $ep \to e' \pi^+ \pi^- X$.  
 
-\begin{figure}[ht]
-\centerline{\includegraphics[width=1.0\columnwidth]{W-spectrum.png}}
+\begin{figure*}[ht]
+\centerline{\includegraphics[width=1.5\columnwidth]{W-spectrum.png}}
 \caption{Upper row: Inclusive electron scattering spectrum $ep \to e' X$ measured in CLAS12 at beam energies 
 of 2.2~GeV, 6.5~GeV, 7.5~GeV, and at 10.6~GeV (from left to right). The peak to the left is due to elastic $ep \to ep$
 scattering. Enhancements from the first 3 excited nucleon states, $\Delta(1232)$, $N(1520)$, and $N(1680)$, are also
 visible for the lower beam energies. Note that the mass ranges  are different for the different beam energies. Lower
 row:  Missing mass distributions of $ep\to e' \pi^+X$ for the same energies. The sharp mass peak to the left is due
 to the undetected neutron. The second peak for the higher energies is due to the $\Delta^0(1232)$. Indications of higher
-mass neutron excitations are also visible. The horizontal axes are in units of GeV. {\bf Clean up plots for publication.}} 
+mass neutron excitations are also visible. The horizontal axes are in units of GeV. } 
 \label{spectrum}
-\end{figure} 
+\end{figure*} 
 
 \begin{figure}[htbp!]
 \centerline{\includegraphics[width=1.0\columnwidth]{elastic_pi+n.png}}
@@ -1030,15 +1032,7 @@ luminosity of CLAS12, the hadronic production rate is approximately $5 \times 10
 fraction of those events is of interest for the science program with CLAS12. In particular, most physics reaction
 require the detection of the scattered electrons at some finite scattering angle, for example $\theta_{e'} > 5^\circ$.  
    
-\begin{figure}[htbp!]
-\centerline{\includegraphics[width=0.95\columnwidth]{trigger.png}}
-\caption{(Color Online) View of an event in CLAS12 from the ced event display. Predefined trajectories 
-are employed to select hit
-patterns in the 3 drift chamber regions that correspond with localized energy deposition
-in the PCAL and EC. For the two-track trigger the two sectors show drift chamber hit patterns for tracks with
-opposite charges, the upper one bending towards the beamline, the lower one bending away from the beamline.}
-\label{trigger}
-\end{figure}    
+   
 
 In some special programs the detection of electrons in the FT is of interest if they are associated with hadronic
 event patterns of two additional detected hadrons. Such conditions have been implemented in the fast trigger
@@ -1052,24 +1046,18 @@ PCAL and EC that are consistent with two minimum ionizing particles. This trigge
 a correlated signals in the HTCC. Details of the design, functionality, and performance of the CLAS12 trigger are
 provided in Ref.~\cite{TRIG}. 
 
-\begin{figure*}[htbp!]
-\centerline{\includegraphics[width=2.0\columnwidth]{beamline-1.png}}
-\caption{(Color Online) Hall~B beamline upstream of the target, showing the photon tagger magnet to the left, which is energized
-during beam tuning and during polarization measurements. Further downstream is a doublet of beam raster magnets
-that are used to raster the beam during polarized target experiments to avoid local polarization losses in the target.
-The elements near the center are cavities for beam position and beam current measurements. The main element 
-on the right is the solenoid magnet nearly fully encapsulated by the HTCC PMT housing. Several of the Torus magnet
-coils are visible at the far right.}
-\label{beamline-upstream}
-\end{figure*}
+\begin{figure}[htbp!]
+\centerline{\includegraphics[width=0.95\columnwidth]{trigger.png}}
+\caption{(Color Online) View of an event in CLAS12 from the ced event display. Predefined trajectories 
+are employed to select hit
+patterns in the 3 drift chamber regions that correspond with localized energy deposition
+in the PCAL and EC. For the two-track trigger the two sectors show drift chamber hit patterns for tracks with
+opposite charges. The upper track is an electron, shown by the hit in the HTCC, and bends towards the beam line, 
+the lower one has positive charge and bends away from the beam line.}
+\label{trigger}
+\end{figure} 
 
-\begin{figure*}[htbp!]
-\centerline{\includegraphics[width=2.0\columnwidth]{beamline-3.png}}
-\caption{Hall~B beamline downstream of CLAS12 showing a shield wall at the left, a beam viewer, the beam blocker,
-and the Faraday cup at the right. As the Faraday cup is not cooled, a cooled-copper 5-kW beam blocker is inserted
-for 11~GeV beam operations above currents of 15~nA.}
-\label{beamline-downstream}
-\end{figure*}
+
 
 \section{Electron Beam Operation} 
 
@@ -1099,7 +1087,24 @@ Other materials include solid nuclear targets of various kinds from $^4$He, $^{1
 the physics requirements. For some specialized experiments high-pressure gas targets are used. All targets are 
 positioned inside CLAS12 using support structures that are inserted from
 the upstream end, and are independent of the detector itself. 
+\begin{figure*}[htbp!]
+\centerline{\includegraphics[width=2.0\columnwidth]{beamline-1.png}}
+\caption{(Color Online) Hall~B beamline upstream of the target, showing the photon tagger magnet to the left, which is energized
+during beam tuning and during polarization measurements. Further downstream is a doublet of beam raster magnets
+that are used to raster the beam during polarized target experiments to avoid local polarization losses in the target.
+The elements near the center are cavities for beam position and beam current measurements. The main element 
+on the right is the solenoid magnet nearly fully encapsulated by the HTCC PMT housing. Several of the Torus magnet
+coils are visible at the far right.}
+\label{beamline-upstream}
+\end{figure*}
 
+\begin{figure*}[htbp!]
+\centerline{\includegraphics[width=2.0\columnwidth]{beamline-3.png}}
+\caption{Hall~B beamline downstream of CLAS12 showing a shield wall at the left, a beam viewer, the beam blocker,
+and the Faraday cup at the right. As the Faraday cup is not cooled, a cooled-copper 5-kW beam blocker is inserted
+for 11~GeV beam operations above currents of 15~nA.}
+\label{beamline-downstream}
+\end{figure*}
  \subsection{Polarized Production Targets} 
 
 A large science program with CLAS12 requires the use of spin-polarized protons and neutrons. Spin-polarized protons
@@ -1303,8 +1308,9 @@ momentum challenging. Current performance in terms of particle identification an
 distance to go to be close to the expected performance parameters.   
 
 \begin{figure}[thbp!]
-\centerline{\includegraphics[width=1.0\columnwidth]{cvt-vertex.png}}
-\caption{Reconstructed z-vertex for charged tracks from an empty target cell. }
+\centerline{\includegraphics[width=0.8\columnwidth]{cvt-vertex.png}}
+\caption{Reconstructed z-vertices for charged tracks in the central detector from an empty target cell. The cell walls are 
+clearly visible. The small peak downstream is from events generated in a thin thermal shielding foil.  }
 \label{cvt-vertex}
 \end{figure}
 
