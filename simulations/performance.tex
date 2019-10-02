@@ -1,16 +1,16 @@
 \section{Performance}
 
 The performance of the CLAS12 simulations is measured by comparing the predicted background rates from beam interactions
-with the target with the actual experimental rates. The benchmarks are also quantified for each detector geometry and digitization routine.
+in the target with the actual experimental rates. The benchmarks are also quantified for each detector geometry and digitization routine.
 
-\subsection{Comparison of rates with data}
-On December 17 2017, the nominal luminosity of 10$^{35}$ s$^{-1}$cm$^{-2}$
-(75 nA on a 5-cm long liquid-hydrogen target) was achieved in CLAS12.
+\subsection{Comparison of Rates with Data}
+On December 17, 2017, the nominal luminosity of \cLuminosity
+(75 nA on a 5-cm long liquid-hydrogen target) was achieved in CLAS12 for the first time.
 The rates in each of the CLAS12 detectors were measured.
 
-The drift chamber occupancy was compared for both the FTon and FTOff configurations. The integrated occupancy
+The drift chamber hit occupancy was compared for both the FTOn and FTOff configurations. The integrated occupancy
 in region 1, 2, and 3 are summarized in Tables \ref{tab:ftOnComparison} and \ref{tab:ftOffComparison}. The
-time window of the experiment at the time was different than what was in the simulation, so the data has been scaled
+DC readout time windows of the experiment at the time were different than what was in the simulation, so the data has been scaled
 accordingly. The predicted rates agree quite well with the measured ones.
 
 \begin{table}[h]
@@ -23,7 +23,7 @@ accordingly. The predicted rates agree quite well with the measured ones.
 			3 &  $1.5\%$  & $1.18\%$ \\
 		\end{tabular}
 	\end{center}
-	\caption{Drift chamber rate comparison between simulation and data for the FTOn configuration at full luminosity.}\label{tab:ftOnComparison}
+	\caption{Drift chamber hit occupancy comparison between simulation and data for the FTOn configuration at full luminosity.}\label{tab:ftOnComparison}
 \end{table}
 
 \begin{table}[h]
@@ -36,7 +36,7 @@ accordingly. The predicted rates agree quite well with the measured ones.
 			3 &  $0.9\%$  & $0.73\%$ \\
 		\end{tabular}
 	\end{center}
-	\caption{Drift chambers rate comparison between simulation and data for the FTOff configuration at full luminosity}\label{tab:ftOffComparison}
+	\caption{Drift chambers hit occupancy comparison between simulation and data for the FTOff configuration at full luminosity.}\label{tab:ftOffComparison}
 \end{table}
 
 
@@ -59,13 +59,13 @@ accordingly. The predicted rates agree quite well with the measured ones.
 %	\label{fig:ftOffComparison}
 %\end{figure}
 
-Similar agreements were found in rates in the other CLAS12 detectors. In particular:
+Similar agreements were found with the rates in the other CLAS12 detectors. In particular:
 
 \begin{itemize}
-	\item FTOF: good agreement with data for the PMT currents \cite{ftof-nim}.
-	\item CTOF good agreement with data for the upstream PMT counter rates, while the downstream counter rates
-		  are about a factor of three lower, probably due to not handling signals produced in the light guides \cite{ctof-nim}.
-	\item FT: goot agreement with data for PMT currents and radiation doses \cite{ft-nim}.
+	\item FTOF: good agreement with data for the PMT currents \cite{ftof-nim};
+	\item CTOF good agreement with data for the upstream PMT counter rates, while the downstream counter rates;
+		  are about a factor of three lower, probably due to not handling light signals produced in the light guides \cite{ctof-nim};
+	\item FT: good agreement with data for PMT currents and radiation doses \cite{ft-nim}.
 \end{itemize}
 
 
@@ -79,13 +79,13 @@ Single meson tracks in the forward region are simulated with an event rate of ab
 Electron rates are about half as fast due to shower simulations in the EC and PCAL calorimeters and
 Cherenkov photon production in both the HTCC and the LTCC, for an average of 5 Hz.
 
-A quantitative study of the event rate for 3 particles (2 in the Forward Fetector, one in the Central Detector)
+A quantitative study of the event rate for 3 particles (2 in the Forward Detector, one in the Central Detector)
 details the time spent in each detector geometry and digitization and in each magnetic field.
 The particles generated are:
 
 \begin{itemize}
-	\item one 7 GeV electron between polar angles 15\mdeg and 25\mdeg;
-	\item one 2 GeV gamma between polar angles 15\mdeg and 25\mdeg;
+	\item one 7 GeV electron between polar angles 15\mdeg \ and 25\mdeg;
+	\item one 2 GeV photon between polar angles 15\mdeg \ and 25\mdeg;
 	\item one 2 GeV proton at $\theta=$90\mdeg.
 \end{itemize}
 
@@ -113,13 +113,13 @@ Torus    &  1.9    &   34.7  & 6.6  \\
 		\end{tabular}
 	\end{center}
 	\caption{GEMC CLAS12 simulation benchmarks in each CLAS12 detector. The calorimeters are responsible for more than
-             half the computing time, due to shower simulations. Swimming in the smagnetic fields account for about 15$\%$ CPU.}
+             half the computing time, due to shower simulations. Swimming in the magnetic fields accounts for about 15$\%$ of the total CPU time.}
 \label{tab:benchmarks}
 \end{table}
 
 \noindent Simulations that include the complete beam-target interactions using the full nominal luminosity
-of 10$^{35}$ s$^{-1}$cm$^{-2}$ are made using 124,000 electrons per event. In this case the time to complete one event varies
-between one and two minutes depending on CPU flavor and available memory.
+of \cLuminosity are made using 124,000 electrons per event. In this case the time to complete one event varies
+between one and two minutes depending on the CPU type and available memory.
 
 
 
