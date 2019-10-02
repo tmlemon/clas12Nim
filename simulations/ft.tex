@@ -6,9 +6,9 @@
 The FT consists of three subsystems:
 
 \begin{itemize}
-	\item a micromegas tracker (FT-TRK);
-	\item a hodoscope (FT-HODO);
- 	\item a calorimeter (FT-CAL).
+	\item a tracker (FT-TRK), composed by 4 micromegas layers;
+	\item a hodoscope (FT-HODO), with eight sectors, each containing two layers of scintillators ;
+ 	\item a calorimeter (FT-CAL) containing an array of 332 crystals.
 \end{itemize}
 
 The three subsystems are implemented in GEMC using the native perl API script, except for the inner shield (see Section \ref{sec:beamline}),
@@ -20,6 +20,7 @@ The FT geometry is shown in \F{ftGeometry}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftGeometry.png}
+	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/blank.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ftDetails.png}
 	\caption{Top: the FT detector implementation in GEMC. The boxes surrounding FT-CAL contain the electronics.
 			 Bottom: details of the the three subsystems implementation. As seen by the beam (incident from the left):
@@ -60,24 +61,21 @@ The digitized output bank variables are summarized in Table \ref{tab:ftBank}
 			\hline
 		                         & Tracker         \\
 			\hline
-                         sector  &     sector      \\
-                          layer  &      layer      \\
-                      component  &  component      \\
-                            ADC  &        ADC      \\
+                          layer  &      tracker layer \\
+                      component  &  strip number      \\
+                            ADC  &        ADC         \\
 			\hline
-		                         & Hodoscope       \\
+		                         & Hodoscope          \\
 			\hline
-						 sector  &     sector      \\
-                          layer  &      layer      \\
-                      component  &  component      \\
+						 sector  &     hodoscope sector  \\
+                          layer  &      hodoscope layer  \\
+                      component  &  tile number    \\
                             ADC  &        ADC      \\
                             TDC  &        TDC      \\
 			\hline
 								 & Calorimeter     \\
 			\hline
-				         sector  &     sector      \\
-				   	      layer  &      layer      \\
-					  component  &  component      \\
+					  component  &  crystal number \\
 							ADC  &        ADC      \\
 							TDC  &        TDC      \\
 			\hline \hline
