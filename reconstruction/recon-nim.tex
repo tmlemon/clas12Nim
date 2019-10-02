@@ -935,7 +935,15 @@ hit is given by the helix parameters.
 ~~
 
 \subsection{Event Builder}
-~~
+The event builder collects information from all upstream services, correlates information from subdetectors into particles, performs a general particle identification scheme, and organizes the resulting information into a standardized data bank structure.
+
+First, one charged particle is assigned to each reconstructed track.  Associated calorimeter, scintillator, and Cerenkov detector responses are then assigned to that particle based on geometric (and eventually timing) coincidence between the response and track, with criteria corresponding to the given detector.  Then, a similar procedure is followed for creating neutrals particles, except seeding is on unassociated ECAL and CND responses instead of tracks.
+
+Then, a start time is assigned to the entire event.  This is based on the optimal charged particle candidate, which is the highest energy lepton else hadron with precise timing information.  A correction is then made based on the RF signal from the accelerator, effectively aligning the event start time to our best measure of bunch-crossing time at the event's vertex.
+
+A basic particle identification scheme is then performed.  For charged particles, first calorimetry and Cerenkov information is used to positively identify electron and positron candidates.  Remaining charged particles are then assigned based on timing information.  An identification quality factor is assigned based on the relevant detector responses.  For neutral particles, identity assignment is only made for neutrons and photons, based only on timing information.
+
+The resulting information is organized into standardized output bank structures for physics analyis, see \ref{sec:dsts}.  This includes particle four-vectors, all their associated detector responses, and global event information such as beam RF and helicity information.
 
 \subsubsection{Particle Identification Performance}
 ~~
@@ -946,26 +954,25 @@ hit is given by the helix parameters.
 \subsection{Data Processing Workflow}
 ~~
 
-\subsection{DSTs and Analysis Trains}
-~~
+\subsection{DSTs and Analysis Trains}\label{sec:dsts}
+The final data output is provided by the event builder in the form of data summary tapes (DST), a standardized selection of banks for physics analysis.  The banks are organized such that low level detector information can easily be dropped, and only the data essential for a physics analysis is preserved, without leaving dangling pointers or unecessary information.
 
 \subsection{Computing Tools}
 ~~
 
 \subsection{Resources}
-~~
+Reconstruction of all CLAS12 data is performed on Jefferson Lab's batch computing system\cite{jlab-batch-farm}.  The input raw data and analyzed output data are stored on JLab's tape silo \cite{jlab-tape-silo}, and data for physics analysis is also stored live on JLab's Lustre filesystems \cite{jlab-lustre}.  Analysis of reconstructed data is performed on the batch farm, interactive farms, and also transported to other institutions for final physics analysis.
 
 \section{Code Management}
-~~
 
 \subsection{Repositories}
-~~
+The software is managed in a github repository \cite{recon-github}, and branches and forks are utilized to accommodate development by many groups.  For the main branch, all modifications are made only through pull requests after passsing the automated tests in Section \ref{sec:tests}.
 
 \subsection{Releases}
 ~~
 
-\subsection{Unit Tests}
-~~
+\subsection{Tests}\label{sec:tests}
+The software includes both basic unit tests and some extended tests.  A portion of the tests are run automatically, using the TravisCI system linked to the github repositories.  These automatic tests take about 20 minutes to run and have proven invaluable in overseeing and improving software development.
 
 \subsection{Code Validation Suites}
 ~~
@@ -1027,6 +1034,21 @@ Alexander Spiridonov, Optimized Integration of the Equations of Motion of a Part
   doi:10.1016/S0168-9002(02)00790-8
   %%CITATION = doi:10.1016/S0168-9002(02)00790-8;%%
   %26 citations counted in INSPIRE as of 27 Sep 2019
+
+\bibitem{recon-github}
+    {CLAS12 Reconstructino Software Repository},
+    https://github.com/jeffersonlab/clas12-offline-software
+\bibitem{jlab-batch-farm}
+    {Jefferson Lab Batch Farm},
+    https://scicomp.jlab.org/docs/ExpPhyComp
+
+\bibitem{jlab-tape-silo}
+    {Jefferson Lab Tape Silo},
+    https://scicomp.jlab.org/docs/node/9
+
+\bibitem{jlab-lustre}
+    {Jefferson Lab Lustre Filesystem},
+    https://scicomp.jlab.org/docs/node/17
 
 \end{thebibliography}
 
