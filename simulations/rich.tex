@@ -1,9 +1,13 @@
-\subsection{Low Threshold Cherenkov Counter (LTCC)}
+\subsection{Ring-Imaging Cherenkov (RICH)}
+
+One of the six CLAS12 sectors has been equipped with a Ring Imaging Cherenkov detector \cite{rich-nim}.
 
 \subsubsection{Geometry}
-The LTCC mirror geometry is implemented through the native GEMC geometry API. The elliptical mirrors are made through a subtraction of
-two ellipsoids. The hyperbolic mirrors are built using Geant4 ``polycones'' approximating the mathematical shape using about 30 segments.
-The cylindrical mirrors are made from cuts of cylinder volumes.
+The RICH mirror geometry is implemented through the native GEMC geometry API and also imported from the engineering model STEP files.
+The spherical mirrors are made through Geant4 boolean intersections of spheres and planes.
+Since the array of 391 PMTs is inside the CLAS12 acceptance, all the PMTs components are added in the simulation:
+the PMTs are Geant4 aluminum boxes containing the electronics (including the adapter, ASIC and FPGA boards), the window, the photocathodes.
+Each PMTs contain 64 pixel. The identification of the pixel is done in the process identification routine.
 
 The LTCC Winston cones (WC) are of three types: small, medium, and large. Three CAD models are tessellated and imported in the simulation, and
 then copied into 36 WC / sector using the perl API.
@@ -13,8 +17,7 @@ Finally, the LTCC box, mirror support structure, and additional support hardware
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.99\columnwidth, keepaspectratio]{img/ltccGeometry.png}
-	\includegraphics[width=0.99\columnwidth, keepaspectratio]{img/ltccDetail.png}
+	\includegraphics[width=0.99\columnwidth, keepaspectratio]{img/richGeometry.png}
 	\caption{Top: a 6 GeV pion passing through the LTCC gas volume and emitting Cherenkov photons. The light cone
             bounces from the elliptical to the hyperbolic mirrors to the Winston cone, and finally reaches the PMT.
             Bottom: details of the hardware inside the LTCC simulation system: the box frame and the WC are
@@ -28,6 +31,9 @@ into account during the Geant4 transportation of the photons.
 Similarly for the reflectivity of the mirrors and Winston cones.
 The quantum efficiency associated with the PMT photocathodes is taken into account in
 the digitization routine.
+
+\subsubsection{Process ID}
+
 
 \subsubsection{Digitization}
 
