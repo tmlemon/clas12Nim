@@ -6,7 +6,7 @@ The solenoid geometry is produced with the GEMC perl API. The solenoid is a sing
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/solenoid.png}
-    \caption{A cut-out of the CLAS12 central detector showing the solenoid volume around it. Beam is incident from the left.}
+    \caption{A cut-out of the CLAS12 Central Detector showing the solenoid volume around it. Beam is incident from the left.}
 	\label{fig:solenoid}
 \end{figure}
 
@@ -43,13 +43,13 @@ Both fields are defined in the Hall-B coordinate system and both can be shifted 
 \subsubsection{Solenoid}
 The solenoid field map has cylindrical symmetry around the $z$-axis (beamline), so the map used in the simulation is defined
 in the transverse / longitudinal plane and then rotated when requested by the Geant4 navigation.
-The integration method used in the simulation is the fourth order Runge-Kutta technique \cite{rungeKutta}.
+The integration method used in the simulation is the fourth-order Runge-Kutta technique \cite{rungeKutta}.
 
-The solenoid field near the target is parallel to the $z$-axis and its uniformity was measured to be 318 ppm over a 25 mm
-diameter and 40 mm long cylindrical volume. The field map grid is made by 600 points in the transverse coordinate,
+The solenoid field near the target is parallel to the $z$-axis and its uniformity was measured to be 318~ppm over a 25~mm
+diameter and 40~mm long cylindrical volume. The field map grid is made by 600 points in the transverse coordinate,
 from 0 to 3 m and by 1200 points along the $z$-axis, from \mbox{-3 m} to 3 m.
 The field grid values are linearly interpolated to the $(x,y,z)$ coordinate requested by Geant4.
-Table \ref{tab:solMap} shows the field map ascii data structure. The simulation of one event in a 250 ns time window at
+Table \ref{tab:solMap} shows the field map ascii data structure. The simulation of one event in a 250~ns time window at
 the CLAS12 luminosity with and without solenoid magnetic field is presented in \F{solenoidONOFF}, showing the effectiveness
 of the solenoid in providing electromagnetic shielding of M\"oller electrons.
 
@@ -92,7 +92,7 @@ The symmetric map is defined in half of a CLAS12 sector. It is symmetric around 
 when requested by the Geant4 navigation. The 3D map covers the entire cartesian space and accounts for field deviations due to coil
 movements or imperfections \cite{GhoshalSolenoid}.
 
-The field map has 251 points along the $z$-axis, from 1 m to 3 m. It has 2501 points in the transverse coordinate, from 0 to 5 m.
+The field map has 251 points along the $z$-axis, from 1~m to 3~m. It has 2501 points in the transverse coordinate, from 0~to 5~m.
 It has 16 azimuthal points from 0\mdeg \ to 30\mdeg. The field grid values are linearly interpolated to the $(x,y,z)$
 coordinate requested by Geant4.
 
