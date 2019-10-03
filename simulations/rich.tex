@@ -7,9 +7,9 @@ The RICH mirror geometry is implemented through both of the native GEMC geometry
 The spherical mirrors are made through Geant4 boolean intersections of spheres and planes.
 Since the array of 391 PMTs is inside the CLAS12 acceptance, particular care went into implementing in the
 simulation the details of the PMT hardware and materials: the PMTs are Geant4 aluminum boxes containing the electronics components materials
-(including the adapter, ASIC and FPGA boards), the window, the photocathodes.
-Each PMTs contain 64 pixel. The identification of the pixel is done in the process identification routine.
-The aerogel are imported from the engineering CAD models and include the triangular, squared, pentagon, and trapezoidal shapes.
+(including the adapter, ASIC and FPGA boards), the window, and the photocathodes.
+Each multi-node PMT contains 64 pixels. The identification of the pixel is done in the process identification routine.
+The aerogel radiators are imported from the engineering CAD models and include the triangular, squared, pentagon, and trapezoidal shapes.
 The RICH box, mirror support structure, tiles wrapping, planar mirrors, and additional support hardware are also imported from the engineering CAD models.
 \F{richGeometry} shows details of the geometry implementation.
 
@@ -23,7 +23,7 @@ The RICH box, mirror support structure, tiles wrapping, planar mirrors, and addi
 	\label{fig:richGeometry}
 \end{figure}
 
-The refractive index of the aerogel and its transparency is included in the material optical properties and taken
+The refractive index of the aerogel and its transparency are included in the material optical properties and taken
 into account during the Geant4 transportation of the photons.
 Similarly for the reflectivity of the mirrors. The quantum efficiency associated with the PMT photocathodes is taken into account in the digitization routine.
 
