@@ -1,17 +1,8 @@
 \section{Performance}
 
-%This section needs material to be written.
-%Figures to be prepared and included:
-%\begin{itemize}
-%\item{vertex time resolution, integrated and per paddle}
-%\item{z difference CND/CVT, per paddle}
-%\item{a plot showing the quality of energy calibration}
-%\item{the plot of energy deposit versus beta, showing neutrons, photons, and background, from RGB data;}
-%\item{neutron efficiency, possibly versus momentum, obtained from $ep\to en\pi^+$ events (RGA, low energy)}
-%\end{itemize}
-Data taken during the first CLAS12 experiments, on hydrogen and deuterium targets, and with various beam energies (6.6 and 10.6 GeV), were analyzed to verify the performances of the CND. 
+Data taken during the first CLAS12 experiments, on hydrogen and deuterium targets, and with various beam energies (7.5 and 10.6 GeV), were analyzed to verify the performances of the CND. 
 
-The timing performances for the three layers of the CND are illustrated in Fig.~\ref{fig_performance_deltat_layers}, that shows the vertex time difference $v_t$ for selected negative tracks, integrated over all sectors. It is defined as
+The timing performances for the three layers of the CND are illustrated in Fig.~\ref{fig_performance_deltat_layers}, showing the vertex time difference $v_t$ for selected negative tracks, integrated over all sectors. It is defined as
 \begin{equation}\label{eq_vtp_definition}
 v_t=t_{\rm{CND}}-t_{\rm{S}}-\frac{path}{c \cdot \beta}
 \end{equation}
@@ -62,4 +53,24 @@ Figure~\ref{fig_performance_edep} shows the energy deposit divided by path lengt
 \end{center}
 \end{figure}
 
-NEUTRON EFFICIENCY FIGURES ARE NOT READY YET, WE'RE WAITING FOR RGK DATA TO BE COOKED.
+\subsection{Neutron detection efficiency}
+The exclusive reaction $e p \rightarrow e n \pi^+$ is analyzed to evaluate the neutron detection efficiency of the CND. The data used were taken with a 7.5-GeV electron beam inpinging on liquid hydrogen target. Events with an electron and a $\pi^+$ in the CLAS12 Forward Detector are selected. The missing mass of the $e \pi^+ X$ system is plotted versus $\beta_X$ in Fig.~\ref{fig_performance_selection}. The missing particle is required to be in the CLAS12 Central Detector (CD) ($\theta>40^\circ$). The effect of this selection is shown in Fig.~\ref{fig_performance_selection}. We apply an additional cut on $\beta$ of the missing neutron ($0.2<\beta_X<0.8$). From this set of $e p \rightarrow e (n) \pi^+$ events, events with a neutron identified by the CND (CND cluster with $E_{dep}>2.5$ MeV, no associated tracks, $\beta<0.8$) are selected. If multiple neutron candidates are detected by the CND, the neutron with the smallest momentum separation from the missing neutron is kept. A cut on $\beta>0.2$ is applied to remove out-of-time hits that can be mistaken as low $\beta$ neutrons. Finally, the detected neutron and the missing neutron azymutal angle difference is constrained to be less than $20^\circ$.
+
+The efficiency is measured in bins of missing neutron polar angle and as a function of missing momentum. For each bin in polar angle and momentum, the efficiency is defined as the ratio of events with a detected neutron to the number of missing neutron events. The result is shown in Figure \ref{fig_performance_efficiency}. The detection efficiency extracted from this method is consistent with simulation predictions and with the design specifications of the CND.
+
+\begin{figure}[htb]  
+\begin{center}
+\includegraphics[width=0.5\textwidth]{Figure/SelectionPlots.pdf}
+\caption {Missing mass $M_X$ versus $\beta_X$ of the $e p \rightarrow e\pi^+X$ reaction. The outer plot shows the effect of selecting events where the missing particle $X$ is emitted in the CLAS12 Central Detector.}
+\label{fig_performance_selection}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]  
+\begin{center}
+\includegraphics[width=0.5\textwidth]{Figure/effFinale.pdf}
+\caption {Neutron detection efficiency of the CND as a function of momentum for three bins in polar angle.}
+\label{fig_performance_efficiency}
+\end{center}
+\end{figure}
+
