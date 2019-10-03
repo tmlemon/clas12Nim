@@ -11,12 +11,12 @@ Another significant investment required for the hardware verification of the gig
 
 \subsection{Fiber Optic Trigger distribution system}
 
-As shown in Fig.~\ref{fig:hardwarediagram}, the digital sum value from each VTP in the front-end crate, and the distribution of the global clock, synchronization, and trigger commands from the global trigger hardware, use a separate fiber optic cable.  The crate sum fiber link is shown in orange, and the critical timing signals distributed to each front-end crate are blue.  Each fiber optic link makes use of the Avago POP4 fiber optic transceivers and parallel OM3-rated glass fiber cable with MTP connections. These fiber optic transceivers operate at 3.125~Gb/s for an aggregate bandwidth of 10 Gb/s which is ample enough for the summing information that is sent forward to the global trigger processing hardware.  The fiber link used for the distribution of the global clock, critical timing signals, and trigger commands runs at 1.25~Gb/s.
+As shown in Fig.~\ref{fig:hardwarediagram}, the trigger information from each VTP in the front-end crate, and the distribution of the global clock, synchronization, and trigger commands from the global trigger hardware, use a separate fiber optic cable.  The crate sum fiber link is shown in orange, and the critical timing signals distributed to each front-end crate are blue.  Each fiber optic link makes use of the Avago POP4 fiber optic transceivers and parallel OM3-rated glass fiber cable with MTP connections. These fiber optic transceivers operate at 3.125~Gb/s for an aggregate bandwidth of 10 Gb/s which is ample enough for the summing information that is sent forward to the global trigger processing hardware.  The fiber link used for the distribution of the global clock, critical timing signals, and trigger commands runs at 1.25~Gb/s.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/hardware_diagram.png}
-	\caption{Hardware diagram with the implemented fiber links scheme.}
+	\caption{Hardware diagram with the implemented fiber links scheme. All critical signals such as clock, sync, trigger and busy, are disctributed over optical fibers.}
 	\label{fig:hardwarediagram}
 \end{figure}
 
@@ -49,12 +49,12 @@ We also expect a certain minimum 10 year timeframe in which these controllers wi
 	\item VXS optional: interface supporting both VITA 41.3 (Gig E) and 41.4 (PCIe) standards.
 \end{itemize}
 
-After several different boards were evaluated we purchased VX915 Intel 4th Generation quad-core i7-based VME single board computers from Concurrent Technologies (see Fig.~\ref{fig:XVR16diagram}). They were installed in the 70+ crates for CLAS12 and have demonstrated excellent performance and reliability. Most of the controllers send data over their built-in 1 Gb link, while for few of them, a 10 Gb XMC daughter board was installed to increase the output bandwidth. The maximum data rate from a single crate in CLAS12 never exceeds 130~MB/s, and with that rate quad-core controllers are able to handle the VME data polling, event processing and sending over the network to the EB without any issues. 
+After several different boards were evaluated we purchased VX915 Intel 4th Generation quad-core i7-based VME single board computers from Concurrent Technologies, and some amount of the XVR16 Intel i7-based VME single board computers from GE (see Fig.~\ref{fig:XVR16diagram}). They were installed in the 69 crates for CLAS12 and have demonstrated excellent performance and reliability. Most of the controllers send data over their built-in 1 Gb link, while for few of them, a 10 Gb XMC daughter board was installed to increase the output bandwidth. The maximum data rate from a single crate in CLAS12 never exceeds 130~MB/s, and with that rate quad-core controllers are able to handle the VME data polling, event processing and sending over the network to the EB without any issues. 
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/XVR16_diagram.png}
-	\caption{Block diagram of the XVR16 VME crate controller}
+	\caption{Block diagram of the XVR16 VME crate controller, one of two types of the cpu units used in CLAS12 DAQ System. All controllers had 4-core i7 Intel processors, 8GB memory and specialized chip to communicate with VME bus. Build-in 1G or add-on 10G ethernet connection were used to communicate with the rest of the system.}
 	\label{fig:XVR16diagram}
 \end{figure}
 
@@ -149,7 +149,7 @@ The trigger words, which include the readout trigger signals and event informati
 	\end{tabular}
 \end{adjustbox}
 \caption{Trigger word definition.  The TS encode the readout trigger, event type, and the fine timing (4ns quadrant) information into a 16-bit word, which is transferred every 16ns.  This 16-bit word can also be some system setting information or the system timer when there is no readout trigger in the 16ns periods.}
-\label{tab:trigger_word_definition.}
+\label{tab:trigger_word_definition}
 \end{table}
 
 Both the fiber latency and trigger word serializer/ deserializer are compensated so that all the TI boards send the readout trigger at the same time to the front-end data acquisition electronics.  The SYNC is used in conjunction with a synchronous FIFO to enforce a fixed latency on the trigger distribution. Fig.~\ref{fig:TIsync} shows the diagram of the compensated trigger distribution.
@@ -172,21 +172,21 @@ Because of the finite memory size and the randomness of the triggers, it is poss
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TDdiagram.jpg}
-	\caption{DAQ synchronization}
+	\caption{DAQ synchronization logic. Three methods are used to keep the DAQ synchronized: trigger rules and event limit setting, pipeline DAQ, and synchronization events.}
 	\label{fig:DAQ_synchronization}
 \end{figure}
 
 	
 \subsection{Signal Distribution Module (SD)}
 
-The Signal Distribution Board (SD \cite{sd-ref}) module (see Fig.~\ref{fig:SDpic}) occupies the “B” switch card slot as specified in VITA 41. The main purpose of this module is to distribute the signals received from payload slot 18 (Trigger Interface board) of a VXS crate to the 16 other payload slots (ADC boards).
+The Signal Distribution Board (SD \cite{sd-ref}) module (see Fig.~\ref{fig:SDpic}) occupies the “B” switch card slot as specified in VITA 41. The main purpose of this module is to distribute the signals received from payload slot 18 (Trigger Interface board) of a VXS crate to the 16 other payload slots occupied by FADC, DCRB, VSCM or any other VXS front-end boards.
 
 The SD module distributes the 4 LVPECL differential pair  signals from payload slot 18 to 16 VXS payload slots within the crate. This is done using the high-speed, point-to-point connections from the switch slot to each payload slot. The four distributed signals are length-matched to minimize the output jitter seen on all of the payload slots. Three of the four remaining pairs are LVDS signals routed from the each payload module to the FPGA on the SD module. The last pair is an LVDS signal routed from the FPGA on the SD module to each payload module. Each of the 16 payload modules has a single-ended signal to the SD module and one from the SD module back to the payload module.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/sd_board.jpg}
-	\caption{Signal Distribution module (SD)}
+	\caption{Signal Distribution module (SD). It distribute the signals received from payload slot 18 (Trigger Interface board) of a VXS crate to the 16 other payload slots.}
 	\label{fig:SDpic}
 \end{figure}
 
@@ -198,14 +198,14 @@ A 16-channel 250 MSPS pipelined flash ADC (FADC \cite{fadc-ref}, see Fig.~\ref{f
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/FADC250pic.jpg}
-	\caption{Flash ADC module (FADC250)}
+	\caption{Flash ADC module (FADC250). 16-channel 12-bit 250MHz digitizer in VXS format is capable to provide information to both readout chain over VME bus and trigger logic over VXS serial lines.}
 	\label{fig:FADC250pic}
 \end{figure}
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/FADC250_Diagram.pdf}
-	\caption{Flash ADC module diagram (FADC250)}
+	\caption{Flash ADC module diagram (FADC250). In addition to pulses readout and trigger information, it is equiped with scalers for every input channel.}
 	\label{fig:FADC250_board}
 \end{figure}
 
@@ -220,17 +220,17 @@ In order to save the overhead of setting up a DMA transfer for each FADC250 modu
 
 \subsection{Discriminator Scaler Module (DSC2)}
 
-The Discriminator Scaler Module (DSC2 \cite{dsc2-ref}, see Fig.~\ref{fig:dsc2_board}) is a 16-channel general purpose discriminator and scaler module designed as a 6U VME card. It replaces an older design, improving on jitter, noise, crosstalk, and adding new features.
+The Discriminator Scaler Module (DSC2 \cite{dsc2-ref}, see Fig.~\ref{fig:dsc2_board}) is a 16-channel general purpose discriminator and scaler module designed as a 6U VME card. It replaces an older design, improving on jitter, noise, crosstalk, and adding new features.  Board specifications are summarized in Table~\ref{tab:dsc2_specifications}. 
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/dsc2_board.png}
-	\caption{Discriminator Scaler module (DSC2)}
+	\caption{Discriminator Scaler module (DSC2). 16-channel general purpose discriminator and scaler module designed as a 6U VME card.}
 	\label{fig:dsc2_board}
 \end{figure}
 
-\begin{center}
-	DSC2 Specifications\\
+\begin{table}
+\begin{adjustbox}{width=\columnwidth,center}
 	\begin{tabular}{| l | l |}
 		\hline \hline
 		Property			& Value				\\
@@ -251,7 +251,10 @@ The Discriminator Scaler Module (DSC2 \cite{dsc2-ref}, see Fig.~\ref{fig:dsc2_bo
 		Maximum count rate		& 125 MHz			\\
 		\hline \hline
 	\end{tabular}
-\end{center}
+\end{adjustbox}
+\caption{DSC2 Board Specifications.}
+\label{tab:dsc2_specifications}
+\end{table}
 
 \paragraph{Discriminator}
 Inputs are single-ended LEMO and leading-edge discrimated by two different thresholds. Typically one threshold is used for time-to-digital applications and the other threshold is used for trigger applications. There are separate differential ECL outputs for each channel and threshold. Low jitter performance was an important goal of the design as this module will be used in high resolution applications. Fig.~\ref{fig:dsc2_jitter} shows the typical jitter as a function of a variety of input slew rate signals and threshold overdrive conditions.
@@ -259,7 +262,7 @@ Inputs are single-ended LEMO and leading-edge discrimated by two different thres
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/dsc2_jitter.png}
-	\caption{Output Jitter vs Input slew rate and overdrive}
+	\caption{Output Jitter vs Input slew rate and overdrive.}
 	\label{fig:dsc2_jitter}
 \end{figure}
 
@@ -292,7 +295,7 @@ affects are given in Ref.~\cite{inl-tables}.
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=0.2\columnwidth,keepaspectratio]{img/v1190_board.jpg}
-	\caption{CAEN V1190 TDC module (V1190)}
+	\caption{CAEN V1190 TDC module (V1190). 128-channel 100ps LSB TDC board in VME format. Another board in use is V1290 with 32 channels and 25 ps LSB.}
 	\label{fig:v1190_board}
 \end{figure}
 
@@ -301,7 +304,7 @@ affects are given in Ref.~\cite{inl-tables}.
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/dcrb_board.png}
-	\caption{Drift Chamber Readout Board (DCRB)}
+	\caption{Drift Chamber Readout Board (DCRB). 96-channel amplifier, discriminator, and time-to-digital converter module in VXS format.}
 	\label{fig:dcrb_board}
 \end{figure}
 
@@ -322,7 +325,7 @@ The CLAS12 Silicon Vertex Tracker detector (SVT, \cite{svt-ref}) front-end utili
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/vscm_board.png}
-	\caption{VXS Silicon Readout Module (VSCM)}
+	\caption{VXS Silicon Readout Module (VSCM). Designed to interface the FSSR2-based Silicon Vertex Tracker detector front-end to the CLAS12 DAQ system.}
 	\label{fig:vscm_board}
 \end{figure}
 
@@ -374,7 +377,7 @@ Fig.~\ref{fig:vscm_blockdiagram} shows the hardware block diagram of the module.
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/vscm_blockdiagram.png}
-	\caption{VSCM Hardware Diagram}
+	\caption{VSCM Hardware Diagram. Low-cost Xilinx Spartan 6 FPGA was used to implement board logic.}
 	\label{fig:vscm_blockdiagram}
 \end{figure}
 
@@ -390,7 +393,7 @@ The Micromegas Vertex Tracker (MVT, [MVT]) is a part of the Clas12 central detec
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/mvt1.png}
-	\caption{MVT/FTT Readout System.}
+	\caption{MVT/FTT Readout System. Both front-end and back-end are shown.}
 	\label{fig:mvt1}
 \end{figure}
 
