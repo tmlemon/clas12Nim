@@ -18,7 +18,8 @@ junctions, see \F{ctofGeometry} bottom.
 	         The paddles and light guides are imported directly from the engineering model.
 			 The black line is a 2 GeV proton leaving a hit (white circle) in one of the paddles.
 			 Bottom: a zoom-in of the implementation shows the details of downstream scintillator/light guide junctions:
-			 the scintillator bend near the junction, the light guide starting with a a rectangular shape, and morphing into a circular cross section.}
+			 the scintillator bend near the junction, the light guide starting with the rectangular shape,
+			 and morphing into a circular cross section.}
 	\label{fig:ctofGeometry}
 \end{figure}
 
@@ -34,7 +35,7 @@ The energy deposited is reduced based on the hit position on the paddle using th
 It is then corrected by a gain factor to account for the fact that the high voltages (HV) are adjusted so that
 the average upstream/downstream ADC geometric mean is independent of hit position.
 
-The corrected energy is converted to the data derived number of photons $N_{th}$ using the constant $500 \gamma$ / MeV. A Poissonian is used to
+The corrected energy is converted to the data derived number of photons $N_{th}$ using the constant 500 $\gamma$ / MeV. A Poissonian is used to
 calculate the actual number of photons $N_{actual}$ and the resulting ``smeared`` energy is converted to ADC using the FADC conversion factor.
 
 
@@ -48,7 +49,7 @@ The absolute hit time is corrected by:
 
 The time is then smeared by a resolution read from CCDB using a Gaussian function and then digitized using a TDC conversion factor.
 The digitized output bank variables are summarized in Table \ref{tab:ctofBank}.
-Note there is not time walk correction for the measured CTOF times as constant fraction discriminators
+Note there is no time walk correction for the measured CTOF times as constant fraction discriminators
 are employed for the readout.
 
 
