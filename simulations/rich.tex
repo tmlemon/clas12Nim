@@ -6,11 +6,11 @@ One of the six CLAS12 Forward Carriage sectors has been equipped with a Ring Ima
 The RICH mirror geometry is implemented through both of the native GEMC geometry API and imports from the engineering model STEP files.
 The spherical mirrors are made through Geant4 boolean intersections of spheres and planes.
 Since the array of 391 PMTs is inside the CLAS12 acceptance, particular care went into implementing in the
-simulation the details of the PMT hardware and materials: the PMTs are Geant4 aluminum boxes containing the electronics components
+simulation the details of the PMT hardware and materials: the PMTs are Geant4 aluminum boxes containing the electronics components materials
 (including the adapter, ASIC and FPGA boards), the window, the photocathodes.
 Each PMTs contain 64 pixel. The identification of the pixel is done in the process identification routine.
-The aerogel are Geant4 boxes.
-The RICH box, mirror support structure, and additional support hardware are imported directly from the engineering CAD models.
+The aerogel are imported from the engineering CAD models and include the triangular, squared, pentagon, and trapezoidal shapes.
+The RICH box, mirror support structure, tiles wrapping, planar mirrors, and additional support hardware are also imported from the engineering CAD models.
 \F{richGeometry} shows details of the geometry implementation.
 
 \begin{figure}
@@ -34,8 +34,9 @@ At each Geant4 step, the local coordinates in the PMT volume are used to calcula
 
 Photons that impinge on the PMT faces are processed with the digitization routine.
 Each photon collected is input to the quantum efficiency algorithm at its wavelength to decide if it is detected.
-The ADC energy is calculated and smeared using the single photo-electron peak position and width from the calibration database.
-The time average of all the photons is saved in the output.
+The total number of photo-electrons is then calculated based on the PMT gains and calibrated response.
+Finally, algorithms based on calibration parameters from CCDB are used to determine the leading and trailing edge times, which are
+then converted to TDCs.
 The digitized output bank variables are summarized in Table \ref{tab:richBank}.
 
 \begin{table}[h]
@@ -47,7 +48,8 @@ The digitized output bank variables are summarized in Table \ref{tab:richBank}.
              sector  &                                     CLAS12 sector   \\
                 pmt  &                                        PMT number   \\
               pixel  &                       pixel number within the PMT   \\
-                ADC  &                                               ADC   \\
+               TDCL  &                                  TDC leading edge   \\
+               TDCT  &                                 TDC trailing edge   \\
                time  &                           average time of the hit   \\
                nphe  &                  number of photoelectrons arrived   \\
               npheD  &                 number of photoelectrons detected   \\
