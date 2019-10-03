@@ -8,7 +8,7 @@ The SVT \cite{svt-nim} geometry is implemented through a java service, the same 
 to the reconstruction software \cite{recon-nim}.
 This service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
 
-There are three SVT regions, with 10, 14, and 18 sectors/modules for Region 1, 2, and 3, respectively, see \F{bstGeometry}.
+There are three SVT regions, with 10, 14, and 18 sectors/modules for Regions 1, 2, and 3, respectively, see \F{bstGeometry}.
 Each module has six sensors, four readout chips, and several layers of material, listed in order below:
 
 \begin{itemize}
@@ -34,11 +34,13 @@ The strip identification is performed in the Process ID routine.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstDetail.png}
-	\caption{Top: the GEMC implementation of the SVT geometry. The three regions are shown in the sliced view. The silicon sensors are
-           the grey color rectangles. The track is a 2 GeV proton, leaving hits (marked with white circles) in each module crossed. Bottom: detail of a module shows
-           the various materials inside. The 320 $\mu$m silicon sensor is on top and bottom of the module.
-           The material inside includes epoxy glue, the bus cable, and support material. The proton creates one hit
-		   in both the two silicon modules it transverses.}
+	\caption{Top: the GEMC implementation of the SVT geometry. This is a longitudinal cutview containing only $x>0$ volumes.
+	         The three regions are shown in the sliced view. The silicon sensors are
+             the grey color rectangles. The track is a 2 GeV proton, leaving hits (marked with white circles)
+			 in each module crossed. Bottom: detail of a module shows
+             the various materials inside. The 320 $\mu$m silicon sensor is on top and bottom of the module.
+             The material inside includes epoxy glue, the bus cable, and support material. The proton creates one hit
+		     in both the two silicon modules it transverses.}
 	\label{fig:bstGeometry}
 \end{figure}
 
@@ -46,7 +48,7 @@ The strip identification is performed in the Process ID routine.
 \subsubsection{Process ID}
 
 At each Geant4 step, the local coordinates in the sensor volume are used to calculate the strip number.
-The algorithm includes: the dead zone around the sensor, the pitch between the strips (156 $\mu$m) and the angle
+The algorithm includes: the dead zone around the sensor, the pitch between the strips (156 $\mu$m), and the angle
 between the strips that varies from 0\mdeg \ (for strip $\# 1$) to 3\mdeg \ (for strip  $\# 256$). A showcase of the strip assignment
 is summarized in \F{processID}.
 
@@ -55,7 +57,7 @@ is summarized in \F{processID}.
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstHit.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/blank.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstStrip.png}
-	\caption{Top: Process ID algorithm cartoon for SVT. The strip number is assigned based on the local position of the track
+	\caption{Top: Process ID algorithm cartoon for the SVT. The strip number is assigned based on the local position of the track
             step within the sensitive module. If a step of the primary or the secondary particles happens between the boundary
             of the strip that was already hit, it will be assigned to that strip. Bottom: actual hit position of selected
             strips in the top and bottom silicon sensors of a module shows the fan-like distribution of the strips,
@@ -112,6 +114,10 @@ is $R=4.7 \times 10^{11} Hz$. This corresponds to about 62,000 electrons in the 
 
 Simulations using 62,000 11 GeV electrons per event impinging on the liquid-hydrogen target were analyzed.
 The rates were calculated for the various Regions and for different thresholds (see \F{radStudyThreshold}).
+The radiation dose and the 1 MeV neutron equivalent damage was estimated. Most of the radiation
+is released in the first two layers of the SVT.
+The 370 rad / year are low enough for operating lifetime of at least 15 years. The results of the study
+are summarized in \F{radStudy}.
 
 
 \begin{figure}
@@ -120,16 +126,13 @@ The rates were calculated for the various Regions and for different thresholds (
 	\caption{The occupancy in the various SVT layers for different thresholds for one event containing a proton track (direction indicated
              by the arrow). The hits are represented by the square.
              Top left: with no energy cut, all SVT layers have numerous hits. Many are photons leaving no energy, as shown in
-             the remaining panels where the condition of some energy deposition is required. Top right: 30 keV energy threshold. Bottom right:
-             with 40 keV energy threshold, only the proton track hits and a handful of background hits are visible.}
+             the remaining panels where the condition of some energy deposition is required. Top right: 10 keV energy threshold.
+             Bottom left: 30 keV energy threshold.
+             Bottom right: with 30 keV energy threshold, only the proton track hits and a handful of background hits are visible.}
 	\label{fig:radStudyThreshold}
 \end{figure}
 
 
-\noindent The radiation dose and the 1 MeV neutron equivalent damage was estimated. Most of the radiation
-is released in the first two layers of the SVT.
-The 370 rad / year are low enough for operating lifetime of at least 15 years. The results of the study
-are summarized in \F{radStudy}.
 
 
 \begin{figure}

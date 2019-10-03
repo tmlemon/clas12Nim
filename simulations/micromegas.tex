@@ -4,10 +4,10 @@
 
 The Micromegas geometry is implemented through the native GEMC geometry API. There are two subsystems: a ``barrel'' micromegas
 between the SVT and the CTOF, made by are three concentric regions divided azimuthally in three identical sectors; and a ``forward'' micromegas
-made by three disk regions divided azimuthally in six identical sectors. In both subsystems each region is made by two layers, one with wires parallel to the beam and
-one with wires perpendicolar to the beam (see \F{bmtGeometry}).
-Each micromegas sector contain a cover layer with copper ground,
-the printed circuit board (PCB) with the readout strips, the Kapton support, the mesh layer, the ionizing gas, and other layers of material, listed in order below:
+made by three disk regions divided azimuthally in six identical sectors. In both subsystems each region is made by two layers,
+one with wires parallel to the beam and one with wires perpendicular to the beam (see \F{bmtGeometry}).
+Each micromegas sector contains a cover layer with copper ground, the printed circuit board (PCB) with the readout strips,
+the Kapton support, the mesh layer, the ionizing gas, and other layers of material, listed in order below:
 
 \begin{itemize}
 	\item overlay
@@ -30,9 +30,9 @@ The geometry is summarized in \F{bmtGeometry}. The strip identification is perfo
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bmtGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bmtDetail.png}
-	\caption{Top: an overall view of the CLAS12 Central Detector trackers. The target is surrounded by 3 layers of SVT and
+	\caption{Top: a longitudinal cut view ($x>0$ only) of the CLAS12 Central Detector trackers. The target is surrounded by 3 layers of SVT and
             6 layers of micromegas, 3 with $z$-strips, 3 with $c$-strips. On the downstream end (beam incident from the left)
-			the Forward Micromega Tracker disks are visible.
+			the Forward Micromegas Tracker disks are visible.
             Bottom: detail of the micromegas GEMC geometry, showing the overlay cover, the copper ground, and the PCB.}
 	\label{fig:bmtGeometry}
 \end{figure}
