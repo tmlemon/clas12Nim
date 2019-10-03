@@ -1,18 +1,18 @@
 \section{Overview}
 
-The CEBAF Large Acceptance Spectrometer for operation at 12 GeV beam energy (CLAS12) \cite{clas12-nim}  at Jefferson Laboratory was designed to study
+The CEBAF Large Acceptance Spectrometer for operation at 12 GeV beam energy (CLAS12) \cite{clas12-nim} in Hall B at Jefferson Laboratory was designed to study
 electro-induced nuclear and hadronic reactions by providing efficient detection of charged and neutral particles over a large
 fraction of the full solid angle. The spectrometer has met the performance criteria of instantaneous luminosity up
 to \cLuminosity and momentum resolution in the forward direction using the drift chambers and in the central
 direction using the vertex tracker of $< 1\%$ and $< 3\%$, respectively.
 
-The CLAS12 Collaboration has implemented a detector simulation within the GEMC software framework \cite{GEMC}.
+The CLAS Collaboration has implemented a detector simulation within the GEMC software framework \cite{GEMC}.
 During the design phase of the various CLAS12 detectors, shielding, magnets, and passive elements, GEMC allowed for studies of the
 performance of the various components with respect to the desired science objectives.
-GEMC enabled the optimization of the design from trade-off studies between variation of the hardware setup and placement
+GEMC enabled the optimization of the design from trade-off studies between variation of the hardware setup and placement,
 and various materials and shielding thicknesses.
-In addition, it was instrumental in determining the rates, PMT currents, and radiation doses to ensure the various detectors
-survived operations during the expected spectrometer lifetime.
+In addition, it was instrumental in determining the rates, PMT currents, and radiation doses to ensure that the various detectors
+would survive operations during the expected spectrometer lifetime.
 Before and during the experiment data taking, GEMC was instrumental in preparing and understanding the calibration
 and measurements of the CLAS12 detectors.
 Finally, GEMC is used to accurately calculate the CLAS12 acceptance, including the detector response, geometrical acceptance,
@@ -54,7 +54,7 @@ The design of the framework is summarized in \F{gemcDesign}.
 The following CLAS12 systems are implemented in the simulations:
 
 \begin{itemize}
-\item Various CLAS12 targets, including liquid-hydrogen, liquid-deuterium and various solid targets;
+\item Various CLAS12 targets, including liquid-hydrogen, liquid-deuterium, and various solid targets;
 \item Silicon Vertex Tracker (SVT) \cite{svt-nim};
 \item MicroMegas Tracker (MM) \cite{mm-nim};
 \item Central Time-of-Flight System (CTOF) \cite{ctof-nim};
@@ -65,8 +65,8 @@ The following CLAS12 systems are implemented in the simulations:
 \item Low Threshold Cherenkov Counter (LTCC) \cite{ltcc-nim};
 \item Forward Time-of-Flight System (FTOF) \cite{ftof-nim};
 \item Electro-Magnetic Calorimeter (EC) \cite{Amarian:2001zs};
-\item Pre-Shower Calorimeter (PCAL)\cite{ec-nim};
-\item Ring Imaging Cherenkov Detector (RICH)\cite{rich-nim};
+\item Pre-Shower Calorimeter (PCAL) \cite{ec-nim};
+\item Ring Imaging Cherenkov Detector (RICH) \cite{rich-nim};
 \item Beamline \cite{beamline-nim};
 \item Superconducting Magnets \cite{magnets-nim}.
 \end{itemize}
@@ -80,7 +80,7 @@ The databases can be defined using the following factories:
 
 \begin{itemize}
 	\item GEMC native API (Perl or Python);
-	\item java algorithms used by both simulation and the CLAS12 Event Reconstruction Software \cite{recon-nim} or ``java geometry services'';
+	\item java algorithms used by both simulation and the CLAS12 event reconstruction software \cite{recon-nim} or ``java geometry services'';
 	\item CAD (stl, ply, obj formats);
 	\item GDML, c++ plugins (not used in CLAS12).
 \end{itemize}
@@ -91,7 +91,9 @@ The GEMC native API and the CLAS12 geometry code source repositories are listed 
 \subsubsection{Importing CAD volumes from the engineering model}
 
 The Hall B detectors and their supports are designed with 3D CAD software. This includes a reference system and the
-hierarchy of all detector elements, down to details like nuts and bolts.
+hierarchy of all detector elements, down to details like nuts and bolts. The CAD models are exported into STEP files \cite{stepFiles}.
+In order to import them into a Geant4 simulation, the volumes relevant to the simulation are selected from the engineering
+model stored in one of the CAD data exchange formats (typically a STEP file) \cite{cadExchange} (see \F{cadSelection}).
 
 \begin{figure}[h]
 	\centering
@@ -101,11 +103,6 @@ hierarchy of all detector elements, down to details like nuts and bolts.
              The import process involves filtering out unnecessary volumes that are not in the active region.}
 	\label{fig:cadSelection}
 \end{figure}
-
-The CAD models are exported into STEP files \cite{stepFiles}.
-In order to import them into a Geant4 simulation, the volumes relevant to the simulation are selected from the engineering
-model stored in one of the CAD data exchange formats (typically a STEP file) \cite{cadExchange} (see \F{cadSelection}).
-
 
 The elements in the STEP file are then ``tessellated'', in which polygonal shapes are created to define a Geant4 volume
 that best represents the original CAD element.
@@ -156,10 +153,10 @@ The magnetic fields are loaded from ascii files. The following Geant4 parameters
 command line options or configuration files at run time:
 
 \begin{itemize}
-	\item minStep: minimum track distance in the magnetic field (step) before re-computing its value
-	\item integralAlgorithm: compute the field value from the closest cell or using a linear (or bi-linear) interpolation
+	\item minStep: minimum track distance in the magnetic field (step) before re-computing its value;
+	\item integralAlgorithm: compute the field value from the closest cell or using a linear (or bi-linear) interpolation;
 	\item interpolationMethod: interpolation algorithm used to transport tracks in magnetic fields, typically
-		  a variation (choice of order and/or precision) of Runge Kutta \cite{rungeKutta} methods
+		  a variation (choice of order and/or precision) of Runge Kutta \cite{rungeKutta} methods.
 \end{itemize}
 
 The implementation of the CLAS12 magnetic fields is described in Section \ref{sec:clas12FieldMaps}.
@@ -194,7 +191,7 @@ cases, detailed for each detector:
           is the case for CTOF, CND, and FTOF.
     \item some hardware elements are not present in the simulation. This is the case for the drift chambers, where the volumes do not contain
           the individual wires. In this case the wire number is calculated based on the position of the hit in the mother volume. In CLAS12 this mechanism
-          is adopted by the DC, SVT, and Micromegas.
+          is adopted by the DC, SVT, and MM.
 \end{itemize}
 
 
@@ -224,8 +221,8 @@ The digitized banks are detailed below for each detector subsystem.
 
 \subsection{``True'' Information}
 
-Various data such as particle id, momenta, hit positions, vertex of particle, etc, (true information) is stored in memory
-as the tracks progresses in each detector. The true information is integrated (one variable entry per GEMC hit) and/or
+Various data such as particle identification, momenta, hit positions, vertex of particle, etc, (true information) is stored in memory
+as the tracks progress in each detector. The true information is integrated (one variable entry per GEMC hit) and/or
 verbose (one variable entry per Geant4 step). It is saved in the output at the end of each event.
 The list of variables in the true information bank is summarized in Table \ref{tab:trueInformation}.
 
@@ -236,7 +233,7 @@ The list of variables in the true information bank is summarized in Table \ref{t
 			\hline \hline
 			Variable    & Description  \\
 			\hline
-				pid         &   ID of the FP                     \\
+				pid         &   ID of the First Particle (FP) entering the volume \\
 				mpid        &   ID of the mother of the FP \\
 				tid         &   Track ID of the FP\\
 				mtid        &   Track ID of the mother of the FP  \\
@@ -284,7 +281,7 @@ has propagated all tracks and GEMC has collected all the steps into hits.
 
 The process routines digitize each hit by iterating through all the steps in the detector volume and collecting
 a number of variables into detector banks. This typically involves calculating a charge based
-on energy deposited and converting it into an ADC number, calculating a hit time based
+on energy deposited and converting it into an ADC value, calculating a hit time based
 on various signal propagation models and converting that time into TDC, calculating the number
 of collected photons into charge and then ADC, etc. It is at this stage that the calibration
 constants are used (for example, attenuation length in scintillator paddles).
@@ -307,7 +304,7 @@ The digitization is detailed in each of the detector implementation sections bel
 
 The GEMC output is available in two formats, identical in content: text (ascii) and evio \cite{evio}, the Jefferson Lab
 data acquisition format.
-Utilities were used to convert the evio format into ROOT \cite{root}.
+Utilities were used to convert the evio format into ROOT \cite{root} for data analysis.
 
 The various output banks include:
 
