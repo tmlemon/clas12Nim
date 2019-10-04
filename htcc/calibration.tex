@@ -1,16 +1,90 @@
 \section{Calibration and Event Reconstruction}
-\subsection{Gain Calibration of PMTs} We use ET 9823QKB photomultipliers that have a 5" in diameter quartz face plate. These PMTs have a dark current up to 1000 nA, as specified by manufacturer. At a nominal high voltage of around $\sim$ 2,400 V, it was impossible to observe a single photoelectron peak due to a high dark noise rate. Therefore we developed a special procedure for the gain calibration of the PMTs using a fast stable external light source---the core component of the HTCC Light Monitoring System (LMS). The LED light is distributed relatively evenly via an integrating sphere and fiber optics. The PMT signals illuminated by a light source (an array of LED lights) have timing parameters very close to the timing of the dark noise signals. In fact, the signal from an LED light mimics that of the signal from the detector. Since LMS allowed us to generate light pulses of variable intensity and frequency it became possible to observe the PMT response (which was well separated from the exponential dark noise background). \\
-\indent Via analysis of FADC histograms, that we obtained at constant intensity of an LED light at a fixed frequency, we were able to extract the  position of single photoelectron peak in cases when the average intensity of light (which is fluctuating) impinging the PMT photocathode is as low as on the order of equivalently a few photoelectrons. Of course this required that we use the capable LMS to generate light pulses at stable average intensity. The results of a single photoelectron peak position can be used for gain matching. This is in the case for if we see that measurements of all PMTs in parallel (at the same LMS settings) need to be calibrated. This can be done by adjusting the high voltage (HV) applied to individual channels. \\
-\indent Such a calibration procedure requires us to use a fast and stable light source with an adjustable light intensity and light pulse frequency. The distinguishing feature of the HTCC LMS is that the observed repeatability of results is within 5-10\% of that obtained in runs at different but stable light intensities and frequencies. Consequently there is no need to keep the light source intensity uniform, i.e. stay the same or close to the same in different calibration runs that are taken whenever necessary. Runs were taken at constant HV (Q1) with changing LED light intensity ($\mu$). These runs were fit in batch mode with the production fitter and all runs have good $\chi{^2}$. (to be modified when pictures available) 
+\subsection{Gain Calibration of PMTs} 
+We use ET 9823QKB photomultipliers which have a dark current up to 1000 nA as specified by manufacturer. At a nominal high voltage of around $\sim$ 2,400 V, it was impossible to observe a single photoelectron peak due to the high dark noise rate. Therefore we developed a special procedure for the gain calibration of the PMTs. We have implemented a method of fitting and extracting the position of the single photoelectron peak using the pasteurization described in [“Absolute calibration and monitoring of a spectrometric channel using a photomultiplier” Bellamy et al. NIM A 339 468-476].  
 
-\subsection{Response Equalization} Different factors (including imperfections of mirror working surface, dust deposition, condensation of fumes, overall mirror shape distortions and gain instability of the individual PMTs) can lead to a variation in the signal strength from the individual channels---even after comprehensive single photoelectron calibration is complete. These variations should be corrected independently of their physical origin, as the trigger efficiency is heavily dependent on the uniformity of the HTCC response. In the beginning of every physics run period we analyze the first data in order to estimate the signal position in each of the forty-eight channels. We then develop corresponding correction factors, which align the signals between individual channels. These correction factors are then propagated to both the offline reconstruction (CLAS Calibration Data Base, or ccdb) and online trigger gain files.
+The fast, stable light source (see section 6) is the core component of the HTCC Light Monitoring System (LMS). It was designed and built exclusively for reliably calibrating the gain of PMTs. The LED light is distributed relatively evenly via an 4" of diameter integrating sphere and fiber optics. The PMT signals illuminated by a light source (an array of LED lights) have timing parameters very close to the timing of the dark noise signals. In fact, the signal from an LED light mimics that of the signal from the detector. Since LMS allowed us to generate light pulses of variable intensity and frequency it became possible to observe the PMT response (which was well separated from the exponential dark noise background). \\
+\indent Via analysis of PMT response spectra obtained with a constant intensity of an LED light at a fixed frequency we were able to extract the  position of single photoelectron peak in cases when the average intensity of light (which is fluctuating) impinging the PMT photocathode is as low as on the order of a few photoelectrons. In the Fig.\ref{fig:WILLIAM_1} the main definitions are presented.  
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1.0\linewidth,trim={0.0cm 0.0cm 0.0cm 0.0cm},clip]{images/WILLIAM_1.png}
+    \caption{Definitions: $Q_{o}$ and $\sigma_{o}$ are position and width of pedestal, $Q_{ 1}$ is proportional to gain of PMT, the red curve defines a single photoelectron peak}
+    \label{fig:WILLIAM_1}
+\end{figure}
+
+Fig.~\ref{fig:WILLIAM_2} shows an example of typical fits of PMT response to LMS light of constant intensity at different high voltages. The corresponding dependence of the single photoelectron peak position as function of high voltage is given in Fig.\ref{fig:WILLIAM_3}.
+
+\begin{figure*}[h]
+\centering
+\includegraphics[width=0.99\linewidth]{images/WILLIAM_2.png}
+\caption{Response of the PMT to LMS light of constant intensity at high voltage changing from 1560V to 1635V with 5V increment}
+\label{fig:WILLIAM_2}
+\end{figure*}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.99\linewidth]{images/WILLIAM_3.png}
+\caption{Single photoelectron peak position as function of high voltage}
+\label{fig:WILLIAM_3}
+\end{figure}
+
+Of course this method required us to use the LMS capable to generate light pulses of stable intensity. The results of a single photoelectron peak position can be used for gain matching. Calibration measurements are performed for all PMTs in parallel at the same LMS settings. This can be done by adjusting the high voltage applied to individual channels. \\
+\indent The distinguishing feature of the HTCC LMS is that the observed repeatability of results is within 5-10\% of that obtained in runs at different but stable light intensities and frequencies. This is demonstrated on the Fig.\ref{fig:WILLIAM_5}
+where are given the positions of single photoelectron peak obtained at different LMS light intensities. Fitting function is stable across a wide range of intensities and accurately describes PMT response at low intensities (µ<1.0). Position of the peak stays within 5\% of mean.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.99\linewidth]{images/WILLIAM_5.png}
+\caption{Single photoelectron peak position as function of LMS light intensity at constant high voltage}
+\label{fig:WILLIAM_5}
+\end{figure}
+
+Runs were taken at constant high voltage, i.e. $Q_{ 1}$, with changing LED light intensity ($\mu$). These runs were fit in batch mode with the production fitter and all runs have good $\chi{^2}$.\\ 
+\indent Consequently there is no need to keep the light source intensity uniform, i.e. stay the same or close to the same in different calibration runs that are taken whenever necessary.
+We have compared our preliminary calibration results with results obtained using [Degtiarenko]. Each data set was normalized by average value. On the Fig.\ref{fig:WILLIAM_4} results of comparison are shown for the 12 PMTs monitoring events in polar angular range from $27.5^\circ$ to $35^\circ$ (Ring 4) from 6 sectors. Both approaches are providing close results.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.99\linewidth]{images/WILLIAM_4.png}
+\caption{Comparison of preliminary calibration results using two different fitting codes:[B] (black dots) and [D] (red dots)}
+\label{fig:WILLIAM_4}
+\end{figure}
+
+\subsection{Response Equalization} Different factors (including imperfections of mirror working surface, dust deposition, condensation of fumes, overall mirror shape distortions and gain instability of the individual PMTs) can lead to a variation in the signal strength from the individual channels---even after comprehensive single photoelectron calibration is complete. These variations should be corrected independently of their physical origin, as the trigger efficiency is heavily dependent on the uniformity of the HTCC response. In the beginning of every physics run period we analyze the first data in order to estimate the signal strength in each of the forty-eight channels. We then develop corresponding correction factors, which align the signals between individual channels to the average value between channels. These correction factors are then propagated to both the offline reconstruction (CLAS Calibration Data Base, or ccdb) and online trigger gain files. Fig.~\ref{fig:htcccombinedTimingResponce} shows an example of aligned response of the HTCC.
+
+\begin{figure*}[h]
+\centering
+\includegraphics[width=0.99\linewidth]{images/nphePMT6595.png}
+\caption{Response of all 48 PMTs to the single-hit events after response equalization. Top row correspond to Ring One (closest to the beam-line), next one is Ring Two and so on. Number of events drops significantly as we move toward the outer rings.}
+\label{fig:htccSinglePmtResponce}
+\end{figure*}
+
+In the Fig.~\ref{fig:NICK_svodni} are shown results on channels response before and after equalization.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.99\linewidth]{images/NICK_svodni.jpg}
+\caption{Response of PMTs before and after response equalization.}
+\label{fig:NICK_svodni}
+\end{figure}
 
 \subsection{Timing Calibration} Since the HTCC is the part of the trigger, it is required that the timing of the individual channels is aligned on the level of the FADC to aid the online cluster reconstruction. As a result, the timing calibration of the HTCC is done in two steps: the first step is performed on the level of the FADC, and the second step (finer step) is done in the offline calibration. \\
-\indent Online calibration is done using the independent trigger from the Forward Tagger. Timing of all forty-eight HTCC channels is aligned in the FADC configuration files by setting the appropriate delays with a precision of 4 ns (the best available using the FADC). Since the timing resolution of individual channels is on the order of about 1 ns we can achieve better resolution of the detector than the 4 ns available from the FADC. To do so, we calculate time at the vertex for each of forty-eight channels and estimate the time shift between individual channels. These time shifts are added to the ccdb for all forty-eight channels and are applied at the reconstruction stage.
-
-\subsection{Event Reconstruction} The goal of the cluster reconstruction algorithm is to reconstruct the real signal strength, time, and position from the raw ADC signal from the FADC board. It is done in two steps:
+\indent Online calibration is done using the independent trigger from the Forward Tagger. Timing of all forty-eight HTCC channels is aligned in the FADC configuration files by setting the appropriate delays with a precision of 4 ns (the best available using the FADC). Since the timing resolution of individual channels is on the order of about 1 ns we can achieve better resolution of the detector than the 4 ns available from the FADC. To do so, we calculate time at the vertex for each of forty-eight channels and estimate the time shift between individual channels. These time shifts are added to the ccdb for all forty-eight channels and are applied at the reconstruction stage. The combined timing for the HTCC is shown in the Fig.~\ref{fig:htcccombinedTimingResponce}. As one can see, the HTCC resolution combined over all 48 PMTs is on the level of 0.6 ns.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{images/deltaTime6.png}
+\caption{Combined timing of the 48 HTCC PMTs.}
+\label{fig:htcccombinedTimingResponce}
+\end{figure}
+\subsection{Event Reconstruction} The goal of the reconstruction procedure is to reconstruct the real signal strength, time, and position from the raw ADC signal from one of three FADC boards. It is done in two steps:
 
 \begin{enumerate}
-    \item In the decoding stage: the signal is converted from the hardware notation (crate, slot, channel) into the CLAS12 notation (sector, layer, component). For each the signal, strength (in the ADC channels) and timing is determined from the threshold crossing and the pedestal is subtracted.
-    \item In the reconstruction stage: the signal in terms of the ADC signals is converted into the number of the photoelectrons using the gain constants in the CLAS Calibration Data Base (ccdb). The physical design of the HTCC allows the Cherenkov radiation from one electron to split into up to four channels. In order to reconstruct the real signal strength, we need to combine such split signals into the single cluster. We start by selecting the strongest hit and use it as a starting point of the cluster. Then we look for the adjacent hits within a certain time window. If such hits are found, they will be added to the growing cluster. On the final stage the signal strength is determined as the sum of the individual signals, and the signal time is determined as the average between the individual signals, weighted by the corresponding number of the photoelectrons. The hit angular coordinate is determined as the average between the individual hits forming the cluster. Hits, attributed to the established clusters, are removed from the further consideration, and algorithm starts to look for the next cluster until list of hits is exhausted.
+    \item In the decoding stage: the signal is converted from the hardware notation (crate, slot, channel) into the CLAS12 notation (sector, layer, component). For each the signal, strength (in the ADC channels) and timing is determined from the threshold crossing, and the pedestal is subtracted. The pedestal value for each channel is determined during special pedestal runs and is stored for both trigger and offline reconstruction purposes.
+    \item In the reconstruction stage: the signal in terms of the ADC signals is converted into the number of the photoelectrons using the gain constants in the CLAS Calibration Data Base ($ccdb$). The physical design of the HTCC allows the Cerenkov radiation from one electron to split into up to four channels (see Fig.~\ref{fig:htccClustersSplit}). In order to reconstruct the real signal strength, we need to combine such split signals into the single cluster. We start by selecting the strongest hit for a given event and use it as a starting point of the cluster. Then we look for the adjacent hits within a certain time window (stored as a parameter in the $ccdb$). If such hits are found, they will be added to the growing cluster. On the final stage the signal strength is determined as the sum of the individual signals, and the signal time is determined as the average between the individual signals, weighted by the corresponding number of the photoelectrons. The hit angular coordinate is determined as the average between the individual hits forming the cluster. Hits, attributed to the established clusters, are removed from the further consideration, and algorithm starts to look for the next cluster until list of hits is exhausted.
+    \begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{images/htccClustersSplit.png}
+\caption{Splitting of the Cerenkov radiation between two mirrors. Geometrically the signal can split into up to four mirrors.}
+\label{fig:htccClustersSplit}
+\end{figure}
 \end{enumerate}
