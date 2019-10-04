@@ -3,39 +3,34 @@ In this section, we document the drift chamber system's
 efficiency at reconstructing charge particle tracks and
 its spatial resolution of such tracks.
 
-
-
-
-\subsection{Chamber Lifetime}
-\label{choper}
-
-\hskip 0.15 in 
+\subsection{High Luminosity}
 In order to satisfy the statistical requirements of the experimental program, 
-a critical design goal for CLAS is the ability to make routine measurements 
-with electron beams giving luminosities of up to 
-1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$.  The tolerable luminosity in CLAS is 
-generally set by the large flux of M{\o}ller electrons and low-energy photons 
+an important design goal for CLAS12 is the ability to make routine measurements 
+with high electron beam luminosities up to 
+1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$.  The luminosity limit in CLAS12 is 
+set by the large flux of M{\o}ller electrons and low-energy photons 
 produced from the targets by the multi-GeV incident electron beam.  This 
 constraint is severe for the drift chambers since they are close to the 
-target. Particularly for the R1 chambers, the large flux of 
+target. 
+
+Particularly for the R1 chambers, the large flux of 
 particles limits the luminosity in two ways.  First, a large number of 
 background-related hits in the chambers reduces the track reconstruction 
 efficiency.  The working assumption is that the analysis software can tolerate 
 no more that a 5$\%$ accidental chamber occupancy in order to successfully 
 reconstruct charged-particle tracks.  Second, the effects of sustained high 
-luminosities are unfavorable for long chamber lifetimes.  Aging correlates 
+luminosities can be unfavorable for long chamber lifetimes.  Aging correlates 
 directly with the currents generated in the chambers.
-
-We have not yet observed any sign of aging in the drift chambers.
+However, our choice of an Argon CO2 gas mixture and strict control of
+materials in contact with the gas should provide a long chamber lifetime.
 For the previous CLAS chambers, we used the same gas mixture and ran at a
-similar gain and the chambers lasted more than 10 years with no indication
+similar gain and similar currents, and the chambers lasted more than 10 years 
+with no indication
 of aging.  We expect the present
 chambers to perform well for at least 10 years.
 
 
-\subsection{Tracking Efficiency}
-
-\hskip 0.15in
+\subsection{Tracking Inefficiency: Intrinsic, Malfunction-Related and Background-Related}
 The probability of reconstructing a track due to a charged particle within
 our fiducial volume is referred to as the ``tracking efficiency''.
 
@@ -50,10 +45,6 @@ whole track segments because of equipment malfunctions
 can interfere with the segment-finding algorithms when a background-related
 track segment lies ``on top'' of a real, in-time, segment
 \end{enumerate}
-
-
-
-
 
 \subsubsection{Simulation of Inefficiencies}
 In our generation and reconstruction of simulated events, we estimate the size of
@@ -127,16 +118,11 @@ in a ``lost hit''.}}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Chamber Resolution}
+\subsection{Drift Chamber Spatial Resolution}
 
 \hskip 0.15in
-The intrinsic chamber resolution, or single-wire resolution, is a measure
-of the uncertainty between the DOCA of the track and the distance as
-calculated from the time of the wire hit.  The excluded-layer fitting method 
-has been used to estimate the single-wire resolution within a given superlayer.  
-Tracks fitted to all hits except those on the excluded layer are projected to 
-determine the intercept in the excluded layer.  The fit residual is the difference 
-between the fitted DOCA of the track and the value of DOCA as calculated from the 
+The single-wire resolution is the difference 
+between the fitted TRKDOCA of the track and the value of DOCA as calculated from the 
 time of the hit in the excluded layer.  The variance of this residual distribution 
 is the quadratic sum of the single-wire resolution and the track position uncertainty 
 at the excluded layer.  This variance over-estimates the single-wire resolution.
@@ -150,10 +136,10 @@ due to the Poisson distribution of ion-pair production along the path of the pri
 near the sense wire along with time walk effects and the divergent nature of the electric
 field lines near the field wire.  
 
-The bottom sub-figure is a histogram of the tracks' DOCA distribution.  It is approximately flat as
-expected, since the particle luminosity is approximately constant over the small solid
+The bottom sub-figure is a histogram of the tracks' TRKDOCA distribution.  It is approximately flat as
+expected, since the track density is approximately constant over the small solid
 angle of a single drift cell.  It shows a dip at zero, which is a real effect and is
-due to a spreading out of the arrival time of ionized electrons when the track is
+due to both an inefficiency and a spreading out of the arrival time of ionized electrons when the track is
 very close to the wire as explained in the preceding section on intrinsic layer inefficiency.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
