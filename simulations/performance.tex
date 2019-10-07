@@ -94,7 +94,7 @@ The particles generated are:
 \end{itemize}
 
 The results are shown in Table \ref{tab:benchmarks}. The final rate for the 3 particles in the
-complete CLAS12 setup is 1.9 Hz.
+complete CLAS12 setup is 1.7 Hz.
 
 \begin{table}[h]
 	\begin{center}
@@ -117,11 +117,15 @@ LTCC     &  36.3   &   27.6  & 4.69  \\
 FTOF     &  88.5   &   11.3  & 1.02  \\
 PCAL     &  5.4    &   186.2 & 31.67 \\
 EC       &  6.6    &   152.4 & 25.91 \\
+		\hline
+CLAS12   &  1.7    &   588.1 &  \\
 		\hline \hline
 		\end{tabular}
 	\end{center}
 	\caption{GEMC simulation benchmarks in each CLAS12 detector. The calorimeters are responsible for more than
-             half the computing time, due to shower simulations. Swimming in the magnetic fields accounts for about 15$\%$ of the total CPU time.}
+             half the computing time, due to shower simulations. Swimming in the magnetic fields accounts for about 13.5$\%$ of the total CPU time.
+			 The overall rate for the full CLAS12 detector is 1.7 Hz.
+}
 \label{tab:benchmarks}
 \end{table}
 
