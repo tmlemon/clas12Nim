@@ -1,38 +1,15 @@
 \section{Drift Chamber Calibration Procedures}
+Forward-going (5$^{\circ}$ to 40$^{\circ}$) tracks are fit to
+wire hit positions in each of the 36 wire planes.  These
+hit positions are not simply the wire location, but 
+a calculated position which is a distance-of-closest approach (DOCA)
+to the wire, derived from the wire hit's recorded TDC value.  
 
-\subsection{Track Reconstruction Overview}
-
-The reconstruction of charged-particle tracks is performed in several stages.  
-We first identify ``clusters'' of hits which are consistent 
-with being part of a track.
-The hit-wire positions are then fit to a straight-line hypothesis to
-define a ``track segment''.  
-
-Track segments from neighboring superlayers in one region are combined
-to form a 6-dimensional (position and direction) ``cross'' at the center
-of each region.
-The positions of 3 crosses (1 each in R1, R2 and R3) are fit to a
-parabolic functional form to give us a track candidate which
-is the initial state vector of our Kalman filter tracking program .
-At this stage (called ``hit-based'' because we are only using the wire positions
-uncorrected for the distance of closest approach of the
-track to the wire), the track momenta can already be reconstructed 
-with a resolution of 3$\%$ to 5$\%$.
-
-Additional information on these tracks, derived
-from the {\v C}erenkov, time-of-flight, and electromagnetic calorimeter 
-detectors, allows us to determine the mass and velocity of the 
-track candidate.  We then correct the Time to Digital (TDC) signals from
-each hit wire for flight-time of the particle to the wire, time of propogation
-of the signal down the wire to the pre-amplifier, and cable delays.
-
-We then use a pre-calculated table 
-to convert the corrected drift times to drift distances.  These corrected 
-track positions in each drift cell are input data to our Kalman filter
-fit to determine the final track parameters.  This is colloquially referred
-to as ``time-based tracking''.
-
-We now discuss the time corrections and the time to distance calibration in more detail.
+Here we discuss our procedures to calibrate our TDC to DOCA conversion
+tables, as well as specialized alignment procedures we undertook
+to most accurately determined the wire positions themselves.
+Finally, we close with a summary of our magnetic field measuring
+and modelling procedures.
 
 \subsection{Time to Distance Calibration}
 The drift chamber Time to Digital Converters (TDC) measure time.  
@@ -94,7 +71,7 @@ to angle-dependent corrections.   Also, the R2 chambers are in a
 region of high and spatially varying magnetic field.  Finally, the different 
 ionization densities of the tracks from particles with different velocities 
 leads to substantial time-walk corrections for tracks near the wire.  Each of 
-these points is briefly discussed in this section.
+these points is discussed in this section.
 
 Fig.~\ref{garfield-isochrones} shows the isochrone contours and electric-field lines for 
 a representative R3 and R2 cell.  Note that the contours are circular close 
