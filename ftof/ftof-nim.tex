@@ -79,31 +79,31 @@ around the target and a toroid at forward angles.
 
 The CLAS12 torus magnet has a six-fold symmetry that divides the forward azimuthal acceptance in the
 polar angle range from 5$^\circ$ to 35$^\circ$ into six 60$^\circ$-wide sectors. The torus produces a field
-primarily in the azimuthal direction. The torus $\int \!B d\ell$ field strength at its nominal full current
-is 2.8~Tm at 5$^\circ$ and 0.5~Tm at 35$^\circ$. A set of three multi-layer drift chambers in each sector
-(before the field, within the field, and after the field) and a forward micromegas vertex tracker are used
-for charged particle tracking to measure momenta. Downstream of the torus each sector is instrumented with
-a Cherenkov counter for $\pi/K$ separation (four sectors are instrumented with low threshold gas Cherenkov
-counters, one sector is instrumented with a ring-imaging Cherenkov counter, and the final sector will eventually
-be instrumented with a second ring-imaging Cherenkov counter), three planar layers of scintillation counters
-for charged particle time measurements called the Forward Time-of-Flight (FTOF) system, and an
-electromagnetic calorimeter system for electron and neutral particle identification. Just upstream of the torus
-is a large-volume high-threshold gas Cherenkov counter for electron identification and a tagging system to
-detect electrons and photons at polar angles below $5^\circ$.
+primarily in the azimuthal direction of strength $\int \!B d\ell$ at its nominal full current of 2.8~Tm at
+5$^\circ$ and 0.5~Tm at 35$^\circ$. A set of three multi-layer drift chambers in each sector (before the
+field, within the field, and after the field) and a forward micromegas vertex tracker are used for charged
+particle tracking to measure momenta. Downstream of the torus each sector is instrumented with a Cherenkov
+counter for $\pi/K$ separation (four sectors are instrumented with low threshold gas Cherenkov counters, one
+sector is instrumented with a ring-imaging Cherenkov counter, and the final sector will eventually be
+instrumented with a second ring-imaging Cherenkov counter), three planar layers of scintillation counters for
+charged particle time measurements called the Forward Time-of-Flight (FTOF) system, and an electromagnetic
+calorimeter system for electron and neutral particle identification. Just upstream of the torus is a large-volume
+high-threshold gas Cherenkov counter for electron identification and a tagging system to detect electrons and
+photons at polar angles below $5^\circ$.
 
-The CLAS12 solenoid spans the central angular range from 35$^\circ$ to 125$^\circ$ and has a uniform
-5~T central field at its nominal full current. The solenoid serves to focus the low-energy M{\o}ller
-background down the beam pipe to the beam dump away from the acceptance of the spectrometer. The
-detectors mounted within the solenoid include a thick scintillation counter for neutron identification, a
-barrel of thin scintillation counters for charged particle timing measurements, and a set of tracking
-detectors around the target. Upstream of the solenoid, covering angles from 135$^\circ$ to 145$^\circ$,
-a wall of scintillation counters is installed for additional neutron detection coverage.
+The CLAS12 solenoid spans the central angular range from 35$^\circ$ to 125$^\circ$ and has a uniform 5~T
+central field at its nominal full current. The solenoid serves to focus the low-energy M{\o}ller background down
+the beam pipe to the beam dump away from the acceptance of the spectrometer. The detectors mounted within
+the solenoid include a thick scintillation counter for neutron identification, a barrel of thin scintillation counters
+for charged particle timing measurements, and a set of tracking detectors around the target. Upstream of the
+solenoid, covering angles from 135$^\circ$ to 145$^\circ$, a wall of scintillation counters is installed for
+additional neutron detection coverage.
 
 Figure~\ref{clas12-model} shows a model representation of CLAS12 to highlight its overall layout and scale.
 See Ref.~\cite{clas12-nim} (and references therein) for more complete information on CLAS12 and its
-individual subsystems. The CLAS12 spectrometer was installed and instrumented in Hall~B in the period from
-2012 to 2017. The CLAS12 spectrometer took the place of the original CLAS spectrometer~\cite{clas-nim}
-that operated in Hall~B in the period from 1997 to 2012 when it was decommissioned.
+individual subsystems. CLAS12 was installed and instrumented in Hall~B in the period from 2012 to 2017 and
+took the place of the original CLAS spectrometer~\cite{clas-nim} that operated in Hall~B in the period from
+1997 to 2012 when it was decommissioned.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
@@ -940,8 +940,7 @@ the counters were equally spaced.}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-For incident tracks that pass fully through each counter of the triplet with measured times $t_t$, $t_m$,
-and $t_b$, we can define a time residual
+For incident tracks that pass fully through each counter of the triplet, we can define a time residual
 
 \begin{equation}
 \label{res-time}
@@ -952,9 +951,8 @@ t_r = t_m - \frac{1}{2}(t_t + t_b),
 where the time $t_m$ of the middle scintillator hit should be the average of the measured times $t_t$ and
 $t_b$ for the top and bottom scintillator hits, respectively. Thus the measured residual $t_r$ should nominally
 be zero. However, due to the smearing of the measured times $t_t$, $t_m$, and $t_b$ due to the finite time
-resolution of the measurements, the residual time $t_r$ will also be smeared. While we expect the mean of
-$t_r$ to  be zero, the width of the $t_r$ distribution can be used to determine the average time resolution of
-the counters in the triplet.
+resolution of the measurements, the residual time $t_r$ will also be smeared. The width of the $t_r$
+distribution can be used to determine the average time resolution of the counters in the triplet.
 
 The average time resolution of each of the identical counters was computed from the variance $\delta t_r$
 of the measured time residual $t_r$ summed over all the full event sample (see Fig.~\ref{resid} for a
@@ -1165,6 +1163,16 @@ electromagnetic calorimeter signal. Due to the increased energy loss and Coulomb
 sample, the effective counter time resolutions derived for the panel-2 counters are noticeably worse than for the
 bench test results using cosmic rays.
 
+The average hit time resolution for the FTOF from the TDCs is about 80~ps and that from the FTOF
+FADCs, given the rapid rise time of the fast PMT signals that provide for only 2-3 samples on the rising
+edge is only about 1~ns. A matching requirement of 10~ns between the TDC time and the FADC time is
+employed during event reconstruction. While this matching requirement still needs to be tuned further,
+it is already reasonably effective in allowing the FADC hits to be matched with their corresponding TDC
+hits. This is important, as due to the slightly different thresholds on the discriminators and the FADCs, the
+number of entries in the hits lists can be up to a factor of two different. The matching criteria is also
+essential in order to assign the correct ADC information to the hit not only for the time-walk correction
+that directly uses the measured ADC, but also for the energy loss computation.
+
 \subsubsection{PMT Gain Matching}
 \label{gain-matching}
 
@@ -1322,11 +1330,10 @@ The measured ADC values for each PMT can be written in terms of the attenuation 
 
 \noindent
 where $A_0$ is a constant, $d$ is the distance along the counter with respect to the PMT location, and
-$\lambda$ is the counter attenuation length. Forming the ratio of the left and right PMT ADC values for
-a counter and using the relation
+$\lambda$ is the counter attenuation length. Using the definition:
 
 \begin{equation}
-  d_{L/R} = \frac{L}{2} +/- coor,
+  d_{L/R} = \frac{L}{2} \pm coor,
 \end{equation}
 
 \noindent
@@ -1340,10 +1347,8 @@ coor = \frac{v_{eff}}{2} \cdot (t_L - t_R - C_{LR}),
 
 \noindent
 $v_{eff}$ is the effective velocity of light in the scintillation bars (see Section~\ref{sec:veff} for details), and
-$C_{LR}$ is the offset that centers the time difference distribution about 0.
-
-Using the above expressions, the logarithmic ratio of the ADCs of the left and right PMTs from a given counter
-as a function of hit coordinate along the bar can be written as:
+$C_{LR}$ is the offset that centers the time difference distribution about 0, the logarithmic ratio of the ADCs
+of the left and right PMTs from a given counter as a function of hit coordinate along the bar can be written as:
 
 \begin{equation}
 \label{linear}
@@ -1650,16 +1655,6 @@ the linear fit to be zero.}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The average hit time resolution for the FTOF from the TDCs is about 80~ps and that from the FTOF
-FADCs, given the rapid rise time of the fast PMT signals that provide for only 2-3 samples on the rising
-edge is only about 1~ns. A matching requirement of 10~ns between the TDC time and the FADC time is
-employed during event reconstruction. While this matching requirement still needs to be tuned further,
-it is already reasonably effective in allowing the FADC hits to be matched with their corresponding TDC
-hits. This is important, as due to the slightly different thresholds on the discriminators and the FADCs, the
-number of entries in the hits lists can be up to a factor of two different. The matching criteria is also
-essential in order to assign the correct ADC information to the hit not only for the time-walk correction
-that directly uses the measured ADC, but also for the energy loss computation.
-
 \subsubsection{Counter Time Resolutions}
 \label{tres-beam}
 
@@ -1754,17 +1749,17 @@ particle hit time, albeit with $\sqrt{2}$ worse timing resolution.
 
 Particle trajectories from the target passing through the plane of a given counter array (i.e. panel-1a, panel-1b,
 or panel-2) can pass through adjacent counters. To determine the full deposited energy in a given counter layer,
-a clustering algorithm is used to match neighboring FTOF counter hits in time and in hit coordinate along the bar.
-The assigned cluster energy is then the sum of the deposited energies in the defined cluster,
+a clustering algorithm is used to loosely match neighboring FTOF counter hits in time and in hit coordinate along
+the bar. The assigned cluster energy is then the sum of the deposited energies in the defined cluster,
 
 \begin{equation}
   E_{cluster} = \sum_{i=1}^{n} E_{dep}^i.
 \end{equation}
 
 \noindent
-However, practically we limit the cluster size to a maximum of 2 bars. The relevant path length through the layer
-is then determined from ray tracing of the drift chamber track. This path length through the layer is then used
-to compute $dE/dx$.
+However, practically we limit the cluster size to a maximum of 2 bars. The relevant path length through the
+layer is then determined from ray tracing of the drift chamber track. This path length through the layer is
+then used to compute $dE/dx$.
 
 The hit time associated with the cluster in a given layer is currently based on assigning the hit time as
 the counter hit with the closest geometrical match to the charged track extrapolated from the forward
@@ -1844,17 +1839,17 @@ to the average panel-1b counter rates, and the green triangles to the average pa
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Based on a detailed simulation of the full CLAS12 detector and beamline based on our GEANT-4 Monte
-Carlo~\cite{sim-nim}, the response of the FTOF with an 11~GeV electron beam incident upon a 5-cm
-liquid-hydrogen target has been studied. Shown in Fig.~\ref{ftof-gemc} are the overall rates associated
-with hits above the readout threshold, including contributions from photons, neutrons, and charged particles.
-By far the dominant contribution to the overall measured FTOF rate is associated with low energy photons,
-whose energy deposition in the counters is significantly less than the contribution from minimum-ionizing
-hadrons. The results from Fig.~\ref{ftof-rates} (data) and Fig.~\ref{ftof-gemc} (Monte Carlo) agree to within a
-factor of two. However, the measured rates depend very strongly on the hardware thresholds. The threshold
-set for the FADC readout and on the discriminator are not set directly on the deposited energy, but on signal
-pulse height in the case of the discriminators or on a digitized amplitude in the the FADC. The set threshold
-on the hardware mentioned in Section~\ref{sec-elec} are only approximately set to 1~MeV, with a estimated
-uncertainty of up to 30\%.
+Carlo called GEMC~\cite{sim-nim}, the response of the FTOF with an 11~GeV electron beam incident upon
+a 5-cm liquid-hydrogen target has been studied. Shown in Fig.~\ref{ftof-gemc} are the overall rates
+associated with hits above the readout threshold, including contributions from photons, neutrons, and
+charged particles. By far the dominant contribution to the overall measured FTOF rate is associated with
+low energy photons, whose energy deposition in the counters is significantly less than the contribution from
+minimum-ionizing hadrons. The results from Fig.~\ref{ftof-rates} (data) and Fig.~\ref{ftof-gemc} (Monte
+Carlo) agree to within a factor of two. However, the measured rates depend very strongly on the hardware
+thresholds. The threshold set for the FADC readout and on the discriminator are not set directly on the
+deposited energy, but on signal pulse height in the case of the discriminators or on a digitized amplitude in
+the FADC. The set threshold on the hardware mentioned in Section~\ref{sec-elec} are only approximately
+set to 1~MeV, with a estimated uncertainty of up to 30\%.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
