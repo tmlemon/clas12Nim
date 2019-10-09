@@ -71,7 +71,7 @@ Keywords: CLAS12, event reconstruction
 Software in nuclear physics tends to grow in complexity over time. Because of the tight coupling between
 the internal components, it becomes hard to maintain and add new features over time. Modifying a feature
 in one class often involves changes in several other classes, thereby increasing the needed development
-time and effort. What starts small and simple, inevitably grows into a complicated scheme of interconnected
+time and effort. What starts small and simple, inevitably grows into a complicated scheme of interconnected
 algorithms. At some point, to prevent further growth in complexity, the software has to be shielded from
 contributors, preventing essential software evolution and optimization. The only way to bypass this highly
 guarded system is software fragmentation, making the physics data processing validation process quite
@@ -92,7 +92,7 @@ efficient and robust data processing applications.
 
 Software applications designed within the CLAS12 CLARA data processing framework differ from ones developed adopting 
 a traditional approach in two major ways. First, software applications are composed of interlocking software building blocks
-(bricks) called micro-services. Micro-services are linked together by data-stream pipes.  The technology
+(bricks) called micro-services. Micro-services are linked together by data-stream pipes.  The technology
 (e.g. high-level programming language, hardware deployment details) as well as the algorithmic solutions used to process
 data (see Fig.~\ref{clara-overview}) are encapsulated. A micro-service has inputs, processes data and produces output data.
 A micro-service reacts on a streaming data quantum in its input, processes it, and 
@@ -533,12 +533,12 @@ from both the time-walk correction and the photoelectron statistical fluctuation
 
 \subsection{Cherenkov Counters}
 
-\subsubsection{High Threshold Cherenkov Counter}
+\subsubsection{Cherenkov Counters}
 
-The goal of the HTCC reconstruction algorithm is to calculate the signal strength, time, and position from the
+The goal of the HTCC and LTCC reconstruction algorithms is to calculate the signal strength, time, and position from the
 raw ADC signals coming from the PMTS through the corresponding FADC board. The algorithm takes into account
-the properties of the HTCC geometry, namely,  the possibility for the signal from the single track to split into
-four mirror and hence produce four separated signals (or hits). The final signal reconstruction is done in three
+the properties of the HTCC and LTCC geometries, namely,  the possibility for the signal from the single track to split into
+four mirrors (for the HTCC) or two mirrors (for the LTCC) and hence produce four separated signals (or hits). The final signal reconstruction is done in three
 steps: decoding, hit reconstruction, and cluster reconstruction.
 
 In the decoding stage, the signal is converted from the hardware notation (crate, slot, channel) into the CLAS12
@@ -576,8 +576,9 @@ T_c &= \frac{\sum_{i=1}^{N}{N*T_{hi}}}{\sum_{i=1}^{N}{nphe_{hi}}}\\
 Hits, attributed to the established clusters, are removed from the further consideration, and algorithm starts to
 look for the next cluster until list of hits is exhausted. 
 	 
-Cluster coordinate, required for the matching of the hit with the reconstructed track in the Event Builder, is
-reconstructed by projecting  ($\theta$, $\phi$) of the cluster on the surface of the ellipsoidal mirror.		
+In the HTCC the cluster coordinates, required for the matching of the hit with the reconstructed track in the Event Builder, is
+reconstructed by projecting  ($\theta$, $\phi$) of the cluster on the surface of the ellipsoidal mirror.	 In the LTCC an estimated cluster
+position is calculated leveraging the Monte-Carlo simulation.  The track that passes the closest to the tentative true cluster position is then chosen as the true match for this cluster.
 
 \subsubsection{Ring-Imaging Cherenkov Counter}
 
@@ -1005,7 +1006,7 @@ V. Gyurjyan {\it et al.}, CLARA: A Contemporary Approach to Physics Data Process
 J. Carbonneau, M. Moog,  J. Gilfoyle {\it et al.}, 2011 APS Division of Nuclear Physics Meeting Abstracts, EA.024.
 
 \bibitem{framework}
-  Component Based Dataflow Processing Framework, 2015, IEEE DOI: 10.1109/BigData.2015.7363971,
+  Component Based Dataflow Processing Framework, 2015, IEEE DOI: 10.1109/BigData.2015.7363971,
   ISBN: 978 1-4799-9926-2
 
 \bibitem{clara-2016}
