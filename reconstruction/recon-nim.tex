@@ -1155,11 +1155,11 @@ The resulting particle information is saved to a HIPO bank for use of the CLAS12
 \subsection{Event Builder}
 The Event Builder collects information from all upstream services, correlates information from subdetectors into particles, performs a general particle identification scheme, and organizes the resulting information into a standardized data bank structure.
 
-First, one charged particle is assigned to each reconstructed track.  Associated calorimeter, scintillator, and C{e}renkov detector responses are then assigned to that particle based on geometric (and eventually timing) coincidence between the response and track, with criteria corresponding to the given detector.  Then, a similar procedure is followed for creating neutrals particles, except seeding is with unassociated ECAL and CND responses instead of tracks.
+First, one charged particle is assigned to each reconstructed track.  Associated calorimeter, scintillator, and C{e}renkov detector responses are then assigned to that particle based on geometric (and eventually timing) coincidence between the response and track, with matching criteria corresponding to the given detector.  Then, a similar procedure is followed for creating neutrals particles, except seeding is with unassociated ECAL and CND responses instead of tracks.
 
-Then, a start time is assigned to the entire event.  This is based on the optimal charged particle candidate, which is the highest energy lepton else hadron with precise timing information.  A correction is then made based on the RF signal from the accelerator, effectively aligning the event start time to our best measure of bunch-crossing time at the primary vertex.
+Then, a start time is assigned to the entire event, which serves as our single, most precise reference time on which all time-based particle identification relies.  This is based on the optimal charged particle candidate, which is the highest energy lepton or hadron with precise timing information.  A correction is then performed using the RF signal from the accelerator, combined with the event vertex position, effectively aligning the event start time to our best measure of bunch-crossing time at the primary interaction in the target.
 
-A basic particle identification scheme is then performed.  For charged particles, first calorimetry and Cerenkov information is used to positively identify electron and positron candidates.  Remaining charged particles are then assigned based on timing information.  An identification quality factor is assigned based on the relevant detector responses.  For neutral particles, identity assignment is only made for neutrons and photons, based only on timing information.
+A basic particle identification scheme is then performed.  For charged particles, first calorimetry and Cerenkov information is used to positively identify electron and positron candidates.  Remaining charged particles are then assumed to be hadrons and assigned based solely on timing information.  An identification quality factor is assigned based on the relevant detector responses and their resolutions.  For neutral particles, identity assignment is only made for neutrons and photons, based only on timing and topological information.
 
 The resulting information is organized into standardized output bank structures for physics analyis, see \ref{sec:dsts}.  This includes particle four-vectors, all their associated detector responses, and global event information such as beam RF and helicity information.
 
@@ -1185,18 +1185,22 @@ The resulting information is organized into standardized output bank structures 
 \section{Data Processing}
 
 \subsection{Data Processing Workflow}
-The raw data is currently first preprocessed.  This involves extracting hits from waveforms, translating data-acquisition/hardware nomenclature to physical detector objects, performing some analysis steps that require serial event access, and converting from the input EVIO format to the HIPO data format.  The end result is a factor of 5 reduction in size and a file format optimized for downstream I/O.
+The raw data is currently first preprocessed.  This involves extracting hits from waveforms, translating data-acquisition/hardware nomenclature to physical detector objects, performing some analysis steps that require serial event access, and converting from the input EVIO format to the HIPO data format.  The end result is a factor of 5 reduction in size and a file format optimized for downstream I/O during final analysis stages.
 
-The second stage is a cpu-heavy reconstruction phase, including all the tracking, clustering, calorimetry, time-of-flight, and event building in the previous sections.  It runs multi-threaded in the CLARA framework and outputs the DST structures when configured for full-scale processing.
+The second stage is a cpu-heavy reconstruction phase, including all the tracking, clustering, calorimetry, time-of-flight, and event building in the previous sections.  It runs multi-threaded in the CLARA framework and can be configured to output various data schema depending on the purpose, e.g. the DST structures of \ref{sec:dsts} during full-scale processing, or larger, special-purpose banks during preliminary calibrations phases.
 
-The final stage is I/O-heavy analysis trains that perform event skimming.  It splits the data into multiple output files based on different event selections optimized for different groups of physics analyses.  This stage can be run repeatedly as event selction criteria and their physics analyses mature.
+The final stage is I/O-heavy analysis trains that perform event skimming and accommodate corrections and common analysis plugins.  It splits the data into multiple output files based on different event selections, each optimized for a group of physics analyses.  This stage is designed to be be run repeatedly as selction criteria and physics analyses mature.
 
 \subsection{DSTs}\label{sec:dsts}
-The final data output is provided by the Event Builder in the form of data summary tapes (DST), a standardized selection of HIPO banks for physics analysis.  It includes global event information, essential quantities for the reconstructed particles, and some associated high-level detector response information.  The banks are organized such that the larger detector information can easily be dropped to leave only the data essential for a high-level physics analysis, without leaving dangling references or unecessary information.
+The final data output is provided by the Event Builder in the form of data summary tapes (DST), a standardized selection of HIPO banks for physics analysis.  These include
+\begin{itemize}
+    \item global event information, e.g. run number and event timestamp, integrated beam charge, beam helicity state, event start time
+    \item particle information, e.g. momentum four-vector and vertex position, particle type and identification quality, and status words
+    \item high-level detector response information associated with each particle, e.g. detector identifier, response position and time, and track trajectory in each detector layer
+\end{itemize}
+The DST banks are organized such that the large, detector information can easily be dropped to leave only the data essential for a high-level physics analysis, without leaving dangling references or unecessary information.
 
-~~
-
-\subsection{Resources}
+\subsection{Computing Resources}
 Reconstruction of all CLAS12 data is performed on Jefferson Lab's batch computing system\cite{jlab-batch-farm}.  It currently consists of about 400 compute nodes of various flavors, with a total of about 21,000 available jobs slots and half as many cores.  The input raw data and analyzed output data are stored on JLab's tape silo \cite{jlab-tape-silo}, which provides sufficient cold storage for all of JLab's activities.  Data for physics analysis is also stored live on JLab's Lustre filesystems \cite{jlab-lustre}, which is currently about 2 PB but being increased to almost 7 PB in the near future.  Analysis of reconstructed data is performed on the JLab batch and interactive farm nodes, and also transported to other institutions for final physics analysis.
 
 \section{Code Management}
