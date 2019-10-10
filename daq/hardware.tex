@@ -5,7 +5,7 @@ VXS was selected as the 12~GeV data acquisition back-plane foundation for the fr
 
 The trigger processor switch slot board manages the high-speed gigabit signaling from each of the payload slots, where eight differential pairs connect from the payload slots to the switch slots. The VXS crates are manufactured by WIENER and the back-plane can support up to 8~Gb/s. The payload boards use Xilinx Virtex V technology, and these FPGAs have up to 6.25~Gbps transceivers. The payload boards are designed to run these high-speed gigabit transceivers at a maximum of 5~Gpbs to transfer trigger data to the trigger processor module. 
 
-The design challenges for reliable and successful transmission of gigabit serial data over the VXS backplane requires the investment of high-speed circuit board layout and routing tools.  The FPGA selection requirements include at least four full duplex gigabit transceivers, user I/O pin count $>$~500, and fast integrated block memory with multi-rate FIFO logic. We use circuit board routing simulation Hyperlynx tool from Mentor Graphics [\cite{hyperlynx-ref}] which are invaluable for critical simulation and verification of circuit board signal integrity for the gigabit transmission paths before the manufacturing process.  The FPGA devices that we use are capable of 6.25~Gb/s serial transfer, and we have designed our circuit boards with signal integrity techniques using standard FR4 circuit board material to achieve $>$~2.5~Gb/s, which meets the data transfer bandwidth requirements. 
+The design challenges for reliable and successful transmission of gigabit serial data over the VXS backplane requires the investment of high-speed circuit board layout and routing tools.  The FPGA selection requirements include at least four full duplex gigabit transceivers, user I/O pin count $>$~500, and fast integrated block memory with multi-rate FIFO logic. We use circuit board routing simulation Hyperlynx tool from Mentor Graphics \cite{hyperlynx-ref} which are invaluable for critical simulation and verification of circuit board signal integrity for the gigabit transmission paths before the manufacturing process.  The FPGA devices that we use are capable of 6.25~Gb/s serial transfer, and we have designed our circuit boards with signal integrity techniques using standard FR4 circuit board material to achieve $>$~2.5~Gb/s, which meets the data transfer bandwidth requirements. 
 Another significant investment required for the hardware verification of the gigabit transceivers was a digital signal analyzer with 8~GHz bandwidth to measure and record the backplane and fiber optic gigabit transceiver performance and to perform jitter analysis on the critical system clock and synchronization signals with at least 1~ps resolution.  We used the Tektronix jitter analysis software which is a critical tool for the verification of our system clock, and for measurements of the phase controlled jitter attenuated clock provided by the Signal Distribution (SD) switch card in every crate. The investment of firmware development tools from FPGA industry leaders Xilinx and Altera were also taken into consideration for the upgrade path to VXS. We use the Xilinx Aurora protocol for serial transmission as it is robust and simple, and is included with the FPGA development tools.  
 
 
@@ -262,7 +262,7 @@ Inputs are single-ended LEMO and leading-edge discrimated by two different thres
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/dsc2_jitter.png}
-	\caption{Output Jitter vs Input slew rate and overdrive.}
+	\caption{Output Jitter vs Input slew rate and overdrive for DSC2.}
 	\label{fig:dsc2_jitter}
 \end{figure}
 
@@ -295,7 +295,7 @@ affects are given in Ref.~\cite{inl-tables}.
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=0.2\columnwidth,keepaspectratio]{img/v1190_board.jpg}
-	\caption{CAEN V1190 TDC module (V1190). 128-channel 100ps LSB TDC board in VME format. Another board in use is V1290 with 32 channels and 25 ps LSB.}
+	\caption{CAEN V1190 TDC module (V1190). 128-channel 100ps LSB TDC board in VME format is shown. Another board in use is V1290 with 32 channels and 25 ps LSB.}
 	\label{fig:v1190_board}
 \end{figure}
 

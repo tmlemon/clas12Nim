@@ -3,15 +3,13 @@
 %
 % Use 1). latex recon-nim.tex, 2). dvipdfm recon-nim
 %
-%\RequirePackage{lineno}
+\RequirePackage{lineno}
 \documentclass{elsart}
 \usepackage[dvips]{color,graphics}
 \usepackage[pdftex]{graphicx}
-\usepackage{amssymb,amsmath}
+\usepackage{amssymb,amsmath,systeme}
 %\setcounter{footnote}{0}
 \setcounter{tocdepth}{5}
-%
-\usepackage{lineno} 
 \linenumbers
 
 \begin{document}
@@ -27,20 +25,27 @@
 \author[INFN]{R. De Vita},
 \author[Saclay]{M. Defurne},
 \author[JLab]{G. Gavalian},
+\author[JLab]{Y. Gotra},
 \author[JLab]{V. Gyurjyan},
 \author[JLab]{N. Harrison},
+\author[CNU]{D. Heddle},
+\author[UConn]{A. Kim},
 \author[JLab]{N. Markov},
-\author[JLab]{M.D. Mestayer}, 
-\author[IPNO]{S. Niccolai}, and
-\author[Glasgow]{D. Sokhan}
+\author[JLab]{M.D. Mestayer},
+\author[CNU]{W. Phelps},
+\author[IPNO]{S. Niccolai},
+\author[Glasgow]{D. Sokhan},
+\author[JLab]{M. Ungaro},
 
 \address[JLab]{Thomas Jefferson National Accelerator Facility, Newport News, VA 23606, USA}
+\address[CNU]{Christopher Newport University, 1 Avenue of the Arts, Newport News, 23606 VA , USA}
+\address[UConn]{University of Connecticut, Storrs, CT 06269, USA}
 \address[INFN]{INFN, Sezione di Genova, 16146 Genova, Italy}
 \address[Saclay]{CEA-Saclay, Univ. Paris-Sud, Universit\'e Paris-Saclay, Gif-sur-Yvettes, France}
 \address[IPNO]{Institut de Physique Nucl\'eaire, CNRS-IN2P3, Univ. Paris-Sud, Universit\'e Paris-Saclay,
-  91406 Orsay Cedex, France}
+91406 Orsay Cedex, France}
 \address[Glasgow]{University of Glasgow, Glasgow G12 8QQ, United Kingdom}
-\thanks[corresponding]{Corresponding author. Address: 12000 Jefferson Ave., Newport News, VA; 
+\thanks[corresponding]{Corresponding author. Address: 12000 Jefferson Ave., Newport News, VA;
 e-mail: carman@jlab.org.}
 
 \date{\today}
@@ -48,10 +53,10 @@ e-mail: carman@jlab.org.}
 %\maketitle
 
 \begin{abstract}
-  We describe offline event reconstruction for the Compact Large Acceptance Spectrometer at 12 GeV.
-  The present an overview of the offline reconstruction framework and software tools.  
-  We describe the algorithms developed for the individual detector subsystems and the overall scheme for the
-  particle identification.  We present the data processing scheme and code management procedures.
+We describe offline event reconstruction for the Compact Large Acceptance Spectrometer at 12 GeV.
+The present an overview of the offline reconstruction framework and software tools.
+We describe the algorithms developed for the individual detector subsystems and the overall scheme for the
+particle identification.  We present the data processing scheme and code management procedures.
 \end{abstract}
 
 \end{frontmatter}
@@ -66,39 +71,57 @@ Keywords: CLAS12, event reconstruction
 \vfil
 \eject
 
+\section{Introduction}
+
+The CLAS12 offline reconstruction and analysis application consist of a framework to process data,
+software tools that provide data and database access, as well as functionality to manipulate and
+analyze it, and reconstruction packages.  Each reconstruction package is written to extract
+the information needed to reconstruct events taking into account the entire detector system.
+The reconstruction software components are deployed in the reconstruction platform described
+in the next section.
+
+
 \section{Reconstruction Framework and Tools}
 
-Software in nuclear physics tends to grow in complexity over time. Because of the tight coupling between
-the internal components, it becomes hard to maintain and add new features over time. Modifying a feature
+Experimental physics data analysis in a collaborative environment has historically involved
+a computing model based on self-contained, monolithic software applications
+running in batch-processing mode.
+This model, if not organized properly, can result in inefficiencies in terms
+of deployment, maintenance, response to program errors, update propagation,
+scalability and fault-tolerance.
+Over time, experimental configurations have become more diverse and compute capacity
+has expanded at a rate consistent with Moore's Law. As a consequence,
+compute applications have become much more complex,
+with significant interaction between diverse program components.  This can
+lead to computing systems so complex and intertwined that the programs become
+difficult to maintain and extend. Modifying a feature
 in one class often involves changes in several other classes, thereby increasing the needed development
-time and effort. What starts small and simple, inevitably grows into a complicated scheme of interconnected
+time and effort. What starts small and simple, inevitably grows into a complicated scheme of interconnected
 algorithms. At some point, to prevent further growth in complexity, the software has to be shielded from
 contributors, preventing essential software evolution and optimization. The only way to bypass this highly
 guarded system is software fragmentation, making the physics data processing validation process quite
 arduous.
 
-\subsection{CLARA}
-
 We have developed a reactive, data-stream processing framework called CLARA
 \cite{clara-2011,clara-service,framework,clara-2016} that addresses these issues by simply deploying a true
 “divide and conquer” principle to the software application, and insures continuous evolution and contribution of
 software applications. Nuclear physics data processing applications have a very long lifetime, and the ability to
-upgrade technologies is therefore essential. Hence, data processing applications must be organized in a way 
+upgrade technologies is therefore essential. Hence, data processing applications must be organized in a way
 that easily permits the discarding of aged software components and the inclusion of new ones without having to
 redesign entire software packages at each change. The addition of new modules and removal of unsatisfactory
 ones is a natural process of a software application evolution over time.  Software evolution and diversification
 (e.g. using heterogeneous hardware structures, such as FPGAs, GPGPUs, etc.) is important and results in more
 efficient and robust data processing applications.
 
-Software applications designed within the CLAS12 CLARA data processing framework differ from ones developed adopting 
+Software applications designed within the CLAS12 CLARA data processing framework differ from ones developed adopting
 a traditional approach in two major ways. First, software applications are composed of interlocking software building blocks
-(bricks) called micro-services. Micro-services are linked together by data-stream pipes.  The technology
+(bricks) called micro-services. Micro-services are linked together by data-stream pipes.  The technology
 (e.g. high-level programming language, hardware deployment details) as well as the algorithmic solutions used to process
 data (see Fig.~\ref{clara-overview}) are encapsulated. A micro-service has inputs, processes data and produces output data.
-A micro-service reacts on a streaming data quantum in its input, processes it, and 
-passes processed data quantum to the next micro-service in the data-flow path. The second and critical difference is 
-that CLAS12 data processing applications execute according to the rules of data-flow instead of a more traditional 
-programming approach, where sequential series of instructions (lines of code) are written to perform a required algorithm. 
+A micro-service reacts on a streaming data quantum in its input, processes it, and
+passes processed data quantum to the next micro-service in the data-flow path. The second and critical difference is
+that CLAS12 data processing applications execute according to the rules of data-flow instead of a more traditional
+programming approach, where sequential series of instructions (lines of code) are written to perform a required algorithm.
 In this respect CLAS12 data processing framework application design promotes a data-flow as the main concept
 behind any data processing algorithm.   The flow of data between micro-services in the application determines
 the execution order of micro-services within the application. These differences may seem minor at first, but
@@ -109,10 +132,10 @@ application building blocks can be improved individually and be replaced.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{5.0cm}
-\begin{picture}(50,50) 
+\begin{picture}(50,50)
 \put(45,-5)
 {\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/clara-overview.pdf}}}
-\end{picture} 
+\end{picture}
 \caption{Overview of the CLAS12 CLARA data processing framework that links the detector subsystem
 event reconstruction applications to the data processing and data quality assurance monitoring applications
 to the physics analysis applications.}
@@ -123,78 +146,104 @@ to the physics analysis applications.}
 \subsection{Common Tools}
 \label{common-tools}
 
-CLAS12 consists of many detectors for particle tracking and identification. At the start of this project software
-group decided to develop common software packages that can be shared between different detector reconstruction
-packages to avoid code replication and aid in software maintainability.
+﻿The offline software of the CLAS12 project aims at providing tools to
+the collaboration that allow design, simulation, and data analysis to proceed
+in an efficient, repeatable, and understandable way. As much as
+possible, software-engineering-related details should be hidden from
+collaborators, allowing them to concentrate on the physics.
+To facilitate code development for the detector subsystems of CLAS12, and for detector-specific reconstruction output
+analysis used for particle identification and overall event reconstruction,
+the software was designed to provide libraries that are commonly used by all the reconstruction
+packages.  These libraries, referred to as ``common tools'' provide means to avoid code replication and aid in software maintainability.
 
-The common software was divided into packages, each having a specific purpose and functionality. Below we discuss
+The common tools consist of various packages, each having a specific purpose and functionality. Below we discuss
 the main packages used in the reconstruction software.
 
 \subsubsection{Geometry}
 
-Due to the complexity of the geometry of CLAS12 detector subsystems, an interface was developed 
+Due to the complexity of the geometry of CLAS12 detector subsystems, an interface was developed
 to provide classes and geometry software tools that are used to describe the geometry of all subsystem in an unified way.
 
 A library of primitives was developed to provide geometrical objects needed to represent by all geometry detector subsystem
-and for geometrical object transformations.  These primitives include lines, planes and various shapes (e.g. 
+and for geometrical object transformations.  These primitives include lines, planes and various shapes (e.g.
 cubes, trapezoids, etc.).  They provide the functionality needed
 to represent the detector subsystem components in the reconstruction frames, to take into account geometrical distortions
-and to translate and rotate detector components which is particularly relevant for alignment purposes. 
-Further more they provide methods to track particles through volumes, and return informations used to determine 
+and to translate and rotate detector components which is particularly relevant for alignment purposes.
+Further more they provide methods to track particles through volumes, and return informations used to determine
 track trajectories,
 such as line to surface intersections, ray tracing through objects, distance of closest approach to a line or surface.
 
-The CLAS12 geometry library insures consistency between the geometry implementation used in CLAS12 simulation, reconstruction and 
+The CLAS12 geometry library insures consistency between the geometry implementation used in CLAS12 simulation, reconstruction and
 event visualization packages. It is initialized through database, and provides output for GEANT4 simulations package
 (GEMC), is used in reconstruction application and in the CLAS12 Event Display (CED) .
 
 \subsubsection{Databases}
 
-The Calibration Constant Data Base (CCDB) software package was developed at Jefferson Lab for the GlueX experiment 
-in HallD.  The CLAS12 reconstruction packages use the CCDB application programming interface to create and access 
+The Calibration Constant Data Base (CCDB) software package was developed at Jefferson Lab for the GlueX experiment
+in HallD.  The CLAS12 reconstruction packages use the CCDB application programming interface to create and access
 tables that contain detector geometry and calibration constants, as well as maps used for decoding raw data.
-CCDB provides the functionality for storing and accessing 
-structured tables in MySQL-based and SQLite portable databases. 
+CCDB provides the functionality for storing and accessing
+structured tables in MySQL-based and SQLite portable databases.
 
 The CCDB package creates
 tables that link constants to specific runs (using timestamps) and store different variations of constants depending on run
 conditions. CLAS12 software tools employ an Application Programming Interface (API), that parses database tables and creates
-structured maps of constants stored in  memory by detector sector, layer and component. This allows fast retrieving of the 
+structured maps of constants stored in  memory by detector sector, layer and component. This allows fast retrieving of the
 constants.
 
-The CLAS12 database access tools have been written to avoid bottlenecks that might result from multiple multi-threaded 
-services accessing the database to retrieve constants.  An interface has been designed to fetch the constants 
+The CLAS12 database access tools have been written to avoid bottlenecks that might result from multiple multi-threaded
+services accessing the database to retrieve constants.  An interface has been designed to fetch the constants
 on demand and cache them for further requests. In this approach each service will request the
- constants it requires on one thread and each subsequent request by a new thread will be provided by the cached values.
+constants it requires on one thread and each subsequent request by a new thread will be provided by the cached values.
 
-\subsubsection{Plotting}
+\subsubsection{Plotting and Analysis Tools}
 
-For ease of integration with the reconstruction software tools and packages, the plotting tools used for data 
-analysis, calibration and monitoring was written in the JAVA programming language. 
+For ease of integration with the reconstruction software tools and packages, the plotting tools used for data
+analysis, calibration and monitoring was written in the JAVA programming language.
 
-The plotting software (called groot) developed at Jefferson Lab for CLAS12 is tailored to have a programming 
+The plotting software (called groot) developed at Jefferson Lab for CLAS12 is tailored to have a programming
 interface similar to ROOT
-(CERN data analysis package) and provides the functionality necessary for 
+(CERN data analysis package) and provides the functionality necessary for
 fitting using the JAVA-based MINUIT library available from the JHEP repositories.
 
-\subsubsection{Analysis Tools}
+These same tools are used for analysis purposes. In addition, the analysis package
+contains classes for four-vector manipulations and physics quantities extractions and
+analysis methods (e.g. $Q^2, W$, boosts, etc.).
 
-Analysis Tools are under construction.
+\subsubsection{Magnetic Field Package}
+The magnetic field package (magfield) used by the CLAS12 reconstruction creates
+binary field maps from engineering models of the CLAS12 torus and solenoid. It employs
+a common self-described binary format, with a header containing meta-data describing
+the pedigree of the field, its grid coordinate system, and the coordinate system
+used by the field values. (For example, the CLAS12 torus has a cylindrical grid
+but Cartesian field components.) The same magfield package provides the trilinear
+interpolation of the field. Given that the field is often requested at a sequence
+of points all contained within a single grid cell, magfield uses time-saving
+software “probes” to cache nearest neighbors.
+
+\subsubsection{Swimmer Package}
+The swimmer package, in conjunction with the magfield package, is used by the CLAS12
+reconstruction to integrate charged particles through the CLAS12 solenoid and torus.
+It uses a fourth order (with 5th order corrections) adaptive step-size Runge-Kutta integrator
+with single-step advancement achieved through a configurable Butcher tableau advancer.
+There are a number of convenience methods for swimming to a plane, to the closest
+point on a line, and to a specified value of a given coordinate such as z. For
+forward swimming in CLAS12, the swimmer can reduce the dimensionality of the state
+vector (and consequently run faster) by changing the independent variable from
+the pathlength to the z coordinate.
+
 
 \section{Data Formats}
-
-\subsection{EVIO}
-
-The Event IO data format \cite{evio}.
-
-\subsection{HIPO}
-
-The CLAS12 data format was designed to provide a flexible data container structure,
- with features that minimize disk
-access for the most common tasks performed in data analysis. 
+EvIO (Event Input-Output)~\cite{evio} is a data format designed by and maintained by the
+Jefferson Laboratory Data Acquisition Group, and is the data format of the raw data.
+For data reconstruction and analysis, the CLAS12 data format was designed to provide
+a flexible data container structure,
+with features that minimize disk
+access for the most common tasks performed in data analysis.
 The High Performance Output (HiPO)
-format developed for CLAS12 was designed to provide data compression, using LZ4 (fastest compression algorithm available), 
-and random access. 
+format developed for CLAS12 was designed to provide data compression, using LZ4
+(the fastest compression algorithm currently available),
+and random access.
 
 HiPO stores data in separate records (with adjustable size), with tags associated with each record. Each record is
 compressed and a pointer to the record is kept in the file's index table. This feature allows separating events during
@@ -207,59 +256,101 @@ environment.
 
 \section{Monitoring and Calibration Suites}
 
-\subsection{Framework}
+\subsection{Calibration Framework}
 
-A calibration framework was developed to implement visualization software tools needed for all detector 
+A calibration framework was developed to implement visualization software tools needed for all detector
 systems. Standard views were developed using the JAVA Swing application to visualize detector components and to provide callback
-mechanisms necessary to display detector-component specific information.  These software tools provide 
-functionality for data fitting, plotting and displaying using a graphical user interface environment. 
+mechanisms necessary to display detector-component specific information.  These software tools provide
+functionality for data fitting, plotting and displaying using a graphical user interface environment.
 
-The calibration framework makes use of the other CLAS12 libraries 
+The calibration framework makes use of the other CLAS12 libraries
 (the geometry and plotting packages, as well as database utilities) and provides a uniform Graphical User
-Interface (GUI) for all calibration applications. The framework provides a data processing interface  
+Interface (GUI) for all calibration applications. The framework provides a data processing interface
 and a calibration constant database interface used
-for on- and off-line data analysis.   
+for on- and off-line data analysis.
 
 A common data streaming interface is implemented with software level abstraction that allows calibration and monitoring
 code to run on variety of supported data formats used in CLAS12.
 
-\subsection{Data Monitoring}
-
 \subsection{Calibration Suites}
 
-The software programs used for the CLAS12 detector subsystem energy and time calibrations are
+The software programs used for the CLAS12 detector subsystem monitoring and energy and time calibrations are
 Java-based suites that employ the framework discussed in Section~\ref{common-tools}.
-The software tools provided by the framework facilitate the development of 
+The software tools provided by the framework facilitate the development of
 detector-specific suites. Fig.~\ref{suites} shows representative views of CLAS12 subsystem calibration suites.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{4.5cm}
-\begin{picture}(50,50) 
+\begin{picture}(50,50)
 \put(55,-5)
 {\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/suites.png}}}
-\end{picture} 
+\end{picture}
 \caption{Representative subsystem calibration GUIs for ECAL~\cite{ecal-nim} (upper left),
-  DC~\cite{dc-nim} (upper right), FTOF~\cite{ftof-nim} (lower left),  and FT~\cite{ft-nim} (lower right).}
+DC~\cite{dc-nim} (upper right), FTOF~\cite{ftof-nim} (lower left),  and FT~\cite{ft-nim} (lower right).}
 \label{suites}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The calibration applications take as input raw or reconstructed data files 
+The calibration applications take as input raw or reconstructed data files
 (from either beam data or Monte Carlo simulations) in
-either EVIO or HIPO data formats.  They display the various quantities and histograms relevant to the 
-extraction of the calibration constants.  Each calibration suite performs fits to determine the detector subsystem 
-the calibration constants.  The calibration analysis parameters are saved into ASCII files 
+either EVIO or HIPO data formats.  They display the various quantities and histograms relevant to the
+extraction of the calibration constants.  Each calibration suite performs fits to determine the detector subsystem
+the calibration constants.  The calibration analysis parameters are saved into ASCII files
 with the same structure as the tables defined in CCDB.
 
-\section{Event Reconstruction}
+\subsection{Timelines}
+~~
 
+\section{CLAS12 Event Display}
+The CLAS Event Display (ced) is a diagnostic graphical application for displaying CLAS events.
+The primary element of ced is the view. A view is a graphical representation of CLAS in its
+entirety or a subset of detector packages.
+ced contains multiple views of CLAS, some geometrically faithful and some not.
+It has both 2-dimensional and 3-dimensional views. Some views are purely informational, typically in the form of tables.
+An illustration of views in ced is shown in Fig.~\ref{fig:dcTracks}.
+
+\section{Event Reconstruction}
 \subsection{Introduction}
 
-\subsection{Tracking Overview}
+The event reconstruction software has been designed and developed within the CLARA framework.
+The reconstruction of events for CLAS12 is separated into micro-services that run data processing algorithms.
 
-The event reconstruction software has been designed and developed within the ClaRA framework. The
-reconstruction program must reconstruct, on an event-by-event basis, the raw data coming from either
+The data reader services accesses the decoded data stored in a tablular structure,
+called ``bank'', according to
+sector, layer, component, ADC/TDC and order (corresponding to left or right PMTs). Each entry for decoded
+detector hits is a row in a bank.  Similar bank structures are created at the decoding stage for the
+various information needed for event reconstruction, such as hits, clusters, tracks, etc.
+
+The reconstruction micro-services that run event reconstruction algorithms, pertaining to
+the subsystems of the CLAS12 detector, fill these banks
+that are subsequently appended and written out to a file by a data-persistency micro-service.
+
+The services running the reconstruction algorithms access the various banks (transient data) as input
+and produce output banks needed for the subsequent algorithms in the reconstruction chain.
+The order of the services depend on the reconstruction sequence.  Some services can run in parallel while others
+need the reconstruction output provided by the preceeding ones.
+For instance hit-based for the central (CVT service) and for forward (DCHB service) tracking
+can run in parallel, while time-based tracking (DCTB) must come after the event builder service
+that gathers the output from the various banks run prior to using timing information which requires
+the determination of the event start time using the time-of-flight and calorimeters output.
+An  overview of the reconstruction application service composition is shown in figures~\ref{fig:clara-overview} and~\ref{fig:services}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure*}
+\includegraphics[width=0.6\textwidth,natwidth=610,natheight=642]{pics/ServiceComposition.png}
+\caption{CLAS12 reconstruction application service composition in case of sub-event level parallelization.
+In this case within the event different detector component reconstruction services are processing in parallel.}
+\label{fig:services}
+\end{figure*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Tracking Overview}
+The reconstruction program must reconstruct, on an event-by-event basis, the raw data coming from either
 simulation or the detectors to provide physics analysis output such as track parameters and particle
 identification. Charged particle tracking is separated into the reconstruction of tracks in the central
 (Silicon and Micromegas Vertex Trackers) and forward (Forward Micromegas Tracker and Drift
@@ -277,7 +368,9 @@ consistent with belonging to a trajectory (i.e. track) are identified. This set 
 expected trajectory with their uncertainties, incorporating the knowledge of the detector material and
 the detailed magnetic field map.
 
-\subsubsection{Forward Tracking}
+\subsection{Forward Tracking}
+
+\subsubsection{Hit Reconstruction}
 
 The Drift Chamber (DC) wire hit information is given by the wire geometrical location and the drift time
 to the wire. Track-dependent corrections to the hit, such as left-right ambiguity and time-walk must then
@@ -291,189 +384,271 @@ allowed in the formation of a segment. Using bitwise operations on the extended 
 essentially operates as a parallel processor on all 112 sense wires in layer. This parallelism precludes the
 need of a wire for-loop, enabling the algorithm to run in a negligible fraction of the total time for
 reconstruction. More to the point, SNR actually saves time by reducing the combinations that must be
-explored in the pattern-recognition phase of the ensuing track-finding. The hits remaining after the SNR
-algorithm are grouped into clusters. 
-
-Subsequent ``noise rejection'' algorithms are then applied to the clusters. These include the removal of the
+explored in the pattern-recognition phase of the ensuing track-finding.
+\begin{figure*}
+\includegraphics[width=0.4\textwidth,natwidth=610,natheight=642]{pics/dcTracks2.png}
+\caption{Event display of hits in the 2 consecutive superlayers (groups of 6 layers) in the DC projected at the $y=0$ plane in sector 1.
+The DC cell hexagones displayed in red correspond to the hits rejected by the noise
+identification algorithms.  The straight lines correspond to linear local fits to the clustered hit
+position taking into account the drift distance (circles). The dot in between the
+2 superlayers correspond to a point in space determined from the fits in each superlayer taking into
+account their respective wire directions ($\pm 6$ deg. stereo angle).
+}
+\label{fig:dcsegs}
+\end{figure*}
+\subsubsection{Hit Clustering}
+The hits remaining after the SNR
+algorithm are grouped into clusters.
+Clusters are groups of adjacent hits in a group of 6 layers forming a DC superlayer.  There can be at most
+two hits in a layer, forming a ``double-hit''\.  However, up to four layers can be missing in a superlayer
+when attempting to form a cluster.  This is to reduce tracking inefficiencies resulting from possible wire malfunctions or
+intrinsic inefficiencies. It was found that using 4 out of 6 layers to form a cluster is good enough
+to determine the cluster shape which is subsequently used in tracking to determine the track trajectory.
+Additional ``noise rejection'' algorithms are applied to the clusters to remove spurious hits
+that do not come from a real track. These include the removal of the
 interior hits from horizontal ``strings'' of hits along a layer~\footnote{The effectiveness of this cut follows
-  from the observation that high-momentum tracks from hadrons typically cross the superlayers at a large angle,
-  while ``curlers'' from low-momentum background follow curling trajectories with a significant part of the
-  pattern being along layers.}, overlapping segments resolving, attached noise hits (resolved mostly using timing
-information). Overlapping segments are produced when the trajectories of tracks cross each other 
-or when the tracks are almost parallel and very close to each other in a given region. 
-A hough transform is employed to find hits on a line in the cluster which allows splitting the cluster into 
+from the observation that high-momentum tracks from hadrons typically cross the superlayers at a large angle,
+while ``curlers'' from low-momentum background follow curling trajectories with a significant part of the
+pattern being along layers.}, overlapping segments resolving, attached noise hits (resolved mostly using timing
+information). Overlapping segments are produced when the trajectories of tracks cross each other
+or when the tracks are almost parallel and very close to each other in a given region.
+A hough transform is employed to find hits on a line in the cluster which allows splitting the cluster into
 segments.  The resulting trimmed clusters are then fit to a straight-line hypothesis, and those hits with
-acceptable residuals are kept and identified collectively as a ``track segment''. 
+acceptable residuals are kept and identified collectively as a ``track segment''.
+Figure~\ref{fig:dcsegs} illustrates the selected hits belonging to a cluster (orange) and the hits
+rejected by the noise-finding algorithms.
 
+\subsubsection{Pattern Recognition}
 Fits to the segments with a linear function are a preliminary step to estimating
 a track trajectory. Track parameters are estimated in the local coordinate system of the chamber sector from
-this trajectory. 
+this trajectory.
 
-Using the wire direction in a given superlayer along with the line fit to a segment in that superlayer, a plane can be constructed. 
+Using the wire direction in a given superlayer along with the line fit to a segment in that superlayer, a plane can be constructed.
 Thus pairs of segments in
 neighboring superlayers within one chamber (with superlayers of $\pm$6$^\circ$ stereo angle) represent the
 intersection of two planes, that is a line whose coordinates are evaluated midway between the two
-superlayers, and is a 6-dimensional object (x,y,z and 3 angles) which we call a ``cross''. 
-A segment slope coincidence algorithm is used to match neighboring segments in a region.  Selection cuts are subsequently applied on the 
-reconstructed cross to ensure that it is within the fiducial sector volume within resolution. 
+superlayers, and is a 6-dimensional object (x,y,z and 3 angles) which we call a ``cross''.
+A segment slope coincidence algorithm is used to match neighboring segments in a region (see
+Fig.~\ref{fig:dcsegs}).  Selection cuts are subsequently applied on the
+reconstructed cross to ensure that it is within the fiducial sector volume within resolution.
 
 An additional  pattern reconstruction algorithm  matches segments within even and odd superlayers, respectively, to form
 a track candidate where an entire superlayer can be missing.  The matching algorithm returns an estimates of where the missing
-superlayers hits should be and forms a pseudo-segment from the wire locations corresponding to these hits.  Subsequently 
-a pseudo-cross is formed using the pseudo-segment and the neighboring reconstructed segment in that region. 
+superlayers hits should be and forms a pseudo-segment from the wire locations corresponding to these hits.  Subsequently
+a pseudo-cross is formed using the pseudo-segment and the neighboring reconstructed segment in that region.
 
 The first stage of
 pattern-recognition consists of finding a track candidate, from a set of 3 crosses (one each in R1, R2 and R3) that
-are fit to a parabolic functional form to give us a ``track candidate''.  
-Using the parameters of the parabolic function between the first and the third cross and obtaining the magnetic field 
-intensity at each step along this trajectory we obtain an estimate for $\int B dl$. 
+are fit to a parabolic functional form to give us a ``track candidate''.
+Using the parameters of the parabolic function between the first and the third cross and obtaining the magnetic field
+intensity at each step along this trajectory we obtain an estimate for $\int B dl$.
 From the local angles of the crosses in the $x-z$ plane for R1 ($\theta_1$) and R3 ($\theta_3$) we estimate the track momentum ($p$)
 and the particle's charge ($q$),
 as follows:
-$$\frac{q}{p} = \frac{\theta_3 - \theta_1}{0.3\int{B dl}},$$ where the angles are in radians, the magnetic field 
-intensity ($B$) is in Tesla, and the pathlength ($dl$) in cm.  
- The cross position and angles in region 1 together with the 
-momentum and the charge provide all the necessary information to define the track parameters at a given location in the detector, 
+\begin{equation}\frac{q}{p} = \frac{\theta_3 - \theta_1}{v\int{B dl}},\end{equation} where the angles are in radians, the magnetic field
+intensity ($B$) is in Tesla, and the pathlength ($dl$) in cm.
+The conversion factor  $v = 0.002997924580 (GeV/c) T^{-1} cm^{-1}$  corresponds to the speed of light.
+The cross position and angles in region 1 together with the
+momentum and the charge provide all the necessary information to define the track parameters at a given location in the detector,
 and therefore to start track fitting.
 
+\begin{figure*}[hbt]
+\includegraphics[width=0.5\textwidth,natwidth=610,natheight=642]{pics/dcTrack3.png}
+\caption{Event display of charged particle tracks in the Drift Chambers.
+}
+\label{fig:dcTracks}
+\end{figure*}
+
+\subsubsection{Track Fitting}
 The output of the pattern recognition
 is a seed with initial parameters used to start the track propagation from one measurement site to the next in the fit.
-Track fitting uses a Kalman Filter method with a 5-parameter track representation (x, y, tx, ty, q/p), defined
-in a local coordinate system with the z-axis perpendicular to the chambers wire planes; where $tx=px$/$pz$,
-$ty=py$/$pz$, in that frame.  
-In that frame the state vector (representing the track parameters) and the measurement are defined at each layer 
-at which there is a hit on track. Hence as in ref~\cite{spiri} we can express the equations of motion of the track in the torus field
-and the propagation of the state vector covariance matrix as derivatives with respect to $z$. 
-These equations  are solved using a Runge-Kutta 4 numerical method.  
-The measurements used in the fit correspond to the drift distances to the wires
-taking into account the left/right position of the track with respect to the wire. Time corrections are applied
+Track fitting uses a Kalman Filter method with a 5-parameter track representation ($x$, $y$, $tx$, $ty$, $q$/$p$), defined
+in a local coordinate system with the z-axis perpendicular to the chambers wire planes; where $q$ is the
+track charge, $tx=px$/$pz$,
+$ty=py$/$pz$, with $px,py,pz$ resenting the $x,y,z$ components of the track momentum in that (analysis) frame.
+In the analysis frame the state vector (representing the track parameters) and the measurement are defined at each layer
+at which there is a hit on track.
+Hence, as in ref~\cite{spiri} we can express the equations of motion of the track in the torus field
+and the propagation of the state vector covariance matrix as derivatives with respect to $z$.
+In the drift chambers, the magnetic field components are mostly along the $y$ coordinate in the analysis frame.
+The trajectory of the particle in the analysis frame is given by the following equations:
+\begin{equation}
+\systeme{
+dx/dz  =  tx, \\
+dy/dz  =  ty, \\
+dtx/dz  =  q \cdot v \cdot \sqrt{1 + {t_x}^2 + {t_y}^2}\cdot [t_y\cdot (t_x B_x + B_z) - (1 + {t_x}^2 ) B_y], \\
+dty/dz  =  q \cdot v \cdot \sqrt{1 + {t_x}^2 + {t_y}^2}\cdot [-t_x\cdot (t_y B_y + B_z) + (1 + {t_y}^2 ) B_y], \\
+q  =  q_0,}
+\end{equation}
+where, and the initial values at the initial plane $z = z_{0}$ are
+$x = x_{0}, y = y_{0}, t_x = t_{x0}, t_y = t_{y0}, q = q_{0}$.
+
+we solve the above equations
+numerically using a fourth order Runge-Kutta integration method in order to propagate the state vector from
+the drift chamber plane at $z_{0}$ to the next one at $z$.  The state covariance matrix is propagated along with it
+by computing the Jacobian matrices as in ref~\cite{spiri} (again, solving using a fourth order Runga-Kutta method).
+The Jacobian matrix terms contribute to the propagator matrix used to compute the Kalman gain.
+The propagated covariance matrix takes into account multiple scattering.
+
+The non-zero components of multiple scattering matrix are:
+\begin{equation*}
+\begin{aligned}
+Cov (t_{x} , t_{x}) &=& (1+{t_x}^{2} )\cdot (1+{t_x}^{2} + {t_y}^2 )\cdot {\theta_{0}}^{2} , \\
+Cov (t_{y} , t_{y}) &=& (1+{t_y}^{2} )\cdot (1+{t_x}^{2} + {t_y}^2 )\cdot {\theta_{0}}^{2} , \\
+Cov (t_{x} , t_{y}) &=&  t_{x} t_{y}\cdot (1+{t_x}^{2} + {t_y}^2 )\cdot {\theta_{0}}^{2} ,
+\end{aligned}
+\end{equation*}
+where,
+\begin{equation}
+{\theta_{0}} = \frac{13.6}{\beta pc}\sqrt{\frac{t}{X_{0}}\sqrt{1+{t_x}^2+{t_y}^2}}\left[ {1+0.038 ln \left({\frac{t}{X_{0}}\sqrt{1+{t_x}^2+{t_y}^2}}\right) }\right].
+\end{equation}
+as given by the Highland-Lynch-Dahl formula [ref.].
+The radiation length $X_0$ is computed as an effective radiation length corresponding to the gas mixture in the DC.
+Air is assumed outside of the DC volumes. The term $t$ represents the pathlength traverse by the track.
+
+At each plane the state vector is mapped onto a measurement, which corresponds to the drift distance to the
+wire at a given drift chamber plane.  In instances where there are two hits in a given wire (i.e. the track
+goes in between the wires), the information from both hits is included in the fit.
+The measurements used in the fit
+take into account the left/right position of the track with respect to the wire.
+
+Time corrections are applied
 after ``hit-based'' tracking to account for the event start time, cable delays, propagation times along the
 wires, event flight times to the hit location along the wires, beta-dependent corrections, and the effect of
-the magnetic field on the cell isochrones which modify the drift times.  
+the magnetic field on the cell isochrones which modify the drift times.
 
 After the times are corrected, the drift distance is computed using a tabulated distance-to-times
 multi-dimentional arrays.  The drift distances are computed using a multi-dimentional interpolation method
 using the segment local angle, the value of the magnetic field at the location of the hit and the corrected
 times.  The Kalman fit is redone at ``time-based'' level using hits with corrected times and computed drift
-distances. 
+distances.
 
 A graphical representation of tracks in the CLAS Event Display is shown in figure~\ref{fig:dcTracks}.  The
 display shows a longitudinal view of the chambers trapezoidal shapes. The field intensity is represented by a
 color gradiant. The drift chamber hits correspond to the maroon shapes.  The bottom track goes through a
 characteristic noise pattern in Region 1 (R1). Only the first superlayer in R1 is used to fit this track.  The
 tracks hit the Forward Time-Of-Flight system and the Calorimeters.  The top track leaves a hit in the HTCC
-and is identified as an electron. 
+and is identified as an electron.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{4.5cm}
-\begin{picture}(50,50) 
-\put(120,-5)
-{\hbox{\includegraphics[width=0.6\textwidth,natwidth=610,natheight=642]{pics/dcTracks.png}}}
-\end{picture} 
-\caption{Event display of charged particle tracks in the Drift Chambers.}
-\label{fig:dcTracks}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Central Tracking}
 
-Tracks whose angle with the beam direction is between $40^\circ$ and $135^\circ$ are reconstructed by the so called 
-Central Vertex Tracker (CVT). The CVT consists of twelve cylindrical layers of tracking detectors, numeroted from 1 for 
-the most inner layer to 12 for the most outer layer. The subset of tracking detectors forming layer 1 to 6 are silicon 
-strip detectors and will be referred as the Silicon Vertex Tracker (SVT) described in~\cite{svt-nim}. The layers from 7 
-to 12 are made of micromegas detectors and will be referred as the Barrel Micromegas Tracker (BMT) described 
-in~\cite{mm-nim}. The entire CVT surrounds the target and sits in a solenoid magnet able to produce a 5T-magnetic 
-field.  
+\subsection{Central Tracking}
 
-The revolution axis of the CVT coincides with the ideal beam axis which defines the z-axis of the CVT frame. The y-axis 
-points upward in the laboratory frame and the x-axis is defined such as the unit vectors of each axis form an direct 
-orthogonal basis. The origin of the CVT frame matches the center of the experimental Hall B. 
+Tracks whose angle with the beam direction is between $40^\circ$ and $135^\circ$ are reconstructed by the so called
+Central Vertex Tracker (CVT). The CVT consists of twelve cylindrical layers of tracking detectors, numeroted from 1 for
+the most inner layer to 12 for the most outer layer. The subset of tracking detectors forming layer 1 to 6 are silicon
+strip detectors and will be referred as the Silicon Vertex Tracker (SVT) described in~\cite{svt-nim}. The layers from 7
+to 12 are made of micromegas detectors and will be referred as the Barrel Micromegas Tracker (BMT) described
+in~\cite{mm-nim}. The entire CVT surrounds the target and sits in a solenoid magnet able to produce a 5T-magnetic
+field.
 
-The first step of the tracking algorithm is the formation of clusters from the raw hits. The SVT raw 3-bit ADC values 
-are transformed into deposited charge by randomly sampling a Landau distribution fitted on test-bench data. A cluster 
-is a collection of contiguous hit strips. Its centroid is either given by a spatial information (a z-coordinate for 
-BMTC, xy-coordinates for BMTZ) or an averaged strip number for SVT. This centroid is derived by performing an average of 
-the relevant strip information, weighted by the maximum of the ADC pulse for micromegas strips or the equivalent 
+The revolution axis of the CVT coincides with the ideal beam axis which defines the z-axis of the CVT frame. The y-axis
+points upward in the laboratory frame and the x-axis is defined such as the unit vectors of each axis form an direct
+orthogonal basis. The origin of the CVT frame matches the center of the experimental Hall B.
+
+\subsubsection{Hit Clustering}
+The first step of the tracking algorithm is the formation of clusters from the raw hits. The SVT raw 3-bit ADC values
+are transformed into deposited charge by randomly sampling a Landau distribution fitted on test-bench data. A cluster
+is a collection of contiguous hit strips. Its centroid is either given by a spatial information (a z-coordinate for
+BMTC, xy-coordinates for BMTZ) or an averaged strip number for SVT. This centroid is derived by performing an average of
+the relevant strip information, weighted by the maximum of the ADC pulse for micromegas strips or the equivalent
 deposited charge for the SVT.
 The time information associated to each hit is not used at the moment.
 
-Before feeding all the CVT clusters to a pattern recognition algorithm, spatial coordinates must be associated to the 
-SVT clusters. As described in~\cite{svt-nim}, SVT layers are mechanically paired and consequently form three regions. 
-The readout strips of the inner and outer layer of each region make a $3^\circ$-stereo angle. By associating one 
-cluster of the inner layer with one cluster of the outer layer, and by assuming that an infinite momentum track crossed 
-perpendicularly the two layers, a preliminary candidate of the xyz-coordinates of the particle between the two layers 
-is derived for this cluster pair. This pairing is performed over all clusters of inner layer with all clusters of the 
-outer layer. Pairs whose xyz-coordinates lives outside of the SVT sensor are automatically removed from the list of 
-xyz-candidate list. If one of the two layer of a region has not seen the particle, then the information of the active 
-layer is simply ignored for the reamining of the reconstruction process.
+Before feeding all the CVT clusters to a pattern recognition algorithm, spatial coordinates must be associated to the
+SVT clusters. As described in~\cite{svt-nim}, SVT layers are mechanically paired and consequently form three regions.
+The readout strips of the inner and outer layer of each region make a $3^\circ$-stereo angle. By associating one
+cluster of the inner layer with one cluster of the outer layer, and by assuming that an infinite momentum track crossed
+perpendicularly the two layers, a preliminary candidate of the xyz-coordinates of the particle between the two layers
+is derived for this cluster pair. This pairing is performed over all clusters of inner layer with all clusters of the
+outer layer. Pairs whose xyz-coordinates lives outside of the SVT sensor are automatically removed from the list of
+xyz-candidate list. If one of the two layer of a region has not seen the particle, then the information of the active
+layer is simply ignored for the remaining of the reconstruction process.
 
-The trajectory of a charged particle in a solenoidal magnetic field is an helix. Because BMT detectors offers either 
-xy- or z-coordinates but never both, the pattern recognition cannot be performed in 3 dimensions. For particles of 
-large enough momentum ($p_\perp \gtrsim 0.25 \text{GeV}/c$ for a 5T-solenoidal magnetic field), the xy-projection of an 
-helix is a circle, and the $rz$-projection is a straight line (where $r = \sqrt{x^2 + y^2}$). Therefore, a first 
-pattern recongition algorithm is run in xy-plane to look for circles and then a second pattern recognition algorithm is 
-run in rz-plane to search for straight lines.   
+\subsubsection{Pattern Recognition}
+The trajectory of a charged particle in a solenoidal magnetic field is an helix. Because BMT detectors offers either
+xy- or z-coordinates but never both, the pattern recognition cannot be performed in 3 dimensions. For particles of
+large enough momentum ($p_\perp \gtrsim 0.25 \text{GeV}/c$ for a 5T-solenoidal magnetic field), the xy-projection of an
+helix is a circle, and the $rz$-projection is a straight line (where $r = \sqrt{x^2 + y^2}$). Therefore, a first
+pattern recongition algorithm is run in xy-plane to look for circles and then a second pattern recognition algorithm is
+run in rz-plane to search for straight lines.
 
-The two pattern recognition algorithms are a modified version of the cellular automaton (CA) algorithm developed by the 
-Hera-B collaboration~\cite{CA-HeraB}. Here, the elementary cell of the CA is defined as a segment that connects two 
+The two pattern recognition algorithms are a modified version of the cellular automaton (CA) algorithm developed by the
+Hera-B collaboration~\cite{CA-HeraB}. Here, the elementary cell of the CA is defined as a segment that connects two
 2D-points.
-In the $(x,y)$ plane, cells are formed with SVT and BMTZ xy-information. Two xy-clusters form a cell if the angular 
-distance between them is lower than a threshold. This threshold has been derived by maximizing the reconstruction 
-efficiency on a single track Monte-Carlo simulation with background extracted from the data. Two clusters cannot form a 
-cell if they are separated by more than one layer. Finally,The CA is run sector-by-sector in the BMT and, as a 
-consequence, a cell cannot be formed with two clusters living in different BMT sectors. 
+In the $(x,y)$ plane, cells are formed with SVT and BMTZ xy-information. Two xy-clusters form a cell if the angular
+distance between them is lower than a threshold. This threshold has been derived by maximizing the reconstruction
+efficiency on a single track Monte-Carlo simulation with background extracted from the data. Two clusters cannot form a
+cell if they are separated by more than one layer. Finally,The CA is run sector-by-sector in the BMT and, as a
+consequence, a cell cannot be formed with two clusters living in different BMT sectors.
 The subsequent step is the neighbor finding. A cell ``a'' is neighbor of a cell ``b'' if they share one cluster and if
-the layer numbers in ``b'' are higher than the ones in ``a''. Tuned on single-track Monte-Carlo simulation without 
+the layer numbers in ``b'' are higher than the ones in ``a''. Tuned on single-track Monte-Carlo simulation without
 background, cuts on the dot product between the cell directions are applied  as neighbor-forming criteria.
-Now that the neighborhood of a cell is defined, the CA is evolved over $N$-evolution stage: For evolution stage $n$, 
-the state of all cells is updated according to $S_n = max(S_{n-1}^j) + 1$, where $S_{n-1}^j$ is the state of the 
-j$^{th}$-neighbor of the considered cell at evolution time $n-1$. Therefore, at evolution stage $N$, the cells with the 
+Now that the neighborhood of a cell is defined, the CA is evolved over $N$-evolution stage: For evolution stage $n$,
+the state of all cells is updated according to $S_n = max(S_{n-1}^j) + 1$, where $S_{n-1}^j$ is the state of the
+j$^{th}$-neighbor of the considered cell at evolution time $n-1$. Therefore, at evolution stage $N$, the cells with the
 highest state are outer than the cells with a smalle state.
 \color{red} \textbf{Caption of a figure to be produced to explain CA evolution} \color{black}
 
-Track candidates in the $(x,y)$ plane are then formed starting from the highest state cells and following the neighbor 
-chain with $\Delta S = 1$. In case of multiple neighboring cells with the same state, the one that has the lower dot 
+Track candidates in the $(x,y)$ plane are then formed starting from the highest state cells and following the neighbor
+chain with $\Delta S = 1$. In case of multiple neighboring cells with the same state, the one that has the lower dot
 product with the original cell is chosen.
 
-Due to the poor $z$-resolution of the preliminary SVT 3D-points, the search for candidates in the $(z,r)$ plane is 
-performed by only using 
+Due to the poor $z$-resolution of the preliminary SVT 3D-points, the search for candidates in the $(z,r)$ plane is
+performed by only using
 the z-clusters of BMT. The CA algorithm trivially returns the track segments of two or three BMTC clusters.
-Due to the orthogonality of the BMTC and BMTZ, all the $(z,r)$ segments of a BMT sector are combined with the $(x,y)$ 
-candidates in the same sector. A line is fitted on the BMTC hits and its intersections with the three SVT regions are 
-computed. If the distance between the expected intersection and the preliminary 3D-point in the SVT region is greater 
+Due to the orthogonality of the BMTC and BMTZ, all the $(z,r)$ segments of a BMT sector are combined with the $(x,y)$
+candidates in the same sector. A line is fitted on the BMTC hits and its intersections with the three SVT regions are
+computed. If the distance between the expected intersection and the preliminary 3D-point in the SVT region is greater
 than two millimeters, then the two SVT clusters forming this preliminary point are removed from the track candidate.
 
-Each track candidate is then passed to a Kalman filter. The state vector to describe an helix is formed by five 
+\subsubsection{Track Fitting}
+
+Each track candidate is then passed to a Kalman filter. The state vector to describe an helix is formed by five
 parameters $(\varphi_0, d_0, \kappa, z_0, tan(\theta_{dip}))$, where:
 \begin{itemize}
 \item $d_0$ is the $(x,y)$ distance of closest approach to the CVT revolution axis,
-  \item $\varphi_0 = atan(p_y/p_x)$ at closest approach the the CVT revolution axis, 
-  \item $\kappa=Q/p_\perp$ and $Q$ is the electric charge and $p_\perp=\sqrt{p_x^2+p_y^2}$,
-  \item $z_0$ is the distance along the $z$ axis to the CVT center,
-  \item and $\theta_{dip}$ is the polar angle between the track and the xy-plane.
+\item $\varphi_0 = atan(p_y/p_x)$ at closest approach the the CVT revolution axis,
+\item $\kappa=Q/p_\perp$ and $Q$ is the electric charge and $p_\perp=\sqrt{p_x^2+p_y^2}$,
+\item $z_0$ is the distance along the $z$ axis to the CVT center,
+\item and $\theta_{dip}$ is the polar angle between the track and the xy-plane.
 \end{itemize}
 
 To initialize the Kalman Filter, a first estimate of these parameters are obtained from:
 \begin{itemize}
-\item a circle fit in the xy-plane with SVT preliminary 3D-points and BMT xy-clusters for $d_0$, $\varphi_0$ and 
-$\kappa$. To improve the initialization of the fit, the point (0,0) is included in the fit with an accuracy of 100~$\mu 
+\item a circle fit in the xy-plane with SVT preliminary 3D-points and BMT xy-clusters for $d_0$, $\varphi_0$ and
+$\kappa$. To improve the initialization of the fit, the point (0,0) is included in the fit with an accuracy of 100~$\mu
 m$.
 \item a line fit in rz-plane using only z-clusters of Micromegas to initialize $z_0$ and $\theta_{dip}$.
 \end{itemize}
-The covariance matrix of the two fits are merged into a 5$\times$5 matrix to initialize the covariance matrix for the 
-Kalman filter. Following transport equations in~\ref{ILC-Tracking}, the state vector is propagated from the CVT 
-revolution axis to the most outer layer of CVT, filtering at each measurement composing the track candidate. Once the 
-last measurement is reached, state vector and covariance matrix are brought back to the CVT revolution axis as they are 
-and the transport/filtering process is re-run. A maximum of five iterations is performed to make sure of the 
-convergence of the filtering process. 
+The covariance matrix of the two fits are merged into a 5$\times$5 matrix to initialize the covariance matrix for the
+Kalman filter. Following transport equations in~\ref{ILC-Tracking}, the state vector is propagated from the CVT
+revolution axis to the most outer layer of CVT, filtering at each measurement composing the track candidate. Once the
+last measurement is reached, state vector and covariance matrix are brought back to the CVT revolution axis as they are
+and the transport/filtering process is re-run. A maximum of five iterations is performed to make sure of the
+convergence of the filtering process.
 
-\subsubsection{Tracking Efficiency and Resolutions}
+\pagebreak
 
+\subsubsection{Tracking Performance}
+
+The momentum resolutions in the central and forward trackers as a function of the momentum reach
+in these detectors is shown in Fig.~\ref{fig:res}.
+
+\begin{figure*}[b]
+\includegraphics[width=0.4\textwidth,natwidth=610,natheight=642]{pics/fddegipekmpjjiho.png} \\
+\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642]{pics/DCRes.png}
+\caption{(Top plot) Momentum resolution of simulated protons in the CVT.
+(Bottom plot) Momentum resolution in the DC evaluated using simulated negative tracks from a sample of Semi Inclusive
+Deep Inelastic events.
+}
+\label{fig:res}
+\end{figure*}
+
+\pagebreak
 \subsection{Electromagnetic Calorimeters}
-\section{Reconstruction}
 
-The FEC reconstruction service provides a fast and efficient algorithm for grouping scintillator {\it strips} with
+The (Forward Electromagnetic Calorimeters) FEC reconstruction service provides a fast and efficient algorithm for grouping scintillator {\it strips} with
 {\it hits} into multiple {\it peaks} and {\it clusters} within a single sector for each of the FEC modules PCAL, ECIN,
 and ECOU, while leaving cluster matching and particle ID to the event builder service.  Within the FEC service, these
 various elements exist as objects with methods, structures and data members designed for calibration, pattern
@@ -481,7 +656,7 @@ recognition, diagnostics and serial output.  For example the service applies run
 conversion of raw FADC and TDC digitized data to energy and time, and also provides formatted output banks used by
 external services.  Also energy thresholds and cluster identification criteria can be configured to optimize reconstruction
 efficiency, suppress backgrounds and avoid false or duplicate clusters arising from fluctuations at the fringes of EM
-showers. 
+showers.
 
 The cluster finding algorithm makes use of the unique geometry and stereo readout features of the FEC. As discussed
 earlier, each triangular scintillator layer in the FEC lead:scintillator sandwich is transversely divided into strips, with the
@@ -494,9 +669,9 @@ The algorithm begins by finding collections of contiguous strips having signals 
 the three views. These groupings are called {\it peaks} and their member strips are referred to as {\it hits}.  Peak objects
 may be further subdivided based on the hit energy profile of the groupings.  Each peak object is associated with the one or
 more stacks of strips which belong to it, and the three-dimensional geometry of each stack is stored along with the peak
-data. The service uses this geometry data to determine which collection of peaks belong to $\it{clusters}$. 
+data. The service uses this geometry data to determine which collection of peaks belong to $\it{clusters}$.
 
-\subsection {Cluster Position}
+\subsubsection {Cluster Position}
 
 The criterion for a cluster requires the spatial intersection of three peaks, one from each of the $U$, $V$, and $W$ views.
 Candidate peaks for a cluster search are based on a user-defined threshold for the summed peak raw energy.  Each peak is
@@ -504,26 +679,26 @@ represented geometrically as a directed line segment determined by the energy we
 member strip.   The degree of intersection of each $U$, $V$, $W$ peak triplet is determined by calculating the line of
 closest distance between a $U$ and $V$ peakline, followed by the line of closest distance between the midpoint of the $UV$
 line and the $W$ peakline.  A user-defined cut on this final $UV$-$W$ distance identifies the cluster, and the midpoint of
-the $UV$-$W$ line defines the $(x,y,z)$ coordinates of the cluster.  
+the $UV$-$W$ line defines the $(x,y,z)$ coordinates of the cluster.
 
-\subsection {Cluster Energy}
+\subsubsection {Cluster Energy}
 
 Once the cluster is localized, the path from the cluster position to the PMT readout end is calculated for each $U$, $V$,
 $W$ peakline and the peak energies are corrected for scintillator light attenuation.  For isolated clusters the cluster energy
-is then defined as the sum of the corrected energy from each of the $U$, $V$, and $W$ peaks which define the cluster.  
+is then defined as the sum of the corrected energy from each of the $U$, $V$, and $W$ peaks which define the cluster.
 
 More complicated scenarios arise from the triangular geometry of the FEC hodoscope, which creates the possibility of a
 single peak in the $U$, $V$, or $W$ view sharing the summed energy from two or more clusters.  For these cases the energy
 in each cluster which shares that peak is assumed to be proportional to the relative partial energies of the multiple clusters as
 measured in the other views.  For example, if there are two clusters, both of which share the same $U$ peak, the summed
 energy $V+W$ is determined for each of the clusters, and the ratio of these summed energies determines how much of the
-$U$ peak energy is assigned to each of the two clusters.  
+$U$ peak energy is assigned to each of the two clusters.
 
 Finally the clusters to be reported to external services are selected with a user-defined energy cut, and these clusters
 are sorted according to energy. Typical software thresholds applied at the strip, peak and cluster level are 1, 3, and 10~MeV,
-respectively. 
+respectively.
 
-\subsection {Cluster Time}
+\subsubsection {Cluster Time}
 
 Once the cluster is localized, the path from the cluster position to the PMT readout end is calculated for each $U$, $V$,
 $W$ peakline and the peak timing is corrected for propagation delay of the light, using the effective velocity of light
@@ -531,22 +706,22 @@ determined for each scintillator from the calibration procedure.  For isolated c
 the $U$, $V$, or $W$ peak with the largest uncorrected raw ADC value.  The minimizes the effect on the timing resolution
 from both the time-walk correction and the photoelectron statistical fluctuations.
 
-\subsection{Cherenkov Counters}
+\subsection{Threshold Cherenkov Counters}
 
-\subsubsection{High Threshold Cherenkov Counter}
-
-The goal of the HTCC reconstruction algorithm is to calculate the signal strength, time, and position from the
+The goal of the High and Low Threshold Cherenkov Counter (HTCC, LTCC) reconstruction algorithms
+calculate the signal strength, time, and position from the
 raw ADC signals coming from the PMTS through the corresponding FADC board. The algorithm takes into account
-the properties of the HTCC geometry, namely,  the possibility for the signal from the single track to split into
-four mirror and hence produce four separated signals (or hits). The final signal reconstruction is done in three
+the properties of the HTCC and LTCC geometries, namely, the possibility for the signal from the single track to split into
+four and two mirrors for the HTCC, and LTCC, respectively.
+Hence, four (HTCC) or two (LTCC) separated signals (or hits) are produced. The final signal reconstruction is done in three
 steps: decoding, hit reconstruction, and cluster reconstruction.
 
-In the decoding stage, the signal is converted from the hardware notation (crate, slot, channel) into the CLAS12
+At the decoding stage, the signal is converted from the hardware notation (crate, slot, channel) into the CLAS12
 notation (sector, layer, component).  For each signal, strength ($nphe_{hi}$) and timing ($T_{hi}$) is determined
-from the position of the threshold crossing, fit to the shape of the signal and measured value of the pedestal. 
+from the position of the threshold crossing, fit to the shape of the signal and measured value of the pedestal.
 
-In the hit reconstruction stage, individual signals in terms of the ADC channels is converted into the number of
-the photoelectrons ($nphe_{hi}$) for each hit using the gain constants in the $ccdb$: 
+At the hit reconstruction stage, individual signals in terms of the ADC channels is converted into the number of
+the photoelectrons ($nphe_{hi}$) for each hit using the gain constants in the $ccdb$:
 
 \begin{equation}
 nphe_{hi} = \frac{ADC}{gain}
@@ -568,20 +743,19 @@ cluster until list of hits is exhausted.
 
 \begin{eqnarray*}
 nphe_c &= \frac{\sum_{i=1}^{N}{nphe_{hi}}}{N}\\
-T_c &= \frac{\sum_{i=1}^{N}{N*T_{hi}}}{\sum_{i=1}^{N}{nphe_{hi}}}\\	
+T_c &= \frac{\sum_{i=1}^{N}{N*T_{hi}}}{\sum_{i=1}^{N}{nphe_{hi}}}\\
 \theta_c &=\frac{\sum_{i=1}^{N}{\theta_{hi}}}{N}\\
 \phi_c &= \frac{\sum_{i=1}^{N}{\phi_{hi}}}{N}
 \end{eqnarray*}
 
 Hits, attributed to the established clusters, are removed from the further consideration, and algorithm starts to
-look for the next cluster until list of hits is exhausted. 
-	 
-Cluster coordinate, required for the matching of the hit with the reconstructed track in the Event Builder, is
-reconstructed by projecting  ($\theta$, $\phi$) of the cluster on the surface of the ellipsoidal mirror.		
+look for the next cluster until list of hits is exhausted.
 
-\subsubsection{Ring-Imaging Cherenkov Counter}
+In the HTCC the cluster coordinates, required for the matching of the hit with the reconstructed track in the Event Builder, is
+reconstructed by projecting  ($\theta$, $\phi$) of the cluster on the surface of the ellipsoidal mirror.     In the LTCC an estimated cluster
+position is calculated leveraging the Monte-Carlo simulation.  The track that passes the closest to the tentative true cluster position is then chosen as the true match for this cluster.
 
-\subsubsection{Low Threshold Cherenkov Counter}
+\subsection{Ring-Imaging Cherenkov Counter}
 
 \subsection{Time-of-Flight Systems}
 
@@ -599,7 +773,7 @@ respect to the appropriate RF beam bucket to determine the charged or neutral pa
 \label{rec:time}
 
 The reconstructed scintillation bar hit times need to account for the time delays along the readout path that
-include the PMT signal transit time, the signal propagation times through the signal cables and the electronics, 
+include the PMT signal transit time, the signal propagation times through the signal cables and the electronics,
 and any time-walk effects associated with the readout discriminators. For the FTOF readout, leading-edge
 discriminators are employed, while for the CTOF readout constant fraction discriminators are employed and no
 external time-walk corrections are required. The hit times reconstructed by the readout through the PMTs at
@@ -639,8 +813,8 @@ where $v_{eff}$ is the effective speed of light in the scintillation bar.
 The hit coordinate along the bar is defined with respect to the center of the bar using:
 
 \begin{equation}
-  \label{tof-coor}
-  y = \frac{v_{eff}}{2} (t_L - t_R - y_{offset}),
+\label{tof-coor}
+y = \frac{v_{eff}}{2} (t_L - t_R - y_{offset}),
 \end{equation}
 
 \noindent
@@ -660,8 +834,8 @@ traced back to the vertex and linking this time to the closest RF pulse from the
 the accelerator. The timing residuals
 
 \begin{equation}
-  t_{res} = mod \left [ \left (\bar{t}_{hit} - \frac{L}{\beta c} \right) - \left (t_{RF} + \frac{z_v}{\beta_e c} \right),
-    T_{RF} \right ]
+t_{res} = mod \left [ \left (\bar{t}_{hit} - \frac{L}{\beta c} \right) - \left (t_{RF} + \frac{z_v}{\beta_e c} \right),
+T_{RF} \right ]
 \end{equation}
 
 \noindent
@@ -715,7 +889,7 @@ extrapolated drift chamber track. The combined plane hit time is given by:
 
 \begin{equation}
 t_{comb} = \dfrac{ t_{1b}^{cluster} {\delta_{1b}}^{-1} + (t_{1a}^{cluster} - \Delta r/\beta) {\delta_{1a}}^{-1}}
-           {\left( {\delta_{1b}}^{-1} + {\delta_{1a}}^{-1} \right)},
+{\left( {\delta_{1b}}^{-1} + {\delta_{1a}}^{-1} \right)},
 \end{equation}
 
 \noindent
@@ -738,91 +912,91 @@ The reconstruction of the Central Neutron Detector (CND) is done in three steps:
 \item{the matching of CND hits with tracks coming from the interaction vertex.}
 \end{itemize}
 
-The reconstruction makes use of the calibration constants of the CND summarized in
-Table~\ref{table_cnd_constants}.
-
+%The reconstruction makes use of the calibration constants of the CND summarized in
+%Table~\ref{table_cnd_constants}.
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[htbp]
-\begin{center}
-\begin{tabular}{|c|c|c|} \hline
-Constant Name & Number of Constants  & Units \\ \hline
-$t_{\rm{LR}}$ & 72 & ns\\ \hline
-$v_{\rm{eff}}$ & 144 & cm/ns \\ \hline
-$u_{\rm{t}}$ & 72 & ns \\ \hline
-$t_{\rm{LR}_{\rm{ad}}}$ & 72 & ns \\ \hline
-$t_{\rm{off}}$ &72 & ns\\ \hline
-$A_{\rm{L}}$ & 144 & cm\\ \hline
-$MIP_{\rm{D}}$, $MIP_{\rm{I}}$ & 144 each & no units \\ \hline
-\end{tabular}
-\caption{The constants computed in the CND calibration.}
-\label{table_cnd_constants}
-\end{center}
-\end{table}
+%\begin{table}[htbp]
+%\begin{center}
+%\begin{tabular}{|c|c|c|} \hline
+%Constant Name & Number of Constants  & Units \\ \hline
+%$t_{\rm{LR}}$ & 72 & ns\\ \hline
+%v_{\rm{eff}}$ & 144 & cm/ns \\ \hline
+%$u_{\rm{t}}$ & 72 & ns \\ \hline
+%$t_{\rm{LR}_{\rm{ad}}}$ & 72 & ns \\ \hline
+%$t_{\rm{off}}$ &72 & ns\\ \hline
+%$A_{\rm{L}}$ & 144 & cm\\ \hline
+%$MIP_{\rm{D}}$, $MIP_{\rm{I}}$ & 144 each & no units \\ \hline
+%\end{tabular}
+%\caption{The constants computed in the CND calibration.}
+%\label{table_cnd_constants}
+%\end{center}
+%\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Timing Calibration}
+%\subsubsection{Timing Calibration}
+%
+%The paddle in which the hit occurs must be determined before all other reconstruction steps. The raw hit
+%times are obtained from the measured TDC channel using a slope constant of 0.0234~ns/channel for all
+%channels.
+%
+%The left and right times of a hit in the left paddle (we label them as $t_{{\rm{L}}/{\rm{L}}}$ and
+%$t_{\rm{R}/{\rm{L}}}$ where the first index corresponds to the paddle under exam, while the second indicates
+%the paddle in which the primary hit happened) are given by:%
+%
+%\begin{equation}
+%\label{eq_time_hit_lr}
+%t_{{\rm{L}}/{\rm{L}}}=t_{\rm{off}}+t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_L}}+t_{\rm{S}}+t_{\rm{off}_{\rm{L}}}+{\rm{TDC}}_{\rm{j}},
+%\end{equation}
+%
+%\begin{equation}
+%\label{eq_time_hit_lr1}
+%t_{{\rm{R}/{\rm{L}}}}=t_{\rm{off}}+t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_L}}+\frac{L}{v_{\rm{eff}_L}}
+%+\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}+t_{\rm{S}}+t_{\rm{off}_{\rm{R}}}+{\rm{TDC}}_{\rm{j}},
+%\end{equation}
+%
+%\noindent
+%where $t_{\rm{tof}}$ is the time of flight, $z$ is the position of the hit measured from the upstream end of the
+%paddle, $L$ is the length of the paddle, $t_{\rm{S}}$ is the start time of the event, $t_{\rm{off}_{\rm{L}}}$ and
+%$t_{\rm{off}_{\rm{R}}}$ are time offsets associated to the left and right coupled paddles, and ${\rm{TDC}}_{\rm{j}}$
+%is the TDC clock jitter. Similarly if the hit happened in the right paddle one can write:
+%
+%\begin{equation}
+%  t_{{\rm{L}}/{\rm{R}}}=t_{\rm{off}}+t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_{\rm{R}}}}+\frac{L}{v_{\rm{eff}_L}}
+%  +\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}+t_{\rm{S}}+t_{\rm{off}_{\rm{L}}}+{\rm{TDC}}_{\rm{j}},
+%\end{equation}
+%
+%\begin{equation}
+%t_{R/R}=t_{\rm{off}}+t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_{\rm{R}}}}+t_{\rm{S}}+t_{\rm{off}_{\rm{R}}}+{\rm{TDC}}_{\rm{j}}.
+%\end{equation}
+%
+%Defining $\Delta$ and $\Delta'$ as:
+%
+%\begin{equation}
+%\Delta=\frac{L}{v_{\rm{eff}_L}}-\frac{L}{v_{\rm{eff}_{\rm{R}}}},
+%\end{equation}
+%
+%\begin{equation}
+%\Delta'=t_{\rm{L}/{\rm{X}}}-t_{\rm{R}/{\rm{X}}}+t_{\rm{off}_{\rm{R}}}-t_{\rm{off}_{\rm{L}}},
+%\end{equation}
+%
+%\noindent
+%where the index X can be R or L, one can compute $\Delta-\Delta'$ for both cases (hit in the left paddle or hit
+%in the right paddle). If the hit is in the left paddle:
+%
+%\begin{equation}
+%\Delta'-\Delta= \frac{2z}{v_{\rm{eff}_L}} - \frac{2L}{v_{\rm{eff}_L}} -u_{\rm{t}} <0.
+%\end{equation}
 
-The paddle in which the hit occurs must be determined before all other reconstruction steps. The raw hit
-times are obtained from the measured TDC channel using a slope constant of 0.0234~ns/channel for all
-channels.
-
-The left and right times of a hit in the left paddle (we label them as $t_{{\rm{L}}/{\rm{L}}}$ and
-$t_{\rm{R}/{\rm{L}}}$ where the first index corresponds to the paddle under exam, while the second indicates
-the paddle in which the primary hit happened) are given by:
-
-\begin{equation}
-\label{eq_time_hit_lr}
-t_{{\rm{L}}/{\rm{L}}}=t_{\rm{off}}+t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_L}}+t_{\rm{S}}+t_{\rm{off}_{\rm{L}}}+{\rm{TDC}}_{\rm{j}},
-\end{equation}
-
-\begin{equation}
-\label{eq_time_hit_lr1}
-t_{{\rm{R}/{\rm{L}}}}=t_{\rm{off}}+t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_L}}+\frac{L}{v_{\rm{eff}_L}}
-+\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}+t_{\rm{S}}+t_{\rm{off}_{\rm{R}}}+{\rm{TDC}}_{\rm{j}},
-\end{equation}
-
-\noindent
-where $t_{\rm{tof}}$ is the time of flight, $z$ is the position of the hit measured from the upstream end of the
-paddle, $L$ is the length of the paddle, $t_{\rm{S}}$ is the start time of the event, $t_{\rm{off}_{\rm{L}}}$ and
-$t_{\rm{off}_{\rm{R}}}$ are time offsets associated to the left and right coupled paddles, and ${\rm{TDC}}_{\rm{j}}$
-is the TDC clock jitter. Similarly if the hit happened in the right paddle one can write:
-
-\begin{equation}
-  t_{{\rm{L}}/{\rm{R}}}=t_{\rm{off}}+t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_{\rm{R}}}}+\frac{L}{v_{\rm{eff}_L}}
-  +\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}+t_{\rm{S}}+t_{\rm{off}_{\rm{L}}}+{\rm{TDC}}_{\rm{j}},
-\end{equation}
-
-\begin{equation}
-t_{R/R}=t_{\rm{off}}+t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_{\rm{R}}}}+t_{\rm{S}}+t_{\rm{off}_{\rm{R}}}+{\rm{TDC}}_{\rm{j}}.
-\end{equation}
-
-Defining $\Delta$ and $\Delta'$ as:
-
-\begin{equation}
-\Delta=\frac{L}{v_{\rm{eff}_L}}-\frac{L}{v_{\rm{eff}_{\rm{R}}}},
-\end{equation}
-
-\begin{equation}
-\Delta'=t_{\rm{L}/{\rm{X}}}-t_{\rm{R}/{\rm{X}}}+t_{\rm{off}_{\rm{R}}}-t_{\rm{off}_{\rm{L}}},
-\end{equation}
-
-\noindent
-where the index X can be R or L, one can compute $\Delta-\Delta'$ for both cases (hit in the left paddle or hit
-in the right paddle). If the hit is in the left paddle:
-
-\begin{equation}
-\Delta'-\Delta= \frac{2z}{v_{\rm{eff}_L}} - \frac{2L}{v_{\rm{eff}_L}} -u_{\rm{t}} <0.
-\end{equation}
-
-\noindent
-If the hit is in the right paddle:
-
-\begin{equation}
-\Delta'-\Delta= \frac{2L}{v_{\rm{eff}_{\rm{R}}}}-\frac{2z}{v_{\rm{eff}_{\rm{R}}}} +u_{\rm{t}} >0.
-\end{equation}
-
-\noindent
-If $\Delta'<\Delta$, the paddle in which the hit happened is the left one, otherwise it is the right one.
+%\noindent
+%If the hit is in the right paddle:
+%
+%\begin{equation}
+%\Delta'-\Delta= \frac{2L}{v_{\rm{eff}_{\rm{R}}}}-\frac{2z}{v_{\rm{eff}_{\rm{R}}}} +u_{\rm{t}} >0.
+%\end{equation}
+%
+%\noindent
+%If $\Delta'<\Delta$, the paddle in which the hit happened is the left one, otherwise it is the right one.
 
 \subsubsection{Hit Position and Time Reconstrution}
 
@@ -912,9 +1086,6 @@ of radii corresponding to the distances between the center of the CD and the thr
 a CND hit are matched if the hit coordinates ($x$, $y$, and $z$) and the extrapolated coordinates ($x_m$,
 $y_m$, and $z_m$) verify the relations:
 
-\vfil
-\eject
-
 \begin{equation}
 \mid x-x_m \mid < \sigma_x ,~~~~\mid y-y_m \mid < \sigma_y , ~~~~z_m  \in [-\sigma_z,L+\sigma_z],
 \end{equation}
@@ -935,7 +1106,46 @@ approximated as the distance between the entry and exit points. The path length 
 hit is given by the helix parameters.
 
 \subsection{Forward Tagger}
-~~
+The Forward Tagger reconstruction is designed to provide efficient algorithms to determine the energy, time and positions of the signals associated to the incident particle for each of the system sub-detector, the calorimeter, the hodoscope and the tracker, and to match these information to determine the type and 3-momentum of the particle. The package consists of four services, including one for each of the sub-detectors and a global service which builds the particle information from the output of the detector reconstruction. In the following, we describe the role of each of the services and the algorithms that these implement
+
+\subsubsection{The FT-Cal reconstruction service}
+The calorimeter service has the role of reconstructing clusters associated with the incident particles from the detector raw information, i.e. the charge and time recorded by the fADC boards that readout the scintillator crystal signals. A cluster is defined as a contiguous ensemble of crystals within the calorimeter, in which a signal above a minimum energy threshold (10 MeV) is found within a selected time window (10 ns) from each other.
+
+The first step to build a cluster is to reconstruct the energy and time of the individual crystal hits from the raw fADC information. For this purpose, charge and raw time of the recorded pulse are converted to energy and time using calibration constants derived from data: as discussed in Ref.~\cite{ft}, a linear relationship between energy and charge is assumed while the hit time is defined from the raw time applying a offset and a charge-dependent correction that accounts for the so-called time walk effect.
+
+Reconstructed hits are then ordered by energy and, starting from the maximum energy hit, the subsequent crystals are associated to it based on their position and relative time difference. Once all hits are associated to a cluster, the overall cluster energy, time and positions are computed as follows. The cluster energy, $E_{tot}$ is calculated as the sum of the individual hits energy, $E_{rec}$, plus a global correction to account for the hit thresholds and for shower leakages due to the finite length of the crystal and of the overall calorimeter size; this correction is parameterized as a function of the measured cluster energy based on full GEANT4 simulations of the detector response~\cite{ft}. The cluster time is computed as the energy-weighted average of individual hits time. Finally, the cluster position in the x-y plane is computed as the logarithmic energy-weighted of the hits coordinates $(x_i,y_i)$, i.e. the crystal position with the following functional form~\cite{ic}:
+\begin{eqnarray*}
+x_{cluster} = \frac{\sum_{i=1}^N w_i x_i}{\sum_{i=1}^N w_i},\\
+y_{cluster} = \frac{\sum_{i=1}^N w_i y_i}{\sum_{i=1}^N w_i},
+\end{eqnarray*}
+where the index $i$ runs over the $N$ crystals in the cluster and the weighting factors $w_i$ are defined as:
+\begin{equation}
+w_i=max(0,w_0+ln(E_i/E_{rec}).
+\end{equation}
+The parameter $w_0$ was fixed to 3.45 after optimization based on GEANT4 simulations. The $z$ coordinate of the cluster is set to a constant depth from the crystal upstream faced that was optimized on Monte Carlo studies
+
+The resulting cluster are finally selected applying cuts to exclude instances with total and seed energy less then a threshold or with a small number of crystals. All these selection parameters as well as the other constants used in the cluster reconstruction are set at run time reading the CLAS12 calibration constants database, CCDB.
+
+The final list of clusters is saved to an output HIPO bank that is passed to the global FT service for the particle reconstruction. The intermediate hits information is also saved to a HIPO bank for debugging purposes.
+
+\subsubsection{The FT-Hodo reconstruction service}
+Similarly to the calorimeter, the hodoscope service has the role of reconstructing hits, defined as energy and time of the signals associated to the incident particles, from the raw fADC information and to associate matching hits in the two layers of the detector to form clusters.
+
+Energy and time of the hits are computed from the raw fADC information assuming a linear relation for the charge-to-energy conversion and an additive offset between the raw and reconstructed time. The constants necessary for these conversions are derived for each individual detector component based on beam-data calibrations as discussed in~\cite{ft} and set at run time reading the values from CCDB. The reconstructed hits are then selected applying a minimum energy threshold that was optimized based on data analysis.
+
+The selected hits are then matched to form clusters consisting of scintillator tiles in the two detector layers matched in space and time. The position matching distance is defined by the largest tiles, i.e. 3 cm, while the time matching parameter was optimized based on GEANT4 simulations and is set to 8 ns. The resulting clusters parameters, namely the cluster size, position, total energy and time are then computed as follows: the cluster energy is calculated as the sum of the individual hit energy while both position in the x-y  plane and time are calculated as the energy-weighted average of the corresponding hit parameters. The resulting information is saved to a HIPO bank that is passed to the global FT service. As for the calorimeter, the intermediate hit information is also saved to a HIPO bank for debugging purposes.
+
+
+\subsubsection{The FT-Tracker reconstruction service}
+The FT-Tracker reconstruction service is currently in the development stage and will be described in details in a future publication while here we discuss only the general principles.
+Algorithms for the conversion of the detector raw information to hits and for matching hits to form clusters follows the ones developed for the CLAS12 BMT that are discussed in Sec.\ref{sec:cvt}. All combinations of clusters identified in the x-y layers of each of the two sub-detectors are then built to form crosses. Finally crosses found in the two sub-detectors are matched based on their position and saved as input for the global FT service.
+
+\subsection{The FT global service}
+The final step of the FT reconstruction is the matching of the information resulting from the three sub-detectors.
+
+Specifically, hodoscope and calorimeter clusters are matched to distinguish charge particles having a cluster in the hodoscope from neutrals that have a low probability of releasing a signal in that detector. The matching is based on the relative position of the calorimeter and hodoscope clusters in the x-y plane and on their time difference. The position matching parameter is determined by the hodoscope component size while the timing cut is set to 10 ns, similarly to the ones used in the lower levels of the FT reconstruction. The output of the matching is a FT {\it particle} whose energy and position at the detector are determined from the calorimeter cluster parameters while its charge is set by the presence of a hodoscope cluster. The particle 3-momentum at the target for charged particles is then computed accounting for the bent in the solenoid field while for neutrals is computed assuming a straight path from the CLAS12 target center to the FT. When available, the tracker information will be used to refine the determination of the particle impact point on the FT front face and therefore improve the reconstruction of the angles at the vertex.
+
+The resulting particle information is saved to a HIPO bank for use of the CLAS12 Event Builder service.
 
 \subsection{Event Builder}
 The Event Builder collects information from all upstream services, correlates information from subdetectors into particles, performs a general particle identification scheme, and organizes the resulting information into a standardized data bank structure.
@@ -948,11 +1158,30 @@ A basic particle identification scheme is then performed.  For charged particles
 
 The resulting information is organized into standardized output bank structures for physics analyis, see \ref{sec:dsts}.  This includes particle four-vectors, all their associated detector responses, and global event information such as beam RF and helicity information.
 
+\newpage
 \subsubsection{Particle Identification Performance}
-~~
+
+
+\begin{figure*}[ht]
+\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/betavsp1.png}
+\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/betavsp2.png}
+\caption{Beta versus p for events with an electron in the FD (left plot) and in the FT (right plot).
+}
+\label{fig:betavsp}
+\end{figure*}
+
+\begin{figure*}[ht]
+\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/pi0mass.png}
+\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/pi0mass2.png}
+\caption{Reconstructed $\pi^{0}\rightarrow \gamma \gamma$ candidates using EC (left plot) and FT (right plot) information.
+}
+\label{fig:pi0mass}
+\end{figure*}
+
+\vfill
+\eject
 
 \section{Data Processing}
-~~
 
 \subsection{Data Processing Workflow}
 The raw data is currently first preprocessed.  This involves extracting hits from waveforms, translating data-acquisition/hardware nomenclature to physical detector objects, performing some analysis steps that require serial event access, and converting from the input EVIO format to the HIPO data format.  The end result is a factor of 5 reduction in size and a file format optimized for downstream I/O.
@@ -964,7 +1193,6 @@ The final stage is I/O-heavy analysis trains that perform event skimming.  It sp
 \subsection{DSTs}\label{sec:dsts}
 The final data output is provided by the Event Builder in the form of data summary tapes (DST), a standardized selection of HIPO banks for physics analysis.  It includes global event information, essential quantities for the reconstructed particles, and some associated high-level detector response information.  The banks are organized such that the larger detector information can easily be dropped to leave only the data essential for a high-level physics analysis, without leaving dangling references or unecessary information.
 
-\subsection{Computing Tools}
 ~~
 
 \subsection{Resources}
@@ -976,13 +1204,47 @@ Reconstruction of all CLAS12 data is performed on Jefferson Lab's batch computin
 The software is managed in a github repository \cite{recon-github}, and branches and forks are utilized to accommodate development by many groups.  For the main branch, all modifications are made only through pull requests after passsing the automated tests in Section \ref{sec:tests}.
 
 \subsection{Releases}
-~~
+There are four release types; major release, interface change release, and bug-fix
+and test releases.  A numbering scheme is implemented to indicate the type of change.
+Releases that are ungoing a validation period carry a letter that indicates the type of validation:
+for production or a special algorithm study.
+
+Major release:
+- Previous productions likely are obsolete.
+- Introducing new technology, major algorithmic improvements, or
+schema changes that make previous productions obsolete.
+- Impact for users: maximal
+- Impact for developers: maximal
+
+Interface change release
+- The release contains changes that make the program not backwards compatible.
+- Releases for clean-up operation with changes in users' interfaces of
+packages, for design iteration that affect the users' interface, and
+for re-packaging and simple schema changes.
+- Not backwards compatible
+- Impact for users: large (Need adapt their code to new interfaces.)
+- Impact for developers: large (Need adapt their code to new interfaces.)
+
+Bug-fix and new feature release
+- Extensions of interfaces and new implementations are allowed, while
+backwards compatibility of interfaces is guaranteed.
+- Impact for users: small (Need to compile against a new area.)
+- Impact for developers: small
+
+Fast bug-fixes and test releases
+- Impact for users: none
+- Impact for developers: If their development depends on the fix, they will checkout
+and compile the fixes in their local area.
+- bug-fixes are at the at sub-system level.
+- they are reflected in sub-system level letter tags only.
+
+Fast fixes are collected in regular intervals into bug-fix releases.
 
 \subsection{Tests}\label{sec:tests}
 The software includes both basic unit tests and some extended tests.  A portion of the tests are run automatically, using the TravisCI system linked to the github repositories.  These automatic tests take about 20 minutes to run and have proven invaluable in overseeing and improving software development.
 
 \subsection{Code Validation Suites}
-~~
+﻿he CLAS12 Software must be accurate. Under the software, we assume physics data processing (PDP) applications like reconstruction, simulation and calibration. PDP applications, developed using the CLAS12 software framework, consist of services that run in a context that is agnostic to the global application logic. So, the CLAS12 software accuracy depends on accuracy of services used in designing the PDP application. In order to be part of the production service inventory, each service must have self accuracy and efficiency testing routines.
 
 \section{Conclusions}
 ~~
@@ -994,8 +1256,8 @@ This work was supported in part by DOE Contract DE-AC05-84ER40150.
 \begin{thebibliography}{99}
 
 \bibitem{evio}
-    Event IO Data Format,
-    https://coda.jlab.org/drupal/content/event-io-evio
+Event IO Data Format,
+https://coda.jlab.org/drupal/content/event-io-evio
 
 \bibitem{clara-2011}
 V. Gyurjyan {\it et al.}, CLARA: A Contemporary Approach to Physics Data Processing, J. Phys. Conf. Ser.
@@ -1005,8 +1267,8 @@ V. Gyurjyan {\it et al.}, CLARA: A Contemporary Approach to Physics Data Process
 J. Carbonneau, M. Moog,  J. Gilfoyle {\it et al.}, 2011 APS Division of Nuclear Physics Meeting Abstracts, EA.024.
 
 \bibitem{framework}
-  Component Based Dataflow Processing Framework, 2015, IEEE DOI: 10.1109/BigData.2015.7363971,
-  ISBN: 978 1-4799-9926-2
+Component Based Dataflow Processing Framework, 2015, IEEE DOI: 10.1109/BigData.2015.7363971,
+ISBN: 978 1-4799-9926-2
 
 \bibitem{clara-2016}
 CLARA: The CLAS12 Reconstruction and Analysis framework, 2016, J. Phys. Conf. Ser. {\bf 762}, 012009 (2016).
@@ -1039,27 +1301,27 @@ Meth. A, (2020). (see this issue)
 Alexander Spiridonov, Optimized Integration of the Equations of Motion of a Particle in the HERA-B Magnet
 
 \bibitem{CA-HeraB}
-  I.~Abt, I.~Kisel, S.~Masciocchi and D.~Emelyanov,
-  ``CATS: A cellular automaton for tracking in silicon for the HERA-B vertex detector,''
-  Nucl.\ Instrum.\ Meth.\ A {\bf 489} (2002) 389.
-  doi:10.1016/S0168-9002(02)00790-8
-  %%CITATION = doi:10.1016/S0168-9002(02)00790-8;%%
-  %26 citations counted in INSPIRE as of 27 Sep 2019
+I.~Abt, I.~Kisel, S.~Masciocchi and D.~Emelyanov,
+``CATS: A cellular automaton for tracking in silicon for the HERA-B vertex detector,''
+Nucl.\ Instrum.\ Meth.\ A {\bf 489} (2002) 389.
+doi:10.1016/S0168-9002(02)00790-8
+%%CITATION = doi:10.1016/S0168-9002(02)00790-8;%%
+%26 citations counted in INSPIRE as of 27 Sep 2019
 
 \bibitem{recon-github}
-    {CLAS12 Reconstructino Software Repository},
-    https://github.com/jeffersonlab/clas12-offline-software
+{CLAS12 Reconstructino Software Repository},
+https://github.com/jeffersonlab/clas12-offline-software
 \bibitem{jlab-batch-farm}
-    {Jefferson Lab Batch Farm},
-    https://scicomp.jlab.org/docs/ExpPhyComp
+{Jefferson Lab Batch Farm},
+https://scicomp.jlab.org/docs/ExpPhyComp
 
 \bibitem{jlab-tape-silo}
-    {Jefferson Lab Tape Silo},
-    https://scicomp.jlab.org/docs/node/9
+{Jefferson Lab Tape Silo},
+https://scicomp.jlab.org/docs/node/9
 
 \bibitem{jlab-lustre}
-    {Jefferson Lab Lustre Filesystem},
-    https://scicomp.jlab.org/docs/node/17
+{Jefferson Lab Lustre Filesystem},
+https://scicomp.jlab.org/docs/node/17
 
 \end{thebibliography}
 

@@ -9,7 +9,7 @@ On December 17, 2017, the nominal luminosity of \cLuminosity
 The rates in each of the CLAS12 detectors were measured.
 
 The drift chamber hit occupancy was compared for both the FTOn and FTOff configurations. The integrated occupancy
-in region 1, 2, and 3 are summarized in Tables \ref{tab:ftOnComparison} and \ref{tab:ftOffComparison}. The
+in regions 1, 2, and 3 are summarized in Tables \ref{tab:ftOnComparison} and \ref{tab:ftOffComparison}. The
 DC readout time windows of the experiment at the time were different than what was in the simulation, so the data has been scaled
 accordingly. The predicted rates agree quite well with the measured ones.
 
@@ -19,9 +19,9 @@ accordingly. The predicted rates agree quite well with the measured ones.
 			\hline \hline
 			Region & Data (rescaled) &  GEMC \\
 			\hline
-			1 &  $2.8\%$  & $2.68\%$ \\
-			2 &  $0.6\%$  & $0.76\%$ \\
-			3 &  $1.5\%$  & $1.18\%$ \\
+			1 &  $2.8\%$  & $2.7\%$ \\
+			2 &  $0.6\%$  & $0.8\%$ \\
+			3 &  $1.5\%$  & $1.2\%$ \\
 		\hline \hline
 		\end{tabular}
 	\end{center}
@@ -34,9 +34,9 @@ accordingly. The predicted rates agree quite well with the measured ones.
 			\hline \hline
 			Region & Data (rescaled) &  GEMC \\
 			\hline
-			1 &  $1.7\%$  & $1.12\%$ \\
-			2 &  $0.3\%$  & $0.44\%$ \\
-			3 &  $0.9\%$  & $0.73\%$ \\
+			1 &  $1.7\%$  & $1.1\%$ \\
+			2 &  $0.3\%$  & $0.4\%$ \\
+			3 &  $0.9\%$  & $0.7\%$ \\
 		\hline \hline
 		\end{tabular}
 	\end{center}
@@ -94,7 +94,7 @@ The particles generated are:
 \end{itemize}
 
 The results are shown in Table \ref{tab:benchmarks}. The final rate for the 3 particles in the
-complete CLAS12 setup is 1.9 Hz.
+complete CLAS12 setup is 1.7 Hz.
 
 \begin{table}[h]
 	\begin{center}
@@ -102,24 +102,30 @@ complete CLAS12 setup is 1.9 Hz.
 			 \hline \hline
 			 & Rate (Hz) &  ms / event &  $\%$ of total\\
 			\hline
-Target   &  555.8  &   1.8   & 0.3  \\
-SVT      &  365.9  &   0.9   & 0.2  \\
-MM       &  48.9   &   17.7  & 3.4  \\
-CTOF     &  48.7   &   0.1   & 0.0  \\
-Solenoid &  15.8   &   42.8  & 8.1  \\
-HTCC     &  11.5   &   24.0  & 4.5  \\
-FT       &  11.2   &   2.4   & 0.4  \\
-DC       &  8.1    &   33.2  & 6.3  \\
-LTCC     &  6.5    &   30.6  & 5.8  \\
-FTOF     &  6.1    &   9.6   & 1.8  \\
-PCAL     &  2.8    &   196.2 & 37.1 \\
-EC       &  2.0    &   134.5 & 25.4 \\
-Torus    &  1.9    &   34.7  & 6.6  \\
+Target   &  832.1  &   1.2   & 0.20  \\
+SVT      &  1080.2 &   0.9   & 0.16  \\
+CTOF     &  2705.6 &   0.4   & 0.06  \\
+CND      &  4844.0 &   0.2   & 0.04  \\
+Solenoid &  29.5   &   33.9  & 5.77  \\
+MM       &  38.3   &   26.1  & 4.44  \\
+HTCC     &  48.8   &   20.5  & 3.49  \\
+Torus    &  22.2   &   45.1  & 7.66  \\
+FT       &  95.3   &   10.5  & 1.78  \\
+DC       &  20.7   &   48.3  & 8.21  \\
+RICH     &  42.4   &   23.6  & 4.01  \\
+LTCC     &  36.3   &   27.6  & 4.69  \\
+FTOF     &  88.5   &   11.3  & 1.02  \\
+PCAL     &  5.4    &   186.2 & 31.67 \\
+EC       &  6.6    &   152.4 & 25.91 \\
+		\hline
+CLAS12   &  1.7    &   588.1 &  \\
 		\hline \hline
 		\end{tabular}
 	\end{center}
-	\caption{GEMC CLAS12 simulation benchmarks in each CLAS12 detector. The calorimeters are responsible for more than
-             half the computing time, due to shower simulations. Swimming in the magnetic fields accounts for about 15$\%$ of the total CPU time.}
+	\caption{GEMC simulation benchmarks in each CLAS12 detector. The calorimeters are responsible for more than
+             half the computing time, due to shower simulations. Swimming in the magnetic fields accounts for about 13.5$\%$ of the total CPU time.
+			 The overall rate for the full CLAS12 detector is 1.7 Hz.
+}
 \label{tab:benchmarks}
 \end{table}
 

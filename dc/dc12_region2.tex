@@ -15,15 +15,20 @@ the full length of the wires is in the active fiducial volume of CLAS12.
 All chamber support hardware and electronics had to fit 
 entirely within this shadow region.
 
-%%%%%%%%%%%%%%%%%%%%%% Figure : Region 2 inserts %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Fig.~\ref{dc-corner} shows a slice through a chamber endplate (R2 in this case)
+showing some of the wire positioning hardware and attachment of the electronics 
+boards.
+%%%%%%%%%%%%%%%%%%%%%% Figure : DC Sector Schematic %%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htpb]   
-\vspace{6.0cm}
-\special{psfile=r2_inserts.eps hscale=70 vscale=70 hoffset=-93 voffset=-200}  
-\caption{\small{Schematic cross-sectional view of the R2 endplate 
-wire-positioning hardware.}} 
-\label{r2_inserts}
+\vspace{8cm}
+\special{psfile=img/r2_inserts.eps hscale=70 vscale=70 hoffset=0 voffset=50}  
+\caption{\small{Schematic cross-sectional view of the R2 endplate showing
+wire-positioning hardware.}}
+\label{dc-corner}
 \end{figure}   
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 The R2 chambers have to operate 
 in a magnetic field up to 2~T, and the chambers have to withstand any rapid 
@@ -32,10 +37,29 @@ The R2 endplates are constructed from 2-cm thick Stesalit 4411W, a disordered
 epoxy-fiberglass composite commonly used in wire-chamber construction
 \cite{stesalit}, and known not to cause aging problems~\cite{stesalitaging}.  
 Using a nonconducting material eliminates any possible forces on the endplate 
-due to eddy currents produced during a magnetic-field quench.  It also allows 
+due to eddy currents produced during a magnetic-field quench.  
+
+The ``stesalit'' composite is not very stiff and, if not reinforced, would
+bend excessively under the load of wire tension.  So, as in the case of
+the R1 chambers, the R2 endplates were a composite structure with
+stainless steel stifferners.  Fig.~\ref{dcr2-endplate} shows an assembly drawing of an R2 endplate.
+
+%%%%%%%%%%%%%%%%%%%%%% Figure : generic chamber sketch %%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[hbpt]   
+\vspace{10cm}
+\begin{picture}(35,35)
+\put(10,-10)
+{\hbox{\includegraphics[width=0.5\columnwidth,natwidth=610,natheight=642]{img/dcr2-endplate.png}}}
+\end{picture}
+\caption{\small{A R2 endplate assembly.}}
+\label{dcr2-endplate}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+It also allows 
 the trumpets that position the wires to be essentially flush with the endplates, 
 rather than having to insulate the trumpets from the conducting endplates as in 
-the other two Regions (see Fig.~\ref{r2_inserts}).  This reduced the thickness of 
+the other two Regions (see Fig.~\ref{dc-corner}).  This reduced the thickness of 
 the inactive region by 1 to 2~cm.
 
 

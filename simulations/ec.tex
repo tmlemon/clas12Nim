@@ -2,17 +2,17 @@
 
 \subsubsection{Geometry}
 
-Both the EC and PCAL calorimeter geometry is implemented through the java geometry service.
+Both the EC and PCAL (referred to together as ECAL) calorimeter geometry is implemented through the java geometry service.
 The service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
 
-All scintillators are Geant4 volumes. The paddles are assigned the scintillator material and associated with the EC hit process routine.
+All scintillators are Geant4 volumes. The paddles are assigned the scintillator material and associated with the ECAL hit process routine.
 Each scintillator is a trapezoid embedded in a trapezoid mother volume made of air (\F{ecGeometry}).
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ecGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/ecDetail.png}
-	\caption{Top: a 4 GeV electron track (dotted line) showering in the GEMC implementation of the EC geometry.
+	\caption{Top: a 4 GeV electron track (dotted line) showering in the GEMC implementation of the ECAL geometry.
         	 Beam is incident from the left.
              The scintillator layers alternate with a layer of lead, for a sampling fraction of about 0.3.
              Bottom: a zoom-in transverse view of the electron shower.}
@@ -60,4 +60,4 @@ The digitized output bank variables for both systems are summarized in Table \re
 \end{table}
 
 
-The time window of both PCAL and EC is set to 400 ns: all Geant4 steps within the same paddle and time window are collected in one hit.
+The time window of both PCAL and EC is set to 400~ns: all Geant4 steps within the same paddle and time window are collected in one hit.

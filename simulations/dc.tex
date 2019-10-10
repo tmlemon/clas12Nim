@@ -5,10 +5,10 @@
 The DC geometry is implemented through the java geometry service.
 The service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
 
-For each of the six sectors on the CLAS12 Forward Detector, there are three drift chambers: one in front of the torus,
+For each of the six sectors of the CLAS12 Forward Detector, there are three drift chambers: one in front of the torus,
 one between the torus coils, and one after the torus.  These three chambers are referred to as different ``regions''.
 The chambers are strung with the wires arranged in 12 internal layers.
-Each layer is a generic G4Trapezoid, tilted by +6\mdeg or -6\mdeg depending if they are in the first or second
+Each layer is a generic G4Trapezoid, tilted by +6\mdeg \ or -6\mdeg \ depending if they are in the first or second
 ``superlayer'' of a region.
 The 12 layers in each region (6 per superlayer) are placed in a region mother volume made of air (see \F{dcGeometry}).
 The layers are assigned the DC gas mixture: 90$\%$ Argon / 10$\%$ CO$_2$. Each layer is associated with the DC hit process routine.
@@ -18,11 +18,12 @@ The hit wire identification is performed in the Process ID routine.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcGeometry.png}
 %	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcDetail.png}
-	\caption{The GEMC implementation of the DC geometry. Beam is incident from the left. The solenoid volume, CTOF, CND and HTCC are also visible.
+	\caption{The GEMC implementation of the DC geometry (longitudinal cutview).
+	         Beam is incident from the left. The solenoid volume, CTOF, CND, and HTCC are also visible.
              Geant4 trapezoids are the mother volumes corresponding to DC regions 1, 2, and 3. The track is a negative pion,
 			 hitting the various layers inside each region. The hit are indicated by the white markers. Due to the high DC
-             efficiency most tracks produce at least one hit in each layer (12 hits / region).
-             The wire hit inefficencies are incorporated in the simulation parametersto match the experimental data.}
+             efficiency, most tracks produce at least one hit in each layer (12 hits / region).
+             The wire hit inefficencies are incorporated in the simulation parameters to match the experimental data.}
 	\label{fig:dcGeometry}
 \end{figure}
 
@@ -30,13 +31,13 @@ The hit wire identification is performed in the Process ID routine.
 \subsubsection{Process ID}
 The wire number is calculated using the formula $n_i = y / \delta y$, where $y$ is the local vertical position in the DC layer volume
 and $\delta Y$ is the distance between each wire.
-The wire sagging due to gravity and mechanical deflections of the wire endplates due to the tension load is not taken into account.
+The wire sagging due to gravity and mechanical deflections of the wire endplates due to the tension load are not taken into account.
 
 \subsubsection{Digitization}
 
 First, the distance of closest approach of the passing track to the hit wire ($DOCA$) is computed for the hit in each layer.
 At each Geant4 step, the distance of the track from the wire is calculated.
-The $DOCA$ is extracted among the points with energy deposited larger than 50 eV,
+The $DOCA$ is extracted among the points with energy deposited larger than 50~eV,
 for which the sum of the step time + $DOCA$/DV (where DV is the drift velocity) is minimal.
 
 An initial time $T_i$ is calculated with a time to distance function that is the inverse of
@@ -97,8 +98,8 @@ The digitized output bank variables are summarized in Table \ref{tab:dcBank}.
 \end{table}
 
 
-The simulation time window of the DC is set to 500 ns: all Geant4 steps within the same cell and time window are collected in one hit.
-The actual electronic time window is set to 250, 500 and 750 ns for Regions 1, 2, and 3 respectively. 
+The simulation time window of the DC is set to 500~ns: all Geant4 steps within the same cell and time window are collected in one hit.
+The actual readout electronics time window is set to 250, 500, and 750~ns for regions 1, 2, and 3, respectively.
 
 
 \subsubsection{Background Rates}
@@ -121,7 +122,7 @@ is considered an optimal compromise between luminosity and reconstruction effici
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcOccupancy.png}
-	\caption{Results for DC rates for electron out-bending in the torus field.
+	\caption{Results for DC rates for electrons out-bending in the torus field.
 		     Top: the occupancies are below $3\%$ for region 1 and below $1.2\%$ for region 3. Bottom: layer
 		     versus wire hit distribution. Results for the electron in-bending polarity shows very similar distributions.}
 	\label{fig:dcOccupancy}

@@ -17,7 +17,7 @@ conductivity of the gas ratio is continually measured using Panametrics Thermal
 Conductivity Units (TCUs) and then matched to the thermal conductivity of a mixed 
 gas calibration standard. Individual MFC flows are adjusted as needed if the gas mixture
 ratio changes. The mixed gas is supplied to the hall via two similar gas delivery systems, 
-one for R3 and for the combined flow through R1 and R2. 
+one for R3 and one for the combined flow through R1 and R2. 
 
 MFCs and pressure regulators set the gas flow and pressure from the 
 buffer tanks to the supply manifolds in the hall. In the hall, flow control for each 
@@ -64,7 +64,7 @@ monitoring points.}}
 
  
 \subsection{Low Voltage System}
-We reused tha low voltage power supplies that were used for CLAS.  
+We reused the CLAS low voltage power supplies.  
 These units are robust and manufactured by Hewlett Packard.  
 The supplies are remotely programmable and monitored.  The on-chamber 
 pre-amplifiers require 6V and approximately 18A per chamber
@@ -73,17 +73,15 @@ pre-amplifiers require 6V and approximately 18A per chamber
 We isolated the low voltage from 
 ground loops by using local voltage regulators on the pre-amplifier interface 
 boards (STBs).  The segmentation of the low voltage distribution cables is 
-based on 32 preamplifier channels per supply cable.  Each of these supply 
-cables is fused with an appropriate type of fuse rated for over-current 
-protection based on 32 pre-amplifier loads.  
+based on 32 preamplifier channels per supply cable.  Each of the supply 
+cables is fused for over-current 
+protection based on the average current draw of 32 pre-amplifiers.  
 
 We designed our low voltage system: supplies, fusing, cables and control
 system to be as robust and maintenance-free as possible.  To minimize
 the damage to the tracking system in the event of a failure such as
 a shorted pre-amplifier, we built in fine segmentation with only
-32 preamplifier channels per supply cable.  Each of these supply 
-cables is fused with an appropriate type of fuse rated for over-current 
-protection based on this load.
+32 preamplifier channels per supply cable. 
 In the event of a short circuit which causes a fuse to blow,
 a simple, external cable disconnect will reduce the size of the affected
 area to 16 signal wires without the need to access the chambers.
@@ -126,13 +124,13 @@ physically access the chambers themselves.
 
 The high-voltage supply and distribution system consists of the following:
 \begin{itemize}
-\item a crate-based high voltage power supplies with 36 independent
+\item a crate-based high voltage power supply with 36 independent
 high voltage channels for each drift chamber (1344 signal wires each).
 Of these 36 channels, 16 supply positive high voltage to the sense
 wires, 16 supply negative voltage to the field wires, and 4 supply
 positive voltage to the guard wires
 \item a series of two distribution boxes which distribute the high
-voltage from the supplly channels on individual cables to groups
+voltage from the supply channels to variable-sized groups
 of wires, with the group size being 8 wires (for small angle wires)
 to 16 (intermediate angles) to 32 (large angles). 
 \item  on-chamber printed circuit boards which distribute high voltage

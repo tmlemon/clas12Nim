@@ -7,7 +7,7 @@ The CLAS12 DAQ system is based on CODA (\cite{coda-ref} system developed at JLab
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/coda_diagram.png}
-	\caption{CODA System Diagram}
+	\caption{CODA System Diagram. Every box represents a multi-threaded program running on corresponding controller or server. All communication between programs is done over Ethernet using TCP/IP protocol.}
 	\label{fig:coda_diagram}
 \end{figure}
 
@@ -19,7 +19,7 @@ The CODA DAQ system includes a run control facility consisting of a back-end run
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/runcontrol1.png}
-	\caption{Runcontrol GUI}
+	\caption{Runcontrol GUI. Main control and monitoring screen for CLAS12 DAQ System. Tabs on the right side allows to switch between different control screens such as configuration editor, current DAQ components status, and DAQ rates.}
 	\label{fig:runcontrol1}
 \end{figure}
 
@@ -38,7 +38,7 @@ The first and second threads can load user code that is compiled separately and 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/roc_diagram.pdf}
-	\caption{Readout Controller Diagram}
+	\caption{Readout Controller (ROC) Diagram. ROC is the program typically running on 4-core VME Intel Controller. It includes 3 main threads performing  VME readout, data processing, and networking.}
 	\label{fig:roc_diagram}
 \end{figure}
 
@@ -54,7 +54,7 @@ The total number of threads in the receiving part of the Event Builder in CLAS12
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/eb_diagram.pdf}
-	\caption{Event Builder Diagram}
+	\caption{Event Builder (EB) Diagram. EB is the program typically running on multi-core Linux server. It collects event fragments from ROCs, build events, and sends events to the Event Transfer system.}
 	\label{fig:eb_diagram}
 \end{figure}
 
@@ -68,7 +68,7 @@ Using these simple concepts, complicated data pathways can be constructed. The E
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/et_diagram.png}
-	\caption{Event Transfer System Diagram}
+	\caption{Event Transfer (ET) System Diagram. It is the program typically running on multi-core Linux server. It accepts events from Event Builder and pass them through the set of stations allowing attached programs to perform data processing. Last station typically have Event Recorder attached to it.}
 	\label{fig:et_diagram}
 \end{figure}
 
@@ -81,7 +81,7 @@ The ER structure in multi-stream mode is shown in Fig.~\ref{fig:er_diagram}. The
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/er_diagram.pdf}
-	\caption{Event Recorder Diagram}
+	\caption{Event Recorder Diagram. It is the program typically running on multi-core Linux server. It receives events from Event Transfer System and write them to the disk. It is possible to write several files in parallel to increase writing performance, event order is perserved in a process.}
 	\label{fig:er_diagram}
 \end{figure}
 
@@ -98,20 +98,24 @@ A JLab-designed MYSQL-based Runtime Database (RCDB) is used to store the run par
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/rcdb.png}
-	\caption{Runtime Database Web Browser example.}
+	\caption{Runtime Database Web Browser example. In particular it allows to search for run(s) with certain parameters.}
 	\label{fig:rcdb}
 \end{figure}
 
 \subsection{Online Data Monitoring}
 
-The CLAS12 online data monitoring is the set of programs attached to Event Transfer System and processing data in real time. One of such program's output is shown on Fig.\ref{fig:online_monitor}.
+The CLAS12 online data monitoring is the set of programs attached to Event Transfer System and processing data in real time. One of such program's output is shown on Fig.\ref{fig:online_monitor}. Monitoring system allows shift takers to insert histograms into the electronic logbook. Every CLAS12 detector has designated set of histograms which is closely monitored by shift takers and detector experts to ensure data quality.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/online_monitor.png}
-	\caption{Online monitoring example.}
+	\caption{Online monitoring example. Only small porsion of the histograms is shown, full set includes hundreds of histograms used by shift takers to monitor various detectors and subsystems.}
 	\label{fig:online_monitor}
 \end{figure}
+
+\subsection{Electronic Logbook}
+
+The CLAS12 shift personal is using JLab Electronic Logbook System. This web-based system provides an interface to browse, search, and create electronic logbook entries. The system has been built using the Drupal content management system and utilizes a MySQL back-end database to store its entries. The system has been designed to consolidate and replace the functionality of the multiple electronic logbook systems that existed at Jefferson Lab between 1996 and 2012 \cite{logbook-ref}.
 
 \subsection{ROOT for DAQ (FT)}
 
@@ -125,6 +129,6 @@ The CLAS12 Event Display (CED) is a full-function graphical application that dis
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/ced.png}
-	\caption{CED Event Example}
+	\caption{CED Event Example. It includes schematic view of all detectors with reasonably realistic geometry.}
 	\label{fig:ced}
 \end{figure}
