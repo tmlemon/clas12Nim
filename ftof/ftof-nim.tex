@@ -1539,11 +1539,11 @@ The fine timing alignment algorithm uses the FTOF hit time traced back to the ev
 to the RF to align the vertex times of all FTOF hits (modulo $T_{RF}$). However, instead of using the
 separate left and right PMT hit times as in Eq.(\ref{tres}), this algorithm uses the average counter
 hit times, 
-
-\begin{equation}
-t_{res}' = mod \left[ \left( \left(\overline{t}_{hit} - \frac{P_L}{\beta c} \right) -
-\left(t_{RF} + \frac{z_{vert}}{\beta_e c} \right) \right), T_{RF} \right].
-\end{equation}
+\begin{eqnarray}
+t_{res}' = mod \left[ t_{vtx}, T_{RF} \right], ~~~~~\\ [1ex]
+t_{vtx} = \left(\overline{t}_{hit} - \frac{P_L}{\beta c} \right) - 
+\left(t_{RF} + \frac{z_{vert}}{\beta_e c} \right). \nonumber
+\end{eqnarray}
 
 Figure~\ref{rfp-plot} shows the $t_{res}'$ distribution for one representative FTOF counter. The
 centroid of the Gaussian fit gives the fine timing offset. The width of the Gaussian fit is a measure
