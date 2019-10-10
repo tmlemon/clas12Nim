@@ -4,13 +4,18 @@
 % Use 1). latex recon-nim.tex, 2). dvipdfm recon-nim
 %
 \RequirePackage{lineno}
-\documentclass{elsart}
-\usepackage[dvips]{color,graphics}
-\usepackage[pdftex]{graphicx}
-\usepackage{amssymb,amsmath,systeme}
-%\setcounter{footnote}{0}
-\setcounter{tocdepth}{5}
-\linenumbers
+\documentclass[3p,times,twocolumn]{elsarticle}
+\usepackage{lineno, color, listings, enumerate, amssymb, graphicx, float, wrapfig}
+% notice hyperref loaded last to avoid duplicate reference warnings
+%\usepackage[font=normalsize,labelfont=bf]{caption}
+\usepackage[pdfpagelabels]{hyperref}
+\modulolinenumbers[5]
+
+%\documentclass{elsart}
+%%\setcounter{footnote}{0}
+%\setcounter{tocdepth}{5}
+%\linenumbers
+
 
 \begin{document}
 \begin{frontmatter}
@@ -20,7 +25,9 @@
 \author[JLab]{V. Ziegler\thanksref{corresponding}},
 \author[JLab]{N. Baltzell},
 \author[Saclay]{F. Boss\`u},
-\author[JLab]{D.S. Carman},
+\author[JLab]{D.S. Carman\'i\corref{mycorrespondingauthor}}
+\cortext[mycorrespondingauthor]{Corresponding author}
+\ead{carman@jlab.org}
 \author[IPNO]{P. Chatagnon},
 \author[INFN]{R. De Vita},
 \author[Saclay]{M. Defurne},
@@ -45,8 +52,7 @@
 \address[IPNO]{Institut de Physique Nucl\'eaire, CNRS-IN2P3, Univ. Paris-Sud, Universit\'e Paris-Saclay,
 91406 Orsay Cedex, France}
 \address[Glasgow]{University of Glasgow, Glasgow G12 8QQ, United Kingdom}
-\thanks[corresponding]{Corresponding author. Address: 12000 Jefferson Ave., Newport News, VA;
-e-mail: carman@jlab.org.}
+%\thanks[corresponding]{Corresponding author. Address: 12000 Jefferson Ave., Newport News, VA;
 
 \date{\today}
 
@@ -59,17 +65,18 @@ We describe the algorithms developed for the individual detector subsystems and 
 particle identification.  We present the data processing scheme and code management procedures.
 \end{abstract}
 
+\begin{keyword}
+CLAS12, event reconstruction, PACS:29.40.Mc
+\end{keyword}
+
+
 \end{frontmatter}
 
-PACS:29.40.Mc \\
-Keywords: CLAS12, event reconstruction
-\newpage
 
-\newpage
 \tableofcontents
 
-\vfil
-\eject
+%\vfil
+%\eject
 
 \section{Introduction}
 
@@ -1196,15 +1203,15 @@ The final data output is provided by the Event Builder in the form of data summa
 ~~
 
 \subsection{Resources}
-Reconstruction of all CLAS12 data is performed on Jefferson Lab's batch computing system\cite{jlab-batch-farm}.  It currently consists of about 400 compute nodes of various flavors, with a total of about 21,000 avilable jobs slots and half as many cores.  The input raw data and analyzed output data are stored on JLab's tape silo \cite{jlab-tape-silo}, which provides sufficient cold storage for all of JLab's activities.  Data for physics analysis is also stored live on JLab's Lustre filesystems \cite{jlab-lustre}, which is currently about 2 PB but being increased to almost 7 PB in the near future.  Analysis of reconstructed data is performed on the JLab batch and interactive farm nodes, and also transported to other institutions for final physics analysis.
+Reconstruction of all CLAS12 data is performed on Jefferson Lab's batch computing system\cite{jlab-batch-farm}.  It currently consists of about 400 compute nodes of various flavors, with a total of about 21,000 available jobs slots and half as many cores.  The input raw data and analyzed output data are stored on JLab's tape silo \cite{jlab-tape-silo}, which provides sufficient cold storage for all of JLab's activities.  Data for physics analysis is also stored live on JLab's Lustre filesystems \cite{jlab-lustre}, which is currently about 2 PB but being increased to almost 7 PB in the near future.  Analysis of reconstructed data is performed on the JLab batch and interactive farm nodes, and also transported to other institutions for final physics analysis.
 
 \section{Code Management}
 
 \subsection{Repositories}
-The software is managed in a github repository \cite{recon-github}, and branches and forks are utilized to accommodate development by many groups.  For the main branch, all modifications are made only through pull requests after passsing the automated tests in Section \ref{sec:tests}.
+The software is managed in a github repository \cite{recon-github}, and branches and forks are utilized to accommodate parallel development by many groups.  Two main branches, {\it master} and {\it development}, are utilized to store code ready for production and for validation, respectively. For the main branches, all modifications are made only through pull requests after passsing the automated tests in Section \ref{sec:tests} and require a approval  for a software expert.
 
 \subsection{Releases}
-There are four release types; major release, interface change release, and bug-fix
+There are four release types; major release, interface change release, bug-fix
 and test releases.  A numbering scheme is implemented to indicate the type of change.
 Releases that are ungoing a validation period carry a letter that indicates the type of validation:
 for production or a special algorithm study.
@@ -1240,11 +1247,11 @@ and compile the fixes in their local area.
 
 Fast fixes are collected in regular intervals into bug-fix releases.
 
-\subsection{Tests}\label{sec:tests}
-The software includes both basic unit tests and some extended tests.  A portion of the tests are run automatically, using the TravisCI system linked to the github repositories.  These automatic tests take about 20 minutes to run and have proven invaluable in overseeing and improving software development.
+\subsection{Code tests and validation}\label{sec:tests}
+The software includes both basic unit tests and advanced tests for several packages. Unit tests are designed to verify the correctness and reproducibility of the reconstruction output for a specific package. This involves for example reconstructing a simulated track or particle hit in a specific detector and comparing the result to the true information. Advanced and extended tests are, on the contrary, designed to verify the correctness and reproducibility of the overall event reconstruction on both simulated and real data sample by comparing to the true information in the first case or to the results obtained in previous releases in the second case. A portion of the tests are run automatically at the build time, using the TravisCI system linked to the github repositories.  These automatic tests take about 30 minutes to run and have proven invaluable in overseeing and improving software development.
 
-\subsection{Code Validation Suites}
-﻿he CLAS12 Software must be accurate. Under the software, we assume physics data processing (PDP) applications like reconstruction, simulation and calibration. PDP applications, developed using the CLAS12 software framework, consist of services that run in a context that is agnostic to the global application logic. So, the CLAS12 software accuracy depends on accuracy of services used in designing the PDP application. In order to be part of the production service inventory, each service must have self accuracy and efficiency testing routines.
+In addition to unit and advanced tests, every new release is subject to extensive validation on both simulated and real data. For this purpose, samples of Monte Carlo and real events for different beam energies and detector configuration were chosen to provide an extensive test of event reconstruction over the whole detector acceptance. Reconstruction of these samples is performed and results are compared to previous code releases. The comparison focuses on several parameters, from processing time, to resolution and efficiencies for particle reconstruction. A new release is accepted for production only if it is meeting predefined criteria on these observables and is globally giving improved performances. 
+% CLAS12 Software must be accurate. Under the software, we assume physics data processing (PDP) applications like reconstruction, simulation and calibration. PDP applications, developed using the CLAS12 software framework, consist of services that run in a context that is agnostic to the global application logic. So, the CLAS12 software accuracy depends on accuracy of services used in designing the PDP application. In order to be part of the production service inventory, each service must have self accuracy and efficiency testing routines.
 
 \section{Conclusions}
 ~~
