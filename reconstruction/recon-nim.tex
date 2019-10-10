@@ -22,27 +22,27 @@
 
 \title{CLAS12 Event Reconstruction}
 
-\author[JLab]{V. Ziegler\thanksref{corresponding}},
-\author[JLab]{N. Baltzell},
-\author[Saclay]{F. Boss\`u},
-\author[JLab]{D.S. Carman\'i\corref{mycorrespondingauthor}}
+\author[JLab]{V. Ziegler\'i\corref{mycorrespondingauthor}}
 \cortext[mycorrespondingauthor]{Corresponding author}
-\ead{carman@jlab.org}
-\author[IPNO]{P. Chatagnon},
-\author[INFN]{R. De Vita},
-\author[Saclay]{M. Defurne},
-\author[JLab]{G. Gavalian},
-\author[JLab]{Y. Gotra},
-\author[JLab]{V. Gyurjyan},
-\author[JLab]{N. Harrison},
-\author[CNU]{D. Heddle},
-\author[UConn]{A. Kim},
-\author[JLab]{N. Markov},
-\author[JLab]{M.D. Mestayer},
-\author[CNU]{W. Phelps},
-\author[IPNO]{S. Niccolai},
-\author[Glasgow]{D. Sokhan},
-\author[JLab]{M. Ungaro},
+\ead{ziegler@jlab.org}
+\author[JLab]{N. Baltzell}
+\author[Saclay]{F. Boss\`u}
+\author[JLab]{D.S. Carman}
+\author[IPNO]{P. Chatagnon}
+\author[INFN]{R. De Vita}
+\author[Saclay]{M. Defurne}
+\author[JLab]{G. Gavalian}
+\author[JLab]{Y. Gotra}
+\author[JLab]{V. Gyurjyan}
+\author[JLab]{N. Harrison}
+\author[CNU]{D. Heddle}
+\author[UConn]{A. Kim}
+\author[JLab]{N. Markov}
+\author[JLab]{M.D. Mestayer}
+\author[CNU]{W. Phelps}
+\author[IPNO]{S. Niccolai}
+\author[Glasgow]{D. Sokhan}
+\author[JLab]{M. Ungaro}
 
 \address[JLab]{Thomas Jefferson National Accelerator Facility, Newport News, VA 23606, USA}
 \address[CNU]{Christopher Newport University, 1 Avenue of the Arts, Newport News, 23606 VA , USA}
@@ -54,7 +54,7 @@
 \address[Glasgow]{University of Glasgow, Glasgow G12 8QQ, United Kingdom}
 %\thanks[corresponding]{Corresponding author. Address: 12000 Jefferson Ave., Newport News, VA;
 
-\date{\today}
+%\date{\today}
 
 %\maketitle
 
@@ -69,9 +69,7 @@ particle identification.  We present the data processing scheme and code managem
 CLAS12, event reconstruction, PACS:29.40.Mc
 \end{keyword}
 
-
 \end{frontmatter}
-
 
 \tableofcontents
 
@@ -137,17 +135,14 @@ application designer’s main focus. As a result, CLAS12 data processing applica
 application building blocks can be improved individually and be replaced.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{5.0cm}
-\begin{picture}(50,50)
-\put(45,-5)
-{\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/clara-overview.pdf}}}
-\end{picture}
+\begin{figure*}
+\centering
+\includegraphics[width=0.8\textwidth]{pics/clara-overview.pdf}
 \caption{Overview of the CLAS12 CLARA data processing framework that links the detector subsystem
 event reconstruction applications to the data processing and data quality assurance monitoring applications
 to the physics analysis applications.}
 \label{clara-overview}
-\end{figure}
+\end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Common Tools}
@@ -279,25 +274,22 @@ for on- and off-line data analysis.
 A common data streaming interface is implemented with software level abstraction that allows calibration and monitoring
 code to run on variety of supported data formats used in CLAS12.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+\centering
+\includegraphics[width=0.8\textwidth]{pics/suites.png}
+\caption{Representative subsystem calibration GUIs for ECAL~\cite{ecal-nim} (upper left),
+DC~\cite{dc-nim} (upper right), FTOF~\cite{ftof-nim} (lower left),  and FT~\cite{ft-nim} (lower right).}
+\label{suites}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Calibration Suites}
 
 The software programs used for the CLAS12 detector subsystem monitoring and energy and time calibrations are
 Java-based suites that employ the framework discussed in Section~\ref{common-tools}.
 The software tools provided by the framework facilitate the development of
 detector-specific suites. Fig.~\ref{suites} shows representative views of CLAS12 subsystem calibration suites.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{4.5cm}
-\begin{picture}(50,50)
-\put(55,-5)
-{\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/suites.png}}}
-\end{picture}
-\caption{Representative subsystem calibration GUIs for ECAL~\cite{ecal-nim} (upper left),
-DC~\cite{dc-nim} (upper right), FTOF~\cite{ftof-nim} (lower left),  and FT~\cite{ft-nim} (lower right).}
-\label{suites}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The calibration applications take as input raw or reconstructed data files
 (from either beam data or Monte Carlo simulations) in
@@ -347,7 +339,8 @@ An  overview of the reconstruction application service composition is shown in f
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure*}
-\includegraphics[width=0.6\textwidth,natwidth=610,natheight=642]{pics/ServiceComposition.png}
+\centering
+\includegraphics[width=0.6\textwidth]{pics/ServiceComposition.png}
 \caption{CLAS12 reconstruction application service composition in case of sub-event level parallelization.
 In this case within the event different detector component reconstruction services are processing in parallel.}
 \label{fig:services}
@@ -392,8 +385,11 @@ essentially operates as a parallel processor on all 112 sense wires in layer. Th
 need of a wire for-loop, enabling the algorithm to run in a negligible fraction of the total time for
 reconstruction. More to the point, SNR actually saves time by reducing the combinations that must be
 explored in the pattern-recognition phase of the ensuing track-finding.
-\begin{figure*}
-\includegraphics[width=0.4\textwidth,natwidth=610,natheight=642]{pics/dcTracks2.png}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{pics/dcTracks2.png}
 \caption{Event display of hits in the 2 consecutive superlayers (groups of 6 layers) in the DC projected at the $y=0$ plane in sector 1.
 The DC cell hexagones displayed in red correspond to the hits rejected by the noise
 identification algorithms.  The straight lines correspond to linear local fits to the clustered hit
@@ -402,7 +398,9 @@ position taking into account the drift distance (circles). The dot in between th
 account their respective wire directions ($\pm 6$ deg. stereo angle).
 }
 \label{fig:dcsegs}
-\end{figure*}
+\end{figure}
+
+
 \subsubsection{Hit Clustering}
 The hits remaining after the SNR
 algorithm are grouped into clusters.
@@ -459,8 +457,8 @@ The cross position and angles in region 1 together with the
 momentum and the charge provide all the necessary information to define the track parameters at a given location in the detector,
 and therefore to start track fitting.
 
-\begin{figure*}[hbt]
-\includegraphics[width=0.5\textwidth,natwidth=610,natheight=642]{pics/dcTrack3.png}
+\begin{figure*}
+\includegraphics[width=1.0\textwidth]{pics/dcTrack3.png}
 \caption{Event display of charged particle tracks in the Drift Chambers.
 }
 \label{fig:dcTracks}
@@ -479,14 +477,18 @@ Hence, as in ref~\cite{spiri} we can express the equations of motion of the trac
 and the propagation of the state vector covariance matrix as derivatives with respect to $z$.
 In the drift chambers, the magnetic field components are mostly along the $y$ coordinate in the analysis frame.
 The trajectory of the particle in the analysis frame is given by the following equations:
-\begin{equation}
-\systeme{
-dx/dz  =  tx, \\
-dy/dz  =  ty, \\
-dtx/dz  =  q \cdot v \cdot \sqrt{1 + {t_x}^2 + {t_y}^2}\cdot [t_y\cdot (t_x B_x + B_z) - (1 + {t_x}^2 ) B_y], \\
-dty/dz  =  q \cdot v \cdot \sqrt{1 + {t_x}^2 + {t_y}^2}\cdot [-t_x\cdot (t_y B_y + B_z) + (1 + {t_y}^2 ) B_y], \\
-q  =  q_0,}
-\end{equation}
+
+\begin{eqnarray*}
+%\systeme{
+dx/dz  &=& tx, \\
+dy/dz  &=&  ty, \\
+dtx/dz &=& q \cdot v \cdot \sqrt{1 + {t_x}^2 + {t_y}^2}\cdot [t_y\cdot (t_x B_x + B_z) - (1 + {t_x}^2 ) B_y], \\
+dty/dz  &=&  q \cdot v \cdot \sqrt{1 + {t_x}^2 + {t_y}^2}\cdot [-t_x\cdot (t_y B_y + B_z) + (1 + {t_y}^2 ) B_y], \\
+q  =  q_0,
+%}
+\end{eqnarray*}
+
+
 where, and the initial values at the initial plane $z = z_{0}$ are
 $x = x_{0}, y = y_{0}, t_x = t_{x0}, t_y = t_{y0}, q = q_{0}$.
 
@@ -498,13 +500,11 @@ The Jacobian matrix terms contribute to the propagator matrix used to compute th
 The propagated covariance matrix takes into account multiple scattering.
 
 The non-zero components of multiple scattering matrix are:
-\begin{equation*}
-\begin{aligned}
+\begin{eqnarray*}
 Cov (t_{x} , t_{x}) &=& (1+{t_x}^{2} )\cdot (1+{t_x}^{2} + {t_y}^2 )\cdot {\theta_{0}}^{2} , \\
 Cov (t_{y} , t_{y}) &=& (1+{t_y}^{2} )\cdot (1+{t_x}^{2} + {t_y}^2 )\cdot {\theta_{0}}^{2} , \\
 Cov (t_{x} , t_{y}) &=&  t_{x} t_{y}\cdot (1+{t_x}^{2} + {t_y}^2 )\cdot {\theta_{0}}^{2} ,
-\end{aligned}
-\end{equation*}
+\end{eqnarray*}
 where,
 \begin{equation}
 {\theta_{0}} = \frac{13.6}{\beta pc}\sqrt{\frac{t}{X_{0}}\sqrt{1+{t_x}^2+{t_y}^2}}\left[ {1+0.038 ln \left({\frac{t}{X_{0}}\sqrt{1+{t_x}^2+{t_y}^2}}\right) }\right].
@@ -575,7 +575,7 @@ layer is simply ignored for the remaining of the reconstruction process.
 \subsubsection{Pattern Recognition}
 The trajectory of a charged particle in a solenoidal magnetic field is an helix. Because BMT detectors offers either
 xy- or z-coordinates but never both, the pattern recognition cannot be performed in 3 dimensions. For particles of
-large enough momentum ($p_\perp \gtrsim 0.25 \text{GeV}/c$ for a 5T-solenoidal magnetic field), the xy-projection of an
+large enough momentum ($p_\perp \gtrsim 0.25$ GeV/c for a 5T-solenoidal magnetic field), the xy-projection of an
 helix is a circle, and the $rz$-projection is a straight line (where $r = \sqrt{x^2 + y^2}$). Therefore, a first
 pattern recongition algorithm is run in xy-plane to look for circles and then a second pattern recognition algorithm is
 run in rz-plane to search for straight lines.
@@ -635,22 +635,20 @@ last measurement is reached, state vector and covariance matrix are brought back
 and the transport/filtering process is re-run. A maximum of five iterations is performed to make sure of the
 convergence of the filtering process.
 
-\pagebreak
-
 \subsubsection{Tracking Performance}
 
 The momentum resolutions in the central and forward trackers as a function of the momentum reach
 in these detectors is shown in Fig.~\ref{fig:res}.
 
-\begin{figure*}[b]
-\includegraphics[width=0.4\textwidth,natwidth=610,natheight=642]{pics/fddegipekmpjjiho.png} \\
-\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642]{pics/DCRes.png}
+\begin{figure}
+\includegraphics[width=0.45\textwidth]{pics/fddegipekmpjjiho.png}
+\includegraphics[width=0.45\textwidth]{pics/DCRes.png}
 \caption{(Top plot) Momentum resolution of simulated protons in the CVT.
 (Bottom plot) Momentum resolution in the DC evaluated using simulated negative tracks from a sample of Semi Inclusive
 Deep Inelastic events.
 }
 \label{fig:res}
-\end{figure*}
+\end{figure}
 
 \pagebreak
 \subsection{Electromagnetic Calorimeters}
@@ -895,7 +893,7 @@ after evolving the panel-1a hit to the location of the panel-1b hit using the pa
 extrapolated drift chamber track. The combined plane hit time is given by:
 
 \begin{equation}
-t_{comb} = \dfrac{ t_{1b}^{cluster} {\delta_{1b}}^{-1} + (t_{1a}^{cluster} - \Delta r/\beta) {\delta_{1a}}^{-1}}
+t_{comb} = \frac{ t_{1b}^{cluster} {\delta_{1b}}^{-1} + (t_{1a}^{cluster} - \Delta r/\beta) {\delta_{1a}}^{-1}}
 {\left( {\delta_{1b}}^{-1} + {\delta_{1a}}^{-1} \right)},
 \end{equation}
 
@@ -1005,13 +1003,13 @@ The reconstruction of the Central Neutron Detector (CND) is done in three steps:
 %\noindent
 %If $\Delta'<\Delta$, the paddle in which the hit happened is the left one, otherwise it is the right one.
 
-\subsubsection{Hit Position and Time Reconstrution}
+\subsubsection{Hit Position and Time Reconstruction}
 
 The reconstruction of the time and position of a hit will be shown for the case of a hit in the left paddle. In
 case of a hit in the right paddle the applicable equations are obtained by switching the $L/R$ indices.
 
 Starting from $t_{\rm{L}}$ and $t_{\rm{R}}$, defined in Eq.~\ref{eq_time_hit_lr} and Eq.~\ref{eq_time_hit_lr1}
-and substracting the time offsets obtained from the calibrations, the start time and the time jitter, one can
+and subtracting the time offsets obtained from the calibrations, the start time and the time jitter, one can
 define the propagation times $t_{\rm{L}_{\rm{prop}}}$ and $t_{\rm{R}_{\rm{prop}}}$ as:
 
 \begin{equation}
@@ -1165,28 +1163,24 @@ A basic particle identification scheme is then performed.  For charged particles
 
 The resulting information is organized into standardized output bank structures for physics analyis, see \ref{sec:dsts}.  This includes particle four-vectors, all their associated detector responses, and global event information such as beam RF and helicity information.
 
-\newpage
 \subsubsection{Particle Identification Performance}
-
-
-\begin{figure*}[ht]
-\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/betavsp1.png}
-\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/betavsp2.png}
+\vspace{1in}
+\begin{figure}
+\includegraphics[width=0.45\textwidth]{pics/betavsp1.png}
+\includegraphics[width=0.45\textwidth]{pics/betavsp2.png}
 \caption{Beta versus p for events with an electron in the FD (left plot) and in the FT (right plot).
 }
 \label{fig:betavsp}
-\end{figure*}
+\end{figure}
 
-\begin{figure*}[ht]
-\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/pi0mass.png}
-\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/pi0mass2.png}
+\begin{figure}
+\includegraphics[width=0.45\textwidth]{pics/pi0mass.png}
+\includegraphics[width=0.45\textwidth]{pics/pi0mass2.png}
 \caption{Reconstructed $\pi^{0}\rightarrow \gamma \gamma$ candidates using EC (left plot) and FT (right plot) information.
 }
 \label{fig:pi0mass}
-\end{figure*}
+\end{figure}
 
-\vfill
-\eject
 
 \section{Data Processing}
 
@@ -1208,7 +1202,7 @@ Reconstruction of all CLAS12 data is performed on Jefferson Lab's batch computin
 \section{Code Management}
 
 \subsection{Repositories}
-The software is managed in a github repository \cite{recon-github}, and branches and forks are utilized to accommodate parallel development by many groups.  Two main branches, {\it master} and {\it development}, are utilized to store code ready for production and for validation, respectively. For the main branches, all modifications are made only through pull requests after passsing the automated tests in Section \ref{sec:tests} and require a approval  for a software expert.
+The software is managed in a github repository \cite{recon-github}, and branches and forks are utilized to accommodate parallel development by many groups.  Two main branches, {\it master} and {\it development}, are utilized to store code ready for production and for validation, respectively. For the main branches, all modifications are made only through pull requests after passsing the automated tests in Section \ref{sec:tests} and require a approval by a software expert.
 
 \subsection{Releases}
 There are four release types; major release, interface change release, bug-fix
@@ -1248,7 +1242,7 @@ and compile the fixes in their local area.
 Fast fixes are collected in regular intervals into bug-fix releases.
 
 \subsection{Code tests and validation}\label{sec:tests}
-The software includes both basic unit tests and advanced tests for several packages. Unit tests are designed to verify the correctness and reproducibility of the reconstruction output for a specific package. This involves for example reconstructing a simulated track or particle hit in a specific detector and comparing the result to the true information. Advanced and extended tests are, on the contrary, designed to verify the correctness and reproducibility of the overall event reconstruction on both simulated and real data sample by comparing to the true information in the first case or to the results obtained in previous releases in the second case. A portion of the tests are run automatically at the build time, using the TravisCI system linked to the github repositories.  These automatic tests take about 30 minutes to run and have proven invaluable in overseeing and improving software development.
+In addition to automatic builds, the software includes both basic unit tests and advanced tests for several packages. Unit tests are designed to verify the correctness and reproducibility of the reconstruction output for a specific package. This involves for example reconstructing a simulated track or particle hit in a specific detector and comparing the result to the true information. Advanced and extended tests are, on the contrary, designed to verify the correctness and reproducibility of the overall event reconstruction on both simulated and real data sample by comparing to the true information in the first case or to the results obtained in previous releases in the second case. A portion of the tests are run automatically at the build time, using the TravisCI system linked to the github repositories.  These automatic tests take about 30 minutes to run and have proven invaluable in overseeing and improving software development.
 
 In addition to unit and advanced tests, every new release is subject to extensive validation on both simulated and real data. For this purpose, samples of Monte Carlo and real events for different beam energies and detector configuration were chosen to provide an extensive test of event reconstruction over the whole detector acceptance. Reconstruction of these samples is performed and results are compared to previous code releases. The comparison focuses on several parameters, from processing time, to resolution and efficiencies for particle reconstruction. A new release is accepted for production only if it is meeting predefined criteria on these observables and is globally giving improved performances. 
 % CLAS12 Software must be accurate. Under the software, we assume physics data processing (PDP) applications like reconstruction, simulation and calibration. PDP applications, developed using the CLAS12 software framework, consist of services that run in a context that is agnostic to the global application logic. So, the CLAS12 software accuracy depends on accuracy of services used in designing the PDP application. In order to be part of the production service inventory, each service must have self accuracy and efficiency testing routines.
@@ -1256,7 +1250,7 @@ In addition to unit and advanced tests, every new release is subject to extensiv
 \section{Conclusions}
 ~~
 
-\ack
+\section{Acknowledgments}
 
 This work was supported in part by DOE Contract DE-AC05-84ER40150.
 
