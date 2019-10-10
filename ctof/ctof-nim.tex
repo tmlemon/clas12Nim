@@ -4,34 +4,42 @@
 % Use 1). latex ctof-nim.tex, 2). dvipdfm ctof-nim
 %
 %\RequirePackage{lineno}
-\documentclass{elsart}
-\usepackage[dvips]{color,graphics}
-\usepackage[pdftex]{graphicx}
+%\documentclass[final,3p,twocolumn]{elsarticle}
+\documentclass[3p,times,twocolumn]{elsarticle}
+
+
+%\documentclass{elsart}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+%\usepackage[dvips]{color,graphics}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{hyperref}
 %\setcounter{footnote}{0}
-\setcounter{tocdepth}{2}
+%\setcounter{tocdepth}{4}
 %
-\usepackage{lineno} 
-\linenumbers
+%\usepackage{lineno} 
+%\linenumbers
 
 \begin{document}
 \begin{frontmatter}
 
 \title{The CLAS12 Central Time-of-Flight System}
 
-\author[JLAB]{D.S. Carman\thanksref{corresponding}},
-\author[JLAB]{G. Asryan},
-\author[JLAB]{V. Baturin},
-\author[Glasgow]{L. Clark},
-\author[INFN]{R. De Vita},
-\author[KNU]{W. Kim}, 
-\author[JLAB]{B. Miller}, and
+\author[JLAB]{D.S. Carman\corref{corresponding}}
+\author[JLAB]{G. Asryan}
+\author[JLAB]{V. Baturin}
+\author[Glasgow]{L. Clark}
+\author[INFN]{R. De Vita}
+\author[KNU]{W. Kim} 
+\author[JLAB]{B. Miller}
 \author[JLAB]{C. Wiggins} 
 
 \address[JLAB]{Thomas Jefferson National Accelerator Facility, Newport News, VA 23606, USA}
 \address[Glasgow]{University of Glasgow, Glasgow G12 8QQ, United Kingdom}
 \address[INFN]{INFN, Sezione di Genova, 16146 Genova, Italy}
 \address[KNU]{Kyungpook National University, Daegu 41566, Republic of Korea} 
-\thanks[corresponding]{Corresponding author. Address: 12000 Jefferson Ave., Newport News, VA 23606; 
+\cortext[corresponding]{Corresponding author. Address: 12000 Jefferson Ave., Newport News, VA 23606; 
 e-mail: carman@jlab.org.}
 
 \date{\today}
@@ -55,12 +63,7 @@ effective time resolution of the counters is 80~ps.
 
 PACS:29.40.Mc \\
 Keywords: CLAS12, time of flight, plastic scintillator, particle identification
-\newpage
 
-%\newpage
-%\tableofcontents
-
-\newpage
 \section{Overview of CLAS12}
 
 The Thomas Jefferson National Accelerator Facility (JLab) recently completed a project to double the
@@ -97,10 +100,10 @@ decommissioned.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
-\vspace{5.7cm}
+\vspace{3.0cm}
 \begin{picture}(50,50) 
-\put(20,250)
-{\hbox{\includegraphics[width=0.70\textwidth,natwidth=610,natheight=642,angle=-90]{pics/ctof_clas12.pdf}}}
+\put(2,145)
+{\hbox{\includegraphics[width=0.36\textwidth,natwidth=610,natheight=642,angle=-90]{pics/ctof_clas12.pdf}}}
 \end{picture} 
 \caption{Model representation of the CLAS12 spectrometer in Hall~B at Jefferson Laboratory. The
 electron beam is incident from the left side of this figure. The CLAS12 detector is roughly 20~m in scale
@@ -129,10 +132,10 @@ of the CTOF technical parameters is given in Table~\ref{spec-table}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.3cm}
+\vspace{2.8cm}
 \begin{picture}(50,50) 
-\put(85,175)
-{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642,angle=-90]{pics/ctof-design.pdf}}}
+\put(25,132)
+{\hbox{\includegraphics[width=0.30\textwidth,natwidth=610,natheight=642,angle=-90]{pics/ctof-design.pdf}}}
 \end{picture} 
 \caption{View of CTOF system for CLAS12. The scintillation bars form a hermetic barrel and the PMTs are
 read out at the ends of long light guides attached to each end of the bars. The beam enters the detector in
@@ -143,10 +146,10 @@ this figure from the left side along the symmetry axis of the barrel.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.6cm}
+\vspace{2.4cm}
 \begin{picture}(50,50) 
-\put(10,-50)
-{\hbox{\includegraphics[width=0.85\textwidth,natwidth=610,natheight=642]{pics/ctof-insitu.pdf}}}
+\put(-20,-41)
+{\hbox{\includegraphics[width=0.50\textwidth,natwidth=610,natheight=642]{pics/ctof-insitu.pdf}}}
 \end{picture} 
 \caption{CTOF mounted within the CLAS12 solenoid in a cut view where the beam axis runs along the
 barrel symmetry axis with the beam entering from the left. This figure shows the CTOF in relation to
@@ -182,10 +185,10 @@ momentum tracks are curled up in the solenoid field and never reach the inner su
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.0cm}
+\vspace{2.0cm}
 \begin{picture}(50,50) 
-\put(35,-100)
-{\hbox{\includegraphics[width=1.00\textwidth,natwidth=610,natheight=642]{pics/tdiff_alt.pdf}}}
+\put(10,-72)
+{\hbox{\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/tdiff_alt.pdf}}}
 \end{picture} 
 \caption{Flight time differences (ns) between protons and pions, between protons and kaons, and between
 kaons and pions (as indicated) for a 25~cm path length from the target to the CTOF system plotted vs.
@@ -203,10 +206,10 @@ the typical track momenta accepted by CTOF are in the range below 2~GeV.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.8cm}
+\vspace{2.5cm}
 \begin{picture}(50,50) 
-\put(95,-50)
-{\hbox{\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/pthpi.pdf}}}
+\put(35,-46)
+{\hbox{\includegraphics[width=0.34\textwidth,natwidth=610,natheight=642]{pics/pthpi.pdf}}}
 \end{picture} 
 \caption{Momentum (GeV) vs. polar angle (deg) for charged pions in CLAS12 from beam data for a 10.6~GeV
 electron beam incident upon a liquid-hydrogen target. The discontinuity at $\theta=35^\circ$ is due to the
@@ -222,7 +225,7 @@ adequate granularity. The pulse height information is also used for energy-loss 
 a supplemental means for the identification of slow particles.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[htbp]
+\begin{table*}[ht]
 \begin{center}
 \begin{tabular} {ll} \hline
 ~~Parameter~~ &~~~~~~~~~~~~~~~~~~~~~~ Design Value ~~~~~~~~~~\\ \hline
@@ -241,7 +244,7 @@ $\pi$/$p$ separation & 3$\sigma$ up to 1.14~GeV \\ \hline
 \end{center}
 \caption{CTOF technical design parameters.}
 \label{spec-table}
-\end{table}
+\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 With a solenoid diameter of 100~cm, the thickness of the CTOF scintillation bars was limited to $\sim$3~cm
@@ -295,10 +298,10 @@ counters.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{2.6cm}
+\vspace{1.6cm}
 \begin{picture}(50,50) 
-\put(65,168)
-{\hbox{\includegraphics[angle=-90,width=0.55\textwidth,natwidth=610,natheight=642]{pics/counter-pair.pdf}}}
+\put(10,115)
+{\hbox{\includegraphics[angle=-90,width=0.35\textwidth,natwidth=610,natheight=642]{pics/counter-pair.pdf}}}
 \end{picture} 
 \caption{A pair of neighboring CTOF counters with two slightly different designs for the upstream light
 guide and the upstream end of the scintillation bars.} 
@@ -314,12 +317,12 @@ scintillation bar.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{6.5cm}
+\vspace{3.2cm}
 \begin{picture}(50,50) 
-\put(25,305)
-{\hbox{\includegraphics[angle=-90,width=0.70\textwidth,natwidth=610,natheight=642]{pics/scint-geom-a.pdf}}}
-\put(115,-35)
-{\hbox{\includegraphics[angle=-90,width=0.35\textwidth,natwidth=610,natheight=642,angle=90]
+\put(3,190)
+{\hbox{\includegraphics[angle=-90,width=0.38\textwidth,natwidth=610,natheight=642]{pics/scint-geom-a.pdf}}}
+\put(55,-30)
+{\hbox{\includegraphics[angle=-90,width=0.20\textwidth,natwidth=610,natheight=642,angle=90]
 {pics/scint-geom-b.pdf}}}
 \end{picture} 
 \caption{Schematic views of a generic CTOF scintillation bar showing a) a side view and b) an end view. The
@@ -342,7 +345,7 @@ ends of each counter element $A_{end}$ is listed in Table~\ref{bar-geom}. A more
 the counter geometry is given in Ref.~\cite{geom-note}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[htbp]
+\begin{table*}[ht]
 \begin{center}
 \begin{tabular} {c|r|cc} \hline
 Section       & Parameter          & \multicolumn{2}{c}{Design Value} \\ \hline
@@ -364,7 +367,7 @@ Bar           & $w_o$              & \multicolumn{2}{c}{3.607~cm}     \\
 \caption{Geometry specifications for the CTOF scintillation bars. See Fig.~\ref{scint-geom} for
 details on the definitions of the parameters.}
 \label{bar-geom}
-\end{table}
+\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Scintillation Material}
@@ -377,7 +380,7 @@ polyvinyltoluene as its base polymer. The characteristics of this material are d
 Table~\ref{ej200-specs}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[htbp]
+\begin{table*}[htbp]
 \begin{center}
 \begin{tabular}{lc} \hline
 Light Output                  & 64\% anthracene \\
@@ -393,7 +396,7 @@ Refractive index              & 1.58 \\ \hline
 \caption{The properties of the plastic scintillator EJ-200~\cite{eljen-ref} used for the CTOF scintillation
 bars.}
 \label{ej200-specs}
-\end{table}
+\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The attenuation length of a scintillation material represents the distance $\lambda$ into the material
@@ -422,6 +425,23 @@ guides were required to wrap around the downstream face of the solenoid magnet w
 $\sim$1.6~m. For both light guides, the overall design principle was to ensure that they were as short as
 possible to optimize the light transmittance and thus optimize the counter time resolution.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{1.4cm}
+\begin{picture}(50,50) 
+\put(-5,90)
+{\hbox{\includegraphics[width=0.18\textwidth,natwidth=610,natheight=642,angle=-95]{pics/ctof-lgu.pdf}}}
+\put(90,80)
+{\hbox{\includegraphics[width=0.20\textwidth,natwidth=610,natheight=642,angle=-80]{pics/ctof-lgd.pdf}}}
+\end{picture}
+\put(20,-5){(a)}
+\put(140,-5){(b)}
+\caption{The design of the CTOF (a) upstream and (b) downstream light guides. The wedge-shaped end
+of each guide couples to the scintillation bar and the cylindrical end couples to the PMT.}
+\label{ctof-lg}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 The constraints on the light guides required that they match the wedge-shaped cross section of the
 scintillation bar at one end and match the circular shape of the PMT at the other end, while being restricted
 to lie fully within the 7.5$^\circ$ azimuthal allotment for each of the counters. The light guides were
@@ -430,23 +450,6 @@ The downstream light guides were cast as straight rods and bent on a forming man
 low-temperature oven. After the casting and machining processes, the light guides were polished to a mirror
 surface at the vendor with additional polishing performed at JLab only in the case of scratches incurred
 during handling.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{3.0cm}
-\begin{picture}(50,50) 
-\put(15,130)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642,angle=-90]{pics/ctof-lgu.pdf}}}
-\put(170,130)
-{\hbox{\includegraphics[width=0.40\textwidth,natwidth=610,natheight=642,angle=-80]{pics/ctof-lgd.pdf}}}
-\end{picture}
-\put(80,10){(a)}
-\put(300,10){(b)}
-\caption{The design of the CTOF (a) upstream and (b) downstream light guides. The wedge-shaped end
-of each guide couples to the scintillation bar and the cylindrical end couples to the PMT.}
-\label{ctof-lg}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The design of the upstream light guide is shown in Fig.~\ref{ctof-lg}(a). The sides of the acrylic
 cylinder were milled to a length of 25~cm along the light guide to form a wedge up to a radius of 37~cm
@@ -571,10 +574,10 @@ short rod (2.5~cm), and $R(l)$ is the transmitted light intensity measured with 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{2.5cm}
+\vspace{1.1cm}
 \begin{picture}(50,50) 
-\put(95,-70)
-{\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642,angle=90]{pics/lg-trans-setup.pdf}}}
+\put(45,-50)
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642,angle=90]{pics/lg-trans-setup.pdf}}}
 \end{picture} 
 \caption{Setup for the light guide transmittance measurements. (1) Acrylic rod, (2) light source,
 (3) acrylic piece, (4) silicon photodetector, (5) Teflon film as a diffuser, (6) mount units, and (7)
@@ -610,6 +613,20 @@ both conventional and field-resistant PMTs. Our final choice, which was thought 
 design, opted for conventional PMTs contained within a magnetic shield system at the ends of long light
 guides that positioned the PMTs well outside of the high field region of the solenoid magnet.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htbp]
+\vspace{4.9cm}
+\begin{picture}(50,50) 
+\put(-20,198)
+{\hbox{\includegraphics[angle=-90,width=0.47\textwidth,natwidth=610,natheight=642]{pics/h2431.pdf}}}
+\end{picture} 
+\caption{Schematic diagram of the Hamamatsu H2431 assembly based on the R2083 5.08-cm diameter
+PMT used for the CTOF readout~\cite{ham-schem}. Note that for this application the supplied magnetic
+shield case was not used.}
+\label{H2431}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 Our choice for the CTOF readout was the H2431 PMT/voltage divider assembly from Hamamatsu. This
 integrated assembly employs the 5.08-cm diameter Hamamatsu R2083 PMT. The relevant specifications
 for this PMT are listed in Table~\ref{pmt-specs}. Figure~\ref{H2431} shows a schematic of the H2431
@@ -619,7 +636,7 @@ However, we have aimed to achieve fields of $\le$0.2~G at the photocathode to ma
 safety margin.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[htbp]
+\begin{table*}[htbp]
 \begin{center}
 \begin{tabular}{ll} \hline
 Spectral response           & 300 $\to$ 650~nm \\
@@ -639,20 +656,19 @@ Transition time spread      & 0.37 ns \\ \hline
 \end{center}
 \caption{The properties of the Hamamatsu R2083 PMT used for the CTOF readout~\cite{r2083-ref}.}
 \label{pmt-specs}
-\end{table}
+\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{10.0cm}
+\vspace{0.7cm}
 \begin{picture}(50,50) 
-\put(-15,340)
-{\hbox{\includegraphics[angle=-90,width=0.90\textwidth,natwidth=610,natheight=642]{pics/h2431.pdf}}}
+\put(-15,-102)
+{\hbox{\includegraphics[width=0.42\textwidth,natwidth=610,natheight=642]{pics/amp-circuit.pdf}}}
 \end{picture} 
-\caption{Schematic diagram of the Hamamatsu H2431 assembly based on the R2083 5.08-cm diameter
-PMT used for the CTOF readout~\cite{ham-schem}. Note that for this application the supplied magnetic
-shield case was not used.}
-\label{H2431}
+\caption{Schematic diagram of the JLab-designed transistorized impedance matching amplifier 
+circuit added to the standard Hamamatsu R2083 voltage divider.}
+\label{popov-mod}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -669,14 +685,15 @@ divider. A version of this circuit design is described in Ref.~\cite{popov}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.0cm}
+\vspace{3.6cm}
 \begin{picture}(50,50) 
-\put(0,-155)
-{\hbox{\includegraphics[width=0.80\textwidth,natwidth=610,natheight=642]{pics/amp-circuit.pdf}}}
+\put(20,-57)
+{\hbox{\includegraphics[width=0.52\textwidth,natwidth=610,natheight=642]{pics/divider.pdf}}}
 \end{picture} 
-\caption{Schematic diagram of the JLab-designed transistorized impedance matching amplifier 
-circuit added to the standard Hamamatsu R2083 voltage divider.}
-\label{popov-mod}
+\caption{Comparison of the performance of the R2083 PMT vs. PMT anode current ($\mu$A) with its
+stock divider (blue squares) compared to that of an R2083 PMT with the modified divider (red circles)
+showing (a) the gain stability and (b) the timing response stability.}
+\label{mod-div-plots}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -693,20 +710,6 @@ assemblies as a function of the PMT anode current. The gain of the modified divi
 independent of current up to 200~$\mu$A, the maximum rated current of the device, compared to the
 stock divider. Figure~\ref{mod-div-plots} also shows a corresponding improvement in the stability of the
 timing response up to 200~$\mu$A.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{7.7cm}
-\begin{picture}(50,50) 
-\put(55,-75)
-{\hbox{\includegraphics[width=0.95\textwidth,natwidth=610,natheight=642]{pics/divider.pdf}}}
-\end{picture} 
-\caption{Comparison of the performance of the R2083 PMT vs. PMT anode current ($\mu$A) with its
-stock divider (blue squares) compared to that of an R2083 PMT with the modified divider (red circles)
-showing (a) the gain stability and (b) the timing response stability.}
-\label{mod-div-plots}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Magnetic Shields}
 \label{sec:shields}
@@ -738,7 +741,7 @@ these shields in the solenoid fringe field, the corresponding axial and transver
 locations are different.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[htbp]
+\begin{table*}[htbp]
 \begin{center}
 \begin{tabular} {|c|c|c|} \hline
                & High-Pitch Angle & Low-Pitch Angle \\ \hline
@@ -757,7 +760,7 @@ are from a 3-D field map of the CLAS12 solenoid. The positions are locations alo
 at the photocathode, the first dynode, the middle of the accelerating structure, and at the end faces of the
 magnetic shield volumes.}
 \label{field-position}
-\end{table}
+\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 For the positioning of the CTOF magnetic shields in the CLAS12 solenoid fringe field, the field lines are at
@@ -800,10 +803,11 @@ assembly is $\sim$40~lbs.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{2.6cm}
+\vspace{1.4cm}
 \begin{picture}(50,50) 
-\put(15,-80)
-{\hbox{\includegraphics[angle=-90,width=0.80\textwidth,natwidth=610,natheight=642,angle=90]{pics/bshield.pdf}}}
+\put(-30,-70)
+{\hbox{\includegraphics[angle=-90,width=0.53\textwidth,natwidth=610,natheight=642,angle=90]
+{pics/bshield.pdf}}}
 \end{picture} 
 \caption{The CTOF magnetic shield as shown in a 3-D cut view with the different components labeled.
 The light guide enters the shield from right side.}
@@ -811,54 +815,56 @@ The light guide enters the shield from right side.}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-A compensation coil of 150 turns of 1-mm-thick magnet wire (18~AWG copper with a polyurethane and polyimide
-overcoat) was wound on an aluminum mandrel that was positioned between the inner and middle ferromagnetic
-layers. The compensation coil consists of two wholly independent coils, the first $z_1$ of 90 turns placed about
-the middle of the PMT accelerating structure and the second $z_2$ of 60 turns placed about the PMT
-photocathode. A gap between the coils was included to achieve a more uniform field along the PMT axis. 2-D
-finite element analysis (FEA) calculations  showed that coil currents on the order of 0.5~A to 1~A were
-sufficient to reduce the inner remnant field of 0.5~G to 1~G down to the level of 0.2~G for optimal PMT
-response. For these currents, the coils generate a field of 5~G to 10~G at the surface of the mandrel.
+A compensation coil of 150 turns of 1-mm-thick magnet wire (18~AWG copper with a polyurethane and
+polyimide overcoat) was wound on an aluminum mandrel that was positioned between the inner and middle
+ferromagnetic layers. The compensation coil consists of two wholly independent coils, the first $z_1$ of
+90 turns placed about the middle of the PMT accelerating structure and the second $z_2$ of 60 turns
+placed about the PMT photocathode. A gap between the coils was included to achieve a more uniform field
+along the PMT axis. 2-D finite element analysis (FEA) calculations  showed that coil currents on the order
+of 0.5~A to 1~A were sufficient to reduce the inner remnant field of 0.5~G to 1~G down to the level of
+0.2~G for optimal PMT response. For these currents, the coils generate a field of 5~G to 10~G at the
+surface of the mandrel.
 
-It should be emphasized that the compensation coils are placed outside of the innermost ferromagnetic cylinder.
-The whole point is that the effective field in the PMT area is a superposition of the ferromagnetic magnetization,
-the residual external fields, and the coil field. Unlike the case of an external compensation coil, the inner coil
-positioning creates two opposite axial fields. The first field is that of the compensation coil and the second field
-with the opposite direction is due to the additional ferromagnetic magnetizations by the compensation coil. Field
-calculations were carried out to show that the two opposing fields reduced the field along the PMT accelerating
-structure from $\sim$1~G down to $\sim$0.2~G.
+It should be emphasized that the compensation coils are placed outside of the innermost ferromagnetic
+cylinder. The whole point is that the effective field in the PMT area is a superposition of the ferromagnetic
+magnetization, the residual external fields, and the coil field. Unlike the case of an external compensation
+coil, the inner coil positioning creates two opposite axial fields. The first field is that of the compensation
+coil and the second field with the opposite direction is due to the additional ferromagnetic magnetizations
+by the compensation coil. Field calculations were carried out to show that the two opposing fields reduced
+the field along the PMT accelerating structure from $\sim$1~G down to $\sim$0.2~G.
 
-For the CTOF shields the compensation coils $z_1$ and $z_2$ are independently controllable. The low voltage
-power supply for the coils is a Wiener MPOD mini-crate outfitted with two MPV8016I modules. Each module has
-eight channels that can individually provide up to 50~W per channel with a maximum current of 5~A. Each channel
-powers 12 individual $z_1$ or $z_2$ upstream or downstream coils in series. The coils corresponding to the
-upstream low-pitch angle PMTs are on separate channels than for the upstream high-pitch angle PMTs as the
-remnant field components inside the shield are slight different. The power supply is connected to the coils through
-$15 - 21$~m long power cables. 
+For the CTOF shields the compensation coils $z_1$ and $z_2$ are independently controllable. The low
+voltage power supply for the coils is a Wiener MPOD mini-crate outfitted with two MPV8016I modules. Each
+module has eight channels that can individually provide up to 50~W per channel with a maximum current of
+5~A. Each channel powers 12 individual $z_1$ or $z_2$ upstream or downstream coils in series. The coils
+corresponding to the upstream low-pitch angle PMTs are on separate channels than for the upstream
+high-pitch angle PMTs as the remnant field components inside the shield are slight different. The power
+supply is connected to the coils through $15 - 21$~m long power cables. 
 
-In order to optimize the performance of the CTOF magnetic shields, studies were performed using both 2-D
-and 3-D FEA calculations. Ultimately, full consistency between these approaches was achieved~\cite{cn2015-003}.
-Full 3-D calculations with the OPERA-TOSCA suite for the CTOF shields in a 1~kG uniform external field tilted at
-40$^\circ$ with respect to the shield axis yielded the results shown in Fig.~\ref{shield-opera1}, where the field
-profile is shown as a function of transverse coordinate across the shield at the location of the photocathode, the
-first dynode, and the middle of the accelerating structure. This shows that as the outer shield layer is approached,
-the field magnitude slightly changes and that the behavior depends on the coordinate along the axis. Inside the
-outer ferromagnetic layer, the field magnitude rises up by a factor of 10 to $>10^4$~G due to the very high
-magnetization of the ferromagnetic material that may be close to saturation. In the region between the outer and
-middle ferromagnetic cylinders, the field magnitude drops by a factor of 10-50 depending on the axial coordinate
-along the shield. A similar effect is seen between the middle and the inner layers. At the location of the PMT the
-field magnitude is $\sim$0.4~G. Note that the compensation coils were not energized for these calculations. 
+In order to optimize the performance of the CTOF magnetic shields, studies were performed using both
+2-D and 3-D FEA calculations. Ultimately, full consistency between these approaches was achieved
+\cite{cn2015-003}. Full 3-D calculations with the OPERA-TOSCA suite for the CTOF shields in a 1~kG
+uniform external field tilted at 40$^\circ$ with respect to the shield axis yielded the results shown in
+Fig.~\ref{shield-opera1}, where the field profile is shown as a function of transverse coordinate across the
+shield at the location of the photocathode, the first dynode, and the middle of the accelerating structure.
+This shows that as the outer shield layer is approached, the field magnitude slightly changes and that the
+behavior depends on the coordinate along the axis. Inside the outer ferromagnetic layer, the field magnitude
+rises up by a factor of 10 to $>10^4$~G due to the very high magnetization of the ferromagnetic material
+that may be close to saturation. In the region between the outer and middle ferromagnetic cylinders, the
+field magnitude drops by a factor of 10-50 depending on the axial coordinate along the shield. A similar effect
+is seen between the middle and the inner layers. At the location of the PMT the field magnitude is
+$\sim$0.4~G. Note that the compensation coils were not energized for these calculations. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.5cm}
+\vspace{3.3cm}
 \begin{picture}(50,50) 
-\put(10,-40)
-{\hbox{\includegraphics[width=0.75\textwidth,natwidth=610,natheight=642]{pics/opera-mod1a.pdf}}}
+\put(-18,-35)
+{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642]{pics/opera-mod1a.pdf}}}
 \end{picture} 
-\caption{3-D magnetic field calculations using the code suite Opera for the CTOF PMT shield in a uniform 1~kG
-field. The calculation plots the field profile (in G) across the transverse coordinate (in cm) of the CTOF
-three-layer passive magnetic shield system. The different curves correspond to different transverse
+\caption{3-D magnetic field calculations using the code suite Opera for the CTOF PMT shield in a uniform
+1~kG field. The calculation plots the field profile (in G) across the transverse coordinate (in cm) of the
+CTOF three-layer passive magnetic shield system. The different curves correspond to different transverse
 coordinates along the PMT (photocathode at $z$=+4~cm, first dynode at $z$=0, and middle of the accelerating
 structure at $z$=-4~cm). For this calculation the external field lines were at an angle of 40$^\circ$ relative to
 the shield axis of symmetry to reflect the expected operational configuration of the shields.} 
@@ -866,16 +872,17 @@ the shield axis of symmetry to reflect the expected operational configuration of
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In order to validate the 2-D and 3-D FEA calculation results for the CTOF magnetic shield design, studies were
-completed placing one of the shields in the fringe field of a 5-T superconducting test magnet. For these tests the
-shield was set in the fringe field at positions that matched the field strength and gradient for what was expected
-from Table~\ref{field-position} for the shield positioning in the fringe field of the CLAS12 solenoid. The tests
-showed that all field components were measured to be less than 0.5~G at all positions along the PMT volume even
-with the compensation coils turned off. The studies further showed that the remnant field could be reduced by a
-factor of two with the compensation coils set to 1~A (with $i_{z_1} = i_{z_2}$). The full results from these tests
-are detailed in Ref.~\cite{shield-test}. The effectiveness of the shields was also studied after CTOF counter
-installation in the CLAS12 solenoid. The PMT gains as seen through the average ADC response for minimum-ionizing
-particles were in agreement with the solenoid off and energized to full field.
+In order to validate the 2-D and 3-D FEA calculation results for the CTOF magnetic shield design, studies
+were completed placing one of the shields in the fringe field of a 5-T superconducting test magnet. For these
+tests the shield was set in the fringe field at positions that matched the field strength and gradient for
+what was expected from Table~\ref{field-position} for the shield positioning in the fringe field of the
+CLAS12 solenoid. The tests showed that all field components were measured to be less than 0.5~G at all
+positions along the PMT volume even with the compensation coils turned off. The studies further showed
+that the remnant field could be reduced by a factor of two with the compensation coils set to 1~A (with
+$i_{z_1} = i_{z_2}$). The full results from these tests are detailed in Ref.~\cite{shield-test}. The
+effectiveness of the shields was also studied after CTOF counter installation in the CLAS12 solenoid. The
+PMT gains as seen through the average ADC response for minimum-ionizing particles were in agreement with
+the solenoid off and energized to full field.
 
 \subsection{Counter Assembly}
 \label{assembly}
@@ -953,10 +960,10 @@ that processes these signals is shown in Fig.~\ref{electronics}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.8cm}
+\vspace{3.4cm}
 \begin{picture}(50,50) 
-\put(40,-20)
-{\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{pics/ctof-electronics-block.pdf}}}
+\put(0,-20)
+{\hbox{\includegraphics[width=0.43\textwidth,natwidth=610,natheight=642]{pics/ctof-electronics-block.pdf}}}
 \end{picture} 
 \caption{Block diagram showing the layout of the readout electronics and power connections for a single
 CTOF counter.}
@@ -984,10 +991,10 @@ manufacturer's recommendations.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.3cm}
+\vspace{2.3cm}
 \begin{picture}(50,50) 
-\put(70,-180)
-{\hbox{\includegraphics[width=0.85\textwidth,natwidth=610,natheight=642]{pics/res-comp19b.pdf}}}
+\put(25,-135)
+{\hbox{\includegraphics[width=0.52\textwidth,natwidth=610,natheight=642]{pics/res-comp19b.pdf}}}
 \end{picture} 
 \caption{Average resolution for a set of 8 counters (ps) vs. CFD shaping delay (ns).}
 \label{cfd-study}
@@ -1019,10 +1026,10 @@ a reasonable accuracy. Details on the hit clusterization for CTOF are described 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.0cm}
+\vspace{2.5cm}
 \begin{picture}(50,50) 
-\put(65,-90)
-{\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642]{pics/ctof-fadc.pdf}}}
+\put(10,-80)
+{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642]{pics/ctof-fadc.pdf}}}
 \end{picture} 
 \caption{Average pedestal-subtracted FADC spectrum from a CTOF counter read out from beam data
 with a 10.6~GeV electron beam incident upon a 5~cm liquid-hydrogen target with the JLab FADC250
@@ -1032,7 +1039,7 @@ module.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[htbp]
+\begin{table*}[htbp]
 \begin{center}
 \begin{tabular}{c|c} \hline
 TDC Specs                           & ADC Specs \\ \hline
@@ -1049,7 +1056,7 @@ Inter-channel isolation $<$ 3 LSB   & SNR 56.8~dB @ 100~MHz input \\ \hline
 \caption{The key performance specifications of the CTOF CAEN VX1290N pipeline TDCs and JLab 
 FADC250 flash ADCs.}
 \label{tdcadc-specs}
-\end{table}
+\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The PMT anode to splitter panel connections are made using LMR-195 cables, a low-loss variant of RG-58.
@@ -1126,10 +1133,10 @@ counter hit times $t_{t,m,b} = \frac{1}{2}(t_{1,3,5} + t_{2,4,6})$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.2cm}
+\vspace{2.0cm}
 \begin{picture}(50,50) 
-\put(70,5)
-{\hbox{\includegraphics[width=0.80\textwidth,natwidth=610,natheight=642]{pics/triplet-alt.pdf}}}
+\put(25,-5)
+{\hbox{\includegraphics[width=0.47\textwidth,natwidth=610,natheight=642]{pics/triplet-alt.pdf}}}
 \end{picture} 
 \caption{Schematic representation of a triplet of counters (labeled top - $t$, middle - $m$, bottom -
 $b$) with a cosmic ray track traversing the stack. The geometry of the triplet is configured such that
@@ -1172,10 +1179,10 @@ results are quite encouraging compared to the design specifications.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.2cm}
+\vspace{2.8cm}
 \begin{picture}(50,50) 
-\put(57,-65)
-{\hbox{\includegraphics[width=0.90\textwidth,natwidth=610,natheight=642]{pics/res-comp35.pdf}}}
+\put(25,-50)
+{\hbox{\includegraphics[width=0.50\textwidth,natwidth=610,natheight=642]{pics/res-comp35.pdf}}}
 \end{picture} 
 \caption{Measured average CTOF counter resolution with cuts on the measured ADC values and the
 measured hit coordinates to select events going through the middle of the counter.}
@@ -1193,10 +1200,10 @@ material that results in increased photo-statistics.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.3cm}
+\vspace{1.3cm}
 \begin{picture}(50,50) 
-\put(12,-205)
-{\hbox{\includegraphics[width=1.1\textwidth,natwidth=610,natheight=642]{pics/res-dep.pdf}}}
+\put(-3,-128)
+{\hbox{\includegraphics[width=0.57\textwidth,natwidth=610,natheight=642]{pics/res-dep.pdf}}}
 \end{picture} 
 \caption{Dependence of the counter time resolution for a representative counter on a). the
 coordinate of the reference counter, b). the average reference counter ADC value, and c). the
@@ -1231,10 +1238,10 @@ of which beam bunch produced a given interaction must be determined by the exper
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.8cm}
+\vspace{2.3cm}
 \begin{picture}(50,50) 
-\put(0,-95)
-{\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{pics/calib-seq.pdf}}}
+\put(-47,-83)
+{\hbox{\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/calib-seq.pdf}}}
 \end{picture} 
 \caption{Schematic representation of the different steps in the CTOF calibration sequence and their
 order.}
@@ -1352,10 +1359,10 @@ data.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.2cm}
+\vspace{1.8cm}
 \begin{picture}(30,50) 
-\put(105,-35)
-{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642]{pics/gmean.pdf}}}
+\put(55,-27)
+{\hbox{\includegraphics[width=0.25\textwidth,natwidth=610,natheight=642]{pics/gmean.pdf}}}
 \end{picture} 
 \caption{Geometric ADC mean spectrum for one representative CTOF counter from beam data. The events
 recorded are pedestal subtracted. The red curve is a fit function that includes a Landau shape for the
@@ -1409,10 +1416,10 @@ Fig.~\ref{alpha-data}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.0cm}
+\vspace{1.8cm}
 \begin{picture}(50,50) 
-\put(15,-90)
-{\hbox{\includegraphics[width=1.00\textwidth,natwidth=610,natheight=642]{pics/alpha1.pdf}}}
+\put(-15,-67)
+{\hbox{\includegraphics[width=0.58\textwidth,natwidth=610,natheight=642]{pics/alpha1.pdf}}}
 \end{picture} 
 \caption{Data showing the measurements of the power law factor $\alpha$ for each CTOF upstream PMT
 (red triangles) and downstream PMT (blue circles). The average values of $\alpha$ is 4.}
@@ -1445,10 +1452,10 @@ that point their energy loss follows the Bethe-Bloch formula.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.0cm}
+\vspace{2.1cm}
 \begin{picture}(50,50) 
-\put(20,230)
-{\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642,angle=-90]
+\put(0,140)
+{\hbox{\includegraphics[width=0.37\textwidth,natwidth=610,natheight=642,angle=-90]
 {pics/ctof-dedx.pdf}}}
 \end{picture} 
 \caption{Measured CTOF counter energy loss summed over all counters for positively charged particles
@@ -1496,8 +1503,7 @@ written as:
 
 \begin{equation}
 \label{linear}
-\log \left( \frac{(ADC-PED)_U}{(ADC-PED)_D} \right ) = C + \frac{d_U - d_D}{\lambda} = C +
-\frac{2 \cdot coor}{\lambda}.
+\log \left( \frac{(ADC-PED)_U}{(ADC-PED)_D} \right ) = C + \frac{2 \cdot coor}{\lambda}.
 \end{equation}
 
 \noindent
@@ -1508,10 +1514,10 @@ attenuation lengths for the CTOF counters, whose average is found to be 140~cm i
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.6cm}
+\vspace{2.0cm}
 \begin{picture}(30,50) 
-\put(55,-200)
-{\hbox{\includegraphics[width=0.85\textwidth,natwidth=610,natheight=642]{pics/atten.pdf}}}
+\put(12,-150)
+{\hbox{\includegraphics[width=0.53\textwidth,natwidth=610,natheight=642]{pics/atten.pdf}}}
 \end{picture} 
 \caption{Counter attenuation lengths (cm) vs. counter number determined from beam data.}
 \label{atten-len1}
@@ -1530,10 +1536,10 @@ effective velocity is found to be 14.5~cm/ns.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.6cm}
+\vspace{2.0cm}
 \begin{picture}(30,50) 
-\put(55,-200)
-{\hbox{\includegraphics[width=0.85\textwidth,natwidth=610,natheight=642]{pics/veff.pdf}}}
+\put(20,-142)
+{\hbox{\includegraphics[width=0.50\textwidth,natwidth=610,natheight=642]{pics/veff.pdf}}}
 \end{picture} 
 \caption{Counter effective velocities (cm/ns) vs. counter number determined from beam data.}
 \label{veff}
@@ -1586,10 +1592,10 @@ $t_{res}'$ distribution in a range of $\pm T_{RF}/2$ about the peak channel in t
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.8cm}
+\vspace{1.7cm}
 \begin{picture}(50,50) 
-\put(95,-55)
-{\hbox{\includegraphics[width=0.5\textwidth,natwidth=610,natheight=642]{pics/rfp-plot.pdf}}}
+\put(40,-45)
+{\hbox{\includegraphics[width=0.30\textwidth,natwidth=610,natheight=642]{pics/rfp-plot.pdf}}}
 \end{picture} 
 \caption{Distribution of the CTOF hit times from beam data traced back to the vertex relative to the
 RF (ns) for one representative CTOF counter with the Gaussian plus background fit overlaid to determine
@@ -1649,10 +1655,10 @@ corrected time after subtracting $\delta t_{hpos}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.3cm}
+\vspace{0.8cm}
 \begin{picture}(50,50) 
-\put(-80,-155)
-{\hbox{\includegraphics[width=1.15\textwidth,natwidth=610,natheight=642]{pics/hpos.pdf}}}
+\put(-58,-105)
+{\hbox{\includegraphics[width=0.60\textwidth,natwidth=610,natheight=642]{pics/hpos.pdf}}}
 \end{picture} 
 \caption{Distribution of $t_{res}'$ (ns) vs. hit position along the bar (cm) (left) before and (right) after
 the position-dependent correction. The left plot shows the fit functional overlaid on the data for a
@@ -1678,10 +1684,10 @@ of CONV = 23.45~ps/channel is employed for the CTOF system TDCs.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.2cm}
+\vspace{2.2cm}
 \begin{picture}(50,50) 
-\put(85,-60)
-{\hbox{\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/tdc-plot.pdf}}}
+\put(35,-52)
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{pics/tdc-plot.pdf}}}
 \end{picture} 
 \caption{Distribution of $t_{res}'$ (ns) vs. TDC channel * CONV (ps) for one representative CTOF PMT.
 The TDC conversion constant for each channel is that which forces the slope of a linear fit to be zero.}
@@ -1711,10 +1717,10 @@ important improvements in the CTOF time resolution.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.3cm}
+\vspace{1.8cm}
 \begin{picture}(50,50) 
-\put(70,-190)
-{\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{pics/res-beam.pdf}}}
+\put(20,-140)
+{\hbox{\includegraphics[width=0.5\textwidth,natwidth=610,natheight=642]{pics/res-beam.pdf}}}
 \end{picture} 
 \caption{The measured effective time resolution (ps) vs. counter number for each of the CTOF counters
 from beam data for a 10.6~GeV electron beam incident upon a liquid-hydrogen target with the solenoid
@@ -1740,9 +1746,9 @@ provided in Refs.~\cite{recon-nim,ctof-recon}.
 
 The track hit times reconstructed from the readout of the upstream and downstream PMTs are given by:
 
-\begin{equation}
-t_{U,D} = (CONV \cdot TDC_{U,D}) \mp \frac{C_{UD}}{2} + C_{RF} + C_{p2p} - \frac{\delta t_{hpos}}{2},
-\end{equation}
+\begin{multline}
+  t_{U,D} = (CONV \cdot TDC_{U,D}) \mp \frac{C_{UD}}{2} + \\ C_{RF} + C_{p2p} - \frac{\delta t_{hpos}}{2},
+\end{multline}
 
 \noindent
 where $CONV$ is the TDC channel to time conversion factor, $TDC$ is the measured TDC value relative
@@ -1809,10 +1815,10 @@ guides that is seen by the downstream PMTs and not by the upstream PMTs.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.3cm}
+\vspace{2.3cm}
 \begin{picture}(50,50) 
-\put(55,-70)
-{\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{pics/rates-ctof.pdf}}}
+\put(27,-52)
+{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642]{pics/rates-ctof.pdf}}}
 \end{picture} 
 \caption{CTOF counter rates (kHz) for 10.6~GeV electrons on a liquid-hydrogen target with the
 solenoid at its full nominal current as a function of beam current (nA) with a 1~MeV energy threshold.
@@ -1840,10 +1846,10 @@ or included.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.2cm}
+\vspace{2.8cm}
 \begin{picture}(50,50) 
-\put(80,165)
-{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642,angle=-90]{pics/ctof-mc-plot.pdf}}}
+\put(23,126)
+{\hbox{\includegraphics[width=0.30\textwidth,natwidth=610,natheight=642,angle=-90]{pics/ctof-mc-plot.pdf}}}
 \end{picture} 
 \caption{CLAS12 Monte Carlo calculations for 11 GeV electrons on a liquid-hydrogen target at a luminosity
 of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$ showing CTOF rates per counter as a function of particle
@@ -1874,10 +1880,10 @@ the upstream end of CTOF) was operating at a gain above 1$\times$10$^6$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.2cm}
+\vspace{2.2cm}
 \begin{picture}(50,50) 
-\put(60,-70)
-{\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{pics/full-ctof.pdf}}}
+\put(15,-55)
+{\hbox{\includegraphics[width=0.5\textwidth,natwidth=610,natheight=642]{pics/full-ctof.pdf}}}
 \end{picture} 
 \caption{Measurements of the PMT anode current ($\mu$A) for a representative upstream CTOF PMT
 as a function of beam current (nA) with a 10.6~GeV electron incident upon a 5~cm liquid-hydrogen target
@@ -1901,10 +1907,10 @@ CTOF system. A clear separation of pions and protons can be seen from these data
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{6.5cm}
+\vspace{4.0cm}
 \begin{picture}(50,50) 
-\put(50,-85)
-{\hbox{\includegraphics[width=0.75\textwidth,natwidth=610,natheight=642]{pics/ctof-pid.pdf}}}
+\put(12,-65)
+{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642]{pics/ctof-pid.pdf}}}
 \end{picture} 
 \caption{Reconstructed $\beta$ vs. momentum (GeV) (left) and mass squared (GeV$^2$) (right)
 distributions for positively charged particles (top) and negatively charged particles (bottom) for
@@ -1927,10 +1933,10 @@ calibrations and reconstruction.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{6.0cm}
+\vspace{3.6cm}
 \begin{picture}(50,50) 
-\put(60,-80)
-{\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{pics/ctof-mass.pdf}}}
+\put(15,-65)
+{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642]{pics/ctof-mass.pdf}}}
 \end{picture} 
 \caption{Reconstructed mass (GeV) for positively charged particles from the timing in CTOF counters from
 beam data with a 7.5-GeV electron beam incident on a liquid-hydrogen target. The data are sorted into four
@@ -1958,8 +1964,8 @@ squared distributions for several bins in hadron momentum from 0.4~GeV to 1.0~Ge
 state of CLAS12 detector calibrations, detector alignment, and knowledge of the solenoid magnetic field,
 these distributions show reasonable separation between $\pi/K$ up to about 0.5~GeV and separation of
 $\pi$ from $p$ to about 1~GeV. Improvements in the CTOF and central tracking calibrations and detector
-alignment are still expected should give improved particle identification and separation of the different charged
-hadron species to higher momentum.
+alignment are still expected should give improved particle identification and separation of the different
+charged hadron species to higher momentum.
 
 \section{Summary}
 \label{sec:summary}
@@ -1980,7 +1986,7 @@ physics program. The performance of the CTOF system was verified in extensive be
 cosmic ray test stand, as well as after installation in the first beam runs with the CLAS12 system in the
 period from Dec. 2017 to May 2018 and from Sep. to Dec. 2018. 
 
-\ack
+\section*{Acknowledgements}
 
 We benefited greatly from useful discussions with and assistance from Sergey Boyarinov, Chris
 Cuevas, Ralf Gothe, Chris Keith, Eugene Pasyuk, Cole Smith, Elton Smith, Maurizio Ungaro, and
@@ -2022,16 +2028,17 @@ B. Raydo {\it et al.}, {\it ``The CLAS12 Trigger System''}, to be published in N
 \bibitem{baturin-2009}
 V. Baturin {\it et al.}, {\it ``Time Resolution Measurements with the Final Prototype for the 
 CLAS12 Central TOF Detector''}, CLAS-Note 2009-001, (2009).\\
-https://misportal.jlab.org/ul/Physics/Hall-B/clas/viewFile.cfm/2009-001.pdf?documentId=549
+https://misportal.jlab.org/ul/Physics/Hall-B/clas/\\ viewFile.cfm/2009-001.pdf?documentId=549
 
 \bibitem{geom-note}
 V. Baturin and D.S. Carman, {\it ``Central Time-of-Flight Geometry for CLAS12''}, CLAS12-Note 
-2016-001, (2016).\\
-https://misportal.jlab.org/mis/physics/clas12/viewFile.cfm/2016-001.pdf?documentId=25
+2016-001, (2016).
+https://misportal.jlab.org/mis/physics/clas12/\\ viewFile.cfm/2016-001.pdf?documentId=25
 
 \bibitem{eljen-ref}
 Eljen EJ-200 Data Sheet,\\
-https://eljentechnology.com/images/products/data\_sheets/EJ-200\_EJ-204\_EJ-208\_EJ-212.pdf
+https://eljentechnology.com/images/products/\\
+data\_sheets/EJ-200\_EJ-204\_EJ-208\_EJ-212.pdf
 
 \bibitem{eljen-guide}
 Eljen Technology Scintillator Polishing Guide,\\
@@ -2039,7 +2046,7 @@ http://www.eljentechnology.com/images/technical-library/Plastic\_Polishing.pdf
 
 \bibitem{barbosa06}
 F. Barbosa {\it et al.}, {\it ``Status and Further Steps Towards the CLAS12 ``Start''-Counter''},
-CLAS-Note 2006-011, (2006).\\
+CLAS-Note 2006-011, (2006).
 https://misportal.jlab.org/ul/Physics/Hall-B/clas/viewFile.cfm/2006-011.pdf?documentId=278
 
 \bibitem{guide7} 
@@ -2047,11 +2054,12 @@ T. Massam, Guide7, {\it ``A General Program for Evaluating the Properties of Sci
 Cherenkov Counter Optical Systems''}, CERN Report EP-76-21, (1976),
 
 \bibitem{r2083-ref}  
-Hamamatsu R2083 PMT, http://www.hamamatsu.com/us/en/R2083.html
+Hamamatsu R2083 PMT, \\
+http://www.hamamatsu.com/us/en/R2083.html
 
 \bibitem{ham-schem}
 Hamamatsu H2431 Assembly, \\
-http://www.hamamatsu.com/resources/pdf/etd/PMT\_TPMZ0002E.pdf
+http://www.hamamatsu.com/resources/pdf/\\ etd/PMT\_TPMZ0002E.pdf
 
 \bibitem{popov}
 V. Popov, Nucl. Inst. and Meth.A {\bf 505}, 316 (2003).
@@ -2062,37 +2070,40 @@ V. Baturin {\it et al.}, Nucl. Inst. and Meth. A {\bf 664}, 11 (2012).
 \bibitem{cn2015-003} 
 V. Baturin and D.S. Carman, {\it ``Design and Performance Tests of the Dynamical Magnetic Shields 
 for the CLAS12 Central Time-of-Flight Detector''}, CLAS12-Note 2015-003.\\
-https://misportal.jlab.org/mis/physics/clas12/viewFile.cfm/2015-003.pdf?documentId=19
+https://misportal.jlab.org/mis/physics/clas12/\\
+viewFile.cfm/2015-003.pdf?documentId=19
 
 \bibitem{shield-test} 
 D.S. Carman, G. Asryan, and A. Ni, {\it ``Central Time-of-Flight Magnetic Shield Performance 
 Studies''}, CLAS12-Note 2015-004, (2015).\\
-https://misportal.jlab.org/mis/physics/clas12/viewFile.cfm/2015-004.pdf?documentId=20
+https://misportal.jlab.org/mis/physics/clas12/\\
+viewFile.cfm/2015-004.pdf?documentId=20
 
 \bibitem{ctof-wrapping} 
 D.S. Carman, {\it ``Central Time-of-Flight Counter Wrapping Procedures''}, CLAS12-Note 2016-002, (2016).\\
-https://misportal.jlab.org/mis/physics/clas12/viewFile.cfm/2016-002.pdf?documentId=26
+https://misportal.jlab.org/mis/physics/clas12/\\
+viewFile.cfm/2016-002.pdf?documentId=26
 
 \bibitem{ctof-sh-assy} 
 D.S. Carman, {\it ``Central Time-of-Flight Magnetic Shield Attachment Procedures''}, CLAS12-Note 
 2016-003, (2016).\\
-https://misportal.jlab.org/mis/physics/clas12/viewFile.cfm/2016-003.pdf?documentId=27
+https://misportal.jlab.org/mis/physics/clas12/\\
+viewFile.cfm/2016-003.pdf?documentId=27
 
 \bibitem{daq-nim}
 S. Boyarinov {\it et al.}, {\it ``The CLAS12 Data Acquisition System''}, to be published in Nucl. Inst.
 and Meth. A, (2020). (see this issue)
   
 \bibitem{fadc-manual}
-JLab 250~MHz FADC Manual, \\
-https://www.jlab.org/Hall-B/ftof/manuals/FADC250UsersManual.pdf
+JLab 250~MHz FADC Manual, https://www.jlab.org/\\ Hall-B/ftof/manuals/FADC250UsersManual.pdf
   
 \bibitem{epics}
-EPICS (Experimental Physics and Industrial Control System),\\ http://www.aps.anl.gov/epics
+EPICS (Experimental Physics and Industrial Control System), http://www.aps.anl.gov/epics
 
 \bibitem{dsc-cn2016-009}
-D.S. Carman, {\it ``Central Time-of-Flight System Bench Testing Results''},\\
+D.S. Carman, {\it ``Central Time-of-Flight System Bench Testing Results''},
 CLAS12-Note 2016-009, (2016).\\
-https://misportal.jlab.org/mis/physics/clas12/viewFile.cfm/2016-009.pdf?documentId=49
+https://misportal.jlab.org/mis/physics/clas12/\\ viewFile.cfm/2016-009.pdf?documentId=49
 
 \bibitem{ctof-calib}
 D.S. Carman, {\it Description of the Calibration Algorithms for the CLAS12 Central Time-of-Flight System},
@@ -2117,7 +2128,7 @@ and Meth. A, (2020). (see this issue)
 \bibitem{ctof-cn2018}
 V. Burkert, D.S. Carman, L.C. Smith, and M. Ungaro, {\it Study of Tungsten Shielding Before CTOF to Limit
 its PMT Currents}, CLAS12-Note 2018-006, (2018).\\
-https://misportal.jlab.org/mis/physics/clas12/viewFile.cfm/2018-006.pdf?documentId=60
+https://misportal.jlab.org/mis/physics/clas12/\\ viewFile.cfm/2018-006.pdf?documentId=60
 
 \end{thebibliography}
 
