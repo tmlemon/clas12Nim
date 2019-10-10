@@ -4,37 +4,41 @@
 % Use 1). latex ftof-nim.tex, 2). dvipdfm ftof-nim
 %
 %\RequirePackage{lineno}
-\documentclass{elsart}
-\usepackage[dvips]{color,graphics}
-\usepackage[pdftex]{graphicx}
+\documentclass[final,3p,twocolumn]{elsarticle}
+%\documentclass{elsart}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+%\usepackage[dvips]{color,graphics}
+%\usepackage[pdftex]{graphicx}
 %\setcounter{footnote}{0}
-\setcounter{tocdepth}{4}
+%\setcounter{tocdepth}{4}
 %
-\usepackage{lineno} 
-\linenumbers
+%\usepackage{lineno} 
+%\linenumbers
 
 \begin{document}
 \begin{frontmatter}
 
 \title{The CLAS12 Forward Time-of-Flight System}
 
-\author[JLab]{D.S. Carman\thanksref{corresponding}},
-\author[Glasgow]{L. Clark},
-\author[INFN]{R. De Vita},
-\author[USC]{G. Fedotov},
-\author[USC]{R.W. Gothe},
-\author[USC]{G. Hollis},
-\author[JLab]{B. Miller},
-\author[USC]{E. Phelps},
-\author[USC]{Y. Tian},
-\author[USC]{A. Trivedi}, and
+\author[JLab]{D.S. Carman\corref{corresponding}}
+\author[Glasgow]{L. Clark}
+\author[INFN]{R. De Vita}
+\author[USC]{G. Fedotov}
+\author[USC]{R.W. Gothe}
+\author[USC]{G. Hollis}
+\author[JLab]{B. Miller}
+\author[USC]{E. Phelps}
+\author[USC]{Y. Tian}
+\author[USC]{A. Trivedi}
 \author[JLab]{C. Wiggins}
 
 \address[JLab]{Thomas Jefferson National Accelerator Facility, Newport News, VA 23606, USA}
 \address[USC]{University of South Carolina, Columbia, SC 29208, USA}
 \address[Glasgow]{University of Glasgow, Glasgow G12 8QQ, United Kingdom}
 \address[INFN]{INFN, Sezione di Genova, 16146 Genova, Italy}
-\thanks[corresponding]{Corresponding author. Address: 12000 Jefferson Ave., Newport News, VA 23606; 
+\cortext[corresponding]{Corresponding author. Address: 12000 Jefferson Ave., Newport News, VA 23606; 
 e-mail: carman@jlab.org.}
 
 \date{\today}
@@ -59,13 +63,6 @@ forward-going charged particles.
 
 PACS:29.40.Mc \\
 Keywords: CLAS12, time of flight, plastic scintillator, particle identification
-\newpage
-
-%\newpage
-%\tableofcontents
-
-%\vfil
-%\eject
 
 \section{Overview of CLAS12}
 
@@ -107,10 +104,10 @@ took the place of the original CLAS spectrometer~\cite{clas-nim} that operated i
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
-\vspace{6.0cm}
+\vspace{2.6cm}
 \begin{picture}(50,50) 
-\put(20,250)
-{\hbox{\includegraphics[width=0.70\textwidth,natwidth=610,natheight=642,angle=-90]{pics/ftof_clas12.pdf}}}
+\put(7,140)
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642,angle=-90]{pics/ftof_clas12.pdf}}}
 \end{picture} 
 \caption{Model representation of the CLAS12 spectrometer in Hall~B at Jefferson Laboratory. The
 electron beam is incident from the left side of this figure. The CLAS12 detector is roughly 20~m in
@@ -149,19 +146,19 @@ for momenta up to $\sim$5~GeV. The FTOF  was designed to measure the flight time
 emerging from the target with an average time resolution of 80~ps. Given this nominal time resolution for the
 counters, the momentum threshold for particle identification can be defined. For our purposes, thresholds are
 given at the 4$\sigma$ level for FTOF, which amounts to the momenta where particle identification can occur
-with up to an order of magnitude difference in the relative yields of the different species. The time resolution is
-illustrated by computing the flight time differences between different charged particle species, pions, kaons, and
-protons, for tracks normally incident on the detector. Figure~\ref{tdiff} shows the computed time differences as
-a function of momentum. Where the 4$\sigma$ line crosses the computed time difference curves defines the
-momentum limit for particle identification for each particle species. These limits are given as 2.8~GeV for
-$\pi/K$ separation, 4.8~GeV for $K/p$ separation, and 5.4~GeV for $\pi/p$ separation.  
+with up to an order of magnitude difference in the relative yields of the different species. The time resolution
+is illustrated by computing the flight time differences between different charged particle species, pions,
+kaons, and protons, for tracks normally incident on the detector. Figure~\ref{tdiff} shows the computed time
+differences as a function of momentum. Where the 4$\sigma$ line crosses the computed time difference
+curves defines the momentum limit for particle identification for each particle species. These limits are given
+as 2.8~GeV for $\pi/K$ separation, 4.8~GeV for $K/p$ separation, and 5.4~GeV for $\pi/p$ separation.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.0cm}
+\vspace{2.8cm}
 \begin{picture}(50,50) 
-\put(35,-105)
-{\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/tdiff_sep18.pdf}}}
+\put(-2,-75)
+{\hbox{\includegraphics[width=0.6\textwidth,natwidth=610,natheight=642]{pics/tdiff_sep18.pdf}}}
 \end{picture} 
 \caption{Flight time differences (ns) between protons and pions, between protons and kaons, and between
 kaons and pions (as indicated) for a 7~m path length from the target to the FTOF system plotted vs. particle
@@ -180,12 +177,12 @@ typical charged hadron track momenta accepted by FTOF are in the range from 0.5~
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
-\vspace{5.0cm}
+\vspace{2.0cm}
 \begin{picture}(50,50) 
-\put(-5,-55)
-{\hbox{\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/pthe.pdf}}}
-\put(190,-55)
-{\hbox{\includegraphics[width=0.55\textwidth,natwidth=610,natheight=642]{pics/pthpi.pdf}}}
+\put(-5,-35)
+{\hbox{\includegraphics[width=0.27\textwidth,natwidth=610,natheight=642]{pics/pthe.pdf}}}
+\put(105,-35)
+{\hbox{\includegraphics[width=0.27\textwidth,natwidth=610,natheight=642]{pics/pthpi.pdf}}}
 \end{picture} 
 \caption{Plot of momentum vs. lab polar angle from beam data for a 10.6~GeV electron beam incident
 upon a liquid-hydrogen target in CLAS12 for scattered electrons (left) and $\pi^{\pm}$   (right). The
@@ -218,10 +215,10 @@ Carriage supports are shown in Fig.~\ref{fwd_car}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.2cm}
+\vspace{3.9cm}
 \begin{picture}(50,50) 
-\put(105,-35)
-{\hbox{\includegraphics[width=0.50\textwidth,natwidth=610,natheight=642]{pics/fwd_carriage.pdf}}}
+\put(30,-28)
+{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{pics/fwd_carriage.pdf}}}
 \end{picture} 
 \caption{View of the FTOF counters for CLAS12 highlighting the location of the panel-1 and panel-2 counters.
 The panel-1b counters are shown in dark blue and the panel-2 counters, mounted around the perimeter of the
@@ -242,7 +239,7 @@ counters of the CLAS TOF system. A detailed summary of the FTOF technical parame
 Table~\ref{spec-table}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[t]
+\begin{table*}[t]
 \begin{center}
 \begin{tabular} {c|l} \hline
 ~~Parameter~~ &~~~~~~~~~~~~~~~~~~~~~~ Design Value ~~~~~~~~~~\\ \hline \hline
@@ -272,7 +269,7 @@ Design Resolution     & 145~ps $\to$ 160~ps   \\ \hline
 arrays in each of the six sectors of the CLAS12 Forward Carriage.}
 \label{spec-table}
 \end{center}
-\end{table}
+\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The panel-1 arrays consist of the old CLAS panel-1 TOF counters (called panel-1a) and a new set of panel-1
@@ -316,15 +313,15 @@ specification for FTOF called for a minimum of 50\% azimuthal acceptance at 5$^\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.7cm}
+\vspace{6.4cm}
 \begin{picture}(50,50) 
-\put(0,-25)
-{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642]{pics/fwd_shadow1.pdf}}}
-\put(180,180)
-{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642,angle=-90]{pics/fwd_shadow2.pdf}}}
+\put(60,95)
+{\hbox{\includegraphics[width=0.26\textwidth,natwidth=610,natheight=642]{pics/fwd_shadow1.pdf}}}
+\put(45,105)
+{\hbox{\includegraphics[width=0.24\textwidth,natwidth=610,natheight=642,angle=-90]{pics/fwd_shadow2.pdf}}}
 \end{picture} 
-\caption{(Left) View of the shadows created by the main torus cryostats and drift chamber endplates
-as projected on the face of the FTOF system.  (Right) The defined active area between the shadow
+\caption{(Top) View of the shadows created by the main torus cryostats and drift chamber endplates
+as projected on the face of the FTOF system. (Bottom) The defined active area between the shadow
 projections through the three regions of drift chambers projected onto the face of the FTOF in a
 representative Forward Carriage sector.}
 \label{shadow}
@@ -355,14 +352,14 @@ counter for a given counter number $N_C$ is as follows:
 The panel-1a and panel-1b arrays are tilted toward the target at an angle of 25$^{\circ}$ consistent with
 the other subsystems in the CLAS12 Forward Detector (DC, LTCC, RICH, ECAL). The panel-1a counters
 are located at a radial distance from the target in the range from $R$=724.21~cm for $N_C = 1$ to
-$R$=691.74~cm for $N_C = 23$. The panel-1b counters are located at a radial distance from the
-target in the range from $R$=716.15~cm for $N_C = 1$ to $R$=677.97~cm for $N_C = 62$.
-The gap between the coplanar panel-1b and panel-1a arrays in each sector is 10.72~cm. The minimum angle
-covered by panel-1a based on a straight line from the target is 5.453$^\circ$. The corresponding minimum
-angle covered by panel-1b is 3.667$^\circ$. Each of the panel-1a arrays covers an area of 7.0~m$^2$ and
-each of the panel-1b arrays covers an area of 7.9~m$^2$. Figure~\ref{side-view} shows a two-dimensional
-schematic of the layout and positioning of the arrays defining the key geometry parameters, which are
-listed in Table~\ref{geom-parms}. See Ref.~\cite{ftof-geom} for more information.
+$R$=691.74~cm for $N_C = 23$. The panel-1b counters are located at a radial distance from the target
+in the range from $R$=716.15~cm for $N_C = 1$ to $R$=677.97~cm for $N_C = 62$. The gap between the
+coplanar panel-1b and panel-1a arrays in each sector is 10.72~cm. The minimum angle covered by panel-1a
+based on a straight line from the target is 5.453$^\circ$. The corresponding minimum angle covered by
+panel-1b is 3.667$^\circ$. Each of the panel-1a arrays covers an area of 7.0~m$^2$ and each of the
+panel-1b arrays covers an area of 7.9~m$^2$. Figure~\ref{side-view} shows a two-dimensional schematic
+of the layout and positioning of the arrays defining the key geometry parameters, which are listed in
+Table~\ref{geom-parms}. See Ref.~\cite{ftof-geom} for more information.
 
 The panel-2 arrays are mounted outside of the panel-1a and panel-1b arrays at larger polar angles as shown
 in Fig.~\ref{side-view}. The length of each counter for a given counter number $N_C$ is as follows:
@@ -380,10 +377,10 @@ from the target (e.g. $\Lambda \to N \pi$ with $c \tau = 7.89$~cm).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.5cm}
-\begin{picture}(30,50) 
-\put(0,-50)
-{\hbox{\includegraphics[width=0.75\textwidth,natwidth=610,natheight=642]{pics/side-view.pdf}}}
+\vspace{2.2cm}
+\begin{picture}(50,50) 
+\put(0,-33)
+{\hbox{\includegraphics[width=0.36\textwidth,natwidth=610,natheight=642]{pics/side-view.pdf}}}
 \end{picture} 
 \caption{View of the FTOF scintillators for panel-1a, panel-1b, and panel-2 in the sector mid-plane for one
 representative sector of the CLAS12 Forward Detector with the key parameters indicated.}
@@ -392,7 +389,7 @@ representative sector of the CLAS12 Forward Detector with the key parameters ind
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[htbp]
+\begin{table*}[htbp]
 \begin{center}
 \begin{tabular} {c|c|c|c} \hline
 Parameter & Panel-1a &  Panel-1b & Panel-2 \\ \hline
@@ -406,7 +403,7 @@ gap\_1a\_1b & \multicolumn{2}{c|}{10.717~cm} &  -- \\ \hline
 \caption{Nominal geometry parameters for the CLAS12 FTOF detector system.}
 \label{geom-parms}
 \end{center}
-\end{table}
+\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Given the active area coverage requirements for the FTOF system within each CLAS12 sector on the
@@ -467,7 +464,7 @@ improvements in the resolution of the readout electronics for the CLAS12 FTOF sy
 the CLAS TOF system, the floor-term $\sigma_0$ has been reduced from 62~ps to 40~ps. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[htbp]
+\begin{table*}[htbp]
 \begin{center}
 \begin{tabular} {c|c} \hline
 Parameter    & Nominal Value\\ \hline
@@ -482,7 +479,7 @@ and used for a parameterization of the CLAS12 FTOF counters using the functional
 in Eq.(\ref{timing-func}) and for $N_{pe}$ in Eq.(\ref{nphe-eq}).}
 \label{timing-parms}
 \end{center}
-\end{table}
+\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The number of photoelectrons $N_{pe}$ in Eq.(\ref{timing-func}) for panel-1a and panel-2 at the PMT
@@ -512,10 +509,10 @@ improvement compared to using the hit information from panel-1b alone.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.4cm}
+\vspace{2.4cm}
 \begin{picture}(50,50) 
-\put(25,-60)
-{\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/resolution.pdf}}}
+\put(-5,-45)
+{\hbox{\includegraphics[width=0.6\textwidth,natwidth=610,natheight=642]{pics/resolution.pdf}}}
 \end{picture} 
 \caption{Parameterized expectation of the counter hit time resolution for the FTOF panel-1a (dotted),
 panel-1b (dashed), and panel-2 (dot-dashed) counters as a function of length. The solid (red) line
@@ -542,7 +539,7 @@ and BC-408 for counters 32 $\to$ 62 (lengths from 215.8~cm to 407.9~cm). Table~\
 lists the properties of the FTOF scintillation materials.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[htbp]
+\begin{table*}[t]
 \begin{center}
 \begin{tabular}{c|c|c} \hline
 Property                                    & BC-404     & BC-408  \\ \hline    
@@ -561,7 +558,7 @@ Density (g/cm$^3$)                  & \multicolumn{2}{c}{1.023}                 
 \caption{Properties of the plastic scintillation material BC-404 and BC-408 employed for the counters
 of the FTOF system~\cite{scint-mat-ref}.}
 \label{scint-specs}
-\end{table}
+\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The bulk attenuation length of the scintillation material is stated by its manufacturer to be 160~cm
@@ -601,7 +598,7 @@ coupled directly to the ends of the scintillation bars using BC-600 optical glue
 specifications for all FTOF PMTs are listed in Table~\ref{pmt-specs}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[htbp]
+\begin{table*}[htbp]
 \begin{center}
 \begin{tabular}{c|c|c|c} \hline
                                                            & 9954A                    & R9779                     & XP4312B/D1 \\ \hline
@@ -624,7 +621,7 @@ Transition time spread                     & 0.4~ns & 0.25 ns & 0.4 ns \\ \hline
 counters. All of these PMTs have a borosilicate glass window and employ green-sensitive bialkali
 photocathodes.}
 \label{pmt-specs}
-\end{table}
+\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{PMT Magnetic Shielding}
@@ -722,10 +719,10 @@ data sizes, a deposited energy threshold is applied to the FADC readout correspo
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.5cm}
+\vspace{3.0cm}
 \begin{picture}(50,50) 
-\put(35,-30)
-{\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642]{pics/ftof-electronics-block.pdf}}}
+\put(-5,-27)
+{\hbox{\includegraphics[width=0.39\textwidth,natwidth=610,natheight=642]{pics/ftof-electronics-block.pdf}}}
 \end{picture} 
 \caption{Schematic of the electronics for each counter in the CLAS12 FTOF system.}
 \label{elec-block}
@@ -779,7 +776,7 @@ final 5~ft run of low loss RG-174 coaxial cable. The inline signal inverting tra
 dynodes (see Section~\ref{sec-elec}) were attached directly to the Forward Carriage patch panels.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[htbp]
+\begin{table*}[htbp]
 \begin{center}
 \begin{tabular}{c|c} \hline
 TDC Specs (V1190A/VX1290A) & ADC Specs \\ \hline
@@ -797,15 +794,15 @@ Inter-channel isolation $<$ 3 LSB   & SNR 56.8~dB @ 100~MHz input \\ \hline
 \caption{Key performance specifications of the FTOF CAEN V1190A and VX1290A pipeline
 TDCs and the JLab FADC250 flash ADCs.}
 \label{tdcadc-specs}
-\end{table}
+\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.0cm}
+\vspace{3.2cm}
 \begin{picture}(50,50) 
-\put(15,-45)
-{\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642]{pics/fadc-pulse.pdf}}}
+\put(-45,-43)
+{\hbox{\includegraphics[width=0.46\textwidth,natwidth=610,natheight=642]{pics/fadc-pulse.pdf}}}
 \end{picture} 
 \caption{Typical FADC pulse for a representative FTOF counter from the JLab FADC250. The ``PED''
 region is used to determine the average pedestal in the ``SIG'' region shown about the PMT pulse. This
@@ -879,10 +876,10 @@ counters.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.8cm}
+\vspace{2.2cm}
 \begin{picture}(50,50) 
-\put(33,-60)
-{\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/nphe.pdf}}}
+\put(5,-45)
+{\hbox{\includegraphics[width=0.6\textwidth,natwidth=610,natheight=642]{pics/nphe.pdf}}}
 \end{picture} 
 \caption{Parameterized distribution of the number of photoelectrons vs. counter length (cm) for the
 panel-1a (dotted), panel-1b (dashed), and panel-2 (dot-dashed) counters based on direct measurements
@@ -928,10 +925,10 @@ counter hit times $t_{t,m,b} = \frac{1}{2}(t_{1,3,5} + t_{2,4,6})$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.2cm}
+\vspace{2.0cm}
 \begin{picture}(50,50) 
-\put(75,5)
-{\hbox{\includegraphics[width=0.80\textwidth,natwidth=610,natheight=642]{pics/triplet-alt.pdf}}}
+\put(30,0)
+{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642]{pics/triplet-alt.pdf}}}
 \end{picture} 
 \caption{Schematic representation of a triplet of counters (labeled top - $t$, middle - $m$, and bottom
 - $b$) with a cosmic ray track traversing the stack. The geometry of the triplet was configured such that
@@ -971,10 +968,10 @@ resolution of a counter in the triplet.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.5cm}
+\vspace{1.9cm}
 \begin{picture}(50,50) 
-\put(0,-185)
-{\hbox{\includegraphics[width=1.0\textwidth,natwidth=610,natheight=642]{pics/residual-2d.pdf}}}
+\put(-28,-135)
+{\hbox{\includegraphics[width=0.6\textwidth,natwidth=610,natheight=642]{pics/residual-2d.pdf}}}
 \end{picture} 
 \caption{Data from the S2-S4-S3 panel-1a triplet for counter \#23. (Left) Plot of the triplet hit
 coordinate (cm) (defined from the hit in the middle counter of the triplet) vs. the time residual
@@ -1012,19 +1009,18 @@ than these same baseline measurements.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.0cm}
+\vspace{5.6cm}
 \begin{picture}(50,50) 
-\put(-5,-60)
-{\hbox{\includegraphics[width=0.60\textwidth,natwidth=610,natheight=642]{pics/p1a-tres.pdf}}}
-\end{picture} 
-\begin{picture}(50,50) 
-\put(135,-60)
-{\hbox{\includegraphics[width=0.60\textwidth,natwidth=610,natheight=642]{pics/p2-tres.pdf}}}
+\put(25,52)
+{\hbox{\includegraphics[width=0.40\textwidth,natwidth=610,natheight=642]{pics/p1a-tres.pdf}}}
+\put(25,-55)
+{\hbox{\includegraphics[width=0.40\textwidth,natwidth=610,natheight=642]{pics/p2-tres.pdf}}}
 \end{picture} 
 \caption{Average bench measurement resolutions (ps) vs. counter length (cm) using cosmic rays for the
-refurbished FTOF panel-1a (left) and panel-2 (right) counters. The different sets of data points correspond
-to the two different cosmic ray test stands used for calibration. The data points for the counters in sectors
-1, 5, and 6 were averaged together, as well as those for the counters in sectors 2, 3, and 4.}
+refurbished FTOF panel-1a (top) and panel-2 (bottom) counters. The different sets of data points
+correspond to the two different cosmic ray test stands used for calibration. The data points for the
+counters in sectors 1, 5, and 6 were averaged together, as well as those for the counters in sectors 2, 3,
+and 4.}
 \label{final-resolution}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1049,10 +1045,10 @@ measurements are provided in Ref.~\cite{nim-p1b}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.2cm}
+\vspace{2.3cm}
 \begin{picture}(50,50) 
-\put(50,-85)
-{\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{pics/p1b-tres.pdf}}}
+\put(10,-67)
+{\hbox{\includegraphics[width=0.5\textwidth,natwidth=610,natheight=642]{pics/p1b-tres.pdf}}}
 \end{picture} 
 \caption{Measurements of the time resolution (ps) vs. counter length (cm) achieved for the FTOF panel-1b
 system averaged over the six counters of a given length belonging to each CLAS12 Forward Carriage sector.
@@ -1090,10 +1086,10 @@ produced a given interaction must be determined by the experiment.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.8cm}
+\vspace{2.1cm}
 \begin{picture}(50,50) 
-\put(20,-95)
-{\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{pics/calib-seq.pdf}}}
+\put(-20,-75)
+{\hbox{\includegraphics[width=0.5\textwidth,natwidth=610,natheight=642]{pics/calib-seq.pdf}}}
 \end{picture} 
 \caption{Schematic representation of the different steps in the FTOF calibration sequence and their
 order. See Section~\ref{beam-data-calib} for full details.}
@@ -1106,9 +1102,9 @@ sequentially for a given data run (where a run typically lasts for about two hou
 associated calibration constants for each run are stored in the CLAS12 calibration database (ccdB). After
 the calibration of a given data reference run is completed, the calibrations for subsequent data runs are only
 carried out if there is a response shift outside of our allowed timing or energy tolerances (which are
-typically 5\%). The steps to the complete FTOF calibration are carried out in a particular sequence as detailed
-in Ref.~\cite{ftof-calib} and shown schematically in the calibration flowchart of Fig.~\ref{calib-seq}. The
-individual steps include:
+typically 5\%). The steps to the complete FTOF calibration are carried out in a particular sequence as
+detailed in Ref.~\cite{ftof-calib} and shown schematically in the calibration flowchart of Fig.~\ref{calib-seq}.
+The individual steps include:
 
 \begin{enumerate}
 \item Left/right PMT time offsets (LR): This time offset accounts for the difference in the time recorded
@@ -1123,9 +1119,9 @@ shifts the measured left and right PMT times.
 \item ADC Calibration (ADC): Determine the ADC value to energy deposition calibration factor for each counter
 using minimum-ionizing events; see Section~\ref{gain-matching}.
 
-\item Attenuation Length Calibration (ATTEN): This property of the counter quantifies the light absorption length
-in the scintillation bars and is determined by relating the measured ADC as a function of hit coordinate along the bar;
-see Section~\ref{sec:attlen}.
+\item Attenuation Length Calibration (ATTEN): This property of the counter quantifies the light absorption
+length in the scintillation bars and is determined by relating the measured ADC as a function of hit coordinate
+along the bar; see Section~\ref{sec:attlen}.
 
 \item Effective Velocity Calibration (VEFF): Determine the effective speed of light propagation along the counter;
 see Section~\ref{sec:veff}.
@@ -1220,10 +1216,10 @@ for the attenuation losses in the longer bars.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.5cm}
-\begin{picture}(30,50) 
-\put(95,-50)
-{\hbox{\includegraphics[width=0.53\textwidth,natwidth=610,natheight=642]{pics/gmean.pdf}}}
+\vspace{2.6cm}
+\begin{picture}(50,50) 
+\put(35,-46)
+{\hbox{\includegraphics[width=0.34\textwidth,natwidth=610,natheight=642]{pics/gmean.pdf}}}
 \end{picture} 
 \caption{Geometric ADC mean spectrum for one representative FTOF counter from beam data. The
 recorded events are pedestal subtracted. The red curve is a fit function that includes a Landau shape
@@ -1302,10 +1298,10 @@ in the FTOF scintillation bars.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.0cm}
+\vspace{2.6cm}
 \begin{picture}(50,50) 
-\put(-2,270)
-{\hbox{\includegraphics[width=0.9\textwidth,height=0.50\textheight,natwidth=610,natheight=642,angle=-90]
+\put(-2,180)
+{\hbox{\includegraphics[width=0.52\textwidth,height=0.29\textheight,natwidth=610,natheight=642,angle=-90]
 {pics/ftof-dedx.pdf}}}
 \end{picture} 
 \caption{Measured FTOF counter energy loss for positively charged particles from 10.6-GeV electrons
@@ -1352,8 +1348,7 @@ of the left and right PMTs from a given counter as a function of hit coordinate 
 
 \begin{equation}
 \label{linear}
-\log \left( \frac{(ADC-PED)_R}{(ADC-PED)_L} \right ) = C + \frac{d_L - d_R}{\lambda} = C +
-\frac{2 \cdot coor}{\lambda}.
+\log \left( \frac{(ADC-PED)_R}{(ADC-PED)_L} \right ) = C + \frac{2 \cdot coor}{\lambda}.
 \end{equation}
 
 \noindent
@@ -1367,10 +1362,10 @@ liquid-hydrogen target.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.7cm}
-\begin{picture}(30,50) 
-\put(-5,-70)
-{\hbox{\includegraphics[width=1.2\textwidth,natwidth=610,natheight=642]{pics/atten-r4013.pdf}}}
+\vspace{1.2cm}
+\begin{picture}(50,50) 
+\put(-5,-45)
+{\hbox{\includegraphics[width=0.59\textwidth,natwidth=610,natheight=642]{pics/atten-r4013.pdf}}}
 \end{picture} 
 \caption{Counter attenuation lengths (cm) vs. counter number for all FTOF counters in one sector of the
 CLAS12 Forward Detector determined from beam data.}
@@ -1402,10 +1397,10 @@ tracks.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.7cm}
-\begin{picture}(30,50) 
-\put(-10,-70)
-{\hbox{\includegraphics[width=1.2\textwidth,natwidth=610,natheight=642]{pics/veff-r4013.pdf}}}
+\vspace{1.3cm}
+\begin{picture}(50,50) 
+\put(-5,-45)
+{\hbox{\includegraphics[width=0.59\textwidth,natwidth=610,natheight=642]{pics/veff-r4013.pdf}}}
 \end{picture} 
 \caption{Counter effective velocities (cm/ns) vs. counter number for all FTOF counters in one sector of
 the CLAS12 Forward Carriage determined from beam data.}
@@ -1465,10 +1460,10 @@ ADC is 2~ns.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.0cm}
+\vspace{2.0cm}
 \begin{picture}(50,50) 
-\put(68,-90)
-{\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642]{pics/twalk-plot.pdf}}}
+\put(20,-70)
+{\hbox{\includegraphics[width=0.40\textwidth,natwidth=610,natheight=642]{pics/twalk-plot.pdf}}}
 \end{picture} 
 \caption{Plot of $t'$ (ns) vs. $ADC$ for one representative left PMT from panel-1b from beam data. As
 $t'$ is defined using the modulus of $T_{RF}$, its limits span $\pm T_{RF}/2$. The overlaid curve
@@ -1494,16 +1489,16 @@ dominant position-dependence accounted for here is related to the time-walk.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{2.4cm}
+\vspace{5.7cm}
 \begin{picture}(50,50) 
-\put(0,-70)
-{\hbox{\includegraphics[width=0.5\textwidth,natwidth=610,natheight=642]{pics/p1b-posdep1.pdf}}}
-\put(200,-70)
-{\hbox{\includegraphics[width=0.5\textwidth,natwidth=610,natheight=642]{pics/p1b-posdep2.pdf}}}
+\put(20,45)
+{\hbox{\includegraphics[width=0.38\textwidth,natwidth=610,natheight=642]{pics/p1b-posdep1.pdf}}}
+\put(20,-70)
+{\hbox{\includegraphics[width=0.38\textwidth,natwidth=610,natheight=642]{pics/p1b-posdep2.pdf}}}
 \end{picture} 
 \caption{Plot of $t'$ (ns) vs. hit position (cm) along the bar from beam data after the
-position-independent time-walk correction (left) and after the ad hoc second-order polynomial correction
-to remove the residual coordinate dependence (right).}
+position-independent time-walk correction (top) and after the ad hoc second-order polynomial correction
+to remove the residual coordinate dependence (bottom).}
 \label{twalk-pos}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1558,10 +1553,10 @@ in a range of $\pm T_{RF}/2$ about the peak channel in the distribution.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.0cm}
+\vspace{1.7cm}
 \begin{picture}(50,50) 
-\put(35,202)
-{\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642,angle=-90]{pics/rfp-plot.pdf}}}
+\put(0,135)
+{\hbox{\includegraphics[width=0.38\textwidth,natwidth=610,natheight=642,angle=-90]{pics/rfp-plot.pdf}}}
 \end{picture} 
 \caption{Distribution of the FTOF hit times from beam data traced back to the vertex relative to the RF
 (ns) for one representative FTOF panel-1b counter with the Gaussian plus background fit overlaid to
@@ -1608,12 +1603,14 @@ does not consider hits in panel-1b and panel-1a associated with the same track.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{2.7cm}
+\vspace{1.9cm}
 \begin{picture}(50,50) 
-\put(-2,-70)
-{\hbox{\includegraphics[width=0.50\textwidth,natwidth=610,natheight=642]{pics/p2p-plot1.pdf}}}
-\put(197,-70)
-{\hbox{\includegraphics[width=0.50\textwidth,natwidth=610,natheight=642]{pics/p2p-plot2.pdf}}}
+\put(0,-65)
+{\hbox{\includegraphics[width=0.23\textwidth,height=0.29\textheight,natwidth=610,natheight=642]
+{pics/p2p-plot1.pdf}}}
+\put(115,-65)
+{\hbox{\includegraphics[width=0.23\textwidth,height=0.29\textheight,natwidth=610,natheight=642]
+{pics/p2p-plot2.pdf}}}
 \end{picture} 
 \caption{Distribution of the vertex time differences (ns) for tracks in a single representative FTOF
 counter compared to tracks in all other FTOF counters using event samples with two forward-going
@@ -1643,10 +1640,10 @@ channel-by-channel TDC calibrations done for FTOF serve only as a cross-check.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.7cm}
+\vspace{1.8cm}
 \begin{picture}(50,50) 
-\put(58,-93)
-{\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642]{pics/tdc-plot.pdf}}}
+\put(20,-69)
+{\hbox{\includegraphics[width=0.38\textwidth,natwidth=610,natheight=642]{pics/tdc-plot.pdf}}}
 \end{picture} 
 \caption{Distribution of $t^{res}_L$ (ns) vs. TDC digitization bin for one representative left FTOF
 panel-1b PMT. The TDC conversion constant for each input channel is that which forces the slope of
@@ -1687,10 +1684,10 @@ in the Forward Detector of CLAS12 to be pushed to higher momenta than currently 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{3.6cm}
+\vspace{1.1cm}
 \begin{picture}(50,50) 
-\put(-5,-70)
-{\hbox{\includegraphics[width=1.2\textwidth,natwidth=610,natheight=642]{pics/res-r5038.pdf}}}
+\put(-5,-45)
+{\hbox{\includegraphics[width=0.59\textwidth,natwidth=610,natheight=642]{pics/res-r5038.pdf}}}
 \end{picture} 
 \caption{The measured effective time resolution (ps) vs. counter number for each of the FTOF counters
 in sector~1 as determined using final state leptons and pions for panel-1a and panel-1b and pions and
@@ -1824,10 +1821,10 @@ and those in panel-1a are about 1~MHz.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.2cm}
+\vspace{1.9cm}
 \begin{picture}(50,50) 
-\put(-10,-70)
-{\hbox{\includegraphics[width=1.2\textwidth,natwidth=610,natheight=642]{pics/ftof-rates.pdf}}}
+\put(-5,-45)
+{\hbox{\includegraphics[width=0.6\textwidth,natwidth=610,natheight=642]{pics/ftof-rates.pdf}}}
 \end{picture} 
 \caption{Measured FTOF counter rates (kHz) for 10.6-GeV electrons on a liquid-hydrogen target as a
 function of beam current (nA) employing hardware thresholds of approximately 1~MeV. The nominal
@@ -1852,11 +1849,11 @@ the FADC. The set threshold on the hardware mentioned in Section~\ref{sec-elec} 
 set to 1~MeV, with a estimated uncertainty of up to 30\%.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[ht]
-\vspace{3.8cm}
+\begin{figure}[htbp]
+\vspace{1.5cm}
 \begin{picture}(50,50) 
-\put(25,-70)
-{\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{pics/mc-rates.pdf}}}
+\put(-5,-52)
+{\hbox{\includegraphics[width=0.40\textwidth,natwidth=610,natheight=642]{pics/mc-rates.pdf}}}
 \end{picture} 
 \caption{Simulation results for the FTOF counter rates (kHz) for each sector for 11~GeV electrons on
 a liquid-hydrogen target at the nominal CLAS12 design luminosity of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$.
@@ -1890,11 +1887,11 @@ with the threshold uncertainty mentioned above when comparing scaler rates betwe
 Carlo and serves to validate the Monte Carlo simulation and its modeling of the FTOF.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{3.8cm}
+\begin{figure}[ht]
+\vspace{1.5cm}
 \begin{picture}(50,50) 
-\put(20,-70)
-{\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{pics/mc-currents.pdf}}}
+\put(0,-53)
+{\hbox{\includegraphics[width=0.38\textwidth,natwidth=610,natheight=642]{pics/mc-currents.pdf}}}
 \end{picture} 
 \caption{Computed PMT currents ($\mu$A) from Monte Carlo studies for each sector at the nominal
 operating luminosity of CLAS12 of $1 \times 10^{35}$~cm$^{-2}$s$^{-1}$ with 11~GeV electrons
@@ -1907,10 +1904,10 @@ paddles corresponds to panel-2.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.2cm}
+\vspace{2.0cm}
 \begin{picture}(50,50) 
-\put(60,-70)
-{\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{pics/full-ftof.pdf}}}
+\put(25,-50)
+{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642]{pics/full-ftof.pdf}}}
 \end{picture} 
 \caption{Measurements of the PMT anode current for representative panel-1b left-side PMTs
 ($N_C = 10, 20, 40$) as a function of beam current with a 10.6-GeV electron beam incident upon a
@@ -1941,10 +1938,11 @@ vs. momentum.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{4.5cm}
+\vspace{3.4cm}
 \begin{picture}(50,50) 
-\put(-15,-200)
-{\hbox{\includegraphics[width=0.92\textwidth,height=1.0\textheight,natwidth=610,natheight=642]{pics/bvsp.pdf}}}
+\put(-12,-185)
+{\hbox{\includegraphics[width=0.45\textwidth,height=0.92\textheight,natwidth=610,natheight=642]
+{pics/bvsp.pdf}}}
 \end{picture} 
 \caption{Velocity of positive hadrons ($\beta$) versus momentum (GeV) for all counters in panel-1a (left),
 panel-1b (middle), and panel-2 (right) from beam data with a 10.6~GeV electron beam incident on a
@@ -1980,10 +1978,10 @@ FTOF system.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5.9cm}
+\vspace{3.9cm}
 \begin{picture}(50,50) 
-\put(70,-85)
-{\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{pics/massph.pdf}}}
+\put(15,-65)
+{\hbox{\includegraphics[width=0.45\textwidth,natwidth=610,natheight=642]{pics/massph.pdf}}}
 \end{picture} 
 \caption{Reconstructed mass squared (GeV$^2$) for positively charged particles from the timing in
 the panel-1b FTOF counters from beam data with a 10.6-GeV electron beam incident on a liquid-hydrogen
@@ -2015,7 +2013,7 @@ in the forward direction for the full CLAS12 physics program. The performance of
 verified in extensive bench studies in our cosmic ray test stands, as well as after installation in the first beam
 runs with the CLAS12 system in the period from Dec. 2017 to Dec. 2018. 
 
-\ack
+\section*{Acknowledgements}
 
 Many aspects in the development of the FTOF system benefited greatly from useful discussions with and
 assistance from Sergey Boyarinov, Chris Cuevas, Haiyan Lu, Cole Smith, Elton Smith, and Veronique Ziegler. The
@@ -2028,8 +2026,8 @@ contract DE-AC05-06OR23177 and was also supported by the National Science Founda
 \begin{thebibliography}{99}
 
 \bibitem{clas12-nim}
-V.D. Burkert {\it et al.}, {\it ``The CLAS12 Spectrometer at Jefferson Laboratory''}, to be published in Nucl. Inst.
-and Meth. A, (2020). (see this issue)
+V.D. Burkert {\it et al.}, {\it ``The CLAS12 Spectrometer at Jefferson Laboratory''}, to be published in
+Nucl. Inst. and Meth. A, (2020). (see this issue)
   
 \bibitem{clas-nim}
 B.A. Mecking {\it et al.}, Nucl. Inst. and Meth. {\bf A503}, 513 (2003).
@@ -2063,14 +2061,15 @@ and Meth A, (2020).
 
 \bibitem{ftof-geom}
 D.S. Carman, {\it Forward Time-of-Flight Geometry for CLAS12}, CLAS12-Note 2014-005, (2014). \\
-https://misportal.jlab.org/mis/physics/clas12/viewFile.cfm/2014-005.pdf?documentId=13
+https://misportal.jlab.org/mis/physics/clas12/\\ viewFile.cfm/2014-005.pdf?documentId=13
 
 \bibitem{kuhlen}
 M. Kuhlen, M. Moszynski, R. Stroynowski, E. Wicklund, and B. Milliken, Nucl.  Instr. and Meth.
 {\bf A301}, 223 (1991).
 
 \bibitem{scint-mat-ref}
-https://www.crystals.saint-gobain.com/sites/imdf.crystals.com/files/documents/bc400-404-408-412-416-data-sheet.pdf
+https://www.crystals.saint-gobain.com/sites/imdf.crystals.com/files/documents/\\
+bc400-404-408-412-416-data-sheet.pdf
 
 \bibitem{ftof-shields}
 D.S. Carman and V. Baturin, {\it CLAS12 FTOF Studies: Rate and Magnetic Shielding Effects on PMT Timing
@@ -2082,20 +2081,19 @@ B. Raydo {\it et al.}, {\it ``The CLAS12 Trigger System''}, to be published in N
 (see this issue)
   
 \bibitem{daq-nim}
-S. Boyarinov {\it et al.}, {\it ``The CLAS12 Data Acquisition System''}, to be published in Nucl. Inst. and Meth. A, (2020).
-(see this issue)
+S. Boyarinov {\it et al.}, {\it ``The CLAS12 Data Acquisition System''}, to be published in Nucl. Inst. and
+Meth. A, (2020). (see this issue)
 
 \bibitem{fadc-manual}
-JLab 250~MHz FADC manual, \\
-https://www.jlab.org/Hall-B/ftof/manuals/FADC250UsersManual.pdf
+JLab 250~MHz FADC manual, https://www.jlab.org/\\ Hall-B/ftof/manuals/FADC250UsersManual.pdf
   
 \bibitem{epics}
 EPICS (Experimental Physics and Industrial Control System),\\ http://www.aps.anl.gov/epics
 
 \bibitem{dsc-cn2013-001}
-D.S. Carman, {\it CLAS12 FTOF Panel-1a and Panel-2 Refurbishment and Baseline Test Results}, CLAS12-Note 2013-001,
-(2013).\\
-https://misportal.jlab.org/mis/physics/clas12/viewFile.cfm/2013-001.pdf?documentId=1
+D.S. Carman, {\it CLAS12 FTOF Panel-1a and Panel-2 Refurbishment and Baseline Test Results},
+CLAS12-Note 2013-001, (2013).\\
+https://misportal.jlab.org/mis/physics/clas12/\\ viewFile.cfm/2013-001.pdf?documentId=1
 
 \bibitem{Gi86} 
 R.T. Giles, F.M. Pipkin, and J.P. Wolinski, Nucl. Instr. and Meth. A {\bf 252}, 41 (1986).
@@ -2130,7 +2128,7 @@ and Meth. A, (2020). (see this issue)
 \bibitem{gemc-cn2017}
 R. De Vita, D.S. Carman, C. Smith, S. Stepanyan, and M. Ungaro, {\it Study of the Electromagnetic Background
 Rates in CLAS12}, CLAS12-Note 2017-016, (2017).\\
-https://misportal.jlab.org/mis/physics/clas12/viewFile.cfm/2017-016.pdf?documentId=52
+https://misportal.jlab.org/mis/physics/clas12/\\ viewFile.cfm/2017-016.pdf?documentId=52
 
 \end{thebibliography}
 
