@@ -67,7 +67,7 @@ Micro-laboratory detergent from the Cole-Parmer Instrument Company.  The
 fiberglass endplates were machined without any lubricating oils.  Immediately 
 prior to chamber assembly all endplates were sequentially cleaned with 
 detergent,
- deionized water, and alcohol, and then blown dry with pure nitrogen gas.  The 
+deionized water and alcohol, and then blown dry with pure nitrogen gas.  The 
 wire feedthroughs, trumpets, and crimp pins were cleaned in an ultrasonic bath 
 with detergent and then rinsed in a second ultrasonic bath with deionized water.
 
@@ -81,6 +81,8 @@ nylon tubing included for gas manifolds.  Special care was taken during
 all steps of construction and testing to ensure that no oils or
 silicones contacted any of the chamber materials.
 
+
+
 \subsection{Endplate Design and Construction}
 
 As noted above our chambers have wires strung from one endplate to 
@@ -92,7 +94,15 @@ sector were strung between pairs of wire ``feedthroughs''.  As the endplates of
 each chamber faced each other at a 60$^{\circ}$ angle, the wires had to bend 
 30$^{\circ}$ at each endplate.  This was accomplished by means of a large radius 
 stainless-steel insert at the tip of each feedthrough known as a ``trumpet''.
+
 This trumpet was fitted into an injection-molded Noryl plastic feedthrough.  
+The Noryl plastic was reinforced with glass beads to make them stiffer.
+During early prototype testing, it was determined that the surface conductivity
+of this glass-bead loaded composite was little affected by room humidities
+as high as 60 to 60\%.  This is in contrast to similar plastic strengthened
+with microscopic glass ``rods'' which performed poorly in high-voltage stand-off
+tests in humid conditions.
+
 All wires were held in place using gold-plated copper crimp pins.  
 Low-outgassing epoxy was employed to ensure a gas seal around the feedthroughs 
 and crimp pins.  
@@ -224,6 +234,23 @@ endplate was filled, the assembly was rotated such that the other side
 could be done.  Once all wire feedthrough inserts were in place, the box 
 was pre-tensioned.
 
+Under full wire tension, the endplates bow inward as much as 2mm 
+(see Section~\ref{geom_distortions} for a discussion of this issue).
+Because of this bowing, it is necessary to pre-tension the chamber
+so that the endplates are bowed into their final state at the 
+beginning of the stringing process.
+
+We pre-tensioned the chambers by over-tensioning the 140 $\mu$m Guard
+wires such that the total wire tension load was equal to the final, 
+fully-strung load.  The over-tensioning was done using adjustable
+spring attached to each guard wire. 
+We then would string field wires, starting at one end of the chamber.
+After stringing a ``column'' of 14 field wires, we would reduce the
+tension on the associated guard wire to its nominal value, and crimp
+the guard wire.  In this way, the total wire tension on the endplate
+remained approximately constant.
+
+
 With nearly 130,000 wires to be threaded through the chambers and only 2 years 
 for construction, it was important to minimize the time required to string 
 each wire.  All chambers were strung with 
@@ -235,8 +262,25 @@ used to pull the needle and wire through the lower feedthrough.  After the upper
 crimp pin was attached and crimped and the remaining slack in the wire was removed, the lower 
 crimp pin was slid over the wire and stringing weights were attached to the wire to set the 
 proper tension.  The lower crimp pin was then crimped, completing the process.
-  
-Wires that wrapped around each other while being threaded through the chamber 
+
+At the beginning of each shift, wires that had been strung on the previous days
+were tested in two ways:
+\begin{itemize}
+\item a continuity test checked that the wire made a good electrical contact
+from one feedthough to its partner on the other endplate, and
+\item a tension measurement was performed using an ``oscillating wire'' technique.
+A static magnetic field was established using large Helmholtz coils.  A sine
+wave electric current was established on the wire being tested by a frequency
+controlled AC power supply.  The AC current was varied in frequency.  For a 
+few-second interval, the Lorentz force on the wire caused it to vibrate and
+then during a few-second ``voltage-off'' period, the resulting induced voltage
+was read out on an oscilloscope.  In this way, we determined the resonant frequency
+of the wire.  If this frequency agreed within limits with a pre-calculated
+table of nominal frequency, the wire passed the frequency test.
+\end{itemize}
+Wires which failed either test were removed and re-strung.
+
+  Wires that wrapped around each other while being threaded through the chamber 
 were a major contribution to stringing inefficiency. To avoid the wrapping
 problem, a machine was built to spool the wire through the chambers quickly and smoothly.
 Another important development was the design of a crimp pin 
@@ -249,6 +293,11 @@ radius of the trumpet at the end of the feedthrough inside of the chamber, and
 not by the concentricity of the pin, feedthrough, and endplate-hole diameters. 
 As a result, the average time to string a wire was less than 4 minutes.
 
+After all wires were strung
+a small amount of glue was applied to the glue well
+in the feedthrough to firmly fix the crimp pin in place.  After this ``potting''
+operation was done, the chambers were taken off of the stringing fixture and
+placed on stands on the floor for final continuity checks.
 
 
 \input{dc12_region1}
