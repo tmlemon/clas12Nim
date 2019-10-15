@@ -1,9 +1,9 @@
 \section{Simulation}
-In order to study the performance of the CND, its geometry and response were included in the CLAS12 GEANT4-based simulation package, GEMC. The Birks effect, for which the amount of optical photons produced after a certain energy deposition in the scintillator depends on the particle losing that energy, and the hit digitization for the CND have been introduced in GEMC.
+In order to study the performance of the CND, its geometry and response were included in the CLAS12 Geant4-based simulation package, GEMC \cite{sim-nim}. The Birks effect, for which the number of optical photons produced for a given certain energy deposition in the scintillator depends on the particle type, and the hit digitization for the CND, have been introduced in GEMC.
 The timing resolution and the energy loss due to the U-turn geometry were included in the simulation using the values measured in the cosmic-ray tests.
-Details on the digitization and on the hit and event reconstruction are explained in \cite{sec_gemc_cnd} and \ref{sec_rec}), respectively.
+Details on the digitization and on the hit and event reconstruction are explained in \cite{sim-nim} and in Sec.~\ref{sec_rec}), respectively.
 
-Simulations were run to evaluate the efficiency of the CND for neutrons, its ability to discriminate between neutrons and photons, and its angular and momentum resolutions. Neutrons and photons of momenta varying between 0.1 and 1~GeV and having polar angles $\theta$ between $50^o$ and $70^o$ were generated at fixed azimuthal angle ($\phi = 3.75^o$). Several values of energy thresholds, between 1 and 5 MeV, were studied.
+Simulations were run to evaluate the efficiency of the CND for neutrons, its ability to discriminate between neutrons and photons, and its angular and momentum resolutions. Neutrons and photons of momenta varying between 0.1 and 1~GeV and having polar angles $\theta$ between $50^o$ and $70^o$ were generated at a fixed azimuthal angle ($\phi = 3.75^o$). Several values of energy thresholds, between 1 and 5 MeV, were studied.
 \begin{figure}[htb]  
 \begin{center}
 %\includegraphics[width=0.5\textwidth]{Figure/eff_vs_mom_diff_thresh_II.pdf}
@@ -25,7 +25,7 @@ p = \frac{\beta\cdot m_n}{\sqrt{1-\beta^2}},
 \end{eqnarray}
 is also strictly connected to the time resolution. The momentum resolution $\sigma_p/p$ ranges between 4.5\% and 6\%, for increasing neutron momentum. No appreciable variation of momentum resolution was observed by varying the neutron polar angle. As for the $\theta$ reconstruction, also in this case the reconstructed momentum was computed as the average over all layers, whenever more than one layer had a good hit.
 
-Since the charged particles passing through the CND will be vetoed by the Central Tracker, the only particles that could be mistaken for neutrons in the CND are the photons. The efficiency of the CND for photons has been estimated by simulations, and it is slightly larger than the one for neutrons (of the order of 15\%, having little energy dependence). 
+Since the charged particles passing through the CND will be vetoed by the CVT, the only particles that could be mistaken for neutrons in the CND are photons. The efficiency of the CND for photons has been estimated by simulations, and it is slightly larger than for neutrons (of the order of 15\%, having little energy dependence). 
 Neutrons can be discriminated from photons by means of their $\beta$.
 %\begin{figure}[htb]  
 %\begin{center}
@@ -46,9 +46,9 @@ where
 l = \sqrt{h^{2}+z_{ave}^{2}}.
 \end{eqnarray}
 %
-$h$ is the distance from the vertex to the middle of the layer where the hit took place, $TOF_{true}$ is the reconstructed time-of-flight and $z_{ave}$ is the reconstructed position of the hit along the scintillator bar. %(see Appendix~\ref{sec_rec} for more details on how the latter two quantities are obtained for the ``u-turn'' design of the CND)
+$h$ is the distance from the vertex to the middle of the layer where the hit took place, $TOF_{true}$ is the reconstructed time-of-flight, and $z_{ave}$ is the reconstructed position of the hit along the scintillator bar. %(see Appendix~\ref{sec_rec} for more details on how the latter two quantities are obtained for the ``u-turn'' design of the CND)
 %
-Figure~\ref{beta_n_g} shows the comparison between the $\beta$ distributions obtained for neutrons of various momenta (0.2, 0.4, 0.7 and 1~GeV) and for 1-GeV photons. All particles in this plot were emitted at $\theta = 60^o$.
+Figure~\ref{beta_n_g} shows the comparison between the $\beta$ distributions obtained for neutrons of various momenta (0.2, 0.4, 0.7, and 1~GeV) and for 1-GeV photons. All particles in this plot were emitted at $\theta = 60^o$.
 A small portion of the neutrons having momentum of 1~GeV can be taken as photons, as their $\beta$ distributions begin to overlap, while the $n/\gamma$ separation is clear for lower momenta --- which corresponds to most of the range of interest for $n$-DVCS, as only about 8\% of the events are expected to have $p_n>0.9$ GeV.
 %
 \begin{figure}[htb]  
@@ -62,5 +62,5 @@ A small portion of the neutrons having momentum of 1~GeV can be taken as photons
 \end{center}
 \end{figure}
 
-\subsection{CND-based veto of charged particles}
-Section to be developed.
+%\subsection{CND-based veto of charged particles}
+%Section to be developed.

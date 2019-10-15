@@ -18,7 +18,7 @@ ADC_{\rm{R}}=\frac{E_{\rm{R}}}{E_0}\cdot MIP_{\rm{I}}\cdot e^{\frac{-(L-z)}{A_{\
 \end{equation}
 where $E_{L/R}$ is half the energy deposited by the particle in the left/right paddle and $E_0$ is given by Eq.~\ref{eq_def_e0}.
 The above equations are valid for hits in the left paddles, while for hits in the right paddles, the applicable equations are obtained by switching the $L/R$ indices.
-From Eqs.~\ref{eq_rec_3} and \ref{eq_rec_4} follows the relations:
+From Eqs.~\ref{eq_rec_3} and \ref{eq_rec_4} follow the relations:
 \begin{equation}
 E_{\rm{L}}=\frac{ADC_{\rm{L}} \cdot E_0}{MIP_{\rm{D}}}\cdot e^{\frac{z}{A_{\rm{L}}}},
 \end{equation}
@@ -68,8 +68,8 @@ t_{\rm{tof}}= \frac{1}{2}\left(t_{\rm{L}_{\rm{prop}}}+t_{\rm{R}_{\rm{prop}}}- L 
 \end{equation}
 
 \subsection{Hit/Track matching}
-Tracks from charged particles crossing the CVT are associated to hits in the CND. This allows, for each CND hit matched with a CVT track, to calculate the position of the hit from the extrapolated track, the pathlength between the track vertex and the hit and the path travelled in the hit paddle. This information is used in the calibration (Section~\ref{sec_cnd_calib}), as well as to veto charged particles when looking for neutrons in the CND. 
-CVT tracks are extrapolated to radii corresponding to the entry point, middle point and exit point of the track in the paddle. These points are defined as the intersections between the helix of the track and cylinders of radii corresponding to the distances between the center of the CD and the three CND layers.
+Tracks from charged particles crossing the CVT are associated to hits in the CND. This allows, for each CND hit matched with a CVT track, to calculate the position of the hit from the extrapolated track, the pathlength between the track vertex and the hit, and the path travelled in the hit paddle. This information is used in the calibration (Section~\ref{sec_cnd_calib}), as well as to veto charged particles when looking for neutrons in the CND. 
+CVT tracks are extrapolated to radii corresponding to the entry point, middle point, and exit point of the track in the paddle. These points are defined as the intersections between the helix of the track and cylinders of radii corresponding to the distances between the center of the Central Detector and the three CND layers.
 %In the following the entry, middle, and exit points coordinates are referred as $x_{en,m,ex}$, $y_{en,m,ex}$, and $z_{en,m,ex}$.
 A CVT track and a CND hit are matched if the hit coordinates ($x$, $y$, and $z$) and the extrapolated coordinates ($x_{m}$, $y_{m}$, and $z_{m}$) verify the relations:
 \begin{equation}
@@ -89,11 +89,11 @@ where $\sigma_z=1.5$ cm, $ L$ is the length of a paddle, and $\sigma_x$ and $\si
 \begin{equation}
 \sigma_y= \sqrt{y^{2}\frac{\sigma_{R}^{2}}{R^2}+x^{2}\sigma_{\phi}^{2}},
 \end{equation}
-where $R$ is the radius of the hit, $\sigma_R$ is half the thickness of a paddle (1.5 cm) and $\sigma_{\phi}$ is the azimuthal resolution of each paddle (3.75°).
+where $R$ is the radius of the hit, $\sigma_R$ is half the thickness of a paddle (1.5 cm) and $\sigma_{\phi}$ is the azimuthal resolution of each paddle ($3.75^{\circ}$).
 %
 The path travelled by the particle in the paddle is approximated as the distance between the entry and exit points.
 %\begin{equation}
 %Path_{in Paddle}= \sqrt{(x_{en}-x_{ex})^{2}+(y_{en}-y_{ex})^{2}+(z_{en}-z_{ex})^{2}}.
 %\end{equation}
-
-The path length between the vertex and the hit is given by the helix parameters. (this last part needs to be developed)
+%
+The path length between the vertex and the hit is obtained from the helix parameters.
