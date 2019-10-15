@@ -25,12 +25,12 @@ $MIP_{\rm{D}}$, $MIP_{\rm{I}}$ & 144 each & no units \\
 \hline
 \end{tabular}
 %\end{center}
-\caption{The constants computed in the CND calibration.}
+\caption{The constants computed in the CND calibration. See text for details.}
 \label{table_cnd_constants}
 \end{table}
 
 \subsection{Timing calibration}
-There are four calibration constants that mist be determined as part of the CND timing calibration: the Left-Right time offset ($t_{\rm{LR}}$ and  $t_{\rm{LR}_{\rm{ad}}}$), the effective velocity ($v_{\rm{eff}}$), the propagation time in the U-turn ($u_{\rm{t}}$), and the global time offset with respect to the event start time ($t_{\rm{off}}$). The calibrations of these constants must be done in the following order: $t_{\rm{LR}}$, $v_{\rm{eff}}$, $u_{\rm{t}}$,  $t_{\rm{LR}_{\rm{ad}}}$, and finally $t_{\rm{off}}$. 
+There are five calibration constants that must be determined as part of the CND timing calibration: the two Left-Right time offsets ($t_{\rm{LR}}$ and  $t_{\rm{LR}_{\rm{ad}}}$), the effective velocity ($v_{\rm{eff}}$), the propagation time in the U-turn ($u_{\rm{t}}$), and the global time offset with respect to the event start time ($t_{\rm{off}}$). The calibrations of these constants must be done in the following order: $t_{\rm{LR}}$, $v_{\rm{eff}}$, $u_{\rm{t}}$,  $t_{\rm{LR}_{\rm{ad}}}$, and finally $t_{\rm{off}}$. 
 %\subsubsection{TDC to time constant}
 Each of these constants is determined using charged particles from beam interactions in the target.
 
@@ -44,7 +44,7 @@ t_{{\rm{L}}/{\rm{L}}}=t_{\rm{off}}+t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_L}}+t_{\rm{
 \begin{equation}
 t_{{\rm{R}/{\rm{L}}}}=t_{\rm{off}}+t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_L}}+\frac{L}{v_{\rm{eff}_L}}+\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}+t_{\rm{S}}+t_{\rm{off}_{\rm{R}}}+{\rm{TDC}}_{\rm{j}},
 \end{equation}
-where $t_{\rm{tof}}$ is the time of flight extracted using the CVT~\cite{cvtref} path length information, $z$ is the position of the hit measured from the upstream end of the paddle, $L$ is the length of the paddle, $t_{\rm{S}}$ is the start time of the event, $t_{\rm{off}_{\rm{L}}}$ and $t_{\rm{off}_{\rm{R}}}$ are time offsets associated to the left and right coupled paddles, and ${\rm{TDC}}_{\rm{j}}$ is the TDC clock jitter.
+where $t_{\rm{tof}}$ is the time of flight extracted using the CVT~\cite{svt-nim,mm-nim} path length information, $z$ is the position of the hit measured from the upstream end of the paddle, $L$ is the length of the paddle, $t_{\rm{S}}$ is the start time of the event, $t_{\rm{off}_{\rm{L}}}$ and $t_{\rm{off}_{\rm{R}}}$ are time offsets associated with the left and right coupled paddles, and ${\rm{TDC}}_{\rm{j}}$ is the TDC clock jitter.
 Similarly if the hit happened in the right paddle one can write:
 \begin{equation}\label{eq_time_hit_lr}
 t_{{\rm{L}}/{\rm{R}}}=t_{\rm{off}}+t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_{\rm{R}}}}+\frac{L}{v_{\rm{eff}_L}}+\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}+t_{\rm{S}}+t_{\rm{off}_{\rm{L}}}+{\rm{TDC}}_{\rm{j}},
@@ -69,32 +69,34 @@ If the hit is in the right paddle:
 \Delta'-\Delta= \frac{2L}{v_{\rm{eff}_{\rm{R}}}}-\frac{2z}{v_{\rm{eff}_{\rm{R}}}} +u_{\rm{t}} >0.
 \end{equation}
 If $\Delta'<\Delta$, the paddle in which the hit happened is the left one, otherwise it is the right one. This procedure to determine the hit paddle depends on constants yet to be calibrated ($v_{\rm{eff}}$ and $t_{\rm{off}_{\rm{R}}}-t_{\rm{off}_{\rm{L}}}$). Therefore, at least two iterations of the calibrations of $v_{\rm{eff}}$ and $t_{\rm{off}_{\rm{R}}}-t_{\rm{off}_{\rm{L}}}$ are required.
-\subsubsection{Left-right timing offset }
-\paragraph{}
-The Left-Right time offset refers to the time misalignement between two coupled paddles. It is detemined in two steps. The first step relies on the U-turn structure of the CND to extract an estimate of this offset $t_{\rm{LR}}$. The second step corrects this first value to obtain the real value $t_{\rm{LR}_{\rm{ad}}}$ by taking into account the effective velocities of both coupled paddles. There is one value of $t_{\rm{LR}}$ and $t_{\rm{LR}_{\rm{ad}}}$ for each pair of paddles. 
 
-There are two different algorithms to find $t_{\rm{LR}}$ depending if the data were taken with our without magnetic field of the solenoid. 
+\subsubsection{Left-right timing offset}
+%\paragraph{}
+
+The Left-Right time offset refers to the time misalignment between two coupled paddles. It is detemined in two steps. The first step relies on the U-turn structure of the CND to extract an estimate of this offset $t_{\rm{LR}}$. The second step corrects this first value to obtain the real value $t_{\rm{LR}_{\rm{ad}}}$ by taking into account the effective velocities of both coupled paddles. There is one value of $t_{\rm{LR}}$ and $t_{\rm{LR}_{\rm{ad}}}$ for each pair of paddles. 
+
+There are two different algorithms to find $t_{\rm{LR}}$ depending if the data were taken with or without magnetic field of the solenoid. 
 \begin{itemize}
 \item If the solenoid field is off, the U-turn light guide coupling two adjacent CND paddles induces a gap in the time difference $t_{\rm{R}}-t_{\rm{L}}$ plots. The $t_{\rm{LR}}$ constant is defined as the time difference value at the center of the gap.
-\item If the solenoid is on, ``double hits'' occur. When the trajectory of a charged particle bent in the solenoid field crosses two adjacent coupled paddles, the two L/R signals have very similar TDCs (see Fig.~\ref{doublehit}). Such hits induce a peak instead of a gap in the time difference plots (see Figure \ref{LR}). $t_{\rm{LR}}$ is defined as the position of this peak.
+\item If the solenoid is on, ``double hits'' occur. When the trajectory of a charged particle bent in the solenoid field crosses two adjacent coupled paddles, the two L/R signals have very similar TDC values (see Fig.~\ref{doublehit}). Such hits induce a peak instead of a gap in the time difference plots (see Fig.~\ref{LR}). $t_{\rm{LR}}$ is defined as the position of this peak.
 
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=0.45\textwidth]{Figure/doublehit.png} 
 \end{center}
-\caption{Double hits in the CND produced by the curved trajectory of a charged particle in the solenoid field. Both hits have similar TDCs resulting in a peak in the time difference distribution.}
+\caption{Double hits in the CND produced by the curved trajectory of a charged particle in the solenoid field. Both hits have similar TDC values resulting in a peak in the time difference distribution.}
 \label{doublehit}
 \end{figure}
 
 \end{itemize}
-Both cases are illustrated in Fig.~\ref{LR}. Typical values for the offsets are below 5 ns. $t_{\rm{LR}}$ is not used in the reconstruction, but it is nonetheless necessary to remove double hits from the subsequent calibration steps. $t_{\rm{LR}_{\rm{ad}}}$, defined below, is used in the reconstruction.
+The ``field on'' case is illustrated in Fig.~\ref{LR}. Typical values for the offsets are below 5 ns. $t_{\rm{LR}}$ is not used in the reconstruction, but it is nonetheless necessary to remove double hits from the subsequent calibration steps. $t_{\rm{LR}_{\rm{ad}}}$, defined below, is used in the reconstruction.
 %
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.3\textwidth]{Figure/nofield.png} 
-\includegraphics[width=0.3\textwidth]{Figure/field.png} 
+%\includegraphics[width=0.3\textwidth]{Figure/nofield.png} 
+\includegraphics[width=0.45\textwidth]{Figure/field.png} 
 \end{center}
-\caption{Left-right time difference. The top plot is for zero solenoid field: the U-turn light guide induces a gap in the distribution. The bottom plot is for data with magnetic field: double hits, with equal TDCs, produce a peak instead of a gap.}
+\caption{Left-right time difference for data with magnetic field: double hits, with equal TDCs, produce a peak instead of a gap.}
 \label{LR}
 \end{figure}
 %
@@ -105,14 +107,17 @@ For hits in the left paddle, the two associated TDCs can be expressed as:
 t_L=t_{\rm{off}}+t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_L}}+t_{\rm{S}}+t_{\rm{off}_{\rm{L}}}+{\rm{TDC}}_{\rm{j}},
 \end{equation}
 \begin{equation}
-t_R=t_{\rm{off}}+t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_L}}+\frac{L}{v_{\rm{eff}_L}}+\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}+t_{\rm{S}}+t_{\rm{off}_{\rm{R}}}+{\rm{TDC}}_{\rm{j}}.
+\begin{aligned}  
+  t_R&= t_{\rm{off}}+t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_L}}+\frac{L}{v_{\rm{eff}_L}}+\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}+\\ 
+  &+t_{\rm{S}}+t_{\rm{off}_{\rm{R}}}+{\rm{TDC}}_{\rm{j}}.
+\end{aligned}
 \end{equation}
-
+%
 $t_{\rm{LR}_{\rm{ad}}}$ is defined as:
 \begin{equation}
 t_{\rm{LR}_{\rm{ad}}}=t_{\rm{off}_{\rm{R}}}-t_{\rm{off}_{\rm{L}}}.
 \end{equation}
-
+%
 Then one can write:
 \begin{equation}
 \frac{t_{\rm{L}-t_{\rm{R}}}}{2}=\frac{z}{v_{\rm{eff}_{\rm{L}}}}-\frac{L}{2\cdot v_{\rm{eff}_{\rm{L}}}}-\frac{L}{2\cdot v_{\rm{eff}_{\rm{R}}}}-\frac{u_{\rm{t}}}{2}-\frac{t_{\rm{LR}_{\rm{ad}}}}{2}.
@@ -127,7 +132,7 @@ For hits in the right paddle, the corresponding equation reads:
 \label{eq_2}
 C_{\rm{R}}=\frac{L}{2\cdot v_{\rm{eff}_{\rm{R}}}}+\frac{L}{2\cdot v_{\rm{eff}_{\rm{R}}}}+\frac{u_{\rm{t}}}{2}-\frac{t_{\rm{LR}_{\rm{ad}}}}{2}.
 \end{equation}
-Combining equations \ref{eq_1} and \ref{eq_2}, $t_{\rm{LR}_{\rm{ad}}}$ is given by:
+Combining Eqs.~\ref{eq_1} and \ref{eq_2}, $t_{\rm{LR}_{\rm{ad}}}$ is given by:
 \begin{equation}
 t_{\rm{LR}_{\rm{ad}}}=C_{\rm{L}}-C_{\rm{R}}.
 \end{equation}
@@ -144,7 +149,7 @@ where $z$ is the $z$ position of the hit in the CND with respect to the upstream
 \begin{center}
 \includegraphics[width=0.48\textwidth]{Figure/veff.png} 
 \end{center}
-\caption{Plots used to determine the effective velocity for a CND paddle. The two plot is the raw $\frac{t_{\rm{R}}-t_{\rm{L}}}{2}$ vs $z$ and the bottom plot is the distribution showing the linear fit.}
+\caption{Plots used to determine the effective velocity for a CND paddle. The plot is the raw $\frac{t_{\rm{R}}-t_{\rm{L}}}{2}$ vs. $z$ and the bottom plot is the distribution showing the linear fit.}
 \label{effv}
 \end{figure}
 
@@ -175,13 +180,13 @@ The values for $u_{\rm{t}}$ are typically in the 0.5~ns - 1.5~ns range, with lay
 
 \subsubsection{Global time offset}
 
-The global time offset $t_{\rm{off}}$ refers to the time difference between the start time value and the vertex time computed from the CND hit time and the CVT path length information. There is one $t_{off}$ value for each pair of coupled paddles.
+The global time offset $t_{\rm{off}}$ refers to the time difference between the start time value and the vertex time computed from the CND hit time and the CVT path length information. There is one $t_{\rm off}$ value for each pair of coupled paddles.
 $t_{\rm{off}}$ is given by the following equation :
 \begin{equation}
 t_{\rm{off}} = \frac{t_{\rm{L}}+t_{\rm{R}}}{2} - t_{\rm{S}} - t_{\rm{tof}}
                     - \frac{L}{2} \cdot \left(\frac{1}{v_{\rm{eff}_{\rm{R}}}} + \frac{1}{v_{\rm{eff}_L}}\right) - \frac{u_{\rm{t}}}{2} - \frac{t_{\rm{LR}_{\rm{ad}}}}{2}-{\rm{TDC}}_{\rm{j}},
 \end{equation}
-where $t_{\rm{tof}}$ is calculated using CVT information assuming the particles are pions. For this, a negative charge is required, as most of the negative particles in the Central Detector are pions. The position of the peak of the above distribution gives $t_{\rm{off}}$ (see Fig.~\ref{toff}). Its values depend mainly on the start time values, which is calculated using the CLAS12 FTOF system \cite{ftofref}. The variations of $t_{\rm{off}}$ between different pairs of paddles are typically below 10 ns.
+where $t_{\rm{tof}}$ is calculated using CVT information assuming the particles are pions. For this, a negative charge is required, as most of the negative particles in the Central Detector are pions. The position of the peak of the above distribution gives $t_{\rm{off}}$ (see Fig.~\ref{toff}). These values depend mainly on the start time $t_{\rm{S}}$, which is calculated using the CLAS12 Forward Time-of-Flight System (FTOF) \cite{ftof-nim}. The variations of $t_{\rm{off}}$ between different pairs of paddles are typically below 10 ns.
 
 \begin{figure}[htb]
 \begin{center}
@@ -193,13 +198,11 @@ where $t_{\rm{tof}}$ is calculated using CVT information assuming the particles 
 
 \subsection{Energy calibration}
 
-There are three calibration constants for the energy determination in each paddle of the CND: the attenuation length ($A_{L}$), the ADC-to-energy constants for direct minimum-ionizing particles (MIPs) ($MIP_{\rm{D}}$), and the ADC-to-energy constants for indirect MIP ($MIP_{\rm{I}}$).
-These three calibration steps can be performed almost independently from the timing calibration, however, $t_{\rm{LR_{\rm{ad}}}}$ is needed to determine if an ADC signal is direct or indirect (ie the hit happened in the considered paddle or in its coupled partner).
+There are three calibration constants for the energy determination in each paddle of the CND: the attenuation length ($A_{L}$), the ADC-to-energy constants for direct minimum-ionizing particles (MIPs) ($MIP_{\rm{D}}$), and the ADC-to-energy constants for indirect MIPs ($MIP_{\rm{I}}$).
+These three calibration steps can be performed almost independently from the timing calibration, however, $t_{\rm{LR_{\rm{ad}}}}$ is needed to determine if an ADC signal is direct or indirect (i.e. the hit happened in the considered paddle or in its coupled partner).
 
 \subsubsection{Attenuation length }
-
 The attenuation length $A_{L}$ accounts for the light attenuation along the length of the scintillators and light guides. There is an $A_{L}$ value for each paddle.
-%
 For hits in the left paddle, the two associated ADCs can be written as:
 \begin{equation}
 \label{3}
@@ -215,7 +218,7 @@ $E_0$ is given by:
 E_0=\frac{h\cdot 1.956}{2} \rm{MeV},
 \end{equation}
 where $h$ is the thickness of each scintillator.
-All the above equations are valid for hits in the left paddles, while for hits in the right paddles the corresponding equations are obtained by switching the indices.
+All the above equations are valid for hits in the left paddles, while for hits in the right paddles the corresponding equations are obtained by switching the $L/R$ indices.
 From Eqs.~\ref{3} and \ref{4} the following relation is derived:
 \begin{equation}
 \label{5}
@@ -227,7 +230,7 @@ where $c$ is a constant depending on $MIP_{\rm{D}}$, $MIP_{\rm{D}}$, and $L$. $A
 \begin{center}
 \includegraphics[width=0.48\textwidth]{Figure/attl1.png} 
 \end{center}
-\caption{Plots used to determine $A_{\rm{L}}$. The left plots corresponds to the left paddle and the right ones to the right paddle. The top two plots show the raw $ln(ADC_{\rm{L}}/ADC_{\rm{R}})$ vs. $z$ distributions. Slices in $z$ are fitted with a Gaussian and the mean is the plotted against $z$. The corresponding distributions and their associated linear fits are shown in the bottom two plots.}
+\caption{Plots used to determine $A_{\rm{L}}$. The top plot shows the raw $ln(ADC_{\rm{L}}/ADC_{\rm{R}})$ vs. $z$ distribution for one pai of paddles. Slices in $z$ are fitted with a Gaussian and the mean is the plotted against $z$. The corresponding distribution and its associated linear fit is shown in the bottom plot.}
 \label{attl}
 \end{figure}
 
@@ -235,7 +238,7 @@ where $c$ is a constant depending on $MIP_{\rm{D}}$, $MIP_{\rm{D}}$, and $L$. $A
 
 The final step of the calibration of the CND is the determination of the energy conversion parameters $MIP_{\rm{D}}$ and $MIP_{\rm{I}}$. There are two energy parameters for each paddle, thus there are four energy parameters for each pair of coupled paddles, denoted as $MIP_{\rm{D}}L$, $MIP_{\rm{I}}L$, $MIP_{\rm{D}}R$, $MIP_{\rm{I}}R$.
 
-In the following, we only consider a hit in the left paddle. Equations for hits in right paddles are obtained by switching the indices. For hits in the left paddle, only $MIP_{\rm{D}}L$ and $MIP_{\rm{I}}L$ can be obtained. In the following they are referred to as $MIP_{\rm{D}}$ and $MIP_{\rm{I}}$. From Eqs.~\ref{3} and \ref{4}, one gets:
+In the following, we only consider a hit in the left paddle. Equations for hits in right paddles are obtained by switching the $L/R$ indices. For hits in the left paddle, only $MIP_{\rm{D}}L$ and $MIP_{\rm{I}}L$ can be obtained. In the following they are referred to as $MIP_{\rm{D}}$ and $MIP_{\rm{I}}$. From Eqs.~\ref{3} and \ref{4}, one gets:
 \begin{equation}
 \label{6}
 ln\left(\frac{ADC_{\rm{L}}}{ADC_{\rm{R}}}\right)=ln\left(\frac{MIP_{\rm{D}}}{MIP_{\rm{I}}}\right)+{\frac{L}{A_{\rm{L}}}}-\frac{2\cdot z}{A_{\rm{L}}}
@@ -265,11 +268,10 @@ MIP_{\rm{I}}=\sqrt{e^{-\left(i-\frac{L}{A_{\rm{L}}}\right)}\cdot e^{\frac{L}{A_{
 where $i$ and $p$ are the intercept and peak position defined above.
 $MIP_{\rm{D}}$ and $MIP_{\rm{I}}$ are typically around 2000 and 500, respectively.
 
-In the following sections the reconstruction algorithms are described.
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.45\textwidth]{Figure/energy.png} 
-\caption{$\sqrt{ADC_{\rm{L}}\cdot ADC_{\rm{R}}}\cdot \frac{h}{path} $ distribution fitted with a Landau function. The events in this plot are identified as MIPs by requiring a pion. The PID is performed asking for negative charge, as most negatively charged particles in the Central Detector are pions.}
+\caption{$\sqrt{ADC_{\rm{L}}\cdot ADC_{\rm{R}}}\cdot \frac{h}{path} $ distribution fitted with a Landau function. The events in this plot are identified as MIPs by requiring a pion. The PID is performed requiring a negative charge, as most negatively charged particles in the Central Detector are pions.}
 \label{energy}
 \end{center}
 \end{figure}
