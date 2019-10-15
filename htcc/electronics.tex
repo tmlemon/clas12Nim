@@ -4,7 +4,7 @@
 \indent The electronics of the HTCC provide spectrometric and timing information on electron scattering events that are detected by the HTCC within its working acceptance. We need two fast output signals from each channel in order to generate a fast trigger for the CLAS12 spectrometer in experiments with an electron beam. Due to the fact that we need two fast output signals we either had to split the PMT anode signal at some ratio, or we could modify the high voltage passive divider of the PMT by adding a fast preamplifier to generate two identical signals with the same polarity. In many cases the strength (amplitude) of Cerenkov counter signals is smaller than the signal coming from the Minimum Ionizing Particles in the plastic scintillators. Splitting a signal which is already small by itself might be an option depending on the application. \\
 \indent In our case we have used modified standard linear passive high voltage divider that is equipped with a fast preamplifier, see Fig.\ref{fig:POPOV_1}.This preamplifier is integrated in the original divider and does not need external power supplies other than the same high voltage power supply that the PMT of a given channel is already using. Amplification coefficient varies from 8 to 10. The preamplifier provides two output signals of negative polarity. 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 0.0cm 0.0cm 0.0cm},clip]{images/POPOV_1.jpg}
     \caption{Modified high voltage divider with 2 identical outputs}
@@ -13,14 +13,14 @@
 
 The preamplifier is also fast: signal rise time increases by 1.5ns as compared with signal from a passive divider, and it is almost as fast as a signal from fast plastic scintillators. On the Fig.\ref{fig:POPOV_2} and Fig.\ref{fig:POPOV_3} are shown typical signals provided by standard passive divider and by modified divider respectively. The pulses leading edge is about 1.5ns slower than with passive divider and provide near perfect output termination with no signs of any ringing or after-pulsing.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 0.0cm 0.0cm 0.0cm},clip]{images/POPOV_2.jpg}
     \caption{Typical output signal provided by standard HV-divider}
     \label{fig:POPOV_2}
 \end{figure}
 
- \begin{figure}[!h]
+ \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 0.0cm 0.0cm 0.0cm},clip]{images/POPOV_3.jpg}
     \caption{Typical output signal provided by modified HV-divider ( with 2 identical outputs}
@@ -30,7 +30,7 @@ The preamplifier is also fast: signal rise time increases by 1.5ns as compared w
 The preamplifier is compact, reliable, does not require any changes in the high voltage power supply or in the cabling/connection scheme, consumes relatively low current, and consequently does not need additional cooling. \\
 \indent It has to be mentioned that preamplifier we use is generating additional noise as any other preamplifier unavoidably would. Depending on application and components in use the usage of preamplifier might compromise results of PMT gain matching or make them less reliable. In our particular case we use photomultiplier tubes that have a large quartz face-plate that is 5 inches in diameter. Even after selecting PMTs with the lowest possible dark noise and using a standard linear passive divider, designed for the detection of low signals, it was impossible to observe any indication of a single photoelectron peak because photomultipliers were noisy. Measurements of the dark noise were obtained after we developed and used a special dark current measurement procedure that would not require any modification of the standard passive divider. It was important that we were able to avoid using any Nano-Ampere Meters because these meters would necessitate certain modifications to the dividers using positive high voltage. This process allows us to avoid using any meters, and to consequently avoid any changes. Instead of using meters we analyze the dark pulse spectra from the flash ADC, which is triggered by pulse generator. Thus the ratio of integrating the charge to the width of the time window when the charge was obtained provides an accurate and stable estimate of the dark current. On the Fig.\ref{fig:POPOV_4} are shown calibration results for PMT with modified divider.   
 
- \begin{figure}[!h]
+ \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 0.0cm 0.0cm 0.0cm},clip]{images/POPOV_4.jpg}
     \caption{Calibration results for PMT with modified divider. In the most cases PMTs have been used at high voltages lower (by about 600 V) than specified for standard divider}
