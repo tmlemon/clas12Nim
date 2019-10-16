@@ -124,7 +124,7 @@ This single functional form is used to fill two tables:
 \subsubsection{Choice of Mathematical Form for the Distance to Time Function}
 We use a 4th order polynomial to model the distance to time relationship.
 \begin{equation}
-t(x) =  a x^4 + b x^3 + c x^2 + d x
+t(x) =  a x + b x^2 + c x^3 + d x^4
 \end{equation}
 where t is the time in ns and x is the distance in cm.
 By the use of simple calculus we convert the parameters a, b, c and d to equivalent 
@@ -133,7 +133,7 @@ a physically intuitive meaning.
 
 \subsubsection{Physical Constraints on the Drift Velocity Function}
 
-Inspection of  Fig.~\ref{garfield}a reveals that for tracks near the outer
+Inspection of  Fig.~\ref{garfield-isochrones} reveals that for tracks near the outer
 edge of the cell, the first arriving ions follow the electric-field line from 
 the field wire to the sense wire, independent of track entrance angle.  The
 corresponding drift time is referred to as $T_{max}$ and occurs when TRKDOCA is at its maximum value,
@@ -191,17 +191,17 @@ DOCA for a track with local angle, $\alpha$.  Call this distance, $Dmax_{\alpha}
 We derived the function for time 
 versus distance for a particular local angle, $\alpha$, by
 assuming the same functional form as for $\alpha = 30$ but 
-with a {\bf different coefficient, a}, which 
+with a {\bf different coefficient, d}, which 
 satisfies the constraint that  $F(dmax_{\alpha},\alpha)$ = $t_{max}$
 
 Using this constraint, we can solve for $a_{\alpha}$ in terms of the coefficients a, b, c and d,
 yielding the following:
 \begin{equation}
 \label{aalphaequation}
-a_{\alpha} = {{t_{max} - b ~dmax_{\alpha}^3 - c ~dmax_{\alpha}^2 - d ~dmax_{\alpha}}\over{dmax_{\alpha}^4}}
+d_{\alpha} = {{t_{max} - a ~dmax_{\alpha} - b ~dmax_{\alpha}^2 - c ~dmax_{\alpha}^3}\over{dmax_{\alpha}^4}}
 \end{equation}
 
-Using this formula for $a_{\alpha}$ we can derive the time as a function of distance and local
+Using this formula for $d_{\alpha}$ we can derive the time as a function of distance and local
 angle, $\alpha$ as shown in Fig.~\ref{xvst}.  See, for instance, the upper-left sub-figure 
 which shows the time as function of distance for 5 different angles between $0^{\circ}$ and 
 $30^{\circ}$, equally spaced in $\cos \left(30^\circ-\alpha\right)$.  Note two things:
@@ -214,7 +214,7 @@ The general functional form for time as a function of distance and local angle, 
 is given by
 \begin{equation}
 \label{tfunctionofxandlocalangle}
-t(x,\alpha) = a_{\alpha} x^4 + b x^3 + c x^2 + d x
+t(x,\alpha) = a x + b x^3 + c x^3 + d_{\alpha} x^4
 \end{equation}
 
 \subsubsection{Dependence of Distance to Time Function on Magnetic Field Strength}
