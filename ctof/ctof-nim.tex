@@ -7,6 +7,7 @@
 %\documentclass[final,3p,twocolumn]{elsarticle}
 \documentclass[3p,times,twocolumn]{elsarticle}
 
+
 %\documentclass{elsart}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -1571,11 +1572,11 @@ bucket associated with the event.
 The fine time alignment algorithm (referred to as RFP) uses the CTOF hit time traced to the event vertex
 relative to the start time to align the vertex times of all CTOF hits (modulo $T_{RF}$). This algorithm uses
 the average counter hit times, 
-\begin{eqnarray}
-t_{res}' = mod \left[ t_{vtx}, T_{RF} \right], ~~~~~\\ [1ex]
-t_{vtx} = \left(\overline{t}_{hit} - \frac{P_L}{\beta c} \right) - 
-\left(t_{RF} + \frac{z_{vert}}{\beta_e c} \right). \nonumber
-\end{eqnarray}
+
+\begin{equation}
+t_{res}' = mod \left[ \left( \left(\overline{t}_{hit} - \frac{P_L}{\beta c} \right) -
+\left(t_{ST} + \frac{z_{vert}}{\beta_e c} \right) \right), T_{RF} \right].
+\end{equation}
 
 \noindent
 The term $z_{vert}/(\beta_e c)$ shifts the start time to the actual event vertex location along the
@@ -1914,8 +1915,8 @@ CTOF system. A clear separation of pions and protons can be seen from these data
 \caption{Reconstructed $\beta$ vs. momentum (GeV) (left) and mass squared (GeV$^2$) (right)
 distributions for positively charged particles (top) and negatively charged particles (bottom) for
 all CTOF counters from beam data with a 10.6~GeV electron incident upon a liquid-hydrogen target.
-The overlaid curves show the expected locations of charged pions ($\pi^\pm$), kaons ($K^\pm$), and
-protons ($p^\pm$).}
+The overlaid curves show the expected locations of charged pions ($\pi$), kaons ($K$), and
+protons ($p$).}
 \label{ctof-pid}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
