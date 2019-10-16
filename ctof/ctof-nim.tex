@@ -7,7 +7,6 @@
 %\documentclass[final,3p,twocolumn]{elsarticle}
 \documentclass[3p,times,twocolumn]{elsarticle}
 
-
 %\documentclass{elsart}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -1572,11 +1571,11 @@ bucket associated with the event.
 The fine time alignment algorithm (referred to as RFP) uses the CTOF hit time traced to the event vertex
 relative to the start time to align the vertex times of all CTOF hits (modulo $T_{RF}$). This algorithm uses
 the average counter hit times, 
-
-\begin{equation}
-t_{res}' = mod \left[ \left( \left(\overline{t}_{hit} - \frac{P_L}{\beta c} \right) -
-\left(t_{ST} + \frac{z_{vert}}{\beta_e c} \right) \right), T_{RF} \right].
-\end{equation}
+\begin{eqnarray}
+t_{res}' = mod \left[ t_{vtx}, T_{RF} \right], ~~~~~\\ [1ex]
+t_{vtx} = \left(\overline{t}_{hit} - \frac{P_L}{\beta c} \right) - 
+\left(t_{RF} + \frac{z_{vert}}{\beta_e c} \right). \nonumber
+\end{eqnarray}
 
 \noindent
 The term $z_{vert}/(\beta_e c)$ shifts the start time to the actual event vertex location along the
