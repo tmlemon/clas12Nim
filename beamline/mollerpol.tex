@@ -81,12 +81,13 @@ locations and fields were adjusted in the simulation so that $\theta_{CM}=90^\ci
 \label{sec-PolTgt}
 
 The target system has a pair of 25-$\mu$m-thick permendur foils on a remotely controlled insertion table housed in a vacuum 
-chamber, as shown in Fig.~\ref{fig-MPtgt}. Permendur is an iron-cobalt alloy (49\% Fe, 49\% Co, 2\% Va) that has a saturated polarization
+chamber, as shown in Fig.~\ref{fig-MPtgt}. Permendur is an iron-cobalt alloy (49\% Fe, 49\% Co, 2\% Va) that has a maximum saturated polarization
 of approximately 8\% along the plane of the foil when subjected to a magnetic field of greater than about 40 G. To create a longitudinally 
 polarized target, the plane of a foil is 
 oriented at $\pm 20^\circ$ relative to the beamline and subjected to a longitudinal magnetic holding field produced by a pair of Helmholtz 
 coils on either side of the target chamber. Since only the longitudinal component of the polarization contributes to the
-measured asymmetry, the target polarization used in Eq.~\ref{eq-asymm-meas} is $P_T^z=P_T\cos 20^\circ$. 
+measured asymmetry, the target polarization used in Eq.~\ref{eq-asymm-meas} is $P_T^z=P_T\cos 20^\circ$. The $ 20^\circ$ tilt angle of the 
+target maximizes the longitudinal component of the polarization while keeping mounting hardware out of the beam.
 
 \begin{figure}[hbtp]
  \begin{center}
@@ -118,20 +119,24 @@ the signal (using the fit to interpolate under the peak) yields
 %
 where $\int_H Vdt$ is the area under the pickup coil signal excluding the peak, $N_T$ is the number of turns in the pickup coil, and 
 $\langle A_{\rm coil}\rangle$ is the average cross-sectional area of the pickup coil.
-Since the magnetization is related to the total field, $B$, and the applied field, $H$, through $4\pi M=B-H$, then
+
+
+The target polarization is related to the difference between the total area, $\int_{\rm total} Vdt$, of Fig.~\ref{fig-TPolMeas} and the area 
+leading to $H$ and is given by \cite{Band:1997ee} 
 %
 \begin{equation}
-\label{eq-M}
-	M=B-H=\frac{1}{4\pi}H\left(\frac{\int_{\rm total} Vdt-\int_HVdt}{\int_HVdt}\right),
+\label{eq-PT}
+	P_T=\left(1.474\pm0.010\right)l\frac{\left({\int_{\rm total} Vdt-\int_HVdt}\right)}{mN_T},
 \end{equation}
 %
-where $\int_{\rm total} Vdt$ is the total area of the signal. Figure~\ref{fig-PSat} shows a typical saturation curve for the target, i.e.~how 
+where  $l$ is length of the target in cm, and $m$ is the mass of the target in grams with both areas measured mVs. 
+Figure~\ref{fig-PSat} shows a typical saturation curve for the target, i.e.~how 
 the target polarization depends on the applied field. Measurements were done with two different pickup coils with the difference between 
-the two results indicating the systematic uncertainty associated with knowledge of the coil geometry. For this foil, the polarization saturates 
-at a value of $7.31\pm 0.08$\%, where the uncertainty is a combination of the statistical uncertainties from the linear fits of the saturation
-region of the curves and the variation between the two measurements. Additional uncertainties associated with converting from $M$ to $P_T$ 
-(Eq.~\ref{eq-M2Pt2}), the uncertainty from estimated variations in the target material thickness, and the uncertainty in the target angle relative
-to the beam lead to an overall uncertainty of $0.13\%$ and a total relative uncertainty $\delta P_T^z/P_T^z=0.018$.
+the two results indicating the systematic uncertainty associated with knowledge of the pickup coil geometry. For this foil, the polarization
+saturated at a value of $P_T=6.17\pm 0.047$\%, where the uncertainty is a combination of the statistical uncertainties from the linear fits of 
+the saturation region of the curves and the variation between the two measurements. Additional uncertainties associated with the leading 
+factor in Eq.~\ref{eq-PT}, the other measured quantities in Eq.~\ref{eq-PT}, estimated variations in the target material thickness, and the 
+uncertainty in the target angle relative to the beam leads to a total relative uncertainty $\delta P_T^z/P_T^z=0.014$.
 
 
 
@@ -149,7 +154,8 @@ to the beam lead to an overall uncertainty of $0.13\%$ and a total relative unce
   \includegraphics[width=0.45\textwidth]{PvsH0.png}
  \end{center}
 	\caption{Target polarization vs.~applied magnetic field, $H$, measured with two different pickup coils. A constant fit to the flat part 
-	of the curves yields values of $7.35\pm 0.04$\% for coil 1 (red diamonds) and $7.24\pm 0.05$\% for coil 2 (blue dots).} 
+	of the curves yields values of $6.18\pm 0.03$\% for coil 1 (red diamonds) and $6.15\pm 0.04$\% for coil 2 (blue dots), where 
+	uncertainties are statistical only.} 
  \label{fig-PSat}
 \end{figure}
 
@@ -167,10 +173,10 @@ The estimated relative uncertainty is $<0.01$\% and was determined by looking at
 variations in the geometry (locations of quadrupoles and detectors) and magnetic fields.
 \begin{figure}[ht]
  \begin{center}
-  \includegraphics[width=0.45\textwidth]{Azz.pdf}
+  \includegraphics[width=0.45\textwidth]{Azz.png}
  \end{center}
-	\caption{Average analyzing power $\langle A_{zz}\rangle$ as a function of beam energy from simulation. The orange/blue points 
-	include/exclude motion of the atomic electrons. The error bars are statistical only. The green curve on the orange points is a fit 
+	\caption{Average analyzing power $\langle A_{zz}\rangle$ as a function of beam energy from simulation. The upper/lower points 
+	include/exclude motion of the atomic electrons. The error bars are statistical only. The curve on the lower points is a fit 
 	given in the text.}
  \label{fig-Azz}
 \end{figure}
