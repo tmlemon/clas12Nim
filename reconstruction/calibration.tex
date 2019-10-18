@@ -44,10 +44,19 @@ with the same structure as the tables defined in CCDB.
 ~~
 
 \section{CLAS12 Event Display}
-The CLAS Event Display (ced) is a diagnostic graphical application for displaying CLAS events.
-The primary element of ced is the view. A view is a graphical representation of CLAS in its
-entirety or a subset of detector packages.
-ced contains multiple views of CLAS, some geometrically faithful and some not.
-It has both 2-dimensional and 3-dimensional views. Some views are purely informational, typically in the form of tables.
-An illustration of views in ced is shown in Fig.~\ref{fig:dcTracks}.
+The CLAS12 Event Display (ced) is a diagnostic graphical application for displaying CLAS12 events.
+The primary element of ced is the view, i.e. a graphical representation of CLAS12 in its
+entirety or a subset of detector packages.  For a given event, the primary purpose is to display the detector components that have recorded a signal, and, if available, the reconstructed tracks, providing therefore a visualization of the particle passage through the detector. In addition, ced can display information about the event such as the data banks, or information about the detector, as for example the magnetic fields. Available views are both 2- and 3-dimensional with the possibility of disabling the latter for a faster execution. An illustration of views in ced is shown in Fig.~\ref{fig:dcTracks}, where a section of the whole CLAS12 is displayed with specific focus on the forward detector: the colorful areas indicate the region where a significant magnetic field intensity is present; reconstructed tracks are shown by the orange lines. Similarly, Fig.~\ref{fig:ced} shows views of the central detector and of the forward tagger. In the first, two tracks originating from the target are shown as reconstructed from the fit of the available central tracker hits in correlation with signals in the outermost detector: here, the color scale is representative of the recorded signal intensity. The second figure shows a front view of the Forward Tagger calorimeter for an event where three clusters were recorded.
+ced is designed to be operated offline, reading either raw evio events or hipo events from file, or online reading events from the CLAS12 DAQ system \cite{daq-nim} to allow for real-time monitoring of the detector during data taking.
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+\centering
+\includegraphics[width=0.4\textwidth]{pics/ced_central.png}
+\includegraphics[width=0.39\textwidth]{pics/ced_ft.png}
+\caption{ced views of the central detector (left) and of the forward tagger (right). In the central detector view, two tracks originating from the target are shown as reconstructed from the fit of the available central tracker hits in correlation with signals in the outermost detector where the color scale is representative of the recorded signal intensity. The second figure shows a front view of the Forward Tagger calorimeter for an event where three clusters were recorded.
+}
+\label{fig:ced}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
