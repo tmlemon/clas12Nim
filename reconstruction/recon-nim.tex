@@ -1164,6 +1164,24 @@ A basic particle identification scheme is then performed.  For charged particles
 The resulting information is organized into standardized output bank structures for physics analyis, see \ref{sec:dsts}.  This includes particle four-vectors, all their associated detector responses, and global event information such as beam RF and helicity information.
 
 \subsubsection{Particle Identification Performance}
+
+\begin{table}[htpb]
+  \begin{center}
+    \label{tab:pidmatrix}
+    \begin{tabular}{|c|cccccc|}\hline
+          & \multicolumn{6}{|c|}{Truth}\\        
+          & $e$ & $\pi$ & $K$ & $p$ & $n$ & $\gamma$ \\\hline
+  $e$     &     &       &     &     &     &          \\ 
+  $\pi$   &     &       &     &     &     &          \\ 
+  $K$     &     &       &     &     &     &          \\ 
+  $p$     &     &       &     &     &     &          \\ 
+  $n$     &     &       &     &     &     &          \\ 
+ $\gamma$ &     &       &     &     &     &          \\\hline 
+    \end{tabular}
+  \caption{Pariticle identification matrix, based on simulation for particles between 1 and 4 GeV momentum.  The diagonal elements are correctly identified, while the off-diagonal elements are misidentified.}
+  \end{center}
+\end{table}
+
 \vspace{1in}
 \begin{figure}
 \includegraphics[width=0.45\textwidth]{pics/betavsp1.png}
@@ -1185,7 +1203,7 @@ The resulting information is organized into standardized output bank structures 
 \section{Data Processing}
 
 \subsection{Data Processing Workflow}
-The raw data is currently first preprocessed.  This involves extracting hits from waveforms, translating data-acquisition/hardware nomenclature to physical detector objects, performing some analysis steps that require serial event access, and converting from the input EVIO format to the HIPO data format.  The end result is a factor of 5 reduction in size and a file format optimized for downstream I/O during final analysis stages.
+The raw data is currently first preprocessed.  This is an I/O-heavy, single-threaded process and involves extracting hits from waveforms, translating data-acquisition/hardware nomenclature to physical detector objects, performing special analyses dependent on serial event access, and converting from the input EVIO format to the HIPO data format.  This phase includes registering beam helicity state changes and special scaler events, and populating their results into tag-1 HIPO events to faciliate downstream analysis.  The result is a factor of $\sim$5 reduction in size and a file format optimized for I/O.
 
 The second stage is a cpu-heavy reconstruction phase, including all the tracking, clustering, calorimetry, time-of-flight, and event building in the previous sections.  It runs multi-threaded in the CLARA framework and can be configured to output various data schema depending on the purpose, e.g. the DST structures of \ref{sec:dsts} during full-scale processing, or larger, special-purpose banks during preliminary calibrations phases.
 
