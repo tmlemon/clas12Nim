@@ -1,112 +1,123 @@
 \section{Monte-Carlo Simulation} 
-Comprehensive Monte-Carlo simulations to check major parameters of the HTCC was done before the design of the detector was completed. Electrons of 2 GeV energy were used.    
+Comprehensive Monte-Carlo (MC) simulations to check the major parameters of the HTCC were done before the design of the detector was completed. Electrons of 2 GeV energy were used. The core concept of the goal to reach was to build a detector that had to be installed in front of the forward spectrometer as a one unit without any support structure in the acceptance. A light collection pattern has been simulated for the exact HTCC geometry of all components, including their properties and detailed  specifications of materials in use to answer the following basic questions with regard to the detector:
 
-\indent On the Fig.\ref{fig:PROPERTIES} are presented MC simulation results of properties of the major components of the detector: transparency of the carbon dioxide radiator gas, reflectivity of mirrors deposited with metal aluminum covered by magnesium fluoride protection coating, and transparency of the PMT entry window material as function of wavelength. As one can see the radiator gas and mirror reveal good optical properties (transmittance and relativity) in the UV-range. As far as the entry window material is concerned, as expected, the quartz window provides the highest signal as opposed to window made of UV-transmitting glass. PMTs with quartz entry windows are significantly more expensive and are also fragile. We have run comparative tests of 5" ET 9823 PMTs with both quartz and UV-transmitting glass windows to justify better solution. 
+\begin{itemize}
+\item Is the chosen light collection geometry adequate to provide the highest possible electron detection efficiency and efficient rejection of background events?
+\item Which components would provide an acceptable performance of the detector (mirrors, PMTs)?
+\item Which shape (convex or flat) of the PMT window has the most efficient light collection?
+\item What window material has to be used to provide the highest possible signal strength?
+\item What are the actual image dimensions in the focal planes?
+\item What would be the basic dimensions of a Winston Light Concentrator, if we had to use them?
+\end{itemize}
 
-On the Fig.\ref{fig:Quartz_UV_glass} are shown obtained results. As measurements have shown the average signal from PMT with quartz window is equivalent of 55.6 phe whereas for the PMT with UV-transmitting glass the average signal is only of 38.2 phe. These tests have proven the advantages of a PMT with a quartz window: ~ 45\% more light if we use quartz PMTs.
+Fig.~\ref{fig:PROPERTIES} shows the MC simulation results for the properties of the major components of the detector: transparency of the CO$_2$ radiator gas, reflectivity of the mirrors deposited with metal aluminum covered by MgF$_2$ protection coating, and the transparency of the PMT entry window material as a function of wavelength. The radiator gas and mirror show good optical properties (transmittance and relativity) in the UV-range. As far as the entry window material is concerned, the quartz window provides a larger signal as compare to a window made of UV-transmitting glass. However, PMTs with quartz entry windows are significantly more expensive and are also fragile. We have run comparative tests of 5"-in ET 9823 PMTs with both quartz and UV-transmitting glass windows to justify our choice. Fig.~\ref{fig:Quartz_UV_glass} shows the results obtained for the PMT glass transparency. The measurements showed that average signal from a PMT with a quartz window is equivalent to 55.6 photoelectrons whereas for the PMT with UV-transmitting glass, the average signal is only of 38.2 photoelectrons: ~ 45\% more light for the quartz PMTs.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 10.7cm 3.7cm 0.1cm},clip]{images/PROPERTIES.jpg}
-    \caption{Optical properties of the HTCC major components. Exponential histogram (magenta) describes Cerenkov light spectrum}
+    \caption{Optical properties of the HTCC major components. Exponential histogram (magenta) describes the Cherenkov light spectrum. Two histograms (black) show results for the transparency of CO$_2$ gas and for the reflectivity of the mirror, respectively. Results for PMTs response for the PMT with quartz face plate (green), and for the PMT with UV-transmitting glass window (red) are shown as well.} 
     \label{fig:PROPERTIES}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={1.7cm 0.5cm 0.05cm 0.1cm},clip]{images/Quartz_UV_glass.jpg}
-    \caption{Comparative test results on the transparency of PMT windows made of Quartz (blue), UV-transmitting glass (red) and regular glass (black)}
+    \caption{Comparative test results on the transparency of PMT windows made of quartz (blue), UV-transmitting glass (red), and regular glass (black).}
     \label{fig:Quartz_UV_glass}
 \end{figure}
 
-Photomultiplier tubes are available with a face plate (entry window) that can be in various shapes. In the HTCC Cerenkov light is generated along the entire length of a scattered electron's trajectory in the working volume of the detector. The light collection geometry provided by the fully ellipsoidal mirror with point-to-point focusing is valid only in the case when one focal point is in the target position and when the second focal point is at the face of the light detector (PMT). Consequently one must expect considerable changes in the size of image in the focal plane due to the continuous slipping of the light emission point along the electron trajectory. Moreover there is no light emitted by a scattered electron moving from the target until it crosses the entry window of the HTCC and is them detected by the detector. Photomultiplier tubes of large size are available with a face plate (entry window) of various shapes. This is one more parameter to check. A light collection pattern has been simulated for the exact HTCC geometry to answer following basic questions with regards to the detector:
+In the HTCC Cherenkov light is generated along the entire length of a scattered electron's trajectory in the volume of the detector. The light collection geometry provided by the fully ellipsoidal mirror with point-to-point focusing is valid only in the case when one focal point is in the target position and when the second focal point is at the face of the PMT. Consequently, one must expect considerable changes in the size of image in the focal plane due to the continuous evolution of the light emission point along the electron trajectory. Moreover, there is no light emitted by a scattered electron moving from the target until it crosses the entry window of the HTCC. PMTs of large size are available with a face plate (entry window) of various shapes. This is one more parameter to check. Fig.~\ref{fig:Flat_Convex} shows simulation results on the collection of light impinging on the entry window for two different PMTs, comparing those with convex windows and those with flat windows. Clearly the flat entry window is preferable: the most of the light have larger angles of incidence for the the PMTs with and convex window. Besides, for them a larger portion of the light would undergo two reflections (off the mirror and Winston Cone) whereas for the PMTs with a flat face plate the most of the light hits the window under small angles of incidence. From the Fig.~\ref{fig:Flat_Convex} we also estimated that about 80\% of Cerenkov light will be directly impinging on the PMT photocathode and the remaining 20\% of light will fist be reflected by Winston Cone. The 5-in quartz phototube ET-9823QKB used in the HTCC has a photocathode that is actually 110 mm in diameter ($\sim$4.3 in). 
+
+\begin{comment}
+
+A light collection pattern has been simulated for the exact HTCC geometry of all components, including the properties of all components materials detailed  specifications to answer the following basic questions with regard to the detector:
 
 \begin{itemize}
-\item Which shape (convex or flat) has the most efficient light collection?
+\item Is the chosen light collection geometry adequate to provide the highest possible electron detection efficiency and efficient rejection of background events?
+\item Which components would provide an acceptable performance of the detector (mirrors, PMTs)?
+\item Which shape (convex or flat) of the PMT window has the most efficient light collection?
 \item What window material has to be used to provide the highest possible signal strength?
 \item What are the actual image dimensions in the focal planes?
 \item What would be the basic dimensions of a Winston Light Concentrator, if we had to use them?
 \end{itemize}
 
-In the Fig.\ref{fig:Flat_Convex} are shown simulation results on the collection of light impinging on the entry window for two different PMTs, comparing those with convex windows and those with flat windows. 
+\end{comment}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 9.1cm 6.3cm 0.1cm},clip]{images/Flat_Convex.jpg}
-    \caption{Distribution of Photons impinging on the PMT face plate}
+    \caption{Distribution of photons impinging on the PMT face plate.}
     \label{fig:Flat_Convex}
 \end{figure}
 
-Clearly the flat entry window is preferable. From the Fig.\ref{fig:Flat_Convex} we also estimated that about 80\% of Cerenkov light will directly impinging the PMT photocathode and remaining 20\% of light will be reflected by Winston Cone first. The 5" quartz phototube ET-9823QKB used in the HTCC has a photocathode that is actually 110 mm in diameter ($\sim$4.3"). 
+Fig.~\ref{fig:Point_Targ_Zero_Field_PMT}, Fig.~\ref{fig:Point_Targ_5T_Field_PMT}, Fig.~\ref{fig:10cm_Targ_5T_Field_PMT} show the results of the MC simulations for the light collection on the face of PMT1, which detects light reflected by a mirror facet that covers a polar angle range of 5$^\circ$ to 12.5$^\circ$. Data are obtained for 2 GeV electrons on a point-like target without and with the 5 T solenoidal field, and for a 10 cm long target with the 5 T field. On all three pictures the circular boundary at 110 mm diameter represents the edge of the PMT light sensitive area. The light collection pattern is not sensitive on the solenoid field, especially if the target is short. The data are presented with a logarithmic scale to show that most of the light impinges directly on the photocathode. In the real experiments with the electron beam, the cryogenic target is typically 5 cm long. 
 
-In the following pictures Fig.\ref{fig:Point_Targ_Zero_Field_PMT}, Fig.\ref{fig:Point_Targ_5T_Field_PMT}, Fig.\ref{fig:10cm_Targ_5T_Field_PMT} results of the MC simulations of the light collection on the face of PMT1, which is detecting light reflected by a mirror facet that covers a polar angle range of 5$^\circ$ to 12.5$^\circ$ are presented. \\
-\indent Data are obtained for 2 GeV electrons for a point-like target without and with 5T solenoidal field generated by the Central Superconductive Solenoid (CSS), and for a 10 cm long target with a 5T field. On all three pictures are shown the white circle (Ø 110 mm) represents the boundary of the PMT light sensitive area. The light collection is not much sensitive on the field of solenoid especially if the target is short. There are only small changes. Data are presented in the logarithmic scale so the most of the light is impinging the photocathode directly. 
-In the real experiments with electron beam the 5 cm long cryogenic targets are used. 
-
-Estimates for signal strength for 2 GeV electrons have been obtained also for point-like and extended targets with and without 5T field. \\
-\indent Similar simulation results are obtained for patterns on the face of Winston Light Concentrators. On the Fig.\ref{fig:10cm_Targ_5T_Field_WCone} are shown result for 10 cm long target in the 5T field. There is a circle of diameter 161.4 mm shown on the picture just for illustration of possible Winston Cone opening diameter. Based on these results the Winston Light Concentrators used in the HTCC have a fully circular opening of radius R=7.4 cm and length of 190 mm, leaving the PMT photocathode completely open. Reflective surfaces of the mirrors and Winston Cones unavoidably will have certain imperfections and correspondingly will lead to smeared patterns. 
+Estimates for the signal strength for 2 GeV electrons have also been obtained for point-like and extended targets with and without the 5 T solenoid field. Similar simulation results are obtained for patterns on the face of the Winston Light concentrators. Fig.~\ref{fig:10cm_Targ_5T_Field_WCone} shows the result for a 10 cm long target in a 5 T field. There is a circle of diameter 161.4 mm shown on the picture just for illustration of a possible Winston Cone opening diameter. Based on these results the Winston Light concentrators used in the HTCC have a fully circular opening of radius R=7.4 cm and length of 190 mm. 
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 0.0cm 0.0cm 0.0cm},clip]{images/Point_Targ_Zero_Field_PMT.jpg}
-    \caption{Light collection pattern on the face of the PMT for point-like target and no solenoidal field}
+    \caption{Light collection pattern on the face of the PMT for a point-like target with no solenoidal field.}
     \label{fig:Point_Targ_Zero_Field_PMT}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 0.0cm 0.0cm 0.0cm},clip]{images/Point_Targ_5T_Field_PMT.jpg}
-    \caption{Light collection pattern on the face of the PMT for point-like target and 5T solenoidal field}
+    \caption{Light collection pattern on the face of the PMT for a point-like target and a 5 T solenoidal field.}
     \label{fig:Point_Targ_5T_Field_PMT}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 0.0cm 0.0cm 0.0cm},clip]{images/10cm_Targ_5T_Field_PMT.jpg}
-    \caption{Light collection pattern on the face of the PMT for point-like target and 5T solenoidal field}
+    \caption{Light collection pattern on the face of the PMT for a 10-cm long target and 5 T solenoidal field.}
     \label{fig:10cm_Targ_5T_Field_PMT}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 0.0cm 0.0cm 0.0cm},clip]{images/10cm_Targ_5T_Field_WCone.jpg}
-    \caption{Light collection pattern on the face of the PMT for point-like target and 5T solenoidal field}
+    \caption{Light collection pattern on the face of the Winston Cone for a 10 cm long target and a 5 T solenoidal field.}
     \label{fig:10cm_Targ_5T_Field_WCone}
 \end{figure}
 
-Estimates for signal strength for 2 GeV electrons have been obtained also for the point-like and extended targets with and without 5T field.\\
-\indent The following pictures 
-Fig.\ref{fig:Point_Targ_Zero_Field_Theta}, 
-Fig.\ref{fig:Point_Targ_5T_Field_Theta}, and 
-Fig.\ref{fig:10cm_Targ_5T_Field_Theta} 
-present angular distributions in the the polar angle range. Histograms  in the the azimuthal angle range are shown on the 
-Fig.\ref{fig:Point_Targ_Zero_Field_Phi}, 
-Fig.\ref{fig:Point_Targ_5T_Field_Phi}, and 
-Fig.\ref{fig:10cm_Targ_5T_Field_Phi}. 
+Estimates for signal strength for 2 GeV electrons have been obtained for the point-like and extended targets with and without the 5 T field. The following pictures 
+Fig.~\ref{fig:Point_Targ_Zero_Field_Theta}, 
+Fig.~\ref{fig:Point_Targ_5T_Field_Theta}, and 
+Fig.~\ref{fig:10cm_Targ_5T_Field_Theta} 
+present angular distributions of the signal strength. Corresponding plots of the signal strength in the the azimuthal angle range are shown in
+Fig.~\ref{fig:Point_Targ_Zero_Field_Phi}, 
+Fig.~\ref{fig:Point_Targ_5T_Field_Phi}, and 
+Fig.~\ref{fig:10cm_Targ_5T_Field_Phi}. One can see that the signal strength increases with the polar angle. This is because the electrons scattered at a smaller angle travel a shorter distance in the radiator gas as compared to the electrons moving at larger angles. The minimum signal strength is estimated to be about 14–15 photoelectrons. For electrons scattered in range of polar angles from $5^\circ$ to $35^\circ$ we have a complete and uniform coverage of entire 2$\pi$ acceptance, as demonstrated by the azimuthal dependencies. The average signal strength is about 17 photoelectrons. This estimate has been obtained by taking into account the possible reduction of the mirror reflectivity due to the unavoidable influence of the hard to control certain factors during the detector construction (dust and fume deposition, mechanical imperfections of the reflective surfaces, etc.) that was fist observed during the construction and maintenance of the Low Threshold Cherenkov Counter.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 9.4cm 0.0cm 0.0cm},clip]{images/Point_Targ_Zero_Field_Theta.jpg}
-    \caption{Signal strength as function of polar angle. Point-like target and no solenoidal field}
+    \caption{Signal strength as a function of polar angle. Point-like target and no solenoidal field.}
     \label{fig:Point_Targ_Zero_Field_Theta}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 9.4cm 0.0cm 0.0cm},clip]{images/Point_Targ_5T_Field_Theta.jpg}
-    \caption{Signal strength as function of polar angle. Point-like target and 5T solenoidal field}
+    \caption{Signal strength as a function of polar angle. Point-like target with a 5 T solenoidal field.}
     \label{fig:Point_Targ_5T_Field_Theta}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.0\linewidth,trim={0.0cm 9.4cm 0.0cm 0.0cm},clip]{images/10cm_Targ_5T_Field_Theta.jpg}
-    \caption{Signal strength as function of polar angle. 10cm long target and 5T solenoidal field}
+    \caption{Signal strength as a function of polar angle. 10 cm long target with a 5 T solenoidal field.}
     \label{fig:10cm_Targ_5T_Field_Theta}
 \end{figure}
 
-One can see that the signal strength is increasing with the polar angle. This is because the electrons scattered at a smaller angle travel a shorter distance in the radiator gas as compared to the electrons moving under larger angles. The minimum signal strength is estimated to be about 14–15 photoelectrons (phe). For electrons scattered in range of polar angles from $5^\circ$ to $35^\circ$
-we have a complete and uniform coverage of entire 2$\pi$ acceptance, as demonstrated by the azimuthal dependencies. The average signal strength is about 17 phe. This estimate have been obtained by taking into consideration possible reduction of mirror reflectivity due to the unavoidable degradation of the reflective surface during the construction stage (limited stability of reflectivity, dust and fume deposition, mechanical defects etc.) that has first been observed after the construction of the Low Threshold Cerenkov Counter for the CLAS spectrometer.
+
+\begin{comment}
+
+This estimate have been obtained by taking into consideration the possible reduction of mirror reflectivity due to the unavoidable degradation of the reflective surface during the construction stage (certain dust and fume deposition, mechanical defects, etc.) that has first been observed after the construction of the Low Threshold Cerenkov Counter for the CLAS spectrometer.
+
+\end{comment}
 
 \begin{figure}[!ht]
     \centering
@@ -129,8 +140,9 @@ we have a complete and uniform coverage of entire 2$\pi$ acceptance, as demonstr
     \label{fig:10cm_Targ_5T_Field_Phi}
 \end{figure}
 
-\indent One of sources of background events in the HTCC are the secondary interactions of charged pions with components in the working volume of the HTCC and as with components outside the detector in the region between the target and the entry window. Charged pions with energies mostly bellow the detection threshold can knock out relativistic $\delta$ -electrons that generate Cerenkov light in the working volume. Some of that light can be focused by the mirror on the photomultiplier tubes. In our MC simulations we estimated expected background rates. Of course rates depend on actual amount and distribution of materials. We have specified in details  everything regarding the detector components. With regard outside components we have taken into account the 10 cm long cryogenic target filled with hydrogen, standard scattering chamber and air gap between exit window of the chamber and entry window of the HTCC. \\
-\indent At the CLAS12 designed luminosity of L $\approx$ 10$^{35}$ cm$^{-2}$ sec$^{-1}$ the estimated of total background rate for one half-sector is about 20 kHz. \\  
+\indent One of sources of background events in the HTCC are the secondary interactions of charged pions with components in the working volume of the HTCC and as with components outside the detector in the region between the target and the entry window. Charged pions with energies mostly bellow the detection threshold can knock out relativistic $\delta$ -electrons that generate Cerenkov light in the working volume. Some of that light can be focused by the mirror on the photomultiplier tubes. In our MC simulations we estimated expected background rates. Of course rates depend on actual amount and distribution of materials. We have specified in details  everything regarding the detector components. With regard outside components we have taken into account the 10 cm long cryogenic target filled with hydrogen, standard scattering chamber and air gap between exit window of the chamber and entry window of the HTCC.
+
+At the CLAS12 designed luminosity of L $\approx$ 10$^{35}$ cm$^{-2}$ sec$^{-1}$ the estimated of total background rate for one half-sector is about 20 kHz. \\  
 \indent The most important parameters for the Cerenkov counters are the electron detection efficiency and the charged pion rejection power. In the Fig.\ref{fig:Pion_rejection_2GeV} simulation results on rejection of charged pions are shown. Data are presented for four HTCC channels from one half-sector at three different thresholds of electron detection at 2 GeV: equivalent of 1, 2 and 3 photoelectrons. 
 
 \begin{figure}[!ht]
