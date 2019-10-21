@@ -9,7 +9,7 @@ to the reconstruction software \cite{recon-nim}.
 This service provides the Geant4 definitions that are read by the GEMC perl API to build the geometry database.
 
 There are three SVT regions, with 10, 14, and 18 sectors/modules for Regions 1, 2, and 3, respectively, see \F{bstGeometry}.
-Each module has six sensors, four readout chips, and several layers of material, listed in order below:
+Each module has six sensors, four readout chips as passive materials, and several material components in the active area, listed in order below:
 
 \begin{itemize}
 	\item wirebond
@@ -34,13 +34,13 @@ The strip identification is performed in the Process ID routine.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstGeometry.png}
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/bstDetail.png}
-	\caption{Top: the GEMC implementation of the SVT geometry. This is a longitudinal cutview containing only $x>0$ volumes.
+	\caption{Top: the GEMC implementation of the SVT geometry (longitudinal cutview).
 	         The three regions are shown in the sliced view. The silicon sensors are
              the grey color rectangles. The track is a 2 GeV proton, leaving hits (marked with white circles)
-			 in each module crossed. Bottom: detail of a module shows
+			 in each sensor crossed. Bottom: detail of a module shows
              the various materials inside. The 320 $\mu$m silicon sensor is on top and bottom of the module.
              The material inside includes epoxy glue, the bus cable, and support material. The proton creates one hit
-		     in both the two silicon modules it transverses.}
+		     in both the two silicon sensors it transverses.}
 	\label{fig:bstGeometry}
 \end{figure}
 
@@ -48,7 +48,7 @@ The strip identification is performed in the Process ID routine.
 \subsubsection{Process ID}
 
 At each Geant4 step, the local coordinates in the sensor volume are used to calculate the strip number.
-The algorithm includes: the dead zone around the sensor, the pitch between the strips (156 $\mu$m), and the angle
+The algorithm includes: the dead zone around the sensor, the pitch between the readout strips (156 $\mu$m), and the angle
 between the strips that varies from 0\mdeg \ (for strip $\# 1$) to 3\mdeg \ (for strip  $\# 256$). A showcase of the strip assignment
 is summarized in \F{processID}.
 

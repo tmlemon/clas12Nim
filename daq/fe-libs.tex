@@ -1,33 +1,33 @@
 \subsection{Front-End Libraries}
 
-The front-end libraries were developed mostly in JLab.
+The front-end libraries were developed mostly at JLab.
 
 Just an outline ATM
 
 GEFANUC driver:
 \begin{itemize}
-\item Customized Kernel Driver and Userspace Interface
+\item Customized kernel driver and user space interface
 \item C API provides:
    \begin{itemize}
    \item Setup of VME inbound and outbound windows
       \begin{itemize}
       \item Permanent windows: CRCSR, A16, A24, A32
-      \item Map of these windows into userspace
+      \item Map of these windows into user space
       \end{itemize}
-   \item Allocate of Physical Memory for DMA
+   \item Allocate Physical Memory for DMA
       \begin{itemize}
-      \item Map of this memory into userspace
+      \item Map of this memory into user space
       \end{itemize}
    \end{itemize}
 \end{itemize}
 
-JVME Userspace Driver:
+JVME User space Driver:
 \begin{itemize}
 \item C API provides
   \begin{itemize}
-  \item common userspace interface to GEFANUC driver and others.
+  \item common user space interface to GEFANUC driver and others
   \item Initialization of kernel driver and default VME windows
-  \item Maps VME bridge registers into userspace
+  \item Maps VME bridge registers into user space
     \begin{itemize}
     \item Provides userspace configuration and operation of DMA
     \end{itemize}
@@ -35,7 +35,7 @@ JVME Userspace Driver:
   \end{itemize}
 \end{itemize}
 
-Front-end Libraries
+Front-end Libraries:
 \begin{itemize}
 \item C APIs provide
   \begin{itemize}

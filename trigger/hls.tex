@@ -71,7 +71,7 @@ Another reason for subdividing the project is the lack of multi-clock domain sup
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/hls_chart.png}
-	\caption{ECAL HLS project chart.}
+	\caption{ECAL HLS project chart. Entire project is splitted on multiple smaller projects to satisfy timing requirements. In particular, hit sorting section is splitted on seven identical projects.}
 	\label{fig:hls_chart}
 \end{figure}
 
@@ -88,7 +88,7 @@ The clock uncertainty is set as 30\% of the main clock, which we found forces HL
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/hls.png}
-	\caption{Typical HLS project for one of the PCAL trigger elements. 4\% LUTs is close to the maximum possible to meet timing requirements on the following steps.}
+	\caption{Typical HLS project for one of the PCAL trigger elements. 4\% LUTs is close to the maximum possible to meet timing requirements on the following steps. With 8~ns target, clock uncertainty  is set to 3~ns.}
 	\label{fig:hls}
 \end{figure}
 
@@ -99,7 +99,7 @@ Common settings for VIVADO were used as shown in Fig. ~\ref{fig:vivado}. It usua
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/vivado.png}
-	\caption{VIVADO project for PCAL trigger. Strategies used were ``Vivado Synthesis Defaults'' and ``Performance\_ExplorePostRoutePhysOpt''. LUT utilization is about 2/3 of the total balance.}
+	\caption{VIVADO project for PCAL trigger. Strategies used were ``Vivado Synthesis Defaults'' and ``Performance\_ExplorePostRoutePhysOpt''. LUT utilization is about 2/3 of the total balance. It was relatively easy to meet timining requirements with FPGA clock 125MHz or slower.}
 	\label{fig:vivado}
 \end{figure}
 

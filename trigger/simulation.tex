@@ -13,7 +13,7 @@ For example, Fig.~\ref{fig:ecal_sim1} and Fig.~\ref{fig:ecal_sim2} show a compar
 	\begin{center}
 		\centering
 		\includegraphics[width=8cm]{img/ecal_sim1.png}
-		\caption{EC cluster finding: difference between results from offline reconstruction and trigger system (using dividing in coordinate calculation).}
+		\caption{EC cluster finding: difference between results from offline reconstruction and trigger system (using dividing in coordinate calculation). Ideally it must be delta function, in reality we see a difference between offline reconstruction and trigger desision in cluster energy.}
 		\label{fig:ecal_sim1}
 	\end{center}
 \end{figure} 
@@ -22,7 +22,7 @@ For example, Fig.~\ref{fig:ecal_sim1} and Fig.~\ref{fig:ecal_sim2} show a compar
 	\begin{center}
 		\centering
 		\includegraphics[width=8cm]{img/ecal_sim2.png}
-		\caption{EC cluster finding: difference between results from offline reconstruction and trigger system (using lookup table in coordinate calculation).}
+		\caption{EC cluster finding: difference between results from offline reconstruction and trigger system (using lookup table in coordinate calculation). In this case we see a difference not only in cluster energy, but in cluster coordinates as well. It means that lookup table method should not be used for cluster coordinate definition in trigger.}
 		\label{fig:ecal_sim2}
 	\end{center}
 \end{figure} 
@@ -33,7 +33,7 @@ Another example (see Fig.~\ref{fig:ecal_sim3}) shows the absolute EC cluster ene
 	\begin{center}
 		\centering
 		\includegraphics[width=8cm]{img/ecal_sim3.png}
-		\caption{EC cluster finding: 5 GeV electron, no PCAL, energy deposition in offline and trigger model.}
+		\caption{EC cluster finding: 5 GeV electron, no PCAL, energy deposition in offline and trigger model. It can be seen that trigger system cluster finder has energy definition and resolution comparable with offline reconstruction.}
 		\label{fig:ecal_sim3}
 	\end{center}
 \end{figure} 
@@ -64,7 +64,7 @@ The simulation was built from the actual HDL firmware source files compiled for 
 		\hline \hline
 	\end{tabular}
 \end{center}
-\caption{Trigger Simulation crates.}
+\caption{Trigger Simulation crates. Responces from 43 VME crates, corresponding to 10 CLAS12 detectors, were included into trigger simulation procedure. It allowed to produce comprehensive results and find any possible problems.}
 \label{tab:trig_sim_crates}
 \end{table}
 

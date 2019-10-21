@@ -28,7 +28,7 @@ After the data is processed and the events are reconstructed, we select subset o
 	\centering
 	\subfloat[]{\includegraphics[width=0.24\textwidth]{img/htcc_fadc1.png}}
 	\subfloat[]{\includegraphics[width=0.24\textwidth]{img/htcc_fadc2.png}}
-	\caption{HTCC FADC pulses: left - physics triggers, right - randon trigger. }
+	\caption{HTCC FADC pulses: left - physics triggers, right - randon trigger. Plot was used to select ``good'' events from the random trigger runs, for such events FADC timing have to be at least 50 counts from both timing window edges to avoid boundary effects.}
 	\label{fig:htcc_fadc}
 \end{figure}
 
@@ -53,14 +53,14 @@ The final trigger validation procedure was executed several times during the fir
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/PCAL_bug_data.png}
-	\caption{PCAL bug in beam data}
+	\caption{PCAL bug in beam data. Red crosses inside blue areas coresponds to trigger inefficiency, it was discovered during beam data processing.}
 	\label{fig:PCAL_bug_data}
 \end{figure}
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/PCAL_bug_hls.png}
-	\caption{PCAL bug in GEANT4 simulation.}
+	\caption{PCAL bug in GEANT4 simulation. Blue lines corresponds to trigger inefficiency. It is visible much better in simulation then in beam data, and points to exact problem.}
 	\label{fig:PCAL_bug_hls}
 \end{figure}
 

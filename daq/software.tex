@@ -2,7 +2,7 @@
 
 \subsection{CODA DAQ Software}
 
-The CLAS12 DAQ system is based on CODA (\cite{coda-ref} system developed at JLab, see Fig.~\ref{fig:coda_diagram}), short for CEBAF Online Data Acquisition. It is a software toolkit of applications and libraries that allows the implementaion of a data acquisition system. The scale of the system can range from a few detector channels in a test stand to tens of thousands of channels in a large detector installation in one of the experimental halls. CODA achieves this scaling through modularity and provides a set of supported hardware components along with complementary software components.
+The CLAS12 DAQ system is based on the CODA (\cite{coda-ref} system developed at JLab (see Fig.~\ref{fig:coda_diagram}), short for CEBAF Online Data Acquisition. It is a software toolkit of applications and libraries that allows the implementaion of a data acquisition system. The scale of the system can range from a few detector channels in a test stand to tens of thousands of channels in a large detector installation in one of the experimental halls. CODA achieves this scaling through modularity and provides a set of supported hardware components along with complementary software components.
 
 \begin{figure}[hbt]
 	\centering
@@ -19,7 +19,7 @@ The CODA DAQ system includes a run control facility consisting of a back-end run
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/runcontrol1.png}
-	\caption{Runcontrol GUI. Main control and monitoring screen for CLAS12 DAQ System. Tabs on the right side allows to switch between different control screens such as configuration editor, current DAQ components status, and DAQ rates.}
+	\caption{Run Control GUI. Main control and monitoring screen for the CLAS12 DAQ system. The Tabs on the right side allows switching between different control screens, such as the configuration editor, current DAQ components status, and DAQ rates.}
 	\label{fig:runcontrol1}
 \end{figure}
 
@@ -29,32 +29,32 @@ The CODA DAQ system includes a run control facility consisting of a back-end run
 
 \subsection{Readout Controller}
 
-The Readout Controller (ROC, see Fig.~\ref{fig:roc_diagram}) software component is a C program running on the front-end controllers such as the Intel-based VME/VXS crate controllers, VTP trigger boards, or regular Linux servers - essentially any hardware receiving data from the front-end electronics. On the DAQ startup, the ROC main program starts three threads. After this it just controls the thread health and communicates with the run control process. Three threads (readout, processing, and network) pass data from one to another, communicating via circular buffers. The typical number of buffers in each buffer queue is 8 and the size of every buffer is 4~MB, which defines how long the front-end electronics can be read out before blocking triggers in the case of back-end busy conditions.
+The Readout Controller (ROC, see Fig.~\ref{fig:roc_diagram}) software component is a C program running on the front-end controllers such as the Intel-based VME/VXS crate controllers, VTP trigger boards, or regular Linux servers - essentially any hardware receiving data from the front-end electronics. On DAQ startup, the ROC main program starts three threads. After this it just controls the thread health and communicates with the Run Control process. Three threads (readout, processing, and network) pass data from one to another, communicating via circular buffers. The typical number of buffers in each buffer queue is 8 and the size of every buffer is 4~MB, which defines how long the front-end electronics can be read out before blocking triggers in the case of back-end busy conditions.
 
-The first thread (readout) receives data from the front-end electronics and places it into the first circular buffer. That thread can run in polling mode which occupies an entire CPU core (or optionally in interrupt mode). The CLAS12 readout primarely employs polling mode, which has adequate performance on multi-core controllers. The second thread (processing) reads data from the first circular buffer and performs all needed data processing. In particular it performs the so-called ``disentangling'' as well as data sanity checks. The results are placed into the second circular buffer. The processing component can create its own worker threads to increase processing power if necessary. The final thread (network) reads data from the second circular buffer and sends it over the network to the Event Builder.
+The first thread (readout) receives data from the front-end electronics and places it into the first circular buffer. That thread can run in polling mode, which occupies an entire CPU core (or optionally in interrupt mode). The CLAS12 readout primarily employs polling mode, which has adequate performance on multi-core controllers. The second thread (processing) reads data from the first circular buffer and performs all needed data processing. In particular it performs the so-called ``disentangling'' as well as data sanity checks. The results are placed into the second circular buffer. The processing component can create its own worker threads to increase processing power if necessary. The final thread (network) reads data from the second circular buffer and sends it over the network to the Event Builder.
 
 The first and second threads can load user code that is compiled separately and downloaded dynamically at runtime, which allows users to develop experiment-dependent processing without recompiling the enitre ROC application.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/roc_diagram.pdf}
-	\caption{Readout Controller (ROC) Diagram. ROC is the program typically running on 4-core VME Intel Controller. It includes 3 main threads performing  VME readout, data processing, and networking.}
+	\caption{Readout Controller (ROC) Diagram. The ROC program typically runs on a 4-core VME Intel Controller. It includes 3 main threads performing  VME readout, data processing, and networking.}
 	\label{fig:roc_diagram}
 \end{figure}
 
 
 \subsection{Event Builder}
 
-The Event Builder (EB, see Fig.~\ref{fig:eb_diagram}) is the program that receives the data fragments from all readout controllers and assembles it into events. The building process is based on event number, event type, and timestamp of the data fragments: for each event all three values have to be identical for all data from all readout controllers. In case of any differences, the DAQ will be stopped and the error reported.
+The Event Builder (EB, see Fig.~\ref{fig:eb_diagram}) is the program that receives the data fragments from all readout controllers and assembles it into events. The building process is based on event number, event type, and timestamp of the data fragments: for each event all three values have to be identical for all data from all Readout Controllers. In case of any differences, the DAQ will be stopped and the error reported.
 
 The Event Builder consists of receiving and building parts. The receiving part contains a set of independent threads, one per readout controller connected to it by TCP protocol. Every thread receives data and places it into an internal buffer. If the buffer becomes full, the thread stops receiving data, effectively propagating the busy condition back to the readout controller. The building part has a number of identical building threads, which take turns by getting data from the receiving part of the internal buffers, building events, and placing them into Event Transfer System.
 
-The total number of threads in the receiving part of the Event Builder in CLAS12 DAQ is currently 118, which therefore represents the number of network connections from the readout controllers. Because of this the DAQ has to run on a powerful server, with many CPU cores, large memory, and a high bandwidth network card. CLAS12 is using a Dell R730 server with 32 cores, 64~GByte memory, and 40~Gbit network card. This server is adequate for the present CLAS12 DAQ requirements.
+The total number of threads in the receiving part of the Event Builder in CLAS12 DAQ is currently 118, which therefore represents the number of network connections from the Readout Controllers. Because of this the DAQ has to run on a powerful server, with many CPU cores, large memory, and a high bandwidth network card. CLAS12 is using a Dell R730 server with 32 cores, 64~GByte memory, and 40~Gbit network card. This server is adequate for the present CLAS12 DAQ requirements.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/eb_diagram.pdf}
-	\caption{Event Builder (EB) Diagram. EB is the program typically running on multi-core Linux server. It collects event fragments from ROCs, build events, and sends events to the Event Transfer system.}
+	\caption{Event Builder (EB) Diagram. The EB program typically runs on a multi-core Linux server. It collects event fragments from the ROCs, builds events, and sends events to the Event Transfer system.}
 	\label{fig:eb_diagram}
 \end{figure}
 
@@ -68,7 +68,7 @@ Using these simple concepts, complicated data pathways can be constructed. The E
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/et_diagram.png}
-	\caption{Event Transfer (ET) System Diagram. It is the program typically running on multi-core Linux server. It accepts events from Event Builder and pass them through the set of stations allowing attached programs to perform data processing. Last station typically have Event Recorder attached to it.}
+	\caption{Event Transfer (ET) System Diagram. The ET program typically runs on a multi-core Linux server. It accepts events from the Event Builder and passes them through the set of stations, allowing attached programs to perform data processing. The last station typically has the Event Recorder attached to it.}
 	\label{fig:et_diagram}
 \end{figure}
 
@@ -81,7 +81,7 @@ The ER structure in multi-stream mode is shown in Fig.~\ref{fig:er_diagram}. The
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/er_diagram.pdf}
-	\caption{Event Recorder Diagram. It is the program typically running on multi-core Linux server. It receives events from Event Transfer System and write them to the disk. It is possible to write several files in parallel to increase writing performance, event order is perserved in a process.}
+	\caption{Event Recorder (ER) Diagram. The ER program typically runs on a multi-core Linux server. It receives events from the Event Transfer system and writes them to the disk. It is possible to write several files in parallel to increase writing performance; event order is preserved in a process.}
 	\label{fig:er_diagram}
 \end{figure}
 
@@ -93,25 +93,29 @@ The messaging system in the CLAS12 DAQ is based on the ActiveMQ library and its 
 
 \subsection{Runtime Database (RCDB)}
 
-A JLab-designed MYSQL-based Runtime Database (RCDB) is used to store the run parameters and statistics. It has web interface (see Fig.\ref{fig:rcdb}) and provides an interface to various languages including C++ and Java.
+A JLab-designed MYSQL-based Runtime Database (RCDB) is used to store the run parameters and statistics. It has a web interface (see Fig.\ref{fig:rcdb}) and provides an interface to various languages including C++ and Java.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/rcdb.png}
-	\caption{Runtime Database Web Browser example. In particular it allows to search for run(s) with certain parameters.}
+	\caption{Runtime Database Web Browser example that allows users to search for run(s) with certain parameters.}
 	\label{fig:rcdb}
 \end{figure}
 
 \subsection{Online Data Monitoring}
 
-The CLAS12 online data monitoring is the set of programs attached to Event Transfer System and processing data in real time. One of such program's output is shown on Fig.\ref{fig:online_monitor}. Monitoring system allows shift takers to insert histograms into electronic logbook by one click.
+The CLAS12 online data monitoring is the set of programs attached to the Event Transfer system that processes data in real time. One of such program's outputs is shown in Fig.\ref{fig:online_monitor}. The Monitoring system allows shift takers to insert histograms into the electronic logbook. Every CLAS12 detector has a designated set of histograms that is closely monitored by shift takers and detector experts to ensure data quality.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/online_monitor.png}
-	\caption{Online monitoring example. Only small porsion of the histograms is shown, full set includes hundreds of histograms used by shift takers to monitor various detectors and subsystems.}
+	\caption{Online monitoring example. Only a small portion of the histograms is shown. The full set includes hundreds of histograms used by shift takers to monitor various detectors and subsystems.}
 	\label{fig:online_monitor}
 \end{figure}
+
+\subsection{Electronic Logbook}
+
+The CLAS12 shift personal use the JLab Electronic Logbook system \cite{logbook-ref}. This web-based system provides an interface to browse, search, and create electronic logbook entries. The system has been built using the Drupal content management system and utilizes a MySQL back-end database to store its entries. The system has been designed to consolidate and replace the functionality of the multiple electronic logbook systems that existed at Jefferson Lab between 1996 and 2012 .
 
 \subsection{ROOT for DAQ (FT)}
 
@@ -120,11 +124,11 @@ The CLAS12 online data monitoring is the set of programs attached to Event Trans
 
 \subsection{CLAS Event Display}
 
-The CLAS12 Event Display (CED) is a full-function graphical application that displays on-line (and off-line) events using various representations of CLAS12 called views. The views are independent windows that the user can pan, zoom, scroll, etc. Some of the views are geometrically faithful, and some are designed for maximal information content as opposed to realism. The primary purpose and utility of CED, when used on-line as part of the DAQ system, is for additional data monitoring. While running, CED will display an event from the live stream at a selectable rate, typically one every two seconds. A quick glance at CED will confirm, for example, that there are data in the drift chambers that appear to form tracks. In this way it serves as an early warning of problems with detectors and/or the data stream. It is also possible to operate CED in a mode where it creates graphical histograms or occupancy overlays. A typical view from CED is shown in Fig.~\ref{fig:ced}.
+The CLAS12 Event Display (CED) is a full-function graphical application that displays online (and offline) events using various representations of CLAS12 called views. The views are independent windows that the user can pan, zoom, scroll, etc. Some of the views are geometrically faithful, and some are designed for maximal information content as opposed to realism. The primary purpose and utility of CED, when used online as part of the DAQ system, is for additional data monitoring. While running, CED will display an event from the live stream at a selectable rate, typically one every two seconds. A quick glance at CED will confirm, for example, that there are data in the drift chambers that appear to form tracks. In this way it serves as an early warning of problems with detectors and/or the data stream. It is also possible to operate CED in a mode where it creates graphical histograms or occupancy overlays. A typical view from CED is shown in Fig.~\ref{fig:ced}.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/ced.png}
-	\caption{CED Event Example. It includes schematic view of all detectors with reasonably realistic geometry.}
+	\caption{CED Event Example that includes a schematic view of all detectors with a realistic geometry.}
 	\label{fig:ced}
 \end{figure}

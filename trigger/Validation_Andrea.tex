@@ -12,27 +12,49 @@ The efficiency of the FT-Cal clustering algorithm in the Trigger System was eval
 \begin{equation}
 \varepsilon=\frac{N_{trigger}}{N_{all}} \; ,
 \end{equation}
-where $N_{all}$ and $N_{trigger}$ are, respectively, the total number of ``offline'' clusters and the number of ``offline'' clusters matched to an ``online'' cluster. The result is shown in Fig.~\ref{fig:FT_ClusterEfficiency}, reporting the FT trigger efficiency for electromagnetic clusters as a function of the corresponding corrected energy. The efficiency is higher than 97.5$\%$ over the full energy range of interest, and 99.5$\%$ in the energy range above 1~GeV. This small efficiency difference is mainly due to the fact that the clustering algorithm in the Trigger System works on a 3x3 matrix of crystals, whereas this limitation doesn't hold in the offline reconstruction.
-The efficiency of the FT-Cal/FT-Hodo matching algorithm was evaluated in a similar way, repeating the previous calculation but considering only electromagnetic clusters associated with one hit in each FT-Hodo layer. The result is reported in Fig.~\ref{fig:FT_ClusterEfficiencyHODO}.
-{\color{red} PICTURE IS ABSENT}
+where $N_{all}$ and $N_{trigger}$ are, respectively, the total number of ``offline'' clusters and the number of ``offline'' clusters matched to an ``online'' cluster. The result is shown in Fig.~\ref{fig:FT_ClusterEfficiency}, reporting the FT trigger efficiency for electromagnetic clusters as a function of the corresponding corrected energy. The efficiency is higher than 99.5$\%$ over the full energy range of interest. This small inefficiency is mainly due to the fact that the clustering algorithm in the Trigger System works on a 3x3 matrix of crystals, whereas this limitation doesn't hold in the offline reconstruction.
+The efficiency of the FT-Cal/FT-Hodo matching algorithm was evaluated in a similar way, repeating the previous calculation but considering only electromagnetic clusters associated with one hit in each FT-Hodo layer. 
+The result is reported in Fig.~\ref{fig:FT_ClusterEfficiencyHODO}: the efficiency of the matching algorithm is higher than 96.5$\%$  over the full energy range of interest. The inefficiency is mainly due to the difference in the FT-Cal / FT-Hodo geometrical matching map between the Trigger System and the offline reconstruction. The latter map is broader, hence there are some clusters associated with FT-Hodo hits in the offline reconstruction that are not matched in the online system. 
 
 \begin{figure}[!htb]
  \centering
-{\includegraphics[width=.5\textwidth]{img/FT_ClusterEfficiency.png}}
- \caption{TODO: better figure, with errors (run 4288)}
+{\includegraphics[width=.5\textwidth]{img/FT_ClusterEfficiency.pdf}}
+ \caption{FT-Cal trigger efficiency as a function of the measured electromagnetic cluster energy.}
  \label{fig:FT_ClusterEfficiency}
 \end{figure}
 
+\begin{figure}[!htb]
+ \centering
+{\includegraphics[width=.5\textwidth]{img/FT_ClusterEfficiencyHODO.pdf}}
+ \caption{FT-Cal+FT-Hodo trigger efficiency as a function of the measured electromagnetic cluster energy.}
+ \label{fig:FT_ClusterEfficiencyHODO}
+\end{figure}
 
 \subsubsection{Validation of Charged Hadrons Detection in CLAS12-FD}
 
-The Trigger System recognizes a charged hadron in the CLAS12 Forward Detector as a hit in the Forward Time-Of-Flight System (\cite{ftof-ref}) (panel 1B) in time coincidence and geometrically matched to a hit in the U-strips of the Preshower Calorimeter \cite{ec-ref} associated with a cluster with energy larger than a programmable threshold. The map providing the geometrical matching between the FTOF counter and the PCAL U-strip was first derived from the nominal detector geometry, and then confirmed by Monte Carlo simulations. To reduce the rate of random coincidences, the Trigger System also requires the presence of a segment in 5 out of 6 Drift Chamber superlayers in a given CLAS12 sector. The charged hadron identification algorithm was validated in special data-taking runs in which the Forward Tagger was the only enabled event readout source. In these runs, the Trigger System was configured to report in the output trigger bank the presence of a charged hadron in any CLAS12-FD sector, as defined in Section \ref{label}. 
+The Trigger System recognizes a charged hadron in the CLAS12 Forward Detector as a hit in the Forward Time-Of-Flight System (\cite{ftof-ref}) (panel 1B) in time coincidence and geometrically matched to a hit in the U-strips of the Preshower Calorimeter \cite{ec-ref} associated with a cluster with energy larger than a programmable threshold. The map providing the geometrical matching between the FTOF counter and the PCAL U-strip was first derived from the nominal detector geometry, and then confirmed by Monte Carlo simulations. To reduce the rate of random coincidences, the Trigger System also requires the presence of a segment in 5 out of 6 Drift Chamber superlayers in a given CLAS12 sector. The charged hadron identification algorithm was validated in special data-taking runs in which the Forward Tagger was the only enabled event readout source. In these runs, the Trigger System was configured to report in the output trigger bank the presence of a charged hadron in any CLAS12-FD sector, as defined in Sec.~\ref{sec:trigger_in_datastream}. 
 
 The recorded events were processed through the standard reconstruction software and filtered, keeping only those with a well reconstructed charged track measured in the CLAS12-FD. The track was required to be within the nominal acceptance of the CLAS12 PCAL, and a momentum threshold of 300~MeV was applied. The Trigger System efficiency was evaluated by comparing all reconstructed tracks to the tracks recognized by the Trigger System. During commissioning, the efficiency was evaluated as a function of different observables, such as the energy deposited in the FTOF counters and in the PCAL, and the topology of the geometrical matching window. The trigger parameters were individually tuned to maximize the trigger efficiency. In the final configuration, an energy threshold of 2~MeV and 10~MeV for the FTOF counters and PCAL clusters, respectively, was selected. The result is reported in Fig.~\ref{fig:FD_TrackEfficiency}, showing the CLAS12-FD trigger efficiency for charged hadrons as a function of the track momentum. The efficiency is larger than 99$\%$ in the full momentum range, with the inefficiency dominated by threshold effects for the PCAL clusters.
 
 \begin{figure}[!htb]
  \centering
-{\includegraphics[width=.5\textwidth]{img/FD_TrackEfficiency.png}}
- \caption{TODO: better figure, with errors - run 5049-5050 (run4)}
+{\includegraphics[width=.5\textwidth]{img/FD_TrackEfficiency.pdf}}
+ \caption{CLAS12-FD trigger efficiency as a function of the measured track momentum.}
  \label{fig:FD_TrackEfficiency}
 \end{figure}
+
+\subsubsection{Validation of Charged Hadrons Detection in CLAS12-CD}
+
+The Trigger System recognizes a charged hadron in the CLAS12 Central Detector as a cluster in the Central Time-Of-Flight System (\cite{ctof-ref}). To maximize the trigger efficiency for low momentum tracks, no coincidence with other detectors, such as the Central Neutron Detector (\cite{cnd-ref}), was implemented. As for the CLAS12-FD case, the CLAS12-CD charged hadron identification algorithm was validated in special data-taking runs in which the Forward Tagger was the only enabled event readout source.  
+
+The recorded events were processed through the standard reconstruction software and filtered, keeping only those with a well reconstructed charged track measured in the CLAS12-CD. The track was required to be associated with a CTOF hit, with energy deposition larger than the corresponding threshold of 1 MeV. The result is reported in Fig.~\ref{fig:CD_TrackEfficiency}, showing the CLAS12-CD trigger efficiency for charged hadrdons as a function of the track momentum. In the low momentum (${\sim}$1 GeV), where most of the tracks are concentrated, the trigger efficiency is approximately 99$\%$
+
+\begin{figure}[!htb]
+ \centering
+{\includegraphics[width=.5\textwidth]{img/CD_TrackEfficiency.pdf}}
+ \caption{CLAS12-CD trigger efficiency as a function of the measured track momentum.}
+ \label{fig:CD_TrackEfficiency}
+\end{figure}
+
+\subsubsection{Full trigger efficiency}
+As described in Sec.~\ref{sec:photoproduction_trigger}, the two main CLAS12 trigger configurations for photoproduction measurements are: (i) the coincidence between one charged cluster in the FT-Cal with two tracks in different CLAS12-FD sectors and (ii) the coincidence between one charged cluster in the FT-Cal, one track in any CLAS12-FD sector, and one track in the CLAS12-CD detector. The corresponding trigger efficiency was evaluated using data from special data-taking runs in which the Forward Tagger was the only enabled event readout source. The recorded events were processed through the standard reconstruction software and filtered, keeping only those with two forward tracks or one forward track and one central track. The efficiency was evaluated as the ratio between the number of events with the trigger bit set and the total number of events. The obtained efficiency is $\sim$97.5$\%$ for both configurations. 

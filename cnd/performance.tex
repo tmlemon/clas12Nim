@@ -1,21 +1,21 @@
 \section{Performance}
 
-Data taken during the first CLAS12 experiments, on hydrogen and deuterium targets, and with various beam energies (7.5 and 10.6 GeV), were analyzed to verify the performances of the CND. 
+Data taken during the first CLAS12 experiments, on hydrogen and deuterium targets, and with various beam energies (7.5 and 10.6 GeV), were analyzed to verify the performance of the CND. 
 
-The timing performances for the three layers of the CND are illustrated in Fig.~\ref{fig_performance_deltat_layers}, showing the vertex time difference $v_t$ for selected negative tracks, integrated over all sectors. It is defined as
+The timing performance for the three layers of the CND are illustrated in Fig.~\ref{fig_performance_deltat_layers}, showing the vertex time difference $v_t$ for selected negative tracks, integrated over all sectors defined as
 \begin{equation}\label{eq_vtp_definition}
-v_t=t_{\rm{CND}}-t_{\rm{S}}-\frac{path}{c \cdot \beta}
+v_t=t_{\rm{CND}}-t_{\rm{S}}-\frac{path}{c \cdot \beta} ,
 \end{equation}
-where $t_{\rm{S}}$ is the event start time determined by the FTOF, $path$ is the distance, computed by the CVT, travelled by the particle from the target to the CND impact point, and
+where $t_{\rm{S}}$ is the event start time determined by the FTOF, $path$ is the path length from the event vertex to the CND and
 \begin{equation}\label{eq_beta_definition}
 \beta=\frac{p}{\sqrt{p^2+m^2}} .
 \end{equation}
 % e
 The distribution of $v_t$ is centered at 0, and from its width, obtained with a Gaussian fit ($\sigma_{v_t}\simeq 243$ ps in average) one can deduce the average timing resolution for each PMT of the CND, convoluted with the CVT resolution, using the formula:
 \begin{equation}\label{eq_resolution}
-\sigma_t=\frac{\sqrt{\sigma_{v_t}^2-\sigma_{t_{S}}^2}}{\sqrt{2}}=157 ps, 
+\sigma_t=\frac{\sqrt{\sigma_{v_t}^2-\sigma_{t_{S}}^2}}{\sqrt{2}}=157\, \rm{ps}, 
 \end{equation}
-assuming $\sigma_{t_{S}}=80$ ps \cite{ftofref}. This is compatible with the detector specifications (150 ps) and the result of the measurements in cosmic rays during the detector assembly phase \cite{Niccolai:2018qzm} (148 ps).
+assuming $\sigma_{t_{S}}=80$ ps \cite{ftof-nim}. This is compatible with the detector specifications (150 ps) and the result of the measurements in cosmic rays during the detector assembly phase \cite{Niccolai:2018qzm} (148 ps).
 
 \begin{figure}[htb]  
 \begin{center}
@@ -38,12 +38,12 @@ The position reconstruction performances of the CND can be checked in Fig.~\ref{
 \begin{figure}[htb]  
 \begin{center}
 \includegraphics[width=0.45\textwidth]{Figure/canZ.pdf}
-\caption {Difference between the $z$ computed by the CND and the one provided by the CVT, for negative tracks, for the three layers of the CND, integrated over all paddles. }
+\caption {Difference between the $z$ coordinate computed by the CND and the CVT, for negative tracks and for the three CND layers integrated over all paddles. }
 \label{fig_performance_deltaz}
 \end{center}
 \end{figure}
 
-Figure~\ref{fig_performance_edep} shows the energy deposit divided by path length, for selected MIPs. It peaks at around the expected value of 1.956 MeV/cm.
+Figure~\ref{fig_performance_edep} shows the energy deposited divided by path length, for selected MIPs. It peaks at around the expected value of 1.956 MeV/cm.
 
 \begin{figure}[htb]  
 \begin{center}
@@ -54,9 +54,9 @@ Figure~\ref{fig_performance_edep} shows the energy deposit divided by path lengt
 \end{figure}
 
 \subsection{Neutron detection efficiency}
-The exclusive reaction $e p \rightarrow e n \pi^+$ is analyzed to evaluate the neutron detection efficiency of the CND. The data used were taken with a 7.5-GeV electron beam inpinging on liquid hydrogen target. Events with an electron and a $\pi^+$ in the CLAS12 Forward Detector are selected. The missing mass of the $e \pi^+ X$ system is plotted versus $\beta_X$ in Fig.~\ref{fig_performance_selection}. The missing particle is required to be in the CLAS12 Central Detector (CD) ($\theta>40^\circ$). The effect of this selection is shown in Fig.~\ref{fig_performance_selection}. We apply an additional cut on $\beta$ of the missing neutron ($0.2<\beta_X<0.8$). From this set of $e p \rightarrow e (n) \pi^+$ events, events with a neutron identified by the CND (CND cluster with $E_{dep}>2.5$ MeV, no associated tracks, $\beta<0.8$) are selected. If multiple neutron candidates are detected by the CND, the neutron with the smallest momentum separation from the missing neutron is kept. A cut on $\beta>0.2$ is applied to remove out-of-time hits that can be mistaken as low $\beta$ neutrons. Finally, the detected neutron and the missing neutron azymutal angle difference is constrained to be less than $20^\circ$.
+The exclusive reaction $e p \rightarrow e n \pi^+$ was analyzed to evaluate the neutron detection efficiency of the CND. The data used were taken with a 7.5-GeV electron beam inpinging on a liquid-hydrogen target. Events with an electron and a $\pi^+$ in the CLAS12 Forward Detector were selected. The missing mass of the $e \pi^+ X$ system is plotted versus $\beta_X$ in Fig.~\ref{fig_performance_selection}. The missing particle is required to be in the CLAS12 Central Detector (CD) ($\theta>40^\circ$). The effect of this selection is shown in Fig.~\ref{fig_performance_selection}. We apply an additional cut on $\beta$ of the missing neutron ($0.2<\beta_X<0.8$). From this set of $e p \rightarrow e (n) \pi^+$ events, events with a neutron identified by the CND (CND cluster with $E_{dep}>2.5$ MeV, no associated tracks, $\beta<0.8$) were selected. If multiple neutron candidates were detected by the CND, the neutron with the smallest momentum separation from the missing neutron was kept. A cut on $\beta>0.2$ was applied to remove out-of-time hits that could be mistaken as low $\beta$ neutrons. Finally, the detected neutron and the missing neutron azimuthal angle difference is constrained to be less than $20^\circ$.
 
-The efficiency is measured in bins of missing neutron polar angle and as a function of missing momentum. For each bin in polar angle and momentum, the efficiency is defined as the ratio of events with a detected neutron to the number of missing neutron events. The result is shown in Figure \ref{fig_performance_efficiency}. The detection efficiency extracted from this method is consistent with simulation predictions and with the design specifications of the CND.
+The efficiency was measured in bins of missing neutron polar angle and as a function of missing momentum. For each bin in polar angle and momentum, the efficiency is defined as the ratio of events with a detected neutron to the number of missing neutron events. The result is shown in Figure \ref{fig_performance_efficiency}. The detection efficiency extracted from this method is consistent with simulation predictions and with the design specifications of the CND.
 
 \begin{figure}[htb]  
 \begin{center}
@@ -68,7 +68,7 @@ The efficiency is measured in bins of missing neutron polar angle and as a funct
 
 \begin{figure}[htb]  
 \begin{center}
-\includegraphics[width=0.5\textwidth]{Figure/effFinale.pdf}
+\includegraphics[width=0.5\textwidth]{Figure/newEfficiency.pdf}
 \caption {Neutron detection efficiency of the CND as a function of momentum for three bins in polar angle.}
 \label{fig_performance_efficiency}
 \end{center}

@@ -1,12 +1,12 @@
 \section{Hardware Components}
 
 New instrumentation modules have been designed by JLab that take advantage of the higher performance and elegant back-plane connectivity of the VITA 41 standard or ``VXS'', defined as VME with serial extensions. 
-VXS was selected as the 12~GeV data acquisition back-plane foundation for the front-end detector readout and trigger hardware interface because this standard not only supported legacy VME hardware but also offered a method to easily synchronize and pass signals between each of the payload slots to a central switch fabric slot. At JLab a dual star configuration is used for the serial backplane. One switch slot is used for the trigger processing from payload boards, and second switch slot is used to distribute the essential timing and synchronization signals to each of the front-end boards.
+VXS was selected as the 12~GeV data acquisition back-plane foundation for the front-end detector readout and trigger hardware interface because this standard not only supported legacy VME hardware but also offered a method to easily synchronize and pass signals between each of the payload slots to a central switch fabric slot. At JLab a dual-star configuration is used for the serial backplane. One switch slot is used for the trigger processing from payload boards, and a second switch slot is used to distribute the essential timing and synchronization signals to each of the front-end boards.
 
 The trigger processor switch slot board manages the high-speed gigabit signaling from each of the payload slots, where eight differential pairs connect from the payload slots to the switch slots. The VXS crates are manufactured by WIENER and the back-plane can support up to 8~Gb/s. The payload boards use Xilinx Virtex V technology, and these FPGAs have up to 6.25~Gbps transceivers. The payload boards are designed to run these high-speed gigabit transceivers at a maximum of 5~Gpbs to transfer trigger data to the trigger processor module. 
 
-The design challenges for reliable and successful transmission of gigabit serial data over the VXS backplane requires the investment of high-speed circuit board layout and routing tools.  The FPGA selection requirements include at least four full duplex gigabit transceivers, user I/O pin count $>$~500, and fast integrated block memory with multi-rate FIFO logic. We use circuit board routing simulation Hyperlynx tool from Mentor Graphics \cite{hyperlynx-ref} which are invaluable for critical simulation and verification of circuit board signal integrity for the gigabit transmission paths before the manufacturing process.  The FPGA devices that we use are capable of 6.25~Gb/s serial transfer, and we have designed our circuit boards with signal integrity techniques using standard FR4 circuit board material to achieve $>$~2.5~Gb/s, which meets the data transfer bandwidth requirements. 
-Another significant investment required for the hardware verification of the gigabit transceivers was a digital signal analyzer with 8~GHz bandwidth to measure and record the backplane and fiber optic gigabit transceiver performance and to perform jitter analysis on the critical system clock and synchronization signals with at least 1~ps resolution.  We used the Tektronix jitter analysis software which is a critical tool for the verification of our system clock, and for measurements of the phase controlled jitter attenuated clock provided by the Signal Distribution (SD) switch card in every crate. The investment of firmware development tools from FPGA industry leaders Xilinx and Altera were also taken into consideration for the upgrade path to VXS. We use the Xilinx Aurora protocol for serial transmission as it is robust and simple, and is included with the FPGA development tools.  
+The design challenges for reliable and successful transmission of gigabit serial data over the VXS backplane requires the investment of high-speed circuit board layout and routing tools.  The FPGA selection requirements include at least four full duplex gigabit transceivers, user I/O pin count $>$~500, and fast integrated block memory with multi-rate FIFO logic. We use the circuit board routing simulation Hyperlynx tools from Mentor Graphics \cite{hyperlynx-ref}, which are invaluable for critical simulation and verification of circuit board signal integrity for the gigabit transmission paths before the manufacturing process.  The FPGA devices that we use are capable of 6.25~Gb/s serial transfer, and we have designed our circuit boards with signal integrity techniques using standard FR4 circuit board material to achieve $>$~2.5~Gb/s, which meets the data transfer bandwidth requirements. 
+Another significant investment required for the hardware verification of the gigabit transceivers was a digital signal analyzer with 8~GHz bandwidth to measure and record the backplane and fiber optic gigabit transceiver performance and to perform jitter analysis on the critical system clock and synchronization signals with at least 1~ps resolution.  We used the Tektronix jitter analysis software, which is a critical tool for the verification of our system clock, and for measurements of the phase-controlled jitter attenuated clock provided by the Signal Distribution (SD) switch card in every crate. The investment of firmware development tools from FPGA industry leaders Xilinx and Altera were also taken into consideration for the upgrade path to VXS. We use the Xilinx Aurora protocol for serial transmission as it is robust and simple, and is included with the FPGA development tools.  
 
 
 \subsection{Fiber Optic Trigger distribution system}
@@ -16,45 +16,45 @@ As shown in Fig.~\ref{fig:hardwarediagram}, the trigger information from each VT
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/hardware_diagram.png}
-	\caption{Hardware diagram with the implemented fiber links scheme. All critical signals such as clock, sync, trigger and busy, are disctributed over optical fibers.}
+	\caption{Hardware diagram with the implemented fiber links scheme. All critical signals such as clock, sync, trigger, and busy, are disctributed over optical fibers.}
 	\label{fig:hardwarediagram}
 \end{figure}
 
 
 \subsection{VXS/VME crates}
 
-Previous experiments with the original CLAS spectrometer (see \cite{clas-nim}) used the VXI standard, which was a new extension of the original VME standard. VXI offered a method to distribute clock and other timing signals with low skews via the back-plane. 9U circuit boards were used that offered a large number of front panel input/output connections to handle the six sectors of the CLAS detectors that contributed to the level 1 trigger. The detector signals were digitized with FastBus ADC and TDC modules or in some instances, from VME or even CAMAC modules. 
+Previous experiments with the original CLAS spectrometer (see \cite{clas-nim}) used the VXI standard, which was a new extension of the original VME standard. VXI offered a method to distribute clock and other timing signals with low skews via the back-plane. 9U circuit boards were used that offered a large number of front panel input/output connections to handle the six sectors of the CLAS detectors that contributed to the level 1 trigger. The detector signals were digitized with FastBus ADC and TDC modules, or in some instances, from VME or even CAMAC modules. 
 
-During the initial design phase of the 12~GeV experiments the requirements of a 200~KHz sustained trigger rate demanded that the front-end modules adopt a new method of handling precision timing and synchronization over dozens of front-end crates. The latest technology at the 12~GeV inception included FPGA devices with high-speed serial transceivers built into the silicon fabric. A new VME extension was also emerging at the same time, which was labeled VXS, and defined a new high-speed gigabit connector with links between the VME slots and eight serial links to common switch slots. The VXS standard was declared as VITA 41 and several new standards have emerged in the past decade that expand the use of gigabit serial transmission via the crate back-plane. For the 12~GeV experiment era, we now have thousands of custom VXS payload and switch slot modules and hundreds of VXS front-end crates. Complex experiments and high channel count detectors make use of these custom VXS boards  designs for all four experimental halls at JLab.
+During the initial design phase of the 12~GeV experiments, the requirements of a 200~kHz sustained trigger rate demanded that the front-end modules adopt a new method of handling precision timing and synchronization over dozens of front-end crates. The latest technology at the 12~GeV inception included FPGA devices with high-speed serial transceivers built into the silicon fabric. A new VME extension was also emerging at the same time, which was labeled VXS, and defined a new high-speed gigabit connector with links between the VME slots and eight serial links to common switch slots. The VXS standard was declared as VITA 41 and several new standards have emerged in the past decade that expand the use of gigabit serial transmission via the crate back-plane. For the JLab 12~GeV experiment era, we now have thousands of custom VXS payload and switch slot modules and hundreds of VXS front-end crates. Complex experiments and high-channel-count detectors make use of these custom VXS boards  designs for all four experimental halls at JLab.
 
 \subsection{VME Crate Controllers}
 
-The high-speed data physics acquistion and trigger systems for the JLab 12~GeV experiments have been standardized on the VME64X and VXS backplane and crate enclosure form-factor. In addition to the custom electronics that reside in these crates, there must also be a single ``controller'' for each crate. Considering all four experimental halls, this exceeds 100 controllers.
+The high-speed data physics acquistion and trigger systems for the JLab 12~GeV experiments have been standardized on the VME64X and VXS backplane and crate enclosure form-factor. In addition to the custom electronics that reside in these crates, there must also be a single ``controller'' for each crate. Considering all four experimental halls, this exceeds 150 controllers.
 
 There are many commercial off-the-shelf options for this type of controller, and our general requirements do not extend beyond what is currently commercially available. We do have some specific requirements that narrowed the viable choices.
 
-We purchased VME controllers from several vendors for development purposes and made a significant investment in custom software that runs on all of the existing boards. We also benchmarked our code and have come to expect certain ``minimum'' requirements for performance from the chosen architecture within an specified Linux operating system.
+We purchased VME controllers from several vendors for development purposes and made a significant investment in custom software that runs on all of the existing boards. We also benchmarked our code and have come to expect certain ``minimum'' requirements for performance from the chosen architecture within a specified Linux operating system.
 
-We also expect a certain minimum 10 year timeframe in which these controllers will be supported by the vendor with respect to the available parts, repair, and software updates. VME controller requirements are summarized in following list:
+We also expect a certain minimum 10 year timeframe in which these controllers will be supported by the vendor with respect to the available parts, repair, and software updates. Our VME controller requirements are summarized as followings:
 
 \begin{itemize}
-	\item Single slot VME form-factor - no required rear transition module
-	\item Intel Core i7 dual or quad core embedded processer 2~GHz (or greater)
-	\item Hyperthreading and 64~bit arch support
-	\item 4 GBytes DDR3 (1066~MHz) ECC SDRAM (or greater)
-	\item Front panel gigabit ethernet and serial port console
-	\item 1 x4 PCI Express XMC expansion slot (or greater)
-	\item VME320-interface using the Tundra Tsi148 chip
-	\item support for all VME transfer modes including 2eSST
+	\item Single-slot VME form-factor - no required rear transition module;
+	\item Intel Core i7 dual or quad core embedded processer 2~GHz (or greater);
+	\item Hyperthreading and 64-bit arch support;
+	\item 4 GBytes DDR3 (1066~MHz) ECC SDRAM (or greater);
+	\item Front-panel gigabit Ethernet and serial port console;
+	\item 1 x4 PCI Express XMC expansion slot (or greater);
+	\item VME320-interface using the Tundra Tsi148 chip;
+	\item Support for all VME transfer modes including 2eSST;
 	\item VXS optional: interface supporting both VITA 41.3 (Gig E) and 41.4 (PCIe) standards.
 \end{itemize}
 
-After several different boards were evaluated we purchased VX915 Intel 4th Generation quad-core i7-based VME single board computers from Concurrent Technologies, and some amount of the XVR16 Intel i7-based VME single board computers from GE (see Fig.~\ref{fig:XVR16diagram}). They were installed in the 69 crates for CLAS12 and have demonstrated excellent performance and reliability. Most of the controllers send data over their built-in 1 Gb link, while for few of them, a 10 Gb XMC daughter board was installed to increase the output bandwidth. The maximum data rate from a single crate in CLAS12 never exceeds 130~MB/s, and with that rate quad-core controllers are able to handle the VME data polling, event processing and sending over the network to the EB without any issues. 
+After several different boards were evaluated, we purchased VX915 Intel 4th Generation quad-core i7-based VME single board computers from Concurrent Technologies, and some number of the XVR16 Intel i7-based VME single board computers from GE (see Fig.~\ref{fig:XVR16diagram}). They were installed in the 69 crates for CLAS12 and have demonstrated excellent performance and reliability. Most of the controllers send data over their built-in 1~Gb link, while for a few of them, a 10~Gb XMC daughter board was installed to increase the output bandwidth. The maximum data rate from a single crate in CLAS12 never exceeds 130~MB/s, and with that rate quad-core controllers are able to handle the VME data polling, event processing, and sending over the network to the EB without any issues. 
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/XVR16_diagram.png}
-	\caption{Block diagram of the XVR16 VME crate controller, one of two types of the cpu units used in CLAS12 DAQ System. All controllers had 4-core i7 Intel processors, 8GB memory and specialized chip to communicate with VME bus. Build-in 1G or add-on 10G ethernet connection were used to communicate with the rest of the system.}
+	\caption{Block diagram of the XVR16 VME crate controller, one of two types of the CPU units used in CLAS12 DAQ system. All controllers had 4-core i7 Intel processors, 8~GB memory and specialized chips to communicate with the VME bus. Built-in 1~G, or add-on 10~G Ethernet connections were used to communicate with the rest of the system.}
 	\label{fig:XVR16diagram}
 \end{figure}
 
@@ -62,43 +62,43 @@ After several different boards were evaluated we purchased VX915 Intel 4th Gener
 
 \subsection{Trigger Distribution System Modules (TS, TD, TI)}
 	
-The TCS (TRIGGER, CLOCK, SYNC, and BUSY) distribution system \cite{tcs-ref} is the hardware interface to bridge the trigger and the DAQ.  The TCS system receives the trigger decision from the trigger system, and initiates data readout for the DAQ system by distributing the readout trigger (TRIGGER) signal.  Additionally, it distributes a 250~MHz system clock (CLOCK) to pipeline the system, and it distributes an encoded synchronous signal (SYNC) for the system synchronization.  It monitors the frontend electronics’ status (BUSY) and makes sure of the smooth data readout of the experiments. Fig.~\ref{fig:TCSdiagram} shows a diagram of the trigger and TCS distribution.
+The TCS (TRIGGER, CLOCK, SYNC, and BUSY) distribution system \cite{tcs-ref} is the hardware interface to bridge the trigger and the DAQ.  The TCS system receives the trigger decision from the trigger system, and initiates data readout for the DAQ system by distributing the readout trigger (TRIGGER) signal.  Additionally, it distributes a 250~MHz system clock (CLOCK) to pipeline the system, and it distributes an encoded synchronous signal (SYNC) for the system synchronization.  It monitors the front-end electronics status (BUSY) and makes sure of the smooth data readout of the experiments. Fig.~\ref{fig:TCSdiagram} shows a diagram of the trigger and TCS distribution.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TCSdiagram.jpg}
-	\caption{Diagram of the trigger and TCS distribution. The VTP boards generate triggers using detector signals from the front end crates.  The final trigger decisions, up to 32 trigger types, are sent from VTP to TS for data readout.  The TS distributes the TCS to the TD through SD and the backplane, then to the front end crate through optic fiber and TI.  The TI collects the front end boards busy signals and sends to TD, then throttle (disable) the readout trigger distribution on TS.}
+	\caption{Diagram of the trigger and TCS distribution. The VTP boards generate triggers using detector signals from the front-end crates.  The final trigger decisions, up to 32 trigger types, are sent from VTP to TS for data readout.  The TS distributes the TCS to the TD through SD and the backplane, then to the front-end crate through optic fiber and the TI.  The TI collects the front-end board busy signals and sends them to the TD, which throttles (disables) the readout trigger distribution on the TS.}
 	\label{fig:TCSdiagram}
 \end{figure}
 
 
-The main hardware components of the TCS distribution system includes a Trigger Supervisor (TS \cite{ts-ref}) board (see Fig.~\ref{fig:TSused} and ~\ref{fig:TSdiagram}), Signal Distribution (SD \cite{sd-ref}) boards, Trigger Distribution (TD \cite{titd-ref}) boards  (see Fig.~\ref{fig:TDused}), Trigger Interface (TI \cite{titd-ref}) boards  (see Fig.~\ref{fig:TIused} and ~\ref{fig:TIdiagram}), VXS crates, and optic fibers.  The TS board, one SD board, and up to sixteen TD boards are located in the global TCS distribution VXS crate.  One TI board and one SD board and/or one FANIO board are located in each front-end crate.  The electronics boards were custom designed and produced for the 12 GeV upgrade.  Field Programmable Gate Arrays (FPGA) are used for TCS generation, control, and decoding.  Optical fibers are used to transmit signals at high speed over long distances and the high-speed serial backplane for internal crate distribution.  
+The main hardware components of the TCS distribution system includes a Trigger Supervisor (TS \cite{ts-ref}) board (see Figs.~\ref{fig:TSused} and ~\ref{fig:TSdiagram}), Signal Distribution (SD \cite{sd-ref}) boards, Trigger Distribution (TD \cite{titd-ref}) boards  (see Fig.~\ref{fig:TDused}), Trigger Interface (TI \cite{titd-ref}) boards  (see Figs.~\ref{fig:TIused} and ~\ref{fig:TIdiagram}), VXS crates, and optic fibers.  The TS board, one SD board, and up to sixteen TD boards are located in the global TCS distribution VXS crate.  One TI board and one SD board and/or one FANIO board are located in each front-end crate.  The electronics boards were custom designed and produced for the 12 GeV upgrade.  Field Programmable Gate Arrays (FPGA) are used for TCS generation, control, and decoding.  Optical fibers are used to transmit signals at high speed over long distances and the high-speed serial backplane for internal crate distribution.  
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TSused.jpg}
-	\caption{Trigger Supervisor (TS) board.  The TS board is a 6U by 160mm VME board with VXS connector.  It generates and distributes the readout triggers, synchronization signals, and clock (either from the front panel input or the on-board oscillator) to the TD boards via the SD through the VXS backplane.}
+	\caption{Trigger Supervisor (TS) board.  The TS board is a 6U by 160~mm VME board with VXS connector.  It generates and distributes the readout triggers, synchronization signals, and clock (either from the front-panel input or the on-board oscillator) to the TD boards via the SD through the VXS backplane.}
 	\label{fig:TSused}
 \end{figure}
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TSdiagram.jpg}
-	\caption{TS board diagram.  The TS generates the readout triggers from up to 32 front panel trigger inputs and up to 32 backplane trigger inputs (from GTP), and sends out the triggers via encoded 16-bit words to the backplane.}
+	\caption{TS board diagram.  The TS generates the readout triggers from up to 32 front-panel trigger inputs and up to 32 backplane trigger inputs (from the GTP), and sends out the triggers via encoded 16-bit words to the backplane.}
 	\label{fig:TSdiagram}
 \end{figure}
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TDused.jpg}
-	\caption{Trigger Distribution (TD) board.  The TD board is a 6U by 160mm VME board with VXS connector.  It receives the TCS from TS via the VXS backplane, and distributes the TCS via the front panel QSFP optic links.  It collects the Busy inputs from up to eight TI boards, and generates the readout buffer busies for up to eight front end crates.  The TD sends the collective BUSY to TS to back pressure the trigger generation.}
+	\caption{Trigger Distribution (TD) board.  The TD board is a 6U by 160~mm VME board with VXS connector.  It receives the TCS from the TS via the VXS backplane, and distributes the TCS via the front-panel QSFP optic links.  It collects the BUSY inputs from up to eight TI boards, and generates the readout buffer busies for up to eight front-end crates.  The TD sends the collective BUSY to TS to back pressure the trigger generation.}
 	\label{fig:TDused}
 \end{figure}
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/TIused.jpg}
-	\caption{Trigger Interface (TI) board.  The TI board is a 6U by 160 mm VME board with (or without) the VXS connector.  It is using the same PCB as TD board with modified components population.  It receives the TCS from TS/TD or a sub-system controller via fiber, and collects the busy and sends to TS/TD via the same fiber.  The TI can also be used as a subsystem controller in the so-called master mode.}
+	\caption{Trigger Interface (TI) board.  The TI board is a 6U by 160~mm VME board with (or without) the VXS connector.  It uses the same PCB as the TD board with modified component population.  It receives the TCS from the TS/TD or a sub-system controller via fiber, and collects the BUSY and sends it to the TS/TD via the same fiber.  The TI can also be used as a subsystem controller in the so-called master mode.}
 	\label{fig:TIused}
 \end{figure}
 
@@ -112,17 +112,16 @@ The main hardware components of the TCS distribution system includes a Trigger S
 
 \subsubsection{Clock Distribution}
 
-The TCS system uses the 250 MHz clock that comes from the TS in the global trigger distribution crate.  This clock is either generated by the TS on-board oscillator or its fronts panel input.  The clock is fanned out to the VXS P0 connector and then to the SD board.  The SD fans out the clock to the TD boards via the VXS P0 backplane.  The TD boards further fan out to the TI boards via optic fibers.  The TI uses this clock to generate clocks with proper frequencies (250 MHz, 125 MHz, 62.5 MHz, 31.25 MHz and 41.67 MHz) and sends the clocks to the front-end crate SD board, and the SD fans out to the front-end DAQ modules (TDC, ADC).  The fan-out buffer level is minimized on every board to limit the clock jitter.  The slower clocks derived from the main system clock are phase aligned thanks to the Analog Devices AD9510 with a synchronous phase re-alignment command.  The clock jitter is about one picosecond measured at the front-end electronics.  The clock distribution skew can be adjusted by the SD clock delay if necessary.
+The TCS system uses the 250 MHz clock that comes from the TS in the global trigger distribution crate.  This clock is either generated by the TS on-board oscillator or its front-panel input.  The clock is fanned out to the VXS P0 connector and then to the SD board.  The SD fans out the clock to the TD boards via the VXS P0 backplane.  The TD boards further fan out to the TI boards via optic fibers.  The TI uses this clock to generate clocks with proper frequencies (250~MHz, 125~MHz, 62.5~MHz, 31.25~MHz and 41.67~MHz) and sends the clocks to the front-end crate SD board, and the SD fans out to the front-end DAQ modules (TDCs, ADCs).  The fan-out buffer level is minimized on every board to limit the clock jitter.  The slower clocks derived from the main system clock are phase aligned thanks to the Analog Devices AD9510 with a synchronous phase re-alignment command.  The clock jitter is about one picosecond measured at the front-end electronics.  The clock distribution skew can be adjusted by the SD clock delay if necessary.
 
 
 \subsubsection{SYNC Distribution}
 
-The TS generates and distributes the SYNC signal.  The SYNC is an encoded 4-bit serialized command transferred at 250 Mbps synchronized with the system clock.  Normally, the serial SYNC line stays at logic high (or ‘1’).  When transferring a SYNC command, the SYNC goes to logic low for one bit, followed by the 4-bit command code.  After the 4-bit SYNC command, the SYNC goes to logic high again.  There is a minimum of four ‘1’s before the next cycle begins.  The SYNC start is phase aligned to the 62.5 MHz clock used for the trigger word transfer, the 41.67 MHz clock used for the CAEN TDC boards, and the 31.25 MHz clock used for Flash ADC boards.  This phase relation is used to synchronize the slower clocks on the TI to the 62.5 MHz clock on the TS.  This also limits the SYNC command to no more than one per 96 ns.  To facilitate the AC coupled optical transceivers, the SYNC is Manchester encoded on the TS and the TD, and Manchester decoded on the TI and the TD.
+The TS generates and distributes the SYNC signal.  The SYNC is an encoded 4-bit serialized command transferred at 250~Mbps synchronized with the system clock.  Normally, the serial SYNC line stays at logic high (or ‘1’).  When transferring a SYNC command, the SYNC goes to logic low for one bit, followed by the 4-bit command code.  After the 4-bit SYNC command, the SYNC goes to logic high again.  There is a minimum of four ‘1’s before the next cycle begins.  The SYNC start is phase aligned to the 62.5~MHz clock used for the trigger word transfer, the 41.67~MHz clock used for the CAEN TDC boards, and the 31.25~MHz clock used for Flash ADC boards.  This phase relation is used to synchronize the slower clocks on the TI to the 62.5~MHz clock on the TS.  This also limits the SYNC command to no more than one per 96~ns.  To facilitate the AC coupled optical transceivers, the SYNC is Manchester encoded on the TS and the TD, and Manchester decoded on the TI and the TD.
 
-The SYNC is phase aligned with the 250 MHz system clock on the TI boards using their FPGA’s IODELAY.  The SYNC is synchronized across the TI boards by applying different delays on the individual TI boards.  The delays are determined by the fiber latency measurement.  
+The SYNC is phase aligned with the 250~MHz system clock on the TI boards using their FPGA’s IODELAY.  The SYNC is synchronized across the TI boards by applying different delays on the individual TI boards.  The delays are determined by the fiber latency measurement.  
 
-The spare fibers between the TD and TI boards are used to measure the fiber latency.  The TI sends a test signal to the TD through one fiber, and the TD loops back the signal through another fiber.  The TI measures the delay between the test pulse and the looped back test pulse using the FPGA counter and the carry chain in the FPGA.  As the fiber skew is small (less than 1 ns for 100 meter fibres), the measurement on these two fibres can be used as the latency of the other fibres in the cable.  
-After the SYNC latency compensation, all the TI boards receive the SYNC at the same time with the skew of one system clock period, which is 4 ns.  The synchronized SYNC signals are used to synchronize the triggers as described next.
+The spare fibers between the TD and TI boards are used to measure the fiber latency.  The TI sends a test signal to the TD through one fiber, and the TD loops back the signal through another fiber.  The TI measures the delay between the test pulse and the looped-back test pulse using the FPGA counter and the carry chain in the FPGA.  As the fiber skew is small (less than 1~ns for 100~m fibers), the measurement on these two fibers can be used as the latency of the other fibers in the cable.  After the SYNC latency compensation, all of the TI boards receive the SYNC at the same time with the skew of one system clock period, which is 4~ns.  The synchronized SYNC signals are used to synchronize the triggers as described next.
 
 
 \subsubsection{Trigger Distribution}
@@ -138,13 +137,13 @@ The trigger words, which include the readout trigger signals and event informati
 	1001	& Quadrant timing	& Event type	 & GTP major trigger \\
 	1010	& Quadrant timing	& Event type	 & Ext major trigger \\
 	
-	1011	& \multicolumn{2}{c}{Four TS partitions’ event types}    & TS partitioning (4, 3, 2, 1) \\
+	1011	& \multicolumn{2}{c}{Four TS partitions’ event types}  & TS partitioning (4, 3, 2, 1)  \\
 
 	\multirow{2}{*}{0110}	& \multirow{2}{*}{Quadrant timing}	& Trigger source & TImaster legacy Trigger \\
 		    &                   & Event type	 & (TS) VME trigger     \\
-	0101	& Trigger command/Control	& VME command \\
-	0100	& TS timer (TS time bit(13:2))	& TI Sync check \\
-	0111	& Trigger content	& Additional trigger info \\
+	0101	& Trigger command/Control	& VME command & \\
+	0100	& TS timer (TS time bit(13:2))	& TI Sync check & \\
+	0111	& Trigger content	& Additional trigger info & \\
 		\hline \hline
 	\end{tabular}
 \end{adjustbox}
@@ -152,7 +151,7 @@ The trigger words, which include the readout trigger signals and event informati
 \label{tab:trigger_word_definition}
 \end{table}
 
-Both the fiber latency and trigger word serializer/ deserializer are compensated so that all the TI boards send the readout trigger at the same time to the front-end data acquisition electronics.  The SYNC is used in conjunction with a synchronous FIFO to enforce a fixed latency on the trigger distribution. Fig.~\ref{fig:TIsync} shows the diagram of the compensated trigger distribution.
+Both the fiber latency and trigger word serializer/ deserializer are compensated so that all of the TI boards send the readout trigger at the same time to the front-end data acquisition electronics.  The SYNC is used in conjunction with a synchronous FIFO to enforce a fixed latency on the trigger distribution. Fig.~\ref{fig:TIsync} shows the diagram of the compensated trigger distribution.
 
 \begin{figure}[hbt]
 	\centering
@@ -161,8 +160,8 @@ Both the fiber latency and trigger word serializer/ deserializer are compensated
 	\label{fig:TIsync}
 \end{figure}
 
-On the TI board, the deserialized trigger word is clocked into and clocked out of a FIFO using the 62.5~MHz clock.  At the start-up, the FIFO is reset (0 words) and the FIFO read/write is disabled.  The serial trigger link is idle words only.  On trigger start, the TS starts trigger word transmission.  The TI will write the deserialized data (valid data, that is non-idle data word) to the FIFO.  After some pre-set delay (VME register controlled), the TS issues a ‘Trigger Start’ command on the SYNC link.  When TI receives the ‘Trigger Start’, the TI resets the trigger FIFO readout address, and enables continuous readout of the FIFO.  As the SYNC lines are fiber length adjusted and the 62.5 MHz clocks are phase aligned, the trigger words from the TI board FIFO are synchronized across the system.
-The trigger word also has the fine trigger timing information.  By decoding that, the TI board distributes the trigger in 4 ns precision, although the trigger word is serialized every 16 ns.  If the system clock phase is not adjusted, there will be a maximum of 4 ns skew among the clocks on the TI boards, so does the readout trigger.  The clock phase can be adjusted by SD if the skew is critical to the system.
+On the TI board, the deserialized trigger word is clocked into and clocked out of a FIFO using the 62.5~MHz clock.  At the start-up, the FIFO is reset (0~words) and the FIFO read/write is disabled.  The serial trigger link is idle words only.  On trigger start, the TS starts trigger word transmission.  The TI will write the deserialized data (valid data, that is non-idle data word) to the FIFO.  After some pre-set delay (VME register controlled), the TS issues a ‘Trigger Start’ command on the SYNC link.  When TI receives the ‘Trigger Start’, the TI resets the trigger FIFO readout address, and enables continuous readout of the FIFO.  As the SYNC lines are fiber length adjusted and the 62.5~MHz clocks are phase aligned, the trigger words from the TI board FIFO are synchronized across the system.
+The trigger word also has the fine trigger timing information.  By decoding that, the TI board distributes the trigger in 4~ns precision, although the trigger word is serialized every 16~ns.  If the system clock phase is not adjusted, there will be a maximum of 4~ns skew among the clocks on the TI boards, and the same is true for the readout trigger.  The clock phase can be adjusted by the SD if the skew is critical to the system.
 
 
 \subsubsection{DAQ synchronization (trigger throttling) control}
@@ -179,7 +178,7 @@ Because of the finite memory size and the randomness of the triggers, it is poss
 	
 \subsection{Signal Distribution Module (SD)}
 
-The Signal Distribution Board (SD \cite{sd-ref}) module (see Fig.~\ref{fig:SDpic}) occupies the “B” switch card slot as specified in VITA 41. The main purpose of this module is to distribute the signals received from payload slot 18 (Trigger Interface board) of a VXS crate to the 16 other payload slots occupied by FADC, DCRB, VSCM or any other VXS front-end boards.
+The Signal Distribution Board (SD \cite{sd-ref}) module (see Fig.~\ref{fig:SDpic}) occupies the “B” switch card slot as specified in VITA 41. The main purpose of this module is to distribute the signals received from payload slot 18 (Trigger Interface board) of a VXS crate to the 16 other payload slots occupied by FADC, DCRB, VSCM, or any other VXS front-end boards.
 
 The SD module distributes the 4 LVPECL differential pair  signals from payload slot 18 to 16 VXS payload slots within the crate. This is done using the high-speed, point-to-point connections from the switch slot to each payload slot. The four distributed signals are length-matched to minimize the output jitter seen on all of the payload slots. Three of the four remaining pairs are LVDS signals routed from the each payload module to the FPGA on the SD module. The last pair is an LVDS signal routed from the FPGA on the SD module to each payload module. Each of the 16 payload modules has a single-ended signal to the SD module and one from the SD module back to the payload module.
 
@@ -211,16 +210,16 @@ A 16-channel 250 MSPS pipelined flash ADC (FADC \cite{fadc-ref}, see Fig.~\ref{f
 
 Digitized data from the 16 FADC chips is processed and formatted for readout in a pair of high performance Xilinx FPGAs. The digitized data from the ADCs follows two distinct paths.  Logic in the trigger data path pre-processes data for the trigger algorithms of the VXS Trigger Processor (VTP). The FADC250 module continuously streams this data to the crate VTP located in VXS switch slot A via high-speed serial links of the VXS fabric.  Data from multiple VTPs and other modules are used to form a global trigger signal that is returned to the crates to initiate data readout.
 
-The readout data path continuously stores digitized data for each channel in circular buffers. When a trigger signal is received by the module a programmable window up to 2 $\mu$s wide of digitized data is extracted from the buffers for processing. The starting point of this window can be programmed up to 8 $\mu$s earlier than the arrival of the trigger signal to account for the time required to form the trigger signal.  Zero suppression on the extracted data may be implemented for each channel using programmable thresholds.  A lossless data compression algorithm can also be applied to the data of each channel with typical compression factors of 2 to 3. The design is pipelined so that data from multiple triggers can be processed simultaneously.  Triggers separated in time by as little as 50 ns can be accepted by the module. The trigger number and trigger time (clock periods since last synchronization) are reported along with the channel data so that data from multiple modules can be correctly assembled into events. 
+The readout data path continuously stores digitized data for each channel in circular buffers. When a trigger signal is received by the module a programmable window up to 2~$\mu$s wide of digitized data is extracted from the buffers for processing. The starting point of this window can be programmed up to 8~$\mu$s earlier than the arrival of the trigger signal to account for the time required to form the trigger signal.  Zero suppression on the extracted data may be implemented for each channel using programmable thresholds.  A lossless data compression algorithm can also be applied to the data of each channel with typical compression factors of 2 to 3. The design is pipelined so that data from multiple triggers can be processed simultaneously.  Triggers separated in time by as little as 50~ns can be accepted by the module. The trigger number and trigger time (clock periods since last synchronization) are reported along with the channel data so that data from multiple modules can be correctly assembled into events. 
 
-Data associated with a programmable number ``N'' of triggers is packaged into a block of data for read out over VME.  ``N'' can take values from 1 to 255, with 40 being a typical value chosen.  Data is stored in an on-board 8 MB SRAM as 64-bit words to match the 64-bit high-speed (200 MB/s) dual edge VME Source Synchronous Transfer (2eSST) mode employed to read out the module.  
+Data associated with a programmable number ``N'' of triggers is packaged into a block of data for read out over VME.  ``N'' can take values from 1 to 255, with 40 being a typical value chosen.  Data is stored in an on-board 8~MB SRAM as 64-bit words to match the 64-bit high-speed (200~MB/s) dual edge VME Source Synchronous Transfer (2eSST) mode employed to read out the module.  
 
-In order to save the overhead of setting up a DMA transfer for each FADC250 module in the crate, a chained block readout mechanism with token passing is used.  A common address range is enabled for all modules in the crate but only the module having the token will respond to a read request.  A single logical DMA read is initiated by the VME crate controller and the first module in the chain supplies data from its block of event fragments.  When the block data from the first module is exhausted, a token signal is passed to the next module in the chain and this module then proceeds to transmit its data from its block.  When the block for the data from that module is exhausted, it transfers the token to the next module.  This continues until the data from the last module in the chain is exhausted.  Instead of passing the token the last module asserts the VME bus error signal (BERR), which terminates the DMA cycle.  The user returns the token to the first module and the process can begin again when the next block of events is ready for readout.  The user does not have to query the modules in advance to discover the number of words to read out.  The DMA is set up with a total number of words larger than any expected value for the entire crate.  Data from each module is tagged with the slot number to identify its source.  The token passes along a VXS signal line to VXS switch slot B, where a module there (SD) routes it to the next enabled module.
+In order to save the overhead of setting up a DMA transfer for each FADC250 module in the crate, a chained block readout mechanism with token passing is used.  A common address range is enabled for all modules in the crate but only the module having the token will respond to a read request.  A single logical DMA read is initiated by the VME crate controller and the first module in the chain supplies data from its block of event fragments.  When the block data from the first module is exhausted, a token signal is passed to the next module in the chain and this module then proceeds to transmit its data from its block.  When the block for the data from that module is exhausted, it transfers the token to the next module.  This continues until the data from the last module in the chain is exhausted.  Instead of passing the token, the last module asserts the VME bus error signal (BERR), which terminates the DMA cycle.  The user returns the token to the first module and the process can begin again when the next block of events is ready for readout.  The user does not have to query the modules in advance to discover the number of words to read out.  The DMA is set up with a total number of words larger than any expected value for the entire crate.  Data from each module is tagged with the slot number to identify its source.  The token passes along a VXS signal line to VXS switch slot B, where a module there (SD) routes it to the next enabled module.
 
 
 \subsection{Discriminator Scaler Module (DSC2)}
 
-The Discriminator Scaler Module (DSC2 \cite{dsc2-ref}, see Fig.~\ref{fig:dsc2_board}) is a 16-channel general purpose discriminator and scaler module designed as a 6U VME card. It replaces an older design, improving on jitter, noise, crosstalk, and adding new features.  Board specifications are summarized in Table~\ref{tab:dsc2_specifications}. 
+The Discriminator Scaler Module (DSC2 \cite{dsc2-ref}, see Fig.~\ref{fig:dsc2_board}) is a 16-channel general purpose discriminator and scaler module designed as a 6U VME card. It replaces an older design, improving on jitter, noise, cross-talk, and adding new features.  Board specifications are summarized in Table~\ref{tab:dsc2_specifications}. 
 
 \begin{figure}[hbt]
 	\centering
@@ -267,7 +266,7 @@ Inputs are single-ended LEMO and leading-edge discrimated by two different thres
 \end{figure}
 
 \paragraph{Digital Processing}
-A Xilinx Spartan 3A FPGA is used to implement the VME interface, scalers, discriminator controls, and scaler event building features. Each channel and threshold has two scalers associated with it. The first scaler counts all threshold crossings for the input. The second scaler is gated using a front-panel input source, which can be useful to computing dead-time of channels and many other applications. Additionally, reference scalers are accumulated (a gated and ungated version) that count the elapsed time, which can be used to normalize inputs scalers to Hz. All together there are 68 scalers, which can be slow to read over VME if using single-cycle transfers. An event builder is implemented that can synchronously read (and optionally clear) all scalers and build an event with this data. Over 100 events can be buffered and readout using the VME 2eSST protocol at 200~MB/s.
+A Xilinx Spartan 3A FPGA is used to implement the VME interface, scalers, discriminator controls, and scaler event building features. Each channel and threshold has two scalers associated with it. The first scaler counts all threshold crossings for the input. The second scaler is gated using a front-panel input source, which can be useful to compute the dead-time of channels and many other applications. Additionally, reference scalers are accumulated (a gated and ungated version) that count the elapsed time, which can be used to normalize inputs scalers to Hz. All together there are 68 scalers, which can be slow to read over VME if using single-cycle transfers. An event builder is implemented that can synchronously read (and optionally clear) all scalers and build an event with this data. Over 100 events can be buffered and readout using the VME 2eSST protocol at 200~MB/s.
 
 
 \subsection{TDC Modules (v1190/v1290)}
@@ -295,7 +294,7 @@ affects are given in Ref.~\cite{inl-tables}.
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=0.2\columnwidth,keepaspectratio]{img/v1190_board.jpg}
-	\caption{CAEN V1190 TDC module (V1190). 128-channel 100ps LSB TDC board in VME format is shown. Another board in use is V1290 with 32 channels and 25 ps LSB.}
+	\caption{CAEN V1190 TDC module (V1190). 128-channel 100~ps LSB TDC board in VME format is shown. Another board in use is V1290 with 32 channels and 25~ps LSB.}
 	\label{fig:v1190_board}
 \end{figure}
 
@@ -308,16 +307,16 @@ affects are given in Ref.~\cite{inl-tables}.
 	\label{fig:dcrb_board}
 \end{figure}
 
-The Drift Chamber Readout Board (DCRB \cite{dcrb-ref}, see Fig.~\ref{fig:dcrb_board}) is a 96-channel amplifier, discriminator, and time-to-digital converter module used to digitize and readout hits from the CLAS12 Drift Chambers. A single VXS crate of DCRB modules can readout a full region of the drift chambers for a single sector resulting in 18 VXS crates of DCRBs to instrument 6 sectors each having 3 regions of drift chamber.
+The Drift Chamber Readout Board (DCRB \cite{dcrb-ref}, see Fig.~\ref{fig:dcrb_board}) is a 96-channel amplifier, discriminator, and time-to-digital converter module used to digitize and readout hits from the CLAS12 drift chambers \cite{dc-ref}. A single VXS crate of DCRB modules can readout a full region of the drift chambers for a single sector resulting in 18 VXS crates of DCRBs to instrument 6 sectors each having 3 regions of drift chamber.
 
 \paragraph{Analog Inputs}
 Each DCRB receives 96 differential analog signal pairs using twisted pair cabling from the drift chamber pre-amplifiers. The pre-amplfiers located on the detector provide a gain of ~2.3~mV/$\mu$A. On the DCRB each analog input channel is amplified by a voltage gain of 30 and then discriminated by a programmable threshold (common to all channels on the board with an effective chamber wire threshold range of 0 to 3.5/$\mu$A).
 
 \paragraph{TDC Event Builder}
-All discriminated channels go to a Xilinx Spartan 6 FPGA where a 96-channel 1~ns resolution time-to-digital converter (TDC) is implemented in firmware. The TDC is based on the ISERDES2 shift register FPGA primitive that directly samples of the digital input with a single-data-rate (SDR) input register clocked at 1~GHz. The TDC sampling clock is synchronized to the CLAS12 master oscillator, making it easy to relate hit times in the drift chamber to the other detectors in CLAS12. The TDC inputs are buffered to support multiple hits, allowing for an average hit rate of 4~MHz per input before loss of data, which exceeds the chamber design hits rates by a few orders of magnitude. Hits from groups of 16 channels are written into a large buffer that a linked-list content addressable memory (CAM) tracks for 16~$\mu$s. When a L1A trigger signal is received, a time window of hits is extracted from the TDC hit buffer. The readout window times are supplied to the CAM, and the CAM provides the address of the last hit matching each readout time bin. The hit buffer is then read to extract the hit and also the address of the next hit in the buffer matching the time bin (this is the linked list behavior). The result is an extremely fast event builder with natural zero suppression that does not require time sorted data. Cleanup is accomplished by a timer that invalidates the CAM entries after time bins are older than 16~$\mu$s. Hits for an event are assembled and buffered in a 2~MByte external RAM, which is readout through the VME bus using the 2eSST protocol at 200~MB/s.
+All discriminated channels go to a Xilinx Spartan 6 FPGA where a 96-channel, 1~ns resolution time-to-digital converter (TDC) is implemented in firmware. The TDC is based on the ISERDES2 shift register FPGA primitive that directly samples the digital input with a single-data-rate (SDR) input register clocked at 1~GHz. The TDC sampling clock is synchronized to the CLAS12 master oscillator, making it easy to relate hit times in the drift chamber to the other detectors in CLAS12. The TDC inputs are buffered to support multiple hits, allowing for an average hit rate of 4~MHz per input before loss of data, which exceeds the chamber design hits rates by a few orders of magnitude. Hits from groups of 16 channels are written into a large buffer that a linked-list content addressable memory (CAM) tracks for 16~$\mu$s. When a L1A trigger signal is received, a time window of hits is extracted from the TDC hit buffer. The readout window times are supplied to the CAM, and the CAM provides the address of the last hit matching each readout time bin. The hit buffer is then read to extract the hit and also the address of the next hit in the buffer matching the time bin (this is the linked-list behavior). The result is an extremely fast event builder with natural zero suppression that does not require time-sorted data. Cleanup is accomplished by a timer that invalidates the CAM entries after time bins are older than 16~$\mu$s. Hits for an event are assembled and buffered in a 2~MByte external RAM, which is readout through the VME bus using the 2eSST protocol at 200~MB/s.
 
 \paragraph{Calibration Support}
-A programmable amplitude pulse generator is implemented that can inject test pulses directly into the DCRB differential amplifier inputs as well as to the pre-amplfiers that are on the detector. This provides a way to test points of failure, check channel gain, and check channel delays without any extra equipment. A scaler is implemented on each channel for slow control monitoring of all chamber wires.
+A programmable amplitude pulse generator is implemented that can inject test pulses directly into the DCRB differential amplifier inputs, as well as to the pre-amplfiers that are on the detector. This provides a way to test points of failure, check channel gain, and check channel delays without any extra equipment. A scaler is implemented on each channel for slow control monitoring of all chamber wires.
 
 \subsection{VXS Silicon Readout Module (VSCM)}
 The CLAS12 Silicon Vertex Tracker detector (SVT, \cite{svt-ref}) front-end utilizes the data driven FSSR2 ASIC for digitization. The VXS Silicon Readout Module (VSCM \cite{vscm-ref}, Fig.~\ref{fig:vscm_board}) was designed to interface the FSSR2-based front-end to the CLAS12 DAQ system. This system is capable of reading out all 33,792 SVT channels in 3 VXS crates.
@@ -332,23 +331,22 @@ The CLAS12 Silicon Vertex Tracker detector (SVT, \cite{svt-ref}) front-end utili
 The main features of the VSCM include:
 
 \begin{itemize}
-	\item Receives 8 FSSR2 streams, each at 840~Mbps
-	\item De-randomizes hits into an 8~$\mu$s buffer
-	\item 512k hit, multi-event buffer
-	\item Supports $>$1~MHz trigger rate
-	\item Programmable amplitude charge injector
-	\item 1~ns resolution time-to-digital converter (TDC)
-	\item Per channel hit scaler
-	\item FSSR2 synchronization, status, and control
+	\item Receives 8 FSSR2 streams, each at 840~Mbps;
+	\item De-randomizes hits into an 8~$\mu$s buffer;
+	\item 512k hit, multi-event buffer;
+	\item Supports $>$1~MHz trigger rate;
+	\item Programmable amplitude charge injector;
+	\item 1~ns resolution time-to-digital converter (TDC);
+	\item Per-channel hit scaler;
+	\item FSSR2 synchronization, status, and control.
 \end{itemize}
 
 \paragraph{Event Builder}
-The VSCM deserializes the FSSR2 streams, checks for errors, and decodes the hits, which are stored in an 8~$\mu$s circular memory. The hits are not guaranteed to be time ordered, so the timestamp and channel number are used to form the circular memory address (rather than storing in the order received). The VSCM also implements an 8-channel 1~ns time-to-digital converter (TDC) that measures the logic OR of hits from each FSSR2 ASIC. This high time resolution is significantly better than the FSSR2 serial stream hit time resolution and is required for improved out-of-time hit rejection. The L1A trigger signal time is used to look back a fixed amount of time and extract a time window of hits from the circular memory, which corresponds to the physics event. Non-zero hits are assembled as an event and buffered in a 2~MByte external RAM that is readout through the VME bus using the 2eSST protocol at 200~MB/s.
+The VSCM deserializes the FSSR2 streams, checks for errors, and decodes the hits, which are stored in an 8~$\mu$s circular memory. The hits are not guaranteed to be time ordered, so the timestamp and channel number are used to form the circular memory address (rather than storing in the order received). The VSCM also implements an 8-channel, 1~ns time-to-digital converter (TDC) that measures the logic OR of hits from each FSSR2 ASIC. This high time resolution is significantly better than the FSSR2 serial stream hit time resolution and is required for improved out-of-time hit rejection. The L1A trigger signal time is used to look back a fixed amount of time and extract a time window of hits from the circular memory, which corresponds to the physics event. Non-zero hits are assembled as an event and buffered in a 2~MByte external RAM that is readout through the VME bus using the 2eSST protocol at 200~MB/s.
 
-The event data contains primarily two hit word types that together provide high time resolution and spatial hit resolution while keeping the front-end complexity low.
-
+The event data contains primarily two hit word types that together provide high time resolution and spatial hit resolution while keeping the front-end complexity low (see Tables~\ref{tab:vscm_low_res} and \ref{tab:vscm_high_res}).
+\begin{table}
 \begin{center}
-	Low time resolution hit word\\
 	\begin{tabular}{| l | l |}
 		\hline \hline
 		Property	& Description		\\
@@ -358,10 +356,13 @@ The event data contains primarily two hit word types that together provide high 
 		Charge		& 0-7 threshold		\\
 		\hline \hline
 	\end{tabular}
+	\caption{VSCM data: low time resolution hit word}
+	\label{tab:vscm_low_res}
 \end{center}
+\end{table}
 
+\begin{table}
 \begin{center}
-	High time resolution hit word\\
 	\begin{tabular}{| l | l |}
 		\hline \hline
 		Property	& Description		\\
@@ -370,7 +371,10 @@ The event data contains primarily two hit word types that together provide high 
 		Channel		& 0-7 chip ID		\\
 		\hline \hline
 	\end{tabular}
+	\caption{VSCM data: high time resolution hit word}
+	\label{tab:vscm_high_res}
 \end{center}
+\end{table}
 
 Fig.~\ref{fig:vscm_blockdiagram} shows the hardware block diagram of the module. Essentially, a single low-cost Xilinx Spartan 6 FPGA was used to implement the deserialization, buffering, event-building, monitoring, front-end configuration, time-to-digital conversion, and monitoring.
 
@@ -382,13 +386,13 @@ Fig.~\ref{fig:vscm_blockdiagram} shows the hardware block diagram of the module.
 \end{figure}
 
 
-\subsection{SSP Board as fiber Readout Module}
+\subsection{SSP Board as Fiber Readout Module}
 
-The SubSystem Processor (SSP \cite{ssp-ref}) was originally designed to work as part of CLAS12 Trigger System, but the optical transceivers, FPGA, and DDR2 memory are also suitable for remote front-end synchronization and readout. The SSP resides in a standard VXS crate configuration and acts as a bridge between custom front-end electronics (up to 32 remote front-ends per SSP) and the VME based CODA readout components. It collects event data from up to 32 fiber optic links, buffers events in the 4GByte DDR2 memory, and readout by the crate controller using the 2eSST VME protocol at up to to 200MB/sec. The RICH (\cite{rich-ref}), MVT (\cite{mvt-ref}), and FTT (\cite{ftt-ref}) CLAS12 subsystems utilize the SSP in fiber readout mode. The board description can be found in the CLAS12 Trigger System article \cite{trig-ref}.
+The SubSystem Processor (SSP \cite{ssp-ref}) was originally designed to work as part of CLAS12 Trigger System, but the optical transceivers, FPGA, and DDR2 memory are also suitable for remote front-end synchronization and readout. The SSP resides in a standard VXS crate configuration and acts as a bridge between custom front-end electronics (up to 32 remote front-ends per SSP) and the VME based CODA readout components. It collects event data from up to 32 fiber optic links, buffers events in the 4~GByte DDR2 memory, and readout by the crate controller using the 2eSST VME protocol at up to to 200~MB/sec. The RICH (\cite{rich-ref}), MVT (\cite{mvt-ref}), and FTT (\cite{ftt-ref}) CLAS12 subsystems utilize the SSP in fiber readout mode. The board description can be found in the \cite{trig-ref}.
 
-\subsubsection{Readout of the Micromegas trackers}
+\subsubsection{Readout of the Micromegas Trackers}
 
-The Micromegas Vertex Tracker (MVT, [MVT]) is a part of the Clas12 central detector (see \cite{mvt-ref} and \cite{ftt-ref}). The 6 layers of the curved barrel detectors and the 6 forward discs account for about ~18 000 and ~6 000 readout channels respectively. Two double-sided Micromegas discs form the FTT tracker with some 4 000 channels, which is a part of the Clas12 Forward Tagger [FT]. Under the harsh operating environment of MVT and FTT (stringent space limitation, imposed low material budget, high radiation environment, up to 5T magnetic field) it has been decided to implement readout systems with off-detector frontends. Micro-coaxial cables of low 40pF/m linear capacitance transfer non-amplified signals from detectors to the front-end units (FEU) placed one to two meters away. Fig.~\ref{fig:mvt1} shows MVT/FTT block diagram.
+The Micromegas Vertex Tracker (MVT) is a part of the CLAS12 Central Detector (see \cite{mvt-ref} and \cite{ftt-ref}). The 6 layers of the curved barrel detectors and the 6 forward discs account for about ~18 000 and ~6 000 readout channels respectively. Two double-sided Micromegas discs form the FTT tracker with some 4000 channels, which is a part of the CLAS12 Forward Tagger (FT, \cite{ft-ref}). Under the harsh operating environment of the MVT and FTT (stringent space limitations, imposed low material budget, high radiation environment, up to 5~T magnetic field), it was decided to implement readout systems with off-detector front-ends. Micro-coaxial cables of low 40~pF/m linear capacitance transfer non-amplified signals from the detectors to the front-end units (FEU) placed 1-2~m away. Fig.~\ref{fig:mvt1} shows the MVT/FTT block diagram.
 
 \begin{figure}[hbt]
 	\centering
@@ -397,9 +401,9 @@ The Micromegas Vertex Tracker (MVT, [MVT]) is a part of the Clas12 central detec
 	\label{fig:mvt1}
 \end{figure}
 
-The FEUs (see Fig.~\ref{fig:mvt2}) are equipped with the Dream ASIC, specially designed for the Clas12 application [DRM, \cite{dream-ref}]. Each of the 64-channels of the Dream chip includes a charge sensitive amplifier adapted to wide range of detector capacitances (up to 1nF), shaper with a wide range of programmable peaking times (75ns to 1~$\mu$s) and 512-cell deep Switched Capacitor Array (SCA) used as the trigger pipeline memory and de-randomization buffer. The input signals are continuously sampled and stored in the SCA. Upon reception of the trigger signal, a programmable number of samples of all channels is fetched from the memory locations corresponding in time to the event and is read-out serially. The sampling is not stopped during the readout process allowing nearly dead-timeless operation. With the 25 MHz sampling and readout frequencies and with 6 to 8 samples retained per event, the Dream channel memory is enough to stand the targeted 20 kHz event rate with ~8~$\mu$s trigger latency.
+The FEUs (see Fig.~\ref{fig:mvt2}) are equipped with the Dream ASIC, specially designed for the CLAS12 application [DRM, \cite{dream-ref}]. Each of the 64-channels of the Dream chip includes a charge-sensitive amplifier adapted to a wide range of detector capacitances (up to 1~nF), a shaper with a wide range of programmable peaking times (75~ns to 1~$\mu$s), and a 512-cell deep Switched Capacitor Array (SCA) used as the trigger pipeline memory and de-randomization buffer. The input signals are continuously sampled and stored in the SCA. Upon reception of the trigger signal, a programmable number of samples of all channels is fetched from the memory locations corresponding in time to the event and is read-out serially. The sampling is not stopped during the readout process, allowing nearly dead-timeless operation. With the 25~MHz sampling and readout frequencies, and with 6 to 8 samples retained per event, the Dream channel memory is enough to tolerate the targeted 20~kHz event rate with ~8~$\mu$s trigger latency.
 
-The 512-channel mixed analog-digital FEU includes 8 Dream ASICs, an 8-channel serial AD9222 ADC from Analog Device, a Virtex-6 Xilinx FPGA, optical and electrical SFP modules and several other services and monitoring circuits. The FEU is responsible for the configuration and the readout of the Dreams, for analogue to digital conversion of the signals, for the pedestal equalization, coherent noise subtraction and zero suppression. The event fragments are then formed from the data of retained channels and transmitted to the backend electronics over a 2.5 Gbit/s optical link. A FEU consumes about 20W. The 48 MVT FEUs and the 6 FTT FEUs are housed in ad-hoc crates. Continuously flowing air ensures an ambient temperature of ~35$\degree$C within the crates. The MVT frontend electronics operates in up to 1T residual magnetic field of the CD solenoid.
+The 512-channel mixed analog-digital FEU includes 8 Dream ASICs, an 8-channel serial AD9222 ADC from Analog Device, a Virtex-6 Xilinx FPGA, optical and electrical SFP modules, and several other services and monitoring circuits. The FEU is responsible for the configuration and the readout of the Dreams, for analog to digital conversion of the signals, for the pedestal equalization, coherent noise subtraction, and zero suppression. The event fragments are then formed from the data of the retained channels and transmitted to the back-end electronics over a 2.5~Gbit/s optical link. A FEU consumes about 20~W. The 48 MVT FEUs and the 6 FTT FEUs are housed in ad-hoc crates. Continuously flowing air ensures an ambient temperature of ~35$\degree$C within the crates. The MVT front-end electronics operate in up to 1~T residual magnetic field of the solenoid.
 
 \begin{figure}[hbt]
 	\centering
@@ -408,9 +412,9 @@ The 512-channel mixed analog-digital FEU includes 8 Dream ASICs, an 8-channel se
 	\label{fig:mvt2}
 \end{figure}
 
-The backend electronics is based on the standard VXS crates including the crate controller SBC, TI and SD modules and the SSP boards described in the previous sections. A dedicated SSP firmware has been developed to implement synchronous distribution of the system clock, trigger and control signals from SSP-s to FEUs over the 2.5 Gbit/s optical links. For each trigger, the SSPs perform local event building tasks assembling FEU event fragments. Multi-event buffers are formed and transferred from SSPs to the crate controller SBC over the VME64 backplane using the 2SST protocol. The transmission rates of 200 Mbyte/s are routinely achieved. A single SSP can communicate with up to 24 front end units.
+The back-end electronics is based on the standard VXS crates including the crate controller SBC, TI and SD modules, and the SSP boards described in the previous sections. A dedicated SSP firmware has been developed to implement synchronous distribution of the system clock, trigger, and control signals from SSPs to FEUs over the 2.5~Gbit/s optical links. For each trigger, the SSPs perform local event building tasks assembling FEU event fragments. Multi-event buffers are formed and transferred from SSPs to the crate controller SBC over the VME64 backplane using the 2SST protocol. The transmission rates of 200~Mbyte/s are routinely achieved. A single SSP can communicate with up to 24 front-end units.
 
-The SBC runs the read-out controller (ROC) application of the Clas12 CODA data acquisition framework [CODA]. It completes the data integrity checks performed in the SSP firmware, disentangles multi-event buffers, forms MVT and FTT events and sends them to the event builder over a 10 GB/s Ethernet link. The MVT and FTT readout electronics is continuously surveyed by the Clas12 detector monitoring system using the EPICS framework.
+The SBC runs the read-out controller (ROC) application of the CLAS12 CODA data acquisition framework \cite{coda-ref}. It completes the data integrity checks performed in the SSP firmware, disentangles multi-event buffers, forms MVT and FTT events, and sends them to the event builder over a 10~GB/s Ethernet link. The MVT and FTT readout electronics is continuously surveyed by the CLAS12 detector monitoring system using the EPICS framework \cite{epics-website}.
 
 \subsubsection{Readout of the Ring-Imaging Cherenkov Detector}
 
@@ -421,8 +425,8 @@ The SBC runs the read-out controller (ROC) application of the Clas12 CODA data a
 	\label{fig:rich1}
 \end{figure}
 
-The CLAS12 Ring-Imaging Cherenkov Detector (RICH, \cite{rich-ref}) contains 391 MAPMTs, corresponding to 25024 channels of readout. The front-end electronics are equipped on-detector forming compact modules called ``tiles'', see Fig.~\ref{fig:rich1}, comprised of the MAPMT, adapter, ASIC, and FPGA boards. There are 138 tiles needed to readout a single sector of the detector (currently there is only a single sector installed). Each tile contains either 128 or 192 channels and uses the MAROC3A ASIC for gain equalization, shaping, and discrimination of PMT pulses. Each tile also has an FPGA board that performs a 1ns time-to-digital conversion measurement for leading and trailing edges of the amplified and discriminated PMT pulses.
+The CLAS12 Ring-Imaging Cherenkov Detector (RICH, \cite{rich-ref}) contains 391 multi-anode PMTs (MAPMTs), corresponding to 25024 channels of readout. The front-end electronics are equipped on-detector, forming compact modules called ``tiles'', see Fig.~\ref{fig:rich1}, comprised of the MAPMT, adapter, ASIC, and FPGA boards. There are 138 tiles needed to readout a single sector of the detector (currently there is only a single sector installed). Each tile contains either 128 or 192 channels and uses the MAROC3A ASIC for gain equalization, shaping, and discrimination of PMT pulses. Each tile also has an FPGA board that performs a 1ns time-to-digital conversion measurement for leading and trailing edges of the amplified and discriminated PMT pulses.
 
-All 138 tiles are distributed across 5 SSP located in a single VXS crate using ~20m 2.5Gbps optical links. The tile FPGA buffers the TDC hits in onchip memory waiting up to ~8~$\mu$s for a fixed latency trigger. Given the low hit occupancy of events, the RICH DAQ can accept trigger rates close to 100kHz before contributing to significant deadtime. The data rate for the single RICH sector are typically under 10MB/s for CLAS12 trigger rates around 15kHz.
+All 138 tiles are distributed across 5 SSP located in a single VXS crate using $\sim$20~m 2.5~Gbps optical links. The tile FPGA buffers the TDC hits in on-chip memory waiting up to $\sim$8~$\mu$s for a fixed latency trigger. Given the low hit occupancy of events, the RICH DAQ can accept trigger rates close to 100~kHz before contributing to significant deadtime. The data rate for the single RICH sector is typically under 10~MB/s for CLAS12 trigger rates around 15~kHz.
 
 

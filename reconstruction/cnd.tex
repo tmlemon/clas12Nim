@@ -1,0 +1,202 @@
+\subsection{Central Neutron Detector}
+
+The reconstruction of the Central Neutron Detector (CND) is done in three steps:
+
+\begin{itemize}
+\item{the reconstruction of the time and position of the hit in the paddle;}
+\item{the reconstruction of the deposited energy;}
+\item{the matching of CND hits with tracks coming from the interaction vertex.}
+\end{itemize}
+
+%The reconstruction makes use of the calibration constants of the CND summarized in
+%Table~\ref{table_cnd_constants}.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{table}[htbp]
+%\begin{center}
+%\begin{tabular}{|c|c|c|} \hline
+%Constant Name & Number of Constants  & Units \\ \hline
+%$t_{\rm{LR}}$ & 72 & ns\\ \hline
+%v_{\rm{eff}}$ & 144 & cm/ns \\ \hline
+%$u_{\rm{t}}$ & 72 & ns \\ \hline
+%$t_{\rm{LR}_{\rm{ad}}}$ & 72 & ns \\ \hline
+%$t_{\rm{off}}$ &72 & ns\\ \hline
+%$A_{\rm{L}}$ & 144 & cm\\ \hline
+%$MIP_{\rm{D}}$, $MIP_{\rm{I}}$ & 144 each & no units \\ \hline
+%\end{tabular}
+%\caption{The constants computed in the CND calibration.}
+%\label{table_cnd_constants}
+%\end{center}
+%\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\subsubsection{Timing Calibration}
+%
+%The paddle in which the hit occurs must be determined before all other reconstruction steps. The raw hit
+%times are obtained from the measured TDC channel using a slope constant of 0.0234~ns/channel for all
+%channels.
+%
+%The left and right times of a hit in the left paddle (we label them as $t_{{\rm{L}}/{\rm{L}}}$ and
+%$t_{\rm{R}/{\rm{L}}}$ where the first index corresponds to the paddle under exam, while the second indicates
+%the paddle in which the primary hit happened) are given by:%
+%
+%\begin{equation}
+%\label{eq_time_hit_lr}
+%t_{{\rm{L}}/{\rm{L}}}=t_{\rm{off}}+t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_L}}+t_{\rm{S}}+t_{\rm{off}_{\rm{L}}}+{\rm{TDC}}_{\rm{j}},
+%\end{equation}
+%
+%\begin{equation}
+%\label{eq_time_hit_lr1}
+%t_{{\rm{R}/{\rm{L}}}}=t_{\rm{off}}+t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_L}}+\frac{L}{v_{\rm{eff}_L}}
+%+\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}+t_{\rm{S}}+t_{\rm{off}_{\rm{R}}}+{\rm{TDC}}_{\rm{j}},
+%\end{equation}
+%
+%\noindent
+%where $t_{\rm{tof}}$ is the time of flight, $z$ is the position of the hit measured from the upstream end of the
+%paddle, $L$ is the length of the paddle, $t_{\rm{S}}$ is the start time of the event, $t_{\rm{off}_{\rm{L}}}$ and
+%$t_{\rm{off}_{\rm{R}}}$ are time offsets associated to the left and right coupled paddles, and ${\rm{TDC}}_{\rm{j}}$
+%is the TDC clock jitter. Similarly if the hit happened in the right paddle one can write:
+%
+%\begin{equation}
+%  t_{{\rm{L}}/{\rm{R}}}=t_{\rm{off}}+t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_{\rm{R}}}}+\frac{L}{v_{\rm{eff}_L}}
+%  +\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}+t_{\rm{S}}+t_{\rm{off}_{\rm{L}}}+{\rm{TDC}}_{\rm{j}},
+%\end{equation}
+%
+%\begin{equation}
+%t_{R/R}=t_{\rm{off}}+t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_{\rm{R}}}}+t_{\rm{S}}+t_{\rm{off}_{\rm{R}}}+{\rm{TDC}}_{\rm{j}}.
+%\end{equation}
+%
+%Defining $\Delta$ and $\Delta'$ as:
+%
+%\begin{equation}
+%\Delta=\frac{L}{v_{\rm{eff}_L}}-\frac{L}{v_{\rm{eff}_{\rm{R}}}},
+%\end{equation}
+%
+%\begin{equation}
+%\Delta'=t_{\rm{L}/{\rm{X}}}-t_{\rm{R}/{\rm{X}}}+t_{\rm{off}_{\rm{R}}}-t_{\rm{off}_{\rm{L}}},
+%\end{equation}
+%
+%\noindent
+%where the index X can be R or L, one can compute $\Delta-\Delta'$ for both cases (hit in the left paddle or hit
+%in the right paddle). If the hit is in the left paddle:
+%
+%\begin{equation}
+%\Delta'-\Delta= \frac{2z}{v_{\rm{eff}_L}} - \frac{2L}{v_{\rm{eff}_L}} -u_{\rm{t}} <0.
+%\end{equation}
+
+%\noindent
+%If the hit is in the right paddle:
+%
+%\begin{equation}
+%\Delta'-\Delta= \frac{2L}{v_{\rm{eff}_{\rm{R}}}}-\frac{2z}{v_{\rm{eff}_{\rm{R}}}} +u_{\rm{t}} >0.
+%\end{equation}
+%
+%\noindent
+%If $\Delta'<\Delta$, the paddle in which the hit happened is the left one, otherwise it is the right one.
+
+\subsubsection{Hit Position and Time Reconstruction}
+
+The reconstruction of the time and position of a hit will be shown for the case of a hit in the left paddle. In
+case of a hit in the right paddle the applicable equations are obtained by switching the $L/R$ indices.
+
+Starting from $t_{\rm{L}}$ and $t_{\rm{R}}$, defined as the reconstructed hit time from the left and right PMTs,
+and subtracting the time offsets obtained from the calibrations, the start time and the time jitter, one can
+define the propagation times $t_{\rm{L}_{\rm{prop}}}$ and $t_{\rm{R}_{\rm{prop}}}$ as:
+
+\begin{equation}
+t_{\rm{L}_{\rm{prop}}}=t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_{\rm{L}}}},
+\end{equation}
+
+\begin{equation}
+t_{\rm{R}_{\rm{prop}}}=t_{\rm{tof}}-\frac{z}{v_{\rm{eff}_{\rm{L}}}}+\frac{L}{v_{\rm{eff}_{\rm{L}}}}
++\frac{L}{v_{\rm{eff}_{\rm{R}}}}+u_{\rm{t}}.
+\end{equation}
+
+The position of the hit is then obtained as the difference of the propagation times:
+
+\begin{equation}
+z=\frac{v_{\rm{eff}_{\rm{L}}}}{2} \left(t_{\rm{L}_{\rm{prop}}}-t_{\rm{R}_{\rm{prop}}}
++ L \cdot \left(\frac{1}{v_{\rm{eff}_{\rm{L}}}}+\frac{1}{v_{\rm{eff}_{\rm{R}}}}\right)  +u_{\rm{t}}\right).
+\end{equation}
+
+The $x$ and $y$ coordinates of the hit are obtained from the radius and the azimuthal angle of the hit, which
+are, in turn, determined by knowing the layer, sector, and component (left or right) of the hit.  Finally, the time
+of flight of the particle that produced the hit is obtained as:
+
+\begin{equation}
+t_{\rm{tof}}= \frac{1}{2}\left(t_{\rm{L}_{\rm{prop}}}+t_{\rm{R}_{\rm{prop}}}- L \cdot \left(\frac{1}{v_{\rm{eff}_{\rm{L}}}}
++\frac{1}{v_{\rm{eff}_{\rm{R}}}}\right)  -u_{\rm{t}}\right).
+\end{equation}
+
+\subsubsection{Energy Reconstruction}
+
+For hits in the left paddle, the two associated ADCs can be written as:
+
+\begin{equation}
+\label{eq_rec_3}
+ADC_{\rm{L}}=\frac{E_{\rm{L}}}{E_0}\cdot MIP_{\rm{D}}\cdot e^{\frac{-z}{A_{\rm{L}}}},
+\end{equation}
+
+\begin{equation}
+\label{eq_rec_4}
+ADC_{\rm{R}}=\frac{E_{\rm{R}}}{E_0}\cdot MIP_{\rm{I}}\cdot e^{\frac{-(L-z)}{A_{\rm{L}}}},
+\end{equation}
+
+\noindent
+where $E_{L/R}$ is half the energy deposited by the particle in the left/right paddle and $E_0$ is given by
+Eq.~\ref{eq_def_e0}.
+
+\begin{equation}\label{eq_def_e0}
+E_0=\frac{h\cdot 1.956}{2}~\rm{MeV},
+\end{equation}
+
+\noindent
+where $h$ is the thickness of each scintillator. The above equations are valid for hits in the left paddles, while
+for hits in the right paddles, the applicable equations are obtained by switching the $L/R$ indices. From
+Eqs.~\ref{eq_rec_3} and \ref{eq_rec_4} follows the relations:
+
+\begin{equation}
+E_{\rm{L}}=\frac{ADC_{\rm{L}} \cdot E_0}{MIP_{\rm{D}}}\cdot e^{\frac{z}{A_{\rm{L}}}},
+\end{equation}
+
+\begin{equation}
+E_{\rm{R}}=\frac{ADC_{\rm{R}} \cdot E_0}{MIP_{\rm{I}}}\cdot e^{\frac{L-z}{A_{\rm{R}}}}.
+\end{equation}
+
+\noindent
+The total deposited energy is given by the sum of $E_{\rm{L}}$ and $E_{\rm{R}}$:
+
+\begin{equation}
+E_{\rm{dep}}=E_{\rm{L}}+E_{\rm{R}}.
+\end{equation}
+
+\subsubsection{Hit/Track Matching}
+
+Tracks from charged particles crossing the CLAS12 Central Vertex Tracker (CVT) are associated to hits in
+the CND. This allows, for each CND hit matched with a CVT track, to calculate the position of the hit from the
+extrapolated track, the pathlength between the track vertex and the hit and the path travelled in the hit
+paddle. This information is used in the calibration, as well as to veto charged particles when looking for neutrons
+in the CND. CVT tracks are extrapolated to radii corresponding to the entry point, middle point and exit point of
+the track in the paddle. These points are defined as the intersections between the helix of the track and cylinders
+of radii corresponding to the distances between the center of the CD and the three CND layers. A CVT track and
+a CND hit are matched if the hit coordinates ($x$, $y$, and $z$) and the extrapolated coordinates ($x_m$,
+$y_m$, and $z_m$) verify the relations:
+
+\begin{equation}
+\mid x-x_m \mid < \sigma_x ,~~~~\mid y-y_m \mid < \sigma_y , ~~~~z_m  \in [-\sigma_z,L+\sigma_z],
+\end{equation}
+
+\noindent
+
+where $\sigma_z=1.5$~cm, $ L$ is the length of a paddle, and $\sigma_x$ and $\sigma_y$ are given by:
+
+\begin{equation}
+\sigma_x= \sqrt{x^2\frac{\sigma_R^2}{R^2}+y^2\sigma_\phi^2},~~~~
+\sigma_y= \sqrt{y^2\frac{\sigma_R^2}{R^2}+x^2\sigma_\phi^2},
+\end{equation}
+
+\noindent
+where $R$ is the radius of the hit, $\sigma_R$ is half the thickness of a paddle (1.5~cm) and $\sigma_\phi$
+is the azimuthal resolution of each paddle (3.75$^\circ$). The path travelled by the particle in the paddle is
+approximated as the distance between the entry and exit points. The path length between the vertex and the
+hit is given by the helix parameters.
