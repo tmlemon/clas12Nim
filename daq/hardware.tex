@@ -42,7 +42,7 @@ We also expect a certain minimum 10 year timeframe in which these controllers wi
 	\item Intel Core i7 dual or quad core embedded processer 2~GHz (or greater);
 	\item Hyperthreading and 64-bit arch support;
 	\item 4 GBytes DDR3 (1066~MHz) ECC SDRAM (or greater);
-	\item Front-panel gigabit ethernet and serial port console;
+	\item Front-panel gigabit Ethernet and serial port console;
 	\item 1 x4 PCI Express XMC expansion slot (or greater);
 	\item VME320-interface using the Tundra Tsi148 chip;
 	\item Support for all VME transfer modes including 2eSST;
@@ -54,7 +54,7 @@ After several different boards were evaluated, we purchased VX915 Intel 4th Gene
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/XVR16_diagram.png}
-	\caption{Block diagram of the XVR16 VME crate controller, one of two types of the CPU units used in CLAS12 DAQ system. All controllers had 4-core i7 Intel processors, 8~GB memory and specialized chips to communicate with the VME bus. Built-in 1~G, or add-on 10~G ethernet connections were used to communicate with the rest of the system.}
+	\caption{Block diagram of the XVR16 VME crate controller, one of two types of the CPU units used in CLAS12 DAQ system. All controllers had 4-core i7 Intel processors, 8~GB memory and specialized chips to communicate with the VME bus. Built-in 1~G, or add-on 10~G Ethernet connections were used to communicate with the rest of the system.}
 	\label{fig:XVR16diagram}
 \end{figure}
 
@@ -137,13 +137,13 @@ The trigger words, which include the readout trigger signals and event informati
 	1001	& Quadrant timing	& Event type	 & GTP major trigger \\
 	1010	& Quadrant timing	& Event type	 & Ext major trigger \\
 	
-	1011	& \multicolumn{2}{c}{Four TS partitions’ event types}    & TS partitioning (4, 3, 2, 1) \\
+	1011	& \multicolumn{2}{c}{Four TS partitions’ event types}  & TS partitioning (4, 3, 2, 1)  \\
 
 	\multirow{2}{*}{0110}	& \multirow{2}{*}{Quadrant timing}	& Trigger source & TImaster legacy Trigger \\
 		    &                   & Event type	 & (TS) VME trigger     \\
-	0101	& Trigger command/Control	& VME command \\
-	0100	& TS timer (TS time bit(13:2))	& TI Sync check \\
-	0111	& Trigger content	& Additional trigger info \\
+	0101	& Trigger command/Control	& VME command & \\
+	0100	& TS timer (TS time bit(13:2))	& TI Sync check & \\
+	0111	& Trigger content	& Additional trigger info & \\
 		\hline \hline
 	\end{tabular}
 \end{adjustbox}
@@ -161,7 +161,7 @@ Both the fiber latency and trigger word serializer/ deserializer are compensated
 \end{figure}
 
 On the TI board, the deserialized trigger word is clocked into and clocked out of a FIFO using the 62.5~MHz clock.  At the start-up, the FIFO is reset (0~words) and the FIFO read/write is disabled.  The serial trigger link is idle words only.  On trigger start, the TS starts trigger word transmission.  The TI will write the deserialized data (valid data, that is non-idle data word) to the FIFO.  After some pre-set delay (VME register controlled), the TS issues a ‘Trigger Start’ command on the SYNC link.  When TI receives the ‘Trigger Start’, the TI resets the trigger FIFO readout address, and enables continuous readout of the FIFO.  As the SYNC lines are fiber length adjusted and the 62.5~MHz clocks are phase aligned, the trigger words from the TI board FIFO are synchronized across the system.
-The trigger word also has the fine trigger timing information.  By decoding that, the TI board distributes the trigger in 4~ns precision, although the trigger word is serialized every 16~ns.  If the system clock phase is not adjusted, there will be a maximum of 4~ns skew among the clocks on the TI boards, so does the readout trigger.  The clock phase can be adjusted by the SD if the skew is critical to the system.
+The trigger word also has the fine trigger timing information.  By decoding that, the TI board distributes the trigger in 4~ns precision, although the trigger word is serialized every 16~ns.  If the system clock phase is not adjusted, there will be a maximum of 4~ns skew among the clocks on the TI boards, and the same is true for the readout trigger.  The clock phase can be adjusted by the SD if the skew is critical to the system.
 
 
 \subsubsection{DAQ synchronization (trigger throttling) control}
@@ -344,10 +344,9 @@ The main features of the VSCM include:
 \paragraph{Event Builder}
 The VSCM deserializes the FSSR2 streams, checks for errors, and decodes the hits, which are stored in an 8~$\mu$s circular memory. The hits are not guaranteed to be time ordered, so the timestamp and channel number are used to form the circular memory address (rather than storing in the order received). The VSCM also implements an 8-channel, 1~ns time-to-digital converter (TDC) that measures the logic OR of hits from each FSSR2 ASIC. This high time resolution is significantly better than the FSSR2 serial stream hit time resolution and is required for improved out-of-time hit rejection. The L1A trigger signal time is used to look back a fixed amount of time and extract a time window of hits from the circular memory, which corresponds to the physics event. Non-zero hits are assembled as an event and buffered in a 2~MByte external RAM that is readout through the VME bus using the 2eSST protocol at 200~MB/s.
 
-The event data contains primarily two hit word types that together provide high time resolution and spatial hit resolution while keeping the front-end complexity low.
-
+The event data contains primarily two hit word types that together provide high time resolution and spatial hit resolution while keeping the front-end complexity low (see Tables~\ref{tab:vscm_low_res} and \ref{tab:vscm_high_res}).
+\begin{table}
 \begin{center}
-	Low time resolution hit word\\
 	\begin{tabular}{| l | l |}
 		\hline \hline
 		Property	& Description		\\
@@ -357,10 +356,13 @@ The event data contains primarily two hit word types that together provide high 
 		Charge		& 0-7 threshold		\\
 		\hline \hline
 	\end{tabular}
+	\caption{VSCM data: low time resolution hit word}
+	\label{tab:vscm_low_res}
 \end{center}
+\end{table}
 
+\begin{table}
 \begin{center}
-	High time resolution hit word\\
 	\begin{tabular}{| l | l |}
 		\hline \hline
 		Property	& Description		\\
@@ -369,7 +371,10 @@ The event data contains primarily two hit word types that together provide high 
 		Channel		& 0-7 chip ID		\\
 		\hline \hline
 	\end{tabular}
+	\caption{VSCM data: high time resolution hit word}
+	\label{tab:vscm_high_res}
 \end{center}
+\end{table}
 
 Fig.~\ref{fig:vscm_blockdiagram} shows the hardware block diagram of the module. Essentially, a single low-cost Xilinx Spartan 6 FPGA was used to implement the deserialization, buffering, event-building, monitoring, front-end configuration, time-to-digital conversion, and monitoring.
 
