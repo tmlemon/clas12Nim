@@ -55,7 +55,7 @@ Estimates of the contributions from $\sigma_1$ and $\sigma_2$ were performed usi
 
 \subsection{Position Resolution}
 The scintillator alignment and position resolution were estimated from comparison of the reconstructed position of shower clusters with the extrapolation of the forward tracking trajectory state vector of electron tracks from the target to the tracking planes of the PCAL and ECIN.  
-Fig.~\ref{fig:S10_1_3} summarizes the electron track-cluster matching residuals in the tilted local sector frame.   Systematic offsets for the PCAL of $\approx 1$~cm and $\approx 0.5$ cm are seen in the radial (perpendicular to the U strips) and transverse (along the direction of the U strips) directions respectively.  These results are consistent with the present uncertainties in the scintillator location. The ECIN residuals have not changed from the CLAS era, although the fitted sigmas of the residual distributions are smaller, possibly due to the improved angular resolution of the CLAS12 forward tracking and smaller multiple scattering at 10 GeV.  The PCAL residual fits imply an angular resolution of $\approx 0.6$~mrad for showers in the Forward Detector.  The measured offsets, together with survey data, will be used to further optimize the track matching cuts used for electron ID and background rejection. 
+Fig.~\ref{fig:S10_1_3} summarizes the electron track-cluster matching residuals in the tilted local sector frame.   Systematic offsets for the PCAL of $\approx 1$~cm and $\approx 0.5$ cm are seen in the radial (perpendicular to the U strips) and transverse (along the direction of the U strips) directions respectively.  These results are consistent with the present uncertainties in the scintillator location. The ECIN residuals have not changed from the CLAS era, although the fitted sigmas of the residual distributions are smaller, possibly due to the improved angular resolution of the CLAS12 forward tracking and smaller multiple scattering at 10 GeV.  The PCAL residual fits imply an angular resolution of $\approx 1.2$~mrad for showers in the Forward Detector.  The measured offsets, together with survey data, will be used to further optimize the track matching cuts used for electron ID and background rejection. 
 
 \begin{figure}[t]
 \centering
@@ -123,30 +123,30 @@ Clusters in the FEC not associated with any reconstructed forward track are desi
 \begin{figure}[h]
 \centering
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S10_4_0.png}
-\caption[]{Missing mass $M_X$ distribution from detection of $e^-~\pi^+$ final state on the proton target.  The beam energy was 7.6 GeV.  Tagged neutrons are defined as $M_X < 1.1$~GeV and single neutral clusters in the FEC with $\beta<$0.95 (red curve) are considered neutron candidates.}
+\caption[]{Missing mass $M_X$ distribution from detection of a $e^-~\pi^+$ final state using a proton target.  The beam energy was 7.6 GeV.  Single neutrons are identified with the cut $M_X < 1.2$~GeV and the fraction of tagged neutrons entering the FEC fiducial area are indicated in red. }
 \label{fig:S10_4_0}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S10_4_1.png}
-\caption[]{Differences in $\theta$ and $\phi$ between the detected neutral cluster in the FEC and the missing momentum of the tagged neutron.  The vertical lines indicate cuts used to minimize the backgrounds from uncorrelated photons.}
+\caption[]{Differences in direction cosines between the missing momentum of the tagged neutron and the detected neutral cluster in the FEC.  The vertical lines show the cuts used to minimize the background from uncorrelated photons.}
 \label{fig:S10_4_1}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S10_4_2.png}
-\caption[]{Correlation between the measured velocity $\beta$ calculated from neutral clusters in the FEC and the missing momentum of the tagged neutron, subject to the $\Delta\theta,\Delta\phi$ cuts shown in Fig.~\ref{fig:S10_4_1}.  The white line shows the expected correlation from neutrons.}
+\caption[]{Correlation between the measured velocity $\beta$ of neutral clusters in the FEC and the missing momentum of the tagged neutron, subject to the $\Delta cx,\Delta cy$ cuts shown in Fig.~\ref{fig:S10_4_1}.  The black line shows the expected correlation for neutrons.}
 \label{fig:S10_4_2}
 \end{figure}
 
-Neutron detection in the FEC was studied using the $p\,(\,e,e'\,\pi^+\,)\,n$ reaction to provide a source of tagged neutrons (Fig.~\ref{fig:S10_4_0}.) Data were taken with a 7.6 GeV beam energy.  Events with missing momentum pointing into the fiducial region of the FEC were selected.  Candidate neutron hits were identified by requiring the direction of the missing momentum to coincide with the direction of a measured neutral cluster within the expected angular resolution, assuming the target center as origin.  Typical cuts used for these kinematic residuals are shown in (Fig.~\ref{fig:S10_4_1}) for the polar and azimuthal angles of the neutron momentum vector.  Events that satisfy the angle cuts are plotted in Fig.~\ref{fig:S10_4_2}.  The data show a clear correlation with the tagged neutron momentum and agrees with the expected correlation (white line) for a particle with the neutron mass.  Some photon background is also visible, most likely from beam related accidentals. The resulting mass squared $M^2$ distribution calculated from the measured $\beta_{neutral}$ and missing momentum is shown in Fig.~\ref{fig:S10_4_3} (left), where the photon and neutron peaks are clearly separated.  Neutrons were selected using the cut $M^2 > 0.3$~GeV$^2$ and identical acceptance fiducial cuts were placed on both tagged and measured neutrons.  The ratio of the detected and tagged neutrons is shown in Fig.~\ref{fig:S10_4_3} (right).  The efficiency follows the trend expected from simulations and the past performance of EC in CLAS.     
+Neutron detection in the FEC was studied using the $p\,(\,e,e'\,\pi^+\,)\,n$ reaction to provide a source of tagged neutrons (Fig.~\ref{fig:S10_4_0}.) Data were taken with a 7.6 GeV beam energy.  Events with missing momentum pointing into the fiducial region of the FEC were selected.  Candidate neutron hits were identified by requiring the direction of the missing momentum to coincide with the direction of a measured neutral cluster within the expected angular resolution, assuming the target center as origin.  Typical cuts used for these kinematic residuals are shown in (Fig.~\ref{fig:S10_4_1}) for the direction cosines $cx$ and $cy$ of the neutron momentum vector with respect to the beamline.  Events that satisfy the angle cuts are plotted in Fig.~\ref{fig:S10_4_2}.  The data show a clear correlation with the tagged neutron momentum and agrees with the expected correlation (black line) for a particle with the neutron mass.  Some photon background is also visible, most likely from beam related accidentals. The resulting mass squared $M^2$ distribution calculated from the measured $\beta_{neutral}$ and missing momentum is shown in Fig.~\ref{fig:S10_4_3} (left), where the photon and neutron peaks are clearly separated.  Neutrons were selected using the cut $M^2 > 0.45$~GeV$^2$ and identical acceptance fiducial cuts were placed on both tagged and measured neutrons.  The ratio of the detected and tagged neutrons is shown in Fig.~\ref{fig:S10_4_3} (right).  The efficiency follows the trend expected from GEMC/GEANT4 simulations but the absolute magnitude is about a factor of two low.  At the present level of CLAS12 event reconstruction this is acceptable, as further improvements in the missing mass resolution,  rejection of photon accidentals in the FEC and compensation for low energy desposition losses in the aging EC should improve the accuracy of both the numerator and denominator of the efficiency ratio. 
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S10_4_3.png}
-\caption[]{Left: Mass distribution of neutrals detected in the PCAL and EC calculated from the measured $\beta$ and missing momentum of tagged spectator neutrals.  Both photon and neutron peaks are visible. Right: Efficiency for detection of tagged neutrons.  A cut of $M^2>0.3$ GeV$^2$ was used to reject photons.  Identical fiducial acceptance cuts were applied to both tagged and measured neutrons.}
+\caption[]{Left: Mass distribution of neutrals detected in the PCAL and EC calculated from the measured $\beta$ and missing momentum of tagged spectator neutrals.  Both photon and neutron peaks are visible. Right: Efficiency for detection of tagged neutrons.  A cut of $M^2>0.45$ GeV$^2$ was used to reject photons.  Identical fiducial acceptance cuts were applied to both tagged and measured neutrons.}
 \label{fig:S10_4_3}
 \end{figure}
 
