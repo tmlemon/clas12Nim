@@ -90,7 +90,7 @@ Fig.~\ref{dc-lv-system} is a schematic of the low voltage
 supply system and a snapshot 
 of the control panel for monitoring the state of the system.
 %%%%%%%%% Figure : dc low voltage system %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[hbtp]
+\begin{figure}[htbp]
 \vspace{10cm}
 \begin{picture}(50,50)
 \put(-10,10)
@@ -142,15 +142,25 @@ to all of the wires; these are the HVTB's
 Fig.~\ref{dc-hv-system} is a schematic of the high voltage
 supply system and a snapshot 
 of the control panel for monitoring the state of the system.
+There are 648 individual remote-controlled high voltage channels
+shown.  In this particular snapshot, two channels are colored
+red (or darker) to indicate a high-voltage trip for the sense
+and field wires for sector 2, R2, superlayer 1, wires 32-48.
+The fact that the adjacent sense and field wire channels both
+tripped indicate that there was an over-current condition for
+this group of wires with current probably flowing from field to
+sense wire; i.e. likely overcurrent in the chamber itself.
+This happens occasionally when the beam is mis-steered, causing
+higher than normal background radiation.
 %%%%%%%%% Figure : dc high voltage system %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
+\begin{figure}[hbtp]
 \vspace{10cm}
 \begin{picture}(50,50)
 \put(-10,10)
 {\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/dc-hv-system.png}}}
 \end{picture}
 \caption{\small{A schematic of the high voltage control and monitoring scheme, showing
-the 1296 remotely controlled channels.}}
+the 648 remotely controlled channels.}}
 \label{dc-hv-system}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
