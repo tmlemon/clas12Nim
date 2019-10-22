@@ -17,16 +17,16 @@ HLS was used to develop most of the Stage 1 components of the CLAS12 trigger. Th
 	\item Electromagnetic and Preshower Calorimeters (cluster energy and position reconstruction).
 \end{itemize}
 
-The Time-of-Flight System and Cherenkov counter trigger implementation was rather straightforward. This typically takes less than 10-15\% of the Virtex 7 chip and the timing requirements were easily met.
+The Time-of-Flight System and Cherenkov counter trigger implementation was rather straightforward. This typically takes less than 10-15\% of the Virtex-7 chip and the timing requirements were easily met.
 
-The calorimeter trigger implementation required much more effort because of its complex nature that requires significant FPGA resources. The details are further explained in the next section using the Electromagnetic Calorimeters as an example.
+The calorimeter trigger implementation required much more effort because of its complex nature that requires significant FPGA resources. The details are further explained in the next section using the ECAL as an example.
 
 It should be mentioned that it took a significant amount of time to implement the desired ECAL algorithm, mostly because of the lack of experience in HLS usage. As soon as all important details of the HLS tool were understood, the development process converged, and the trigger components related to various other CLAS12 detectors were implemented in a prompt manner.
 
 
 \subsection{CLAS12 Electromagnetic Calorimeters (ECAL)}
 
-Among all of the trigger system elements, the most challenging for the FPGA implementation was the trigger component serving the two CLAS12 electromagnetic calorimeters. Due to their structure, these calorimeters do not provide cluster coordinates or energies without significant event reconstruction. The trigger implementation details are described in Section \ref{sec:ECAL}. Below we describe our experience with HLS using ECAL as an example.
+Among all of the Trigger System elements, the most challenging for the FPGA implementation was the trigger component serving the two CLAS12 electromagnetic calorimeters. Due to their structure, these calorimeters do not provide cluster coordinates or energies without significant event reconstruction. The trigger implementation details are described in Section \ref{sec:ECAL}. Below we describe our experience with HLS using ECAL as an example.
 
 
 \subsection{C++ vs. HLS C++}
@@ -52,7 +52,7 @@ For the different trigger components related to the different CLAS12 detectors, 
 
 In general, a slower clock speed (31.25~MHz) was preferable for smaller projects where resources were plentiful. When using a slow clock, the HLS code was able to be written as a single module and had no problem meeting the timing requirements during implementation.
 
-Larger projects, such as for the ECAL, require more efficient use of the FPGA resources and have latency requirements that require a faster clock, but cannot be too fast such that the HLS modules cannot reliably meet the timing requirements. The 125~MHz clock was found to be the optimal middle ground for the ``-1'' speed grade Virtex7 used in the CLAS12 Trigger System.
+Larger projects, such as for the ECAL, require more efficient use of the FPGA resources and have latency requirements that require a faster clock, but cannot be too fast such that the HLS modules cannot reliably meet the timing requirements. The 125~MHz clock was found to be the optimal middle ground for the ``-1'' speed grade Virtex-7 used in the CLAS12 Trigger System.
 
 
 \subsection{HLS Project Size and Organization}
@@ -60,7 +60,7 @@ Larger projects, such as for the ECAL, require more efficient use of the FPGA re
 The typical HLS project for the CLAS12 Trigger System contains only a few routines, and uses HLS streams in the function parameter list to communicate easily with the surrounding HDL. That scheme works well for small projects.
 
 For the ECAL with some versions being close to 100\% of FPGA utilization, the situation was quite different.
-The biggest problem we faced was the inability to meet the timing requirements during the implementation (even when HLS reports that the timing is good). HLS uses state machines to schedule the operations it synthesizes. For large HLS components, the generated state machines can have massive control signal fanouts. As the clock period shrinks, so must the maximum signal fanout for the general control signals for a design to reliably meet the timing requirements. For a clock period of 8~ns using a ``-1'' speed grade Virtex7, each HLS module was kept smaller than the ~30K look-up tables (LUTs) ($<$10\% of the LUT resources) to achieve a design that consistently meets the timing requirements.
+The biggest problem we faced was the inability to meet the timing requirements during the implementation (even when HLS reports that the timing is good). HLS uses state machines to schedule the operations it synthesizes. For large HLS components, the generated state machines can have massive control signal fanouts. As the clock period shrinks, so must the maximum signal fanout for the general control signals for a design to reliably meet the timing requirements. For a clock period of 8~ns using a ``-1'' speed grade Virtex-7, each HLS module was kept smaller than the 30K look-up tables (LUTs) ($<$10\% of the LUT resources) to achieve a design that consistently meets the timing requirements.
 
 The original ECAL project consisted of about 20 C++ procedures that occupied most of the FPGA resources - with HLS generating big fanouts on this scale, it was impossible to meet the 8~ns timing on the implementation stage. The workaround was to split the entire project into smaller procedures, glued together in HDL by using well defined, simple interfaces between the separate procedures. Still, some procedures were too big, especially for the sorting algorithms. We were able to split some procedures further until finally the entire project met the timing requirements and the resulting FPGA image was loaded into the hardware.
 
@@ -71,12 +71,12 @@ Another reason for subdividing the project is the lack of multi-clock domain sup
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/hls_chart.png}
-	\caption{ECAL HLS project chart. Entire project is splitted on multiple smaller projects to satisfy timing requirements. In particular, hit sorting section is splitted on seven identical projects.}
+	\caption{ECAL HLS project chart. The entire project is split into multiple smaller projects to satisfy the timing requirements. In particular, the hit sorting section is split into seven identical projects.}
 	\label{fig:hls_chart}
 \end{figure}
 
 
-\subsection{HLS Versions and Cross-project Dependences}
+\subsection{HLS Versions and Cross-Project Dependences}
 
 As mentioned before, splitting the project into smaller pieces allowed us to meet the timing requirements. This worked, in particular, because we were able to eliminate combinatorial paths between the HLS projects connected by the streams. Such dependences can be clearly seen looking into the schematics for the failed timing chains, and were usually related to the large state machine control signals going between modules. Initially we used HLS version 2015, and despite all of our efforts, we could not eliminate these long combinatorial paths across modules. This was resolved after switching to HLS version 2017, where the streams could be fully registered (with pragma ``axis register both port=''). This meant that if the registered HLS streams were used between separate HLS projects, then the state machine paths were also registered between modules. With that, it was only a matter of splitting projects into smaller pieces to improve/meet the timing requirements.
 
@@ -88,7 +88,7 @@ The clock uncertainty is set as 30\% of the main clock, which we found forces HL
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/hls.png}
-	\caption{Typical HLS project for one of the PCAL trigger elements. 4\% LUTs is close to the maximum possible to meet timing requirements on the following steps. With 8~ns target, clock uncertainty  is set to 3~ns.}
+	\caption{Typical HLS project for one of the PCAL trigger elements. 4\% LUTs is close to the maximum possible to meet the timing requirements of the following steps. With an 8~ns target, the clock uncertainty  is set to 3~ns.}
 	\label{fig:hls}
 \end{figure}
 
@@ -99,7 +99,7 @@ Common settings for VIVADO were used as shown in Fig. ~\ref{fig:vivado}. It usua
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/vivado.png}
-	\caption{VIVADO project for PCAL trigger. Strategies used were ``Vivado Synthesis Defaults'' and ``Performance\_ExplorePostRoutePhysOpt''. LUT utilization is about 2/3 of the total balance. It was relatively easy to meet timining requirements with FPGA clock 125MHz or slower.}
+	\caption{VIVADO project for the PCAL trigger. Strategies used were ``Vivado Synthesis Defaults'' and ``Performance\_ExplorePostRoutePhysOpt''. LUT utilization is about 2/3 of the total balance. It was relatively easy to meet the timining requirements with an FPGA clock 125~MHz or slower.}
 	\label{fig:vivado}
 \end{figure}
 

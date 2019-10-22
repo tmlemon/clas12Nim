@@ -19,7 +19,7 @@ The CODA DAQ system includes a run control facility consisting of a back-end run
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/runcontrol1.png}
-	\caption{Run Control GUI. Main control and monitoring screen for the CLAS12 DAQ system. The Tabs on the right side allows switching between different control screens, such as the configuration editor, current DAQ components status, and DAQ rates.}
+	\caption{Run Control GUI. Main control and monitoring screen for the CLAS12 DAQ system. The tabs on the right side allows switching between different control screens, such as the configuration editor, current DAQ components status, and DAQ rates.}
 	\label{fig:runcontrol1}
 \end{figure}
 
@@ -47,7 +47,7 @@ The first and second threads can load user code that is compiled separately and 
 
 The Event Builder (EB, see Fig.~\ref{fig:eb_diagram}) is the program that receives the data fragments from all readout controllers and assembles it into events. The building process is based on event number, event type, and timestamp of the data fragments: for each event all three values have to be identical for all data from all Readout Controllers. In case of any differences, the DAQ will be stopped and the error reported.
 
-The Event Builder consists of receiving and building parts. The receiving part contains a set of independent threads, one per readout controller connected to it by TCP protocol. Every thread receives data and places it into an internal buffer. If the buffer becomes full, the thread stops receiving data, effectively propagating the busy condition back to the readout controller. The building part has a number of identical building threads, which take turns by getting data from the receiving part of the internal buffers, building events, and placing them into Event Transfer System.
+The Event Builder consists of receiving and building parts. The receiving part contains a set of independent threads, one per Readout Controller connected to it by TCP protocol. Every thread receives data and places it into an internal buffer. If the buffer becomes full, the thread stops receiving data, effectively propagating the busy condition back to the Readout Controller. The building part has a number of identical building threads, which take turns by getting data from the receiving part of the internal buffers, building events, and placing them into Event Transfer System.
 
 The total number of threads in the receiving part of the Event Builder in CLAS12 DAQ is currently 118, which therefore represents the number of network connections from the Readout Controllers. Because of this the DAQ has to run on a powerful server, with many CPU cores, large memory, and a high bandwidth network card. CLAS12 is using a Dell R730 server with 32 cores, 64~GByte memory, and 40~Gbit network card. This server is adequate for the present CLAS12 DAQ requirements.
 
@@ -93,7 +93,7 @@ The messaging system in the CLAS12 DAQ is based on the ActiveMQ library and its 
 
 \subsection{Runtime Database (RCDB)}
 
-A JLab-designed MYSQL-based Runtime Database (RCDB) is used to store the run parameters and statistics. It has a web interface (see Fig.\ref{fig:rcdb}) and provides an interface to various languages including C++ and Java.
+A JLab-designed MYSQL-based Runtime Database (RCDB) is used to store the run parameters and statistics. It has a web interface (see Fig.~\ref{fig:rcdb}) and provides an interface to various languages including C++ and Java.
 
 \begin{figure}[hbt]
 	\centering
@@ -104,7 +104,7 @@ A JLab-designed MYSQL-based Runtime Database (RCDB) is used to store the run par
 
 \subsection{Online Data Monitoring}
 
-The CLAS12 online data monitoring is the set of programs attached to the Event Transfer system that processes data in real time. One of such program's outputs is shown in Fig.\ref{fig:online_monitor}. The Monitoring system allows shift takers to insert histograms into the electronic logbook. Every CLAS12 detector has a designated set of histograms that is closely monitored by shift takers and detector experts to ensure data quality.
+The CLAS12 online data monitoring is the set of programs attached to the Event Transfer system that processes data in real time. One of such output of the program is shown in Fig.~\ref{fig:online_monitor}. The monitoring system allows shift takers to insert histograms into the electronic logbook. Every CLAS12 detector has a designated set of histograms that is closely monitored by shift takers and detector experts to ensure data quality.
 
 \begin{figure}[hbt]
 	\centering
@@ -129,6 +129,6 @@ The CLAS12 Event Display (CED) is a full-function graphical application that dis
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/ced.png}
-	\caption{CED Event Example that includes a schematic view of all detectors with a realistic geometry.}
+	\caption{CED event example that includes a schematic view of all detectors with a realistic geometry.}
 	\label{fig:ced}
 \end{figure}
