@@ -13,19 +13,19 @@ Various data sets were generated depending on what was needed for the developmen
 
 \subsection{Development Using Simulated Data}
 
-The trigger development process consisted of several methods and that depended on the nature of the trigger component. Most Stage 1 components were implemented using the HLS/VIVADO tool, where the firmware was written using an HLS C++ extension. In that case, it was possible to develop and validate the firmware as part of the offline reconstruction framework using a standard desktop computer. Usually the offline processing alghorithms were re-written using HLS/C++, with appropriate simplification and structural changes to make it suitable for the FPGA firmware. Simulated data were used as input, which were processed directly by the HLS/C++ code and compared with the initial simulation parameters. In addition, the same samples were processed by the offline reconstruction software and the results were compared with the trigger output. This double-check method practically guarantees bug-free implementation. There was no single case when the C++ implementation passed tests on the simulated data and then failed during the final validation stage. The most complicated Stage 1 components were developed and tested using this method.
+The trigger development process consisted of several methods that depended on the nature of the trigger component. Most Stage 1 components were implemented using the HLS/VIVADO tool, where the firmware was written using an HLS C++ extension. In that case, it was possible to develop and validate the firmware as part of the offline reconstruction framework using a standard desktop computer. Usually the offline processing alghorithms were re-written using HLS/C++, with appropriate simplification and structural changes to make it suitable for the FPGA firmware. Simulated data were used as input, which were processed directly by the HLS/C++ code and compared with the initial simulation parameters. In addition, the same samples were processed by the offline reconstruction software and the results were compared with the trigger output. This double-check method practically guarantees bug-free implementation. There was no single case when the C++ implementation passed tests on the simulated data and then failed during the final validation stage. The most complicated Stage 1 components were developed and tested using this method.
 
 Several components of the trigger were written mostly in VHDL and initially no software existed for feeding GEMC data into the HDL simulations. This was the case for the Stage 1 FT and DC tracking trigger, as well as the Stage 2 and Stage 3 components of the trigger. These modules relied on standard VHDL test benches to feed/generate test vectors for evaluating the correctness of the design modules. For example, the FT test bench generated clusters at each position of the calorimeter and hodoscope to test the channel mapping and geometry matching. Additional specific test cases verified the FT trigger clustering time coincidence, cluster multiplicity, and latency to ensure it operated as expected. C/C++ modules were written that emulated the FT the DC tracking trigger so the algorithms could work in the same offline framework as described above for the other Stage 1 components.
 
 \subsection{Development and Validation Using Cosmic Data}
 
-When the hardware components for the CLAS12 detector were constructed and mostly installed, and first version of the firmware was ready for testing, all three Trigger System firmware stages were loaded and development continued for the entire Trigger System using cosmic data. At that point we started to perform Trigger System validation for some components, while development was continued for others, as described in the following sections.
+When the hardware components for the CLAS12 detector were constructed and mostly installed, and the first version of the firmware was ready for testing, all three Trigger System firmware stages were loaded and development continued for the entire Trigger System using cosmic data. At that point we started to perform Trigger System validation for some components, while development was continued for others, as described in the following sections.
 
 \subsubsection{Alternative 'Hit-Based' Trigger System}
 
 The CLAS12 detector inheritated some components from the original CLAS detector (see \cite{clas-nim}), in particular its Trigger System. That system was fed by TDC/discriminator boards and was able to produce ``hit-based'' information only. We decided to keep it for reference purposes as an alternative to the new Trigger System. It was used during CLAS12 cosmic data detector calibrations and validation of the new Trigger System up to the point when new Trigger System was ready. It is still operational and can be used to double-check the main CLAS12 Trigger System if needed.
 
-\subsubsection{Development and Validation of EC/PCAL Special Purpose Trigger with Cosmic Data}
+\subsubsection{Development and Validation of ECAL Special Purpose Trigger with Cosmic Data}
 
 The first detector calibrations employed cosmic data. Here we will describe, as an example, one of the procedures related to EC/PCAL calibration needed for correct Trigger System performance. Similar procedures were executed for all detectors participating in the Trigger System.
 
@@ -33,44 +33,44 @@ The efficiency and spatial uniformity of the cluster finding trigger in the EC/P
 
 The pixel trigger pipeline executes these steps in parallel, with user configurable parameters in bold:
   1) If FADC hit energy $>$ \textbf{EMIN}, make a pulse \textbf{HITWIDTH}*4~ns for that strip.
-  2) Look for coincidence of U,V,W pixel strip candidates from step 1.
+  2) Look for coincidences of U,V,W pixel strip candidates from step 1.
   3) Evaluate multiplicity \textbf{EVALDELAY}*4~ns clock cycles after the leading edge of a candidate pixel from step 2.
-  4) Generate a pixel trigger if the multiplicity requirement is met and we still have a hit on U,V, and W. 
+  4) Generate a pixel trigger if the multiplicity requirement is met and we still have a hit on U, V, and W. 
 
-Additional configurable trigger elements were introduced, including a total energy sum threshold \textbf{ESUM} and a lookup table for triplets of strips that satisfy the geometrical constraint $dU+dV+dW=\textbf{DALITZ}$, where $d$ is the normalized distance to the hit strip indicated by the arrows in Fig.\ref{fig:pcal_cosmic_1} and $\textbf{DALITZ}=2$ for perfect pixels.  The latter test was sometimes necessary to prevent noisy PMTs from saturating the multiplicity (N=3) trigger condition.  Offline analysis showed that about $90\%$ of pixel triggers satisfied the Dalitz test (Fig.\ref{fig:ec_offline}), while adjacent calorimeter elements that did not use the trigger had a much smaller pixel fraction.  This suggests the pixel trigger helps to suppress events that undergo multiple scattering, which would trigger adjacent strips and violate the multiplicity requirement.
+Additional configurable trigger elements were introduced, including a total energy sum threshold \textbf{ESUM} and a look-up table for triplets of strips that satisfy the geometrical constraint $dU+dV+dW=\textbf{DALITZ}$, where $d$ is the normalized distance to the hit strip indicated by the arrows in Fig.~\ref{fig:pcal_cosmic_1} and $\textbf{DALITZ}=2$ for perfect pixels.  The latter test was sometimes necessary to prevent noisy PMTs from saturating the multiplicity (N=3) trigger condition.  Offline analysis showed that about $90\%$ of pixel triggers satisfied the Dalitz test (Fig.~\ref{fig:ec_offline}), while adjacent calorimeter elements that did not use the trigger had a much smaller pixel fraction.  This suggests the pixel trigger helps to suppress events that undergo multiple scattering, which would trigger adjacent strips and violate the multiplicity requirement.
 
 \begin{figure}[!htb]
  	\centering
   	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/TwoClusters.png}
- 	\caption{Examples of clusters from cosmic muon triggers.  Desired trajectory (left) is normally incident on the face of PCAL and satisfies the single pixel multiplicity condition (N$_u$=N$_v$=N$_w$=1) in the FPGA pixel trigger.  Event at right shows a more vertical trajectory rejected by this trigger.}
+ 	\caption{Examples of clusters from cosmic muon triggers.  The desired trajectory (left) is normally incident on the face of PCAL and satisfies the single pixel multiplicity condition (N$_u$=N$_v$=N$_w$=1) in the FPGA pixel trigger. The event at right shows a more vertical trajectory rejected by this trigger.}
 	\label{fig:pcal_cosmic_1}
 \end{figure}
 
 \begin{figure}[!htb]
  	\centering
   	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/PixelFraction.png}
- 	\caption{Offline analysis of events which satisfied the pixel trigger on $EC_{inner}$  calorimeter.  Left plot shows 89$\%$ of $EC_{inner}$  triggers satisfied the pixel test $dU+dV+dW=2$.  Right plot shows only 14$\%$ of the $EC_{inner}$ triggers found an $EC_{outer}$ event that satisfied both the $N=3$ and pixel test.}
+ 	\caption{Offline analysis of events that satisfied the pixel trigger on $EC_{inner}$  calorimeter.  Left plot shows 89$\%$ of $EC_{inner}$  triggers satisfied the pixel test $dU+dV+dW=2$.  Right plot shows only 14$\%$ of the $EC_{inner}$ triggers found an $EC_{outer}$ event that satisfied both the $N=3$ and pixel test.}
 	\label{fig:ec_offline}
 \end{figure}
 
 
-\subsubsection{Development and Validation of Drift Chamber Component of the Trigger System with Cosmic Data}
+\subsubsection{Development and Validation of DC Component of the Trigger System with Cosmic Data}
 
-Early tests of the drift chamber tracking trigger were done using cosmic events triggered from the PCAL and ECAL. A small fraction of events had tracks near the target location where the road dictionary was defined, but within a day enough statistics could be collected to do checks that the tracking trigger was functioning. Offline reconstruction processed the events and events with reconstructed tracks were checked to see if the tracking trigger fired shown in Fig.\ref{fig:dc_cosmic_efficiency}. Any events with tracks that passed throught the target, but failed to be tagged by the tracking trigger were run through simulations to identify the reason. The tests clearly showed very loose acceptance and motivated tighter kinematic constraints on the dictionary generation that were eventually done when studies with beam were later performed.
+Early tests of the drift chamber tracking trigger were done using cosmic events triggered from the ECAL. A small fraction of events had tracks near the target location where the road dictionary was defined, but within a day enough statistics could be collected to do checks that the tracking trigger was functioning. Offline reconstruction of events with reconstructed tracks were checked to see if the tracking trigger fired shown in Fig.~\ref{fig:dc_cosmic_efficiency}. Any events with tracks that passed throught the target, but failed to be tagged by the tracking trigger were run through simulations to identify the reason. The tests clearly showed very loose acceptance and motivated tighter kinematic constraints on the dictionary generation that were eventually done when studies with beam were later performed.
 
 \begin{figure}[!htb]
  	\centering
   	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/dc_cosmic_efficiency.png}
- 	\caption{DC negative cosmic tracks accepted and rejected by the tracking trigger. Any track rejected above 1GeV and vertex withing +/-20cm would indicate a trigger failure, but tests showed 100\% efficiency}
+ 	\caption{DC negative cosmic tracks rejected (left) and accepted (right) by the tracking trigger. Any track rejected above 1~GeV with z vertex within +/-20~cm would indicate a trigger failure, but tests showed 100\% efficiency}
 	\label{fig:dc_cosmic_efficiency}
 \end{figure}
 
 
 \subsubsection{Development and Validation of Entire Trigger System with Cosmic Data} 
 
-While the Stage 1 trigger components were validated separately from each other during the development stage, the Stage 2 and Stage 3 components requires the entire system to be assembled to perform validation. Initially those two stages were programmed with simplified alghorithms to test signal propagation and basic trigger system functionality, and only the timing coincidence between different detectors was implemented. Development of Stage 2 and Stage 3 continued during cosmic run operations and later with beam operations, adding a geometrical matches between different detectors and increasing the coincidence logic complexity.
+While the Stage 1 trigger components were validated separately from each other during the development stage, the Stage 2 and Stage 3 components required the entire system to be assembled to perform validation. Initially those two stages were programmed with simplified alghorithms to test signal propagation and basic Trigger System functionality, and only the timing coincidence between different detectors was implemented. Development of Stage 2 and Stage 3 continued during cosmic run operations and later with beam operations, adding geometrical matches between different detectors and increasing the coincidence logic complexity.
 
 
 \subsubsection{Trigger System Flexibility and ``Permanent Development'' Mode}
 
-The initial plan was to develop the Trigger System firmware to satisfy all CLAS12 experiments for the entire duration of CLAS12 operation, meaning high (close to 100\%) trigger efficiency and reasonable purity. As the power and flexibility of the trigger system was revealed to the community, additional requirements were requested to improve the system purity, and to include additional physics processes. As a result, the Stage 2 and Stage 3 components of the Trigger System were under constant development during the first year of CLAS12 operation, and the firmware was upgraded and the entire system was validated after every change. After a while, the Trigger System reached the point when relatively small improvements in the trigger purity could only be achieved with significant efforts. At that point the development was declared complete. The nature of the FPGA-based Trigger System allows almost endless improvements, but such ``permanent development'' mode is not practical.
+The initial plan was to develop the Trigger System firmware to satisfy all CLAS12 experiments for the entire duration of CLAS12 operation, meaning high (close to 100\%) trigger efficiency and reasonable purity. As the power and flexibility of the Trigger System was revealed to the community, additional requirements were requested to improve the system purity, and to include additional physics processes. As a result, the Stage 2 and Stage 3 components of the Trigger System were under constant development during the first year of CLAS12 operation, and the firmware was upgraded and the entire system was validated after every change. After a while, the Trigger System reached the point when relatively small improvements in the trigger purity could only be achieved with significant effort. At that point the development was declared complete. The nature of the FPGA-based Trigger System allows almost endless improvements, but such a ``permanent development'' mode is not practical.
