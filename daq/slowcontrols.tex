@@ -6,15 +6,17 @@ The CLAS12 slow controls system is based on Experimental Physics Industrial Cont
 
 The controls system monitors and controls all aspects of the CLAS12 detector, beamline, and magnet systems, with monitoring on the DAQ system.  This includes power supplies from a variety of manufacturers, programmable logic controllers, cryogenic and gas systems, multiple scaler hardware, flasher sytems, all of the VXS crates, trigger system performance, and beamline motors, with sequencing for more complex operations like polarimetry and magnet hystereses.  An example of the superconducting torus magnet nitrogen system and 10~kHz EPICS monitoring is shown in Fig.~\ref{fig:tordaq}, and one of the scaler displays covering multiple CLAS12 detector systems is shown in Fig.~\ref{fig:jlabscalers}.
 
-\begin{figure}[htbp]\centering
-\includegraphics[width=8cm]{img/fd-scalers}
-\caption{An example of the JLab FADC250 scalers for the CLAS12 PMT-based detector systems.\label{fig:jlabscalers}}
-\end{figure}
-
 \begin{figure*}[t]\centering
-\includegraphics[width=0.9\textwidth]{img/tordaq}
-\caption{The 10 kHz EPICS-based readout of the superconducting magnet quench detection system.\label{fig:tordaq}}
+	\includegraphics[width=0.9\textwidth]{img/tordaq}
+	\caption{The 10 kHz EPICS-based readout of the superconducting magnet quench detection system.
+	\label{fig:tordaq}}
 \end{figure*}
+
+\begin{figure}[htbp]\centering
+	\includegraphics[width=8cm]{img/fd-scalers}
+	\caption{An example of the JLab FADC250 scalers for the CLAS12 PMT-based detector systems.
+	\label{fig:jlabscalers}}
+\end{figure}
 
 Most of the IOCs run on standard rack-mounted servers running Red Hat Enterprise 7 (RHEL7) in the Control Room.  A few IOCs run in more specialized systems in the experimental hall, such as VxWorks 5.X real-time operating systems on Motorolla VME controllers, primarily for high-rate, synchronous beam monitoring and support of legacy components.  All IOCs and associated processes are managed with procServ for interactive access when necessary and cronjobs for automatic startup and recovery \cite{procserv-website}.
 
