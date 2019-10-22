@@ -49,7 +49,7 @@ The simulation was built from the actual HDL firmware source files compiled for 
 \begin{center}
 	\begin{tabular}{| l | l | l | l | l |}
 		\hline \hline
-		System		& Crates	& ModType	& ModCnt	& ChCnt		\\
+		Sub-System		& Crates	& ModType	& ModCnt	& ChCnt		\\
 		\hline
 		DC			& 18		& DCRB		& 252		& 24192		\\
 		EC		& 6			& FADC		& 84		& 1296	 	\\
@@ -64,7 +64,7 @@ The simulation was built from the actual HDL firmware source files compiled for 
 		\hline \hline
 	\end{tabular}
 \end{center}
-\caption{Trigger Simulation crates. Responces from 43 VME crates, corresponding to 10 CLAS12 detectors, were included into the trigger simulation procedure. This allowed comprehensive results to be provided and to find any possible problems.}
+\caption{Trigger Simulation crates. Responces from 43 VME crates, corresponding to 10 CLAS12 detectors, were included into the trigger simulation procedure. This allowed comprehensive results to be provided and to find any possible problems. ModType is the VME/VXS module used by the particular sub-system. ModCnt is the number of modules used by the sub-system. ChCnt is the number of individual channels used.}
 \label{tab:trig_sim_crates}
 \end{table}
 
