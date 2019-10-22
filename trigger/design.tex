@@ -154,7 +154,7 @@ The Stage 2 trigger collects data from Stage 1 using fiber optics. It is based o
 \label{tab:stage_2_specs}
 \end{table}
 
-The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, DC, and PCALu \footnote{PCALu is the raw hit pattern of PCAL U bars sent in addition to the PCAL clusters. Since PCALu bars are close and parallel to FTOF bars they are used to make a geometrical coincidence.}. A single SSP collects all forward detector trigger streams from a single sector of CLAS12. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable sector trigger bits. Each sector trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be tailored for a particular trigger type. The sector trigger bits are computed and sent to the final Stage 3 trigger. The Forward Detector trigger primitives are shown in Table~\ref{tab:fd_trig_primitives}.
+The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, DC, and PCALu \footnote{PCALu is the raw hit pattern of PCAL U bars sent in addition to the PCAL clusters. Since PCALu bars are close and parallel to FTOF bars they are used to make a geometrical coincidence.} and the central detectors participating in the trigger consist of CTOF, CND, and FT. A single SSP collects all forward detector trigger streams from a single sector of CLAS12, and a single SSP collects all central detector trigger streams. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable sector trigger bits. Each sector trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be tailored for a particular trigger type. The sector trigger bits are computed and sent to the final Stage 3 trigger. The Forward Detector trigger primitives are shown in Table~\ref{tab:fd_trig_primitives} and the Central Detector trigger primitives are shown in Table~\ref{tab:cd_trig_primitives}.
 
 \begin{table}
 \begin{center}
@@ -177,8 +177,6 @@ The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, DC, and PC
 \caption{Forward Detector trigger primitives.}
 \label{tab:fd_trig_primitives}
 \end{table}
-
-The central detectors participating in the trigger consist of CTOF, CND, and FT. A single SSP collects all central detector trigger streams. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable central trigger bits. Each central trigger bit contains a variety of trigger primitives and customizable thresolds/cuts that can be tailored for a particular trigger type. The central trigger bits are computed and sent to the final Stage 3 trigger where all sector and central trigger bits arrive to compute the global trigger bits. The Central Detector trigger primitives are shown in Table~\ref{tab:cd_trig_primitives}.
 
 \begin{table}
 \begin{center}
