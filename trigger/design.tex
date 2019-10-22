@@ -34,7 +34,7 @@ The CLAS12 electromagnetic calorimeter (ECAL, \cite{ec-ref}) includes two separa
 
 The algorithm first searches for one-dimensional clusters in each of the three calorimeter views (u,v,w), sorting them by energy and keeping only those above threshold, with a maximum number of four clusters in each view. Next the algorithm searches for two-dimensional clusters looking for overlap between the three views. For all two-dimension clusters found, it performs attenuation corrections based on pre-loaded tables of the attenuation lengths of the scintillation strips using the distance from the cluster to the PMT, to deternime the correct cluster energy. Finally, the algorithm sorts the two-dimensional clusters by energy and reports those above threshold, with a maximum number limited to four. For every cluster, the energy and coordinates are reported to the Stage 2 trigger every 8~ns. There is a persistency parameter that allows the same clusters to be reported for several consecutive 8~ns intervals to check for a timing coincidence with the other trigger components, as well as a timing delay parameter for the same purpose. One event with a single cluster is shown in the PCAL (preshower calorimeter) in Fig.~\ref{fig:PCAL}. The corrected energies are shown for the individual strips.
 
-It should be mentioned that such an algorithm is designed to find clusters with a maximum energy to target electron identification. For some CLAS12 experiments, it is necessary to identify minimum-ionizing particles (MIPs) using the same trigger component. For that purpose, clusters with energy below a certain defined threshold can be selected. Such a method works for events where the number of clusters does not exceed four, otherwise there is a risk of losing low-energy clusters corresponding to MIPs. Intensive trigger efficiency studies were conducted for such cases, and the MIP trigger efficiency was measured and found acceptable (97-99\%).
+It should be mentioned that such an algorithm is designed to find clusters with a maximum energy to target electron identification. For some CLAS12 experiments, it is necessary to identify minimum-ionizing particles (MIPs) using the same trigger component. For that purpose, clusters with energy below a certain defined threshold can be selected. Such a method works for events where the number of clusters does not exceed four, otherwise there is a risk of losing low-energy clusters corresponding to MIPs. Intensive trigger efficiency studies were conducted for such cases, and the trigger efficiency was measured and found acceptable (see Section \ref{valid_hadron_forward_detector}).
 
 \begin{figure}[htp]
 	\begin{center}
@@ -154,7 +154,7 @@ The Stage 2 trigger collects data from Stage 1 using fiber optics. It is based o
 \label{tab:stage_2_specs}
 \end{table}
 
-The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, and DC. A single SSP collects all forward detector trigger streams from a single sector of CLAS12. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable sector trigger bits. Each sector trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be tailored for a particular trigger type. The sector trigger bits are computed and sent to the final Stage 3 trigger. The Forward Detector trigger primitives are shown in Table~\ref{tab:fd_trig_primitives}.
+The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, DC, and PCALu \footnote{PCALu is the raw hit pattern of PCAL U bars sent in addition to the PCAL clusters. Since PCALu bars are close and parallel to FTOF bars they are used to make a geometrical coincidence.}. A single SSP collects all forward detector trigger streams from a single sector of CLAS12. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable sector trigger bits. Each sector trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be tailored for a particular trigger type. The sector trigger bits are computed and sent to the final Stage 3 trigger. The Forward Detector trigger primitives are shown in Table~\ref{tab:fd_trig_primitives}.
 
 \begin{table}
 \begin{center}
@@ -162,15 +162,15 @@ The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, and DC. A 
 		\hline \hline
 		Primitive Name			& Trigger Bit Parameters	\\
 		\hline
-		PCU     			& Mask				\\
+		PCALu     			& Mask				\\
 		FTOF    			& Mask				\\
 		PCAL				& Cluster Emin, Emax		\\
 		EC 				& Cluster Emin, Emax		\\
-		PCAL+EC			& Cluster Emin			\\
+		PCAL + EC			& Cluster Emin			\\
 		HTCC				& Mask				\\
 		{\bf Geometry Matched}		&				\\
-		PCUxFTOF			& Bar match tolerance		\\
-		PCALxDC				& Cluster Emin			\\
+		PCALu x FTOF			& Bar match tolerance		\\
+		PCAL x DC				& Cluster Emin			\\
 		\hline \hline
 	\end{tabular}
 \end{center}
@@ -228,3 +228,5 @@ The Stage 3 trigger is the final stage and collects all sector and central trigg
 \label{sec:trigger_in_datastream}
 
 An important part of the Trigger System is the Event Builder, which allows the trigger components to participate in event-by-event readout the same way as is done for the DAQ components. All three stages of the Trigger System are equipped with Event Builders. Every time the CLAS12 DAQ is triggered, Stage 1 will build the data bank(s) with trigger decision details (such as the ECAL cluster coordinate/energy or DC segments/roads information), Stage 2 will build the data bank with sector-level and central detector coincidence results, and Stage 3 will build the data bank that contains the trigger bit decisions for all final 32 trigger bit decisions. Event Builders read information from the pipeline-style buffers for a given programmable window related to the readout trigger time. All trigger-related data banks are available in the data stream along with the DAQ data banks, providing detailed information about the trigger decision for every accepted event. In particular, this allows the Trigger System to be run in ``tagging mode'', which is a powerful way to test the trigger efficiency (using either a loose or a random trigger).
+
+
