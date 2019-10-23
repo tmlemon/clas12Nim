@@ -6,33 +6,33 @@ When beam operations started, the Trigger System validation was completed as par
 \subsection{``Random Trigger" Validation Procedure}
 \label{sec:validation_random}
 
-The ultimate validation of the trigger is done using the so-called ``Random Trigger'' (RT) runs. RT runs are special runs where the event readout is initiated not by the trigger logic, but by an external random generator that can be tuned to the desired frequency. Most of the events in the RT runs do not contain any tracks, however, a small fraction of the events will have real particles that were reconstructed because particle accidentally fell in the readout window that was initiated by the random generator. In the event readout, in addition to various data banks from DAQ system, the trigger decisions are stored as well (see Section \ref{sec:trigger_in_datastream}).
+The ultimate validation of the trigger is done using the so-called ``Random Trigger'' (RT) runs. RT runs are special runs where the event readout is initiated not by the trigger logic, but by an external random generator that can be tuned to the desired frequency. Most of the events in the RT runs do not contain any tracks, however, a small fraction of the events will have real particles that were reconstructed because the particles accidentally fell in the readout window that was initiated by the random generator. In the event readout, in addition to various data banks from the DAQ system, the trigger decisions are stored as well (see Section \ref{sec:trigger_in_datastream}).
 
-These accidental ``good'' events are used to check whether the desired trigger bit in the Stage 3 32-bit trigger mask was set by the trigger logic. In case it is not set, information from the Stage 1 and Stage 2 trigger is available to analyse the possible reasons for the inefficiency.
+These accidental ``good'' events are used to check whether the desired trigger bit in the Stage 3 32-bit trigger mask was set by the trigger logic. In case it is not set, information from the Stage 1 and Stage 2 trigger is available to analyze the possible reasons for the inefficiency.
 
 \begin{figure}[!htb]
 	\centering
 	\subfloat[]{\includegraphics[width=0.24\textwidth]{img/PCal_Fiducials_4878.png}}
 	\subfloat[]{\includegraphics[width=0.24\textwidth]{img/ECin_Fiducials_4878.png}}
 	\caption{Distribution of cluster coordinates of PCAL (left) and EC\_{in} (right).
-		scatter plot in Red shows all events, while blue scatter plot show events where cluster
+		The scatter-plot in red shows all events, while the blue scatter-plot show events where a cluster
 		is in the fiducial region of the calorimeter (about 15 cm away from the edges).}
 	\label{fig:pcal_clusters}
 \end{figure}
 
 The technique of the trigger validation is as follows. The trigger logic is configured exactly as it will be set in an experiment, but it runs in ``tagging mode'', reporting trigger decisions into the data stream for every randomly generated event. After several hours of running we collect at least 100 million events.
 
-After the data is processed and the events are reconstructed, we select subset of events with correct trigger time. It is done using FADC spectra for detectors participating in the trigger logic. We need to select events with the FADC spectra similar to the one in the data obtained using regular trigger. Fig. ~\ref{fig:htcc_fadc} (left) shows typical FADC pulses for the regular (not random) trigger, with pulse width below 50~ns. Reconstructing and analyzing the data obtained using random trigger, we select events with signal in the middle of the FADC window to make sure we do not have boundary effects when the signal region is selected. Based on the typical pulse shape, we ignore areas below 50~ns and above 150~ns (see Fig. ~\ref{fig:htcc_fadc} (right)).
+After the data is processed and the events are reconstructed, we select a subset of events with correct trigger time. This is done using FADC spectra for detectors participating in the trigger logic. We need to select events with FADC spectra similar to those in the data obtained using regular trigger. Fig. ~\ref{fig:htcc_fadc} (left) shows typical FADC pulses for the regular (not random) trigger, with pulse width below 50~ns. Reconstructing and analyzing the data obtained using a random trigger, we select events with a signal in the middle of the FADC window to make sure we do not have boundary effects when the signal region is selected. Based on the typical pulse shape, we ignore areas below 50~ns and above 150~ns (see Fig. ~\ref{fig:htcc_fadc} (right)).
 
 \begin{figure}[!htb]
 	\centering
 	\subfloat[]{\includegraphics[width=0.24\textwidth]{img/htcc_fadc1.png}}
 	\subfloat[]{\includegraphics[width=0.24\textwidth]{img/htcc_fadc2.png}}
-	\caption{HTCC FADC pulses: left - physics triggers, right - randon trigger. Plot was used to select ``good'' events from the random trigger runs, for such events FADC timing have to be at least 50 counts from both timing window edges to avoid boundary effects.}
+	\caption{HTCC FADC pulses: left - physics triggers, right - random trigger. Plot was used to select ``good'' events from the random trigger runs. For such events, the FADC timing have to be at least 50 counts from both timing window edges to avoid boundary effects.}
 	\label{fig:htcc_fadc}
 \end{figure}
 
-We typically find several thousands events that accidently fell into the correct trigger window. These events can be used to obtain the trigger efficiency and purity assuming that our off-line reconstruction software works correctly. It should be mentioned that correctly working of the off-line reconstruction is an important pre-requisite for complete trigger validation.
+We typically find several thousand events that accidently fall into the correct trigger window. These events can be used to obtain the trigger efficiency and purity assuming that our offline reconstruction software works correctly. It should be mentioned that correct working of the offline reconstruction is an important pre-requisite for complete trigger validation.
 
 
 \input{Validation_electron}
@@ -46,21 +46,21 @@ We typically find several thousands events that accidently fell into the correct
 
 \subsection{Final Validation Before Experiment Start-up}
 
-After the CLAS12 detector was commissioned and the Trigger System components were validated, we still have to execute our validation processes for the entire system at the begining of every experiment. This is necessary because different experiments request configuration changes in the Trigger System, that take advantage of its flexibility. Also, we apply firmware changes occasionally to improve the Trigger System components based on our previous experience, and then changes have to be validated. The final Trigger System validation is performed by taking beam data with a random trigger (see Section ~\ref{sec:validation_random}).
+After the CLAS12 detector was commissioned and the Trigger System components were validated, we still have to execute our validation processes for the entire system at the begining of every experiment. This is necessary because different experiments request configuration changes in the Trigger System that take advantage of its flexibility. Also, we apply firmware changes occasionally to improve the Trigger System components based on our previous experience, and then changes have to be validated. The final Trigger System validation is performed by taking beam data with a random trigger (see Section ~\ref{sec:validation_random}).
 
-The final trigger validation procedure was executed several times during the first year of CLAS12 experiments and was proven to be very useful: bugs in the trigger firmware were found and fixed, and the trigger configuration parameters were optimized. On one occasion a firmware bug was introduced into the PCAL Stage 1 trigger logic during the firmware update that was expected to be small and simple. The final validation procedure revealed an irregularity in the spacial distribution of clusters (see Fig.~\ref{fig:PCAL_bug_data}) (it also shows one CLAS12 sector is missing but this was another problem unrelated to the Trigger System). Since the PCAL Stage 1 trigger firmware is implemented in C++/HLS, the GEANT4 data sample was reprocessed through the C++ firmware implementation (see Fig.~\ref{fig:PCAL_bug_hls}), and the problem was confirmed and subsequently found and fixed. The firmware was recompiled and reloaded, and the final trigger validation was repeated showing that the problem was fixed. It took only several hours between finding the problem and being ready to run again. Every experiment in CLAS12 begins with a complete Trigger System validation. 
+The final trigger validation procedure was executed several times during the first year of CLAS12 experiments and has proven to be very useful: bugs in the trigger firmware were found and fixed, and the trigger configuration parameters were optimized. On one occasion a firmware bug was introduced into the PCAL Stage 1 trigger logic during the firmware update that was expected to be small and simple. The final validation procedure revealed an irregularity in the spacial distribution of clusters (see Fig.~\ref{fig:PCAL_bug_data}) (it also shows one CLAS12 sector is missing but this was another problem unrelated to the Trigger System). Since the PCAL Stage 1 trigger firmware is implemented in C++/HLS, the GEANT4 data sample was reprocessed through the C++ firmware implementation (see Fig.~\ref{fig:PCAL_bug_hls}), and the problem was confirmed and subsequently found and fixed. The firmware was recompiled and reloaded, and the final trigger validation was repeated showing that the problem was fixed. It took only several hours between finding the problem and being ready to run again. Every experiment in CLAS12 begins with a complete Trigger System validation. 
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/PCAL_bug_data.png}
-	\caption{PCAL bug in beam data. Red crosses inside blue areas coresponds to trigger inefficiency, it was discovered during beam data processing.}
+	\caption{PCAL trigger bug in beam data. The red crosses inside the blue areas correspond to trigger inefficiencies. This was discovered during beam data processing.}
 	\label{fig:PCAL_bug_data}
 \end{figure}
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/PCAL_bug_hls.png}
-	\caption{PCAL bug in GEANT4 simulation. Blue lines corresponds to trigger inefficiency. It is visible much better in simulation then in beam data, and points to exact problem.}
+	\caption{PCAL trigger bug in GEANT4 simulation. The blue lines correspond to trigger inefficiencies. This is visible much better in simulation than in beam data, and points to an exact problem.}
 	\label{fig:PCAL_bug_hls}
 \end{figure}
 
