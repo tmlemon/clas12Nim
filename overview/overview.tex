@@ -882,14 +882,22 @@ polarity of the Torus magnet that bends negative particles away from the beam li
 the beamline, and the effects of the solenoid magnetic field that causes an azimuthal motion for positive and negative
 particles in opposite directions. 
 
-\begin{figure}[htbp!]
-%\centerline{\includegraphics[width=1.1\columnwidth]{FTOF1b_pid.png}}
-\centerline{\includegraphics[width=1.1\columnwidth]{FTOF1b_M2-vs-p.png}}
+\begin{figure}[t!]
+\centerline{\includegraphics[width=1.1\columnwidth]{FTOF1b_pid.png}}
 \caption{(Color Online) Velocity $\beta = v/c $ versus momentum of positively charged particles detected in the CLAS12 FD. The
 thin black lines show the expected distributions for the respective charged tracks. Particle identification is limited
 to momenta greater than 0.8~GeV when the Torus magnet is energized to maximum current. At reduced current the
 tracking is extended to lower momenta at the expense of momentum resolution.}
 \label{pid}
+%\end{figure} 
+%\begin{figure}[tbp!]
+\vspace{0.5cm}
+\centerline{\includegraphics[width=1.1\columnwidth]{FTOF1b_M2-vs-p.png}}
+%\centerline{\includegraphics[width=1.0\columnwidth]{pid-1d.png}}
+\caption{{$\rm Mass^2$} of positively charged particles evaluated from their momentum and the time-of-flight information
+in the FTOF versus the momentum. The graph contains a threshold on the minimum number of events to highlight the 
+particle profile: bottom: $\pi^+$, mid: $K^+$, top: protons.}
+\label{pid-1D}
 \end{figure} 
 
 Identification of charged particles in CLAS12 is achieved in a number of ways. Identified electrons are used to
@@ -899,15 +907,7 @@ particle, shown in Fig.~\ref{pid} versus particle momentum for positive charged 
 shown in Fig.~\ref{pid-1D}.  An overview of the particle identification in the various CLAS12 detector systems vs.
 momentum is given in Fig.~\ref{pid1}. 
 
-\begin{figure}[htbp!]
-\centerline{\includegraphics[width=1.0\columnwidth]{pid-1d.png}}
-\caption{{$\rm Mass^2$} of charged particles evaluated from their momentum and the time-of-flight information
-in the FTOF. Left: Positively charged hadrons: $\pi^+$, $K^+$, $p$. Right: Negatively charged hadrons: $\pi^-$,
-$K^-$, ${\bar{p}}$. {\bf Clean up plots for publication.}}
-\label{pid-1D}
-\end{figure} 
-
-\begin{figure}[htbp!]
+\begin{figure}[tp!]
 \centerline{\includegraphics[width=1.1\columnwidth]{CLAS12-pid.png}}
 \caption{(Color Online) Overview of particle identification in various detectors of the CLAS12 FD. The higher (lower) intensity
 of the color shading indicates higher (lower) effectiveness for the particle species separation shown.} 
@@ -933,20 +933,19 @@ mass neutron excitations are also visible. The horizontal axes are in units of G
 
 \begin{figure}[t!]
 \centerline{\includegraphics[width=1.0\columnwidth]{elastic_pi+n.png}}
-\caption{(Color Online) The left panels show the elastic peak at 10.6~GeV beam energy as measured in 3 representative sectors. The
-peak is close to the proton mass in all sectors reflecting the good momentum calibration of all sectors. A fit to the
-elastic signal shows sector to sector variation of less then {\bf XX MeV} ({\bf need to replace after kinematic
-corrections have been applied}). The right panels show the mass distribution of the unmeasured final state X in
-$ep \to e'\pi^+ X$. The missing mass peak is due to the unmeasured neutron. {\bf Replace after kinematic corrections are applied.}
-The mass resolution is $\sigma_X = 45$~MeV/c$^2$. {\bf Clean up plots for publication.}} 
+\caption{(Color Online) The left panels show the elastic peak at 10.6~GeV beam energy as measured 
+in 3 representative sectors. The
+peak is close to the proton mass in all sectors reflecting the good momentum calibration of all sectors. 
+The right panels show the mass distribution of the unmeasured final state X in
+$ep \to e'\pi^+ X$. The missing mass peak is due to the unmeasured neutron. 
+The mass resolution is $\sigma_X = 45$~MeV/c$^2$.} 
 \label{elastic-peak}
 %\end{figure} 
 
 %\begin{figure}[htbp!]
-\vspace{0.3cm}\centerline{\includegraphics[width=1.0\columnwidth]{pip-pim-p.png}}
-\caption{Left: Invariant mass of $\pi^+\pi^-$, showing the peak at the $\rho^0$ mass. Right: missing mass 
-$M_X$  of $e'\pi^+\pi^-X$ with the peak at the proton mass that establishes the exclusive process
-$ep\to e' p \pi^+\pi^-$. ({\bf waiting for better statistics after cooking)}}
+\vspace{0.3cm}\centerline{\includegraphics[width=1.0\columnwidth]{rhoMass.png}}
+\caption{Invariant mass of $\pi^+\pi^-$. The vertical line indicates the mass of the $\rho^0(770)$ meson$. 
+The shoulder to the right is from the $f_2(1270)$ meson.  }
 \label{pip-pim-p}
 \end{figure} 
 
@@ -959,12 +958,11 @@ on hydrogen targets. Figure~\ref{CD-PID} shows the particle velocity $\beta = v/
 reconstructed in the CVT.
 
 \begin{figure}[t!]
-\centerline{\includegraphics[width=1.0\columnwidth]{CTOF-pid-new.png}}
-\centerline{\includegraphics[width=0.8\columnwidth]{CTOF-mass.png}}
-\caption{(Color Online) Top: $\beta$ measured in CTOF versus momentum measured in CVT of positively 
-charged particle momentum in the CD. Bottom: Reconstructed $\rm mass^2$ for positively charged particles
- at 10.6~GeV beam energy. The peak to the left is due to $\pi^+$, the bump to the right is due to protons. 
- Momenta are not corrected to energy losses in the CVT.}
+%\centerline{\includegraphics[width=1.0\columnwidth]{CTOF-pid-new.png}}
+\centerline{\includegraphics[width=1.\columnwidth]{ctof-pid-3.png}}
+\caption{(Color Online) {$\rm Mass^2$} of positively charged particles evaluated from their momentum and the time-of-flight information
+in the CTOF versus the particle momentum, at 10.6 GeV beam energy. The band at the bottom is from $\pi^+$; the faint band 
+near 0.2 is due to $K^+$, the band at the top is due to protons,  Momenta are not corrected to energy losses in the CVT.}
 \label{CD-PID}
 \end{figure} 
 
