@@ -24,6 +24,22 @@ random coincidences between the two detectors. The trigger firmware uses the HTC
 
 The track reconstruction in the DC system at the trigger level is very useful for the further suppression of accidental background, as described in Section ~\ref{sec:DC}. The trigger decision requires at least 3 layers in every superlayer and at least 5 superlayers in every road, which is a standard setting for all triggers where the DC-based component is used. The geometrical matching between track candidates and hits in the PCAL and EC detectors is used to strengthen the trigger performance in terms of event purity.
 
+\begin{figure}[!htb]
+ 	\centering
+  	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/Electron_trigger.png}
+ 	\caption{(Color online) Display of event selected by the electron trigger. The trigger detectors HTCC, DC, PCAL and ECAL are indicated in the picture. The electron momentum is 4.5 GeV/c.}
+	\label{fig:electron}
+\end{figure}
+
+\begin{figure}[!htb]
+ 	\centering
+  	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/PixelFraction.png}
+ 	\caption{Offline analysis of events that satisfied the pixel trigger on $EC_{inner}$  calorimeter.  Left plot shows 89$\%$ of $EC_{inner}$  triggers satisfied the pixel test $dU+dV+dW=2$.  Right plot shows only 14$\%$ of the $EC_{inner}$ triggers found an $EC_{outer}$ event that satisfied both the $N=3$ and pixel test.}
+	\label{fig:rlectron}
+\end{figure}
+
+
+
 The electron trigger configuration may be represented by the formula:
 \begin{align} 
 \label{eq:em_trg_formula}
@@ -33,7 +49,7 @@ The electron trigger configuration may be represented by the formula:
  \end{split}
 \end{align}
 \noindent
-where index $i$ is the CLAS12 sector number and $N_{phe}$ is the number of photoelectrons detected by the HTCC in a defined cluster. $N^{HTCC}_{min}$,  $E^{PCAL}_{min}$, $ E^{Total}_{min}$ are trigger parameters, and $DC$ means that  a track was reconstructed by the $DC$-system. The space correlations between all detectors and coordinates of the track are implemented as well.
+where index $i$ is the CLAS12 sector number and $N_{phe}$ is the number of photoelectrons detected by the HTCC in a defined cluster. $N^{HTCC}_{min}$,  $E^{PCAL}_{min}$, $ E^{Total}_{min}$ are trigger parameters, and $DC$ means that  a track was reconstructed by the $DC$-system. The space correlations between all detectors and coordinates of the track are implemented as well. The event display with the 4.5 GeV/c electron, selected by the trigger, is shown in Fig.~\ref{fig:electron}.
 
 
 \subsection{Photoproduction Trigger}
@@ -95,3 +111,14 @@ The conventional electron and photoproduction triggers  select the $J/\psi$-meso
 \end{align*}
 \noindent
 The energy units are in MeV. Note, that there is no requirement to search for the scattered electron at all. This gives an order of magnitude advantage in the  virtual photon flux in comparison with the case when the electron is detected in the FT calorimeter.
+\begin{figure}[!htb]
+ 	\centering
+  	\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/Muon_trigger.png}
+ 	\caption{(Color online) Display of event selected by the muon trigger. The trigger detectors DC, FTOP, PCAL and ECAL are indicated in the picture. The particle momentum are  1.1 and 1.3 GeV/c.}
+	\label{fig:muon}
+\end{figure}
+\noindent
+ The event display with the two particles with opposite charges, selected by muon trigger, is shown in Fig.~\ref{fig:muon}.
+
+
+
