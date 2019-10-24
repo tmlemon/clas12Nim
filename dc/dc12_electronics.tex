@@ -1,24 +1,24 @@
 \section{Drift Chamber Electronics}
 In this section we describe the drift chamber electronics:
-the on-chamber signal distribution and amplification boards which
+the on-chamber signal distribution and amplification boards, which
 we named ``Signal Translator Boards'', (STB),
-the on-chamber high voltage translator boards (HVTB) and the
+the on-chamber high voltage translator boards (HVTB), and the
 off-chamber drift chamber readout boards (DCRB).
 
 On one endplate of each chamber is a set of High-Voltage Distribution Boards (HVTB's)
-which distributes RC-filtered high voltage to the wires.  Because there are three
+that distributes RC-filtered high voltage to the wires.  Because there are three
 types of wire, `sense', `field' and `guard', we supply three different voltages
 to each HVTB board.  
 
 On the other side of the chamber are Signal Translator Boards (STB) 
-which support an individual Single Inline Package (SIP) transimpedance
-pre-amplifier which is capacitively coupled to each sense wire since the
+that support an individual Single Inline Package (SIP) transimpedance
+pre-amplifier that is capacitively coupled to each sense wire since the
 sense wires are at high voltage.  This pre-amplifier takes the
-small current pulse (as small as a few microAmps) and translates it into a voltage 
+small current pulse (as small as a few $\mu$A) and translates it into a voltage 
 pulse with a transimpedance of 2 mV/$\mu$A.  The signals (typically
-10's to 100's of mV and 10's to 100's of nanosecond duration) are
+10's to 100's of mV and 10's to 100's of ns duration) are
 transmitted down (17-pair) twisted-pair cables to our downstream
-Drift Chamber Readout Boards (DCRB) which further amplify and
+Drift Chamber Readout Boards (DCRB) that further amplify and
 discriminate the voltage pulses and then convert the leading edge
 to a digital time signal.
 
@@ -26,14 +26,14 @@ to a digital time signal.
 The drift chamber signal amplification and readout system consists of the 
 following:
 \begin{itemize}
-\item  chamber-mounted printed circuit boards with a single in-line package
-(SIP) amplifier for each signal wire; these are the STB's (one type for each superlayer)
-\item  chamber-mounted printed circuit boards which distribute high voltage
+\item  chamber-mounted printed circuit boards with an amplifier for each signal wire; 
+these are the STB's (one type for each superlayer)
+\item  chamber-mounted printed circuit boards that distribute high voltage
 to all of the wires; these are the HVTB's (one type for each superlayer)
 \item a single 17-pair twisted-pair readout cable for each group of 16
 SIP's, and
 \item a 96-channel drift chamber readout board (DCRB) for each group
-of 6 cables (96 signal wires)
+of 6 cables (96 signal wires).
 \end{itemize}
 
 Table ~\ref{electronic-components} gives a channel count for our chamber-mounted electronic components.
@@ -50,7 +50,7 @@ signal cables (17-pair)   & 1512 \\ \hline
 total signals             & 24192 \\ \hline \hline
 \end{tabular}
 \caption{\small{Electronic channel counts for the readout, high voltage,
-and low voltage.}}
+and low voltage systems for the drift chambers.}}
 \label{electronic-components}
 \end{center}
 \end{table}
@@ -59,12 +59,12 @@ and low voltage.}}
 \subsection{Signal Translator Boards (STB) and High Voltage Translator Boards (HVTB)}
 
 The high voltage side of each chamber was tiled with 14  multi-layered printed circuit 
-boards called High Voltage Translation Boards (HVTBs).  Although simple in design,
-the HVTB's were designed to distribute three separate voltages to the Sense, Field
-and Guard wires, respectively.  See section \ref{set-operating-parameters} for a 
+boards called High Voltage Translation Boards (HVTBs).
+The HVTB's were designed to distribute three separate voltages to the sense, field
+and guard wires, respectively.  See Section \ref{determine-operating-parameters} for a 
 description of how we determined the operating values of the high voltage.  
 Each high voltage line on the HVTB was connected to the 
-input high voltage wire with a parallel RC circuit to absorb any AC noise on
+input high-voltage wire with a parallel RC circuit to absorb any AC noise on
 the lines.  The board layout is shown in Fig.~\ref{hvtb-layout}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -81,10 +81,10 @@ the lines.  The board layout is shown in Fig.~\ref{hvtb-layout}.
 
 The signal side of each chamber was tiled with 14 multi-layered printed circuit 
 boards called Signal Translation Boards (STBs).  These boards were  
-built in a 96-channel format, which requires seven 
+built in a 96-channel format that requires seven 
 circuit boards for each superlayer (672 signals).   The boards  
-capacitively decoupled high voltage from the signals, and then routed 
-the signals to the single in-line package (SIP) transimpedance pre-amplifiers 
+capacitively decoupled high-voltage from the signals, and then routed 
+the signals to the SIP's transimpedance pre-amplifiers 
 mounted on the boards.  The amplified differential signals are then sent 
 via 20-m long twisted-pair lines to the main {\tt CLAS12} readout electronics.
 
@@ -118,11 +118,11 @@ crimp pin to the pre-amplifier.  }}
 
 Fig.~\ref{stb-layout} shows the layout of an STB board,
 including the trace routings from the capacitively-coupled
-wire signal to the Single In-Line Package (SIP) preamplifier, and the
-placement of the SIP's into groups of 16 with the SIP outputs being
+wire signal to the SIP and the
+placement of the SIPs into groups of 16 with the SIP outputs being
 routed to the 16-pin signal connectors.  Also shown are the low-voltage
 power traces with individual fuses for each group of 16 wires.
-The board shown is from a R1 chamber which had the tightest wire packing.
+The board shown is from a R1 chamber, which had the tightest wire packing.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -132,15 +132,14 @@ The board shown is from a R1 chamber which had the tightest wire packing.
 \put(20,20)
 {\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{img/stb-layout.jpg}}}
 \end{picture}
-\caption{\small{Trace routing shown on one of the Region~1 STBs being
-designed.}}
+\caption{\small{Trace routing shown on one of the Region~1 STBs.}}
 \label{stb-layout}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Single In-line Package (SIP) Preamplifiers}
+\subsubsection{Single Inline Package Preamplifiers}
 The heart of the STB board is an individually packaged
-single in-line package (SIP) preamplifer which was modified
+single in-line package (SIP) preamplifer that was modified
 from the design of the previous CLAS detectors and 
 included an epoxy resin encapsulation.  
 The encapsulation of the components prevents 
@@ -149,8 +148,7 @@ humidities as high as 60\%).
 These ``CP01'' pre-amplifiers provide the gain, dynamic range, rise time, low 
 noise, and low power needed for the performance requirements.  The CP01 is
 a transimpedance amplifier with a gain of 2 mV/$\mu$A and a rise-time
-less than 10 ns.  Each SIP operates at 6V and draws about 13 mA.   
-
+of less than 10 ns.  Each SIP operates at 6 V and draws about 13 mA.   
 Fig.~\ref{CP01-description} shows the design and specifications of the
 CP01 pre-amplifier.  See Ref.~\cite{fjb92} for the original design of
 this SIP pre-amplifier.
@@ -167,8 +165,8 @@ this SIP pre-amplifier.
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Each group of 16 pre-amplifier output signals was routed to a 17 pair connector.
-Sixteen of the pairs are used as differential signal paths which are routed from the STB's to the 
+Each group of 16 pre-amplifier output signals was routed to a 17-pair connector.
+Sixteen of the pairs are used as differential signal paths that are routed from the STB's to the 
 drift chamber readout boards (DCRB) over individual cables consisting of 16 twisted pairs.  
 We chose
 twisted-pair readout because of its immunity to electronic noise.
@@ -176,10 +174,10 @@ The cables are round-jacketed with a
 0.025-in pitch so that the overall cable dimension is smaller than the 
 standard 17-pair cable.  
 
-\subsection{Off-Chamber Amplification, Time Digitization and Readout}
+\subsection{Off-Chamber Amplification, Time Digitization, and Readout}
 
 Our on-chamber 
-pre-amplifiers send signals to the readout boards (DCRB) 
+pre-amplifiers send signals to the readout boards (DCRB),
 which provide another level of amplification, 
 signal discrimination, adjustable threshold setting, time digitization
 and readout. 
@@ -188,11 +186,12 @@ These DCRB's are based on FPGA technology, and in addition to
 their primary function of amplification, discrimination, digitization
 and readout, they are used in a simple ``cluster-finding'' algorithm
 to find track segment candidates with a latency of only hundreds
-of nanoseconds.
+of nanoseconds.  For a more complete description of this please
+see our companion article on the trigger, Ref.~\cite{trigger_paper}.
 
 \subsubsection{Drift Chamber Readout Boards (DCRB)}
 
-The DCRB is a 96 channel board that is a combination post-amplifier,
+The DCRB is a 96-channel board that is a combination post-amplifier,
 discriminator, time-to-digital converter (TDC) and also has a trigger
 output path to provide track segment information for an online tracking trigger.
 Fourteen such boards are housed in
@@ -211,7 +210,7 @@ allows it to achieve the following performance metrics:
 \item Time Digitization: accuracy better than 1 ns; exceeds DC specifications
 \item Whole Crate Time Synchronization: through backplane; eliminates cables
 \item Event Buffer Size: 500,000 signals
-\item VME Transfer Rate: 200 MB/sec
+\item VME Transfer Rate: 200 MB/s
 \item Maximum Trigger Rate: greater than 1 MHz
 \item Dead-time: 32 ns
 \item Scaler: 1 32 bit scaler per channel
@@ -232,5 +231,5 @@ mounting system.  The off-chamber readout boards (DCRB's) were likewise not grou
 to the chambers themselves though the use of non-grounded twisted-pair signals.
 The low-voltage power supplies were floating, supplying a plus and minus line 
 to the STB's.
-The grounding point was at the High Voltage supply crates.  This was accomplished
+The grounding point was at the high-voltage power supply crates.  This was accomplished
 by the use of two ground wires for every high-voltage 34-wire multi-cable.
