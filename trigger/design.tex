@@ -5,7 +5,7 @@ The CLAS12 Trigger System was designed as a 3-stage pipeline-style system with t
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/CLAS12_TRIGGER_1.pdf}
-	\caption{The CLAS12 Trigger System diagram. It designed as a 3-stage pipeline-style system with total latency up to 8~$\mu$s. Input information comes from Flash ADC Boards (FADC) and Drift Chamber Readout Boards (DCRB), and 32-level trigger decision is reported to the Trigger Sypervisor (TS). }
+	\caption{The CLAS12 Trigger System diagram. It designed as a 3-stage pipeline-style system with total latency up to 8~$\mu$s. Input information comes from Flash ADC Boards (FADC) and Drift Chamber Readout Boards (DCRB), and 32 separate trigger decisions are reported to the Trigger Sypervisor (TS). }
 	\label{fig:TriggerDiagram}
 \end{figure}
 
@@ -32,7 +32,7 @@ The most complex processing is performed for the electromagnetic calorimeters (c
 
 The CLAS12 electromagnetic calorimeter (ECAL, \cite{ec-ref}) includes two separate subsystems, the EC and PCAL. Each consists of multiple layers of scintillating strips and lead sheets with photomultiplier readout on one side of the scintillators (the PCAL is shown in Fig.~\ref{fig:PCAL}, the EC is similar). The primary purpose of these detectors is electron identification by defining the energy and coordinate of their electromagnetic showers, referred to as clusters. The cluster finding algorithm was well established during off-line data processing development, and was adopted for the trigger implementation with some simplifications.
 
-The algorithm first searches for one-dimensional clusters in each of the three calorimeter views (u,v,w), sorting them by energy and keeping only those above threshold, with a maximum number of four clusters in each view. Next the algorithm searches for two-dimensional clusters looking for overlap between the three views. For all two-dimension clusters found, it performs attenuation corrections based on pre-loaded tables of the attenuation lengths of the scintillation strips using the distance from the cluster to the PMT, to deternime the correct cluster energy. Finally, the algorithm sorts the two-dimensional clusters by energy and reports those above threshold, with a maximum number limited to four. For every cluster, the energy and coordinates are reported to the Stage 2 trigger every 8~ns. There is a persistency parameter that allows the same clusters to be reported for several consecutive 8~ns intervals to check for a timing coincidence with the other trigger components, as well as a timing delay parameter for the same purpose. One event with a single cluster is shown in the PCAL (preshower calorimeter) in Fig.~\ref{fig:PCAL}. The corrected energies are shown for the individual strips.
+The algorithm first searches for one-dimensional clusters in each of the three calorimeter views (U,V,W), sorting them by energy and keeping only those above threshold, with a maximum number of four clusters in each view. Next the algorithm searches for two-dimensional clusters looking for overlap between the three views. For all two-dimension clusters found, it performs attenuation corrections based on pre-loaded tables of the attenuation lengths of the scintillation strips using the distance from the cluster to the PMT, to deternime the correct cluster energy. Finally, the algorithm sorts the two-dimensional clusters by energy and reports those above threshold, with a maximum number limited to four. For every cluster, the energy and coordinates are reported to the Stage 2 trigger every 8~ns. There is a persistency parameter that allows the same clusters to be reported for several consecutive 8~ns intervals to check for a timing coincidence with the other trigger components, as well as a timing delay parameter for the same purpose. One event with a single cluster is shown in the PCAL (preshower calorimeter) in Fig.~\ref{fig:PCAL}. The corrected energies are shown for the individual strips.
 
 It should be mentioned that such an algorithm is designed to find clusters with a maximum energy to target electron identification. For some CLAS12 experiments, it is necessary to identify minimum-ionizing particles (MIPs) using the same trigger component. For that purpose, clusters with energy below a certain defined threshold can be selected. Such a method works for events where the number of clusters does not exceed four, otherwise there is a risk of losing low-energy clusters corresponding to MIPs. Intensive trigger efficiency studies were conducted for such cases, and the trigger efficiency was measured and found acceptable (see Section \ref{valid_hadron_forward_detector}).
 
@@ -57,7 +57,7 @@ The CLAS12 High Threshold Cherenkov Counter (HTCC, \cite{htcc-ref}) serves as on
 	\begin{center}
 		\centering
 		\includegraphics[width=8cm]{img/multiHits.pdf}
-		\caption{Hits registered by the HTCC (red circles) and the reconstructed cluster position (yellow). The hit position and cluster position coincide for one hit clusters (top left plot), which has the lowest position resolution.}
+		\caption{View of a portion of the multi-faceted HTCC mirror. The different plots show events with 1,2,3,4 mirror facets involved. Hits registered by the HTCC (red circles) and the reconstructed cluster position (yellow). The hit position and cluster position coincide for one hit clusters (top left plot), which has the lowest position resolution.}
 		\label{fig:multihitHTCC}
 	\end{center}
 \end{figure} 
@@ -66,7 +66,7 @@ The CLAS12 High Threshold Cherenkov Counter (HTCC, \cite{htcc-ref}) serves as on
 \subsubsection{Drift Chamber}
 \label{sec:DC}
 
-The CLAS12 Drift Chambers (DC, \cite{dc-ref}) contain six superlayers in each of the six CLAS12 forward sectors. Each superlayer contains six layers, and 112 wires in each layer. There is no signal amplitude information available, only hit information can be used in the trigger. The Trigger algorithm was designed as a two-step process.
+The CLAS12 Drift Chambers (DC, \cite{dc-ref}) contain six superlayers in each of the six CLAS12 forward sectors. Each superlayer contains six layers, and 112 wires in each layer. There is no signal amplitude information available, only hit information can be used in the trigger. The trigger algorithm was designed as a two-step process.
 
 \begin{figure}[hbt]
 	\centering
@@ -77,22 +77,15 @@ The CLAS12 Drift Chambers (DC, \cite{dc-ref}) contain six superlayers in each of
 
 In the first step it searches for segments in each of the six superlayers, reporting a 112-bit mask with the bits set for the segments found on each superlayer. The search for segments is conducted based on a pre-loaded segment dictionary, generated by the Drift Chamber simulation software based on the wire locations in the superlayers. The 112-bit mask indicates whether a segment was found that has a hit starting at the bit position of the first wire layer (see Fig.~\ref{fig:dc_segments}). If several segments are found around the same location, the one with the maximum number of hits is kept. In theory, the number of layers contributing to each segment must be equal to 6, and the number of hit wires in a segment can vary from 6 to 12 depending on the track position and angle. In practice, the number of layers and hits in each segment can be less because of Drift Chamber inefficiencies and hardware problems, so the threshold for the segment finder in the trigger logic is set to require 4 out of 6 layers to match.
 
-After the segment search is complete and the six 112-bit masks are ready, the second step is performed, in which a pre-loaded road dictionary is used to identify possible track candidates (so-called road finding). The road dictionaries were generated by the GEMC Monte Carlo simulation program or taken from the real beam data (see details in Section \ref{dc_dictionary}). At least five out of six superlayers are required to satisfy the trigger condition. A 512-bit mask is generated every 32 ns containing the road projections to other detectors (HTCC, PCAL, and FTOF) and sent to the Stage 2 trigger where geometry matching is done.
+After the segment search is complete and the six 112-bit masks are ready, the second step is performed, in which a pre-loaded road dictionary is used to identify possible track candidates (so-called road finding). The road dictionaries were generated by the GEMC Monte Carlo simulation program \cite{gemc-ref} or taken from the real beam data (see details in Section \ref{dc_dictionary}). At least five out of six superlayers are required to satisfy the trigger condition. A 512-bit mask is generated every 32 ns containing the road projections to other detectors (HTCC, PCAL, and FTOF) and sent to the Stage 2 trigger where geometry matching is done.
 
-To reduce the size of the road dictionary and improve the selection purity, we constrained the particle energy, vertex position, and kinematics of the tracks used to generate the roads (see Fig.~\ref{fig:dc_roads_electrons_data}). Multiple dictionaries can be run simultaneously based on the needs of the physics program. The data-based electron dictionary generator can be seen to slowly converge as more data-based tracks are fed into it (see )Fig.~\ref{fig:dc_neg_data_efficiency_smearing}). Segment positions are smeared by +/-1 to fill in holes in the dictionary, which brings the efficiency to nearly 100\% with much less data to generate the dictionary (also at the cost of lower purity). Dictionary efficiencies for no smearing vs. smearing are demonstrated in Fig.~\ref{fig:dc_neg_data_efficiency_nosmearing} and Fig.~\ref{fig:dc_neg_data_efficiency_smearing}, respectively. The current road dictionary uses a single FPGA LUT6 element for each unique road entry, allowing for roughly 200k unique entries. Using six 112-bit masks, the dictionary size requirement exceeded the available FPGA resources, so we reduced the bit masks to 56~bits each by combining every two consecutive bits. The scattered electron dictionary size is only ~36k LUT6 elements, leaving space for several additional dictionaries.
+To reduce the size of the road dictionary and improve the selection purity, we constrained the particle energy, vertex position, and kinematics of the tracks used to generate the roads (see Fig.~\ref{fig:dc_roads_electrons_data}). Multiple dictionaries can be run simultaneously based on the needs of the physics program. The data-based electron dictionary generator can be seen to slowly converge as more data-based tracks are fed into it (see Fig.~\ref{fig:dc_neg_data_efficiency_smearing}). Segment positions are smeared by +/-1 to fill in holes in the dictionary, which brings the efficiency to nearly 100\% with much less data to generate the dictionary (also at the cost of lower purity). Dictionary efficiencies for no smearing vs. smearing are demonstrated in Fig.~\ref{fig:dc_neg_data_efficiency_nosmearing} and Fig.~\ref{fig:dc_neg_data_efficiency_smearing}, respectively. The current road dictionary uses a single FPGA LUT6 element for each unique road entry, allowing for roughly 200k unique entries. Using six 112-bit masks, the dictionary size requirement exceeded the available FPGA resources, so we reduced the bit masks to 56~bits each by combining every two consecutive bits. The scattered electron dictionary size is only ~36k LUT6 elements, leaving space for several additional dictionaries.
 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/dc_roads_electrons_data.png}
-	\caption{Drift chamber reconstructed tracks used for road generation of scattered electron. Tracks are from data taken with beam. The black and red lines in the first plot indicate the region used for the road dictionary generator. Addional cuts include a 1~GeV minimum momentum and z vertex position (along the beamline) of -3~cm +/-~7~cm.}
+	\caption{Drift chamber reconstructed tracks used for road generation of the scattered electron. Tracks are from data taken with beam. The black and red lines in the first plot indicate the region used for the road dictionary generator. Addional cuts include a 1~GeV minimum momentum and $Z$ vertex position (along the beamline) of -3~cm +/-~7~cm.}
 	\label{fig:dc_roads_electrons_data}
-\end{figure}
-
-\begin{figure}[hbt]
-	\centering
-	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/dc_neg_data_efficiency_nosmearing.png}
-	\caption{Dictionary efficiency for electron roads with no segment position smearing the data-generated road dictionary shows efficiencies at 85\% and above.}
-	\label{fig:dc_neg_data_efficiency_nosmearing}
 \end{figure}
 
 \begin{figure}[hbt]
@@ -100,6 +93,13 @@ To reduce the size of the road dictionary and improve the selection purity, we c
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/dc_neg_data_efficiency_smearing.png}
 	\caption{Dictionary efficiency for electron roads with segment position smearing the data-generated road dictionary shows efficiencies at fully at 100\%. This saves significant time as it requires far less data to converge, but does increase the acceptance of invalid roads.}
 	\label{fig:dc_neg_data_efficiency_smearing}
+\end{figure}
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/dc_neg_data_efficiency_nosmearing.png}
+	\caption{Dictionary efficiency for electron roads with no segment position smearing the data-generated road dictionary shows efficiencies at 85\% and above.}
+	\label{fig:dc_neg_data_efficiency_nosmearing}
 \end{figure}
 
 \begin{figure}[hbt]
@@ -127,7 +127,7 @@ The CLAS12 Central Neutron Detector (CND, \cite{cnd-ref}) consists of three laye
 
 \subsubsection{Forward Tagger Calorimeter and Hodoscope}
 
-The CLAS12 Forward Tagger Calorimeter and Hodoscope (FT, \cite{ft-ref}) trigger is designed to trigger on electrons at small forward polar angles (from $2^0$  to $5^0$). The calorimeter is a stack of 332 lead tungstate crystals connected to avalanche photodiodes (APDs) that are readout by FADCs. The hodoscope consists of two scintillating fiber layers, each having 116 pixels (of two sizes) that matches the geometry of the calorimeter. The calorimeter trigger finds clusters by looking for a seed hit at each crystal location. If the deposited energy in a crystal is greater than the seed threshold and is a local maximum in space (using a 3x3 crystal view) and time, then it is considered a seed hit. For each seed hit, a cluster is formed by summing all of the energies centered on the seed hit in a 3x3 crystal view for all hit times coincident with the seed hit (up to $\pm$16~ns). The seed hit time, which due to time walk effects is the earliest hit in the cluster, is used for the cluster time stamp, providing a 4~ns resolution. The geometrically matched hodoscope pixels for both layers are checked for time coincident hits with the calorimeter seed hit and the cluster is tagged as having none, layer 1, layer 2, or both layers of the hodoscope present. Found clusters are serialized and streamed to the Stage 2 trigger where several programmable trigger cuts can discriminate clusters based on energy, charge, and multiplicity.
+The CLAS12 Forward Tagger Calorimeter and Hodoscope (FT, \cite{ft-ref}) trigger is designed to trigger on electrons at small forward polar angles (from $2^\circ$  to $5^\circ$). The calorimeter is a stack of 332 lead tungstate crystals connected to avalanche photodiodes (APDs) that are readout by FADCs. The hodoscope consists of two scintillating fiber layers, each having 116 pixels (of two sizes) that matches the geometry of the calorimeter. The calorimeter trigger finds clusters by looking for a seed hit at each crystal location. If the deposited energy in a crystal is greater than the seed threshold and is a local maximum in space (using a 3x3 crystal view) and time, then it is considered a seed hit. For each seed hit, a cluster is formed by summing all of the energies centered on the seed hit in a 3x3 crystal view for all hit times coincident with the seed hit (up to $\pm$16~ns). The seed hit time, which due to time walk effects is the earliest hit in the cluster, is used for the cluster time stamp, providing a 4~ns resolution. The geometrically matched hodoscope pixels for both layers are checked for time coincident hits with the calorimeter seed hit and the cluster is tagged as having none, layer 1, layer 2, or both layers of the hodoscope present. Found clusters are serialized and streamed to the Stage 2 trigger where several programmable trigger cuts can discriminate clusters based on energy, charge, and multiplicity.
 
 
 \subsection{Stage 2 Trigger}
@@ -154,7 +154,7 @@ The Stage 2 trigger collects data from Stage 1 using fiber optics. It is based o
 \label{tab:stage_2_specs}
 \end{table}
 
-The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, DC, and PCALu \footnote{PCALu is the raw hit pattern of PCAL U bars sent in addition to the PCAL clusters. Since PCALu bars are close and parallel to FTOF bars they are used to make a geometrical coincidence.} and the central detectors participating in the trigger consist of CTOF, CND, and FT. A single SSP collects all forward detector trigger streams from a single sector of CLAS12, and a single SSP collects all central detector trigger streams. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable sector trigger bits. Each sector trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be tailored for a particular trigger type. The sector trigger bits are computed and sent to the final Stage 3 trigger. The Forward Detector trigger primitives are shown in Table~\ref{tab:fd_trig_primitives} and the Central Detector trigger primitives are shown in Table~\ref{tab:cd_trig_primitives}.
+The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, DC, and PCALu \footnote{PCALu is the raw hit pattern of the PCAL U bars sent in addition to the PCAL clusters. Since the PCALu bars are close and parallel to the FTOF bars, they are used to make a geometrical coincidence.} and the central detectors participating in the trigger consist of CTOF, CND, and FT. A single SSP collects all forward detector trigger streams from a single sector of CLAS12, and a single SSP collects all central detector trigger streams. After the delay and concidence widths are applied to each input stream, the input streams are copied to 8 programmable sector trigger bits. Each sector trigger bit contains a variety of trigger primitives and customizeable thresolds/cuts that can be tailored for a particular trigger type. The sector trigger bits are computed and sent to the final Stage 3 trigger. The forward detector trigger primitives are shown in Table~\ref{tab:fd_trig_primitives} and the central detector trigger primitives are shown in Table~\ref{tab:cd_trig_primitives}.
 
 \begin{table}
 \begin{center}
@@ -193,7 +193,7 @@ The forward detectors in the trigger consist of FTOF, EC, PCAL, HTCC, DC, and PC
 		\hline \hline
 	\end{tabular}
 \end{center}
-\caption{Central Detector trigger primitives}
+\caption{Central Detector trigger primitives.}
 \label{tab:cd_trig_primitives}
 \end{table}
 
@@ -217,7 +217,7 @@ The Stage 3 trigger is the final stage and collects all sector and central trigg
 		\hline \hline
 	\end{tabular}
 \end{center}
-\caption{Stage 3 trigger specifications}
+\caption{Stage 3 trigger specifications.}
 \label{tab:stage_3_specs}
 \end{table}
 
