@@ -81,15 +81,15 @@ The resulting information is organized into standardized output bank structures 
     \label{tab:pidmatrix}
     \begin{tabular}{|c|cccccc|}\hline
           & \multicolumn{6}{c|}{Truth}\\        
-          & $e$ & $\pi$ & $K$ & $p$ & $n$ & $\gamma$ \\\hline
-  $e$     &     &       &     &     &     &          \\ 
-  $\pi$   &     &       &     &     &     &          \\ 
-  $K$     &     &       &     &     &     &          \\ 
-  $p$     &     &       &     &     &     &          \\ 
-  $n$     &     &       &     &     &     &          \\ 
- $\gamma$ &     &       &     &     &     &          \\\hline 
+          & $e$  & $\pi$ & $K$  & $p$  & $n$  & $\gamma$ \\\hline
+  $e$     & 0.98 &       &      &      &      &          \\ 
+  $\pi$   &      &  0.87 & 0.13 & 0.01 &      &          \\ 
+  $K$     &      &  0.08 & 0.78 & 0.01 &      &          \\ 
+  $p$     &      &  0.03 & 0.03 & 0.96 &      &          \\ 
+  $n$     &      &       &      &      & 0.57 &   0.01   \\ 
+ $\gamma$ &      &       &      &      & 0.46 &   0.95   \\\hline 
     \end{tabular}
-  \caption{Pariticle identification matrix, based on simulation for particles between 1 and 4 GeV momentum.  The diagonal elements are correctly identified, while the off-diagonal elements are misidentified.}
+  \caption{Pariticle identification matrix for the FD acceptance, based on simulation for hadrons between 1 and 4.5 GeV momentum (FIXME, cutoff at 2.5 GeV for charged, 2 or 3 GeV for neutron (beta of 0.9 or 0.95)).  The diagonal elements are correctly identified, while the off-diagonal elements are misidentified.}
   \end{center}
 \end{table}
 
