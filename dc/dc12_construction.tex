@@ -2,15 +2,6 @@
 \label{construction}
 \subsection{Construction Overview}
 
-The chambers were designed with individual holes and holders for
-each wire, i.e. a ``strung'' rather than a ``wound'' chamber.  Our 
-inspection and assembly procedures were designed to produce devices with 
-wires placed and known by external survey to an accuracy of less than 1 mm. 
-In addition to accuracy, we have chosen materials and designed 
-procedures to insure a quiet and long-lived detector.  The construction 
-and wire-stringing techniques were based on our already successful {\tt CLAS} 
-drift chamber design.
-
 The three chamber types (called ``regions'', with ``Region 1'' abbreviated as 
 ``R1'', etc.)  share the same basic design elements simply
 scaled up in size by a factor of 1.5 for R2 relative to R1 and a factor
@@ -38,11 +29,12 @@ same basic parts.
 
 The chamber bodies were constructed from the accurately machined plates
 (2 endplates, a ``nose-plate'' and a ``back-plate'').
-The endplates themselves were an assembly of a basic plate with precision-drilled
+The endplates themselves were an assembly of a main plate with precision-drilled
 holes to which we bolted and glued stiffener bars.  In the case of
-R1 the plate was aluminum and the stiffener bars were stainless steel;
-for R2 the plates were G10 and the bars stainless steel, and for R3
-the plates were an assembly of thin steel plates with a foam interior.
+R1 the main plate was aluminum and the stiffener bars were stainless steel;
+for R2 the main plates were G10 and the bars stainless steel, and for R3
+the main plates were themselves an assembly of two thin steel plates with a foam interior.
+No additional stiffener bars were used for R3.
 
 At the radially outward end of each chamber, a thick ``back-plate'' was 
 employed to maintain the relative 
@@ -52,9 +44,11 @@ end of each chamber, the endplates were connected together via a small joining
 piece called the ``nose-plate''.  The hardware fabrication and placement 
 was of critical importance to the dimensional accuracy of the chambers.
 
-\subsection{Construction Materials}
 
-\hskip 0.15 in
+
+\subsection{Construction Materials}
+\label{materials}
+
 To insure that the drift chambers perform well for 10 years or more, care was taken to 
 specify that all materials in contact with the gas volume were clean and ``chamber 
 safe'' as defined in Ref.~\cite{kadyk}.  All construction was carried out in 
@@ -83,29 +77,17 @@ silicones contacted any of the chamber materials.
 
 
 
-\subsection{Endplate Design and Construction}
+\subsection{Chamber Body Construction}
 
-As noted above our chambers have wires strung from one endplate to 
-the other. 
-Each endplate was constructed with 4928 accurately positioned holes into 
-which the wire-fixture assemblies were placed and glued.  The sense, field, 
-and guard wires in each 
-sector were strung between pairs of wire ``feedthroughs''.  As the endplates of 
-each chamber faced each other at a 60$^{\circ}$ angle, the wires had to bend 
-30$^{\circ}$ at each endplate.  This was accomplished by means of a large radius 
-stainless-steel insert at the tip of each feedthrough known as a ``trumpet''.
-
-This trumpet was fitted into an injection-molded Noryl plastic feedthrough.  
-The Noryl plastic was reinforced with glass beads to make them stiffer.
-During early prototype testing, it was determined that the surface conductivity
-of this glass-bead loaded composite was little affected by room humidities
-as high as 60\%.  This is in contrast to similar plastic strengthened
-with microscopic glass strands, which performed poorly in high-voltage stand-off
-tests in humid conditions.
-
-All wires were held in place using gold-plated copper crimp pins.  
-Low-outgassing epoxy was employed to ensure a gas seal around the feedthroughs 
-and crimp pins.  
+The construction of the chamber bodies consisted of 3 main stages:
+\begin{itemize}
+\item receipt, inspection and cleaning of parts,
+\item assembly of the main drilled plate and stiffener bars into a complete endplate,
+followed by insertion and gluing of the feedthroughs into the pre-drilled holes 
+in the main plate, and 
+\item over-all assembly of the endplates and nose- and back-plates to make
+a chamber ``box''.
+\end{itemize}
 
 \subsubsection{Inspection and Cleaning}
 
@@ -124,20 +106,29 @@ bench-top ultrasonic cleaner with laboratory detergent, followed by a
 de-ionized water rinse and a dousing of methanol to facilitate drying.  
 In addition, the injection-molded parts were specified to be free of silicon 
 mold releases.
+ 
+\subsubsection{Endplate and Chamber Body Assembly}
+The endplates were assembled on a table in the cleanroom.  The various parts,
+the pre-drilled main plate and the various stiffener bars, were pinned
+and glued into place.  
+Once the endplate assembly was finished,
+wire feedthrough insulators were inserted and glued into each hole. Special care was 
+taken to use only the minimal amount of glue required to provide a solid gas 
+seal and to prevent glue contamination inside the detector.  
+
+Once the endplates were assembled, the chamber box was assembled from the
+endplates, nose-plate and back-plates using a variety of special-purpose
+fixtures.  With the box held in its final configuration, parts were bolted
+and glued into place using the special glues mentioned in Subsection~\ref{materials}.
 
 
 
 \subsection{Wire Choice}
-\hskip 0.15in
+
 Our ``thin endplate'' design required minimizing wire tensions and
 thus diameter of the wire.  The real key to reducing wire tension is to
 make the field wires (which are much larger than the sense wires) as 
-thin as possible and to make them out of low-density metal.  In this 
-section we describe our choices for sense, field and guard wires.
-We had to trade off the robustness and more uniform drift velocity
-afforded by large diameter sense wire with the disadvantages that they
-required higher voltages to reach the same gas gain; 
-a potential problem for our high-density signal amplifier boards.
+thin as possible and to make them out of low-density metal.  
 
 In general, designers have chosen very small diameter sense wires because they
 require lower operating voltages.
@@ -202,37 +193,35 @@ Section ~\ref{geom_distortions}.
 
 
 \subsection{Chamber Wire Stringing}
+The sense, field, 
+and guard wires in each 
+sector were strung between pairs of wire ``feedthroughs''.  As the endplates of 
+each chamber faced each other at a 60$^{\circ}$ angle, the wires had to bend 
+30$^{\circ}$ at each endplate.  This was accomplished by means of a large radius 
+stainless-steel insert at the tip of each feedthrough known as a ``trumpet''.
 
+This trumpet was fitted into an injection-molded Noryl plastic feedthrough.  
+The Noryl plastic was reinforced with glass beads to make them stiffer.
+During early prototype testing, it was determined that the surface conductivity
+of this glass-bead loaded composite was little affected by room humidities
+as high as 60\%.  This is in contrast to similar plastic strengthened
+with microscopic glass strands, which performed poorly in high-voltage stand-off
+tests in humid conditions.
+
+All wires were held in place using gold-plated copper crimp pins.  
+Low-outgassing epoxy was employed to ensure a gas seal around the feedthroughs 
+and crimp pins.  
 
 Because all of the chambers have the same shape, differing only in
 size and some materials, we strung them all using the same basic method.
-They were gravity-strung using the same basic methodology 
+They were gravity-strung using a similar methodology to that 
 used when stringing the previous CLAS drift chambers.  The detector box 
 assembly was mounted to a stringing fixture.  The frame was connected to 
 the fixture using attachments that allowed the chambers to rotate along 
 their center of mass.  This permitted safe and easy 
-rotation of the detector by hand.  A gantry crane was used to lift the 
-detector onto and off the stringing fixture and to raise the small end of 
-the detector to account for the stereo angles.
-
+rotation of the detector by hand.  
 The stringing fixture was mounted to the floor using 
-concrete anchors.  This minimized floor obstruction as the box had to be 
-rotated to its opposite side to string the second set of wires.  The box 
-and frame assembly were placed far enough away from the uprights such that 
-they did not interfere with stringing activities.  There was a gross 
-adjustment using 
-the gantry crane to lift the telescoping side and pin it on the adjustment 
-collar.  The collar had a fine adjustment to allow setting it at the most 
-favorable stringing angle.  The detector box was rotated 180$^\circ$ to 
-string the second superlayer.
-
-Once the detector was installed onto the fixture, wire feedthrough 
-insulators were inserted and glued into each hole. Special care was 
-taken to use only the minimal amount of glue required to provide a solid gas 
-seal and to prevent glue contamination inside the detector.  Once one 
-endplate was filled, the assembly was rotated such that the other side 
-could be done.  Once all wire feedthrough inserts were in place, the box 
-was pre-tensioned.
+concrete anchors, minimizing floor obstruction.
 
 Under full wire tension, the endplates bow inward as much as 2~mm 
 (see Section~\ref{geom_distortions} for a discussion of this issue).

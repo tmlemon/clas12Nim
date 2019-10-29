@@ -26,7 +26,8 @@ Units (FEU) housed in crates $\sim$1.5--2~m upstream of the detectors.
 The front-end electronics are responsible for the amplification and shaping of the detector signals, for holding the latter in a
 pipeline waiting for the trigger process to yield, for the digitization and compression of the selected event data, and for their
 delivery to the back-end electronics. The back-end is responsible for data concentration event by event. It provides an interface
-with the CLAS12 event building system, ensures a fixed latency path between the CLAS12 trigger system~\cite{nim:trig} and
+with the CLAS12 event building system, ensures a fixed latency path between the CLAS12 trigger system~\cite{trigger-nim} 
+and
 the FEUs, and receives the system clock and trigger from the CLAS12 trigger supervisor and synchronously conveys them to the
 FEUs over bidirectional optical links.
 
@@ -103,7 +104,7 @@ power consumption or functionality.
 
 The back-end of the data acquisition system of the MVT is based on the JLab standard VME/VXS hardware including a trigger
 interface (TI), a signal distribution (SD) and a sub-system processor (SSP) board, and a crate controller single board computer
-(SBC)~\cite{nim:daq}. The flow of the trigger, data, and control messages is shown in Fig.~\ref{fig:mm-e_4}. 
+(SBC)~\cite{daq-nim}. The flow of the trigger, data, and control messages is shown in Fig.~\ref{fig:mm-e_4}. 
 
 \begin{figure}[htb]
  \includegraphics[width=1.0\columnwidth,keepaspectratio]{images/electronics_fig4.png}
@@ -135,7 +136,8 @@ programmable number of events, are constructed in the external DDR2 memory. Upon
 SBC, the contents of the buffers are transferred to its memory over the VME64 backplane using the 2SST protocol. Transmission
 rates of $\sim$200~Mbyte/s are routinely achieved.
 
-The SBC executes the data collection and the run control tasks within the CODA software framework~\cite{CODA}. It also
+The SBC executes the data collection and the run control tasks within the CODA software framework~\cite{daq-nim}. It 
+also
 completes the data integrity checks performed in the SSP firmware, disentangles multi-event buffers, forms MVT events
 concatenating the FEU/SSP data with the corresponding TI data, and sends them to the CLAS12 Event Builder over a 10~GB/s
 Ethernet link.
