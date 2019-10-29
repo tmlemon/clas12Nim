@@ -31,7 +31,7 @@ Details on the installation of Arch Linux with ARMv7 are as following:
   \begin{itemize}
   \item Available at https://archlinuxarm.org/
   \item Filesystem over NFS
-  \item diskless booting using tftp (UBoot)
+  \item Diskless booting using tftp (UBoot)
   \end{itemize}
 \end{itemize}
 
@@ -45,7 +45,7 @@ The CLAS12 Trigger System has a large number of parameters controlling its logic
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/config.png}
-	\caption{Configuration file example. Flat text configuration files were used for all DAQ and Trigger Components. Download and Upload procedures were implemented, with uploaded settings being stored into data files and databases. The format used allows personnel with appropriate training to understand and modify the system settings using text editors. Version control is inforced using Github.}
+	\caption{Configuration file example. Flat text configuration files were used for all DAQ and trigger components. Download and Upload procedures were implemented, with uploaded settings being stored into data files and databases. The format used allows personnel with appropriate training to understand and modify the system settings using text editors. Version control is enforced using Github.}
 	\label{fig:config}
 \end{figure}
 
@@ -55,7 +55,7 @@ The CLAS12 Trigger System has a large number of parameters controlling its logic
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/delay_scan_ctof_ft.png}
-	\caption{CTOFxFT Delay Scan. In this scan the FT trigger time was fixed as having the smallest jitter, and the CTOF trigger delay was changing. Similar delay scans were measured for all detectors participating in the trigger logic, to make sure all trigger components are in time.}
+	\caption{CTOFxFT Delay Scan. In this scan the FT trigger time was fixed as having the smallest jitter, and the CTOF trigger delay was changed. Similar delay scans were measured for all detectors participating in the trigger logic, to make sure all trigger components were in time.}
 	\label{fig:delay_scan_ctof_ft}
 \end{figure}
 
@@ -69,4 +69,4 @@ One of the important settings in the Trigger System is for the FADCs. As stated 
 
 \subsection{Readout and Control Software}
 
-All trigger hardware modules were implemented in VXS format and installed into VXS crates along with the other DAQ electronics. All readout and control libraries were developed as part of the DAQ System software project as described in \cite{daq-ref}. From the software point of view, the DAQ and Trigger Systems can be considered as one system equipped with standard software tools.
+All trigger hardware modules were implemented in VXS format and installed into VXS crates along with the other DAQ electronics. All readout and control libraries were developed as part of the DAQ System software project as described in Ref.~\cite{daq-ref}. From the software point of view, the DAQ and Trigger Systems can be considered as one system equipped with standard software tools.
