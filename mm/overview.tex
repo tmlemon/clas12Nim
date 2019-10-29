@@ -1,10 +1,10 @@
 \section{Introduction}
 
 The baseline design of the CEBAF Large Acceptance Spectrometer for use at the 12~GeV Jefferson Laboratory
-(JLab) facility (CLAS12)~\cite{nim:clas12} includes two tracking detector systems. A Silicon Vertex Tracker (SVT)
-\cite{nim:svt} consists of a polyhedral arrangement around the target and resides in a 5~T solenoid magnetic field to
+(JLab) facility (CLAS12)~\cite{clas12-nim} includes two tracking detector systems. A Silicon Vertex Tracker (SVT)
+\cite{svt-nim} consists of a polyhedral arrangement around the target and resides in a 5~T solenoid magnetic field to
 detect particles emitted between 40$^\circ$ and 130$^\circ$ with respect to the beam direction. The forward tracking
-system consists of drift chambers~\cite{nim:dc} placed before, within, and after a toroidal magnetic field and covers
+system consists of drift chambers~\cite{dc-nim} placed before, within, and after a toroidal magnetic field and covers
 the polar angle interval between 5$^\circ$ and 35$^\circ$. 
 
 In 2010, a proposal submitted by the IRFU group at CEA-Saclay for an upgrade of the baseline CLAS12 design was
@@ -17,7 +17,7 @@ angle resolutions both in the central and in the forward tracking systems compar
 \cite{CLAS-NOTE2007-004,CLAS-NOTE2010-003}.
 
 Together, the SVT and the BMT form the Central Vertex Tracker (CVT). The CVT is surrounded by two scintillator-based
-detectors called the Central Time-Of-Flight (CTOF)~\cite{nim:ctof} and the Central Neutron Detector (CND)~\cite{nim:cnd}
+detectors called the Central Time-Of-Flight (CTOF)~\cite{ctof-nim} and the Central Neutron Detector (CND)~\cite{cnd-nim}
 that provide particle identification information.
 
 \section{System Description}
@@ -50,11 +50,13 @@ configuration the mesh is grounded and the high voltage for amplification is pos
 The Barrel Micromegas Tracker consists of six layers of cylindrical detectors, three with strips along the beam axis (Z strips)
 that provide information about the azimuthal angle of the particle and three with circular strips (C strips) perpendicular to the
 beam axis that significantly improves the polar angle determination with respect to that extracted from the SVT information
-alone. Each layer is made of three curved detectors covering 115$^\circ$ each. A total of 18 curved detectors are assembled on
-a carbon structure to complete the BMT. In addition to the resistive technology, these detectors make use of the bulk technology,
-meaning that the micromesh is embedded with the pillars on top of the resistive strips~\cite{GIOMATARIS2006405}. The bulk
-technology enforces a uniform distance between the micromesh and the strips, consequently maintaining a uniform gain over the
-detector surface, despite the mechanical stress induced by the curvature of the tile.
+alone. The strips orientation, the pitch and the radial distance to the centre is listed in 
+Table~\ref{tab:bmt_strips}. Each layer is made of three curved detectors covering 115$^\circ$ each. A total of 18 
+curved detectors are assembled on a carbon structure to complete the BMT. In addition to the resistive technology, 
+these detectors make use of the bulk technology, meaning that the micromesh is embedded with the pillars on top of the 
+resistive strips~\cite{GIOMATARIS2006405}. The bulk technology enforces a uniform distance between the micromesh and the 
+strips, consequently maintaining a uniform gain over the detector surface, despite the mechanical stress induced by the 
+curvature of the tile.
 
 \begin{table}
     \centering
@@ -71,6 +73,7 @@ detector surface, despite the mechanical stress induced by the curvature of the 
     \hline
     \end{tabular}
     \caption{Radius, pitch, and strip orientation of the different BMT layers.}
+    \label{tab:bmt_strips}
 \end{table}
 
 \begin{figure}[htb]
