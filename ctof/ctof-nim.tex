@@ -1231,7 +1231,9 @@ recorded is relative to the trigger. To determine the flight time of the charged
 the CTOF, the TDC time must be correlated with the time of the accelerator radio frequency (RF) pulse.
 The RF signal from the accelerator has a period of 2.004~ns. The RF bunch length itself corresponds to
 about 2~ps. Although the timing signal is very accurate (with a resolution of $<$20~ps), the determination
-of which beam bunch produced a given interaction must be determined by the experiment.
+of which beam bunch produced a given interaction must be determined by the experiment. Note that for
+the initial beam operations with CLAS12 the electron beam was actually delivered in every other beam bunch,
+resulting in an effective $T_{RF}$ of 4.008~ns.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
@@ -1251,7 +1253,7 @@ sequentially for a given data run (where a run typically lasts for about two hou
 associated calibration constants for each run are stored in the CLAS12 calibration database (ccdB)
 \cite{recon-nim}. After the calibration of a given data reference run is completed, the calibrations for
 subsequent data runs are only carried out if there is a response shift outside of our allowed timing or energy
-tolerances (which are typically 5\%). The steps to the complete the CTOF calibration are carried out in a
+tolerances (which are typically 5\%). The steps to complete the CTOF calibration are carried out in a
 particular sequence as detailed in Ref.~\cite{ctof-calib} and shown schematically in the calibration flowchart of
 Fig.~\ref{calib-seq}. The individual steps include:
 
@@ -1675,7 +1677,7 @@ from the upstream and downstream PMTs using a linear function. The TDC calibrati
 fixes the slope of $t_{res}'$ vs. TDC to be zero. Figure~\ref{tdc-plot} shows the distribution of $t_{res}'$
 vs. TDC for a representative CTOF PMT. Any bin-to-bin $\Delta t$ variations reflect remaining integral
 non-linearities in the measured TDC compensation tables. At the present time a single conversion constant
-of CONV = 23.45~ps/channel is employed for the CTOF system TDCs. This value is derived using a TDC
+of CONV = 23.45~ps/bin is employed for all CTOF system TDC input channels. This value is derived using a TDC
 channel that digitizes the RF time (our most accurate time reference in Hall~B). For this reason individual
 TDC channel calibrations are not shown as a separate step in Fig.~\ref{calib-seq} an the channel-by-channel
 TDC calibrations done for CTOF serve only as a cross-check.
