@@ -1,4 +1,6 @@
 \section{Drift Chamber Calibration Procedures}
+\label{calibration}
+
 Forward-going (5$^{\circ}$ to 40$^{\circ}$) tracks are fit to
 wire hit positions in each of the 36 wire planes.  These
 hit positions are not simply the wire location, but 
@@ -7,18 +9,18 @@ to the wire, derived from the wire hit's recorded TDC value.
 
 Here we discuss our procedures to calibrate our TDC to DOCA conversion
 tables, as well as specialized alignment procedures we undertook
-to most accurately determined the wire positions themselves.
+to most accurately determine the wire positions themselves.
 Finally, we close with a summary of our magnetic field measuring
-and modelling procedures.
+and modeling procedures.
 
 \subsection{Time to Distance Calibration}
-The drift chamber Time to Digital Converters (TDC) measure time.  
+The drift chamber Time-to-Digital Converters (TDC) measure time.  
 These TDC units are part of our overall Drift Chamber Readout Boards (DCRB) and
 have an intrinsic resolution of 1 ns or better; too small to be relevant to
 our overall time to distance calibration.
 
 First, the digitized time is corrected for a number
-of effects, and this corrected time is converted to a Distance of Closest Approach (DOCA), by 
+of effects, and this corrected time is converted to a distance-of-closest-approach (DOCA), by 
 a pre-calculated time to distance function.  In this subsection we 
 explain the time corrections, the function used to calculate time as a 
 function of DOCA and how we calibrate the parameters of this function.
@@ -27,7 +29,6 @@ function of DOCA and how we calibrate the parameters of this function.
 The drift time is the elapsed time between the time that the particle 
 traversed the wire cell and the time that the released gas ions (electrons)
 reached the sense wire.
-
 The drift time is given by the following expression:
 \begin{equation} 
 \label{tdrift}
@@ -45,10 +46,10 @@ With a trigger based on detecting an electron in the CLAS12 detector, the event 
 given by the time-of-flight counter time for the primary scattered electron 
 corrected for the calculated flight time of this electron from the beam-target vertex.
 
-As indicated in equation~\ref{tdrift}), the fixed-time delays 
+As indicated in Eq.~\ref{tdrift}, the fixed-time delays 
 for each wire must be known in order to determine the drift times.   To determine
 this $t_0$ value, we produced a histogram of the following quantity for all hits
-used on tracks:$ ( t_{tdc} - t_{start} - t_{flight} - t_{prop} - t_{walk} )$.
+used on tracks:~$ ( t_{tdc} - t_{start} - t_{flight} - t_{prop} - t_{walk} )$.
 This produced a characteristic plot of a drift chamber signal on a flat
 background from out-of-time tracks.  
 A fit to the leading edge returned the value of $t_0$.
@@ -57,7 +58,7 @@ A fit to the leading edge returned the value of $t_0$.
 \label{tdistcal}
 After correcting the raw TDC, we needed to convert the corrected time from
 the wire to an estimated distance of closest approach (DOCA).
-Note, we refer to two variants of DOCA: one is ``TRKDOCA'' which is the
+Note, we refer to two variants of DOCA: one is ``TRKDOCA'', which is the
 fit value of the track's closest approach to the wire and the other is ``DOCA'',
 which is calculated from the measured time for the wire hit.
  
@@ -81,14 +82,13 @@ determine the drift distance to the sense wire from the measured drift time.
 
 %%%%%%%%%%%%%%%%%%%%%% Figure : Garfield Picture %%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htpb]
-\vspace{8cm} 
+\vspace{6.5cm} 
 \special{psfile=img/garfield.eps hscale=70 vscale=70 hoffset=0 voffset=-200}
 \caption{\small{Plot of electric-field lines and equal-time isochrone contours
 (100 ns interval) for a 90$\%$ argon - 10$\%$ CO$_2$ gas mixture for (a) an R3
 drift cell where two rays are drawn highlighting two different track entrance 
 angles of $\alpha$ = 0$^{\circ}$ and 30$^{\circ}$, and (b) an R2 cell that 
-was assumed to be located within a uniform 1~T magnetic field along the z 
-direction.}}
+was assumed to be located within a uniform 1~T magnetic field pointing into the page.}}
 \label{garfield-isochrones}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,27 +97,27 @@ direction.}}
 \label{funcpar} 
 
 In the CLAS detector, the drift distance was parameterized and fit as a function
-of drift time.~\cite{mdm95}
+of drift time~\cite{mdm95}.
 In contrast, for CLAS12, we have instead chosen to parameterize the time as a function of
 distance.  This is a more natural description of the drift chamber signal
 for several reasons:
 \begin{itemize}
 \item the maximum drift distance is given by geometry (the distance from
-a sense wire to the nearest field wire) and so it is fixed
+a sense wire to the nearest field wire) and so it is fixed;
 \item the drift velocity is a function of electric field strength, so the
 point of minimum field is the point of minimum velocity (and thus the inflection point on the T vs X curve). 
 This inflection point of the curve occurs at a
-definite value of distance within the cell and not at a definite value of time
+definite value of distance within the cell and not at a definite value of time;
 \item the time walk due to finite ionization is
-naturally parameterized as a function of distance and not as a function of time, and
-\item  a time correction for wires in a magnetic field, $B$ which
+naturally parameterized as a function of distance and not as a function of time; and
+\item  a time correction for wires in a magnetic field (which
 scales like $B^2$) can simply be added to the nominal functional form.
 \end{itemize}
 
 This single functional form is used to fill two tables: 
 \begin{enumerate}
 \item a table of time indexed by distance for use in the simulation, and 
-\item a tabe of distance indexed by time for use by the track reconstruction code
+\item a table of distance indexed by time for use by the track reconstruction code
 \end{enumerate}
 
 
@@ -126,8 +126,8 @@ We use a 4th order polynomial to model the distance to time relationship.
 \begin{equation}
 t(x) =  a x + b x^2 + c x^3 + d x^4
 \end{equation}
-where t is the time in ns and x is the distance in cm.
-By the use of simple calculus we convert the parameters a, b, c and d to equivalent 
+where $t$ is the time in ns and $x$ is the distance in cm.
+By the use of simple calculus we convert the parameters $a, b, c,$ and $d$ to equivalent 
 parameters which have
 a physically intuitive meaning.
 
@@ -136,7 +136,7 @@ a physically intuitive meaning.
 Inspection of  Fig.~\ref{garfield-isochrones} reveals that for tracks near the outer
 edge of the cell, the first arriving ions follow the electric-field line from 
 the field wire to the sense wire, independent of track entrance angle.  The
-corresponding drift time is referred to as $T_{max}$ and occurs when TRKDOCA is at its maximum value,
+corresponding drift time is referred to as Tmax and occurs when TRKDOCA is at its maximum value,
 called ``Dmax''.
 
 A second constraint is that the velocity near the wire is the ``saturated drift
@@ -150,18 +150,18 @@ $r = (x/Dmax) \approx 0.64$ and the drift velocity at this point is termed $V_{m
 
 A summary of constraints on the function coefficients:
 \begin{enumerate}
-\item  $t(x)$ must equal $T_{max}$ when $x = Dmax $.
+\item  $t(x)$ must equal Tmax when $x = Dmax $;
 \item  the drift velocity near the sense wire ($x = 0$)
-must equal the saturated value, $V_0$
+must equal the saturated value, $V_0$;
 \item the function has an inflection point (a
 mininum in velocity) at the point in the cell with the lowest electric field
 strength.  From the geometry of our cells, this occurs at a distance
-of $\approx 0.64 \times Dmax$.  Finally,
+of $\approx 0.64 \times Dmax$; and
 \item the velocity equals $V_{mid}$ at the inflection point.
 \end{enumerate}
 
-In this way we convert our original parameters, a, b, c and d to the physically meaningful
-parameters $t_{max}, V_0, r, and V_{mid}$ where $r$ is the value 0.64 (the fractional distance
+In this way we convert our original parameters, $a, b, c$ and $d$ to the physically meaningful
+parameters $Tmax, V_0, r$, and $V_{mid}$ where $r$ is the value 0.64 (the fractional distance
 at which the inflection point occurs) which can in principle also be varied.
 These secondary (physically meaningful) parameters are the ones which are used
 by our distance to time calibration program.
@@ -172,18 +172,18 @@ of drift distance for tracks with a local angle, $\alpha = 30^0$ and for magneti
 Tracks with local angle, $\alpha$ less than $30^0$, have a maximum distance that is
 smaller than Dmax.  
 
-Please refer back to Fig.~\ref{xvst} in order to understand the local-angle dependence
-of distance versus time.  When the time is equal to $t_{max}$ the distance is equal to
-the largest value for the local angle; that is, $dmax_{\alpha}$.  Also note that by
-simple geometrical reasoning, $dmax_{\alpha} = dmax$  $cos(30-\alpha)$.
-We assume that at times less than tmax and distances less than dmax, the calculated
+Fig.~\ref{xvst} provides an illustration of the local-angle dependence
+of distance versus time.  When the time is equal to Tmax the distance is equal to
+the largest value for the local angle; that is, $Dmax_{\alpha}$.  Also note that by
+simple geometrical reasoning, $Dmax_{\alpha} = Dmax \times cos(30-\alpha)$.
+We assume that at times less than Tmax and distances less than Dmax, the calculated
 distances still vary linearly as $cos(30-\alpha)$.  This angle dependence is built into
 our functional form.
 
 
 Fig.~\ref{garfield-isochrones} shows a 0 degree track and a 30 degree
 track, both at maximum distance from the sense wire.  They will produce
-a signal hit with the same time, $T_{max}$, even though their distance-of-closest-approach 
+a signal hit with the same time, Tmax, even though their distance-of-closest-approach 
 differs by a factor
 of cos$(30^{0})$.  If Dmax is the distance from sense to field wire (and the maximum
 DOCA possible for a 30 deg. track), then Dmax times $\cos(30^\circ-\alpha)$ is the maximum
@@ -192,13 +192,13 @@ We derived the function for time
 versus distance for a particular local angle, $\alpha$, by
 assuming the same functional form as for $\alpha = 30$ but 
 with a {\bf different coefficient, d}, which 
-satisfies the constraint that  $F(dmax_{\alpha},\alpha)$ = $t_{max}$
+satisfies the constraint that  $F(Dmax_{\alpha},\alpha)$ = Tmax.
 
 Using this constraint, we can solve for $a_{\alpha}$ in terms of the coefficients a, b, c and d,
 yielding the following:
 \begin{equation}
 \label{aalphaequation}
-d_{\alpha} = {{t_{max} - a ~dmax_{\alpha} - b ~dmax_{\alpha}^2 - c ~dmax_{\alpha}^3}\over{dmax_{\alpha}^4}}
+d_{\alpha} = {{Tmax - a ~Dmax_{\alpha} - b ~Dmax_{\alpha}^2 - c ~Dmax_{\alpha}^3}\over{Dmax_{\alpha}^4}}
 \end{equation}
 
 Using this formula for $d_{\alpha}$ we can derive the time as a function of distance and local
@@ -206,7 +206,7 @@ angle, $\alpha$ as shown in Fig.~\ref{xvst}.  See, for instance, the upper-left 
 which shows the time as function of distance for 5 different angles between $0^{\circ}$ and 
 $30^{\circ}$, equally spaced in $\cos \left(30^\circ-\alpha\right)$.  Note two things:
 \begin{enumerate}
-\item for each angle, $\alpha$, the time is $t_{max}$ at $dmax_{\alpha}$, and
+\item for each angle, $\alpha$, the time is Tmax at $Dmax_{\alpha}$, and
 \item the distances for a given time vary with angle, $\alpha$, as $\cos \left(30^\circ-\alpha\right)$.
 \end{enumerate}
 
@@ -221,7 +221,7 @@ t(x,\alpha) = a x + b x^3 + c x^3 + d_{\alpha} x^4
 Since the R2 chambers are located within the field region of the CLAS torus, the 
 magnetic field affects the drift velocity as shown in 
 Fig.~\ref{xvst}b.  In particular, the field rotates and shrinks the isochrones
-as shown in Fig.~\ref{garfield}b.  These effects can be modeled by a 
+as shown in Fig.~\ref{garfield_isochrones}b.  These effects can be modeled by a 
 modification to the effective entrance angle of the track and by an increase 
 in the time at a particular DOCA.  Both of these corrections are assumed to depend only on the 
 magnitude of the magnetic field, and not its direction, following a study 
@@ -234,7 +234,7 @@ entrance angle.
 \alpha_b = \alpha_0 + \cos^{-1}(1 - b_{rot} B), 
 \end{equation}
 
-where $b_{rot}$ is a constant equal to $0.02$ deg/Tesla and $B$ is the magnetic field strength in Tesla and angular
+where $b_{rot}$ is a constant equal to $0.02$ deg/T and $B$ is the magnetic field strength in Tesla and angular
 units are degrees.
 
 %%%%%%%%% Figure : TRKDOCA vs. Drift Time -- Angle and Field Dependence %%%%%%%%%%
@@ -244,7 +244,7 @@ units are degrees.
 \caption{\small{Scatterplot of the corrected drift time versus TRKDOCA for 
 (upper-left) R1, showing curves for various local angles from 30$^{\circ}$
 (righmost curve) to 0$^{\circ}$ (leftmost curve).  (Upper-right) for R2; 
-additionally showing 3 bands for B-field magnitudes of 0, 1, 1.5 Tesla.
+additionally showing 3 bands for B-field magnitudes of 0, 1, 1.5 T.
 (Lower-left) for R3 with the inflection point identified.}}
 \label{xvst}
 \end{figure}
@@ -363,9 +363,9 @@ to give a ``change of residual'' distribution caused by a given ``unit distortio
 We then fit the observed residual distribution from the data to a weighted
 sum of the 18 ``change of residual'' distributions.  In principle, we
 could have had 18 free parameters, but in practice we had 12 free parameters:
- $\delta$ x, $\delta$ y, $\delta$ z, and $\theta$ y for each of the 3 chambers: R1, R2 and R3,
-where $\theta y$ is a tilt of a chamber.  The yaw ($\theta x$) and roll ($\theta z$)
-were not varied because they did not improve the fits.
+ $\delta$~x, $\delta$~y, $\delta$~z, and $\theta$~y for each of the 3 chambers: R1, R2 and R3,
+where $\theta y$ is a tilt of a chamber.  We did not vary the yaw ($\theta x$) and 
+roll ($\theta z$) degrees of freedom.
 
 Fig.~\ref{resids-vs-layer-before} plots the mean of the residuals of a straight-line
 fit to the tracks versus layer (1 - 36 layers of the chambers), for one sector (in this
@@ -379,8 +379,8 @@ R3 from 25-36).
 \begin{figure}[htbp]
 \vspace{6cm}
 \begin{picture}(50,50)
-\put(-30,10)
-{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-before.png}}}
+\put(-60,10)
+{\hbox{\includegraphics[width=0.9\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-before.png}}}
 \end{picture}
 \caption{\small{A plot of the fit residual mean versus layer, before alignment.}}
 \label{resids-vs-layer-before}
@@ -402,8 +402,8 @@ aligned the chambers.
 \begin{figure}[bhtp]
 \vspace{12cm}
 \begin{picture}(50,50)
-\put(-30,10)
-{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-after.png}}}
+\put(-90,10)
+{\hbox{\includegraphics[width=0.9\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-after.png}}}
 \end{picture}
 \caption{\small{A plot of the fit residual mean versus layer, after alignment.}}
 \label{resids-vs-layer-after}

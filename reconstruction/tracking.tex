@@ -17,15 +17,39 @@ consistent with belonging to a trajectory (i.e. track) are identified. This set 
 expected trajectory with their uncertainties, incorporating the knowledge of the detector material and
 the detailed magnetic field map.
 
+CLAS12 has a unique magnetic field configuration that involves tracking though both a solenoidal and toroidal field. Tracks reconstructed in the forward detector are fit in the forward tracking detectors and subsequently swam to the beam line through both fields.  A view of the field intensities in the $(z,x)$ plane and overlap region for the torus and solenoid fields is shown in Fig.~\ref{fig:fields}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{pics/Bfields.png}
+\caption{Event display of the CLAS12 magnetic fields. 
+}
+\label{fig:fields}
+\end{figure}
+
 \subsection{Forward Tracking}
 
 \subsubsection{Hit Reconstruction}
 
 The Drift Chamber (DC) wire hit information is given by the wire geometrical location and the drift time
 to the wire. Track-dependent corrections to the hit, such as left-right ambiguity and time-walk must then
-be performed. Pattern recognition for the DC is done to first order on a ``hit-based'' basis. In hit-based
+be performed. 
+Pattern recognition for the DC is priori done using only wire position information and searching for groups of hits forming clusters.  This portion of the algorithms is called ``hit-based'' tracking.  In hit-based
 tracking, a hit is defined as a wire with a recorded signal.  No timing information is incorporated at the
-preliminary stage of the reconstruction.  Uncorrelated hit noise in the DC are identified by a Simple Noise
+preliminary stage of the reconstruction.  
+After a ``hit-based''  track has been found, corrections to the raw TDCs of the hits on track resulting from the propagation time along the hit wire, the signal time of flight, the event start time and the cable delays are applied to determine the hit time.  A distance of closest approach (DOCA) to the hit wire is estimated from the time.  At this stage the tracking is redone using the calculated DOCAs in order to fit the track (see Fig.~\ref{fig:docas}.  This portion of the DC reconstruction phase is called ``time-based'' tracking.  The calibration parameters entering in the function used to convert distance to time that is inverted in reconstruction (see Ref. DC paper) are extracted from the distance of local fits to the DOCAs using a linear function to the wire position. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.2\textwidth]{pics/dcPattern10.png}
+\caption{
+Illustration of DOCA computed from the corrected time and of the distance from the wire to the track (TrackDoca).
+}
+\label{fig:docas}
+\end{figure}
+
+In hit-based
+tracking, uncorrelated hit noise in the DC are identified by a Simple Noise
 Removal (SNR) algorithm and rejected. SNR stores all the data for a drift chamber layer (112 sense wires)
 bitwise in an extended 128-bit word, with "set" bits corresponding to hits. The algorithm is configured
 through parameters specifying the maximum tilt of a track segment and the number of missing layers
@@ -34,41 +58,65 @@ essentially operates as a parallel processor on all 112 sense wires in layer. Th
 need of a wire for-loop, enabling the algorithm to run in a negligible fraction of the total time for
 reconstruction. More to the point, SNR actually saves time by reducing the combinations that must be
 explored in the pattern-recognition phase of the ensuing track-finding.
-
-
+An illustration of the SNR hit categorization in the DC is displayed in Fig.~\ref{fig:snr}.
 \begin{figure}
 \centering
-\includegraphics[width=0.4\textwidth]{pics/dcTracks2.png}
-\caption{Event display of hits in the 2 consecutive superlayers (groups of 6 layers) in the DC projected at the $y=0$ plane in sector 1.
-The DC cell hexagones displayed in red correspond to the hits rejected by the noise
-identification algorithms.  The straight lines correspond to linear local fits to the clustered hit
-position taking into account the drift distance (circles). The dot in between the
-2 superlayers correspond to a point in space determined from the fits in each superlayer taking into
-account their respective wire directions ($\pm 6$ deg. stereo angle).
+\includegraphics[width=0.48\textwidth]{pics/dcPattern9.png}
+\caption{
+Illustration of DC hits categorized by the SNR algorithm.  
+Black hits are identified as noise and discarded.
+Red hits are saved for further evaluation by the subsequent hit selection algorithms. 
+Red hits with yellow frames are saved noise (false alarms).  Shaded areas correspond to 
+possible clusters.  The darker shades correspond to a higher quality factor, hence a higher probability for hits on track.
 }
-\label{fig:dcsegs}
+\label{fig:snr}
 \end{figure}
-
 
 \subsubsection{Hit Clustering}
 The hits remaining after the SNR
 algorithm are grouped into clusters.
 Clusters are groups of adjacent hits in a group of 6 layers forming a DC superlayer.  There can be at most
-two hits in a layer, forming a ``double-hit''\.  However, up to four layers can be missing in a superlayer
+two hits in a layer, forming a ``double-hit''~\footnote{An additional hit in a layer is mostly out of time and has 
+a drift time that when converted to a drift distance exceeds the cell size. }  However, up to four layers can be missing in a superlayer
 when attempting to form a cluster.  This is to reduce tracking inefficiencies resulting from possible wire malfunctions or
 intrinsic inefficiencies. It was found that using 4 out of 6 layers to form a cluster is good enough
-to determine the cluster shape which is subsequently used in tracking to determine the track trajectory.
+to determine the cluster shape which is subsequently used in tracking to determine the track trajectory. 
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{pics/elooper.png}
+\caption{
+Illustration of typical noise patterns in the DC displayed with the CLAS12 Event Display (CED). 
+The hits shown in the display correspond to electrons from a MC sample.
+}
+\label{fig:eloop}
+\end{figure}
+
 Additional ``noise rejection'' algorithms are applied to the clusters to remove spurious hits
-that do not come from a real track. These include the removal of the
-interior hits from horizontal ``strings'' of hits along a layer~\footnote{The effectiveness of this cut follows
-from the observation that high-momentum tracks from hadrons typically cross the superlayers at a large angle,
+that do not come from a real track. 
+So-called ``curlers'' patterns as show in Fig~\ref{fig:eloop} are typical for low energy electrons  in the DC.   So a pruning algorithm was designed to remove them at an early stage of the reconstruction. The  algorithm is a counting method of the number of contiguous hits in a layer of a superlayer.  In Figs.~\ref{fig:eloop} and ~\ref{fig:strings} we also see another typical noise pattern that looks like horizontal ``strings'' of hits along a layer.  The algorithm was developed following  the observation that high-momentum tracks from hadrons typically cross the superlayers at a large angle,
 while ``curlers'' from low-momentum background follow curling trajectories with a significant part of the
-pattern being along layers.}, overlapping segments resolving, attached noise hits (resolved mostly using timing
-information). Overlapping segments are produced when the trajectories of tracks cross each other
+pattern being along layers.
+Subsequent algorithms  are employed for resolving overlapping segments.   
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{pics/dcPattern2.png}
+\caption{
+Illustration is hits rejected by the pattern recognition algorithm in a MC sample corresponding to electron tracks generated at 4.5 GeV at the center of the sector ($\phi = 0\deg$ with a polar angle of $10\deg$. 
+The circles superimposed on top of the DC cells indicate the DOCAs computed from the fully corrected times.  The yellow hourglass symbols show the simulated track positions along the trajectory.   
+The algorithm looks for ``strings'' of hits such as shown in the the third column of hits in the right-most superlayer in the figure.  
+In this instance, the middle hit would be rejected, leaving a set of four attached hits which would subsequently be rejected since they would no longer be attached to the main cluster. 
+}
+\label{fig:strings}
+\end{figure}
+
+
+Overlapping segments are produced when the trajectories of tracks cross each other
 or when the tracks are almost parallel and very close to each other in a given region.
-A hough transform is employed to find hits on a line in the cluster which allows splitting the cluster into
+A Hough transform is employed to find hits on a line in the cluster which allows splitting the cluster into
 segments.  The resulting trimmed clusters are then fit to a straight-line hypothesis, and those hits with
-acceptable residuals are kept and identified collectively as a ``track segment''.
+acceptable residuals are kept and identified collectively as a ``track segment''. An illustration of the Hough Transform cluster selection algorithm is shown in Fig.~\ref{fig:hough}.
+
+Subsequent hit pruning algorithms are employed at ``time-based'' level.  
 Figure~\ref{fig:dcsegs} illustrates the selected hits belonging to a cluster (orange) and the hits
 rejected by the noise-finding algorithms.
 
@@ -77,6 +125,14 @@ Fits to the segments with a linear function are a preliminary step to estimating
 a track trajectory. Track parameters are estimated in the local coordinate system of the chamber sector from
 this trajectory.
 
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{pics/dcPattern14.png}
+\caption{
+Illustration of selected clusters (left-most selected hits with superimposed lines) using a Hough Transform.  Two track segments cross each other.  The hits are separated into cluster candidates and fit using a local coordinate system as a function of layer and wire number.  The selection is done without employing timing information. 
+}
+\label{fig:hough}
+\end{figure}
 Using the wire direction in a given superlayer along with the line fit to a segment in that superlayer, a plane can be constructed.
 Thus pairs of segments in
 neighboring superlayers within one chamber (with superlayers of $\pm$6$^\circ$ stereo angle) represent the
@@ -85,6 +141,20 @@ superlayers, and is a 6-dimensional object (x,y,z and 3 angles) which we call a 
 A segment slope coincidence algorithm is used to match neighboring segments in a region (see
 Fig.~\ref{fig:dcsegs}).  Selection cuts are subsequently applied on the
 reconstructed cross to ensure that it is within the fiducial sector volume within resolution.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{pics/dcPattern13.png}
+\caption{
+Illustration is hits (red hexagons) rejected and accepted (orange hexagons) by the pattern recognition algorithm in a MC.  
+The red cells correspond to hits not rejected by the SNR algorithm.  The circles represent the calculated DOCAs.  The superimposed lines show the local fits to the DOCAs.  The filled circle in the middle of the two superlayers represents the 3-dimentional point (i.e. ``cross'') obtained from the local fits to the DOCAs taking into account the direction along the wires.
+The offset between the segments composing the cross comes from the projection at the $y=0$ plane (midplane).
+The cluster shown on the right-most superlayer is an example of a ``looper'' and shows how this category of cluster has the potential to bias the track.  The second cluster used to form the cross yield an incorrect slope resulting from a wrong hit used in the fit.  Subsequently, the ``looper'' searcher algorithm rejects the entire cluster and only the first cluster is used to fit the track.  The fitted track trajectory is represented by the orange line. 
+The upper figure is a zoomed view into the track trajectory in region 1.
+}
+\label{fig:dcsegs}
+\end{figure}
+
 
 An additional  pattern reconstruction algorithm  matches segments within even and odd superlayers, respectively, to form
 a track candidate where an entire superlayer can be missing.  The matching algorithm returns an estimates of where the missing
@@ -106,12 +176,6 @@ The cross position and angles in region 1 together with the
 momentum and the charge provide all the necessary information to define the track parameters at a given location in the detector,
 and therefore to start track fitting.
 
-\begin{figure*}
-\includegraphics[width=1.0\textwidth]{pics/dcTrack3.png}
-\caption{Event display of charged particle tracks in the Drift Chambers.
-}
-\label{fig:dcTracks}
-\end{figure*}
 
 \subsubsection{Track Fitting}
 The output of the pattern recognition
@@ -131,9 +195,9 @@ The trajectory of the particle in the analysis frame is given by the following e
 %\systeme{
 dx/dz  &=& tx, \\
 dy/dz  &=&  ty, \\
-dtx/dz &=& q \cdot v \cdot \sqrt{1 + {t_x}^2 + {t_y}^2}\cdot [t_y\cdot (t_x B_x + B_z) - (1 + {t_x}^2 ) B_y], \\
-dty/dz  &=&  q \cdot v \cdot \sqrt{1 + {t_x}^2 + {t_y}^2}\cdot [-t_x\cdot (t_y B_y + B_z) + (1 + {t_y}^2 ) B_y], \\
-q  =  q_0,
+dtx/dz &=& q \cdot v \cdot \sqrt{1 + {t_x}^2 + {t_y}^2}\cdot [t_y\cdot (t_x B_x + B_z)\\ &-& (1 + {t_x}^2 ) B_y], \\
+dty/dz  &=&  q \cdot v \cdot \sqrt{1 + {t_x}^2 + {t_y}^2}\cdot [-t_x\cdot (t_y B_y + B_z) \\&+& (1 + {t_y}^2 ) B_y], \\
+q  &=&  q_0,
 %}
 \end{eqnarray*}
 
@@ -155,9 +219,9 @@ Cov (t_{y} , t_{y}) &=& (1+{t_y}^{2} )\cdot (1+{t_x}^{2} + {t_y}^2 )\cdot {\thet
 Cov (t_{x} , t_{y}) &=&  t_{x} t_{y}\cdot (1+{t_x}^{2} + {t_y}^2 )\cdot {\theta_{0}}^{2} ,
 \end{eqnarray*}
 where,
-\begin{equation}
-{\theta_{0}} = \frac{13.6}{\beta pc}\sqrt{\frac{t}{X_{0}}\sqrt{1+{t_x}^2+{t_y}^2}}\left[ {1+0.038 ln \left({\frac{t}{X_{0}}\sqrt{1+{t_x}^2+{t_y}^2}}\right) }\right].
-\end{equation}
+\begin{eqnarray*}
+{\theta_{0}} &=& \frac{13.6}{\beta pc}\sqrt{\frac{t}{X_{0}}\sqrt{1+{t_x}^2+{t_y}^2}}\\ &\times&\left[ {1+0.038 ln \left({\frac{t}{X_{0}}\sqrt{1+{t_x}^2+{t_y}^2}}\right) }\right].
+\end{eqnarray*}
 as given by the Highland-Lynch-Dahl formula [ref.].
 The radiation length $X_0$ is computed as an effective radiation length corresponding to the gas mixture in the DC.
 Air is assumed outside of the DC volumes. The term $t$ represents the pathlength traverse by the track.
@@ -179,14 +243,80 @@ using the segment local angle, the value of the magnetic field at the location o
 times.  The Kalman fit is redone at ``time-based'' level using hits with corrected times and computed drift
 distances.
 
-A graphical representation of tracks in the CLAS Event Display is shown in figure~\ref{fig:dcTracks}.  The
+A graphical representation of tracks in the CLAS Event Display is shown in Fig.~\ref{fig:dcTracks}.  
+This is a typical event for the nominal running conditions for CLAS12.  The
 display shows a longitudinal view of the chambers trapezoidal shapes. The field intensity is represented by a
 color gradiant. The drift chamber hits correspond to the maroon shapes.  The bottom track goes through a
 characteristic noise pattern in Region 1 (R1). Only the first superlayer in R1 is used to fit this track.  The
 tracks hit the Forward Time-Of-Flight system and the Calorimeters.  The top track leaves a hit in the HTCC
-and is identified as an electron.
+and is identified as an electron (see section on the event builder).
 
+\begin{figure*}
+\centering
+\includegraphics[width=0.95\textwidth]{pics/dcTrack3.png}
+\caption{Event display of charged particle tracks in the Drift Chambers.  The reconstructed 
+track in the bottom left view is an example of the use of the five-out-of-six-superlayer tracking. 
+The second superlayer segment is missing in this case.  The track on the bottom right is identified 
+as an electron and leaves a hit in the HTCC (red shape at the exit of the solenoid. 
+}
+\label{fig:dcTracks}
+\end{figure*}
 
+\subsection{Artificial Intelligence Assisted Forward Tracking}
+\subsubsection{Motivation}
+Recent progress in machine learning field offer a promising alternative to conventional
+algorithmic tracking methods. While the conventional
+methods provide algorithms that are well understood and well studied, there are some algorithms
+in data reconstruction process that can be substituted with neural networks to reduce data
+processing times. For CLAS12, tracking is the most time consuming process in experimental data processing.
+Tracking in the DC takes up to 94\% of total data processing time, which includes finding
+track candidates and iterating through track forming segments combinatorially to find the best
+combinations of segments that can form a track. This time increases with luminosity as noise
+segments increase and can lead to processing time degradation with higher luminosity. We have started 
+to address this issue by employing machine learning techniques to find best track candidates in
+each event and reduce the number of combinatorics.
+\begin{figure*}
+\centering
+\includegraphics[width=0.95\textwidth]{pics/nn1.png}
+\caption{Event display of track segments in the DC. 
+}
+\label{fig:nn1}
+\end{figure*}
+\subsubsection{Development}
+With increased luminosity the number of potential DC cross candidates
+increases.  This implies that the  Kalman Filter fitting algorithm must be run for all possible
+combinations crosses.  Fig.~\ref{fig:nn1} shows a typical example of drift
+chamber data is shown in a longitudinal projective view using CED. 
+This figure illustrates the potential of combinatorial trials to identify tracks. 
+We are developing a classifier convolutional neural network that can
+identify which segments from each region of CLAS12 drift chambers can potentially form a
+good track. We intend to use this network in reconstruction process to reduce the number of
+combinatorial fitting.
+Reconstructed track segments from both positive and negative tracks from the currently reconstructed data samples are used to train the Neural Network. 
+We are currently testing three types of Neural Networks: boosted decision tree, multilayer perceptron, convolutional neural network.  
+The accuracy of the network is measured using 4 quantities:
+\begin{itemize}
+\item{The ratio of valid tracks (correctly detected) to the total number of tracks in the sample. }
+\item{The ratio of valid tracks and  invalid tracks (miss-predicted as valid ones; i.e. False Positives) to the total number of tracks in the sample. }
+\item{The ratio of valid tracks (correctly detected with highest probability) to the total number of tracks in the sample. }
+\item{The ratio of invalid tracks (False Positives) to the total number of tracks in the sample. }
+\end{itemize}
+Accuracy scores where determined for different training set and for the 3 types of Neural Networks studied.  Preliminary results indicated that the Convolutional Neural Network performed competitively with the Multilayer Perceptron with about 97\% accuracy and 3\% False Positives. 
+
+The hits identified as On-Track by the Neural Network are saved in a bank and the DC reconstruction package was adapted to read these data as an input to hit-based tracking.
+
+Benchmark results of reconstruction speed for hit-based tracking are shown in Fig.~\ref{fig:nn2}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{pics/nn2.png}
+\caption{Benchmark results of reconstruction speed for hit-based tracking.  
+The (black) blue curve correspond to the (non) AI-assisted reconstruction processing time as a function of event number. 
+}
+\label{fig:nn2}
+\end{figure}
+
+The implementing the Neural Network software into the CLAS12 reconstruction workflow is under development. The second stage of the Machine Learning project will concentrate on efficiency improvements using AI-assisted tracking.
 
 \subsection{Central Tracking}\label{sec:cvt}
 
@@ -201,6 +331,16 @@ field.
 The revolution axis of the CVT coincides with the ideal beam axis which defines the z-axis of the CVT frame. The y-axis
 points upward in the laboratory frame and the x-axis is defined such as the unit vectors of each axis form an direct
 orthogonal basis. The origin of the CVT frame matches the center of the experimental Hall B.
+
+An illustration of the CVT detector with CED 3-D is shown in Fig.~\ref{fig:cvt}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{pics/cvt.png}
+\caption{Event display of the CVT detector. The red lines represent active SVT strips corresponding to hits on track. 
+}
+\label{fig:cvt}
+\end{figure}
 
 \subsubsection{Hit Clustering}
 The first step of the tracking algorithm is the formation of clusters from the raw hits. The SVT raw 3-bit ADC values

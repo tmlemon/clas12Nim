@@ -2,16 +2,7 @@
 \label{construction}
 \subsection{Construction Overview}
 
-The chambers were designed with individual holes and holders for
-each wire, i.e. a ``strung'' rather than a ``wound'' chamber.  Our 
-inspection and assembly procedures were designed to produce devices with 
-wires placed and known by external survey to an accuracy of less than 1 mm. 
-In addition to accuracy, we have chosen materials and designed 
-procedures to insure a quiet and long-lived detector.  The construction 
-and wire-stringing techniques were based on our already successful {\tt CLAS} 
-drift chamber design.
-
-The three chamber types (called ``regions'', with ``Region1'' abbreviated as 
+The three chamber types (called ``regions'', with ``Region 1'' abbreviated as 
 ``R1'', etc.)  share the same basic design elements simply
 scaled up in size by a factor of 1.5 for R2 relative to R1 and a factor
 of 2 between R3 and R1.  
@@ -26,8 +17,8 @@ same basic parts.
 \begin{figure}[htpb]   
 \vspace{10cm}
 \begin{picture}(35,35)
-\put(-155,0)
-{\hbox{\includegraphics[width=1.0\columnwidth,natwidth=610,natheight=642]{img/chamber-exploded.png}}}
+\put(-70,0)
+{\hbox{\includegraphics[width=0.9\columnwidth,natwidth=610,natheight=642]{img/chamber-exploded.png}}}
 \end{picture}
 \caption{\small{Assembly of a typical drift-chamber
 (here a R1 sector) highlighting the common components.}}
@@ -37,12 +28,13 @@ same basic parts.
 
 
 The chamber bodies were constructed from the accurately machined plates
-(2 endplates, a ``nose plate'' and a ``back plate'').
-The endplates themselves were an assembly of a basic plate with precision-drilled
+(2 endplates, a ``nose-plate'' and a ``back-plate'').
+The endplates themselves were an assembly of a main plate with precision-drilled
 holes to which we bolted and glued stiffener bars.  In the case of
-R1 the plate was aluminum and the stiffener bars were stainless steel;
-for R2 the plates were G10 and the bars stainless steel and for R3
-the plates were an assembly of thin steel plates with a foam interior.
+R1 the main plate was aluminum and the stiffener bars were stainless steel;
+for R2 the main plates were G10 and the bars stainless steel, and for R3
+the main plates were themselves an assembly of two thin steel plates with a foam interior.
+No additional stiffener bars were used for R3.
 
 At the radially outward end of each chamber, a thick ``back-plate'' was 
 employed to maintain the relative 
@@ -52,12 +44,14 @@ end of each chamber, the endplates were connected together via a small joining
 piece called the ``nose-plate''.  The hardware fabrication and placement 
 was of critical importance to the dimensional accuracy of the chambers.
 
-\subsection{Construction Materials}
 
-\hskip 0.15 in
+
+\subsection{Construction Materials}
+\label{materials}
+
 To insure that the drift chambers perform well for 10 years or more, care was taken to 
 specify that all materials in contact with the gas volume were clean and ``chamber 
-safe'' as defined in Ref~\cite{kadyk}.  All construction was carried out in 
+safe'' as defined in Ref.~\cite{kadyk}.  All construction was carried out in 
 Class-10000 or better clean rooms.
 
 The drift-chamber frames were made primarily of aluminum (R1), fiberglass (R2),
@@ -83,29 +77,17 @@ silicones contacted any of the chamber materials.
 
 
 
-\subsection{Endplate Design and Construction}
+\subsection{Chamber Body Construction}
 
-As noted above our chambers have wires strung from one endplate to 
-the other. 
-Each endplate was constructed with 4928 accurately positioned holes into 
-which the wire-fixture assemblies were placed and glued.  The sense, field, 
-and guard wires in each 
-sector were strung between pairs of wire ``feedthroughs''.  As the endplates of 
-each chamber faced each other at a 60$^{\circ}$ angle, the wires had to bend 
-30$^{\circ}$ at each endplate.  This was accomplished by means of a large radius 
-stainless-steel insert at the tip of each feedthrough known as a ``trumpet''.
-
-This trumpet was fitted into an injection-molded Noryl plastic feedthrough.  
-The Noryl plastic was reinforced with glass beads to make them stiffer.
-During early prototype testing, it was determined that the surface conductivity
-of this glass-bead loaded composite was little affected by room humidities
-as high as 60 to 60\%.  This is in contrast to similar plastic strengthened
-with microscopic glass ``rods'' which performed poorly in high-voltage stand-off
-tests in humid conditions.
-
-All wires were held in place using gold-plated copper crimp pins.  
-Low-outgassing epoxy was employed to ensure a gas seal around the feedthroughs 
-and crimp pins.  
+The construction of the chamber bodies consisted of 3 main stages:
+\begin{itemize}
+\item receipt, inspection and cleaning of parts,
+\item assembly of the main drilled plate and stiffener bars into a complete endplate,
+followed by insertion and gluing of the feedthroughs into the pre-drilled holes 
+in the main plate, and 
+\item over-all assembly of the endplates and nose- and back-plates to make
+a chamber ``box''.
+\end{itemize}
 
 \subsubsection{Inspection and Cleaning}
 
@@ -122,32 +104,41 @@ bags with a nitrogen atmosphere to await assembly.
 Smaller parts such as feedthroughs and hardware were cleaned using a 
 bench-top ultrasonic cleaner with laboratory detergent, followed by a 
 de-ionized water rinse and a dousing of methanol to facilitate drying.  
-In addition, the injection-molded parts are specified to be free of silicon 
+In addition, the injection-molded parts were specified to be free of silicon 
 mold releases.
+ 
+\subsubsection{Endplate and Chamber Body Assembly}
+The endplates were assembled on a table in the cleanroom.  The various parts,
+the pre-drilled main plate and the various stiffener bars, were pinned
+and glued into place.  
+Once the endplate assembly was finished,
+wire feedthrough insulators were inserted and glued into each hole. Special care was 
+taken to use only the minimal amount of glue required to provide a solid gas 
+seal and to prevent glue contamination inside the detector.  
+
+Once the endplates were assembled, the chamber box was assembled from the
+endplates, nose-plate and back-plates using a variety of special-purpose
+fixtures.  With the box held in its final configuration, parts were bolted
+and glued into place using the special glues mentioned in Subsection~\ref{materials}.
 
 
 
 \subsection{Wire Choice}
-\hskip 0.15in
+
 Our ``thin endplate'' design required minimizing wire tensions and
 thus diameter of the wire.  The real key to reducing wire tension is to
 make the field wires (which are much larger than the sense wires) as 
-thin as possible and to make them out of low-density metal.  In this 
-section we describe our choices for sense, field and guard wires.
-We had to trade off the robustness and more uniform drift velocity
-afforded by large diameter sense wire with the disadvantages that they
-required higher voltages to reach the same gas gain; 
-a potential problem for our high-density signal amplifier boards.
+thin as possible and to make them out of low-density metal.  
 
 In general, designers have chosen very small diameter sense wires because they
-require lower operating voltates.
+require lower operating voltages.
 The sense wire choice for all of our chambers, supplied by the Luma
 Sweden Company, is 30-$\mu$m diameter gold-plated tungsten.  
 The previous CLAS drift chambers used 20-$\mu$m diameter wire for the
 sense wires.  We decided to use the thicker 30-$\mu$m wire for two 
 reasons: first, it is significantly tougher making it easier to handle without
 accidental kinking and less likely to break, and second, to operate at the same 
-gas gain as chambers with the thinner wire requires a high voltage setting 
+gas gain as chambers with the thinner wire requires a high-voltage setting 
 (approximately 300 V higher) and this results in a higher field throughout the cell
 and a more linear drift velocity function.  
 
@@ -161,16 +152,16 @@ wires is $\approx$200~kV/cm.
 We chose 80-$\mu$m gold-plated Cu-Be wire for our field wire and
 140-$\mu$m gold-plated Cu-Be wire for our guard wires; both supplied
 by Little Falls Alloys.
-Cu-Be wire is very tough, is easily plated and resists ``flaking'' of the gold
+Cu-Be wire is very tough, is easily plated, and resists ``flaking'' of the gold
 plating. 
 Minimizing the diameter for the field wire is important because it means that they 
 could be strung at lower tension than a thicker wire for the same gravitational sag.  
-This minimizes the forces on the endplates which we wanted to keep as 
+This minimizes the forces on the endplates that we wanted to keep as 
 thin as possible to maximize the solid-angle of the sensitive area of
 the chambers.
 
 The 80-$\mu$m diameter was chosen because it is the smallest possible choice
-which will not initiate cathode emission at the surface.
+that will not initiate cathode emission at the surface.
 At our operating conditions, the surface field at the field wire
 surface is less than 50~kV/cm, and this will minimize 
 conditions which could cause unwanted cathode emissions and a noisy chamber.  
@@ -187,64 +178,62 @@ values there was no emission.
 A basic principle of our drift chamber design is that each drift cell is a perfect hexagon.
 We used this geometrical constraint to determine the hole placement in the endplates.
 This geometrical design assumed that wires are straight lines.  Of course, real wires
-sag across the wire span due to gravity.  To keep our perfect hexagonally-shaped cells,
-we tensioned our three types of wires (sense, field and guard) such that they
+sag across the wire span due to gravity.  To keep our perfect hexagonally shaped cells,
+we tensioned our three types of wires (sense, field, and guard) such that they
 {\bf sagged equally} under their gravitational loads.
 
-Our 30$\mu$m Tungsten sense wires, 80$\mu$m Cu-Be field wires and 140$\mu$m Cu-Be guard
-wires had linear densities of .014, .042 and .129 g/m, respectively.  To sag equally
-under gravity, they were strung at 20, 62 and 190 g of tension, respectively.
+Our 30~$\mu$m tungsten sense wires, 80~$\mu$m Cu-Be field wires and 140~$\mu$m Cu-Be guard
+wires had linear densities of 0.014, 0.042, and 0.129 g/m, respectively.  To sag equally
+under gravity, they were strung at 20, 62, and 190 g of tension, respectively.
 In each chamber there were 12 rows of 112 sense wires, 28 rows of 112 field wires
 and 4 rows of 112 guard wires for a total wire tension of 306 Kg.
 This caused some bowing of our thin endplates.  This bowing and the sagging
 of the wires themselves is discussed in the section on geometrical distortions,
-section ~\ref{geom_distortions}.
+Section ~\ref{geom_distortions}.
 
 
 \subsection{Chamber Wire Stringing}
+The sense, field, 
+and guard wires in each 
+sector were strung between pairs of wire ``feedthroughs''.  As the endplates of 
+each chamber faced each other at a 60$^{\circ}$ angle, the wires had to bend 
+30$^{\circ}$ at each endplate.  This was accomplished by means of a large radius 
+stainless-steel insert at the tip of each feedthrough known as a ``trumpet''.
 
+This trumpet was fitted into an injection-molded Noryl plastic feedthrough.  
+The Noryl plastic was reinforced with glass beads to make them stiffer.
+During early prototype testing, it was determined that the surface conductivity
+of this glass-bead loaded composite was little affected by room humidities
+as high as 60\%.  This is in contrast to similar plastic strengthened
+with microscopic glass strands, which performed poorly in high-voltage stand-off
+tests in humid conditions.
+
+All wires were held in place using gold-plated copper crimp pins.  
+Low-outgassing epoxy was employed to ensure a gas seal around the feedthroughs 
+and crimp pins.  
 
 Because all of the chambers have the same shape, differing only in
 size and some materials, we strung them all using the same basic method.
-They were gravity-strung using the same basic methodology 
-used when stringing the previous {\tt CLAS} drift chambers.  The detector box 
+They were gravity-strung using a similar methodology to that 
+used when stringing the previous CLAS drift chambers.  The detector box 
 assembly was mounted to a stringing fixture.  The frame was connected to 
-the fixture using attachments that allow the chambers to rotate along 
-the center of mass.  This permitted safe and easy 
-rotation of the detector by hand.  A gantry crane was used to lift the 
-detector onto and off the stringing fixture and to raise the small end of 
-the detector to account for the stereo angles.
-
+the fixture using attachments that allowed the chambers to rotate along 
+their center of mass.  This permitted safe and easy 
+rotation of the detector by hand.  
 The stringing fixture was mounted to the floor using 
-concrete anchors.  This minimized floor obstruction as the box must be 
-rotated to the opposite side to string the second set of wires.  The box 
-and frame assembly were placed far enough away from the uprights such that 
-they did not interfere with stringing activities.  There was a gross 
-adjustment using 
-the gantry crane to lift the telescoping side and pin it on the adjustment 
-collar.  The collar had a fine adjustment to allow setting it at the most 
-favorable stringing angle.  The detector box was rotated 180$^\circ$ to 
-string the second superlayer.
+concrete anchors, minimizing floor obstruction.
 
-Once the detector was installed onto the fixture, wire feedthrough 
-insulators were inserted and glued into each hole. Special care was 
-taken to use only the minimal amount of glue required to provide a solid gas 
-seal and to prevent glue contamination inside the detector.  Once one 
-endplate was filled, the assembly was rotated such that the other side 
-could be done.  Once all wire feedthrough inserts were in place, the box 
-was pre-tensioned.
-
-Under full wire tension, the endplates bow inward as much as 2mm 
+Under full wire tension, the endplates bow inward as much as 2~mm 
 (see Section~\ref{geom_distortions} for a discussion of this issue).
 Because of this bowing, it is necessary to pre-tension the chamber
 so that the endplates are bowed into their final state at the 
 beginning of the stringing process.
 
-We pre-tensioned the chambers by over-tensioning the 140 $\mu$m Guard
+We pre-tensioned the chambers by over-tensioning the 140 $\mu$m guard
 wires such that the total wire tension load was equal to the final, 
-fully-strung load.  The over-tensioning was done using adjustable
+fully strung load.  The over-tensioning was done using an adjustable
 spring attached to each guard wire. 
-We then would string field wires, starting at one end of the chamber.
+We then would string the field wires, starting at one end of the chamber.
 After stringing a ``column'' of 14 field wires, we would reduce the
 tension on the associated guard wire to its nominal value, and crimp
 the guard wire.  In this way, the total wire tension on the endplate
@@ -259,7 +248,7 @@ small steel needle to the wire before threading it through the feedthrough in
 the upper endplate.  The wire was then despooled and gravity acted to bring the 
 wire close to the feedthrough in the lower endplate.  A small magnet was then 
 used to pull the needle and wire through the lower feedthrough.  After the upper 
-crimp pin was attached and crimped and the remaining slack in the wire was removed, the lower 
+crimp pin was attached and crimped, and the remaining slack in the wire was removed, the lower 
 crimp pin was slid over the wire and stringing weights were attached to the wire to set the 
 proper tension.  The lower crimp pin was then crimped, completing the process.
 
@@ -270,15 +259,15 @@ were tested in two ways:
 from one feedthough to its partner on the other endplate, and
 \item a tension measurement was performed using an ``oscillating wire'' technique.
 A static magnetic field was established using large Helmholtz coils.  A sine
-wave electric current was established on the wire being tested by a frequency
-controlled AC power supply.  The AC current was varied in frequency.  For a 
+wave electric current was established on the wire being tested by a frequency-controlled 
+AC power supply.  The AC current was varied in frequency.  For a 
 few-second interval, the Lorentz force on the wire caused it to vibrate and
 then during a few-second ``voltage-off'' period, the resulting induced voltage
 was read out on an oscilloscope.  In this way, we determined the resonant frequency
 of the wire.  If this frequency agreed within limits with a pre-calculated
 table of nominal frequency, the wire passed the frequency test.
 \end{itemize}
-Wires which failed either test were removed and re-strung.
+Wires that failed either test were removed and re-strung.
 
   Wires that wrapped around each other while being threaded through the chamber 
 were a major contribution to stringing inefficiency. To avoid the wrapping
@@ -293,7 +282,7 @@ radius of the trumpet at the end of the feedthrough inside of the chamber, and
 not by the concentricity of the pin, feedthrough, and endplate-hole diameters. 
 As a result, the average time to string a wire was less than 4 minutes.
 
-After all wires were strung
+After all wires were strung,
 a small amount of glue was applied to the glue well
 in the feedthrough to firmly fix the crimp pin in place.  After this ``potting''
 operation was done, the chambers were taken off of the stringing fixture and

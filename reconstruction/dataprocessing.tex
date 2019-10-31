@@ -1,13 +1,13 @@
 \section{Data Processing}
 
-\subsection{Data Processing Workflow}
+\subsection{Workflow}
 The raw data is currently first preprocessed.  This is an I/O-heavy, single-threaded process and involves extracting hits from waveforms, translating data-acquisition/hardware nomenclature to physical detector objects, performing special analyses dependent on serial event access, and converting from the input EVIO format to the HIPO data format.  This phase includes registering beam helicity state changes and special scaler events, and populating their results into tag-1 HIPO events to faciliate downstream analysis.  The result is a factor of $\sim$5 reduction in size and a file format optimized for I/O.
 
 The second stage is a cpu-heavy reconstruction phase, including all the tracking, clustering, calorimetry, time-of-flight, and event building in the previous sections.  It runs multi-threaded in the CLARA framework and can be configured to output various data schema depending on the purpose, e.g. the DST structures of \ref{sec:dsts} during full-scale processing, or larger, special-purpose banks during preliminary calibrations phases.
 
 The final stage is I/O-heavy analysis trains that perform event skimming and accommodate corrections and common analysis plugins.  It splits the data into multiple output files based on different event selections, each optimized for a group of physics analyses.  And example schematic is shown in Figure ~\ref{fig:train}.  This stage is designed to be be run repeatedly as selction criteria and physics analyses mature.
 \begin{figure}
-    \includegraphics[width=0.45\textwidth,height=0.2\textheight]{pics/dummy.png}
+    \includegraphics[width=0.45\textwidth,height=0.2\textheight]{pics/train.jpg}
     \caption{Schematic flow of analysis trains.\label{fig:train}}
 \end{figure}
 

@@ -54,7 +54,8 @@ with cosmic rays in the assembly room until mid-October 2017 and for the first t
 final phase of the commissioning started in December 2017 with beam.
 
 Before the start of data taking with beam, several cosmic ray runs were performed aimed at tuning and optimizing the
-integration of the data acquisition system and the slow-controls (i.e. remote controls, interlocks, and monitoring)~\cite{nim:daq},
+integration of the data acquisition system and the slow-controls (i.e. remote controls, interlocks, and 
+monitoring)~\cite{daq-nim},
 and the gas delivery system. The online data monitoring system was developed to allow the inspection of raw quantities such as the
 hit maps, the pulse shape, and the timing of the signals. This system was tested and integrated into the standard CLAS12
 online operation tools. 
@@ -89,7 +90,8 @@ gap onto the strip surface is longer for sectors~1 and 3 than for sector~2.
 
 A BMT stand-alone straight-track reconstruction algorithm based on least-squares minimization has been developed to reconstruct
 cosmic rays. A typical reconstructed event is shown in Fig.~\ref{fig:mm-cosmic_ced} using the CLAS12 event display package
-\cite{nim:recon}. This tracking algorithm is also used to perform the alignment of the BMT tiles: the distance between the hit in a
+\cite{recon-nim}. This tracking algorithm is also used to perform the alignment of the BMT tiles: the distance between 
+the hit in a
 tile excluded from the tracking and the reference track provided by the other tiles is minimized by introducing rotations and
 translations. Figure~\ref{fig:mm-cosmic_residuals} shows the distributions of track residuals, i.e. the distance of a hit with
 respect to the particle trajectory, for three Micromegas tiles before and after alignment corrections.
@@ -173,8 +175,17 @@ and 2.5\% for the BMT tiles at nominal luminosity, as shown in Fig.~\ref{fig:mm-
 \end{figure}
 
 During the first year of operations with beam, CLAS12 took data at several electron beam energies (2.2, 6,4, 7.5, and 10.6~GeV)
-with a liquid-hydrogen target. At 2.2~GeV, the large elastic cross section and the trigger configuration allowed for the
-visualization of the recoil protons in the raw occupancies of the BMT-C tiles as seen in Fig.~\ref{fig:mm-occupancy_22_10}. 
+with a liquid-hydrogen target. An example of a rare event at 10.6~GeV with five tracks reconstructed in the CVT is 
+shown in Figure~\ref{fig:cd-tracks}. At 2.2~GeV, the large elastic cross section and the trigger configuration allowed 
+for the visualization of the recoil protons in the raw occupancies of the BMT-C tiles as seen in 
+Fig.~\ref{fig:mm-occupancy_22_10}. 
+
+\begin{figure}[htb]
+ \includegraphics[width=.9\columnwidth]{images/cd-tracks}
+ \caption{Event display of a rare five-tracks event in the CVT.}
+ \label{fig:cd-tracks}
+\end{figure}
+
 
 \begin{figure}[htb]
  \includegraphics[width=1.0\columnwidth]{images/occupancy2GeV}
@@ -214,20 +225,21 @@ show a peak toward lower values due to charged particles produced out of time wi
 Special data taking periods with an empty target cell have been performed for calibration purposes, as well as low luminosity runs
 with zero magnetic field for detector alignment studies. The stand-alone straight-track algorithm used for cosmic ray
 reconstruction has been adapted and extended to use SVT hits. Using preliminary alignment corrections for both the SVT and
-BMT, a zero-field empty-target run was reconstructed in SVT-stand-alone mode and CVT (i.e. SVT$+$BMT) mode. As shown in
-Fig.~\ref{fig:mm-zvertex}, the aluminum target walls are clearly visible in both reconstruction modes. It is possible to note that
-there is a significant improvement from $\sim$4.5~mm to 2.5~mm of the vertex position along the beam axis when the BMT
-information is used in the track reconstruction. Indeed the BMT-C tiles largely improve the polar angle of the particle with
-respect to the SVT-stand-alone mode. Concerning the azimuthal angle, the resolution of the BMT-Z tiles is not as good from the
-SVT modules and they are further away from the beam axis. Therefore the improvement of the resolution on the azimuthal angle
-of the track and related quantities like the vertex transverse coordinates is limited. On the other hand, BMT-Z tiles provide an
-essential redundancy for tracks that cross a limited number of SVT layers.
+BMT, a zero-field empty-target run was reconstructed in SVT-stand-alone mode and CVT (i.e. SVT$+$BMT) mode. The 
+preliminary resulsts shown in Fig.~\ref{fig:mm-zvertex}, the aluminum target walls are clearly visible in both 
+reconstruction modes. It is possible to note that there is a significant improvement from $\sim$4.5~mm to 2.5~mm of the 
+vertex position along the beam axis when the BMT information is used in the track reconstruction. Indeed the BMT-C tiles 
+largely improve the polar angle of the particle with respect to the SVT-stand-alone mode. Concerning the azimuthal 
+angle, the resolution of the BMT-Z tiles is not as good from the SVT modules and they are further away from the beam 
+axis. Therefore the improvement of the resolution on the azimuthal angle of the track and related quantities like the 
+vertex transverse coordinates is limited. On the other hand, BMT-Z tiles provide an essential redundancy for tracks that 
+cross a limited number of SVT layers.
 
 \begin{figure*}[htb]
  \includegraphics[width=2.0\columnwidth,keepaspectratio]{images/NIM_SVTvsCVT.png}
- \caption{Vertex position along the beam axis reconstructed with SVT-stand-alone reconstruction (top-green distribution) and
-   CVT reconstruction (bottom-blue distribution) for an empty-target and no solenoid field. The target walls are located at
-   -30 and 20~mm with gaseous hydrogen in-between. At 50~mm, the scattering chamber cap is clearly visible. The improvement
-   in the resolution from SVT to CVT reconstruction is mainly due to the BMT-C tiles.}
+ \caption{Perliminary vertex position along the beam axis reconstructed with SVT-stand-alone reconstruction (top-green 
+distribution) and    CVT reconstruction (bottom-blue distribution) for an empty-target and no solenoid field. The 
+target walls are located at    -30 and 20~mm with gaseous hydrogen in-between. At 50~mm, the scattering chamber cap is 
+clearly visible. The improvement in the resolution from SVT to CVT reconstruction is mainly due to the BMT-C tiles.}
  \label{fig:mm-zvertex}
 \end{figure*}
