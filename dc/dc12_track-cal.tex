@@ -82,7 +82,7 @@ determine the drift distance to the sense wire from the measured drift time.
 
 %%%%%%%%%%%%%%%%%%%%%% Figure : Garfield Picture %%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htpb]
-\vspace{8cm} 
+\vspace{6.5cm} 
 \special{psfile=img/garfield.eps hscale=70 vscale=70 hoffset=0 voffset=-200}
 \caption{\small{Plot of electric-field lines and equal-time isochrone contours
 (100 ns interval) for a 90$\%$ argon - 10$\%$ CO$_2$ gas mixture for (a) an R3
@@ -363,9 +363,9 @@ to give a ``change of residual'' distribution caused by a given ``unit distortio
 We then fit the observed residual distribution from the data to a weighted
 sum of the 18 ``change of residual'' distributions.  In principle, we
 could have had 18 free parameters, but in practice we had 12 free parameters:
- $\delta$ x, $\delta$ y, $\delta$ z, and $\theta$ y for each of the 3 chambers: R1, R2 and R3,
-where $\theta y$ is a tilt of a chamber.  The yaw ($\theta x$) and roll ($\theta z$)
-were not varied because they did not improve the fits.
+ $\delta$~x, $\delta$~y, $\delta$~z, and $\theta$~y for each of the 3 chambers: R1, R2 and R3,
+where $\theta y$ is a tilt of a chamber.  We did not vary the yaw ($\theta x$) and 
+roll ($\theta z$) degrees of freedom.
 
 Fig.~\ref{resids-vs-layer-before} plots the mean of the residuals of a straight-line
 fit to the tracks versus layer (1 - 36 layers of the chambers), for one sector (in this
@@ -379,8 +379,8 @@ R3 from 25-36).
 \begin{figure}[htbp]
 \vspace{6cm}
 \begin{picture}(50,50)
-\put(-30,10)
-{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-before.png}}}
+\put(-60,10)
+{\hbox{\includegraphics[width=0.9\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-before.png}}}
 \end{picture}
 \caption{\small{A plot of the fit residual mean versus layer, before alignment.}}
 \label{resids-vs-layer-before}
@@ -402,8 +402,8 @@ aligned the chambers.
 \begin{figure}[bhtp]
 \vspace{12cm}
 \begin{picture}(50,50)
-\put(-30,10)
-{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-after.png}}}
+\put(-90,10)
+{\hbox{\includegraphics[width=0.9\textwidth,natwidth=610,natheight=642]{img/resids-vs-layer-after.png}}}
 \end{picture}
 \caption{\small{A plot of the fit residual mean versus layer, after alignment.}}
 \label{resids-vs-layer-after}
