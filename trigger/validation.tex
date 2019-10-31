@@ -14,7 +14,7 @@ These accidental ``good'' events are used to check whether the desired trigger b
 	\centering
 	\subfloat[]{\includegraphics[width=0.24\textwidth]{img/PCal_Fiducials_4878.png}}
 	\subfloat[]{\includegraphics[width=0.24\textwidth]{img/ECin_Fiducials_4878.png}}
-	\caption{Distribution of cluster coordinates of PCAL (left) and EC\_{in} (right).
+	\caption{Distribution of cluster coordinates of PCAL (left) and EC{in} (right).
 		The scatter-plot in red shows all events, while the blue scatter-plot show events where a cluster
 		is in the fiducial region of the calorimeter (about 15 cm away from the edges).}
 	\label{fig:pcal_clusters}
@@ -22,7 +22,7 @@ These accidental ``good'' events are used to check whether the desired trigger b
 
 The technique of the trigger validation is as follows. The trigger logic is configured exactly as it will be set in an experiment, but it runs in ``tagging mode'', reporting trigger decisions into the data stream for every randomly generated event. After several hours of running we collect at least 100 million events.
 
-After the data is processed and the events are reconstructed, we select a subset of events with correct trigger time. This is done using FADC spectra for detectors participating in the trigger logic. We need to select events with FADC spectra similar to those in the data obtained using regular trigger. Fig. ~\ref{fig:htcc_fadc} (left) shows typical FADC pulses for the regular (not random) trigger, with pulse width below 50~ns. Reconstructing and analyzing the data obtained using a random trigger, we select events with a signal in the middle of the FADC window to make sure we do not have boundary effects when the signal region is selected. Based on the typical pulse shape, we ignore areas below 50~ns and above 150~ns (see Fig. ~\ref{fig:htcc_fadc} (right)).
+After the data is processed and the events are reconstructed, we select a subset of events with correct trigger time. This is done using FADC spectra for detectors participating in the trigger logic. We need to select events with FADC spectra similar to those in the data obtained using the regular trigger. Fig. ~\ref{fig:htcc_fadc} (left) shows typical FADC pulses for the regular (not random) trigger, with pulse width below 50~ns. Reconstructing and analyzing the data obtained using a random trigger, we select events with a signal in the middle of the FADC window to make sure we do not have boundary effects when the signal region is selected. Based on the typical pulse shape, we ignore areas below 50~ns and above 150~ns (see Fig. ~\ref{fig:htcc_fadc} (right)).
 
 \begin{figure}[!htb]
 	\centering

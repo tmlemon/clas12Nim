@@ -26,6 +26,14 @@ where only the candidate with the highest momentum in each group is considered.
 
 A parallel event start time is determing from the FT to facilitate physics analyses and triggers where the primary scattered electron is at very forward angles in the FT.  In this case, all combinations of chaged particles in the FT and FD are considered.  The particle in the FT is assumed to be an electron, all hadron mass hypothesis are considered for the FD tracks, and the combination with the best time coincidence is chosen.  The timing of the resulting FT electron is then used to assign the start time.
 
+\begin{figure*}
+\centering
+\includegraphics[width=0.45\textwidth]{pics/ftof_betap.png}
+\includegraphics[width=0.45\textwidth]{pics/ft_betap.png}
+\caption{Beta versus momentum for events with start time from an electron in the FD (left plot) and in the FT (right plot).}
+\label{fig:betavsp}
+\end{figure*}
+
 A correction to the start time is then performed using the RF signal from the accelerator, combined with the event vertex position.  This effectively aligning the event start time to our best measure of bunch-crossing time at the primary interaction in the target.
 
 The uncorrected, measured verex time of a particle, $t_v$, can be written as
@@ -53,6 +61,13 @@ Remaining charged particles are then assumed to be hadrons and assigned an ident
 
 For neutral particles, identity is assigned only for neutrons and photons, based only on timing and topological information.  If the particle timing results in $\beta\sim1$, then photon is assigned, otherwise neutron is assigned.  For the forward detectors this is based on ECAL, while for central it is based on CND.  For photons in the forward detector, momentum is then assigned based on the ECAL sampling fraction.  For netrons, mometnum is assigned based on the measured $\beta$ and neutron mass.
 
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{pics/neutral_beta.png}
+\caption{Beta for neutral particles as measured by the ECAL, showing a sharp peak at $\beta=1$ from photons and a broader, slower distribution from neutrons. }
+\label{fig:neutbeta}
+\end{figure}
+
 An identification quality factor, in the form of a signed-$\chi$, is assigned based on the relevant detector responses and their resolutions.  For $e^-/e^+$ the resolution-normalized distance from the expected ECAL sampling fraction is used, while for charged hadrons the resolution normalized time-difference is used.
 
 \subsubsection{Persistence}
@@ -66,38 +81,29 @@ The resulting information is organized into standardized output bank structures 
     \label{tab:pidmatrix}
     \begin{tabular}{|c|cccccc|}\hline
           & \multicolumn{6}{c|}{Truth}\\        
-          & $e$ & $\pi$ & $K$ & $p$ & $n$ & $\gamma$ \\\hline
-  $e$     &     &       &     &     &     &          \\ 
-  $\pi$   &     &       &     &     &     &          \\ 
-  $K$     &     &       &     &     &     &          \\ 
-  $p$     &     &       &     &     &     &          \\ 
-  $n$     &     &       &     &     &     &          \\ 
- $\gamma$ &     &       &     &     &     &          \\\hline 
+          & $e$  & $\pi$ & $K$  & $p$  & $n$  & $\gamma$ \\\hline
+  $e$     & 0.98 &       &      &      &      &          \\ 
+  $\pi$   &      &  0.93 & 0.10 & 0.00 &      &          \\ 
+  $K$     &      &  0.03 & 0.80 & 0.00 &      &          \\ 
+  $p$     &      &  0.03 & 0.02 & 0.98 &      &          \\ 
+  $n$     &      &       &      &      & 0.66 &   0.01   \\ 
+ $\gamma$ &      &       &      &      & 0.14 &   0.95   \\\hline 
     \end{tabular}
-  \caption{Pariticle identification matrix, based on simulation for particles between 1 and 4 GeV momentum.  The diagonal elements are correctly identified, while the off-diagonal elements are misidentified.}
+  \caption{Pariticle identification matrix for the FD acceptance, based on simulated hadrons and photons between 1 and 2.5 GeV momentum, and electrons up to 9 GeV.  The diagonal elements are correctly identified, while the off-diagonal elements are misidentified.  Detector inefficiencies are included.}
   \end{center}
 \end{table}
 
 \begin{figure}
-    \includegraphics[width=0.45\textwidth,height=0.2\textheight]{pics/dummy.png}
-    \caption{Example geometric matching criteria:  distance of closest approach between track and calorimeter and scintillator hits.\label{fig:ebmatch}}
+\centering
+\includegraphics[width=0.45\textwidth,height=0.2\textheight]{pics/pcal-doca.png}
+\caption{Example geometric matching criteria:  distance of closest approach between track and calorimeter clusters.\label{fig:ebmatch}}
 \end{figure}
 
-
-\vspace{1in}
-\begin{figure}
-\includegraphics[width=0.45\textwidth]{pics/betavsp1.png}
-\includegraphics[width=0.45\textwidth]{pics/betavsp2.png}
-\caption{Beta versus p for events with an electron in the FD (left plot) and in the FT (right plot).
-}
-\label{fig:betavsp}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=0.45\textwidth]{pics/pi0mass.png}
-\includegraphics[width=0.45\textwidth]{pics/pi0mass2.png}
-\caption{Reconstructed $\pi^{0}\rightarrow \gamma \gamma$ candidates using EC (left plot) and FT (right plot) information.
-}
+\begin{figure*}
+\centering
+\includegraphics[width=0.45\textwidth]{pics/ecal_pi0.png}
+\includegraphics[width=0.45\textwidth]{pics/ft_pi0.png}
+\caption{Reconstructed $\pi^{0}\rightarrow \gamma \gamma$ candidates using photons detected in the EC (left plot) and FT (right plot).}
 \label{fig:pi0mass}
-\end{figure}
+\end{figure*}
 
