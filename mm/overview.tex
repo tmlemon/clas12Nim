@@ -31,11 +31,14 @@ the micro-mesh and enter the amplification gap. In the amplification gap, the el
 kV/cm, accelerating the electrons arriving from the conversion gap and making them ionize the gas, consequently creating an
 electromagnetic shower. The signal is then collected by the readout strips.  
 
-\begin{figure}[htb]
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{images/mm_principle}
+\begin{figure*}[thb]
+\begin{center}
+\includegraphics[width=1.8\columnwidth,keepaspectratio]{images/mm_principle}
+\end{center}
+
 \caption{Schematic view of a resistive Micromegas detector.}
 \label{fig:mm-principle}
-\end{figure}
+\end{figure*}
 
 The MVT must sustain a high particle flux, which may induce sparks between the micromesh and the strips in its nominal
 running conditions. In order to quench these sparks and their associated temporary high voltages (HV) drops that ``blind''
@@ -88,6 +91,9 @@ The Forward Micromegas Tracker consists of six flat Micromegas disks stacked tog
 assembled with a 60$^\circ$ rotation with respect to one another, giving 3 angles of strips (0$^\circ$, 60$^\circ$, and
 120$^\circ$). The FMT is attached to the downstream end flange of the BMT. Figure~\ref{fig:mm-fig1} displays a cut view
 of both the BMT and FMT inside the CLAS12 solenoid magnet.
+
+The CLAS12 Forward Tagger (FT) is equipped with four Micromegas disks arranged in two pairs, called FT tracker 
+(FT-Trck). The FT-Trck shares most of the design with the FMT and a detailed description can be found in \cite{ft-nim}.
 
 \subsection{Mechanical Structure}
 
@@ -162,15 +168,18 @@ of two 0.2~mm thick PCBs glued on a 2~mm Rohacell foam backing to form the reado
 glued on two cylindrical frames that define the gas volume (5~mm). The inner frame is made of PEEK and the outer frame of
 aluminum. Both define the chamber and are attached to the readout plane using stainless steel screws. High voltage connections
 and associated filter circuits are located on the disk edge diametrically opposed from one another. The signals are read out via
-16 MEC8 connectors. 
+16 MEC8 connectors.
 
-\begin{figure}[htb]
+\begin{figure*}[htb]
  
-\includegraphics[width=0.66\columnwidth,keepaspectratio]{images/fig6_1}
-\includegraphics[width=0.33\columnwidth,keepaspectratio]{images/fig6_2}
+ \begin{center}
+\includegraphics[width=1.2\columnwidth,keepaspectratio]{images/fig6_1}
+\includegraphics[width=0.6\columnwidth,keepaspectratio]{images/fig6_2}
+ \end{center}
+ 
  \caption{CAD views of the FMT disks.}
  \label{fig:mm-fig5}
-\end{figure}
+\end{figure*}
 
 The active area of the FMT is divided in two parts, the inner part with diameter $86 < d < 166$~mm, and the outer part with
 $168 < d < 380$~mm. Each of the two parts can be independently energized so that the inner region can be turned off in the

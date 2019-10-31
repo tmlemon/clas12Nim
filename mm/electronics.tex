@@ -8,6 +8,8 @@ latency. Timing precision of a few ns is sufficient to limit the number of ghost
 signals. A charge measurement with a 10-bit dynamic range is enough to cover the full span of the Micromegas detector signals
 and to discriminate accurately minimum-ionizing particles (MIPs) from noise.
 
+The FT-Trck uses the same readout electronics and architecture as the MVT.
+
 \subsection{Readout System Architecture}
 
 The extremely compact and dense design of the CLAS12 Central Detector leaves a very narrow space between the MVT and
@@ -17,19 +19,22 @@ is an obvious concern. Consequently, a readout architecture based on off-detecto
 Lightweight micro-coaxial cable assemblies with low 40~pF/m linear capacitance carry bare, unamplified signals to the Front-End
 Units (FEU) housed in crates $\sim$1.5--2~m upstream of the detectors. 
 
-\begin{figure}[htb]
- \includegraphics[width=1.0\columnwidth,keepaspectratio]{images/electronics_fig1.png}
- \caption{MVT/FTT readout system.}
+\begin{figure*}[htb]
+\begin{center}
+ \includegraphics[width=1.6\columnwidth,keepaspectratio]{images/electronics_fig1.png}
+\end{center}
+
+ \caption{MVT and FT-Trck readout system.}
  \label{fig:mm-e_1}
-\end{figure}
+\end{figure*}
 
 The front-end electronics are responsible for the amplification and shaping of the detector signals, for holding the latter in a
 pipeline waiting for the trigger process to yield, for the digitization and compression of the selected event data, and for their
 delivery to the back-end electronics. The back-end is responsible for data concentration event by event. It provides an interface
 with the CLAS12 event building system, ensures a fixed latency path between the CLAS12 trigger system~\cite{trigger-nim} 
-and
-the FEUs, and receives the system clock and trigger from the CLAS12 trigger supervisor and synchronously conveys them to the
-FEUs over bidirectional optical links.
+and the FEUs, and receives the system clock and trigger from the CLAS12 trigger supervisor and synchronously conveys 
+them to the FEUs over bidirectional optical links. A schematic representation of the readout system architecture is 
+shown in Figure~\ref{fig:mm-e_1}.
 
 \subsection{The 64-Channel DREAM ASIC}
 
@@ -47,7 +52,8 @@ Readout Electronics ASIC for Micromegas), has been developed~\cite{DRM}.
  \label{fig:mm-e_2}
 \end{figure}
 
-Each channel includes a charge sensitive amplifier (CSA) adapted to a wide spread of detector capacitances (up to 1~nF) and
+The DREAM ASIC block diagram is shown in Figure~\ref{fig:mm-e_2}. Each channel includes a charge sensitive amplifier 
+(CSA) adapted to a wide spread of detector capacitances (up to 1~nF) and
 four selectable charge measurement ranges (from 50 to 600~fC), a shaper with programmable peaking times (from 75~ns to
 1~$\mu$s), and 512-cell deep Switched Capacitor Array (SCA) used as the trigger pipeline memory and a de-randomization buffer.
 
@@ -106,11 +112,14 @@ The back-end of the data acquisition system of the MVT is based on the JLab stan
 interface (TI), a signal distribution (SD) and a sub-system processor (SSP) board, and a crate controller single board computer
 (SBC)~\cite{daq-nim}. The flow of the trigger, data, and control messages is shown in Fig.~\ref{fig:mm-e_4}. 
 
-\begin{figure}[htb]
- \includegraphics[width=1.0\columnwidth,keepaspectratio]{images/electronics_fig4.png}
+\begin{figure*}[htb]
+\begin{center}
+ \includegraphics[width=1.6\columnwidth,keepaspectratio]{images/electronics_fig4.png}
+\end{center}
+
  \caption{MVT back-end unit and dataflow.}
  \label{fig:mm-e_4}
-\end{figure}
+\end{figure*}
 
 The TI receives a low jitter 250~MHz system clock and fixed latency trigger signals from the CLAS12 trigger supervisor. It
 also delivers to the trigger supervisor the status information (e.g. busy) of the MVT readout system. The physical layer interface
