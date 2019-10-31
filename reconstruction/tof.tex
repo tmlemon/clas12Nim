@@ -1,144 +1,214 @@
 \subsection{Time-of-Flight Systems}
+\label{tof-sys}
 
-For the CLAS12 Forward Time-of-Flight system (FTOF)~\cite{ftof-nim} and Central Time-of-Flight system
-(CTOF)~\cite{ctof-nim}, the raw data from the detector elements readout during data acquisition that are
-associated with a charged or neutral hit, include an ADC charge and hit time from a fitted flash ADC waveform
-and a TDC time. The ADC and TDC information is recorded only for hits that are above the hardware readout
-threshold. For hits in the FTOF and CTOF, the hardware thresholds for the flash ADC and discriminators are set
-to be $\sim$1~MeV. During event reconstruction the ADC and TDC information are converted into deposited energy
-and timing information after completion of the detector calibration procedures (see Refs.~\cite{ftof-nim,ctof-nim}
-for calibration details). The measured hit times in each counter are related to the event start time defined with
-respect to the appropriate RF beam bucket to determine the charged or neutral particle flight time.
+The time-of-flight detectors for CLAS12 include the Forward Time-of-Flight system (FTOF)~\cite{ftof-nim}
+and Central Time-of-Flight system (CTOF)~\cite{ctof-nim}. The raw data from the detector PMTs read out
+during data acquisition include an ADC charge and hit time from a fitted flash ADC waveform and a TDC time.
+The ADC and TDC information is read out and recorded only for those channels that are above the $\sim$1~MeV
+hardware readout threshold for the flash ADCs and discriminators of both systems.
 
-\subsubsection{Reconstructed Hit Time}
+As the FTOF and CTOF counters employ double-ended PMT readout, the calibration procedures for these
+systems (described in detail in Refs.~\cite{ftof-nim,ctof-nim}) allow the reconstruction to report accurate hit
+times and deposited energy associated with each PMT signal above threshold. At this point the event
+reconstruction combines the PMT hit times and energies to give a hit time and energy loss associated with the
+scintillation counter. This process includes combining hit information for tracks that pass through multiple
+counters in the FTOF and CTOF systems (so-called ``corner clippers'') to define a hit cluster with an
+associated hit time, hit coordinate, and deposited energy.
+
+The event reconstruction links an FTOF or CTOF counter hit to a charged track only if the track, either from
+forward tracking for the FTOF or from central tracking for the CTOF, projects to the hit counter. This
+projection is done in the forward direction by using a straight line extrapolation beyond the outermost drift
+chamber and in the central direction by extrapolation of the track outward from the central tracker through
+the solenoid field along a helical trajectory. If the projected track hit point to the FTOF or CTOF matches to
+a hit counter within a defined ``matching radius'' ($\pm$1 counter about the projected track hit point and
+$\sim$20~cm along the length of the counter),  then the FTOF or CTOF hit is associated with the charged
+track. These matching criteria will be further tightened in the future after optimization of the track
+reconstruction.
+
+\subsubsection{Reconstructed Counter Hit Time}
 \label{rec:time}
 
-The reconstructed scintillation bar hit times need to account for the time delays along the readout path that
-include the PMT signal transit time, the signal propagation times through the signal cables and the electronics,
-and any time-walk effects associated with the readout discriminators. For the FTOF readout, leading-edge
-discriminators are employed, while for the CTOF readout constant fraction discriminators are employed and no
-external time-walk corrections are required. The hit times reconstructed by the readout through the PMTs at
-the left and right ends of each scintillation bar are given by:
-
-\begin{equation}
-t_{L/R} = (C_{TDC} \cdot TDC_{L/R}) - t_{L/R}^{walk} - \frac{C_{LR}}{2} + C_{p2p},
-\end{equation}
+The reconstructed hit times from the individual PMTs need to account for the time delays along the readout
+path that include the PMT signal transit time, the signal propagation times through the signal cables and the
+electronics, and any time-walk effects associated with the readout discriminators. For the FTOF readout,
+leading-edge discriminators are employed, while for the CTOF readout, constant fraction discriminators are
+employed and no external time-walk corrections are required. The hit times reconstructed by the TDC readout
+of the PMTs at the ends of each scintillation bar (referred to generically here as 1 and 2) are given by:
+\begin{multline}
+t_{1/2} = (CONV \cdot TDC_{1/2}) - t_{1/2}^{walk} \\ \mp \frac{C_{12}}{2} + C_{RF} + C_{p2p},
+\end{multline}
 
 \noindent
-where $C_{TDC}$ is the TDC channel-to-time conversion factor (0.024~ns/bin), $TDC$ is the measured TDC value
-relative to the trigger signal, $t^{walk}$ is the time walk function to correct for the pulse amplitude dependence of
-the crossing times of the discriminator threshold, $C_{LR}$ is a time offset to center the left-right TDC difference
-distribution about 0, and $C_{p2p}$ is a time offset to account for the different delay times along the signal path from
-the photocathode of the PMT to the readout electronics. The paddle-to-paddle time offsets $C_{p2p}$ mainly account
-for the different signal cable lengths.
+where $CONV$ is the TDC channel-to-time conversion factor (0.024~ns/bin), $TDC$ is the measured PMT TDC
+value relative to the trigger signal, $t^{walk}$ is the time-walk function to correct for the pulse amplitude
+dependence of the crossing times of the discriminator threshold (used only for FTOF), $C_{12}$ is a time offset
+to center the PMT TDC difference distribution about 0, and $C_{RF}$ and $C_{p2p}$ are the time offsets to
+align all of the counter hit times with respect to the RF time and to each other, respectively. The paddle-to-paddle
+time offsets $C_{p2p}$ mainly account for the signal delays along the cable lengths from the PMT output to the
+readout electronics.
 
 The FTOF and CTOF particle hit times relative to the trigger signal can be determined separately from the times
-$t_L$ and $t_R$ measured by the left and right PMTs of a given scintillation bar using:
+$t_1$ and $t_2$ measured by the PMTs of a given scintillation bar using:
 
 \begin{equation}
-t_{hit}^{L/R} = t_{L/R} - \frac{d_{L/R}}{v_{eff}},
+\label{thit-1}
+t_{hit}^{1/2} = t_{1/2} - \frac{d_{1/2}}{v_{eff}},
 \end{equation}
 
 \noindent
-where $d_{L/R}$ represents the distances along the bar from the hit point to the left and right PMTs given by
-$d_{L/R}= L/2 \pm y$ with $y$ the hit coordinate along the bar and $L$ the counter length. The average hit time
-is given by:
+where $d_{1/2}$ represents the distances along the bar from the hit point to the PMT given by:
 
 \begin{equation}
-\bar{t}_{hit} = \frac{1}{2} ( t_{hit}^L + t_{hit}^R ) = \frac{1}{2} \left[ t_L + t_R - \frac{L}{v_{eff}} \right],
+d_{1/2}= L/2 \pm y,
+\end{equation}
+
+\noindent
+with $y$ the hit coordinate along the bar (determined from forward tracking for the FTOF and central tracking
+for the CTOF) and $L$ is the counter length. The average counter hit time is given by:
+
+\begin{equation}
+\label{thit-2}
+\bar{t}_{hit} = \frac{1}{2} ( t_{hit}^1 + t_{hit}^2 ) = \frac{1}{2} \left[ t_1 + t_2 - \frac{L}{v_{eff}} \right],
 \end{equation}
 
 \noindent
 where $v_{eff}$ is the effective speed of light in the scintillation bar.
 
-The hit coordinate along the bar is defined with respect to the center of the bar using:
+If the PMTs for both ends of a given hit counter are functioning, Eq.(\ref{thit-2}) shows that $\bar{t}_{hit}$
+does not require any information from the tracking systems. However, if one of the PMTs of a counter is
+malfunctioning, Eq.(\ref{thit-1}) shows that the hit time recorded from the working PMT alone can be
+used to reconstruct the particle hit time using tracking information to correct for the light propagation delay
+along the counter. The loss of one PMT involves a $\sqrt{2}$ worse timing resolution.
+
+Using the timing information from the PMTs at the ends of each bar, the hit coordinate along the bar is defined
+with respect to the center of the bar can be defined from the FTOF or CTOF information alone using:
 
 \begin{equation}
 \label{tof-coor}
-y = \frac{v_{eff}}{2} (t_L - t_R - y_{offset}),
+y = \frac{v_{eff}}{2} (t_1 - t_2 - C_{12}).
 \end{equation}
 
 \noindent
-where $y_{offset}$ is an additional coordinate shift to center the coordinate distribution about zero.
+It is this coordinate determination that is compared against the projected coordinate from tracking to
+determine of the time-of-flight hit matches to a track.
 
-In addition to the hit time determined from the TDC information associated with the left and right PMTs
-from each counter of the FTOF and CTOF systems, a time is also derived from fitting the leading edge of
-the flash ADC pulse shape. Due to the choice of fast timing PMTs for the detector readout and the use of
-250~MHz FADCs, the number of samples on the leading edge of the PMT pulses is only 3 to 4, hence
-the timing resolution is only $\sim$1~ns. In the event reconstruction of FTOF and CTOF hits, however, we
-require that the hit times determined from the TDCs and from the FADCs match to within 10~ns to
-reduce the probability of a mismatch of the ADC and TDC data for a given scintillation bar hit.
+In addition to the hit time determined from the TDC information associated with the PMTs from each counter
+of the FTOF or CTOF systems, a time is also derived from fitting the leading edge of the flash ADC pulse
+shape. Due to the choice of fast timing PMTs for the detector readout and the use of 250~MHz FADCs, the
+number of samples on the leading edge of the PMT pulses is only 3 to 4, hence the FADC timing resolution is only
+$\sim$1~ns. In the event reconstruction of FTOF and CTOF hits, however, we require that the hit times
+determined from the TDCs and from the FADCs match to within 10~ns to reduce the probability of a mismatch
+of the ADC and TDC data for a given scintillation bar hit. This is especially important for the FTOF as the ADC
+value of the hit is used to compute the time-walk correction.
 
-For CLAS12 flight time measurements, the event start time is determined by the FTOF system using the
-path length $L$ determined from the forward drift chamber tracking by comparing the FTOF hit time
-traced back to the vertex and linking this time to the closest RF pulse from the 499~MHz RF signal from
-the accelerator. The timing residuals
+For CLAS12 flight time measurements, the event start time is determined by the FTOF system (after the
+FTOF timing calibrations have been completed) using the path length $P_L$ determined from forward tracking
+and tracing the FTOF hit time back to the event vertex. This vertex time $t_{vtx}$ is given by:
 
 \begin{equation}
-t_{res} = mod \left [ \left (\bar{t}_{hit} - \frac{L}{\beta c} \right) - \left (t_{RF} + \frac{z_v}{\beta_e c} \right),
-T_{RF} \right ]
+t_{vtx} = \overline{t}_{hit} - \frac{P_L}{\beta c}.
+\end{equation}
+
+The event start time is then determined by matching to the time $t_{RF}$ of the closest RF pulse from the
+499~MHz RF signal from the accelerator. The centroid of the residual time difference distribution
+
+\begin{equation}
+t_{res} = mod \left[ t_{vtx} - \left(t_{RF} + \frac{z_{vert}}{\beta_e c} \right), T_{RF} \right]
 \end{equation}
 
 \noindent
-are centered about zero. The reconstruction algorithm determines the event start time looking first for an
-$e^-$ and then an $e^+$ in the ECAL. If none exists, then it looks for a high momentum $\pi^+$ or $\pi^-$. In
-each case, if multiple candidates exist, the track with the highest momentum is chosen. In the expression for
-$t_{res}$ above, $z_v$ represents the reconstructed event vertex from traceback of the drift chamber track
-to the distance of closest approach to the defined beamline and $T_{RF}$ is the RF period. The term
-$z_v/\beta_e c$ shifts the RF reference time to the event vertex. The modulus is employed as the RF time is a
-pulse train with a period of $T_{RF}$. For the CTOF reconstruction, the flight time is computed as
-$\bar{t}_{hit} - t_{ST}$.
+defines the event start time $t_{ST}$. In the expression, $z_{vert}$ represents the reconstructed event vertex
+from traceback of the forward track to the distance of closest approach to the defined beamline and the term
+$z_{vert}/\beta_e c$ shifts the RF reference time (nominally defined at the center of the target along the
+beamline in $z$) to the reconstructed event vertex. The modulus of $t_{res} $ with the RF period $T_{RF}$ is
+employed as the RF signal is a repeating pulse train. The reconstruction algorithm determines the event start
+time looking first for an $e^-$ and then an $e^+$ in the ECAL. If none exists, it then looks for a high momentum
+$\pi^+$ or $\pi^-$. In each case, if multiple candidates exist, the track with the highest momentum is chosen.
+For the CTOF reconstruction, the flight time is computed as $\bar{t}_{hit} - t_{ST}$.
 
 \subsubsection{Reconstructed Hit Energy}
 \label{rec:energy}
 
-The reconstructed energy from the left and right ADC values of the PMTs for a given scintillator bar is given by:
+The reconstructed energies from the ADC values of the PMTs (1 and 2) for a given scintillator bar are given by:
 
 \begin{equation}
-E_{L/R} = (ADC_{L/R} - PED_{L/R}) \left [ \frac{\left( \frac{dE}{dx} \right )_{MIP} \cdot t}{ADC_{MIP}} \right ],
+E_{1/2} = (ADC_{1/2} - PED_{1/2}) \left [ \frac{\left( \frac{dE}{dx} \right )_{MIP} \cdot t}{ADC_{MIP}} \right ],
 \end{equation}
 
 \noindent
-where $(ADC  - PED)$ is the measured pedestal-subtracted ADC integral, $ADC_{MIP}$ is the ADC value for normally
-incident minimum-ionizing particles (MIPs) at the center of the scintillation bar, $\left( \frac{dE}{dx} \right)_{MIP}$
-is the energy loss for MIPs in the scintillation bars (1.956~MeV/cm), and $t$ is the scintillation bar thickness.
-The deposited energy is computed as the geometric mean of the deposited energy as determined from the left and
-right PMTs $E_L$ and $E_R$ as $E_{dep} = \sqrt{E_L E_R}$.
+where $(ADC  - PED)$ is the measured pedestal-subtracted ADC integral, $ADC_{MIP}$ is the ADC value for
+normally incident minimum-ionizing particles (MIPs) at the center of the scintillation bar,
+$\left( \frac{dE}{dx} \right)_{MIP}$ is the energy loss for MIPs in the scintillation bars (1.956~MeV/cm), and
+$t$ is the scintillation bar thickness. The deposited energy is computed as the geometric mean of the deposited
+energy as determined from the two counter PMTs as:
+
+\begin{equation}
+E_{dep} = \sqrt{E_1 E_2}.
+\end{equation}
 
 \subsubsection{Hit Clustering and Matching}
 
-A charged track incident upon the FTOF or CTOF can cross more than one scintillation bar. If there are multiple
-scintillation bar hits associated with a single incident charged particle track, a hit cluster can be defined. These
-clusters have associated with them a hit coordinate, energy, and hit time.
+If there are multiple scintillation bar hits associated with a single incident charged particle track, a hit cluster
+can be defined. These clusters have associated with them a hit coordinate, deposited energy, and hit time.
+Hits are assigned as part of a cluster in either the FTOF or CTOF if they fall within a matching ``radius'' to
+the projected track as described in Section~\ref{tof-sys}. In each of the sectors of the CLAS12 Forward
+Detector there are three FTOF counter arrays. In the polar angle range from 5$^\circ$ to 35$^\circ$ are
+located the parallel counter arrays called panel-1a and panel-1b. In the polar angle range from 35$^\circ$ to
+45$^\circ$ are located the counter arrays called panel-2. The cluster algorithm looks to define hit clusters
+matched to tracks separately in each of these counter arrays.
 
-The $(x,y,z)$ coordinates assigned to a scintillation bar hit are given at the middle of the bar across its width
-and depth, and from eq.(\ref{tof-coor}) along the counter length. Hits are assigned as part of a cluster if they
-fall within a matching distance of the charged track projected from the drift chambers to the FTOF counters
-using a straight line extrapolation or from the Central Vertex Tracker to the CTOF counters following the
-helical trajectory in the solenoid field. This matching distance is $\pm$1 counter about the hit scintillation bar
-and $\pm$10~cm along the counter length.
-
-With hit clusters defined, the associated cluster coordinate is defined as the energy-deposited weighted average.
-The deposited energy of the cluster hit is the energy sum of the cluster hits and the hit time is the energy-deposited
-weighted average. Note that in both the FTOF and CTOF systems, the maximum cluster size is $N=2$.
-
-For the FTOF system in the range of polar angles from 5$^\circ$ to 30$^\circ$ where two parallel scintillation
-bar planes are included (referred to as panel-1b - closest to the target, and panel-1a - farthest from the target)
-(see Ref~\cite{ftof-nim}), the hit time is assigned as the time resolution weighted average of the two cluster times
-after evolving the panel-1a hit to the location of the panel-1b hit using the path length determined from the
-extrapolated drift chamber track. The combined plane hit time is given by:
+With hit clusters defined, the associated cluster coordinate along the counter length is defined as the
+energy-deposited weighted average of the reconstructed $y$ coordinate from Eq.(\ref{tof-coor}) as:
 
 \begin{equation}
-t_{comb} = \frac{ t_{1b}^{cluster} {\delta_{1b}}^{-1} + (t_{1a}^{cluster} - \Delta r/\beta) {\delta_{1a}}^{-1}}
-{\left( {\delta_{1b}}^{-1} + {\delta_{1a}}^{-1} \right)},
+y_{cluster} = \sum_{i=1}^{N} y_i \cdot \Delta E_i.
 \end{equation}
 
 \noindent
-where $\delta_{1b/1a}$ are the measured counter effective time resolutions, $t_{1b/1a}^{cluster}$ are the cluster
-hit times, and $\Delta r/\beta$ is the path length from the panel-1a hit location to the panel-1b hit location for
-the track of speed $\beta$.
+Note that in both the FTOF and CTOF systems, the maximum cluster size is limited to $N=2$. For the
+coordinate transverse to the counter length along the counter width, the coordinate is defined as the average
+of the coordinates associated with the middle of the bar.
 
-As the effective FTOF time resolutions for the panel-1b counters are in the range from $60-110$~ps and those
-for the panel-1a counters are in the range from $90-160$~ps, the combined plane hit time resolution is $\sim$20\%
-better than that for the panel-1b hit time resolution. If there is a panel-1b (panel-1a) hit without an associated
-panel-1a (panel-1b) hit, the hit time is defined solely by the panel-1b (panel-1a) hit.
+The assigned cluster energy is the sum of the deposited energies in the counters associated with the defined
+cluster,
+
+\begin{equation}
+  E_{cluster} = \sum_{i=1}^N E_{dep}^i.
+\end{equation}
+
+\noindent
+The path length through the counter layer is then determined from ray tracing of the charged particle track.
+This path length through the layer is then used to compute $dE/dx$.
+
+The hit time associated with the cluster in a given layer is currently based on assigning the hit time as the
+counter hit with the closest geometrical match to the charged track extrapolated to the FTOF or CTOF
+systems. The algorithm will be further studied and optimized in the future.
+
+In the FTOF when there is a defined hit or a defined cluster in both panel-1b and panel-1a, a cluster matching
+algorithm (using timing and hit-coordinate information solely from the FTOF) is applied to determine if the hit
+or cluster in panel-1b and the hit or cluster in panel-1a are associated with the same incident track matched to
+the panel-1b hit or cluster. If they are associated, a corrected FTOF time based on the panel-1a and panel-1b
+cluster times is computed using a time resolution weighting according to the counter in each cluster with the
+largest energy deposition.
+
+\begin{equation}
+  t_{corr} = \frac{\displaystyle \frac{\displaystyle t_{1b}^{cluster}}{\displaystyle \delta_{1b}} +
+    \frac{\displaystyle (t_{1a}^{cluster} - \Delta r/\beta c)}{\displaystyle \delta_{1a}}}
+  {\displaystyle \left( \frac{\displaystyle 1}{\displaystyle \delta_{1b}} +
+    \frac{\displaystyle 1}{\displaystyle \delta_{1a}} \right)}.
+\end{equation}
+
+\noindent
+Here $\delta_{1a,1b}$ are the effective time resolutions measured for the counters determined during the
+FTOF calibration procedure and $t_{1a,1b}^{cluster}$ are the cluster hit times in panel-1a and panel-1b. The term
+$\Delta r/(\beta c)$ accounts for the path length difference between the panel-1b cluster hit coordinate and
+the panel-1a cluster hit coordinate and comes from forward tracking information. As $\beta$ depends on the
+FTOF time, it is assumed that it is based on the panel-1b time information (the array with the better timing
+resolution).
+
+Given the effective FTOF counter resolutions, the overall FTOF hit time resolution is improved by 15-20\%
+when combining the times from panel-1b and panel-1a in this manner. Of course, if the track interacts with only
+panel-1a or with only panel-1b due to the slightly different solid angles of coverage of the arrays, then only the
+single plane hit time is used in the event reconstruction. Note that employing the combined panel-1a and panel-1b
+hit times has not yet been fully validated in the event reconstruction but is currently under test using Monte
+Carlo data samples.

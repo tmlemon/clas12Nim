@@ -60,7 +60,7 @@ Larger projects, such as for the ECAL, require more efficient use of the FPGA re
 The typical HLS project for the CLAS12 Trigger System contains only a few routines, and uses HLS streams in the function parameter list to communicate easily with the surrounding HDL. That scheme works well for small projects.
 
 For the ECAL with some versions being close to 100\% of FPGA utilization, the situation was quite different.
-The biggest problem we faced was the inability to meet the timing requirements during the implementation (even when HLS reports that the timing is good). HLS uses state machines to schedule the operations it synthesizes. For large HLS components, the generated state machines can have massive control signal fanouts. As the clock period shrinks, so must the maximum signal fanout for the general control signals for a design to reliably meet the timing requirements. For a clock period of 8~ns using a ``-1'' speed grade Virtex-7, each HLS module was kept smaller than the 30K look-up tables (LUTs) ($<$10\% of the LUT resources) to achieve a design that consistently meets the timing requirements.
+The biggest problem we faced was the inability to meet the timing requirements during the implementation (even when HLS reports that the timing is good). HLS uses state machines to schedule the operations it synthesizes. For large HLS components, the generated state machines can have massive control signal fanouts. As the clock period shrinks, so must the maximum signal fanout for the general control signals for a design to reliably meet the timing requirements. For a clock period of 8~ns using a ``-1'' speed grade Virtex-7, each HLS module was kept smaller than the 30k look-up tables (LUTs) ($<$10\% of the LUT resources) to achieve a design that consistently meets the timing requirements.
 
 The original ECAL project consisted of about 20 C++ procedures that occupied most of the FPGA resources - with HLS generating big fanouts on this scale, it was impossible to meet the 8~ns timing on the implementation stage. The workaround was to split the entire project into smaller procedures, glued together in HDL by using well defined, simple interfaces between the separate procedures. Still, some procedures were too big, especially for the sorting algorithms. We were able to split some procedures further until finally the entire project met the timing requirements and the resulting FPGA image was loaded into the hardware.
 
@@ -99,7 +99,7 @@ Common settings for VIVADO were used as shown in Fig. ~\ref{fig:vivado}. It usua
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/vivado.png}
-	\caption{VIVADO project for the PCAL trigger. Strategies used were ``Vivado Synthesis Defaults'' and ``Performance\_ExplorePostRoutePhysOpt''. LUT utilization is about 2/3 of the total balance. It was relatively easy to meet the timining requirements with an FPGA clock 125~MHz or slower.}
+	\caption{VIVADO project for the PCAL trigger. Strategies used were ``Vivado Synthesis Defaults'' and ``Performance\_ExplorePostRoutePhysOpt''. LUT utilization is about 2/3 of the total balance. It was relatively easy to meet the timing requirements with an FPGA clock 125~MHz or slower.}
 	\label{fig:vivado}
 \end{figure}
 
