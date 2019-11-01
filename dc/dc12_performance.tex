@@ -1,24 +1,26 @@
 \section{Drift Chamber Tracking System Performance}
-In this section, we document the drift chamber system's
+In this section, we describe the tracking system performance:
+the ability to operate at high luminosity, the
 efficiency at reconstructing charge particle tracks and
-its spatial resolution of such tracks.
+the spatial resolution of such tracks.
 
-\subsection{High Luminosity}
+\subsection{Operation at High Luminosity}
 In order to satisfy the statistical requirements of the experimental program, 
 an important design goal for CLAS12 is the ability to make routine measurements 
-with high electron beam luminosities up to 
-1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$.  The luminosity limit in CLAS12 is 
+with electron beam luminosities up to 
+10$^{35}$~cm$^{-2}$s$^{-1}$.  The luminosity limit in CLAS12 is 
 set by the large flux of M{\o}ller electrons and low-energy photons 
 produced from the targets by the multi-GeV incident electron beam.  This 
 constraint is severe for the drift chambers since they are close to the 
 target. 
 
 Particularly for the R1 chambers, the large flux of 
-particles limits the luminosity in two ways.  First, a large number of 
-background-related hits in the chambers reduces the track reconstruction 
-efficiency.  The working assumption is that the analysis software can tolerate 
-no more that a 5$\%$ accidental chamber occupancy in order to successfully 
-reconstruct charged-particle tracks.  Second, the effects of sustained high 
+particles limits the luminosity in several ways.
+First, the chambers must be able to operate with an acceptably low trip rate.
+Second, the accidental occupancy in the chambers should be on the order
+of 5\% or less in order to keep the track-finding inefficiencies at a moderate 
+level.  See the accompanying article on track reconstruction (\cite{})
+for a quantitative discussion of this effect.  Third, the effects of sustained high 
 luminosities can be unfavorable for long chamber lifetimes.  Aging correlates 
 directly with the currents generated in the chambers.
 However, our choice of an Argon CO2 gas mixture and strict control of
@@ -65,16 +67,16 @@ hit is not used in the tracking.  The malfunction-related inefficiency  is small
 At the time of publication,
 roughly $0.5\%$ of our wires are not operating properly.  
 \item {\bf simulation of background-related inefficiency}: rather than try
-to simulated out-of-time background due to all physics processes, we merge
+to simulate out-of-time background due to all physics processes, we merge
 ``random-trigger'' events with low-luminosity runs and calculate the
 efficiency of these merged events with un-merged low-luminosity events.
 \end{enumerate}
 
 We will not further discuss the {\bf malfunction-related inefficiency} or
 the {\bf background-related inefficiency} further in this article.  See
-our companion article on {\bf Track Reconstruction} for more details.
+our companion article on track reconstruction for more details.
 
-Now we present our results on measuring the {\bf intrinsic layer  inefficiency}.
+Here we present our results on measuring the {\bf intrinsic layer  inefficiency}.
 
 \subsubsection{Intrinsic Layer Inefficiency}
 The layer efficiency is the probability that a
@@ -90,7 +92,7 @@ layer efficiency at each point.  We set the high-voltage operating points such t
 the average layer efficiency is $>$98$\%$. 
 
 The single layer inefficiency is not uniform across the drift cell.  It is higher near the sense wire and also near the outer
-edge of the cell.  A track passing close to a sense wire leave many ions in the cell, but the ion arrival times are stretched
+edge of the cell.  A track passing close to a sense wire leaves many ions in the cell, but the ion arrival times are stretched
 out from near-zero to the maximum drift time, Tmax.  The result is that the pre-amplifier's output signal has a low voltage
 amplitude but persists for a long time.  So, even though the collected charge is large the voltage put out by our trans-impedance
 pre-amplifiers may not be large enough to exceed the voltage discriminator threshold of the DCRB,
