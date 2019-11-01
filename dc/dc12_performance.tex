@@ -103,7 +103,8 @@ that have low pulse height and long duration, and thus may escape detection.
 We fit this observed DOCA-dependent inefficiency to a functional form which is
 used in our GEMC Monte Carlo hit digitization routine to randomly throw out
 this percentage of hits.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{5cm}
 \begin{picture}(50,50)
@@ -116,7 +117,7 @@ voltage pulse from the pre-amplifiers may fail to cross the discriminator thresh
 in a ``lost hit''.}}
 \label{hit-effcy-vs-doca}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Drift Chamber Spatial Resolution}
 
@@ -136,18 +137,17 @@ due to the Poisson distribution of ion-pair production along the path of the pri
 near the sense wire along with time walk effects and the divergent nature of the electric
 field lines near the field wire.  
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[hbtp]
-\vspace{12cm}
+\vspace{7.3cm}
 \begin{picture}(50,50)
-\put(30,10)
-{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/resolution-vs-doca.png}}}
+\put(50,-10)
+{\hbox{\includegraphics[width=0.85\textwidth,natwidth=610,natheight=642]{img/resolution-vs-doca.png}}}
 \end{picture}
 \caption{\small{The hit resolution plotted versus TRKDOCA for R1, R2, R3 (top, middle, bottom), respectively.}}
 \label{resolution-vs-doca}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A more quantitative look at the resolution as a function of doca is given in Fig.~\ref{resid-vs-doca},
 for data from all six R3 drift chambers.
@@ -158,18 +158,19 @@ Here you can quantitatively see that the average single-wire resolution in the m
 portion of the cell is about 250~$\mu$m, with a whole cell resolution of about 400~$\mu$m. 
 Looking at similar fits for all of the chambers, we conclude that the whole-cell 
 average is about 400~$\mu$m for R1, R2, and R3, respectively.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{8cm}
 \begin{picture}(50,50)
-\put(30,10)
+\put(40,-5)
 {\hbox{\includegraphics[width=.8\textwidth,natwidth=610,natheight=642]{img/resid-vs-doca.png}}}
 \end{picture}
 \caption{\small{Upper figure: a plot of residual vs. TRKDOCA.  Lower figure: a plot of the Gaussian sigma of the
 upper plot (from a slice-fit) vs. TRKDOCA.}}
 \label{resid-vs-doca}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \subsection{Conclusions}

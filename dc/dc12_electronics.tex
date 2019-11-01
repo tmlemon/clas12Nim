@@ -1,4 +1,5 @@
 \section{Drift Chamber Electronics}
+
 In this section we describe the drift chamber electronics:
 the on-chamber signal distribution and amplification boards, which
 we named ``Signal Translator Boards'', (STB),
@@ -37,7 +38,8 @@ of 6 cables (96 signal wires).
 \end{itemize}
 
 Table ~\ref{electronic-components} gives a channel count for our chamber-mounted electronic components.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[htbp]
 \begin{center}
 \begin{tabular} {||c|c||} \hline \hline
@@ -54,7 +56,7 @@ and low voltage systems for the drift chambers.}}
 \label{electronic-components}
 \end{center}
 \end{table}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Signal Translator Boards (STB) and High Voltage Translator Boards (HVTB)}
 
@@ -67,7 +69,7 @@ Each high voltage line on the HVTB was connected to the
 input high-voltage wire with a parallel RC circuit to absorb any AC noise on
 the lines.  The board layout is shown in Fig.~\ref{hvtb-layout}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{8cm}
 \begin{picture}(50,50)
@@ -77,7 +79,7 @@ the lines.  The board layout is shown in Fig.~\ref{hvtb-layout}.
 \caption{\small{Board layout drawing for the high-voltage distribution boards.}}
 \label{hvtb-layout}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The signal side of each chamber was tiled with 14 multi-layered printed circuit 
 boards called Signal Translation Boards (STBs).  These boards were  
@@ -100,21 +102,21 @@ from being pulled from the feedthroughs when disconnecting the boards from the
 wires, and reducing the cost compared to metal connectors.  This detail is 
 shown in Fig.~\ref{wire-to-amplifier}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{8cm}
+\vspace{8.5cm}
 \begin{picture}(50,50)
-\put(50,20)
+\put(30,5)
 {\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{img/wire-to-amplifier.jpg}}}
 \end{picture}
 \caption{\small{ An assembly drawing showing how the crimp pin was inserted
 into the feedthrough and how the conductive elastomer tube fits over the 
 crimp pin and inside the plated-through hole on the printed circuit board to 
 make the electrical connection. Also shown is the signal path from the wire's
-crimp pin to the pre-amplifier.  }}
+crimp pin to the pre-amplifier.}}
 \label{wire-to-amplifier}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Fig.~\ref{stb-layout} shows the layout of an STB board,
 including the trace routings from the capacitively-coupled
@@ -124,18 +126,17 @@ routed to the 16-pin signal connectors.  Also shown are the low-voltage
 power traces with individual fuses for each group of 16 wires.
 The board shown is from a R1 chamber, which had the tightest wire packing.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{8cm}
 \begin{picture}(50,50)
-\put(50,20)
-{\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=642]{img/stb-layout.jpg}}}
+\put(100,5)
+{\hbox{\includegraphics[width=0.6\textwidth,natwidth=610,natheight=642]{img/stb-layout.jpg}}}
 \end{picture}
 \caption{\small{Trace routing shown on one of the Region~1 STBs.}}
 \label{stb-layout}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Single Inline Package Preamplifiers}
 The heart of the STB board is an individually packaged
@@ -153,17 +154,17 @@ Fig.~\ref{CP01-description} shows the design and specifications of the
 CP01 pre-amplifier.  See Ref.~\cite{fjb92} for the original design of
 this SIP pre-amplifier.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{8cm}
 \begin{picture}(50,50)
-\put(20,20)
+\put(40,5)
 {\hbox{\includegraphics[width=0.7\textwidth,natwidth=610,natheight=64]{img/CP01-description.jpg}}}
 \end{picture}
 \caption{\small{The CP01 pre-amplifier design and specifications.}}
 \label{CP01-description}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Each group of 16 pre-amplifier output signals was routed to a 17-pair connector.
 Sixteen of the pairs are used as differential signal paths that are routed from the STB's to the 
