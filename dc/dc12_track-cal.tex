@@ -221,7 +221,7 @@ t(x,\alpha) = a x + b x^3 + c x^3 + d_{\alpha} x^4
 Since the R2 chambers are located within the field region of the CLAS torus, the 
 magnetic field affects the drift velocity as shown in 
 Fig.~\ref{xvst}b.  In particular, the field rotates and shrinks the isochrones
-as shown in Fig.~\ref{garfield_isochrones}b.  These effects can be modeled by a 
+as shown in Fig.~\ref{garfield-isochrones}b.  These effects can be modeled by a 
 modification to the effective entrance angle of the track and by an increase 
 in the time at a particular DOCA.  Both of these corrections are assumed to depend only on the 
 magnitude of the magnetic field, and not its direction, following a study 
@@ -337,15 +337,12 @@ Tracks were found and fitted with our standard track reconstruction package.
 For various bins in the angle of the track, we measured the shifts of the
 track residual means as a function of layer number. 
 Before correcting for mis-alignment in software, the data showed significant 
-displacements of the means from zero, as large as 2 mm.  
+displacements of the means from zero, as large as 2 mm; see Fig.~\ref{resids-vs-layer-before}.
 
-Our alignment procedure considered only the relative alignment of the
-three drift chambers in any particular sector to each other.
-Our only inter-sector constraint was that all sectors, after alignment,
-should point to a common target vertex.
+
 
 To analyse the data we used the concept of simulating trial residual
-distributions by deliberately mis-aligning the chambers
+distributions by deliberately mis-aligning the chambers.
 On a first pass through
 the data we used misaligment parameters (shifts and rotations of individual
 chambers) set to zero.  On subsequent passes, we deliberately misaligned
@@ -363,9 +360,9 @@ to give a ``change of residual'' distribution caused by a given ``unit distortio
 We then fit the observed residual distribution from the data to a weighted
 sum of the 18 ``change of residual'' distributions.  In principle, we
 could have had 18 free parameters, but in practice we had 12 free parameters:
- $\delta$~x, $\delta$~y, $\delta$~z, and $\theta$~y for each of the 3 chambers: R1, R2 and R3,
-where $\theta y$ is a tilt of a chamber.  We did not vary the yaw ($\theta x$) and 
-roll ($\theta z$) degrees of freedom.
+ $\delta$x, $\delta$y, $\delta$z, and $\theta$y for each of the 3 chambers: R1, R2 and R3,
+where $\theta y$ is a tilt of a chamber.  We did not vary the yaw ($\theta$x) and 
+roll ($\theta$z) degrees of freedom.
 
 Fig.~\ref{resids-vs-layer-before} plots the mean of the residuals of a straight-line
 fit to the tracks versus layer (1 - 36 layers of the chambers), for one sector (in this
@@ -389,10 +386,17 @@ R3 from 25-36).
 
 Because our ``unit distortions'' are not orthogonal functions, we needed to do a simultaneous
 fit over four angular ranges; because two ``unit distortions'' which are highly correlated in
-one angular range were usually not in other ranges.  In addition to minimizing the residuals
+one angular range were usually not in other ranges.  
+
+The alignment procedure described so far considered only the relative alignment of the
+three drift chambers in any particular sector to each other.
+Our only inter-sector constraint was that all sectors, after alignment,
+should point to a common target vertex.
+In addition to minimizing the residuals
 from our 36 drift chamber layers, we also include a 37th term in the sum of squared residuals: the 
-distance of closest approach to the beam target vertex.  As mentioned before this is how we
-aligned the chambers sector to sector.
+distance of closest approach to the beam-target vertex.  This requirement that all
+tracks , regardless of sector, should point to a common beam-target vertex allowed us to
+align the chambers sector to sector.
 
 Figure~\ref{resids-vs-layer-before} is the misalignment before our aligning procedure, while
 Fig.~\ref{resids-vs-layer-after} shows the shifts of the means which remain after we have
@@ -436,7 +440,7 @@ geometrical shape, we also measured and corrected two important chamber distorti
 The wire sag can be a large as 1mm for our 4 m long wires.  For this small
 sag, it is sufficient to describe the shape of the sag as a parabola with
 maximum deviation from a straight line occurring at the mid-plane of the chamber.
-This correction to the hit position is thus applied at `event time' when 
+This correction to the hit position can be applied at `event time' when 
 the y-location of the hit has been determined.
 
 The second type of geometrical distortion is due to the bowing of the endplates.
@@ -445,9 +449,10 @@ not wish to obstruct the active area of the chamber volume with material, the
 entire tension load was borne by the endplates which had a simple support at the
 small `nose' plate and a fixed support at the 'back' plate.
 
-We did extensive engineering analysis and also post-stringing survey to determine the
+We did extensive engineering analysis and also post-stringing surveys to determine the
 size and pattern of this bowing.  Because our endplate planes are not perpendicular to
-the wires, when they bow they move the wire endpoints radially outward.  The amount varies
+the wires, when they bow they move the wire endpoints radially outward as well as inward
+along the wire direction.  The amount varies
 according to the chamber position because the weight of the endplates also plays a role,
 but the bowing in the direction perpendicular to the wire could be as large as 1.5 mm.
 This point of maximum deflection occurs about a fourth of the way between the `nose' and
@@ -479,11 +484,12 @@ with one oriented perpendicular to the z-axis, another perpendicular to the y-ax
 the third perpendicular to the x-axis.  In this way, we measured the x, y and z components
 of the magnetic field at z-points separated by 5 cm along the axis of the toroid.
 
-The Carbon fiber tube was positioned in x and y by precision machined ``endplates'' at the
+The Carbon fiber tube was positioned in x and y by precision-machined positioning plates at the
 upstream and downstream ends of the torus.  There were 24 precise hole locations on each
 plate  (4 between each pair of torus coils).  Of the 4 holes in any one of the six sectors,
 one was midway between coils at 30 cm radius, one midway at 46.5 cm radius and the two others
-at 46.5 cm radius but displace azimuthally away from the sector mid-plane.  In summary, we 
+at 46.5 cm radius but displaced azimuthally by $\pm15^{circ}$ away from the sector mid-plane.  
+In total, we 
 measured $B_x, ~B_y, ~B_z$ at 40 
 locations in z at each of the 24 x, y locations, resulting in 2880 measurements.
 
@@ -491,16 +497,17 @@ By adjusting the six coils' shapes and locations, we were able to match our
 magnetic model to the measurements to an accuracy of $0.5\%$.  Details of this
 analysis will be available in a future publication, but in summary we
 show in Fig.~$\ref{bmodel-bmeasured}$ the fractional difference between
-the magnetic field from our models to that measured for the $40 X 6 = 240$ measurements
+the magnetic field from our models to that measured for the 240 measurements
 taken at 30 cm radius.  This is the region of the highest magnetic field (approx. 2 T)
 and is most important for our low-angle, high-momentum tracks.
 
 The (measured-modelled) value is shown for 3 models: our original
-model, our first adjusted model in which each coil is identical in shape and position and
+model, our first adjusted model in which the average coil shape is modified but each
+coil is in its ideal location, and
 our latest model in which each coil has the same shape but individual coil positions are
-asjusted to give the best agreement with the measurements. 
+adjusted to give the best agreement with the measurements. 
 At the time of publication,
-the average fractional difference was about 0.5\%.
+the average fractional difference between model and measurement is about 0.5\%.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
