@@ -1,9 +1,8 @@
 \section{Drift Chamber System Conceptual Design}
 
-When the CLAS detector was upgraded to become the CLAS12 detector~\cite{dcnim}, the
-drift chambers were re-designed.  We kept many of the design concepts
-of the original CLAS chambers, but made improvements in a number
-of areas.
+When the CLAS detector~\cite{clasnim} was upgraded to become the CLAS12 detector, the
+drift chambers were re-designed.  We kept many of the design concepts of the original CLAS
+chambers~\cite{dcnim}, but made improvements in a number of areas.
 
 \subsection{Physics Requirements for CLAS12 Forward Tracking}
 
@@ -32,22 +31,22 @@ tracking system.
 To cover as much of the hadronic center-of-mass region as possible, the CLAS12 Forward 
 Tracker must provide tracking for charged particles emitted at polar angles 
 from 5$^\circ$ to 40$^\circ$.  This is complemented by the angular coverage of
-the central tracking system which covers polar angles from  35$^\circ$ to approximately 120$^\circ$.
+the central tracking system, which covers polar angles from  35$^\circ$ to approximately 120$^\circ$.
 
 In addition to large acceptance, our experimental program requires
 small systematic errors.  To measure our electroproduction cross sections
 to an accuracy of a few percent, we must know the scattered electron's
-momentum to $1\%$ and its angle to 1 mrad.  
+momentum to $1\%$ and its angle to 1~mrad.  
 We require even better momentum resolution on the scattered
-electron (with momentum up to 10 GeV/c) to be able to identify particles
+electron (with momentum up to 10~GeV) to be able to identify particles
 by missing mass, an important technique in exclusive reaction studies.
 This requirement to identify one (and only one) missing particle led to our 
 most stringent design specification on the fractional momentum resolution:
 $dp/p = 0.3\%$ for electrons emitted at small angles ($7^{\circ}$) and high
-momentum (10 GeV/c).  
+momentum (10~GeV).  
 
-Table~\ref{fwd-dc-physics-specifications} lists the physics goals for the CLAS12 program
-main and the resulting design specifications that will allow us to achieve these goals.
+Table~\ref{fwd-dc-physics-specifications} lists the physics goals for the main CLAS12 program
+and the resulting design specifications that will allow us to achieve these goals.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \small{
@@ -55,11 +54,11 @@ main and the resulting design specifications that will allow us to achieve these
 \begin{center}
 \begin{tabular}{||c|c|c||} \hline \hline
    {\bf Goal}         & {\bf Physics Specification} & {\bf Design Specification}\\ \hline
-Measure $\Gamma_v$  & $d \theta <$ 1mrad   & planar chambers \\ 
-accurately  & sin$\theta ~d \phi < $1~mrad & $\pm 6^\circ$ stereo angle   \\ 
+Measure $\Gamma_v$  & $d \theta <$ 1~mrad   & planar chambers \\ 
+accurately  & $\sin \theta ~d \phi < $1~mrad & $\pm 6^\circ$ stereo angle   \\ 
   & $dp/p < 1\% $ & identical cells (each superlayer)  \\ \hline
 Select exclusive reaction; &    & $250~\mu$m  accuracy per cell\\ 
-only one missing particle    & $dp/p < 0.3\%$ at 10 GeV/c &    chamber alignment $<100~\mu$m\\  \hline
+only one missing particle    & $dp/p < 0.3\%$ at 10~GeV &    chamber alignment $<100~\mu$m\\  \hline
 Small       & Luminosity = $10^{35}$~cm$^{-2}$s$^{-1}$  & six 6-layer superlayers \\ 
 cross sections  & high efficiency & $> 95\%$ layer efficiency \\ \hline
 large acceptance   & $\delta\phi = 50\%$ at $5^\circ$ & thin endplates\\ \hline
@@ -75,33 +74,30 @@ large acceptance   & $\delta\phi = 50\%$ at $5^\circ$ & thin endplates\\ \hline
 
 The overall tracking requirements:
 \begin{itemize}
-\item $0.3\%$ fractional momentum resolution at $7^{\circ}$ and 10~GeV/c, and 
-\item efficient tracking at a luminosity of 
-10$^{35}$~cm$^{-2}$s$^{-1}$
+\item $0.3\%$ fractional momentum resolution at $7^{\circ}$ and 10~GeV, 
+\item efficient tracking at a luminosity of 10$^{35}$~cm$^{-2}$s$^{-1}$, and
 \item large angular acceptance 
 \end{itemize}are the main drivers for the drift chamber design.  
 
-Because the previous CLAS drift chamber system~\cite{dcnim} operated 
-successfully for 8~years, we re-used many of the design concepts and 
+Because the previous CLAS drift chamber system operated 
+successfully for 15~years, we re-used many of the design concepts and 
 most of the utility infrastructure, including
 parts of the gas mixing and handling system, the high-voltage 
 and low-voltage systems, and many of the high voltage and signal cables. 
-Refer to our 
-article on the previous CLAS detector~\cite{clasnim} and our article 
+Refer to our article on the previous CLAS detector~\cite{clasnim} and our article 
 on the previous drift chambers themselves~\cite{dcnim} for details of the 
 previous detector and chambers.  
 
 We kept the same chamber layout as in CLAS:
-the forward tracking system consists of three regions divided into six
+the forward-tracking system consists of three regions divided into six
 sectors as shown in Fig.~\ref{chambers-and-torus}; located just before, inside, 
 and just outside the torus field volume, named Regions~1, 2, 
-and 3 (and referred to as R1, R2 and R3), respectively.  
+and 3 (and referred to as R1, R2, and R3), respectively.  
 Each chamber has its wires arranged in two superlayers (SL) of
 six layers each, with the wires in the two superlayers strung with 
-$\pm~6^\circ$ stereo angles, respectively.  The cell structure is 
+$\pm$6$^\circ$ stereo angles, respectively.  The cell structure is 
 hexagonal, that is, each sense wire is surrounded by six field wires.  This 
-arrangement offers good 
-resolution with very good pattern recognition properties.  
+arrangement offers good resolution with very good pattern recognition properties.  
 
 The major difference compared to the previous design is that the 
 chambers are located further downstream from the target and thus the drift
@@ -116,29 +112,29 @@ region of the CLAS12 drift chambers.  For the purposes of simulating
 track resolutions, we assumed that the position resolution of the individual 
 drift cells would be 250~$\mu$m.  
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \small{
 \begin{table}[hbt]
 \begin{center}
 \begin{tabular}{||c|c|c|c||} \hline \hline
             &{\bf Region 1}&{\bf Region 2}&{\bf Region 3}\\ \hline
-Distance from target & 2.3 m    & 3.5 m        & 4.9 m    \\ \hline
+Distance from target & 2.3~m    & 3.5~m        & 4.9~m    \\ \hline
 Num. of superlayers  & 2        & 2            & 2        \\ \hline
 Layers/superlayer    & 6        & 6            & 6        \\ \hline
 Wires/layer          & 112      & 112          & 112      \\ \hline
-Cell radius (each SL) & 0.78, 0.81 cm  & 1.14, 1.32 cm      & 1.87, 1.96 cm  \\ \hline
-Active time window   & 150 ns   & 325 - 1000 ns & 750 ns   \\ \hline
+Cell radius (each SL) & 0.78, 0.81~cm  & 1.14, 1.32~cm      & 1.87, 1.96~cm  \\ \hline
+Active time window   & 150~ns   & 325 - 1000~ns & 750~ns   \\ \hline
 \end{tabular}
 \caption{\small{Design parameters for the CLAS12 drift chambers.}}
 \label{fwd-dc-design-parms}
 \end{center}
 \end{table}
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Design Elements in Common with the Previous CLAS Chambers}
-The CLAS12 drift chambers share some design characteristics with the
-previous CLAS chambers:
+
+The CLAS12 drift chambers share some design characteristics with the previous CLAS chambers:
 \begin{itemize}
 \item {\bf Wire Layout}
 \begin{itemize}
@@ -160,8 +156,8 @@ use non-conducting G10 endplates for our R2 chambers
 about $5 \times 10^4$.
 \end{itemize}
 
-
 \subsubsection{Design Improvements Compared to the Previous CLAS Chambers}
+
 To improve the chambers' peformance we made some important changes to the design:
 \begin{itemize}
 \item {\bf Mechanical Design}
@@ -176,7 +172,7 @@ by a flanged design
 \item all chambers are independent and self-supporting, allowing easy
 maintenance and repair.  The chambers are attached to the torus cryostat using 6 independent
 rods arranged in a ``ball and socket'' linkage system, enabling the chambers to
-be moved out to maintenance position and back to the operating 
+be moved out to their maintenance position and back to the operating 
 postion by turning one precision turn-buckle assembly
 \end{itemize}
 \item {\bf Cell Design and Wire Layout}
@@ -193,13 +189,12 @@ and fit the distance to time response
 \end{itemize}
 \item {\bf Wire Choice}
 \begin{itemize}
-\item all chambers are strung with 30 $\mu$m gold-plated Tungsten wire,
+\item all chambers are strung with 30~$\mu$m gold-plated tungsten wire,
 considerably tougher and easier to handle than our previous choice 
-of 20 $\mu$m wire
-\item the choice of the cathode (``field'') wire is 80 $\mu$m gold-plated
-Cu-Be wire, tougher and with better surface properties than our previous
-choice of 140 $\mu$m gold-plated Aluminum wire
-\item  Our choice of guard wire is 140 $\mu$m diameter, gold-plated
+of 20~$\mu$m wire \item the choice of the cathode (``field'') wire is 80~$\mu$m
+gold-plated copper-beryllium, tougher and with better surface properties than our previous
+choice of 140~$\mu$m gold-plated Aluminum wire
+\item  Our choice of guard wire is 140~$\mu$m diameter, gold-plated
 copper-beryllium.  These wires were strong enough that we pre-tensioned 
 the chambers using only the guard wires; a simplification in the process.
 \end{itemize}
@@ -207,25 +202,25 @@ the chambers using only the guard wires; a simplification in the process.
 
 Table~\ref{fwd-dc-design-features} lists the advantages and disadvantages
 of the various design features.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[ht]
-\begin{center}
-\begin{tabular} {||c|c|c||} \hline \hline
-{\bf Design Feature  }       &{\bf Advantages} &{\bf Disadvantages}\\ \hline
+ \begin{center}
+  \begin{tabular} {||c|c|c||} \hline \hline
+ {\bf Design Feature  }       &{\bf Advantages} &{\bf Disadvantages}\\ \hline
 ``All-wire design'' & Little cathode emission & \\ \hline
 Small Cells & Robust track-finding  & Many wires to string \\ \hline
 Hexagonal Cells & Minimum number of wires  & Angle-dependence of time to distance  \\ \hline
-30 $\mu$m diameter sense wire & Resistant to wire breakage & Higher operating voltage \\ \hline
-80 $\mu$m diameter field wire & Lower total wire tension & Higher fields on cathode wires \\ \hline
+30~$\mu$m diameter sense wire & Resistant to wire breakage & Higher operating voltage \\ \hline
+80~$\mu$m diameter field wire & Lower total wire tension & Higher fields on cathode wires \\ \hline
 Opposite voltage  & Identical fields & More HV \\
 for sense and field & for all layers & channels required \\ \hline
-Self-supporting design & Easier maintenance & 1 - 2 mm bowing of endplates \\ \hline
+Self-supporting design & Easier maintenance & 1 - 2~mm bowing of endplates \\ \hline
 \end{tabular}
 \caption{\small{Design features of the CLAS12 drift chambers.}}
 \label{fwd-dc-design-features}
 \end{center}
 \end{table}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{figure}[htbp]
@@ -246,13 +241,13 @@ Self-supporting design & Easier maintenance & 1 - 2 mm bowing of endplates \\ \h
 
 
 \subsubsection{Wire Diameter}
+
 One of the most significant design changes was the decision 
-to use 30-$\mu$m diameter sense wire rather than the previously-used 
-20~$\mu$m wire. 
-This should make the chambers more resistant to wire 
+to use 30-$\mu$m diameter sense wire rather than the previously used 
+20-$\mu$m wire. This should make the chambers more resistant to wire 
 breakage.  The larger radius of the sense wires means that higher 
-voltages will be required to achieve the same gas gain, see Section \ref{determine-operating-parameters}
-for more details.
+voltages will be required to achieve the same gas gain, see
+Section~\ref{determine-operating-parameters} for more details.
 Prototypes were built to study possible negative side-effects of the 
 higher voltage operation, such as leakage currents on the circuit boards 
 and/or higher rates of cathode emission from the field wire surfaces.
@@ -268,10 +263,6 @@ We discuss the wire choice in more detail in Section~\ref{construction}.
 %cells with the thicker sense wire will have a significantly higher drift 
 %velocity, which reduces the time window, and hence the 
 %chamber occupancy.
-
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%% Figure : garfield-20-30-micron %%%%%%%%%%%%%%%%%%%%%%
 %\begin{figure}
