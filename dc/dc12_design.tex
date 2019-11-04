@@ -37,13 +37,17 @@ In addition to large acceptance, our experimental program requires
 small systematic errors.  To measure our electroproduction cross sections
 to an accuracy of a few percent, we must know the scattered electron's
 momentum to $1\%$ and its angle to 1~mrad.  
-We require even better momentum resolution on the scattered
+
+We need even better momentum resolution on the scattered
 electron (with momentum up to 10~GeV) to be able to identify particles
 by missing mass, an important technique in exclusive reaction studies.
-This requirement to identify one (and only one) missing particle led to our 
-most stringent design specification on the fractional momentum resolution:
-$dp/p = 0.3\%$ for electrons emitted at small angles ($7^{\circ}$) and high
-momentum (10~GeV).  
+The ability to identify one (and only one) missing particle is made
+possible if the fractional momentum resolution is $dp/p = 0.3\%$ for electrons 
+emitted at small angles ($7^{\circ}$) and high momentum (10~GeV).
+This requires very good time to position resolution per hit (on the order of 250$/mu$~m),
+very good positional alignment of the chambers (\approx~50$\mu$m) and very good knowledge
+of $\int Bdl$ on the order of 0.2\%.  These goals drive our calibration efforts; for more
+infomation see Section~\ref{calibration}.
 
 Table~\ref{fwd-dc-physics-specifications} lists the physics goals for the main CLAS12 program
 and the resulting design specifications that will allow us to achieve these goals.
@@ -53,7 +57,7 @@ and the resulting design specifications that will allow us to achieve these goal
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{||c|c|c||} \hline \hline
-   {\bf Goal}         & {\bf Physics Specification} & {\bf Design Specification}\\ \hline
+   {\bf Goal}         & {\bf Physics Spec./Goal} & {\bf Design Specification}\\ \hline
 Measure $\Gamma_v$  & $d \theta <$ 1~mrad   & planar chambers \\ 
 accurately  & $\sin \theta ~d \phi < $1~mrad & $\pm 6^\circ$ stereo angle   \\ 
   & $dp/p < 1\% $ & identical cells (each superlayer)  \\ \hline
@@ -150,7 +154,9 @@ at approximately 60$^\circ$ with respect to each other
 the endplates and electronics boards, are kept as thin as possible
 \item because of the possibility of large eddy currents and resultant
 force on the endplates in case of the quench of our torus magnet, we
-use non-conducting G10 endplates for our R2 chambers
+use non-conducting Stesalit 4411W endplates for our R2 chambers; (``Stesalit'' is 
+a trademark of STESALIT AG for a disordered epoxy-fiberglass composite product.  See
+the NIM article \cite{dcnim} on the previous CLAS drift chambers for more information.)
 \end{itemize}
 \item {\bf Gas Choice:} 90:10 argon:CO$_2$ mixture.  We operate at a gas gain of 
 about $5 \times 10^4$.
