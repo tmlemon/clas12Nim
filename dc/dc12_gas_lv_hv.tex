@@ -1,19 +1,19 @@
-\section{Drift Chamber Utilities: Gas, Low Voltage and High Voltage Systems}
+\section{Drift Chamber Utilities: Gas, Low Voltage, and High Voltage Systems}
 \label{utilities}
 
-\subsection{Gas System: Mixing, Monitoring and Pressure Control}
+\subsection{Gas System: Mixing, Monitoring, and Pressure Control}
 
 The chambers operate on a gas mixture consisting of 90\% argon and 10\% CO$_2$.
 Using precision Mass-Flow Controllers (MFC), the gas is mixed and temporarily
 stored in large-volume buffer tanks.  From these tanks it is delivered
 to experimental Hall B.  
 
-Argon is supplied via boil-off from a large, permanent dewar and CO2 is supplied 
-via boil-off from several standard industry high-pressure Dewars.  Two identical mixing
+Argon is supplied via boil-off from a large, permanent dewar and CO$_2$ is supplied 
+via boil-off from several standard industry high-pressure dewars.  Two identical mixing
 systems are used to mix the gas to 90\% argon and 10\% CO$_2$ by mass using regulators and MKS G250 
-mass flow controllers (MFC).  The mixed gas is then stored at ~100psig in four large-volume 
+mass flow controllers (MFC).  The mixed gas is then stored at 100~psig in four large-volume 
 ASME pressure vessels, also called buffer tanks. This large volume smooths out 
-any minor fluctuations in the argon/CO2 ratio. To control the gas ratio, the thermal 
+any minor fluctuations in the argon/CO$_2$ ratio. To control the gas ratio, the thermal 
 conductivity of the gas ratio is continually measured using Panametrics Thermal 
 Conductivity Units (TCUs) and then matched to the thermal conductivity of a mixed 
 gas calibration standard. Individual MFC flows are adjusted as needed if the gas mixture
@@ -39,73 +39,73 @@ falls to a safe level. In an under-pressure situation (i.e. low differential pre
 between the exhaust manifold and atmosphere), air is sucked into the exhaust manifold 
 until the differential pressure increases to a safe level. Each of these high-flow 
 differential pressure relief systems consist of 3 parts:  An oil-filled over-pressure 
-bubbler, an oil-filled under-pressure bubbler, and an empty oil trap. The oil trap is 
+bubbler, an oil-filled under-pressure bubbler, and an empty oil trap, all filled
+with high-purity mineral oil.  The oil trap is 
 connected to the exhaust manifold while the over- and under-pressure bubblers are 
 connected directly to the oil trap. This prevents contaminating the exhaust manifolds
 with oil. Additionally, each of the 3 parts contains baffles to remove oil droplets 
 from the gas passing through the unit. 
 
-Fig.~\ref{dc-gas-system} is a schematic of the gas delivery system 
-and a snapshot 
-of the control panel for monitoring the state of the system.
+Fig.~\ref{dc-gas-system} shows a schematic of the gas delivery system 
+and a snapshot of the control panel for monitoring the state of the system.
 
-%%%%%%%%% Figure : dc gas system %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% Figure : dc gas system %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{10cm}
+\vspace{6.9cm}
 \begin{picture}(50,50)
-\put(-10,10)
-{\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{img/dc-gas-system.png}}}
+\put(10,-3)
+{\hbox{\includegraphics[width=0.65\textwidth,natwidth=610,natheight=642]{img/dc-gas-system.png}}}
 \end{picture}
 \caption{\small{A schematic of the drift chamber gas system showing key control and
 monitoring points.}}
 \label{dc-gas-system}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 \subsection{Low Voltage System}
+
 We reused the CLAS low voltage power supplies.  
 These units are robust and manufactured by Hewlett Packard.  
 The supplies are remotely programmable and monitored.  The on-chamber 
-pre-amplifiers require 6 V and ~18 A per chamber
-(a total of 1344 pre-amps per chamber).  
+preamplifiers require 6~V and 18~A per chamber
+(a total of 1344 preamps per chamber).  
 
 We isolated the low voltage from 
-ground loops by using local voltage regulators on the pre-amplifier interface 
+ground loops by using local voltage regulators on the preamplifier interface 
 boards (STBs).  The segmentation of the low voltage distribution cables is 
 based on 32 preamplifier channels per supply cable.  Each of the supply 
 cables is fused for over-current 
-protection based on the average current draw of 32 pre-amplifiers.  
+protection based on the average current draw of 32 preamplifiers.  
 
 We designed our low voltage system: supplies, fusing, cables, and control
 system to be as robust and maintenance-free as possible.  To minimize
 the damage to the tracking system in the event of a failure such as
-a shorted pre-amplifier, we built in fine segmentation with only
+a shorted preamplifier, we built in fine segmentation with only
 32 preamplifier channels per supply cable. 
 In the event of a short circuit that causes a fuse to blow,
 a simple, external cable disconnect will reduce the size of the affected
 area to 16 signal wires without the need to access the chambers.
 
-Fig.~\ref{dc-lv-system} is a schematic of the low voltage
+Fig.~\ref{dc-lv-system} shows a schematic of the low voltage
 supply system and a snapshot 
 of the control panel for monitoring the state of the system.
-%%%%%%%%% Figure : dc low voltage system %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% Figure : dc low voltage system %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{10cm}
+\vspace{8.5cm}
 \begin{picture}(50,50)
-\put(-10,10)
-{\hbox{\includegraphics[width=1.2\textwidth,natwidth=610,natheight=642]{img/dc-lv-system.png}}}
+\put(35,5)
+{\hbox{\includegraphics[width=0.9\textwidth,natwidth=610,natheight=642]{img/dc-lv-system.png}}}
 \end{picture}
 \caption{\small{A schematic of the low voltage control and monitoring scheme.}}
 \label{dc-lv-system}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{High Voltage System}
 
 As in the case of the low-voltage system, we designed our high voltage system: 
-supplies, distribution boxes, cables and control system to be as robust and 
+supplies, distribution boxes, cables, and control system to be as robust and 
 maintenance-free as possible.  
 We re-used our CAEN 
 system 527 high voltage supplies with somewhat finer segmentation than our 
@@ -117,9 +117,9 @@ Each individual high-voltage channel powers a variable-sized group of
 wires: a 48-wire group for wires in the small-angle region, a 96-wire group
 in the middle-angle region and a 192-wire group at large angles.
 
-In the event of a failure (e.g. a broken wire) which results in a trip
+In the event of a failure (e.g. a broken wire) that results in a trip
 of a single HV channel, we can further reduce the size of the affected
-area from the whole group (48, 96 or 192 wires) to a smaller grouping
+area from the whole group (48, 96, or 192 wires) to a smaller grouping
 of 48 wires by an external cable disconnect without the need to 
 physically access the chambers themselves.
 
@@ -129,16 +129,14 @@ The high-voltage supply and distribution system consists of the following:
 high voltage channels for each drift chamber (1344 signal wires each).
 Of these 36 channels, 16 supply positive high voltage to the sense
 wires, 16 supply negative voltage to the field wires, and 4 supply
-positive voltage to the guard wires
+positive voltage to the guard wires.
 \item a series of two distribution boxes that distribute the high
 voltage from the supply channels to variable-sized groups
 of wires, with the group size being 8 wires (for small angle wires)
 to 16 (intermediate angles) to 32 (large angles). 
 \item  on-chamber printed circuit boards that distribute high voltage
-to all of the wires; these are the HVTB's
+to all of the wires; these are the HVTBs.
 \end{itemize}
-
-
 
 Fig.~\ref{dc-hv-system} is a schematic of the high voltage
 supply system and a snapshot 
@@ -153,17 +151,16 @@ this group of wires with current probably flowing from field to
 sense wire; i.e. likely over-current in the chamber itself.
 This happens occasionally when the beam is mis-steered, causing
 higher than normal background radiation.
-%%%%%%%%% Figure : dc high voltage system %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%% Figure : dc high voltage system %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[hbtp]
-\vspace{10cm}
+\vspace{9cm}
 \begin{picture}(50,50)
-\put(-10,10)
-{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/dc-hv-system.png}}}
+\put(5,5)
+{\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{img/dc-hv-system.png}}}
 \end{picture}
 \caption{\small{A schematic of the high voltage control and monitoring scheme, showing
 the 648 remotely controlled channels.}}
 \label{dc-hv-system}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

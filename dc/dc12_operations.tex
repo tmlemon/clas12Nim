@@ -24,17 +24,17 @@ layers, achieving a situation in which all wires, regardless of layer, have
 the same gain.  Then we discuss our choice of the total sense to field
 wire difference in voltage; including the resulting gas gain and efficiency.
 
-
 \subsubsection{Dividing the Total Voltage between Sense, Field, and Guard Wires}
+
 We ran our chambers with a mixed voltage scheme:
 positive high voltage on the sense wires, negative voltage on the
-field wires and positive voltage on the guard wires.
-This mixed-voltage scheme has a couple of advantages over a scheme in
+field wires, and positive voltage on the guard wires.
+This mixed-voltage scheme has several advantages over a scheme in
 which the field wires, for example, are held at ground potential:
 \begin{itemize}
 \item fewer field lines run from the sense wire to the endplate, which
-is grounded.  This reduces the likelihood of producing a ``Malter effect''
-(Ref.~\cite{malter}) in which an accidental source of cathode emission
+is grounded.  This reduces the likelihood of producing a ``Malter effect''~\cite{malter} in
+which an accidental source of cathode emission
 (due to an insulating contaminant on the endplate, for example) causes
 a self-sustaining discharge;
 \item the sense to ground potential and the field to ground potentials 
@@ -46,7 +46,7 @@ In addition, by carefully selecting the values of the sense, field, and
 guard wire voltages, we can create potential distributions that mimic
 an infinite grid of cells, where the gain on any wire is the same as
 any other, regardless of whether it is the first, last, or middle layer.
-See an early reference (\cite{mdm92}) for a discussion of this.
+See an Ref.~\cite{mdm92} for a discussion of this.
 
 This optimum condition is reached when the sense voltage is twice the
 field voltage (and opposite polarity).  This is because we have twice as many
@@ -61,53 +61,57 @@ all wires is zero, then there is no net flux of electric field through the
 gas bag and thus the net charge on the gas bag is zero.  In this way all
 of the wires have the same gain, regardless of layer.  
 
-We used the drift chamber design program, GARFIELD\ref{GARFIELD}, to determine the voltages
+We used the drift chamber design program, GARFIELD~\cite{GARFIELD}, to determine the voltages
 necessary to achieve the condition of net charge equal to zero.
 The resulting ratio of voltages from sense to field to guard wires is 1 : -1/2 : 5/14.
 
 \subsection{Determining the Operating Values of the Discriminator Thresholds and High Voltage Settings}
 \label{determine-operating-parameters}
 
-We set the discriminator levels in the DCRB's to reduce the accidental hit occupancy (with no beam) due to electronic
-noise to be less than about 1\%.  Since the electronic noise was generally proportional to wire length, we had less
-electronic noise on the smaller R1 chambers.  Using this criteria, we set the thresholds to 30, 45 and 45 mV, respectively,
-for R1, R2 and R3.  
-Once we set the discriminator thresholds, we performed a high voltage efficiency scan.  We raised the sense to
-field wire potential
-steps of 75 V and analyzed the data.  We set the operating value for the high voltage at the point at which
-the layer efficiency (the probability that a track passing through a layer will fire at least one wire) equaled or exceeded 97\%.
+We set the discriminator levels in the DCRBs to reduce the accidental hit occupancy (with no beam) due to
+electronic noise to be less than about 1\%.  Since the electronic noise was generally proportional to wire length,
+we had less electronic noise on the smaller R1 chambers.  Using this criteria, we set the thresholds to 30, 45,
+and 45~mV, respectively, for R1, R2, and R3.  
+Once we set the discriminator thresholds, we performed a high voltage efficiency scan.  
 
-We determined the layer efficiency using the `excluded layer' method.  In one superlayer (of six layers) we found track
-segments by our usual fitting method, but ignoring the data from a pre-selected layer (layer 3, for example).  We then
-projected the track segment through that layer and determined whether or not the indicated wire (or an adjacent one) had a good hit.
-Fig.~\ref{effcy-vs-voltage} shows the `plateau curve' of efficiency plotted versus voltage for one typical chamber 
-and superlayer.  The layer efficiency at the chosen operating high voltage point was between 97\% and 98\%.
+We determined the layer efficiency using the ``excluded layer'' method.  In one superlayer (of six layers) we
+found track segments by our usual fitting method, but ignoring the data from a pre-selected layer (layer 3, for
+example).  We then projected the track segment through that layer and determined whether or not the indicated
+wire (or an adjacent one) had a good hit.
+We raised the sense to field wire potential in
+steps of 75~V and analyzed the data.  We set the operating value for the high voltage at the point at which
+the layer efficiency (the probability that a track passing through a layer will fire at least one wire) equaled or
+exceeded 97\%.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp]
-\vspace{5cm}
-\begin{picture}(50,50)
-\put(-10,10)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/trace-routing-schematic.jpg}}}
-\end{picture}
-\caption{\small{Layer efficiency plotted versus high voltage for a typical superlayer.}}
-\label{effcy-vs-voltage}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fig.~\ref{effcy-vs-voltage} shows the ``plateau curve'' of efficiency
+%plotted versus voltage for one typical chamber and superlayer.  The layer efficiency at the chosen operating high
+%voltage point was between 97\% and 98\%.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}[htbp]a
+%\vspace{5cm}
+%\begin{picture}(50,50)
+%\put(-10,10)
+%{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/trace-routing-schematic.jpg}}}
+%\end{picture}
+%\caption{\small{Layer efficiency plotted versus high voltage for a typical superlayer.}}
+%\label{effcy-vs-voltage}
+%\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsubsection{Operating Voltage, Gas Gain, and Layer Efficiency}
 
-\subsubsection{Operating Voltage, Gas Gain and Layer Efficiency}
 The gas gain varies exponentially with the total sense to field wire voltage
-difference, with a doubling voltage of about 100, 110, or 120V respectively, for
-R1, R2, and R3.  During our Fall 2019 run, we ran with sense - field wire voltage
-differences of 2100, 2325, and 2475 V, respectively, for R1, R2, and R3
+difference, with a doubling voltage of about 100, 110, or 120~V, respectively, for
+R1, R2, and R3.  During our fall 2018 run, we ran with sense - field wire voltage
+differences of 2100, 2325, and 2475~V, respectively, for R1, R2, and R3
 We calculate that our total gas gain is approximately 
-$2.7 \times 10^4, 3.7 \times 10^4$, and $4.4 \times 10^4$,  
+$2.7 \times 10^4$, $3.7 \times 10^4$, and $4.4 \times 10^4$,  
 respectively, for R1, R2, and R3.
 
 \subsection{In-Run Performance Monitoring}
-The CLAS12 detector records 10,000 - 20,000 events/sec during a typical experiment.
+
+The CLAS12 detector records 10,000 - 20,000~events/sec during a typical experiment.
 It is important that the experimenters who are running the data-taking be quickly
 aware of any equipment malfunctions.
 
@@ -124,25 +128,24 @@ are simply histograms of wire hits plotted versus wire number and wire layer (su
 six superlayers in each sector).  Malfunctions show up
 as depleted areas on the plots.
 
-Fig.~\ref{layer-vs-wire} shows a histogram of wire hits plotted as
+Figure~\ref{layer-vs-wire} shows a histogram of wire hits plotted as
 a function of layer (1 - 36 on the vertical scale) versus wire number for each of the six
-sectors.  A R1 chamber contains layers 1 - 12, a R2 chamber layers 13-24, and a 
+sectors.  A R1 chamber contains layers 1 - 12, a R2 chamber layers 13 - 24, and a 
 R3 chamber layers 25 - 36. The horizontal axis shows the wire number in each layer (1 - 112).  
-At a glance, one can inspect our ~ 24,000 wires and determine
+At a glance, one can inspect our 24,000 wires and determine
 that $>99\%$ of wires are functioning properly.  A few areas of inefficiency
-are visible in the upper middle graph.  These correspond to
+are visible in the upper middle graph, corresponding to
 two areas in which the HV was disconnected to stop excessive current draw.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[hbtp]
-\vspace{10cm}
+\vspace{7cm}
 \begin{picture}(50,50)
-\put(-10,10)
-{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/layer-vs-wire.png}}}
+\put(70,-5)
+{\hbox{\includegraphics[width=0.75\textwidth,natwidth=610,natheight=642]{img/layer-vs-wire.png}}}
 \end{picture}
 \caption{\small{An ``occupancy plot'' showing the number of wire hits accumulated over many events.
 A few malfunctioning wire groups can be seen in the upper middle graph.}}
 \label{layer-vs-wire}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

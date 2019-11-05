@@ -6,14 +6,12 @@ forward detectors and in the barrel detectors, respectively. The readout system 
 of a 20~kHz maximum trigger rate and provides a sufficiently long data pipeline to cope with up to 16~$\mu$s trigger decision
 latency. Timing precision of a few ns is sufficient to limit the number of ghost hits compatible with the timing of the trigger
 signals. A charge measurement with a 10-bit dynamic range is enough to cover the full span of the Micromegas detector signals
-and to discriminate accurately minimum-ionizing particles (MIPs) from noise.
-
-The FT-Trck uses the same readout electronics and architecture as the MVT.
+and to discriminate accurately minimum-ionizing particles (MIPs) from noise. Note that the FT-Trk uses the same readout electronics and architecture as the MVT.
 
 \subsection{Readout System Architecture}
 
 The extremely compact and dense design of the CLAS12 Central Detector leaves a very narrow space between the MVT and
-its neighbor subsystems, as well as between the Micromegas detectors themselves.  In addition to the stringent space, the
+its neighbor subsystems, as well as between the Micromegas detectors themselves.  In addition to the stringent space limitations, the
 operational conditions of the tracker are harsh in terms of radiation and the high 5~T magnetic field. The low material budget
 is an obvious concern. Consequently, a readout architecture based on off-detector front-end electronics has been adopted.
 Lightweight micro-coaxial cable assemblies with low 40~pF/m linear capacitance carry bare, unamplified signals to the Front-End
@@ -34,7 +32,7 @@ delivery to the back-end electronics. The back-end is responsible for data conce
 with the CLAS12 event building system, ensures a fixed latency path between the CLAS12 trigger system~\cite{trigger-nim} 
 and the FEUs, and receives the system clock and trigger from the CLAS12 trigger supervisor and synchronously conveys 
 them to the FEUs over bidirectional optical links. A schematic representation of the readout system architecture is 
-shown in Figure~\ref{fig:mm-e_1}.
+shown in Fig.~\ref{fig:mm-e_1}.
 
 \subsection{The 64-Channel DREAM ASIC}
 
@@ -52,7 +50,7 @@ Readout Electronics ASIC for Micromegas), has been developed~\cite{DRM}.
  \label{fig:mm-e_2}
 \end{figure}
 
-The DREAM ASIC block diagram is shown in Figure~\ref{fig:mm-e_2}. Each channel includes a charge sensitive amplifier 
+The DREAM ASIC block diagram is shown in Fig.~\ref{fig:mm-e_2}. Each channel includes a charge sensitive amplifier 
 (CSA) adapted to a wide spread of detector capacitances (up to 1~nF) and
 four selectable charge measurement ranges (from 50 to 600~fC), a shaper with programmable peaking times (from 75~ns to
 1~$\mu$s), and 512-cell deep Switched Capacitor Array (SCA) used as the trigger pipeline memory and a de-randomization buffer.
@@ -69,7 +67,7 @@ the AMS CMOS 0.35~$\mu$m technology and is encapsulated in the 128-pin LQFP squa
 \subsection{The 512-Channel Front-End Unit (FEU)}
 
 The FEU is a mixed analog-digital electronics board. The analog section comprises eight input connectors, protection circuits,
-DREAM ASICs and an 8-channel flash ADC (see Fig.~\ref{fig:mm-e_3}). The protection circuits are optional.  They are installed
+DREAM ASICs, and an 8-channel flash ADC (see Fig.~\ref{fig:mm-e_3}). The protection circuits are optional.  They are installed
 on the FEUs to protect the DREAMs from the sparks of the standard Micromegas detectors. When working with resistive
 detectors, the input channels of the DREAM ASICs can be directly connected to the detector strips, improving the signal to
 noise ratio. The protected or non-protected type of FEUs are determined during their manufacturing.
@@ -82,7 +80,7 @@ noise ratio. The protected or non-protected type of FEUs are determined during t
 
 As described above, the pre-amplification, shaping, and trigger pipeline functionality is implemented in the DREAM chips. The
 analog samples from the eight DREAMs are digitized by an 8-channel 40~MHz 12-bit flash ADC AD9222 from Analog Devices
-\cite{ADC}. The eight serial streams of digital data are delivered to the on0board FPGA. The digital section of the board
+\cite{ADC}. The eight serial streams of digital data are delivered to the on-board FPGA. The digital section of the board
 comprises an xc6vlx75t-2-ff748 FPGA from the Xilinx Virtex-6 device family~\cite{XIL}, its configuration memory, a 2~Mbyte
 synchronous SRAM, small form-factor pluggable (SFP) transceivers, an on-board clock synthesizer, and an auxiliary trigger
 interface circuit.
@@ -138,9 +136,9 @@ to all FEUs over the synchronized fixed latency 2.5~Gbit/s links. The protocol b
 resolution on successive triggers and synchronous commands (125~MHz clock). However, the dispersion of their arrival times
 on the FEUs is well under 1~ns.
 
-On each trigger, the SSPs timestamp the event with the synchronous 125~MHz clock and assign it the event counter value. The
-48-bit timestamp along with the 60-bit event ID is used for local event building. This process implies gathering from all FEUs
-the event data packets belonging to the same event (matching timestamps and event IDs). Multi-event buffers, with a
+On each trigger, the SSPs time stamp the event with the synchronous 125~MHz clock and assign it the event counter value. The
+48-bit time stamp along with the 60-bit event identification (ID) is used for local event building. This process implies gathering from all FEUs
+the event data packets belonging to the same event (matching time stamps, and event IDs). Multi-event buffers, with a
 programmable number of events, are constructed in the external DDR2 memory. Upon the request from the crate controller
 SBC, the contents of the buffers are transferred to its memory over the VME64 backplane using the 2SST protocol. Transmission
 rates of $\sim$200~Mbyte/s are routinely achieved.
