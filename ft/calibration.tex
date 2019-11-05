@@ -1,4 +1,4 @@
-\section{Detector calibration and commissioning}
+\section{Detector calibration and commissioning}\label{sec:calibration}
 
 \subsection{Pre-beam calibration}
 Initial checkout and calibrations of the FT detectors upon completion of the installation were performed via:
@@ -48,12 +48,21 @@ Similarly to the calorimeter, initial checkout of the hodoscope is performed via
 Further checkout of the detector is performed via cosmic ray data taking. The same FPGA based trigger developed for the calorimeter is used to trigger the DAQ on events in which multiple tiles of the hodoscope have a signal above threshold. For such events, all hodoscope channel waveforms are recorded and analyzed offline. The signal charge is extracted integrating the waveform in a fixed time window and subtracting the pedestals. The resulting charge distributions are inspected to ensure a sizable signal for all tiles. In this case no attempt is made to extract the charge-to-energy conversion factor from these distributions because of the unfavorable orientation of the hodoscope in the installation position for the measurement of cosmic ray that can cross the scintillation tiles with a very large angular spread and therefore of path lengths within the active volumes.
 
 \subsubsection{FT-Trk pre-beam calibration}
-The initial checkout of the FT tracker and in particular of the front-end electronics is performed by means of pedestal and pulser runs. Since these procedures are standard for the CLAS12 MicroMegas detectors, we refer to Ref. \cite{mm} for further details.
+First calibration and test of the detectors was performed using the cosmic-ray test bench available at CEA-Saclay~\cite{mm}. The goal of these tests was to optimize the operating conditions
+of the detectors and to compute their 2D efficiency maps using cosmic muons prior shipment to JLab. Fig.~\ref{fig:ftt_cosmic} shows the results for one of the four detector layers, indicating a good uniformity of the response over the full active area.
+
+\begin{figure}[htb]
+ \includegraphics[width=1.0\columnwidth,keepaspectratio]{fig/dummy.png}
+ \caption{2D efficiency map for one of the FT track leyers as measured in the cosmic-ray setup at CEA-Saclay.}
+ \label{fig:ftt_cosmic}
+\end{figure}
+
+After installation, the initial checkout of the FT tracker and in particular of the front-end electronics is performed by means of pedestal and pulser runs. Since these procedures are standard for the CLAS12 MicroMegas detectors, we refer to Ref. \cite{mm} for further details.
 
 \subsection{On-beam calibration and commissioning}
 While pre-beam calibration are essential to ensure all detector components are fully operational, the final calibrations to extract the parameters needed for the FT reconstruction are based on analysis of beam data. Here we report specifically on the procedures developed for the calibration of the calorimeter and hodoscope, since no specific calibrations are needed for the tracker.
 
-For both hodoscope and calorimeter, energy and time calibrations can be obtained from the analysis of data recorded with the CLAS12 production triggers and do not require dedicated data taking. A dedicated run is typically employed, however, for matching the gains from all Hodoscope SiPMs~\footnote{Having a matched gain from all Hodoscope SiPMs allows having a common VTP threshold for all channels. }. In this dedicated run, average MIP signals are obtained for a set of different HV settings (see Fig.~\ref{fig:fthodo_gainmatch.pdf}), determining two constants from which gain matching is established.
+For both hodoscope and calorimeter, energy and time calibrations can be obtained from the analysis of data recorded with the CLAS12 production triggers and do not require dedicated data taking. A dedicated run is typically employed, however, for matching the gains from all Hodoscope SiPMs~\footnote{Having a matched gain from all Hodoscope SiPMs allows having a common VTP threshold for all channels. }. In this dedicated run, average MIP signals are obtained for a set of different HV settings (see Fig.~\ref{fig:fthodo_gainmatch}), determining two constants from which gain matching is established.
 \begin{figure}
 \includegraphics[width=1.0\columnwidth]{fig/fthodo_gainmatch.pdf}
 \caption{Gain-matching constant determination for a single SiPM.}
@@ -65,7 +74,7 @@ Energy calibration for the FT-Cal is achieved by analyzing electron elastic scat
 
 \begin{figure}
 \includegraphics[height=1.0\columnwidth]{fig/dummy.png}
-\caption{aaa}
+\caption{Example of the seed energy distribution and the cluster energy distribution for a selected crystal for elastic events at 2.2 GeV beam energy.}
 \label{fig:ftcal_elasticcal}
 \end{figure}
 Elastic scattering calibration was found to be particularly effective at low beam energy and was performed using 2.2 GeV beam data recorded during the CLAS12 engineering run. Events with only one cluster in the FT-Cal were selected and, based on the existing cosmic ray calibrations, the energy of the crystal with the largest signal, i.e. the {\it seed}, was extracted. For crystal, these events were accumulated requesting the seed energy to be larger than 55\% of the total cluster energy. The right edge of the distribution of the seed energy was fitted with a Gaussian function to extract the peak position. The mean value of the Gaussian function was compared to what expected based on GEANT4 simulations to extract a correction to the charge-to-energy conversion factor used in the cluster reconstruction. Fig.~\ref{fig:ftcal_elasticcal} shows an example of the seed energy distribution and the cluster energy distribution for a selected crystal. Using these constants, an energy resolution of  3.3\% at 2.2 GeV beam energy was determined by fitting the reconstructed elastic peak (see Fig.~\ref{fig:ftcal_elasticres}). With the same calibration constants, the $\pi^0\to\gamma\gamma$ decay was reconstructed at 10.6 GeV beam energy selecting events with both photons detected in the FT-Cal, finding the width of the $\pi^0$ peak is of the order of $\sim 4.4$ MeV.
