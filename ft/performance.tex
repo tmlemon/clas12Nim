@@ -1,1 +1,56 @@
 \section{Detector performance}
+Data at different beam energies and with different trigger conditions have been analyzed to study and asses the Forward Tagger performance. 
+
+\subsection{Acceptance}
+The detector acceptance was studied in details at the maximum beam energy the experiment operated so far of 10.6 GeV. Data were recorded with a minimum-bias trigger based on the FT-Cal alone with a threshold on the measured cluster energy of 100 MeV. 
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[height=0.56\columnwidth]{fig/ft_acceptance_energy.png}
+\includegraphics[height=0.56\columnwidth]{fig/ft_acceptance_theta.png}
+\includegraphics[height=0.56\columnwidth]{fig/ft_acceptance_energytheta.png}
+\end{center}
+\caption{Forward Tagger acceptance for electrons as a function of energy (top), polar angle (middle) and of both variables (bottom) at 10.6 GeV beam energy. The energy range goes from 500 MeV, as selected in the offline analysis, up to the end-point set by the beam energy where elastic scattering dominates. The $\theta$ range goes from the minimum angle of 2.5$^\circ$ to $\sim5^\circ$. The two-dimensional distribution shows the effect of the CLAS12 solenoid field on low-momentum electrons that starting from $\theta\sim2^\circ$ are bent in the detector acceptance. TO BE REPLACED WITH HIGHER STATISTICS.}
+\label{fig:ft_acceptance}
+\end{figure}
+In the offline analysis, events were further selected requiring to have a electron reconstructed via the matching of the FT-Cal cluster to FT-Hodo hits and the cluster to have total energy greater than 500 MeV, seed energy greater than 300 MeV and size greater or equal to 4. The resulting event distributions as a function of the electron energy and polar angle are shown in Fig.~\ref{fig:ft_acceptance}. 
+
+The energy coverage extends from 500 MeV, as selected in the offline analysis, up to the end-point, set by the beam energy where elastic scattering dominates. Close to the energy end-point, the detector resolution is expected to worsen significantly because of saturation of the FT-Cal preamplifiers and fADCs that are optimized for the design energy range of 0.5-4.5 GeV. The $\theta$ range extends from the minimum angle of 2.5$^\circ$ to $\sim5^\circ$. The two-dimensional distribution shows the effect of the CLAS12 solenoid field on low-momentum electrons that starting from $\theta\sim2^\circ$ are bent in the detector acceptance. The detector acceptance matches and partially exceeds the design specifications. 
+
+\begin{figure}[h]
+\includegraphics[height=0.65\columnwidth]{fig/ft_shower.png}
+\caption{Radius of the FT-Cal shower for charged particles. A clear peak at $\sim 1$ cm associated to electron-induced electromagnetic showers overlaps with a broader distribution due to hadronic showers.}
+\label{fig:ft_shower}
+\end{figure}
+\subsection{Energy resolution and E.M. shower reconstruction}
+Within the detector acceptance, the energy resolution was studied based on elastic scattering and $\pi^0$ decay to two photons, as discussed in Sec.~\ref{sec:calibration}. The results indicate the currently achieved resolution is larger than the design one by about 1\% at 2 GeV. Reasons for this discrepancy can be multi-fold. First, the energy calibration of individual crystals has shown a significant spread in the energy-to-charge conversion that was not foreseen in the initial estimates. This spread, likely due to the crystal light yield, can contribute to a worsening of the resolution because it results in a non-homogeneous detector response. 
+
+The shower profile in the FT-Cal was studied and compared to Monte Carlo simulations for different particle species. Fig.~\ref{fig:ft_shower} shows the shower radius, defined as the square root of the second moment of the shower, for charged particles, i.e. particles associated to a cluster in the calorimeter with matching hits in the hodoscope. A clear peak with radius of $\sim 1$ cm associated to electrons is clearly visible, overlapped to a broader distribution associated to hadronic shower. The shower profile and specifically the cluster radius can be used threfore to discriminate between different particle types.
+
+\subsection{Timing resolution}
+\begin{figure}[h]
+\includegraphics[height=0.6\columnwidth]{fig/ft_electron_time.png}
+\caption{Time resolution for electrons detected in the Forward Tagger with energy greater than 500 MeV, seed energy greater than 300 MeV and cluster size larger or equal to 4. The histogram shows the time difference between the FT time, subtracted of the electron time-of-flight from the target to the detector, and the RF signal time. The Gaussian fit gives a resolution of 140 ps. TO BE REPLACED WITH HIGHER STATISTICS.}
+\label{fig:electron_time}
+\end{figure}
+\begin{figure}[h]
+\includegraphics[height=0.6\columnwidth]{fig/ft_gamma_time.png}
+\caption{Time resolution for photons detected in the Forward Tagger with energy greater than 500 MeV, seed energy greater than 300 MeV and cluster size greater or equal to 4. The histogram shows the time difference between the FT time, subtracted of the photon time-of-flight from the target to the detector, and the event start time derived from the CLAS12 FTOF detector for events where an electron is identified in the CLAS12 Forward Detector. The Gaussian fit gives a resolution of 150 ps. TO BE REPLACED WITH HIGHER STATISTICS.}
+\label{fig:gamma_time}
+\end{figure}
+Timing resolution for electrons and photons was evaluated from real data correlating the reconstructed cluster time from the FT-Cal to either the RF signal which is synchronous to the arrival of the beam bunches in CLAS12 or the event start time derived from the CLAS12 Forward Time-of-Flight (FTOF) system ~\cite{ftof}. Specifically, the electron time resolution was studied correlating the FT time, subtracted by the time-of-flight of the particle from the center of CLAS12 to the FT, to the RF signal time. The difference of these two times for 10.6 GeV data is shown in Fig.~\ref{fig:electron_time} for electrons with energy greater than 500 MeV, cluster seed energy greater than 300 MeV and cluster size greater or equal than 4: a Gaussian fit to the distribution gives a $\sigma$ of $\sim 140$ ps. The tails of the distribution are due to low energy cluster, close to the applied selection threshold, and are expected to be reduced by improvements of the time-walk correction that are currently under study. While this estimate of the resolution relies solely on the Forward Tagger reconstruction, an alternative measure can be performed by selecting photons detected in the FT and correlating their time to the event start time determined from other particles detected in CLAS12. This analysis was performed for events with an electron detected in CLAS12 Forward Detector whose start time is determined based on the FTOF system and a photon detected in the FT with energy greater than 500 MeV, cluster seed energy greater than 300 MeV and cluster size greater or equal to 4. The photon FT time, subtracted by the time-of-flight from the target to the detector, was correlated with the event start time as shown in Fig.~\ref{fig:gamma_time}. A Gaussian fit to the distribution gives a $\sigma$ of $\sim 150$ ps, slightly larger but consistent with the electron timing resolution.
+
+\begin{figure}[h]
+\includegraphics[height=0.6\columnwidth]{fig/ftcalhodo_time.png}
+\caption{Time difference between calorimeter and hodoscope clusters for reconstructed electrons: a Gaussian fit to the distribution gives a $\sigma$ of $\sim 0.8$ ns.}
+\label{fig:ftcalhodo_time}
+\end{figure}
+While the FT time is determined by the calorimeter since this is the component with the best timing resolution, time correlation between the FT detectors is important to match the signals detected in the three sub-components and minimize accidentals. Figure \ref{fig:ftcalhodo_time} shows the time difference of the reconstructed calorimeter and hodoscope clusters for detected electrons with a $\sigma$ of $\sim 0.8$ ns, dominated by the hodoscope resolution. The value is consistent with the design resolution for the hodoscope of $< 1$ ns.
+
+\subsection{Trigger performance}
+The FT is used as an active component of the CLAS12 trigger system to identify events in which electrons or photons are detected in the system. This is achieved by reconstructing in real time clusters in the calorimeter with or without geometrical and time matching with hodoscope tiles. Details on the trigger algorithms, their implementation and validation are provided in Ref.~\cite{trigger}, while here we focus only on reporting the performance in terms of  linearity of the trigger rate as a function of luminosity. This was studied performing a luminosity scan and recording the FT trigger rate at the input of the DAQ system. Fig.~\ref{fig:trigger_rate} shows the measured dependence. These results confirm the linearity of the FT trigger up to the maximum luminosity foreseen for the experiment.
+\begin{figure}[h]
+\includegraphics[height=0.68\columnwidth]{fig/ft_trigger.png}
+\caption{FT trigger rate as a function of the beam current. The measurements are consistent with a linear dependence up to the maximum CLAS12 luminosity of $10^{35}$ cm$^{_2}$s$^{-1}$ which is obtained at a current of 75 nA on a 5 cm long liquid hydrogen target. The points that deviate from the linear slope correspond to measurement with unstable beam conditions.}
+\label{fig:trigger_rate}
+\end{figure}
+
