@@ -427,14 +427,49 @@ convergence of the filtering process.
 \subsubsection{Tracking Performance}
 
 The momentum resolutions in the central and forward trackers as a function of the momentum reach
-in these detectors is shown in Fig.~\ref{fig:res}.
+in these detectors is shown in Figs.~\ref{fig:respcvt} and~\ref{fig:respdc}, respectively.  The distributions are fit with a function of the form $\sqrt{a+b x^{2}+c/(1+d/x^{2})}$.  The resolutions achieved are well within specs and the difference in magnitude between the central and the forward trackers is due to intrinsic resolutions of these detectors.  For the forward detector, the momentum resolution in the DC is evaluated using  tracks simulated at $\theta =15\pm 5$ deg, and at $\phi = 0 \pm 5$ GeV (sample 1), to ensure that most tracks are within the sensitive volume.
+Furthermore, the DC momentum resolution is correlated to the polar angle since the tracks' curvature is determined from the magnetic field intensity that is higher at lower angles in the torus field, as can be seen from Fig.~\ref{fig:restheta}, corresponding to tracks simulated at $p=4\pm 1$ GeV, $10\leq \theta\leq 25$ and $\phi = 0 \pm 5$ deg(sample 2).
+
+These resolutions are obtained from a MC sample that does not include out of time backgrounds nor misalignments of the tracking volumes.   
+A dedicated study that involves merging random background date with low luminosity data is described in [overview paper].
 
 \begin{figure}
 \includegraphics[width=0.45\textwidth]{pics/fddegipekmpjjiho.png}
-\includegraphics[width=0.45\textwidth]{pics/DCRes.png}
-\caption{(Top plot) Momentum resolution of simulated protons in the CVT.
-(Bottom plot) Momentum resolution in the DC evaluated using simulated negative tracks from a sample of Semi Inclusive
-Deep Inelastic events.
+\caption{Momentum resolution of simulated protons in the CVT.  
 }
-\label{fig:res}
+\label{fig:respcvt}
+\end{figure}
+\begin{figure}
+\includegraphics[width=0.45\textwidth]{pics/DCRes.png}
+\caption{Momentum resolution in the DC evaluated using pions  simulated at $\theta =15\pm 5$ deg, and at $\phi = 0 \pm 5$ deg.
+}
+\label{fig:respdc}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.45\textwidth]{pics/DCRes2.png}
+\caption{Momentum resolution in the DC evaluated using  pions  simulated at $p=4\pm 1$ GeV, $10<\leq \theta\leq 25$ and $\phi = 0 \pm 5$ deg.
+}
+\label{fig:restheta}
+\end{figure}
+
+The tracking efficiency for in- and out-bending tracks calculated from sample 1 is shown in  Figs.~\ref{fig:trkeff}.  In-bending tracks suffer from a loss in tracking efficiency for momenta generated below 1.8 GeV at time-base level due to lack of matching with the outer detectors.  These tracks miss the sensitive volumes of the Time-of-Flight system which is required to extract time correction information needed for time-based tracking.  They do however pass the hit-base requirement.  The efficiency loss due to the afore mentioned effect can be seen by comparing the (light) blue distribution to the (dark) red one.  In the momentum range from 1.8 to 7.5 GeV, the time-based tracking efficiency is 98\%, while in the range from 1.4 to 7.5 GeV, the hit-based tracking efficiency is 99\%.  For out-bending tracks (Fig.~\ref{fig:trkeff}(bottom)), both the hit-based and time-based tracking efficiencies are flat as a function of momentum and of the order of 99\%. 
+
+
+\begin{figure}
+\includegraphics[width=0.45\textwidth]{pics/DCTrkgEffNegTrks.png}
+\includegraphics[width=0.45\textwidth]{pics/DCTrkgEffPosTrks.png}
+\caption{DC tracking efficiency as a function of momentum evaluated using  (top) negative and (bottom) positive pions simulated at $\theta =15\pm 5$ deg, and at $\phi = 0 \pm 5$ deg. The (light) blue and (dark) red distributions correspond to the hit- and time-based tracking efficiencies, respectively.
+}
+\label{fig:trkeff}
+\end{figure}
+
+
+The polar angular dependence of the tracking efficiency obtained from sample 2 is shown in Fig.~\ref{fig:trkeffinoutb}.   The (light) green spectrum corresponds to out-bending tracks.  The efficiency is flat in the angular range from 10 to 25 deg. for outbending tracks while there is a loss of tracks below 15 deg.  As before, this is due to tracks missing the outer detectors.  
+
+\begin{figure}
+\includegraphics[width=0.45\textwidth]{pics/DCTrkEffvsThetaInandOutbenders.png}
+\caption{DC tracking efficiency as a function of polar angle evaluated using  pions  simulated at $p=4\pm 1$ GeV, $10\leq \theta\leq 25$ and $\phi = 0 \pm 5$ deg.
+}
+\label{fig:trkeffinoutb}
 \end{figure}
