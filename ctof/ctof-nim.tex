@@ -299,8 +299,8 @@ counters.
 \begin{figure}[htbp]
 \vspace{1.7cm}
 \begin{picture}(50,50) 
-\put(10,115)
-{\hbox{\includegraphics[angle=-90,width=0.35\textwidth,natwidth=610,natheight=642]{pics/counter-pair.pdf}}}
+\put(10,108)
+{\hbox{\includegraphics[angle=-90,width=0.32\textwidth,natwidth=610,natheight=642]{pics/counter-pair.pdf}}}
 \end{picture} 
 \caption{A pair of neighboring CTOF counters with two slightly different designs for the upstream light
 guide and the upstream end of the scintillation bars.} 
@@ -1742,7 +1742,7 @@ After completion of each of the timing calibration steps discussed in this secti
 with a matched charged particle track can be determined. Putting all of the timing corrections together, the
 track hit time reconstructed from the readout of the upstream and downstream PMTs are given by:
 \begin{multline}
-  t_{U,D} = (CONV \cdot TDC_{U,D}) \mp \frac{C_{UD}}{2} + \\ C_{RF} + C_{p2p} - \frac{\delta t_{hpos}}{2},
+  t_{U,D} = (CONV \cdot TDC_{U,D}) \mp \frac{C_{UD}}{2} + \\ C_{RF} + C_{p2p} + \frac{\delta t_{hpos}}{2},
 \end{multline}
 
 \noindent
