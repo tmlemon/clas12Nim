@@ -427,7 +427,11 @@ convergence of the filtering process.
 \subsubsection{Tracking Performance}
 
 The momentum resolutions in the central and forward trackers as a function of the momentum reach
-in these detectors is shown in Figs.~\ref{fig:respcvt} and~\ref{fig:respdc}, respectively.  The distributions are fit with a function of the form $\sqrt{a+b x^{2}+c/(1+d/x^{2})}$.  The resolutions achieved are well within specs and the difference in magnitude between the central and the forward trackers is due to intrinsic resolutions of these detectors.  For the forward detector, the momentum resolution in the DC is evaluated using  tracks simulated at $\theta =15\pm 5$ deg, and at $\phi = 0 \pm 5$ GeV (sample 1), to ensure that most tracks are within the sensitive volume.
+in these detectors is shown in Figs.~\ref{fig:respcvt} and~\ref{fig:respdc}, respectively.  The distributions are fit with a function of the form $\sqrt{a+b x^{2}+c/(1+d/x^{2})}$.  The resolutions achieved are well within specs and the difference in magnitude between the central and the forward trackers is due to intrinsic resolutions of these detectors. 
+
+For the central detector, an average tracking efficiency of 91\% is obtained from a simulated proton sample with momentum range from 0.4 to 1.6 GeV.  A drop of efficiency is observed for tracks with momenta less than 600 MeV as these low momentum tracks tend to not leave enough hits in the detector for the pattern recognition algorithm to identify a track.  
+
+For the forward detector, the momentum resolution in the DC is evaluated using  tracks simulated at $\theta =15\pm 5$ deg, and at $\phi = 0 \pm 5$ GeV (sample 1), to ensure that most tracks are within the sensitive volume.
 Furthermore, the DC momentum resolution is correlated to the polar angle since the tracks' curvature is determined from the magnetic field intensity that is higher at lower angles in the torus field, as can be seen from Fig.~\ref{fig:restheta}, corresponding to tracks simulated at $p=4\pm 1$ GeV, $10\leq \theta\leq 25$ and $\phi = 0 \pm 5$ deg(sample 2).
 
 These resolutions are obtained from a MC sample that does not include out of time backgrounds nor misalignments of the tracking volumes.   
