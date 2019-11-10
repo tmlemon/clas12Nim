@@ -40,8 +40,8 @@ Fig. \ref{fig:ftcal_cosmic} shows an example of a cosmic ray event as displayed 
 \subsubsection{FT-Hodo pre-beam calibration}
 Similarly to the calorimeter, initial checkout of the hodoscope is performed via pulser runs to check the functionality of each electronic channel and evaluate the SIPM gains by measure the Single Photo-Electron (SPE) signal. An external clock is used to trigger the data acquisition recording the waveform of all the 232 channels in a 400 nS windows. The waveforms can be analyzed online by connecting the calibration suite to the DAQ ET ring or offline reading from file. The parameters that are monitored are the pedestal values, the pedestal RMS and the electronic noise. The extracted values are compared to the typical ones to identify problematic channels and disconnected cables. For each channel, waveforms that exceed a minimum threshold above the baselines are analyzed to extract the SPE signal. For this purpose, the waveforms are integrated in a fixed time range and pedestal subtracted. The distribution of the extracted charge for a selected channel is shown in Fig. \ref{fig:fthodo_spe}. Clear peaks corresponding to one, two and three photo-electrons are visible; the difference between two peaks is used to determine the gain of the channel finding typical values of the order of 20~pC.
 \begin{figure}
-\includegraphics[width=1.0\columnwidth]{fig/fthodo_spe.pdf}
-\caption{SPE signal from a single Hodoscope SiPM in mV (left) and pC (right) determined using the waveform max and integral respectively.   }
+\includegraphics[width=1.0\columnwidth]{fig/fthodo_spe_2.pdf}
+\caption{SPE signal from Hodoscope SiPMs reading signals from thin (top) and thick (bottom) tiles, in mV (left) and pC (right) determined using the waveform max and integral respectively.   }
 \label{fig:fthodo_spe}
 \end{figure}
 
@@ -49,11 +49,11 @@ Further checkout of the detector is performed via cosmic ray data taking. The sa
 
 \subsubsection{FT-Trk pre-beam calibration}
 First calibration and test of the detectors was performed using the cosmic-ray test bench available at CEA-Saclay~\cite{mm}. The goal of these tests was to optimize the operating conditions
-of the detectors and to compute their 2D efficiency maps using cosmic muons prior shipment to JLab. Fig.~\ref{fig:ftt_cosmic} shows the results for one of the four detector layers, indicating a good uniformity of the response over the full active area.
+of the detectors and to compute their 2D efficiency maps using cosmic muons prior shipment to JLab. Fig.~\ref{fig:ftt_cosmic} shows the results for two of the four detector layers, indicating a good uniformity of the response over the full active area.
 
 \begin{figure}[htb]
- \includegraphics[width=1.0\columnwidth,keepaspectratio]{fig/dummy.png}
- \caption{2D efficiency map for one of the FT track leyers as measured in the cosmic-ray setup at CEA-Saclay.}
+ \includegraphics[width=0.9\columnwidth,keepaspectratio]{fig/fttrk_cosmic.png}
+ \caption{2D efficiency map for the two layers of one of the FT tracker detectors as measured in the cosmic-ray setup at CEA-Saclay.}
  \label{fig:ftt_cosmic}
 \end{figure}
 
