@@ -1,0 +1,58 @@
+\section{Ongoing developments}
+
+\subsection{Artificial Intelligence Assisted Forward Tracking}
+\subsubsection{Motivation}
+Recent progress in machine learning field offer a promising alternative to conventional
+algorithmic tracking methods. While the conventional
+methods provide algorithms that are well understood and well studied, there are some algorithms
+in data reconstruction process that can be substituted with neural networks to reduce data
+processing times. For CLAS12, tracking is the most time consuming process in experimental data processing.
+Tracking in the DC takes up to 94\% of total data processing time, which includes finding
+track candidates and iterating through track forming segments combinatorially to find the best
+combinations of segments that can form a track. This time increases with luminosity as noise
+segments increase and can lead to processing time degradation with higher luminosity. We have started 
+to address this issue by employing machine learning techniques to find best track candidates in
+each event and reduce the number of combinatorics.
+\begin{figure*}
+\centering
+\includegraphics[width=0.95\textwidth]{pics/nn1.png}
+\caption{Event display of track segments in the DC. 
+}
+\label{fig:nn1}
+\end{figure*}
+\subsubsection{Development}
+With increased luminosity the number of potential DC cross candidates
+increases.  This implies that the  Kalman Filter fitting algorithm must be run for all possible
+combinations crosses.  Fig.~\ref{fig:nn1} shows a typical example of drift
+chamber data is shown in a longitudinal projective view using CED. 
+This figure illustrates the potential of combinatorial trials to identify tracks. 
+We are developing a classifier convolutional neural network that can
+identify which segments from each region of CLAS12 drift chambers can potentially form a
+good track. We intend to use this network in reconstruction process to reduce the number of
+combinatorial fitting.
+Reconstructed track segments from both positive and negative tracks from the currently reconstructed data samples are used to train the Neural Network. 
+We are currently testing three types of Neural Networks: boosted decision tree, multilayer perceptron, convolutional neural network.  
+The accuracy of the network is measured using 4 quantities:
+\begin{itemize}
+\item{The ratio of valid tracks (correctly detected) to the total number of tracks in the sample. }
+\item{The ratio of valid tracks and  invalid tracks (miss-predicted as valid ones; i.e. False Positives) to the total number of tracks in the sample. }
+\item{The ratio of valid tracks (correctly detected with highest probability) to the total number of tracks in the sample. }
+\item{The ratio of invalid tracks (False Positives) to the total number of tracks in the sample. }
+\end{itemize}
+Accuracy scores where determined for different training set and for the 3 types of Neural Networks studied.  Preliminary results indicated that the Convolutional Neural Network performed competitively with the Multilayer Perceptron with about 97\% accuracy and 3\% False Positives. 
+
+The hits identified as On-Track by the Neural Network are saved in a bank and the DC reconstruction package was adapted to read these data as an input to hit-based tracking.
+
+Benchmark results of reconstruction speed for hit-based tracking are shown in Fig.~\ref{fig:nn2}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{pics/nn2.png}
+\caption{Benchmark results of reconstruction speed for hit-based tracking.  
+The (black) blue curve correspond to the (non) AI-assisted reconstruction processing time as a function of event number. 
+}
+\label{fig:nn2}
+\end{figure}
+
+The implementing the Neural Network software into the CLAS12 reconstruction workflow is under development. The second stage of the Machine Learning project will concentrate on efficiency improvements using AI-assisted tracking.
+

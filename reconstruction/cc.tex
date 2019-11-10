@@ -1,31 +1,27 @@
 \subsection{Threshold Cherenkov Counters}
 
-The goal of the High and Low Threshold Cherenkov Counter (HTCC, LTCC) reconstruction algorithms
+The goal of the High and Low Threshold Cherenkov Counter (HTCC, LTCC) reconstruction algorithms is to
 calculate the signal strength, time, and position from the
-raw ADC signals coming from the PMTS through the corresponding FADC board. The algorithm takes into account
+raw ADC signals coming from the PMTs through the corresponding FADC board. The algorithm takes into account
 the properties of the HTCC and LTCC geometries, namely, the possibility for the signal from the single track to split into
 up to four mirrors.
 Hence, up to four separated signals (or hits) are produced. The final signal reconstruction is done in three
 steps: decoding, hit reconstruction, and cluster reconstruction.
 
 At the decoding stage, the signal is converted from the hardware notation (crate, slot, channel) into the CLAS12
-notation (sector, layer, component).  For each signal, strength ($nphe_{hi}$) and timing ($T_{hi}$) is determined
+notation (sector, layer, component).  For each signal, strength ($nphe_{hit}$) and timing ($T_{hir}$) is determined
 from the position of the threshold crossing, fit to the shape of the signal and measured value of the pedestal.
 
-At the hit reconstruction stage, individual signals in terms of the ADC channels is converted into the number of
-the photoelectrons ($nphe_{hi}$) for each hit using the gain constants in the $ccdb$:
+At the hit reconstruction stage, individual signals in terms of the ADC channels are converted into number of photoelectrons ($nphe_{hit}$) for each hit using gain constants derived from the detector calibration and stored in CCDB:
 
 \begin{equation}
-nphe_{hi} = \frac{ADC}{gain}
+nphe_{hit} = \frac{ADC}{gain}
 \end{equation}
 
-The correspondence between the  hit coordinate in terms (sector, layer, component) and specific PMT, observing
-the mirror,  provides the information on the angular hit coordinates ($\theta_{hi}$, $\phi_{hi}$).
+Geometry information on the PMT location is used to associate to the hit the angular coordinates ($\theta_{hit}$, $\phi_{hit}$).
 
-In order to reconstruct the real signal strength ($nphe_c$), we need to combine split signals (hits)into the single
-cluster. We start by selecting the strongest hit and use it as a starting point of the cluster. Then we look for the
-adjacent hits within a certain time window.  If such hits are found, they will be added to the growing cluster. If
-not, the cluster growth stops.
+In order to reconstruct the real signal strength ($nphe_c$),  split signals (hits) have to be combined into a single
+cluster. The algorithm starts by selecting the strongest hit which is used as seed for the cluster. Adjacent hits within a certain time window are then selected. If such hits are found, they will be added to the growing cluster. If not, the cluster growth stops.
 
 The total signal strength is determined as the sum of the individual signals, and the signal time is determined as
 the average between the individual signals, weighted by the corresponding number of the photoelectrons. The hit
