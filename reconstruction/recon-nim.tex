@@ -11,6 +11,23 @@
 %\usepackage[font=normalsize,labelfont=bf]{caption}
 \usepackage[pdfpagelabels]{hyperref}
 \modulolinenumbers[5]
+\usepackage[normalem]{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage{soul}
+\usepackage{dcolumn}% Align table columns on decimal pion\index{\footnote{}}t
+\usepackage{bm}% bold math
+\usepackage{hyperref}
+\usepackage{epstopdf}
+\usepackage{subcaption}
+\usepackage{url}
+\hyphenpenalty=1500
+\exhyphenpenalty=1500
+
+\def\etal{{\it et al.}}
+\def\MaPMT{MaPMT }
+\def\MaPMTs{MaPMTs }
+\def\MAROC{MAROC3 }
+\def\dT{$\Delta T$ }
 
 %\documentclass{elsart}
 %%\setcounter{footnote}{0}
@@ -21,7 +38,7 @@
 \begin{document}
 \begin{frontmatter}
 
-\title{CLAS12 Event Reconstruction}
+\title{CLAS12 Software Framework and Event Reconstruction}
 
 \author[JLab]{V. Ziegler\'i\corref{mycorrespondingauthor}}
 \cortext[mycorrespondingauthor]{Corresponding author}
@@ -30,6 +47,7 @@
 \author[Saclay]{F. Boss\`u}
 \author[JLab]{D.S. Carman}
 \author[IPNO]{P. Chatagnon}
+\author[INFN]{M. Contalbrigo}
 \author[INFN]{R. De Vita}
 \author[Saclay]{M. Defurne}
 \author[JLab]{G. Gavalian}
@@ -60,7 +78,7 @@
 %\maketitle
 
 \begin{abstract}
-We describe offline event reconstruction for the Compact Large Acceptance Spectrometer at 12 GeV.
+We describe offline event reconstruction for the CEBAF Large Acceptance Spectrometer at 12 GeV.
 The present an overview of the offline reconstruction framework and software tools.
 We describe the algorithms developed for the individual detector subsystems and the overall scheme for the
 particle identification.  We present the data processing scheme and code management procedures.
@@ -92,17 +110,20 @@ CLAS12, event reconstruction, PACS:29.40.Mc
 \input{eb}
 \input{dataprocessing}
 \input{codemanagement}
+\input{improvements}
 \input{conclusions}
 
 \section{Acknowledgments}
+This work was supported in part by the Chilean Comisi\'on Nacional de Investigaci\'on Cient\'ifica y Tecnol\'ogica (CONICYT), the Italian Istituto Nazionale di Fisica Nucleare, the French Centre National de la Recherche Scientifique, the French Commissariat \`{a} l'Energie Atomique, the U.S. Department of Energy, Office of Science, Office of Nuclear Physics under contract DE-AC05-06OR23177, the National Science Foundation, the Scottish Universities Physics Alliance (SUPA), the United Kingdom's Science and Technology Facilities Council, and the National Research Foundation of Korea.
 
-This work was supported in part by DOE Contract DE-AC05-84ER40150.
+The Southeastern Universities Research Association (SURA) operates the Thomas Jefferson National Accelerator Facility for the United States Department of Energy under contract DE-AC05-84ER40150.
+
 
 \begin{thebibliography}{99}
 
-\bibitem{evio}
-Event IO Data Format,
-https://coda.jlab.org/drupal/content/event-io-evio
+\bibitem{clas12-nim}
+V.D. Burkert {\it et al.}, ``The CLAS12 Spectrometer at Jefferson Laboratory'', to be published in Nucl.
+Inst. and Meth. A, (2020). (see this issue)
 
 \bibitem{clara-2011}
 V. Gyurjyan {\it et al.}, CLARA: A Contemporary Approach to Physics Data Processing, J. Phys. Conf. Ser.
@@ -118,17 +139,16 @@ ISBN: 978 1-4799-9926-2
 \bibitem{clara-2016}
 CLARA: The CLAS12 Reconstruction and Analysis framework, 2016, J. Phys. Conf. Ser. {\bf 762}, 012009 (2016).
 
-\bibitem{clas12-nim}
-V.D. Burkert {\it et al.}, ``The CLAS12 Spectrometer at Jefferson Laboratory'', to be published in Nucl.
+\bibitem{sim-nim}
+M. Ungaro {\it et al.},   ``The CLAS12 Geant4 Simulation'', to be published in Nucl.
 Inst. and Meth. A, (2020). (see this issue)
 
-\bibitem{ftof-nim}
-D.S. Carman {\it et al.},   ``The CLAS12 Forward Time-of-Flight System'', to be published in Nucl.
-Inst. and Meth. A, (2020). (see this issue)
+\bibitem{gluex}
+Find a reference
 
-\bibitem{ctof-nim}
-D.S. Carman {\it et al.}, ``The CLAS12 Central Time-of-Flight System'', to be published in Nucl.
-Inst. and Meth. A, (2020). (see this issue)
+\bibitem{evio}
+Event IO Data Format,
+https://coda.jlab.org/drupal/content/event-io-evio
 
 \bibitem{ecal-nim}
 G. Asryan {\it et al.}, ``The CLAS12 Forward Electromagnetic Calorimeter'', to be published in Nucl.
@@ -138,13 +158,21 @@ Inst. and Meth. A, (2020). (see this issue)
 M.D. Mestayer {\it et al.}. ``The CLAS12 Drift Chamber System'', to be published in Nucl. Inst. and
 Meth. A, (2020). (see this issue)
 
+\bibitem{ftof-nim}
+D.S. Carman {\it et al.},   ``The CLAS12 Forward Time-of-Flight System'', to be published in Nucl.
+Inst. and Meth. A, (2020). (see this issue)
+
 \bibitem{ft-nim}
-M. Battaglieri {\it et al.}, ``The CLAS12 Forward Tagger System'', to be published in Nucl. Inst. and
+A. Acker {\it et al.}, ``The CLAS12 Forward Tagger'', to be published in Nucl. Inst. and
 Meth. A, (2020). (see this issue)
 
 \bibitem{daq-nim}
 S. Boiarinov {\it et al.}, ``The CLAS12 Data Acquisition System'', to be published in Nucl. Inst. and
 Meth. A, (2020). (see this issue)
+
+\bibitem{ctof-nim}
+D.S. Carman {\it et al.}, ``The CLAS12 Central Time-of-Flight System'', to be published in Nucl.
+Inst. and Meth. A, (2020). (see this issue)
 
 \bibitem{svt-nim}
 A. Antonioli {\it et al.}, ``The CLAS12 Silicon Vertex Tracker'', to be published in Nucl. Inst. and
@@ -157,6 +185,9 @@ Meth. A, (2020). (see this issue)
 \bibitem{spiri}
 Alexander Spiridonov, Optimized Integration of the Equations of Motion of a Particle in the HERA-B Magnet
 
+\bibitem{Highland-Lynch-Dahl}
+ADD REFERENCE
+
 \bibitem{CA-HeraB}
 I.~Abt, I.~Kisel, S.~Masciocchi and D.~Emelyanov,
 ``CATS: A cellular automaton for tracking in silicon for the HERA-B vertex detector,''
@@ -165,8 +196,27 @@ doi:10.1016/S0168-9002(02)00790-8
 %%CITATION = doi:10.1016/S0168-9002(02)00790-8;%%
 %26 citations counted in INSPIRE as of 27 Sep 2019
 
-\bibitem{mm-nim}
+\bibitem{ILC-Tracking}
+ADD REFERENCE
+
+\bibitem{ec-nim}
+G. Asryan {\it et al.}, ``The CLAS12 Forward Electromagnetic Calorimeter', to be published in Nucl. Inst. and
+Meth. A, (2020). (see this issue)
+
+\bibitem{rich-nim}
+M. Contalbrigo {\it et al.}, ``The CLAS12 RICH Detector'', to be published in Nucl. Inst. and
+Meth. A, (2020). (see this issue)
+
+\bibitem{cnd-nim}
+P. Chatagnon {\it et al.}, ``The CLAS12 Central Neutron Detecto'', to be published in Nucl. Inst. and
+Meth. A, (2020). (see this issue)
+
+\bibitem{ic}
 R. Niyazov and S. Stepanyan, ``CLAS/DVCS Inner Calorimeter Calibration'', CLAS-Note 2005-021.
+
+\bibitem{clasdis}
+GET a REFERENCE FRom HARUT.
+
 \bibitem{recon-github}
 {CLAS12 Reconstructino Software Repository},
 https://github.com/jeffersonlab/clas12-offline-software

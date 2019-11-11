@@ -1,8 +1,8 @@
 \subsection{Electromagnetic Calorimeters}
 
-The (Forward Electromagnetic Calorimeters) FEC reconstruction service provides a fast and efficient algorithm for grouping scintillator {\it strips} with
-{\it hits} into multiple {\it peaks} and {\it clusters} within a single sector for each of the FEC modules PCAL, ECIN,
-and ECOU, while leaving cluster matching and particle ID to the event builder service.  Within the FEC service, these
+The forward electromagnetic calorimeters ECAL~\cite{ec-nim} reconstruction service provides a fast and efficient algorithm for grouping scintillator {\it strips} with
+{\it hits} into multiple {\it peaks} and {\it clusters} within a single sector for each of the ECAL modules, PCAL, ECIN,
+and ECOU, while leaving cluster matching and particle ID to the event builder service.  Within the ECAL service, these
 various elements exist as objects with methods, structures and data members designed for calibration, pattern
 recognition, diagnostics and serial output.  For example the service applies run dependent calibration corrections for
 conversion of raw FADC and TDC digitized data to energy and time, and also provides formatted output banks used by
@@ -10,8 +10,8 @@ external services.  Also energy thresholds and cluster identification criteria c
 efficiency, suppress backgrounds and avoid false or duplicate clusters arising from fluctuations at the fringes of EM
 showers.
 
-The cluster finding algorithm makes use of the unique geometry and stereo readout features of the FEC. As discussed
-earlier, each triangular scintillator layer in the FEC lead:scintillator sandwich is transversely divided into strips, with the
+The cluster finding algorithm makes use of the unique geometry and stereo readout features of the ECAL. As discussed
+in REf.~\cite{ec-nim}, each triangular scintillator layer in the ECAL lead:scintillator sandwich is transversely divided into strips, with the
 shortest strip at the corners. The slice direction rotates by $\approx~120^{\circ}$ for each successive layer, providing
 three {\it views} labeled $U$, $V$, and $W$.  For each strip within a view, layers are optically ganged together into a
 stack.  Individual PMT readout of each PCAL, ECIN, and ECOU stack provides a pulse proportional to the summed energy
@@ -25,7 +25,7 @@ data. The service uses this geometry data to determine which collection of peaks
 
 \subsubsection {Cluster Position}
 
-The criterion for a cluster requires the spatial intersection of three peaks, one from each of the $U$, $V$, and $W$ views.
+The criterion for defining a cluster requires the spatial intersection of three peaks, one from each of the $U$, $V$, and $W$ views.
 Candidate peaks for a cluster search are based on a user-defined threshold for the summed peak raw energy.  Each peak is
 represented geometrically as a directed line segment determined by the energy weighted average of the mid-lines of each
 member strip.   The degree of intersection of each $U$, $V$, $W$ peak triplet is determined by calculating the line of
@@ -39,7 +39,7 @@ Once the cluster is localized, the path from the cluster position to the PMT rea
 $W$ peakline and the peak energies are corrected for scintillator light attenuation.  For isolated clusters the cluster energy
 is then defined as the sum of the corrected energy from each of the $U$, $V$, and $W$ peaks which define the cluster.
 
-More complicated scenarios arise from the triangular geometry of the FEC hodoscope, which creates the possibility of a
+More complicated scenarios arise from the triangular geometry of the ECAL hodoscope, which creates the possibility of a
 single peak in the $U$, $V$, or $W$ view sharing the summed energy from two or more clusters.  For these cases the energy
 in each cluster which shares that peak is assumed to be proportional to the relative partial energies of the multiple clusters as
 measured in the other views.  For example, if there are two clusters, both of which share the same $U$ peak, the summed
