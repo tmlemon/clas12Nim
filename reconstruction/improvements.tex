@@ -59,15 +59,15 @@ The implementing the Neural Network software into the CLAS12 reconstruction work
 \subsection{Improvements to Central Tracking}
 Improvements to tracking in the central detectors are currently being studied. These includes:
 \begin{itemize}
-    \item improvements to the geometry description of the detectors and fitting algorithm that remove systematic shifts that are currently observed in the fit residuals;
+    \item improvements to the tracker geometry implementation and fitting algorithm. The combination of these code modification is expected to improve the fit residuals. The later are indicative of a bias in the  current version of the code  as  systematic shifts are observed in their distributions;
     \item implementation of geometrical distortions derived from detector alignment;
-    \item use of the actual beam spot information in the initial fit of the track in the x-y plane;
-    \item use of SVT clusters instead of crosses in the seeding.
+    \item the use of the beam spot information  in the track fit initialization (in the x-y plane);
+    \item the use of SVT clusters instead of crosses in the seeding.
 \end{itemize}
 The updates aim at enhancing the robustness of the tracking algorithm and improving resolution and efficiency.
 
 \subsection{Improvements to Time-of-Flight reconstruction}
-As discussed in Sec.~\ref{tof-sys}, the output of time-of-flight reconstruction that is currently passed to the event builder stage are reconstructed hits. Improvements in timing resolution for particles going through two adjacent paddles are expected using clusters. This is currently being studied on Monte Carlo simulations.
+As discussed in Sec.~\ref{tof-sys}, the output of time-of-flight reconstruction are reconstructed hits.  The reconstructed hits information is an input to the event builder algorithms.  The use of clusters for particles that go through through two adjacent TOF paddles is expected to yield  improved timing resolution. A quantitative estimate of the timing resolution improvements and a validation of the clustering algorithm are currently ongoing using on Monte Carlo simulations.
 
 \subsection{Improvements to Event Builder}
 The matching of tracks to detector responses, either hits or clusters, is currently based on the distance of closest approach between the tracks and the response coordinates. Improvements to this matching can be obtained using track trajectories, i.e. intersections of the track with the relevant detector planes were responses are reported, and timing information. The use of trajectories will reduce the uncertainty on the path length determination resulting for the resolution on the response coordinates. The use of timing information in the matching will reduce the effect of accidentals in high rates detectors such as the HTCC.
