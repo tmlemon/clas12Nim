@@ -1,7 +1,7 @@
 \subsection{Electromagnetic Calorimeters}
 
-The (Forward Electromagnetic Calorimeters) FEC reconstruction service provides a fast and efficient algorithm for grouping scintillator {\it strips} with
-{\it hits} into multiple {\it peaks} and {\it clusters} within a single sector for each of the FEC modules PCAL, ECIN,
+The (Forward Electromagnetic Calorimeters) FEC~\cite{ec-nim} reconstruction service provides a fast and efficient algorithm for grouping scintillator {\it strips} with
+{\it hits} into multiple {\it peaks} and {\it clusters} within a single sector for each of the FEC modules, PCAL, ECIN,
 and ECOU, while leaving cluster matching and particle ID to the event builder service.  Within the FEC service, these
 various elements exist as objects with methods, structures and data members designed for calibration, pattern
 recognition, diagnostics and serial output.  For example the service applies run dependent calibration corrections for
@@ -11,7 +11,7 @@ efficiency, suppress backgrounds and avoid false or duplicate clusters arising f
 showers.
 
 The cluster finding algorithm makes use of the unique geometry and stereo readout features of the FEC. As discussed
-earlier, each triangular scintillator layer in the FEC lead:scintillator sandwich is transversely divided into strips, with the
+in REf.~\cite{ec-nim}, each triangular scintillator layer in the FEC lead:scintillator sandwich is transversely divided into strips, with the
 shortest strip at the corners. The slice direction rotates by $\approx~120^{\circ}$ for each successive layer, providing
 three {\it views} labeled $U$, $V$, and $W$.  For each strip within a view, layers are optically ganged together into a
 stack.  Individual PMT readout of each PCAL, ECIN, and ECOU stack provides a pulse proportional to the summed energy
@@ -25,7 +25,7 @@ data. The service uses this geometry data to determine which collection of peaks
 
 \subsubsection {Cluster Position}
 
-The criterion for a cluster requires the spatial intersection of three peaks, one from each of the $U$, $V$, and $W$ views.
+The criterion for defining a cluster requires the spatial intersection of three peaks, one from each of the $U$, $V$, and $W$ views.
 Candidate peaks for a cluster search are based on a user-defined threshold for the summed peak raw energy.  Each peak is
 represented geometrically as a directed line segment determined by the energy weighted average of the mid-lines of each
 member strip.   The degree of intersection of each $U$, $V$, $W$ peak triplet is determined by calculating the line of
