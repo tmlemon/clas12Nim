@@ -10,61 +10,36 @@
 \label{fig:clara-overview}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Nuclear and particle physics data processing applications have a guarantee a long lifetime, equivalent or larger than the multi-year duration of the corresponding experiment. The ability to upgrade and adapt technologies is therefore essential. Hence, data processing applications should be organized in a way that easily permits the upgrade of aged software components and the inclusion of new ones, with  no need for major redesign or structural changes. In addition, support for software evolution and diversification (e.g. compatibility with heterogeneous hardware structures, such as FPGAs, GPGPUs, etc.) is important as it results in more efficient and robust data processing applications.
+Nuclear and particle physics data processing applications must guarantee a long lifetime, larger than the multi-year duration of the corresponding experiment. The ability to upgrade and adapt technologies is therefore essential, so these applications should be organized in a way that easily permits upgrade of aged software components and inclusion of new ones, without need for major redesign or structural changes.  Support for software evolution and diversification (e.g. compatibility with heterogeneous hardware structures, such as FPGAs and GPGPUs) is important to accommodate more efficient and robust data processing applications in the future.
 
 
-Following this principles, CLAS12 reconstruction and analysis relies on a reactive, data-stream processing framework called CLARA
-\cite{clara-2011,clara-service,framework,clara-2016} that adopts a service-oriented architecture to build the relevant
-software applications. 
+Following these principles, CLAS12 reconstruction and analysis relies on a data-stream processing framework called CLARA \cite{clara-2011,clara-service,framework,clara-2016}, which provides a service-oriented architecture in which to build the relevant software applications.  Such applications are composed of interlocking building blocks called micro-services, which are linked together by data-stream pipes.  The technology (e.g. a high-level programming language, or hardware deployment details) as well as the algorithmic solutions used to process data (see Fig.~\ref{fig:clara-overview},) are encapsulated.
 
-Software applications designed within the CLAS12 CLARA data processing framework are composed of interlocking building blocks
-(bricks), called micro-services. Micro-services are linked together by data-stream pipes.  The technology
-(e.g. high-level programming language, hardware deployment details) as well as the algorithmic solutions used to process
-data (see Fig.~\ref{fig:clara-overview}) are encapsulated. A micro-service has inputs, processes data and produces output data. Inputs and outputs data and organized in ``banks'' whose structure is configured by the specific service developer.
-A micro-service reacts on a streaming data quantum in its input, processes it, and passes processed data quanta to the next micro-service in the data-flow path. 
+A micro-service has input data, processes it, and produces output data, where that I/O is organized in ``banks'' whose structure is configured by the specific service developer.  A micro-service reacts on a streaming data quantum in its input, processes it, and passes processed data quanta to the next micro-service in the data-flow path.  As a result, the CLAS12 data processing application is versatile and flexible, since the application building blocks can be improved individually and replaced with no need of structure changes in the framework.
 
-The CLAS12 data processing applications execute according to the rules of data-flow instead of a more traditional
-programming approach, where sequential series of instructions (lines of code) are written to perform a required algorithm. The flow of data between micro-services in the application determines
-the execution order of micro-services within the application. These features make the data paths between application building blocks to be the application designer’s main focus. As a result, the CLAS12 data processing application is versatile and flexible, since
-the application building blocks can be improved individually and replaced with no need of structure changes in the framework. 
+\sout{The CLAS12 data processing applications execute according to the rules of data-flow instead of a more traditional programming approach, where sequential series of instructions (lines of code) are written to perform a required algorithm. The flow of data between micro-services in the application determines the execution order of micro-services within the application. These features make the data paths between application building blocks to be the application designer’s main focus.}
+
 The CLARA data-stream pipe is a data bus based on the xMsg messaging system that supports various protocols such as MPI, pub-sub, p2p, inproc, and shared memory. The CLARA orchestrator, i.e. the process level workflow management systems, controls the overall process execution. 
 
-In the case of the CLAS12 event reconstruction application, the micro-services are built as extension of a template reconstruction engine which includes common components such as engine initialization and events processing methods. This approach strongly reduces and simplifies the development of an individual micro-service by enforcing a common structure. 
+The CLAS12 micro-services are extensions of an abstract reconstruction engine, which includes common components such as initialization and events processing methods. This approach reduces and simplifies the development of an individual micro-service and enforces a common structure. 
 
 SHOULD ADD SOMETHING ON EVENT PARALLELIZATION AND MULTI-HW SUPPORT.
 
 \subsection{Common Tools}
 \label{common-tools}
 
-The offline software of the CLAS12 project aims at providing tools to
-the experimental collaboration that allow design, simulation, and data analysis to proceed
-in an efficient, repeatable, and understandable way. As much as
-possible, software-engineering-related details should be hidden from
-users, allowing them to concentrate on the algorithms and physics.
-To facilitate code development for the detector subsystems of CLAS12, and for detector-specific reconstruction output
-analysis used for particle identification and overall event reconstruction,
-the software was designed to provide libraries that are commonly used by all the reconstruction
-packages.  These libraries, referred to as ``common tools'' provide means to avoid code replication and aid in software maintainability.
+The offline software of the CLAS12 project aims at providing tools \sout{to the experimental collaboration} that allow design, simulation, and data analysis to proceed in an efficient, repeatable, and understandable way. Most  software engineering details are hidden from users, allowing them to concentrate on the algorithms and physics.  To facilitate code development for the detector subsystems of CLAS12, \sout{and for detector-specific reconstruction output analysis used for particle identification and overall event reconstruction}, the software was designed to provide libraries that are commonly used by all the reconstruction packages.  These libraries, referred to as ``common tools'', facilitate avoiding replication and aid in software maintainability.
 
 The common tools consist of various packages, each having a specific purpose and functionality. Below we discuss
 the main packages used in the reconstruction software.
 
 \subsubsection{Geometry}
 
-Due to the complexity of the geometry of CLAS12 detector subsystems, an interface was developed
-to provide classes and software tools that are used to describe the geometry of all subsystem in an unified way.
+Due to the complexity of the geometry of CLAS12 detector subsystems, an interface was developed to provide classes and software tools that are used to describe the geometry of all subsystem in an unified way.  A library of primitives provides geometrical objects needed to represent all detector subsystems and provide the necessary transformations to accommodate misalignments and distortions.  \sout{These include lines, planes and various shapes (e.g. cubes, trapezoids, etc.).  They provide the functionality needed to represent the detector subsystem components in the reconstruction frames, to take into account geometrical distortions and to translate and rotate detector components, which is particularly relevant for alignment purposes.}  Furthermore, geometry tools provide methods to track particles through volumes for evaluation of track trajectories, such as line to surface intersections, ray tracing through objects, and distance of closest approach to a line or surface.
 
-A library of primitives was developed to provide geometrical objects needed to represent by all geometry detector subsystem
-and for geometrical object transformations.  These primitives include lines, planes and various shapes (e.g.
-cubes, trapezoids, etc.).  They provide the functionality needed
-to represent the detector subsystem components in the reconstruction frames, to take into account geometrical distortions
-and to translate and rotate detector components, which is particularly relevant for alignment purposes.
-Furthermore, geometry tools provide methods to track particles through volumes, and return information used to determine
-track trajectories, such as line to surface intersections, ray tracing through objects, distance of closest approach to a line or surface.
+The CLAS12 geometry library is initialized from a database containing key geometry parameters and their variations for every detector.  This maximizes flexibility, supports time-dependent experiment geometry conditions, and ensures consistency between the simulation, reconstruction, and event visualization packages in Section \ref{sec:ced} \cite{sim-nim}. \sout{The library in fact provides the input geometries for the GEANT4 simulations package (GEMC)~\cite{sim-nim}, the reconstruction application and the CLAS12 Event Display (CED).}
 
-The CLAS12 geometry library is initialized from database, where the detector geometry key parameters are stored for maximum flexibility, and ensures consistency between the geometry implementation used in CLAS12 simulation, reconstruction and event visualization packages. The library in fact provides the input geometries for the GEANT4 simulations package (GEMC)~\cite{sim-nim}, the reconstruction application and the CLAS12 Event Display (CED).
-
-To facilitate the detector geometries implementation, visualization capalities were included in the geometry library. Fig.~\ref{fig:detectorview} shows a view of part of the CLAS12 spectrometer using this functionality.
+To facilitate development of new detector geometries, visualization capalities are included in the geometry library. Fig.~\ref{fig:detectorview} shows a view of part of the CLAS12 spectrometer using this functionality.
 
 \begin{figure}
 \centering
