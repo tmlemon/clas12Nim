@@ -18,16 +18,11 @@ At the hit reconstruction stage, individual signals in terms of the ADC channels
 nphe_{hit} = \frac{ADC}{gain}
 \end{equation}
 
-Geometry information on the PMT location is used to associate to the hit the angular coordinates ($\theta_{hit}$, $\phi_{hit}$).
+Geometry information on the PMT location is used to associate the angular coordinates ($\theta_{hit}$, $\phi_{hit}$) to the hit.
 
 In order to reconstruct the real signal strength ($nphe_c$),  split signals (hits) have to be combined into a single
-cluster. The algorithm starts by selecting the strongest hit which is used as seed for the cluster. Adjacent hits within a certain time window are then selected. If such hits are found, they will be added to the growing cluster. If not, the cluster growth stops.
-
-The total signal strength is determined as the sum of the individual signals, and the signal time is determined as
-the average between the individual signals, weighted by the corresponding number of the photoelectrons. The hit
-angular coordinate is determined as the average between the individual hits forming the cluster.  Hits, attributed
-to the established clusters, are removed from the further consideration, and algorithm starts to look for the next
-cluster until list of hits is exhausted.
+cluster. The algorithm starts by selecting the hit with the largest $nphe_{hit}$, which is used as seed for the cluster. Adjacent hits within a certain time window are then searched iteratively and, if found, added to the cluster. The total signal strength is determined as the sum of the individual signals, and the signal time is determined as the average between the individual signal times, weighted by the corresponding number of photoelectrons. The cluster
+angular coordinates are determined as the average between the individual hits forming the cluster. The following equations summarize the definitions of the cluster coordinates:
 
 \begin{eqnarray*}
 nphe_c &= \frac{\sum_{i=1}^{N}{nphe_{hi}}}{N}\\
@@ -36,9 +31,8 @@ T_c &= \frac{\sum_{i=1}^{N}{N*T_{hi}}}{\sum_{i=1}^{N}{nphe_{hi}}}\\
 \phi_c &= \frac{\sum_{i=1}^{N}{\phi_{hi}}}{N}
 \end{eqnarray*}
 
-Hits, attributed to the established clusters, are removed from the further consideration, and algorithm starts to
-look for the next cluster until list of hits is exhausted.
+The clustering algorithm is run iteratively until the list of hits is
+exhausted.
 
-In the HTCC the cluster coordinates, required for the matching of the hit with the reconstructed track in the Event Builder, is
-reconstructed by projecting  ($\theta$, $\phi$) of the cluster on the surface of the ellipsoidal mirror.     In the LTCC an estimated cluster
-position is calculated leveraging the Monte-Carlo simulation.  The track that passes the closest to the tentative true cluster position is then chosen as the true match for this cluster.
+In the HTCC, the cluster coordinates, required for the matching of the hit with the reconstructed track in the Event Builder, are
+reconstructed by projecting  ($\theta_c$, $\phi_c$) of the cluster on the surface of the ellipsoidal mirror of the detector. In the LTCC, an estimated cluster position is calculated based on a parameterization extracted from Monte Carlo simulations..  The track that passes the closest to the cluster position is then chosen as the match for this cluster.

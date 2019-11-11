@@ -355,13 +355,13 @@ m$.
 \item a line fit in rz-plane using only z-clusters of Micromegas to initialize $z_0$ and $\theta_{dip}$.
 \end{itemize}
 The covariance matrix of the two fits are merged into a 5$\times$5 matrix to initialize the covariance matrix for the
-Kalman filter. Following transport equations in~\ref{ILC-Tracking}, the state vector is propagated from the CVT
+Kalman filter. Following transport equations in~\cite{ILC-Tracking}, the state vector is propagated from the CVT
 revolution axis to the most outer layer of CVT, filtering at each measurement composing the track candidate. Once the
 last measurement is reached, state vector and covariance matrix are brought back to the CVT revolution axis as they are
 and the transport/filtering process is re-run. A maximum of five iterations is performed to make sure of the
 convergence of the filtering process.
 
-\subsubsection{Tracking Performance}
+\subsection{Tracking Performance}
 
 The momentum resolutions in the central and forward trackers as a function of the momentum reach
 in these detectors is shown in Figs.~\ref{fig:respcvt} and~\ref{fig:respdc}, respectively.  The distributions are fitted with a function of the form $\sqrt{a+b x^{2}+c/(1+d/x^{2})}$.  The resolutions achieved are well within specs and the difference in magnitude between the central and the forward trackers is due to intrinsic resolutions of these detectors. 

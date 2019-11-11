@@ -1,47 +1,22 @@
 \section{Code Management}
 
 \subsection{Repositories}
-The software is managed in a github repository \cite{recon-github}, and branches and forks are utilized to accommodate parallel development by many groups.  Two main branches, {\it master} and {\it development}, are utilized to store code ready for production and for validation, respectively. For the main branches, all modifications are made only through pull requests after passsing the automated tests in Section \ref{sec:tests} and require a approval by a software expert.
+The software is managed in a github repository \cite{recon-github}, and branches and forks are utilized to accommodate parallel development by many groups.  Two main branches, {\it master} and {\it development}, are utilized to store code ready for production and for validation, respectively. For the main branches, all modifications are made through pull requests after passing the automated tests in Section \ref{sec:tests} and require a approval by a software expert.
 
 \subsection{Releases}
-There are four release types; major release, interface change release, bug-fix
-and test releases.  A numbering scheme is implemented to indicate the type of change.
-Releases that are ungoing a validation period carry a letter that indicates the type of validation:
-for production or a special algorithm study.
+There are three release types: test release, validation release and production release, defined in the following. A numbering scheme is implemented to indicate the type of change with respect to previous releases. Test and validation releases carry a letter.
 
-Major release:
-- Previous productions likely are obsolete.
-- Introducing new technology, major algorithmic improvements, or
-schema changes that make previous productions obsolete.
-- Impact for users: maximal
-- Impact for developers: maximal
+Test releases, identified by the letter c, are tagged from branches other than master and development and are intended to validate a specific code change or algorithmic improvement. Usage of these releases is typically limited to the developers. Validation releases, identified by the letter b, are tagged from the development branch to test code updates, before merging to the master branch. Production releases are tagged from the master branch after code updates for production data processing.
 
-Interface change release
-- The release contains changes that make the program not backwards compatible.
-- Releases for clean-up operation with changes in users' interfaces of
-packages, for design iteration that affect the users' interface, and
-for re-packaging and simple schema changes.
-- Not backwards compatible
-- Impact for users: large (Need adapt their code to new interfaces.)
-- Impact for developers: large (Need adapt their code to new interfaces.)
-
-Bug-fix and new feature release
-- Extensions of interfaces and new implementations are allowed, while
-backwards compatibility of interfaces is guaranteed.
-- Impact for users: small (Need to compile against a new area.)
-- Impact for developers: small
-
-Fast bug-fixes and test releases
-- Impact for users: none
-- Impact for developers: If their development depends on the fix, they will checkout
-and compile the fixes in their local area.
-- bug-fixes are at the at sub-system level.
-- they are reflected in sub-system level letter tags only.
-
-Fast fixes are collected in regular intervals into bug-fix releases.
+The release numbering scheme uses the format X(b/c).Y.Z, where increase of X, Y or Z are applied in the following cases:
+\begin{itemize}
+    \item X: introduction of new technology, major algorithmic improvements or changes that are not backward compatible;
+    \item Y: extension of interfaces, new implementations or major bug fixes;
+    \item Z: minor bug fixes.
+\end{itemize}
 
 \subsection{Code tests and validation}\label{sec:tests}
-In addition to automatic builds, the software includes both basic unit tests and advanced tests for several packages. Unit tests are designed to verify the correctness and reproducibility of the reconstruction output for a specific package. This involves for example reconstructing a simulated track or particle hit in a specific detector and comparing the result to the true information. Advanced and extended tests are, on the contrary, designed to verify the correctness and reproducibility of the overall event reconstruction on both simulated and real data sample by comparing to the true information in the first case or to the results obtained in previous releases in the second case. A portion of the tests are run automatically at the build time, using the TravisCI system linked to the github repositories.  These automatic tests take about 30 minutes to run and have proven invaluable in overseeing and improving software development.
+In addition to automatic builds, the software includes both basic unit tests and advanced tests for several packages. These are designed to verify the correctness and reproducibility of the reconstruction output for a specific package or for the overall event, respectively. Unit tests involves for example reconstructing a simulated track or particle hit in a specific detector and comparing the result to the true information. Advanced and extended tests are run on either simulated or real data sample, comparing to the true information in the first case or to the results obtained in previous releases in the second case. A portion of the tests are run automatically at the build time, using the TravisCI system linked to the github repository.  These automatic tests take about 30 minutes to run and have proven invaluable in overseeing software development.
 
-In addition to unit and advanced tests, every new release is subject to extensive validation on both simulated and real data. For this purpose, samples of Monte Carlo and real events for different beam energies and detector configuration were chosen to provide an extensive test of event reconstruction over the whole detector acceptance. Reconstruction of these samples is performed and results are compared to previous code releases. The comparison focuses on several parameters, from processing time, to resolution and efficiencies for particle reconstruction. A new release is accepted for production only if it is meeting predefined criteria on these observables and is globally giving improved performances. 
+In addition to unit and advanced tests, every new release is subject to extensive validation on both simulated and real data. Samples of Monte Carlo and real events for different beam energies and detector configuration were chosen to test event reconstruction over the whole detector acceptance. Reconstruction of these samples is performed and results are compared to previous code releases. The comparison focuses on several parameters, from processing time, to momentum resolution and particle reconstruction efficiency. A new release is accepted for production only if it is globally giving improved performances. 
 % CLAS12 Software must be accurate. Under the software, we assume physics data processing (PDP) applications like reconstruction, simulation and calibration. PDP applications, developed using the CLAS12 software framework, consist of services that run in a context that is agnostic to the global application logic. So, the CLAS12 software accuracy depends on accuracy of services used in designing the PDP application. In order to be part of the production service inventory, each service must have self accuracy and efficiency testing routines.
