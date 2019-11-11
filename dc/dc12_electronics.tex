@@ -20,7 +20,7 @@ transmitted down (17-pair) twisted-pair cables to our downstream DCRBs that furt
 discriminate the voltage pulses and then convert the leading edge
 to a digital time signal.
 
-The drift chamber signal amplification and readout system consists of the following:
+The drift chamber signal amplification and readout system thus consists of the following:
 \begin{itemize}
 \item  chamber-mounted printed circuit boards with an amplifier for each signal wire; 
 these are the STBs (one type for each superlayer);
@@ -52,10 +52,10 @@ and low voltage systems for the drift chambers.}}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Signal Translator Boards and High Voltage Translator Boards}
+\subsection{STB and HVTB: Installation and Use}
 
 The high voltage side of each chamber was tiled with 14  multi-layered printed circuit 
-boards called High Voltage Translation Boards. The HVTBs were designed to distribute three
+boards, (HVTB). The HVTBs were designed to distribute three
 separate voltages to the sense, field, and guard wires, respectively.  See
 Section~\ref{determine-operating-parameters} for a 
 description of how we determined the operating values of the high voltage.  
@@ -76,7 +76,7 @@ the lines.  The board layout is shown in Fig.~\ref{hvtb-layout}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The signal side of each chamber was tiled with 14 multi-layered printed circuit 
-boards called Signal Translation Boards.  These boards were built in a 96-channel format that
+boards, (STB).  These boards were built in a 96-channel format that
 requires seven circuit boards for each superlayer (672 signals). The boards capacitively
 decoupled high-voltage from the signals, and then routed 
 the signals to the SIP transimpedance preamplifiers 
@@ -143,7 +143,7 @@ humidities as high as 60\%).
 These ``CP01'' preamplifiers provide the gain, dynamic range, rise time, low 
 noise, and low power needed for the performance requirements.  The CP01 is
 a transimpedance amplifier with a gain of 2 mV/$\mu$A and a rise-time
-of less than 10 ns.  Each SIP operates at 6 V and draws about 13 mA.   
+of less than 10 ns.  Each SIP operates at 5 V and draws about 13 mA.   
 Fig.~\ref{CP01-description} shows the design and specifications of the
 CP01 preamplifier.  See Ref.~\cite{fjb92} for the original design of
 this SIP preamplifier.
@@ -173,12 +173,7 @@ standard 17-pair cable.
 Our on-chamber preamplifiers send signals to the DCRBs, which provide another level of amplification, 
 signal discrimination, adjustable threshold setting, time digitization, and readout. 
 
-These DCRBs are based on FPGA technology, and in addition to
-their primary function of amplification, discrimination, digitization,
-and readout, they are used in a simple ``cluster-finding'' algorithm
-to find track segment candidates with a latency of only hundreds
-of nanoseconds.  For a more complete description of this please
-see our companion article on the trigger, Ref.~\cite{trigger-nim}.
+
 
 \subsubsection{Drift Chamber Readout Boards}
 
@@ -189,6 +184,13 @@ Fourteen such boards are housed in
 a proprietary 9U, 160 mm depth, VXS form factor/crate.
 The whole system consisted of 18 such crates, one for each drift chamber.
 See Ref.~\cite{daq-nim} for more details.
+
+These DCRBs are based on FPGA technology, and in addition to
+their primary function of amplification, discrimination, digitization,
+and readout, they are used in a simple ``cluster-finding'' algorithm
+to find track segment candidates with a latency of only hundreds
+of nanoseconds.  For a more complete description of this please
+see our companion article on the trigger, Ref.~\cite{trigger-nim}.
 
 To perform its time digitization task, the DCRB utilizes on-board synchronization to
 return the signal time relative to an input time signal from  a Trigger Distribution
