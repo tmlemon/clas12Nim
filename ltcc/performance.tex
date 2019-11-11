@@ -5,13 +5,17 @@ The event selection is described below.
 
 \subsection{Pions Selection}
 
-First, only events with ``good'' electrons are considered. These are electrons with a cut on the ECAL sampling fraction.
+Positive pion candidates $t$s are elected among positvely charged particles using the reaction $eP\rightArror e\pi^+N$. T
+he criterias for event selections are:
 
-To identify positive pions, events with a positive track candidates $t^+$ are considered and a cut on the the neutron missing mass $e^-t^+(n)$
-is applied between 0.7 and 1.1 GeV (see \F{neutronMM}).
+\begin{itemize}
+	\item Electrons identified using the reconstruction event builder algorithm;
+    \item Electrons must be between 15\mdeg\ and 25\mdeg\ in $\theta$;
+    \item Positive track candidates $t$s  identified using the reconstruction event builder algorithm;
+    \item Positive track candidates must be between 10\mdeg\ and 25\mdeg\ in $\theta$ and between 94\mdeg\ and 108\mdeg\ in $\phi$;
+	\item The neutron missing mass $e^-t^+(n)$ is applied between 0.9 and 1.05 GeV (see \F{neutronMM}).
+\end{itemize}
 
-%To identify negative pions, events with a positive track $t^+$ are considered and a cut on the the neutron missing mass $e^-t^+(n)$
-%is applied between 0.7 and 1.1 GeV (see \F{neutronMM}).
 
 
 \begin{figure}
@@ -26,7 +30,7 @@ is applied between 0.7 and 1.1 GeV (see \F{neutronMM}).
 
 
 
-\subsection{LTCC Pions Rsponse}
+\subsection{LTCC Pions Response}
 
 2 d plots of number of photoelectrons for both positive and negative pions
 
