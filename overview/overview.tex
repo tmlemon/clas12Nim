@@ -84,7 +84,7 @@
   R. De Vita, K. Giovanetti, F.X. Girod, L. Guo, R. Gothe, Y. Gotra, K. Hafidi, D. Heddle, P. Hemler, K. Hicks, D. Insley, K. Joo,
   D. Kashy, A. Kim, W. Kim, V. Kubarovski, S. Kuhn, M. Mcmullen, I. Mandjavidze, N. Markov, C. Mealer, M. Mestayer,
   Z.E. Meziani, R. Miller, M. Mirazita, S. Niccolai, O. Pastor, E. Pasyuk, O. Pogorelko, B. Raue, P. Rossi, F. Sabatie,
-  Y. Sharabian, D. Sokhan, S. Stepanyan, M. Ungaro, A. Vlassov, D. Watts, L. Weinstein, C. Wiggins, A. Yegneswaran, 
+  Y. Sharabian, L.C. Smith, D. Sokhan, S. Stepanyan, M. Ungaro, A. Vlassov, D. Watts, L. Weinstein, C. Wiggins, A. Yegneswaran, 
   G. Young, M. Zarecky, V. Ziegler, {\bf incomplete list} ......... more coming ............. }
 %\address{12000 Jefferson Avenue, Newport News, Virginia, 23606}
 %\author{ K. Hafidi,  .......} 
@@ -194,17 +194,17 @@ with the momentum transfer.
 \begin{figure*}[t]
 \centering
 \centerline{\includegraphics[width=1.8\columnwidth]{CLAS12-side-3.png}}
-\caption{(Color Online) The CLAS12 detector in the Hall~B beamline. The electron beam enters from the right and impinges on
+\caption{(Color Online) The CLAS12 detector in the Hall~B beam line. The electron beam enters from the right and impinges on
 the production target located in the center of the solenoid magnet shown at the right (upstream) end of CLAS12,
 where other detector components are also visible. Scattered electrons and forward-going particles are detected
-in the Forward Detector (FD) consisting of a high-threshold Cherenkov counter (HTCC) with full coverage in polar
+in the Forward Detector (FD) consisting of the HTCC (yellow) with full coverage in polar
 angle $5^\circ \le \theta \le 35^\circ$ and $\Delta \phi = 2\pi$ coverage in azimuth. The HTCC is followed by the
-Torus magnet, the drift chamber (DC) tracking system, another set of Cherenkov counters (LTCC, RICH),
-time-of-flight scintillation counters (FTOF), and electromagnetic calorimeters (ECAL). The DCs are supported from
+Torus magnet (grey), the drift chamber tracking system (light blue), another set of Cherenkov counters (hidden),
+time-of-flight scintillation counters (brown), and electromagnetic calorimeters (orange). The DCs are supported from
 the Torus magnet. The detectors downstream of the Torus magnet are mounted on a separate Forward Carriage that
 is independently movable to allow access to the detectors for maintenance. The Central Detector (CD) consists of the
-Silicon Vertex Tracker (SVT), which is surrounded by a Barrel Micromesh Tracker (BMT), the Central Time-of-Flight
-(CTOF) counter, and the Central Neutron Detector (CND). The entire CLAS12 detector extends for 20~m along the
+Silicon Vertex Tracker (hidden), which is surrounded by a Barrel Micromesh Tracker (hidden), the Central Time-of-Flight
+counter and the Central Neutron Detector (pmts in blue)). At the upstream end, a temporarily installed back angle neutron detector (red) is also visible. In the operational configuration, the entire CLAS12 detector extends for 13~m along the
 beamline.} 
 \label{clas12}
 \end{figure*}
@@ -286,7 +286,7 @@ at forward angles, while operating the detector systems at high luminosity. This
 detector system from low energy electrons produced in the target material due to M\"oller scattering
 $e^- + e^- \to e^- + e^-$ of the high-energy beam electrons on atomic electrons in the target material. The large majority
 of those electrons are prevented from reaching sensitive detectors as they curl up in the strong longitudinal magnetic
-solenoid field, and are then guided into a shielding pipe made from bulk tungsten material where they dump their energy. 
+field, and are then guided into a shielding pipe made from bulk tungsten material where they dump their energy. 
 
 \subsection{The Torus Magnet}
 \label{torus}
@@ -300,14 +300,14 @@ tubes that are located just outside of the magnet cryostat (not shown). The nomi
 The contour of one of the six identical coils of the Torus magnet is shown in Fig.~\ref{coil-shape}. The geometrical
 coverage as seen from the target ranges from $5^\circ$ to $40^\circ$ in polar angle. The symmetrically arranged six
 magnet coils provide an approximate toroidal magnetic field around the beamline. The six coils are mounted in the
-central cold hub on a common stainless steel cone, which also provides the geometrical symmetry for the alignment of
-the coils near the magnet center (see Fig.~\ref{coil-mount}). This guarantees mounting of the coil packages in areas
+central cold hub on a common stainless steel cylinder, which also provides the geometrical symmetry for the alignment of
+the coils near the magnet center (see Fig.~\ref{coil-mount}). This increases placement accuracy of the coil packages in areas
 where the magnetic field is expected to be maximal. A full view of the assembled Torus coils and cryostat is shown in
-Fig.~\ref{clas12-magnets}(left). The coverage in azimuthal angle depends on the polar angle of the particle trajectory,
+Fig.~\ref{clas12-magnets}(left). The open range in azimuthal angle depends on the polar angle of the particle trajectory,
 and ranges from 50\% of $2\pi$ at $5^\circ$ to about 90\% of $2\pi$ at $40^\circ$.
 
 
-Each superconducting coil is made from a double-pancake potted in an aluminum case. The number of windings per
+Each superconducting coil is made from a two-coil "double-pancake" potted in an aluminum case. The number of windings per
 pancake is 117. The conductor is SSC outer dipole cable soldered into a 20~mm $\times$ 2.5~mm copper channel with
 a turn-to-turn insulation of 75~$\mu$m fiber-glass tape. Operating at a nominal current of 3770~A, the peak field is
 3.58~T at the inner turns close to the warm bore. For symmetry reasons the field on the beam axis is ideally equal to
@@ -354,11 +354,11 @@ the shielding coil. The Torus field is radially widely spread out due to the ver
 \label{stray-field}
 \end{figure}
 The magnet consists of 4 cylindrical coils arranged in two packages at different radial distances to the beamline. The
-fifth coil is located outside of the 4 inner coils and generates a magnetic field that compensates the field of the 4 inner
+fifth coil is located outside of the 4 inner coils and generates a magnetic field in the opposite direction of the field of the 4 inner
 coils and thus acts as an active magnetic shield. The number of turns in the main coils is 3704
 $(2 \times 840 + 2 \times 1012)$, and in the shield coil 1392. The magnet is powered at a nominal currents of 2416~A.
-The integrated field length along the magnet center is $\int Bdl = 7.0$~Tm, generating a stored energy of 20~MJ. At
-full current the solenoid generates a 5~T magnetic field at its center. The magnet has an inner warm bore of 78~cm
+ At
+full current the solenoid generates a 5~T magnetic field at its center. The integrated field length along the magnet center is $\int Bdl = 7.0$~Tm, generating a stored energy of 20~MJ.The magnet has an inner warm bore of 78~cm
 diameter where all the central detectors are placed.  For details on the design and operation of the Solenoid magnet,
 see Ref.~\cite{clas12-magnets}.
 
@@ -391,16 +391,15 @@ of the magnet, and the R3 chamber are located just downstream of the magnet.}
 
 \subsection{The CLAS12 Forward Detector (FD)}
 
-The Forward Detector has at its core a six-coil superconducting Torus magnet with the individual coils
-symmetrically arranged around the beamline within a circle of approximately 7.2~m in diameter. The six coils of the
-Torus magnet mechanically support the forward tracking system, which consists of independent drift chambers in
+The six coils of the
+Torus magnet mechanically support the forward tracking system, which consists of three independent drift chambers in
 each of the six sectors of the Torus magnet. Each of the six drift chamber sectors has a total of of 36 layers with
 112 sense wires, arranged in 3 regions (R1, R2, and R3) of 12 layers each. In each of the six Torus sectors the drift
 chambers are arranged identically. As displayed in Fig.~\ref{clas12-dc}, the R1 chambers are located at the entrance
 to the Torus magnetic field region, the R2 chambers are located inside the magnet where the magnetic field is close
 to its maximum, and the R3 chambers are placed in a low magnetic field space just downstream of the Torus magnet.
 This arrangement provides independent and redundant tracking in each of the six Torus sectors. Each of the 3 regions
-consists of 6 layers with wires strung at $\Delta{\phi} = 84^\circ$ from the sector mid-plane and 6 layers with wires
+consists of 6 layers with wires strung at $\Delta{\phi} = 6^\circ$ from the normal to the sector mid-plane and 6 layers with wires
 strung at $\Delta{\phi} = 96^\circ$ from sector mid-plane. This stereo view enables excellent resolution in the most
 important polar angle (laboratory scattering angle), and good resolution in the less critical azimuthal scattering angle.
 Figure~\ref{dc-stringing} shows the wire stringing operation for the large R3 chambers. For details of the DC
@@ -471,12 +470,12 @@ of the assembled HTCC detector. For details of the HTCC construction and perform
 
 \subsection{Low Threshold Cherenkov Counters (LTCC)}
 
-The LTCC system is part of the CLAS12  Forward Detector and is used for charged pion and kaon discrimination at
+The LTCC system is part of the CLAS12  Forward Detector and is used for charged pion detection at
 momenta greater than 3.5~GeV. The LTCC system consists of boxes shaped like truncated pyramids. Four of the six
 sectors of CLAS12 are equipped with one LTCC box. Each LTCC box contains 108 light-weight mirrors with composite
-backing structure, 36 Winston light-collecting cones , 36 125~mm diameter photomultiplier tubes, and 36 magnetic
-shields. The LTCC boxes are filled with heavy $\rm C_4F_{10}$ radiator gas, providing pion discrimination from kaons
-for momenta of 3.5 to 9~GeV.  The LTCC system has previously been used to detect electrons in the CLAS detector at
+backing structure, 36 Winston light-collecting cones, 36 125~mm diameter photomultiplier tubes, and 36 magnetic
+shields. The LTCC boxes are filled with heavy $\rm C_4F_{10}$ radiator gas, providing pion identification 
+for momenta greater than 3.5~GeV.  The LTCC system has previously been used to detect electrons in the CLAS detector at
 lower energies~\cite{Adams:2001kk}. It has been refurbished to provide higher efficiency for charged pion detection
 by increasing the volume of the radiator gas, refurbishing the elliptical and hyperbolic mirrors with new coating, and
 improving the sensitivity of the phototubes to Cherenkov light by coating their entrance windows with wavelength
@@ -503,8 +502,8 @@ acceptance coverage requires a complex mirror system for efficient light collect
 
 Some experiments require the detection and identification of charged kaons in momentum ranges that are not 
 accessible with the standard time-flight method used with the FTOF scintillators, or with the LTCC Cherenkov
-counters. The time-of-flight resolution of the scintillators is no longer sufficient, and the momentum threshold of the LTCC
-is too high to detect and separate kaons from protons in the momentum range from 3 to 8~GeV. For that purpose
+counters. The time-of-flight resolution of the scintillators is no longer sufficient to detect kaons at momenta 
+greater than 3 GeV. For that purpose
 an additional RICH detector was built and incorporated in one of the CLAS12 sectors to replace the corresponding
 LTCC sector. The RICH detector is designed to improve CLAS12 particle identification in the momentum range
 3-8~GeV. It incorporates aerogel radiators, visible light photon detectors, and a focusing mirror system that is
@@ -570,15 +569,17 @@ in front of panel-1a and PCAL.}
 The CLAS12 detector package uses the existing electromagnetic calorimeter (EC) of the CLAS detector
 \cite{Amarian:2001zs} and a new pre-shower calorimeter (PCAL) installed in front of it. The calorimeters in
 CLAS12 are used primarily for the identification and kinematical reconstruction of electrons, photons (e.g. from
-$\pi^0 \to \gamma \gamma$ and $\eta \to \gamma  \gamma$ decays ), as well as the detection of neutrons.
-For details of the construction and the performance of the PCAL calorimeter (see Ref.~\cite{ECAL}). 
+$\pi^0 \to \gamma \gamma$ and $\eta \to \gamma  \gamma$ decays), as well as the detection of neutrons.
+For details of the construction and the performance of the PCAL calorimeter, see Ref.~\cite{ECAL}. 
 
-The PCAL and EC are both sampling calorimeters consisting of six modules. The EC consists of EC-inner and
-EC-outer parts, which are separately read out. Each module has a triangular shape with 54 (15/15/24,
+The PCAL and EC are both sampling calorimeters consisting of six modules. Along the direction from the target, the EC consists of two parts, read out separately, called EC-inner and EC-outer. They 
+provide longitudinal sampling of electromagnetic showers as well as of hadronic interactions. 
+This improves identification of hadronic and electromagnetic interacting particles. 
+Each module has a triangular shape with 54 (15/15/24,
 PCAL/EC-inner/EC-outer) layers of 1-cm thick scintillators segmented into 4.5/10-cm (PCAL/EC) wide strips
 sandwiched between 2.2~mm thick lead sheets. The total thickness corresponds to approximately 20.5 radiation
 lengths. Scintillator layers are grouped into three readout views with 5/5/8, PCAL/EC-inner/EC-outer, layers per
-view, providing several cm resolution of energy clusters. The light from each scintillator readout group is routed to
+view, providing spatial resolutions of less than 2~cm for energy clusters. The light from each scintillator readout group is routed to
 the photomultiplier tubes via flexible optical fibers. Figure~\ref{ec-pcal} shows the PCAL after installation on the
 Forward Carriage in front of the existing EC from CLAS.
 
@@ -606,10 +607,13 @@ right. }
 \vspace{1.0cm}
 %\begin{figure}[htbp!]
 \centerline{\includegraphics[width=1.0\columnwidth]{CVT.png}}
-\caption{(Color Online) Central Vertex Tracker, fully assembled with the SVT, BMT, and FMT. The BMT and FMT are shown on the
-outside. The SVT is encapsulated and hidden from view.}
-\label{CVT}
+\caption{(Color Online) Central Vertex Tracker, fully assembled with the SVT, BMT, and FMT. 
+The BMT and FMT are shown on the
+outside. The FMT has a circular opening in the center for the electron beam to path through. 
+The SVT is encapsulated and hidden from view.}
+\label{CVT-FMT}
 \end{figure}
+
 \subsection{Forward Tagger (FT)}
 \begin{figure}[htbp!]
 \centerline{\includegraphics[width=1.0\columnwidth]{solenoid-photo.png}}
@@ -655,7 +659,8 @@ shows the installed Central Detector from the upstream end.
 \begin{figure}[t!]
 \includegraphics[width=1.0\columnwidth]{ctof-design.png}
 \caption{(Color Online) The Central Time-of-Flight detector with the 48 scintillator bars, and the 48 photomultipliers on each end
-of the scintillators.} 
+of the scintillators.}
+\label{ctof} 
 \vspace{0.5cm}\centerline{\includegraphics[angle=90,width=0.9\columnwidth]{cnd-ctof.png}}
 \caption{(Color Online) The fully assembled CD as seen from its upstream end with the 144 CND light guides and
 photomultipliers at the three outermost rings, and the 48 PMTs of the CTOF (two inner rings). } 
@@ -666,7 +671,7 @@ photomultipliers at the three outermost rings, and the 48 PMTs of the CTOF (two 
 \subsection{Central Vertex Tracker (CVT)}
 
 The CLAS12 CVT is a part of the Central Detector and is used to measure the momentum and determine the vertex of
-charged particles scattered from the production target, which is centered within the Solenoid magnet. It contains two
+charged particles scattered from the production target, which is centered within the Solenoid magnet. Details of the tracking system are shown in Fig.~\ref{CVT}. It consists of two
 separate trackers, a Silicon Vertex Tracker (SVT) and a Barrel Micromesh Tracker  (BMT). The SVT system includes
 3 regions with 10, 14, and 18 sectors of double-sided modules of silicon sensors instrumented with digital readout ASICs
 and FSSR2s. The readout pitch is 156~$\mu$m, and the total number of channels is 33,792. See Ref.~\cite{SVT} for
@@ -674,11 +679,12 @@ details on the design, construction, and performance of the SVT.
 
 The BMT contains 3 layers of strips along the beamline and 3 layers of circular readout strips around the beamline, with
 a total number of 15,000 readout elements. The BMT provides important improvements in momentum resolution, and in
-tracking efficiency. Each layer is arranged azimuthally in 3 sectors of 125$^\circ$ azimuthal coverage. The system
+tracking efficiency. Each layer is arranged azimuthally in 3 sectors of 120$^\circ$ azimuthal coverage. The system
 operates at full design luminosity of $10^{35}$~cm$^{-2}$s$^{-1}$. Another component is the Forward Micromegas Tracker
 (FMT), consisting of 6 layers with 6,000 readout elements. It  is integrated mechanically with the CVT to provide a compact
 tracking system, but covers the polar angle range from 5$^\circ$ to 35$^\circ$ and provides improved vertex reconstruction
-for forward scattered charged particles. See Ref.~\cite{BMT} for details on the BMT and on the FMT. \footnote{The FMT tracker has not been implemented during the experimental runs covered in this paper.}  
+for forward scattered charged particles. The fully assembled CVT, including the FMT, are shown 
+in Fig.~\ref{CVT-FMT}.  See Ref.~\cite{BMT} for details on the BMT and on the FMT. \footnote{The FMT tracker has not been implemented during the experimental runs covered in this paper.}  
 
 
 
@@ -687,12 +693,12 @@ for forward scattered charged particles. See Ref.~\cite{BMT} for details on the 
 The CTOF system is used for the identification of charged particle emerging from the target via time-of-flight
 measurements. The CTOF includes 48 plastic scintillators with double-sided photomultiplier readout via, respectively,
 1.0~m-long upstream and 1.6~m-long downstream focusing light guides. The array of counters forms a hermetic barrel
-around the target and the CVT. The barrel is aligned with the beam axis inside the 5~T Solenoid magnet. The 
+around the target and the CVT as seen in Fig.~\ref{ The barrel is aligned with the beam axis inside the 5~T Solenoid magnet. The 
 photomultipliers are placed in a region of 0.1~T fringe field of the Solenoid and enclosed within a triple layer dynamical
 magnetic shield~\cite{Baturin:2012zz} that provides less than 0.2~G internal field near the PMT photocathode. The
 CTOF system is designed to provide time resolution of 80~ps for charged particle identification in the CLAS12 Central
-Detector. Details are described in Ref.~\cite{CTOF}. Fig.~\ref{ctof-cnd}(left) shows the CTOF system from the design
-model and Fig.~\ref{ctof-cnd}(right) shows the upstream end of the CTOF installed in the Solenoid.
+Detector. Details are described in Ref.~\cite{CTOF}. Fig.~\ref{ctof} shows the CTOF system from the design
+model and Fig.~\ref{ctof-cnd} shows the upstream end of the CTOF installed inside the Solenoid.
 
 \subsection{Central Neutron Detector (CND)}
 
@@ -721,23 +727,6 @@ luminosities, details of the beamline design, and other aspects.
 Event reconstruction in the CLAS12 FD consists of the identification of charged and neutral particles along with the 
 computation of their 3-momenta. Charged-particle reconstruction requires both particle tracking and particle 
 time-of-flight (TOF) information. 
-\begin{figure*}[htbp!]
-\centerline{
-	\includegraphics[width=1.0\columnwidth, height=1.0\columnwidth]{NoField.png}
-	\includegraphics[width=1.0\columnwidth, height=1.0\columnwidth]{NoSolenoidFullTorus.png}
-}
-\vspace{0.3cm}
-\centerline{
-	\includegraphics[width=1.0\columnwidth, height=1.0\columnwidth]{FullSolenoidFullTorus.png}
-	\includegraphics[width=1.0\columnwidth, height=1.0\columnwidth]{NoSolenoidFullTorusCut2.png}
-}
-\caption{(Color Online) Geant4 representations of accidental background events occurring within a 250~ns time window at different
-magnetic field configurations and 100\% of design luminosity. Top left: Solenoid field is OFF and Torus field is OFF. Top
-right: Solenoid field is OFF and Torus field is ON. Bottom: right Close-up of Top: right.  Bottom left: Solenoid field is ON
-and Torus field is ON at 100\% design luminosity. Color code: red lines: primary electrons; red circles: hits in detectors; blue lines:
-photons. }
-\label{gemc-event}
-\end{figure*}
 
 
 Track reconstruction in the FD begins with hits in the drift chamber cells that can be connected to define a 
@@ -753,7 +742,7 @@ tracks are confined within one sector as the magnet optics and the massive mecha
 prevent most tracks from crossing from one sector into a neighboring sector. In rare cases low momentum charged
 pions can cross from one sector into the opposite sector traversing through the beam pipe. Such tracks are not
 reconstructed but they are included in the event simulation. Distributions of charged particles in azimuthal angle
-versus momentum are shown in Fig.~\ref{neg-tracks}. Figure~\ref{vertex} shows the production vertex as reconstructed
+versus momentum are shown in Fig.~\ref{neg-pos}, and Fig.~\ref{vertex} shows the production vertex as reconstructed
 in the FD tracking system (from data where the FMT was not installed). 
 
 Neutral particles are detected in either the calorimeters or in the FTOF (or both). The reconstruction begins by finding
@@ -776,8 +765,8 @@ charged hadrons. This extends the charged particle identification capabilities o
 momentum.
 
 Track reconstruction in the CD is generally less complex as tracks are determined fully by the geometry of the 
-detection elements and the hit pattern in the CVT, i.e. by a combination of the SVT and the the BMT trackers. 
-In contrast to the charged particle tracking in the FD that relies heavily ion timing information for resolution, 
+detection elements and the hit pattern in the CVT, i.e. by a combination of the SVT and the BMT trackers. 
+In contrast to the charged particle tracking in the FD that relies heavily on timing information for resolution, 
 this is not the case for the CD. In principle that makes tracking easier in the CD. On the other hand, the redundancy 
 of track fitting is much reduced in the CD there are only 12 tracking layers compared to the 36 in the FD. This 
 makes tracking in the CD more susceptible to losing tracks due to accidental hits. Particle identification in the CD is
@@ -786,8 +775,6 @@ magnetic field.
 
 See Ref.~\cite{Software} for full details on the CLAS12 offline reconstruction software architecture and design.
 
-
-\subsection{Monte Carlo Simulations} 
 \begin{figure}[t!]
 \centerline{\includegraphics[width=0.9\columnwidth]{neg-tracks.png}}
 \vspace{0.3cm}\centerline{\includegraphics[width=0.9\columnwidth]{pos-tracks.png}}
@@ -798,6 +785,25 @@ For positive tracks the azimuthal motion is in the opposite direction from negat
 \label{neg-pos}
 \end{figure}
 
+\begin{figure*}[htbp!]
+\centerline{
+	\includegraphics[width=1.0\columnwidth, height=1.0\columnwidth]{NoField.png}
+	\includegraphics[width=1.0\columnwidth, height=1.0\columnwidth]{NoSolenoidFullTorus.png}
+}
+\vspace{0.3cm}
+\centerline{
+	\includegraphics[width=1.0\columnwidth, height=1.0\columnwidth]{FullSolenoidFullTorus.png}
+	\includegraphics[width=1.0\columnwidth, height=1.0\columnwidth]{NoSolenoidFullTorusCut2.png}
+}
+\caption{(Color Online) Geant4 representations of accidental background events occurring within a 250~ns time window at different
+magnetic field configurations and 100\% of design luminosity. Top left: Solenoid field is OFF and Torus field is OFF. Top
+right: Solenoid field is OFF and Torus field is ON. Bottom: right Close-up of Top: right.  Bottom left: Solenoid field is ON
+and Torus field is ON at 100\% design luminosity. Color code: red lines: primary electrons; red circles: hits in detectors; blue lines:
+photons. }
+\label{gemc-event}
+\end{figure*}
+
+
 \begin{figure} 
 \includegraphics[width=0.9\columnwidth]{R1-vertex.png}
 \caption{(Color Online) Electron vertex reconstruction in the FD versus azimuthal angle, before tracing the electrons 
@@ -806,15 +812,17 @@ has a length of 50~mm .}
 \label{vertex}
 \end{figure}
 
+\subsection{Monte Carlo Simulations} 
+
 A critical part of operating an open large-acceptance detector system at high luminosities is the simulation not only of
 hadronic events but also, and more importantly, the simulation of the beam-related accidental hits in the tracking system.
 The source of accidentals is primarily from the beam electron elastically scattering off atomic electrons (M{\"o}ller
-electrons) and their secondary interaction with beamline components. The production rate is orders of magnitude larger
+electrons) and their secondary interaction with beam line components. The production rate is orders of magnitude larger
 than the hadronic production rate. These background sources have to be shielded through careful design of magnetic
-channeling, as well as a proper design of the beamline shielding and the vacuum pipe to minimize interaction of these
+channeling, as well as a proper design of the beam line shielding and the vacuum pipe to minimize interaction of these
 electrons with high-$Z$ material. The availability of a realistic simulation package was essential for the optimal design
 of the CLAS12 integrated detector concept. The strong solenoid field is essential in channeling the scattered M{\"o}ller
-electrons through the beam enclosure to avoid interactions with the beamline materials. Figure~\ref{gemc-event}  shows
+electrons through the beam enclosure to avoid interactions with the beam line materials. Figure~\ref{gemc-event}  shows
 a single electron track event at 1/30 of the full luminosity in a time window of 250~ns, corresponding to the readout time
 window in the R1 drift chambers. 
  
@@ -830,13 +838,14 @@ data runs. See Ref.~\cite{GEMC} for details on the CLAS12 simulation package GEM
 \begin{figure}[t!]
 {\includegraphics[width=1.0\columnwidth]{htcc-dis.png}}
 \caption{(Color Online) Distribution of electrons at the HTCC location in polar and azimuthal angle. Bin sizes increase with
-increasing polar angles. The gaps between sectors are not die to inefficiencies of the HTCC detector, but the result
+increasing polar angles. The gaps between sectors are not due to inefficiencies of the HTCC detector, but the result
 of scattered electrons being lost in the Torus coils.} 
+\label{htcc-electron-dis}
 {\includegraphics[width=0.96\columnwidth]{htcc-eff.png}}
 \caption{(Color Online) Distribution of HTCC efficiencies in polar and in azimuthal
 angles. The electron detection efficiency on average is greater than 98\% in the full phase space covered by the HTCC.
 In localized areas, in particular at interfaces of different mirror facets or between mirror sectors efficiencies may vary from 95\% to 99\% } 
-\label{htcc-eff}
+\label{htcc-efficiency}
 \end{figure}
 
 \section{CLAS12 Operational Performance}
@@ -845,11 +854,13 @@ This section describes the overall performance of the CLAS12 detection system. M
 require the clean identification and reconstruction of the scattered electron. Electrons are identified by a combination
 of signals in the HTCC and energy deposited in the combined electromagnetic calorimeters PCAL and EC and a negative
 charged track in the drift chamber tracking system. Of critical importance is the response of the HTCC that operates
-between the CD and the entrance to the drift chamber system. Figure~\ref{htcc-eff} shows the distribution of the
-number of photoelectrons and efficiency in the 48 segments of the HTCC that cover the entire azimuthal angle range. 
-The coordinates of the reconstructed electrons at the front face of the PCAL is shown in Fig.~\ref{electrons-xy}. The
-distribution is rather uniform in all six sectors showing that the detector systems and the reconstruction software are
-working properly. Elastic scattering  of electrons on protons allows for the establishment of any deviations from the ideal
+between the CD and the entrance to the drift chamber system. The reconstructed electron coordinates at the HTCC are 
+shown in Fig.~\ref{\label{htcc-electrons-dis}, exhibiting a very uniform distribution in azimuthal angle. The
+electron detection efficiency in the 48 segments of the HTCC that cover the entire azimuthal angle range is shown in Fig.~\ref{htcc-efficiency}. 
+
+The coordinates of the reconstructed electrons at the front face of the PCAL are displayed in Fig.~\ref{electrons-xy}. 
+The distribution is rather uniform in all six sectors showing that the detector systems and the reconstruction software are working properly. 
+Elastic scattering  of electrons on protons allows for the establishment of any deviations from the ideal
 detector geometry and alignment. The coverage in kinematical quantities $Q^2$ and $x_B$ of the scattered electrons
 detected in the FD are shown in Fig.~\ref{electron-acceptance}. $Q^2$ is the virtuality of the photon exchanged from
 the electron to the proton target and $x_B$ is the Bjorken scaling variable.
@@ -894,17 +905,19 @@ tracking is extended to lower momenta at the expense of momentum resolution.}
 \vspace{0.5cm}
 \centerline{\includegraphics[width=1.1\columnwidth]{FTOF1b_M2-vs-p.png}}
 %\centerline{\includegraphics[width=1.0\columnwidth]{pid-1d.png}}
-\caption{{$\rm Mass^2$} of positively charged particles evaluated from their momentum and the time-of-flight information
-in the FTOF versus the momentum. The graph contains a threshold on the minimum number of events to highlight the 
-particle profile: bottom: $\pi^+$, mid: $K^+$, top: protons.}
-\label{pid-1D}
+\caption{ Reconstructed {$\rm Mass^2$}versus momentum of positively charged particles.  
+The graph contains a threshold on the minimum number of events to highlight the 
+particle profile: bottom: $\pi^+$, mid: $K^+$, top: protons. The centroids of each particle distribution are 
+independent of the momentum. Masses are computed from particle path length and from time-of-flight, 
+Any momentum dependence would indicate systematics in the timing calibration or in the path length determination.  }
+\label{mass2-mom}
 \end{figure} 
 
 Identification of charged particles in CLAS12 is achieved in a number of ways. Identified electrons are used to
 determine the start time of hadrons at the production vertex. The start time and the path length of charged tracks
 from the production vertex to the FTOF and the arrival time enable determination of the $\beta = v/c$ of the
 particle, shown in Fig.~\ref{pid} versus particle momentum for positive charged tracks and the mass projections are
-shown in Fig.~\ref{pid-1D}.  An overview of the particle identification in the various CLAS12 detector systems vs.
+shown in Fig.~\ref{mass2-mom}.  An overview of the particle identification in the various CLAS12 detector systems vs.
 momentum is given in Fig.~\ref{pid1}. 
 
 \begin{figure}[tp!]
@@ -961,7 +974,8 @@ reconstructed in the CVT.
 \begin{figure}[t!]
 %\centerline{\includegraphics[width=1.0\columnwidth]{CTOF-pid-new.png}}
 \centerline{\includegraphics[width=1.\columnwidth]{ctof-pid-3.png}}
-\caption{(Color Online) {$\rm Mass^2$} of positively charged particles evaluated from their momentum and the time-of-flight information
+\caption{(Color Online) {$\rm Mass^2$} of positively charged particles evaluated from their 
+path length and the time-of-flight information
 in the CTOF versus the particle momentum, at 10.6 GeV beam energy. The band at the bottom is from $\pi^+$; the faint band 
 near 0.2 is due to $K^+$, the band at the top is due to protons,  Momenta are not corrected to energy losses in the CVT.}
 \label{CD-PID}
@@ -973,8 +987,8 @@ Direct detection of neutral particles is accomplished in the FD using the PCAL a
 20 radiation length is sufficient to identify high energy photons and reconstruct masses of parent particles, such
 as $\pi^0\to \gamma \gamma$  or $\eta \to \gamma \gamma$. At very forward angles the FT provides photon
 detection with significantly improved position and energy resolution in the polar angle range from 2.5$^\circ$ to
-4.5$^\circ$. Figure~\ref{gg} shows the invariant mass of the $\gamma\gamma$ system in the CLAS12 FD and in
-the FT calorimeter, respectively. 
+4.5$^\circ$. Figure~\ref{gg-ecal} shows the invariant mass of the $\gamma\gamma$ system in the CLAS12 FD. The energy 
+response of the FT to 2.2 GeV electrons, and the 2-gamma mass resolution are shown in Fig.~\ref{FT-en-gg). 
 
 \begin{figure}[htbp!]
 \centerline{\includegraphics[width=0.95\columnwidth]{ECAL-2g-mass-fit.png}}
@@ -982,13 +996,14 @@ the FT calorimeter, respectively.
 the $\pi^0$ peak is due to multi-photon decays of higher mass mesons where one or more photons are not detected
 in the angle range covered by the calorimeter. The widths of the mass peak is 11.9~MeV. The energy calibration of the calorimeter 
 uses cosmic ray events. }
+\label{gg-ecal}
 \centerline{\includegraphics[width=1.15\columnwidth]{FT-performance.png}}
 \caption{Top panel: The energy response of the FT calorimeter to elastically scattered electrons at 2.2 GeV beam energy. 
 The tail at lower energies is due to radiative effects. The energy resolution is $\sigma_E / E \approx 3.3\%$. 
 Bottom panel: 2-$\gamma$ mass for photons detected in the FT lead-tungstate crystal calorimeter. The $\pi^\circ$ 
 mass resolution is $\sigma_{\gamma\gamma} = 4.4$~MeV. }
 
-\label{gg}
+\label{FT-en-gg}
 \end{figure}
 
 
@@ -1023,7 +1038,7 @@ events in the CLAS12 event display (ced) that allows immediate action by the shi
 issues. Monitoring histograms are filled on a regular basis that include simple analysis and can be easily compared
 with histograms collected earlier during the data taking.  
 
-The CLAS12 data acquisition (DAQ) is a dead-time free system designed for an average of 20~kHz level 1 (L1) 
+The CLAS12 data acquisition (DAQ) is designed for an average of 20~kHz level 1 (L1) 
 trigger rate, pipelined and for continuous operation. The sector-based  L1 triggers support streaming, subsystem
 hit patterns, and energy summing with low threshold suppression.  The scalable trigger distribution scheme uses up
 to 128 front-end L1 crates. CLAS12 uses different programmable features for each detector that participates in
@@ -1051,8 +1066,8 @@ the lower one has positive charge and bends away from the beam line.}
 \centerline{\includegraphics[width=2.0\columnwidth]{beamline-1.png}}
 \centerline{\includegraphics[width=2.0\columnwidth]{beamline-3.png}}
 \caption{(Color Online) Top: Hall~B beamline upstream of the target, showing the photon tagger magnet to the left, which is energized
-during beam tuning and during polarization measurements. Further downstream is a doublet of beam raster magnets
-that are used to raster the beam during polarized target experiments to avoid local polarization losses in the target.
+during beam tuning and during polarization measurements. The doublet seen downstream of the tagger is a pair 
+of quadrupoles. 
 The elements near the center are cavities for beam position and beam current measurements. The main element 
 on the right is the solenoid magnet nearly fully encapsulated by the HTCC PMT housing. Several of the Torus magnet
 coils are visible at the far right. 
@@ -1077,19 +1092,14 @@ trigger system makes use of the responses of the detectors to form the readout t
 luminosity of CLAS12, the hadronic production rate is approximately $5 \times 10^6$/s. However, only a small
 fraction of those events is of interest for the science program with CLAS12. In particular, most physics reaction
 require the detection of the scattered electrons at some finite scattering angle, for example $\theta_{e'} > 5^\circ$.  
+Figure~\ref{trigger} shows one example of an electron triggered event with one additional positive charged track.   
    
-   
-
 In some special programs the detection of electrons in the FT is of interest if they are associated with hadronic
 event patterns of two additional detected hadrons. Such conditions have been implemented in the fast trigger
 decision that reduces the number of triggers to about $2 \times 10^4$~events/s, i.e. by  a factor of 250 from the
 hadronic rate. The data rate is typically 500~MB/s under such conditions and can be handled by the CLAS12 data
-acquisition system and the available computing resources. Figure~\ref{trigger} shows one example of a hadron pair
-trigger. It uses the drift chamber ``roads'' (amounting to hit patterns stored in look-up tables consistent with
-charged tracks coming from the region of the target), associated signals and energy deposition in the
-PCAL and EC that are consistent with two minimum ionizing particles. This trigger has a near 100\% efficiency and a
-25\% purity. Another trigger is the inclusive electron trigger, which in addition to the hadron trigger makes use of
-a correlated signals in the HTCC. Details of the design, functionality, and performance of the CLAS12 trigger are
+acquisition system and the available computing resources. 
+Details of the design, functionality, and performance of the CLAS12 trigger are
 provided in Ref.~\cite{TRIG}. 
 
  
@@ -1108,9 +1118,9 @@ the Faraday cup.. The beam line instrumentation consists of beam-optics, beam po
 beam viewers, collimators,  shielding, beam profile scanners, and beam halo monitors. Devices that control the beam
 direction, its profile, and  measure critical parameters, are under the accelerator operations control. Hall~B operators
 control collimators, halo monitors, profile scanners, and viewers. They are also responsible for configuration and
-running the M\"oller polarimeter located upstream of the tagger dump magnet.
+running the M\"oller polarimeter located upstream of the tagger magnet.
 
-The magnet on the left of Fig.~\ref{beamline} (in red) is not energized during production data taking. The
+The tagger magnet on the left of Fig.~\ref{beamline} (in red) is not energized during production data taking. The
 yoke of this magnet serves as a beam dump that is used during beam tuning before the beam is directed on the Hall~B
 production target. It is also used during specialized runs, such as polarization measurements in the upstream beamline,
 to avoid exposure of sensitive CLAS12 detectors to high background loads. For details of the beam line elements and
@@ -1120,7 +1130,7 @@ beam quality, see Ref.~\cite{beamline}.
 
 Hall~B experiments are grouped into running periods according to beam energy, detector configuration, magnet
 settings, and target material. The most often used target materials have been liquid hydrogen and liquid deuterium.
-Other materials include solid nuclear targets of various kinds from $^4$He, $^{12}$C, and $^{208}$Pb, dependent on
+Other materials include solid nuclear targets of various kinds from $^{12}$C to $^{208}$Pb, dependent on
 the physics requirements. For some specialized experiments high-pressure gas targets are used. All targets are 
 positioned inside CLAS12 using support structures that are inserted from
 the upstream end, and are independent of the detector itself. 
@@ -1196,25 +1206,25 @@ $\Delta{v_z}$~(mm) & 60~nA & 4.6 & -  \\
 \end{tabular}
 \end{table}
 
-Another way of quantifying the effect of accidental background is by studying the number of lost tracks when
-certain quality requirements are imposed. This is shown in Fig.~\ref{efficiencies}. The process used was elastic
-muon-proton scattering where the proton mass is inferred from the elastic muon track, and compared with the
-known proton mass. At higher beam currents, increasingly wider tails develop on the inferred proton mass. For the 
-first run period of CLAS12 in the spring and fall of 2018, the luminosity was limited to not exceed occupancies of
-4\% in the R1 drift chambers. The R1 detectors are more exposed to background radiation than R2 and R3. This
-occupancy limitation typically resulted in beam operations at about 45~nA to 60~nA of beam current, or about
-60\% to 80\% of design luminosity.
+%Another way of quantifying the effect of accidental background is by studying the number of lost tracks when
+%certain quality requirements are imposed. This is shown in Fig.~\ref{efficiencies}. The process used was elastic
+%muon-proton scattering where the proton mass is inferred from the elastic muon track, and compared with the
+%known proton mass. At higher beam currents, increasingly wider tails develop on the inferred proton mass. For the 
+%first run period of CLAS12 in the spring and fall of 2018, the luminosity was limited to not exceed occupancies of
+%4\% in the R1 drift chambers. The R1 detectors are more exposed to background radiation than R2 and R3. This
+%occupancy limitation typically resulted in beam operations at about 45~nA to 60~nA of beam current, or about
+%60\% to 80\% of design luminosity.
 
-\begin{figure}[htbp!]
-\centerline{\includegraphics[width=1.0\columnwidth]{efficiencies.png}}
-\caption{(Color online) Single track reconstruction efficiency for simulated muon events versus luminosity. 
-The different colored points show the
-tracking efficiency when certain quality constraints are imposed. About 6-7\% of the tracks are lost at 75~nA
-beam current corresponding to a luminosity of $10^{35}$~cm$^{-2}$s$^{-1}$ with no quality cuts (black: hit-based
-tracking, red: time-based tracking). The other curves show increasing losses in tracking efficiency when increasingly
-more stringent quality cuts are applied on the width of the missing mass distribution.}
-\label{efficiencies}
-\end{figure}
+%\begin{figure}[htbp!]
+%\centerline{\includegraphics[width=1.0\columnwidth]{efficiencies.png}}
+%\caption{(Color online) Single track reconstruction efficiency for simulated muon events versus luminosity. 
+%The different colored points show the
+%tracking efficiency when certain quality constraints are imposed. About 6-7\% of the tracks are lost at 75~nA
+%beam current corresponding to a luminosity of $10^{35}$~cm$^{-2}$s$^{-1}$ with no quality cuts (black: hit-based
+%tracking, red: time-based tracking). The other curves show increasing losses in tracking efficiency when increasingly
+%more stringent quality cuts are applied on the width of the missing mass distribution.}
+%\label{efficiencies}
+%\end{figure}
 
 \begin{figure}[t!]
 \centerline{\includegraphics[width=1.0\columnwidth]{rich-event.png}}
@@ -1315,18 +1325,20 @@ statistics graphs}}
 \end{figure}
 
 \begin{figure}[t!]
-\centerline{\includegraphics[width=0.8\columnwidth]{cvt-vertex.png}}
-\caption{Reconstructed z-vertices for charged tracks in the central detector from an empty target cell. The cell walls are 
-clearly visible. The small peak downstream is from events generated in a thin thermal shielding foil.  }
-\label{cvt-vertex}
-%\end{figure}
-%\begin{figure}[thbp!]
 \centerline{\includegraphics[width=1.0\columnwidth]{cvt-acceptance.png}}
 \caption{CVT acceptance and tracking performance. Left panels show the tracking efficiency and acceptances for 
 simulated muon tracks with no beam background (top), and the same for protons but with background corresponding
 to a 50~nA beam current. The efficiency dips seen at 3 $\phi$ angles in the right panels are due to the support 
 structure separating the 3 BMT sectors.}
 \label{cvt-acceptance}
+
+\centerline{\includegraphics[width=0.8\columnwidth]{cvt-vertex.png}}
+\caption{Reconstructed z-vertices for charged tracks in the central detector from an empty target cell. The cell walls are 
+clearly visible. The small peak downstream is from events generated in a thin thermal shielding foil.  }
+\label{cvt-vertex}
+%\end{figure}
+%\begin{figure}[thbp!]
+
 \end{figure}
 
 \begin{figure}[t!]
@@ -1336,7 +1348,7 @@ structure separating the 3 BMT sectors.}
 \vspace{0.3cm}\centerline{\includegraphics[width=0.8\columnwidth]{CVT-elastic-protons.png}}
 \caption{Elastically scattered protons reconstructed in the CVT and CTOF. The proton peaks show the reflection of the 6 FD sectors 
 where electrons are detected. In addition there is a 3-fold modulations (seen in different widths of 3 of the peaks) due to the 3 BMT sectors where protons are detected (vertical axes are arbitrary). }
-\label{CVT-elastic protons}
+\label{CVT-elastic-protons}
 \end{figure}
 \subsection{Acceptance and Performance of the Central Detectors} 
 
@@ -1356,7 +1368,7 @@ distance to go to be close to the expected performance parameters.   }
 
 The elastic scattering process $ep \to ep$ at relatively low $Q^2$ can be used to connect the FD where the electron is detected  
 and the CD where most of the elastically scattered protons are detected. The strict kinematic correlation in azimuthal angle, given
-by  $\phi_p = \phi_e$  can be exploited to understand potential relative alignment issues between FD and CD tracking. Figure~\ref{elastic-electrons} and Figure~\ref{CVT-elastic-protons} illustrate the correlation in elastic electrons detected in the FD sectors 
+by  $\phi_p = \phi_e + 180^\circ$  can be exploited to understand potential relative alignment issues between FD and CD tracking. Figure~\ref{elastic-electrons} and Figure~\ref{CVT-elastic-protons} illustrate the correlation in elastic electrons detected in the FD sectors 
 and protons reconstructed in the CD. 
 
 
