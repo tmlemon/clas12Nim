@@ -1,7 +1,18 @@
 \section{Conclusions}
 
-We have presented the software framework and event reconstruction that are currently being utilized for the processing of data collected by the CLAS12 experiment, in Hall B at Jefferson Lab.  
+We have presented the software framework and event reconstruction algorithms that are currently being utilized
+for the processing of data collected by the CLAS12 experiment in Hall~B at Jefferson Lab.  
 
-The framework was developed to allow processing of CLAS12 data for reconstruction and analysis based on a service-oriented architecture. The specific software applications leverage on an extensive set of common libraries for handling I/O, geometry, databases and magnetic field, designed to support data monitoring, calibration, reconstruction and analysis.
+The framework was developed to allow processing of CLAS12 data for reconstruction and analysis based on a
+service-oriented architecture. The specific software applications leverage an extensive set of common libraries
+for handling I/O, geometry, databases, and magnetic field that are designed to support data monitoring, calibration,
+reconstruction, and analysis.
 
-Full event reconstruction is implemented in the framework as a chain of micro-services that perform reconstruction of the individual CLAS12 sub-systems and whose output information is collected by the Event Builder service to form and identify particles. While the current reconstruction chain already supports reconstruction of all the sub-system and creation of full events with performances consistent with expectations, upgrades to the existing software implementation and algorithms are under study.
+Full event reconstruction is implemented in the framework as a chain of micro-services that perform reconstruction
+of the individual CLAS12 subsystems and whose output information is collected by the Event Builder service to form
+and identify particles. While the current reconstruction chain already supports reconstruction of all subsystems
+and the creation of full events with performance consistent with expectations, upgrades to the existing software
+implementation and algorithms are under study. However, the current status of event reconstruction based on
+data collected during the first production data runs with CLAS12 with the electron beam are reported and
+discussed in detail in Ref.~\cite{clas12-nim} that show the efficacy of the developed reconstruction framework,
+common tools and detector calibration applications, and the associated algorithms required for event reconstruction.

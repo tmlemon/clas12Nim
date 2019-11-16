@@ -1,11 +1,14 @@
 \subsection{Central Neutron Detector}
 
-The Central Neutron Detector (CND)~\cite{cnd-nim} reconstruction service is designed to process raw ADC and TDC information and reconstruct clusters, defined as ensembles of counters matched in space and time. These objects constitute the output of the service that is passed to the Event Builder for particle formation and identification. The algorithm implemented in the service include three steps:
+The Central Neutron Detector (CND)~\cite{cnd-nim} reconstruction service is designed to process raw ADC
+and TDC information and reconstruct clusters, defined as ensembles of counters matched in space and time.
+These objects constitute the output of the service that is passed to the Event Builder for particle formation
+and identification. The algorithm implemented in the service includes three steps:
 
 \begin{itemize}
 \item{the reconstruction of the time and position of the hit in the paddle;}
 \item{the reconstruction of the deposited energy;}
-\item{the matching of CND hits with tracks coming from the interaction vertex.}
+\item{the matching of CND hits with CVT tracks coming from the interaction vertex.}
 \end{itemize}
 
 %The reconstruction makes use of the calibration constants of the CND summarized in
@@ -96,11 +99,14 @@ The Central Neutron Detector (CND)~\cite{cnd-nim} reconstruction service is desi
 
 \subsubsection{Hit Position and Time Reconstruction}
 
-Hit position and time are reconstructed from the TDCs measured for the two PMTs at the ends of the given scintillator paddle. The algorithm is conceptually similar to the one applied to the TOF systems but includes some modification to account for the specific structure and geometry of the detector. The relevant equations are detailed in the following.
+Hit position and time are reconstructed from the TDCs measured for the two PMTs at the ends of the given
+scintillator paddle. The algorithm is conceptually similar to the one applied to the TOF systems but includes
+some modification to account for the specific structure and geometry of the detector. The relevant equations
+are detailed in the following.
 
-{\color{red} REWRITE Starting from $t_{\rm{L}}$ and $t_{\rm{R}}$, defined as the reconstructed hit time from the left and right PMTs,
-and subtracting the time offsets obtained from the calibrations, the start time and the time jitter, one can
-define the propagation times $t_{\rm{L}_{\rm{prop}}}$ and $t_{\rm{R}_{\rm{prop}}}$ as:
+{\color{red} REWRITE Starting from $t_{\rm{L}}$ and $t_{\rm{R}}$, defined as the reconstructed hit time from
+  the left and right PMTs, and subtracting the time offsets obtained from the calibrations, the start time and the
+  time jitter, one can define the propagation times $t_{\rm{L}_{\rm{prop}}}$ and $t_{\rm{R}_{\rm{prop}}}$ as:
 
 \begin{equation}
 t_{\rm{L}_{\rm{prop}}}=t_{\rm{tof}}+\frac{z}{v_{\rm{eff}_{\rm{L}}}},
@@ -171,9 +177,10 @@ E_{\rm{dep}}=E_{\rm{L}}+E_{\rm{R}}.
 
 }
 
-\subsubsection{Clustering algorithm}
+\subsubsection{Clustering Algorithm}
+
 %\subsubsection{Hit/Track Matching}
-%Tracks from charged particles crossing the CLAS12 Central Vertex Tracker (CVT) are associated to hits in the CND. This allows, for each CND hit matched with a CVT track, to calculate the position of the hit from the extrapolated track, the pathlength between the track vertex and the hit and the path travelled in the hit paddle. This information is used in the calibration, as well as to veto charged particles when looking for neutrons in the CND. CVT tracks are extrapolated to radii corresponding to the entry point, middle point and exit point of the track in the paddle. These points are defined as the intersections between the helix of the track and cylinders of radii corresponding to the distances between the center of the CD and the three CND layers. A CVT track and a CND hit are matched if the hit coordinates ($x$, $y$, and $z$) and the extrapolated coordinates ($x_m$, $y_m$, and $z_m$) verify the relations:
+%Tracks from charged particles crossing the CLAS12 Central Vertex Tracker (CVT) are associated to hits in the CND. This allows, for each CND hit matched with a CVT track, to calculate the position of the hit from the extrapolated track, the path length between the track vertex and the hit and the path travelled in the hit paddle. This information is used in the calibration, as well as to veto charged particles when looking for neutrons in the CND. CVT tracks are extrapolated to radii corresponding to the entry point, middle point and exit point of the track in the paddle. These points are defined as the intersections between the helix of the track and cylinders of radii corresponding to the distances between the center of the CD and the three CND layers. A CVT track and a CND hit are matched if the hit coordinates ($x$, $y$, and $z$) and the extrapolated coordinates ($x_m$, $y_m$, and $z_m$) verify the relations:
 
 %\begin{equation}
 %\mid x-x_m \mid < \sigma_x ,~~~~\mid y-y_m \mid < \sigma_y , ~~~~z_m % \in [-\sigma_z,L+\sigma_z],
