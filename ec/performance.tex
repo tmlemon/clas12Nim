@@ -28,24 +28,24 @@ lines are the total reconstructed  energy with the location of the total energy 
 $\theta_{elec}=6^\circ$. Contributions from pions that exceed the 4.7~GeV threshold cutoff of the HTCC were
 rejected in the hardware trigger using a PCAL energy threshold of 60~MeV.
 
-The sampling fraction (SF) for electromagnetic showers is defined as the ratio of the total sampled energy
-(PCAL+EC) to the incident particle energy. GEMC simulations of electrons impacting the central portion of the ECAL
-show a SF dependence on the measured energy ranging from 0.22 to 0.255 over the expected range of electron
-momentum. The measured sampling fraction for electrons in the momentum range 1-10~GeV is shown in
-Fig.~\ref{fig:S10_1_0} and follows the expected trend, with some few percent systematic deviations due possibly
-to residual calibration errors.
+The sampling fraction for electromagnetic showers is defined as the ratio of the total sampled energy
+(PCAL+EC) to the incident particle energy. The measured sampling fraction for electrons in the momentum range 1-10~GeV is shown in
+Fig.~\ref{fig:S10_1_0} as a function of the electron track momentum determined by the Forward Tracking 
+drift chambers.  The measurement is compared to GEMC simulations of electrons impacting the central portion of the ECAL,
+which show a dependence on the measured energy ranging from 0.22 to 0.255 over the expected range of electron
+momentum. The comparison shows there are a few percent systematic deviations due possibly to residual calibration errors.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S10_1_0.png}
 \caption[]{Top: Distribution of the ratio $E/P$ of the total reconstructed ECAL energy to the momentum of
   outbending forward tracks linked to clusters in PCAL, ECIN, and ECOU that were identified as electrons by the
-  Event Builder service. Bottom: $E/P$ vs. ECAL measured energy compared to the GEMC prediction. The inset
+  Event Builder service. Bottom: $E/P$ vs. ECAL measured energy (black points) compared to the GEMC prediction (black line). The inset
   shows a Gaussian fit to the overall $E/P$ distribution.}
 \label{fig:S10_1_0}
 \end{figure}
 
-The variance of the sampling fraction can be expanded as a function of energy with the usual parameterization of
+The calorimeter energy resolution can be expanded as a function of energy with the usual parameterization of
 contributions \cite{ps1981}:
 \begin{equation}
 \biggl[\frac{\sigma(E)}{E}\biggr]^2 = \frac{\sigma^2_0}{E^2} + \frac{\sigma^2_1}{E} +\sigma^2_2 + \sigma^2_3 E 
@@ -62,7 +62,7 @@ contributions \cite{ps1981}:
 Typically $\sigma_0$ is ignored, although for MIP-based calibration analysis the contribution may be non-negligible.
 To minimize this contribution all CLAS12 PMT data are taken with FADC pedestals measured and subtracted
 event-by-event. Shower leakage contributions to $\sigma_3$ are most important for inbending electrons impacting
-the ECAL at the forward-most angles, where there is incomplete overlap of PCAL and EC and vanishing acceptance.  
+the ECAL at the forward-most angles, where there is incomplete overlap of PCAL and EC and vanishing acceptance, and are not expected to be significant for the oubending data considered here.
 
 Estimates of the contributions from $\sigma_1$ and $\sigma_2$ were performed using fits to the expected linear
 dependence of the total relative variance on the inverse of the electron energy as shown in Fig.~\ref{fig:S10_1_1}.
@@ -121,7 +121,7 @@ m^2 = 2 E_1 E_2 (1-\cos \theta_{12}),
 \label{eq:ivm}
 \end{equation}
 where $E_1$ and $E_2$ are the energies of the two photon showers in the ECAL and $\theta_{12}$ is their opening
-angle with respect to the target vertex. The meson energy can be determined from these same measurements in
+angle. The meson energy can be determined from these same measurements in
 terms of the photon energy asymmetry $X$:
 \begin{equation}
 E^2_{\pi} = \frac{m^2_{\pi}}{(1-\cos \theta_{12})(1-X^2)}  \\
@@ -129,7 +129,7 @@ X=\frac{E_1-E_2}{E_1+E_2}.
 \label{eq:epi}
 \end{equation}
 The reaction kinematics following from Eqs.~\ref{eq:ivm} and \ref{eq:epi} are shown in Fig.~\ref{fig:opa}. Clearly
-both the invariant mass and energy reconstruction are dominated by the ECAL opening angle resolution and accuracy
+both the invariant mass and energy reconstruction are dominated by the ECAL angular resolution and accuracy
 at the highest energies, while at lower energies both the energy and angle resolutions contribute. Therefore this
 measurement can be used to reveal and refine the systematics and consistency of the energy calibration, geometrical
 alignment and cluster reconstruction of the ECAL.
@@ -144,15 +144,13 @@ alignment and cluster reconstruction of the ECAL.
 \label{fig:fx-pi0-fits}
 \end{figure}
 
-An error analysis of Eq.~\ref{eq:ivm} leads to the following expression for the invariant mass resolution expressed
-in terms of the uncertainties of the measured quantities:
+From Eq.~\ref{eq:ivm} the following expression for the invariant mass resolution can be derived, expressed in terms of the uncertainties of the measured quantities:
 \begin{equation}
   \sigma_m  = \frac{m_{\pi}}{2}\left[\left(\frac{\sigma(E_1)}{E_1}\right)^2 + \left(\frac{\sigma(E_2)}{E_2}\right)^2
     + \sigma^2_{\theta_{12}}\frac{\sin^2 \theta_{12}}{(1-\cos \theta_{12})^2}\right]^{1/2}.
 \label{eq:sigmam1}
 \end{equation}
-For symmetric decays, where $E_1 \approx E_2$ or $X \rightarrow 0$, and using Eq.~\ref{eq:epi} and the dominant
-contributions to the photon energy resolution from Eq.~\ref{eq:sferror}, the invariant mass resolution $\sigma_m$
+For symmetric decays, where $E_1 \approx E_2$ or $X\sim 0$, it follows from Eq.~\ref{eq:epi} that the invariant mass resolution $\sigma_m$
 reduces to a dependence solely on the pion energy $E_{\pi}$:
 
 \begin{equation}
@@ -161,7 +159,7 @@ reduces to a dependence solely on the pion energy $E_{\pi}$:
 \label{eq:sigma2}
 \end{equation}
 
-Using Eq.~\ref{eq:sigma2} it is possible to identify the contributions to $\sigma_m$ due to energy resolution
+From Eq.~\ref{eq:sigma2} it is possible to identify the contributions to $\sigma_m$ due to energy resolution
 $\sigma_1$, calibration error $\sigma_2$, and opening angle resolution $\sigma_{\theta_{12}}$ by measuring the
 invariant mass as a function of pion energy. This study was performed using a single 10.6~GeV run to accumulate
 a high statistics sample of symmetric $\pi^{0}$ decays. Gaussian fits similar to those shown in
@@ -193,7 +191,7 @@ analysis uses the GEMC result.
 \centering
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/fx-study-summary-2.png}
 \caption[]{Summary of fits to invariant mass peaks from $\pi^0 \rightarrow \gamma \gamma$ symmetric decays
-  showing the fitted energy corrections to the measured photon energy. The solid line shows the GEMC calculated
+  used to determine the calorimeter sampling fraction for photons. The solid line shows the GEMC calculated
   photon sampling fraction.}
 \label{fig:fx-study-summary-2}
 \end{figure}
@@ -204,7 +202,7 @@ Clusters in the ECAL not associated with any reconstructed forward track are des
 Builder service. Association of neutral PCAL clusters with ECIN and ECOU clusters are based on proximity to
 straight line trajectories from the scattering target centerline to the PCAL cluster. Photons and neutrons are
 distinguished on the basis of the timing response, with neutrons defined as having velocity $\beta < 0.9$.
-Experiments that require the exclusive measurement of neutrons in the ECAL therefore require both good timing
+Experiments that require the exclusive measurement of neutrons in the ECAL therefore demand both good timing
 resolution and sufficient detection efficiency. 
 
 \begin{figure}[h]
