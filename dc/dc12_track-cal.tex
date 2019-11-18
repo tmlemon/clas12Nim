@@ -33,17 +33,19 @@ reached the sense wire.
 The drift time is given by the following expression:
 \begin{equation} 
 \label{tdrift}
-t_{drift} = t_{tdc} - t_{start} - t_{0} - t_{flight} - t_{prop}
+t_{drift} = t_{tdc} - t_{start} - t_{0} - t_{flight} - t_{prop} - t_{walk}
 \end{equation}
 
 \noindent
 where $t_{tdc}$ is the raw time measured by the TDC, $t_{start}$ is the event start time (the time at which
 the triggering particle left the target),  $t_0$ is the fixed-time (cable) delay for the wire, $t_{flight}$ is the 
-flight time of the particle from the interaction vertex to the wire and $t_{prop}$ 
-is the signal propagation time along the wire.
+flight time of the particle from the interaction vertex to the wire, $t_{prop}$ 
+is the signal propagation time along the wire and $t_{walk}$ is a 
+shift of the recorded hit time to larger values which depends on the
+ion density of the track (beta-dependent) and the distance of the track to the wire. 
 With a trigger based on detecting an electron in the CLAS12 detector, the event start time is 
-given by the Forward Time-of-Flight system~\cite{ftof-nim} counter time for the primary scattered
-electron corrected for the calculated flight time of this electron from the beam-target vertex.
+given by the Forward Time-of-Flight system's~\cite{ftof-nim} counter time for the scattered
+electron, corrected for the calculated flight time of this electron from the beam-target vertex.
 
 As indicated in Eq.~\ref{tdrift}, the fixed-time delays 
 for each wire must be known in order to determine the drift times.   To determine
