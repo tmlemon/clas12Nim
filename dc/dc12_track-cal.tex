@@ -33,17 +33,19 @@ reached the sense wire.
 The drift time is given by the following expression:
 \begin{equation} 
 \label{tdrift}
-t_{drift} = t_{tdc} - t_{start} - t_{0} - t_{flight} - t_{prop}
+t_{drift} = t_{tdc} - t_{start} - t_{0} - t_{flight} - t_{prop} - t_{walk}
 \end{equation}
 
 \noindent
 where $t_{tdc}$ is the raw time measured by the TDC, $t_{start}$ is the event start time (the time at which
 the triggering particle left the target),  $t_0$ is the fixed-time (cable) delay for the wire, $t_{flight}$ is the 
-flight time of the particle from the interaction vertex to the wire and $t_{prop}$ 
-is the signal propagation time along the wire.
+flight time of the particle from the interaction vertex to the wire, $t_{prop}$ 
+is the signal propagation time along the wire and $t_{walk}$ is a 
+shift of the recorded hit time to larger values which depends on the
+ion density of the track (beta-dependent) and the distance of the track to the wire. 
 With a trigger based on detecting an electron in the CLAS12 detector, the event start time is 
-given by the Forward Time-of-Flight system~\cite{ftof-nim} counter time for the primary scattered
-electron corrected for the calculated flight time of this electron from the beam-target vertex.
+given by the Forward Time-of-Flight system's~\cite{ftof-nim} counter time for the scattered
+electron, corrected for the calculated flight time of this electron from the beam-target vertex.
 
 As indicated in Eq.~\ref{tdrift}, the fixed-time delays 
 for each wire must be known in order to determine the drift times.   To determine
@@ -236,7 +238,7 @@ entrance angle.
 \alpha_b = \alpha_0 + \cos^{-1}(1 - b_{rot} B), 
 \end{equation}
 
-where $b_{rot}$ is a constant equal to $0.02$ deg/T and $B$ is the magnetic field strength in Tesla and angular
+where $\alpha_0$ is the actual entrance angle, $b_{rot}$ is a constant equal to $0.02$ deg/T and $B$ is the magnetic field strength in Tesla; angular
 units are degrees.
 
 %%%%%%%%% Figure : TRKDOCA vs. Drift Time -- Angle and Field Dependence %%%%%%%%%%
@@ -261,8 +263,8 @@ t(B) = t(0) + b_{mag} B^2,
 \end{equation}
 
 \noindent
-where $b_{mag}$ is a constant which is determined by calibration with a
-value of approximately $100 ns/Tesla^2$ and $B$ is the magnetic field strength in Tesla. In this expression, the
+where $b_{mag}$ is a constant that is determined by calibration with a
+value of approximately $100~ns/Tesla^2$ and $B$ is the magnetic field strength in Tesla. In this expression, the
 first term is the time calculated assuming $B$=0, and the second term is the time increase due to the $B$
 field. For the R1 and R3 functions, no magnetic field dependence is included, as the chambers are located
 outside the torus cryostats in regions where field strengths are less than 0.2 Tesla.  
@@ -329,7 +331,7 @@ a reasonable starting point to be refined by comparisons with data.
 
 To adjust the chamber geometry parameters we analyzed
 ``straight-track'' data taken with the both magnets (torus and solenoid) turned off.  
-Tracks were found and fitted with our standard track reconstruction ~\ref{recon-nim} package.
+Tracks were found and fitted with our standard track reconstruction ~\cite{recon-nim} package.
 For various bins in the angle of the track, we measured the shifts of the
 track residual means as a function of layer number. 
 Before correcting for mis-alignment in software, the data showed significant 
