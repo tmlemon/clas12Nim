@@ -14,9 +14,9 @@ Following these principles, CLAS12 reconstruction and analysis relies on a data-
 CLARA~\cite{clara-2011,clara-service,framework,clara-2016}, which provides a service-oriented architecture in which
 to build the relevant software applications.  Such applications are composed of interlocking building blocks called
 micro-services, which are linked together by data-stream pipes.  The technology (e.g. a high-level programming
-language, or hardware deployment details), as well as the algorithmic solutions used to process data (see
-Fig.~\ref{fig:clara-overview}) are encapsulated. The scope of a specific software application implemented in CLARA
-is determined by the micro-services that are included and by the order of their execution.
+language or hardware deployment details), as well as the algorithmic solutions used to process data are encapsulated
+(see Fig.~\ref{fig:clara-overview}). The scope of a specific software application implemented in CLARA is determined
+by the micro-services that are included and by the order of their execution.
 
 \begin{figure*}[t]
 \centering
@@ -27,7 +27,7 @@ is determined by the micro-services that are included and by the order of their 
 \label{fig:clara-overview}
 \end{figure*}
 
-A micro-service has input data, processes it, and produces output data, where that I/O is organized into ``banks''
+A micro-service has input data, processes it, and produces output data, where the I/O is organized into ``banks''
 whose structure is configured by the specific service developer.  A micro-service reacts on an input data stream,
 processes it, and passes processed data to the next micro-service in the data-flow path.  As a result, the CLAS12
 data processing application is versatile and flexible, since the application building blocks can be improved individually
@@ -35,8 +35,6 @@ and replaced with no need for structure changes in the framework. The CLAS12 mic
 abstract reconstruction engine, which includes common components such as initialization and event processing
 methods. This approach reduces and simplifies the development of an individual micro-service and enforces a common
 structure. 
-
-%\sout{The CLAS12 data processing applications execute according to the rules of data-flow instead of a more traditional programming approach, where sequential series of instructions (lines of code) are written to perform a required algorithm. The flow of data between micro-services in the application determines the execution order of micro-services within the application. These features make the data paths between application building blocks to be the application designer’s main focus.}
 
 The CLARA data-stream pipe is a data bus based on the xMsg messaging system that supports various protocols
 such as MPI, pub-sub, p2p, inproc, and shared memory. The CLARA orchestrator, i.e. the process level workflow
@@ -96,10 +94,10 @@ programming interface to create and access tables that contain detector geometry
 well as maps used for decoding raw data. At the decoding stage, the signal is converted from the hardware notation
 (crate, slot, channel) into the CLAS12 notation (sector, layer, component). 
 
-The CCDB package creates tables that link constants to specific runs (using timestamps) and store different
+The CCDB package creates tables that link constants to specific runs (using time stamps) and store different
 variations of constants depending on run conditions. CLAS12 software tools employ an Application Programming
 Interface (API) that parses database tables and creates structured maps of constants stored in  memory by
-detector sector, layer, and component. This allows fast retrieving of the constants.
+detector sector, layer, and component. This allows fast retrieval of the constants.
 
 The CLAS12 database access tools have been developed to avoid bottlenecks that might result from multiple
 multi-threaded services accessing the database to retrieve constants.  An interface has been designed to fetch
@@ -114,12 +112,13 @@ calibration, monitoring, and analysis were developed in the Java programming lan
 
 The plotting software, called {\it groot}, developed at Jefferson Lab for CLAS12 is tailored to have a programming
 interface similar to the CERN data analysis package, ROOT, and provides the necessary functionalities for
-histogram and graph creation, filling, and manipulation as well as for fitting using the Java-based MINUIT library
-available from the JHEP repositories. This has been the base for the development of detector monitoring and
+histogram and graph creation, filling, and manipulation, as well as for fitting using the Java-based MINUIT library
+available from the JHEP repositories. This has been the base for the development of the detector monitoring and
 calibration suites (see Section~\ref{sec:calibration}).
 
 These same tools can be used for analysis purposes. In addition, the analysis package contains classes for four-vector
-manipulations, physics quantity extractions, and analysis methods (e.g. $Q^2, W$, boosts, etc.).
+manipulations, physics quantity extractions, and analysis methods (e.g. computation of kinematic variables such as
+$Q^2$ and $W$ or performing Lorentz boosts, etc.).
 
 \begin{figure}
 \centering
@@ -132,13 +131,14 @@ manipulations, physics quantity extractions, and analysis methods (e.g. $Q^2, W$
 
 \subsubsection{Magnetic Field Package}
 
-The magnetic field package {\it magfield} used by CLAS12 reconstruction creates binary field maps from
+The magnetic field package {\it magfield} used by the CLAS12 reconstruction creates binary field maps from
 engineering models of the CLAS12 torus and solenoid~\cite{magnets-nim}. It employs a common self-described
 binary format, with a header containing meta-data describing the pedigree of the field, its grid coordinate system,
 and the coordinate system used by the field values. For example, the CLAS12 torus has a cylindrical grid but
-Cartesian field components. The same {\it magfield} package provides the trilinear interpolation of the field.
-Given that the field is often requested at a sequence of points all contained within a single grid cell, {\it magfield}
-uses time-saving software “probes” to cache nearest neighbors.
+Cartesian field components. The same {\it magfield} package provides the trilinear interpolation of the field (a
+method of multivariate interpolation on a 3-dimensional regular grid). Given that the field is often requested at a
+sequence of points all contained within a single grid cell, {\it magfield} uses time-saving software “probes” to cache
+nearest neighbors.
 
 \subsubsection{Swimmer Package}
 
@@ -147,6 +147,6 @@ to propagate charged particles through the CLAS12 solenoid and torus fields. It 
 fifth-order corrections) adaptive step-size Runge-Kutta integrator with single-step advancement achieved through
 a configurable Butcher tableau advancer. There are a number of convenience methods for swimming to a plane, to
 the closest point on a line, and to a specified value of a given $(x,y,z)$ coordinate. For forward swimming in CLAS12,
-the swimmer can reduce the dimensionality of the track state vector, a vector containing the main track parameters;
-see definition in Section~\ref{sec-trackfitting}, (and consequently run faster) by changing the independent variable
+the swimmer can reduce the dimensionality of the track state vector, a vector containing the main track parameters
+(see definition in Section~\ref{sec-trackfitting}), (and consequently run faster) by changing the independent variable
 from the path length to the coordinate along the beamline (which defines the nominal CLAS12 $z$-axis).
