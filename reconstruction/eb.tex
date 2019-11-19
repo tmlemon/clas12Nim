@@ -1,10 +1,10 @@
 \subsection{Event Builder}
 \label{sec:eb}
 
-The Event Builder is the last service in the reconstruction algorithms, and performs a series of functions:
+The Event Builder is the last service in the reconstruction algorithm, and performs a series of functions:
 
 \begin{itemize}
-    \item collects information from upstream services;
+    \item collects information from the upstream services;
     \item correlates information from the sub-detectors into particles;
     \item performs a general particle identification scheme;
     \item organizes the resulting information into a standardized, persistent data bank structure.
@@ -19,11 +19,11 @@ In defining a reconstructed charged particle in CLAS12, the Event Builder assume
 made for each reconstructed track in both the Forward Detector and the Central Detector. The associated
 calorimeter, scintillator, and Cherenkov detector responses are then assigned to that particle based on
 geometric coincidences between the detector responses and the track, with matching criteria corresponding
-to the resolution of a given detector.  The geometric matching is based on the distance of closest approach
+to the resolution of a given detector. The geometric matching is based on the distance of closest approach
 between the track and the response, where an example is shown in Fig.~\ref{fig:ebmatch}.
 
-A similar procedure is followed for creating neutrals particles, except the seeding is with unassociated ECAL
-(for the Forward Detector) and CND (for the Central Detector) responses instead of tracks.
+A similar procedure is followed for creating neutrals particles, except the seeding is presently with
+unassociated ECAL (for the Forward Detector) and CND (for the Central Detector) responses instead of tracks.
 
 \begin{figure}
 \centering
@@ -35,19 +35,13 @@ A similar procedure is followed for creating neutrals particles, except the seed
 
 \subsubsection{Event Start Time}
 
-A start time is assigned to the entire event, which serves as our most precise reference time on which all
-time-based particle identification relies.  This is based on the optimal charged particle candidate in the
-Forward Detector with an associated FTOF timing response, prioritized as:
-
-\begin{enumerate}
-    \item $e^-$
-    \item $e^+$
-    \item positive track, assumed a $\pi^+$
-    \item negative track, assumed a $\pi^-$,
-\end{enumerate}
-
-\noindent
-where only the candidate with the highest momentum in each group is considered.
+A start time is assigned to the entire event and serves as our most precise reference time on which all time-based
+particle identification relies. This is based on the optimal charged particle candidate in the Forward Detector with
+an associated FTOF timing response. The Event Builder assigns the start time based on the highest energy electron
+in the ECAL. If there is no electron in the ECAL, it next looks for a positron in the ECAL. If there is no lepton, the
+next track in the priority list is a forward-going positive track (assumed to be a $\pi^+$). Finally, if there is no
+forward-going positive track, it looks for a forward-going negative track (assumed to be a $\pi^-$). When looking
+for $\pi^+$ or $\pi^-$ tracks, only the candidate with the highest momentum in each group is considered.
 
 A parallel event start time is determined from the FT to facilitate physics analyses and triggers where the
 primary scattered electron is at very forward angles in the FT. In this case, all combinations of charged
@@ -61,11 +55,11 @@ beam-bunch arrival time at the target.
 
 The uncorrected, measured vertex time of a particle, $t_v$, can be written as
 \begin{equation}
-    t_v = t-\frac{l}{\beta c},
+    t_v = t-\frac{L}{\beta c},
 \end{equation}
 
 \noindent
-where $t$ is the measured time response (e.g. in a scintillator), $l$ is the path length between the primary
+where $t$ is the measured time response (e.g. in a scintillator), $L$ is the path length between the primary
 interaction vertex and that response, and $\beta c$ is the speed of the particle.  We can then construct a
 correction to align this time with the closest beam bunch time at the target:
 
@@ -90,15 +84,15 @@ The next stage is a basic particle identification scheme.  This is intended to b
 physics analyses, while persisting the necessary information to easily tighten the criteria later.
 
 For charged particles, first calorimetry and Cherenkov information is used to positively identify $e^-/e^+$
-candidates. If the measured energy deposition is consistent with the expected sampling fraction of the ECAL,
-and the photoelectron response from the HTCC is consistent with $\beta\sim1$, the particle is assigned as an
-$e^-$ or $e^+$ depending on sign of the curvature of the track from forward tracking through the torus
-magnetic field.
+candidates in the Forward Detector. If the measured energy deposition is consistent with the expected sampling
+fraction of the ECAL, and the photoelectron response from the HTCC is consistent with $\beta\sim1$, the particle
+is assigned as an $e^-$ or $e^+$ depending on sign of the curvature of the track from forward tracking with the
+DCs through the torus magnetic field.
 
 The remaining charged particles are then assumed to be hadrons and assigned an identity based solely on timing
 information, where the $p/K/\pi$ candidate giving the smallest time residual is assigned. This time residual is
-computed from the different between the measured particle flight time and that computed for a given mass
-hypothesis. Figure~\ref{fig:betavsp} shows reconstructed beam data of $\beta$ vs. momentum distributions
+computed from the difference between the measured particle flight time and that computed for a given mass
+hypothesis. Figure~\ref{fig:betavsp} shows reconstructed $\beta$ vs. momentum distributions from beam data
 for forward-going positively charged hadrons using information from the FTOF and DC subsystems where the
 electron is reconstructed either in the Forward Detector (Fig.~\ref{fig:betavsp}(top)) or in the Forward Tagger
 (Fig.~\ref{fig:betavsp}(bottom)). The computed curves for the different mass hypotheses are overlaid.
@@ -116,11 +110,12 @@ the Forward Detector (top plot) or in the FT (bottom plot).}
 
 For neutral particles, particle identification is assigned only for neutrons and photons, based only on timing and
 topological information. If the particle timing results in $\beta\sim$1, it is assigned as a photon, otherwise it
-is assigned as a neutron. For the Forward Detectors this is based on the ECAL, while for the Central Detector it
-is based on the CND. For photons in the Forward Detector, the momentum is then assigned using the reconstructed
-ECAL energy and accounted for the calorimeter sampling fraction~\cite{ecal-nim}.  For neutrons, the momentum is
-assigned based on the measured $\beta$ and the neutron mass. Figure~\ref{fig:neutbeta} shows and example
-of $\beta$ reconstructed for neutrals in the Forward Detector showing separation of photons and neutrons.
+is assigned as a neutron. For the Forward Detectors this is presently based on the ECAL, while for the Central
+Detector it is presently based on the CND. For photons in the Forward Detector, the momentum is then assigned
+using the reconstructed ECAL energy and accounting for the calorimeter sampling fraction~\cite{ecal-nim}. For
+neutrons, the momentum is assigned based on the measured $\beta$ and the neutron mass.
+Figure~\ref{fig:neutbeta} shows an example of $\beta$ reconstructed for neutrals in the Forward Detector
+showing separation of photons and neutrons.
 
 \begin{figure}
 \centering
@@ -131,29 +126,31 @@ of $\beta$ reconstructed for neutrals in the Forward Detector showing separation
 \label{fig:neutbeta}
 \end{figure}
 
-An identification quality factor, in the form of a signed-$\chi^2$, is assigned based on the relevant detector
-responses and their resolutions. For $e^-/e^+$ the resolution-normalized distance from the expected ECAL
-sampling fraction is used, while for charged hadrons the resolution normalized time-difference is used.
+A particle identification quality factor in the form of a signed-$\chi^2$, is assigned based on the individual
+contributing detector subsystem responses and their resolutions. For $e^-/e^+$ identification the
+resolution-normalized distance from the expected ECAL sampling fraction is used, while for charged hadrons
+the resolution normalized time-difference is used.
 
 \subsubsection{Persistence}
 
 The resulting information is organized into standardized output bank structures for physics analysis, see
-Section~\ref{sec:dsts}. This includes particle four-vectors, all their associated detector responses, and global
+Section~\ref{sec:dsts}. This includes the particle four-vectors, the associated detector responses, and global
 event information such as beam RF and helicity information.
 
 \subsubsection{Particle Identification Performance}
 
-The accuracy of the particle identification (PID) algorithm that is currently implemented can be estimated from
-Monte Carlo simulations where the assigned PID can be compared to the true one. Table~\ref{table:pidmatrix}
-shows the particle identification matrix for the Forward Detector acceptance. The values are based on simulations of
-electron-hadron or electron-photon pairs with hadron and photon momenta in the range from 1-2.5~GeV and electron
-momenta in the range from 1-9~GeV. The diagonal elements correspond to the cases where the particle is correctly
-identified and the off-diagonal elements to the cases where the particle is misidentified. It should be noted that the
-resulting values are strictly related to the PID algorithm currently in use and on the timing resolutions implemented
-in the Monte Carlo simulation~\cite{sim-nim}. An increase of the diagonal element values and corresponding decrease
-of the misidentification probability is expected as, for example, information from the Cherenkov detectors and the
-CLAS12 RICH in particular are integrated in the algorithm or isolated hits in the FTOF and CTOF detectors are
-incorporated in the neutral particle identification algorithm.
+The accuracy of the particle identification algorithm that is currently implemented can be estimated from
+Monte Carlo simulations where the assigned particle identification can be compared to the true one.
+Table~\ref{table:pidmatrix} shows the particle identification matrix for the Forward Detector acceptance.
+The values are based on simulations of electron-hadron or electron-photon pairs with hadron and photon momenta
+in the range from 1-2.5~GeV and electron momenta in the range from 1-9~GeV. The diagonal elements correspond
+to the cases where the particle is correctly identified and the off-diagonal elements to the cases where the
+particle is misidentified. It should be noted that the resulting values are strictly related to the assignment
+algorithm currently in use and on the timing resolutions implemented in the Monte Carlo simulation~\cite{sim-nim}.
+An increase of the diagonal element values and corresponding decrease of the misidentification probability is
+expected as, for example, information from the threshold Cherenkov detectors and the RICH in particular are
+integrated in the algorithm and isolated hits in the FTOF and CTOF detectors are incorporated in the neutral
+particle identification algorithm.
 
 Another measure of the particle identification performance for neutrals is given by the reconstruction of $\pi^0$
 decays to two photons. Figure~\ref{fig:pi0mass} shows the $\gamma \gamma$ invariant mass reconstructed from
@@ -171,8 +168,8 @@ the ECAL and from the Forward Tagger.
   $n$     &      &       &      &      & 0.66 &   0.01   \\ 
  $\gamma$ &      &       &      &      & 0.14 &   0.95   \\\hline 
     \end{tabular}  
-    \caption{Particle identification matrix for the Forward Detector acceptance, based on simulated hadrons and
-      photons with momentum between 1 and 2.5~GeV, and electrons up to 9~GeV. The diagonal elements are
+    \caption{Particle identification matrix for the CLAS12 Forward Detector acceptance, based on simulated hadrons
+      and photons with momentum between 1 and 2.5~GeV, and electrons up to 9~GeV. The diagonal elements are
       correctly identified, while the off-diagonal elements are misidentified. The detector inefficiencies are included.}
   \label{table:pidmatrix}
   \end{center}
