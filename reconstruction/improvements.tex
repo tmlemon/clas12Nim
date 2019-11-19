@@ -1,6 +1,6 @@
 \section{Ongoing Developments}
 
-The software framework and event reconstruction described in the previous sections is based on the code that
+The software framework and event reconstruction described in the previous sections are based on the code that
 is currently being utilized for data processing or will be deployed in the near future in a upcoming release.
 Nevertheless, as CLAS12 data are being analyzed, several potential improvements have been identified and are
 either in the process of being implemented or planned for the near future. In this section, we discussed the most
@@ -29,7 +29,9 @@ processing to reduce the number of combinatorial fits.
 \centering
 \includegraphics[width=0.53\textwidth]{pics/nn1.png}
 \caption{Event display from {\it ced} of track segments in the DC for a typical beam event during data taking
-  at the nominal CLAS12 luminosity.}
+  at the nominal CLAS12 luminosity. This display shows the six DC superlayers in each sector of the Forward
+  Detector. Each superlayer contains six layers of 112 wires. Each wire cell is represented by an square cell on the
+  display. A wire with a hit is colored in red.}
 \label{fig:nn1}
 \end{figure}
 
@@ -40,10 +42,10 @@ four quantities:
 
 \begin{itemize}
 \item The ratio of valid tracks (correctly detected) to the total number of tracks in the sample;
-\item The ratio of valid tracks and  invalid tracks (mis-predicted as valid ones; i.e. false positives) to the total
-  number of tracks in the sample.;
-\item The ratio of valid tracks (correctly detected with highest probability) to the total number of tracks in the
-  sample;
+\item The ratio of valid tracks and invalid tracks (incorrectly predicted as valid; i.e. false positives) to the
+  total number of tracks in the sample.;
+\item The ratio of valid tracks (correctly detected with the highest probability) to the total number of tracks in
+  the sample;
 \item The ratio of invalid tracks (false positives) to the total number of tracks in the sample.
 \end{itemize}
 
@@ -67,7 +69,17 @@ Implementing the neural network software into the CLAS12 reconstruction workflow
 The second stage of the machine learning project will concentrate on efficiency improvements using artificial
 intelligence assisted tracking.
 
-\subsection{Improvements to Central Tracking}
+\subsection{Improvement to Event Reconstruction}
+
+The CLAS12 detector began beam operations for physics in early 2018 after a several month commissioning
+phase. Since that time the event reconstruction code has continued to improve to meet issues as they have
+arisen. However, the code and the framework are already performing well enough for advanced physics
+analysis of the collected data to proceed. A broad survey of reconstruction results using the CLAS12
+software framework and event reconstruction code are presented based on beam data in Ref.~\cite{clas12-nim}.
+As might be expected, there are still areas where development, testing, and validations are in progress in
+order to continue improvements. In this section, several areas of ongoing work are highlighted.
+
+\subsubsection{Improvements to Central Tracking}
 
 Improvements to tracking in the CVT are currently being studied. These include:
 
@@ -82,13 +94,14 @@ Improvements to tracking in the CVT are currently being studied. These include:
 
 These updates aim at enhancing the robustness of the tracking algorithm and improving resolution and efficiency.
 
-\subsection{Improvements to Time-of-Flight Reconstruction}
+\subsubsection{Improvements to Time-of-Flight Reconstruction}
 
 As discussed in Section~\ref{tof-sys}, the output of the time-of-flight reconstruction are hits that are used
-as input to the Event Builder algorithms. The use of clusters for particles that go through through two adjacent
-TOF paddles (either in the FTOF or CTOF systems) is expected to yield improved timing resolution. A quantitative
-estimate of the timing resolution improvements and a validation of the clustering algorithm are currently ongoing
-using on Monte Carlo simulations.
+as input to the Event Builder algorithms. The use of clusters for particles that go through two adjacent TOF
+paddles (either in the FTOF or CTOF systems) is expected to yield improved timing resolution, as is combining
+the hit times in FTOF for tracks that go through both forward counter hodoscopes as discussed in
+Section~\ref{sec:tof-cluster}. A quantitative estimate of the timing resolution improvements and a validation of
+the clustering algorithm are currently ongoing using on Monte Carlo simulations.
 
 \subsection{Improvements to the Event Builder}
 
