@@ -2,10 +2,16 @@
 \label{tof-sys}
 
 The time-of-flight (TOF) detectors for CLAS12 include the Forward Time-of-Flight system (FTOF)~\cite{ftof-nim}
-and Central Time-of-Flight system (CTOF)~\cite{ctof-nim}. The raw data from the detector PMTs read out
-during data acquisition include an ADC charge and hit time from a fitted flash ADC waveform and a TDC time.
-The ADC and TDC information is read out and recorded only for those channels that are above the $\sim$1~MeV
-hardware readout threshold for the flash ADCs and discriminators of both systems. 
+and Central Time-of-Flight system (CTOF)~\cite{ctof-nim}. The FTOF consists of planes of scintillator counters
+located between the RICH/LTCC and the ECAL. Two parallel counter arrays in each Forward Detector sector are
+employed to achieve the desired time resolution. The arrays are referred to as panel-1b (closer to the target) and
+panel-1a (farther from the target). The different FTOF arrays can be seen in Fig.~\ref{fig:dcTracks}. The CTOF
+consists of a barrel of scintillator counters located just outside of the CVT within the solenoid.
+
+The raw data from the detector PMTs read out during data acquisition include an ADC charge and hit time from a
+fitted flash ADC waveform and a TDC time. The ADC and TDC information is read out and recorded only for those
+channels that are above the $\sim$1~MeV hardware readout threshold for the flash ADCs and discriminators of
+both systems. 
 
 As the FTOF and CTOF counters employ double-ended PMT readout, the calibration procedures for these
 systems (described in detail in Refs.~\cite{ftof-nim,ctof-nim}) allow the reconstruction to report accurate hit
@@ -18,14 +24,14 @@ coordinate, and deposited energy. The algorithms for the hit and cluster definit
 \subsubsection{Raw Counter Hits}
 
 Raw hits for the TOF systems are defined by matching ADC and TDC information reported for each counter. These
-are matched based on the comparison of TDC time and of the time from the FADC waveform analysis. The latter is
+are matched based on the comparison of TDC time with the time from the FADC waveform analysis. The latter is
 derived from fitting the leading edge of the FADC pulse shape. Due to the choice of fast timing PMTs for the
 detector readout and the use of 250~MHz FADCs, the number of samples on the leading edge of the PMT pulses is
 only 3 to 4, hence the FADC timing resolution is only $\sim$1~ns. The FADC and TDC times are then required to be
 within a selected window. The windows parameters, position and width, as well as all other constants used by the
 reconstruction package are loaded at run time from CCDB. Currently the window width used is 10~ns, which was
 found to be sufficient to reduce the probability of a mismatch of the ADC and TDC data for a given scintillation bar
-hit. This is especially important for the FTOF as the ADC value of the hit is used to compute the so-called time-walk
+hit. This is especially important for the FTOF as the ADC value of the hit is used to compute the time-walk
 correction.
 
 \subsubsection{Reconstructed Counter Hits}
