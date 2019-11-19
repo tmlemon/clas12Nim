@@ -20,7 +20,7 @@ Each entry for the decoded detector hits is a row in a bank. A row includes dete
 layer, component, and order), and digitized detector data, such as signal charge, amplitude, time or pedestal,
 depending on the specific system. Similar bank structures are created at the decoding stage for the various
 information needed for event reconstruction, such as hits, clusters, tracks, etc. The micro-services that
-implement the reconstruction algorithms pertaining to the CLAS12 subsystems fill these banks that are
+implement the reconstruction algorithms pertaining to the CLAS12 subsystems fill these banks, which are
 subsequently appended and written out to a file by a data-persistency micro-service.
 
 The services running the reconstruction algorithms access the various banks (transient data) as input and produce
@@ -34,11 +34,13 @@ Event Builder service, based on geometry and time information; unmatched hits ar
 candidates. At this stage, the Event Builder can reconstruct the event ``start time'', i.e. the time of the interaction
 between the beam and target, and identify the reconstructed particles. Once the event start time is determined, a
 second iteration of forward tracking can be performed to implement the so-called ``time-based'' tracking (which
-incorporates as well the drift times in the Drift Chambers). The improved particle tracks from this step are the input
-for a second pass of the Event Builder, which leads to the final event reconstruction. Given this sequence, some
-services can run in parallel, while others need the reconstruction output provided by the preceding ones. For instance
-hit-based tracking for the central tracker, called the Central Vertex Tracker (CVT), (CVT service) and for the
-Drift Chambers (DCHB service - ``HB'' is for hit-based) can run in parallel, while time-based tracking
-(DCTB service - ``TB'' is for time-based) must come after the first execution of the Event Builder service. An
-overview of the reconstruction application service composition, detailing these dependencies, is shown in
-Figs.~\ref{fig:clara-overview} and ~\ref{fig:services}.
+also incorporates the drift times in the Drift Chambers). See Section~\ref{sec:hitrecon} for more details on
+hit-based and time-based tracking.
+
+The improved particle tracks from time-based tracking are the input for a second pass of the Event Builder, which
+leads to the final event reconstruction. Given this sequence, some services can run in parallel, while others need the
+reconstruction output provided by the preceding steps. For instance hit-based tracking for the central tracker, called
+the Central Vertex Tracker (CVT), (CVT service) and for the Drift Chambers (DCHB service - ``HB'' is for
+hit-based) can run in parallel, while time-based tracking (DCTB service - ``TB'' is for time-based) must come after
+the first execution of the Event Builder service. An overview of the reconstruction application service composition,
+detailing these dependencies, is shown in Figs.~\ref{fig:clara-overview} and ~\ref{fig:services}.
