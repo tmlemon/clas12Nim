@@ -1,14 +1,18 @@
 \subsection{Threshold Cherenkov Counters}
 
-The goal of the reconstruction algorithms for the High Threshold Cherenkov Counter (HTCC)~\cite{htcc-nim} and
-the Low Threshold Cherenkov Counter (LTCC)~\cite{ltcc-nim} is to calculate the signal strength, time, and position
-from the raw ADC signals coming from the PMTs to the corresponding FADC boards. The algorithm takes into
-account the properties of the HTCC and LTCC geometries, namely, the possibility for the signal from the single
-track to split into up to four mirrors. Hence, up to four separated signals (or hits) are produced. The final signal
-reconstruction is done in three steps: decoding, hit reconstruction, and cluster reconstruction. For each hit,
-the signal strength ($nphe_{hit}$ - the number of photoelectrons) is determined from the pedestal-subtracted
-integral of the FADC pulse and the associated time ($T_{hit}$) is determined from a fit of the position of the FADC
-signal threshold crossing time.
+The CLAS12 Forward Detector includes two threshold Cherenkov detectors for particle identification. The
+High Threshold Cherenkov Counter (HTCC)~\cite{htcc-nim} is located upstream of the torus and is used for
+identification of the scattered electron in conjunction with the ECAL. The Low Threshold Cherenkov Counter
+(LTCC)~\cite{ltcc-nim} is positioned upstream of the FTOF and is used mainly to separate pions from kaons.
+Both the HTCC and LTCC are large gas-filled volumes (CO$_2$ for the HTCC, C$_4$F$_{10}$ for the LTCC)
+with mirrors that direct light collection to the PMTs. The goal of the HTCC and LTCC reconstruction algorithms
+is to calculate the signal strength, time, and position from the raw ADC signals (read out with flash ADC boards
+- FADCs). The algorithm takes into account the properties of the HTCC and LTCC geometries, namely, the
+possibility for the signal from the single track to split into up to four mirrors. Hence, up to four separated
+signals (or hits) are produced. The final signal reconstruction is done in three steps: decoding, hit reconstruction,
+and cluster reconstruction. For each hit, the signal strength ($nphe_{hit}$ - the number of photoelectrons) is
+determined from the pedestal-subtracted integral of the FADC pulse and the associated time ($T_{hit}$) is
+determined from a fit of the position of the FADC signal threshold crossing time.
 
 At the hit reconstruction stage, individual signals in terms of the ADC channels are converted into the number of
 photoelectrons ($nphe_{hit}$) for each hit using gain constants derived from the detector calibration and stored
@@ -31,14 +35,14 @@ photoelectrons. The cluster angular coordinates are determined as the average be
 the cluster. The following equations summarize the definitions of the cluster quantities:
 
 \begin{eqnarray}
-nphe_c &= \frac{\sum_{i=1}^N{nphe_{hit}}}{N}\\
-T_c &= \frac{\sum_{i=1}^N{N*T_{hit}}}{\sum_{i=1}^N{nphe_{hit}}}\\
-\theta_c &=\frac{\sum_{i=1}^N{\theta_{hit}}}{N}\\
-\phi_c &= \frac{\sum_{i=1}^N{\phi_{hit}}}{N}
+nphe_c &= \frac{\sum_{i=1}^N{nphe_{hit}}}{N} \nonumber \\
+T_c &= \frac{\sum_{i=1}^N{N*T_{hit}}}{\sum_{i=1}^N{nphe_{hit}}} \nonumber \\
+\theta_c &=\frac{\sum_{i=1}^N{\theta_{hit}}}{N} \nonumber \\
+\phi_c &= \frac{\sum_{i=1}^N{\phi_{hit}}}{N}.
 \end{eqnarray}
 
 \noindent
-The clustering algorithm is run iteratively until the full list of hits is exhausted.
+The clustering algorithm is run iteratively until the full list of $N$ hits is exhausted.
 
 In the HTCC, the cluster coordinates, required for the matching of the hit with the reconstructed track in the
 Event Builder, are reconstructed by projecting  ($\theta_c$, $\phi_c$) of the cluster on the surface of the
