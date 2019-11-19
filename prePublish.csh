@@ -78,7 +78,7 @@ foreach d ($detChanged)
 	else if ($d == "ctof") then
 		set toPublish = ctof-nim.pdf
 	else if ($d == "rich") then
-		set toPublish = nima-rich.pdf
+		set toPublish = rich-nim.pdf
 	else if ($d == "reconstruction") then
 		set toPublish = recon-nim.pdf
 	endif

@@ -41,11 +41,29 @@ momentum to $1\%$ and its angle to 1~mrad.
 We need even better momentum resolution on the scattered
 electron (with momentum up to 10~GeV) to be able to identify particles
 by missing mass, an important technique in exclusive reaction studies.
-The ability to identify one (and only one) missing particle is made
-possible if the fractional momentum resolution is $dp/p \approx 0.3\%$ 
-for electrons emitted at small angles ($7^{\circ}$) and high momentum (10~GeV).
+We performed tracking simulations assuming perfect knowledge of drift chamber
+location (alignment) and perfect knowledge of the magnetic field, and assuming
+that the hit resolution in each of the drift chamber layers was $250~\mu$m.
+These calculations are shown in Fig.~\ref{simulated-resolution}, where we
+plot the estimated fractional momentum resolution (left axis) versus momentum
+for different incoming angles (right axis).
 
-This requires very good time to position resolution per hit (on the order of 250~$\mu$m),
+%%%%%%%%%%%%%%%%%%%%%% Figure : generic chamber sketch %%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htpb]   
+\vspace{10cm}
+\begin{picture}(35,35)
+\put(-70,0)
+{\hbox{\includegraphics[width=0.9\columnwidth,natwidth=610,natheight=642]{img/simulated-resolution.png}}}
+\end{picture}
+\caption{\small{Estimated fractional momentum resolution plotted versus momentum, for different
+track angles.}}
+\label{simulated-resolution}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+These simulations led to our goal of $dp/p \approx 0.3\%$ 
+for electrons emitted at small angles ($7^{\circ}$) and high momentum (10~GeV).
+This requires very good position resolution per hit (on the order of 250~$\mu$m),
 very good positional alignment of the chambers ($\approx$50~$\mu$m) and very good knowledge
 of $\int Bdl$ on the order of 0.2\%.  These goals drive our calibration efforts; for more
 infomation see Section~\ref{calibration}.
@@ -115,7 +133,11 @@ accidental occupancy from particles not associated with the event is smaller.
 Table~\ref{fwd-dc-design-parms} lists the main design parameters for each 
 region of the CLAS12 drift chambers.  For the purposes of simulating 
 track resolutions, we assumed that the position resolution of the individual 
-drift cells would be 250~$\mu$m.  
+drift cells would be 250~$\mu$m.  The material budget for multiple scattering
+consists of about 0.02 radiation lengths before the R1 chambers due to an assumed 5cm LH2
+target, the gas and low-mass mirrors in the Cerenkov counter and the remainder being air.
+The total material in the R1, R2 and R3 chambers (each filled with a 90/10 mixture
+of argon/CO2) and the intervening air amounts to approximately 0.02 radiation lengths also.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \small{
@@ -162,6 +184,26 @@ the NIM article \cite{dcnim} on the previous CLAS drift chambers for more inform
 \item {\bf Gas Choice:} 90:10 argon:CO$_2$ mixture.  We operate at a gas gain of 
 about $5 \times 10^4$.
 \end{itemize}
+
+Figure ~\ref{superlayout} is a schematic of the cell layout for a single superlayer.
+The wires are arranged in a ``brick wall'' pattern with one layer of guard wires,
+two layers of field wires, one layer of sense wires, another two layers of field
+wires, and so on, for a total of 2 guard wire layers, 14 field wire layers and
+6 sense wire layers.  The result is an hexagonal cell layout with each sense wire
+surrounded by 6 field wires.
+
+%%%%%%%%%%%%%%%%%%%%%% Figure : generic chamber sketch %%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htpb]   
+\vspace{10cm}
+\begin{picture}(35,35)
+\put(10,0)
+{\hbox{\includegraphics[width=0.9\columnwidth,natwidth=610,natheight=642]{img/superlayout.png}}}
+\end{picture}
+\caption{\small{Wire layout for one superlayer; the view is a cut perpendicular to the wire direction.}}
+\label{superlayout}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \subsubsection{Design Improvements Compared to the Previous CLAS Chambers}
 

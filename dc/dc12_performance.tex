@@ -39,7 +39,7 @@ a hit for a track crossing a layer, when all wires and electronics
 are operating properly;
 \item {\bf malfunction-related inefficiency}: loss of hits and sometimes
 whole track segments because of equipment malfunctions;
-\item {\bf background-related inefficiency}: out of time background
+\item {\bf background-related inefficiency}: out-of-time background
 can interfere with the segment-finding algorithms when a background-related
 track segment lies ``on top'' of a real, in-time, segment.
 \end{enumerate}
@@ -64,8 +64,9 @@ hit is not used in the tracking.  The malfunction-related inefficiency  is small
 At the time of publication, roughly $0.5\%$ of our wires are not operating properly.  
 \item {\bf simulation of background-related inefficiency}: rather than try
 to simulate out-of-time background due to all physics processes, we merge
-``random-trigger'' events with low-luminosity runs and calculate the
-efficiency of these merged events with un-merged low-luminosity events.
+``random-trigger'' events with events from low-luminosity runs and compare the
+efficiency of these merged events with that from un-merged low-luminosity events.
+This ratio is considered to be a measure of the background-related inefficiency.
 \end{enumerate}
 
 We will not further discuss the {\bf malfunction-related inefficiency} or
@@ -83,10 +84,6 @@ the evidence from all other layers in the superlayer.  This is called the
 cell efficiency for the particular choice of gas mixture, high-voltage set point, and 
 discriminator level.  
 
-In Section~\ref{determine-operating-parameters} on operations and monitoring we discussed
-our ``high voltage plateau''. We took data at successively higher values of high voltage and measured the
-layer efficiency at each point.  We set the high-voltage operating points such that
-the average layer efficiency is $>$98$\%$. 
 
 The single layer inefficiency is not uniform across the drift cell.  It is higher near the sense wire and also
 near the outer edge of the cell.  A track passing close to a sense wire leaves many ions in the cell, but the
@@ -94,10 +91,10 @@ ion arrival times are stretched out from near-zero to the maximum drift time $Tm
 the preamplifier's output signal has a low voltage amplitude but persists for a long time.  So, even though
 the collected charge is large the voltage put out by our transimpedance preamplifiers may not be large
 enough to exceed the voltage discriminator threshold of the DCRB. For the case of tracks near the outer
-edge of the cell (so-called `corner-clippers') they simply leave a very small number of ions in the cell and
+edge of the cell (so-called `corner-clippers') they leave a very small number of ions in the cell and
 thus have a small signal.
 
-Fig.~\ref{dc-inefficiency-vs-doca} shows that a large contribution to the $2\%$ inefficiency comes 
+Fig.~\ref{dc-inefficiency-vs-doca} shows that a large contribution to the inefficiency comes 
 from tracks that pass close to the sense wire.  These tracks give rise to signals 
 that have low pulse height and long duration, and thus may escape detection.
 We fit this observed DOCA-dependent inefficiency to a functional form that is
@@ -112,7 +109,7 @@ this percentage of hits.
 {\hbox{\includegraphics[width=0.6\textwidth,natwidth=610,natheight=642]{img/dc-inefficiency-vs-doca.png}}}
 \end{picture}
 \caption{\small{The observed ``layer efficiency'' as a function of DOCA.  Hits from tracks
-that pass close to or far from the wire have the hits spread out in time, and the resulting
+that pass close to or far from the sense wire have the hits spread out in time, and the resulting
 voltage pulse from the preamplifiers may fail to cross the discriminator threshold, resulting
 in a ``lost hit''.}}
 \label{dc-inefficiency-vs-doca}
@@ -121,16 +118,16 @@ in a ``lost hit''.}}
 
 \subsection{Drift Chamber Spatial Resolution}
 
-The single-wire resolution is the difference 
+The single-wire resolution is the RMS spread of the difference 
 between the fitted TRKDOCA of the track and the value of DOCA as calculated from the 
-time of the hit in the excluded layer.  The variance of this residual distribution 
-is the quadratic sum of the single-wire resolution and the track position uncertainty 
-at the excluded layer.  This variance over-estimates the single-wire resolution.
-Since there are six layers per superlayer and layer 3 is excluded from the fit,
+time of the hit.  The variance of this residual distribution 
+is the quadratic sum of the single-wire resolution and the track position uncertainty.  
+This variance over-estimates the single-wire resolution.
+Since there are six layers per superlayer,
 this amounts to a $10 - 15\%$ over-estimate.
 
 Fig.~\ref{resolution-vs-doca} shows the width of the track-hit residual distribution plotted versus
-DOCA for each of the different chamber regions.  The single-wire resolution worsens near the 
+TRKDOCA for each of the different chamber regions.  The single-wire resolution worsens near the 
 wire and also at the outer edge of the cell.  This arises due to finite cluster sizes 
 due to the Poisson distribution of ion-pair production along the path of the primary ion 
 near the sense wire along with time walk effects and the divergent nature of the electric
@@ -154,7 +151,7 @@ for data from all six R3 drift chambers.
 The upper sub-figure is a plot the 2-D distribution of the fit residual (TRKDOCA - DOCA) vs. TRKDOCA.
 We did a Gaussian slice-fit in the x-coordinate (TRKDOCA) and plotted the resulting sigma from
 each fit versus TRKDOCA in the lower sub-figure.
-Here you can quantitatively see that the average single-wire resolution in the middle 
+The average single-wire resolution in the middle 
 portion of the cell is about 250~$\mu$m, with a whole cell resolution of about 400~$\mu$m. 
 Looking at similar fits for all of the chambers, we conclude that the whole-cell 
 average is about 400~$\mu$m for R1, R2, and R3, respectively.  
@@ -204,7 +201,7 @@ The CLAS12 drift chamber system has been in routine operation since spring, 2017
 The system has reached its design goals of high-luminosity operations in beam
 (1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$) in a high-flux electromagnetic reaction
 environment, with very good track reconstruction efficiency over a large range of angles and 
-magnetic fields.  
+magnetic fields~\ref{recon-nim}.  
 The percentage of malfunctioning wires, due to high voltage problems, signal
 connector issues, etc., is presently ~0.5\%.
 The single-wire efficiency is greater than $98\%$ and the

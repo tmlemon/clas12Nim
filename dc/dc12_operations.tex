@@ -37,16 +37,16 @@ is grounded.  This reduces the likelihood of producing a ``Malter effect''~\cite
 which an accidental source of cathode emission
 (due to an insulating contaminant on the endplate, for example) causes
 a self-sustaining discharge;
-\item the sense to ground potential and the field to ground potentials 
+\item the sense-to-ground potential and the field-to-ground potentials 
 are smaller, decreasing surface electric fields on the on-chamber
 circuit boards.
 \end{itemize}
 
-In addition, by carefully selecting the values of the sense, field, and
-guard wire voltages, we can create potential distributions that mimic
+In addition, by selecting the values of the sense, field, and
+guard wire voltages such that the net charge on all wires is zero, 
+we create potential distributions that mimic
 an infinite grid of cells, where the gain on any wire is the same as
 any other, regardless of whether it is the first, last, or middle layer.
-See an Ref.~\cite{mdm92} for a discussion of this.
 
 This optimum condition is reached when the sense voltage is twice the
 field voltage (and opposite polarity).  This is because we have twice as many
@@ -60,8 +60,9 @@ thus the gain of the nearby wire layers.  However, if the net charge on
 all wires is zero, then there is no net flux of electric field through the
 gas bag and thus the net charge on the gas bag is zero.  In this way all
 of the wires have the same gain, regardless of layer.  
+See Ref.~\cite{mdm92} for a discussion of these issues.
 
-We used the drift chamber design program, GARFIELD~\cite{GARFIELD}, to determine the voltages
+We used the drift chamber design program GARFIELD~\cite{GARFIELD} to determine the voltages
 necessary to achieve the condition of net charge equal to zero.
 The resulting ratio of voltages from sense to field to guard wires is 1 : -1/2 : 5/14.
 
@@ -70,7 +71,7 @@ The resulting ratio of voltages from sense to field to guard wires is 1 : -1/2 :
 
 We set the discriminator levels in the DCRBs to reduce the accidental hit occupancy (with no beam) due to
 electronic noise to be less than about 1\%.  Since the electronic noise was generally proportional to wire length,
-we had less electronic noise on the smaller R1 chambers.  Using this criteria, we set the thresholds to 30, 45,
+we had less electronic noise on the smaller R1 chambers.  Using this criterium, we set the thresholds to 30, 45,
 and 45~mV, respectively, for R1, R2, and R3.  
 Once we set the discriminator thresholds, we performed a high voltage efficiency scan.  
 
@@ -99,7 +100,7 @@ exceeded 97\%.
 %\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Operating Voltage, Gas Gain, and Layer Efficiency}
+\subsubsection{Operating Voltage and Gas Gain}
 \label{operating-voltage}
 
 The gas gain varies exponentially with the total sense to field wire voltage

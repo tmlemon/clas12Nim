@@ -57,16 +57,18 @@ safe'' as defined in Ref.~\cite{kadyk}.  As previously, all construction was car
 Class-10000 or better clean rooms.
 
 The drift-chamber bodies were made primarily of aluminum (R1), Stesalit (an epoxy-fiberglass composite) (R2),
-or steel-clad structural foam (R3).  The aluminum and steel parts were 
+or steel-clad structural foam (R3).  See Section~\ref{region2} for more discussion
+of the properties of Stesalit.  The aluminum and steel parts were 
 manufactured with machine oils and, as before, were subsequently cleaned with  
 Micro-laboratory detergent from the Cole-Parmer Instrument Company.  The 
 Stesalit endplates were machined without any lubricating oils.  Immediately 
 prior to chamber assembly all parts were cleaned with detergent, then rinsed with
-deionized water and alcohol.  As before, the 
-wire feedthroughs and crimp pins were cleaned in an ultrasonic bath 
+deionized water and alcohol.  The various wire attachment parts, feedthroughs and
+crimp pins, were cleaned in an ultrasonic bath 
 with detergent and then rinsed in a second ultrasonic bath with deionized water.
 
-It is important to avoid any outgassing into the chamber.  We used Shell Epon resin 826 mixed with Versamid 140, and 
+It is important to avoid any outgassing into the chamber.  As in the construction
+of the previous CLAS chambers, we used Shell Epon resin 826 mixed with Versamid 140, and 
 Scotchweld varieties 210 and 2216 for chamber assembly and gluing of feedthroughs.  These mixtures have been 
 studied extensively and found not to outgas significantly~\cite{nasa}.
 
@@ -103,7 +105,7 @@ mold releases.
 We assenbled the endplates on a table in the cleanroom.  The various parts,
 the pre-drilled main plate and the various stiffener bars, were pinned
 and glued into place.  Once the endplate assembly was finished,
-we inserted and glued the feedthroughs into each hole.  We took special care 
+we inserted and glued feedthroughs into each hole.  We took special care 
 to use the minimal amount of glue required to provide a solid gas 
 seal in order to prevent glue contamination inside the detector. 
 
@@ -121,7 +123,7 @@ tests in humid conditions.
 Because our chamber endplates are not parallel, but oriented at
 $\approx 60^{\circ}$ with respect to each other, the wire position is determined
 by the feedthrough's trumpet's concentricity and placement and not by
-the concentricity or inner radius of the crimp pin; see Fig.~\ref{dc-corner}.
+the concentricity or inner radius of the crimp pin; see Figures~\ref{wire-attachment} and ~\ref{dc-corner}.
 
 This allowed us to design the crimp pin to maximize crimp reliability
 and ease of use by using soft copper with a large enough inner diameter
@@ -130,6 +132,26 @@ Using a thick-walled copper pin ensured a good crimp through a range of gap sett
 Having a single type of crimper required fewer re-calibrations, the soft
 copper made more secure crimps and the larger inner radius made
 stringing easier.
+
+ A schematic of the wire attachment schema is shown in
+Fig.~\ref{wire-attachment}.  At this stage of endplate construction, the
+feedthroughs (part ``2'' in Fig.~\ref{wire-attachment}) were glued into place.
+Later, during the wire stringing phase, described in Section~\ref{stringing},
+the crimp pins (part ``3'') were fitted into the feedthrough and crimped to
+hold the wire.  
+
+%%%%%%%%%%%%%%%%%%%%%% Figure : generic chamber sketch %%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htpb]   
+\vspace{10cm}
+\begin{picture}(35,35)
+\put(10,0)
+{\hbox{\includegraphics[width=0.9\columnwidth,natwidth=610,natheight=642]{img/wire-attachment.png}}}
+\end{picture}
+\caption{\small{The collection of all parts used to physically attach a wire end
+to a chamber endplate and to provide an electrical connection to a chamber-mounted circuit board.}}
+\label{wire-attachment}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Once the endplates were complete with feedthroughs in place, 
 we assembled the chamber box from the
@@ -201,6 +223,7 @@ This caused some bowing of our thin endplates. This bowing and the sagging
 of the wires themselves is discussed in the Section~\ref{geom_distortions} on geometrical distortions.
 
 \subsection{Chamber Wire Stringing}
+\label{stringing}
 
 
 Because all of the chambers have the same shape, differing only in
@@ -236,20 +259,20 @@ wires such that the total wire tension load was equal to the final,
 fully strung load.  The over-tensioning was done using an adjustable
 spring attached to each guard wire. 
 We then strung the field wires, starting at one end of the chamber.
-After stringing a ``column'' of 14 field wires, we would reduce the
-tension on the associated guard wire to its nominal value, and crimp
+After stringing a ``column'' of 14 field wires, we reduced the
+tension on the associated guard wire to its nominal value, and crimped
 that guard wire.  In this way, the total wire tension on the endplate
 (and its bowing) remained approximately constant through the stringing process.
 
 We strung all chambers with 
 the wires running vertically.  The links were adjusted to place the 
 feedthroughs in the upper plate vertically above the ``partner''
-feedthroughs in the lower plate, which allows gravity stringing.
+feedthroughs in the lower plate, which allowed gravity stringing.
 
 The stringing technique began at the top endplate.  The technician attached a 
 small steel needle to the wire using a platic tube with inner diameter only
 slightly larger than the radius of the needle.  By inserting both the wire and
-needle into the plastic tube, a friction joint can be achieved.  
+needle into the plastic tube, a friction joint was achieved.  
 The wire with needle attached was then threaded through the feedthrough in 
 the upper endplate.  The wire was then despooled and gravity acted to bring the 
 wire close to the feedthrough in the lower endplate.  A small magnet was 
@@ -272,8 +295,11 @@ AC power supply.  The AC current could be varied in frequency.  For a
 few-second interval, the Lorentz force on the wire caused it to vibrate and
 then during a few-second ``voltage-off'' period, the resulting induced voltage
 was read out on an oscilloscope.  In this way, we determined the resonant frequency
-of the wire.  If this frequency agreed within limits with a pre-calculated
-table of nominal frequency, the wire passed the frequency test.
+of the wire. 
+\item if this frequency agreed within limits with a pre-calculated
+table of nominal frequency, the wire passed the frequency test.  The tension limits for
+the longest wires (length greater than 3m) was $\pm~15\%$, while for the shortest wires
+(~ 30 cm) the tension limits were $+50\%$and $-25\%$.
 \end{itemize}
 Wires that failed either test were removed and re-strung.
 

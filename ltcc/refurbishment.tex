@@ -1,24 +1,22 @@
 \section{LTCC Refurbishment}
 
-
 The re-scoping of the LTCC to discriminate pions instead of electrons required a dramatic increase in the
-number of photo-electrons detected. Four areas were considered to achieve this:
+number of photoelectrons detected. Four areas were considered to achieve this:
 
 \begin{enumerate}
-	\item Increase optical reflectivity
-	\item Increase PMT response to UV light
-	\item Increase gas volume
+	\item Increase optical reflectivity;
+	\item Increase PMT response to ultraviolet (UV) light;
+	\item Increase gas volume;
 	\item Address the gas leaks and other hardware issues.
 \end{enumerate}
 
-
-Monte-Carlo simulations of pions in the LTCC quantified the number of Cherenkov light  reflections on the cylindrical, elliptical,
-parabolic, and Winston cones surfaces as:
+Monte Carlo simulations of pions in the LTCC quantified the number of Cherenkov light  reflections on the cylindrical,
+elliptical, parabolic, and Winston cones surfaces as:
 
 \begin{itemize}
-	\item 2 reflections only: 30$\%$ of the time
-	\item 3 reflections: 40$\%$ of the time
-	\item 4 or more reflections: 30$\%$ of the time
+	\item 2 reflections only: 30$\%$ of the time;
+	\item 3 reflections: 40$\%$ of the time;
+	\item 4 or more reflections: 30$\%$ of the time.
 \end{itemize}
 
 \noindent
@@ -30,37 +28,37 @@ The original average measured reflectivity of the mirrors and Winston cones
 showed a degraded reflectivity compared to the values at installation and to
 the new samples, likely due to  17 years of aging, see \F{reflectivityGain}.
 
-
 \begin{figure}
 	\centering
 	\includegraphics[width=0.98\columnwidth, height=0.7\columnwidth]{img/reflectivityGain.png}
-	\caption{A typical reflectivity measurement vs wavelength of one original LTCC mirror (diamonds)
+	\caption{A typical reflectivity measurement vs. wavelength of one original LTCC mirror (diamonds)
 			shows a 65\% reflectivity versus what can be achieved
-			by a new coating (open circles), about 90\% reflectivity. The increase is even more significant at smaller wavelengths }
+			by a new coating (open circles), about 90\% reflectivity. The increase is even more significant at smaller
+                        wavelengths.}
 	\label{fig:reflectivityGain}
 \end{figure}
 
-In the study a few scenarios using the $C_4F_{10}$ index of refraction (shown in \F{c4f10RefrIndex})
+In the study a few scenarios using the C$_4$F$_{10}$ index of refraction (shown in \F{c4f10RefrIndex})
 and considering the various reflection probabilities outlined above  were considered:
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.98\columnwidth, height=0.65\columnwidth]{img/c4f10RefrIndex.png}
-	\caption{The $C_4F_{10}$ gas index of refraction as a function of wavelength.}
+	\caption{The C$_4$F$_{10}$ gas index of refraction as a function of wavelength.}
 	\label{fig:c4f10RefrIndex}
 \end{figure}
 
 \begin{itemize}
 	\item using old or new mirror reflectivity (see \F{reflectivityGain});
-	\item using a completely transparent gas or the $C_4F_{10}$ with its measured transparency;
+	\item using a completely transparent gas or the C$_4$F$_{10}$ with its measured transparency;
 	\item using the actual or the enhanced PMT quantum efficiency function;
-	\item using or not the additional $C_4F_{10}$ gas volume;
+	\item using or not using the additional C$_4$F$_{10}$ gas volume;
 	\item comparing the pion response to the original CLAS 6 GeV era electron response.
 \end{itemize}
-
+\noindent
 The results of these studies are discussed below.
 
-The reflection probability vs wavelength distributions for each scenario were input into
+The reflection probability vs. wavelength distributions for each scenario were input into
 the Frank\textendash Tamm formula \cite{Frank:1937fk} below to calculate
 the Cherenkov radiation yield as a function of wavelength and momenta:
 
@@ -71,9 +69,10 @@ the Cherenkov radiation yield as a function of wavelength and momenta:
 \end{equation}
 
 \noindent
-where $\alpha$ is the fine structure constant, $\theta_C$ is the Cherenkov cone half-angle, $z$ is the particle charge and $v$ is its speed.
+where $\alpha$ is the fine structure constant, $\theta_C$ is the Cherenkov cone half-angle, $z$ is the particle
+charge, and $v$ is its speed.
 
-One particular combination among the described scenarios is given as an example \F{photonYieldStudy} for pions,
+One particular combination among the described scenarios is given as an example in \F{photonYieldStudy} for pions,
 the measured non-refurbished mirror reflectivity, a 100$\%$ transparent gas, and a PMT with ideal refurbished quantum efficiency.
 
 \begin{figure}
@@ -81,10 +80,9 @@ the measured non-refurbished mirror reflectivity, a 100$\%$ transparent gas, and
 	\includegraphics[width=0.98\columnwidth, height=0.75\columnwidth]{img/photonYieldStudy.png}
 	\caption{Cherenkov light yield as a function of pion momentum and photon wavelength using the Frank\textendash Tamm formula
              for one of the scenarios considered: mirrors and Winston cones with low reflectivity (LTCC original mirror, not refurbished),
-             a perfectly transparent gas and an ideally refurbished PMT.}
+             a perfectly transparent gas, and an ideally refurbished PMT.}
 	\label{fig:photonYieldStudy}
 \end{figure}
-
 
 When the number of reflections is taken into account, the refurbishment shows
 a factor of 2.5 gain in the visible light wavelengths and a factor of 3.8 in the UV:
@@ -95,25 +93,24 @@ a factor of 2.5 gain in the visible light wavelengths and a factor of 3.8 in the
 		\item original integrated reflectivity: 27.5$\%$
 		\item refurbished integrated reflectivity: 68.1$\%$
 	\end{itemize}
-	\item Ultra-violet:
+	\item Ultraviolet:
 	\begin{itemize}
 		\item original integrated reflectivity: 9.1$\%$
 		\item refurbished integrated reflectivity: 34.3$\%$
 	\end{itemize}
 \end{itemize}
 
-
-The results have been summarized in \F{refurbishmentGains} for the two main scenarios: mirror re-coating and PMT quantum efficiency improvements.
-By performing both of these improvements, the study shows that the LTCC response to pions will be the same as it was for electrons above 4 GeV
-in the original LTCC for CLAS.
+The results are summarized in \F{refurbishmentGains} for the two main scenarios: mirror re-coating and PMT quantum efficiency improvements.
+By performing both of these improvements, the study shows that the LTCC response to pions will be the same as it was for electrons above 4~GeV
+in the original Cherenkov detector for CLAS.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth, height=0.7\columnwidth]{img/refurbishmentGains.png}
-	\caption{Ratio of LTCC response to pions to the old response to electrons. Diamonds: with no refurbishment, the goal of
-		     detecting pions cannot be reached. More than a factor of two can be gained by re-coating the mirrors and Winston cones
-             (squares). In addition, by increasing the PMT response to UV light (stars), the LTCC can reach the old
-			 performance above pion momenta of 4 GeV.}
+	\caption{Ratio of LTCC response to pions to the old response to electrons. Diamonds: with no refurbishment, the
+          goal of detecting pions cannot be reached. More than a factor of two can be gained by re-coating the mirrors
+          and Winston cones (squares). In addition, by increasing the PMT response to UV light (stars), the LTCC can
+          reach the old performance for electrons for pions with momenta above 4~GeV.}
 	\label{fig:refurbishmentGains}
 \end{figure}
 
@@ -124,13 +121,13 @@ The design changes of the LTCC are summarized below:
 	\begin{enumerate}
 		\item Cut Sides
 		\item Relocate the three mirror sets closest to the back-wall
-		\item Redesign, replace back-wall frame
+		\item Redesign and replace the back-wall frame
 	\end{enumerate}
 
 	\item Decrease inefficient regions
-	\item Increase PMT gain, split output to provide both FADC and TDC signals
+	\item Increase PMT gain and split the output to provide both FADC and TDC signals
 	\item Minimize gas leaks
-	\item Better mirror supports
+	\item Improve the mirror supports
 	\item Increase light yield:
 	\begin{enumerate}
 		\item Re-coat all mirrors

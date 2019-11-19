@@ -1,11 +1,9 @@
 %
 %---Beginning of Document---
 %
-% Use 1). latex recon-nim.tex, 2). dvipdfm recon-nim
-%
 \RequirePackage{lineno}
 \documentclass[3p,times,twocolumn]{elsarticle}
-\usepackage{lineno, color, listings, enumerate, amssymb, graphicx, float, wrapfig}
+\usepackage{lineno, color, listings, enumerate, amssymb, graphicx, float}
 \usepackage{amsthm,amsmath}
 % notice hyperref loaded last to avoid duplicate reference warnings
 %\usepackage[font=normalsize,labelfont=bf]{caption}
@@ -34,13 +32,12 @@
 %\setcounter{tocdepth}{5}
 %\linenumbers
 
-
 \begin{document}
 \begin{frontmatter}
 
 \title{CLAS12 Software Framework and Event Reconstruction}
 
-\author[JLab]{V. Ziegler\'i\corref{mycorrespondingauthor}}
+\author[JLab]{V. Ziegler\corref{mycorrespondingauthor}}
 \cortext[mycorrespondingauthor]{Corresponding author}
 \ead{ziegler@jlab.org}
 \author[JLab]{N. Baltzell}
@@ -55,6 +52,7 @@
 \author[JLab]{V. Gyurjyan}
 \author[JLab]{N. Harrison}
 \author[CNU]{D. Heddle}
+\author[IPNO]{A. Hobart}
 \author[UConn]{A. Kim}
 \author[JLab]{N. Markov}
 \author[JLab]{M.D. Mestayer}
@@ -78,10 +76,10 @@
 %\maketitle
 
 \begin{abstract}
-We describe offline event reconstruction for the CEBAF Large Acceptance Spectrometer at 12 GeV.
-The present an overview of the offline reconstruction framework and software tools.
-We describe the algorithms developed for the individual detector subsystems and the overall scheme for the
-particle identification.  We present the data processing scheme and code management procedures.
+  We describe offline event reconstruction for the CEBAF Large Acceptance Spectrometer at 12~GeV (CLAS12),
+  including an overview of the offline reconstruction framework and software tools, a description of the algorithms
+  developed for the individual detector subsystems, and the overall approach for charged and neutral particle
+  identification. We also present the scheme for data processing and the code management procedures.
 \end{abstract}
 
 \begin{keyword}
@@ -114,10 +112,13 @@ CLAS12, event reconstruction, PACS:29.40.Mc
 \input{conclusions}
 
 \section{Acknowledgments}
-This work was supported in part by the Chilean Comisi\'on Nacional de Investigaci\'on Cient\'ifica y Tecnol\'ogica (CONICYT), the Italian Istituto Nazionale di Fisica Nucleare, the French Centre National de la Recherche Scientifique, the French Commissariat \`{a} l'Energie Atomique, the U.S. Department of Energy, Office of Science, Office of Nuclear Physics under contract DE-AC05-06OR23177, the National Science Foundation, the Scottish Universities Physics Alliance (SUPA), the United Kingdom's Science and Technology Facilities Council, and the National Research Foundation of Korea.
 
-The Southeastern Universities Research Association (SURA) operates the Thomas Jefferson National Accelerator Facility for the United States Department of Energy under contract DE-AC05-84ER40150.
-
+This work was supported in part by the Chilean Comisi\'on Nacional de Investigaci\'on Cient\'ifica y Tecnol\'ogica
+(CONICYT), the Italian Istituto Nazionale di Fisica Nucleare, the French Centre National de la Recherche Scientifique,
+the French Commissariat \`{a} l'Energie Atomique, the U.S. Department of Energy, Office of Science, Office of
+Nuclear Physics under contract DE-AC05-06OR23177, the National Science Foundation, the Scottish Universities
+Physics Alliance (SUPA), the United Kingdom's Science and Technology Facilities Council, and the National Research
+Foundation of Korea.
 
 \begin{thebibliography}{99}
 
@@ -125,12 +126,56 @@ The Southeastern Universities Research Association (SURA) operates the Thomas Je
 V.D. Burkert {\it et al.}, ``The CLAS12 Spectrometer at Jefferson Laboratory'', to be published in Nucl.
 Inst. and Meth. A, (2020). (see this issue)
 
+\bibitem{dc-nim}
+M.D. Mestayer {\it et al.}. ``The CLAS12 Drift Chamber System'', to be published in Nucl. Inst. and
+Meth. A, (2020). (see this issue)
+
+\bibitem{ltcc-nim}
+M. Ungaro {\it et al.}, ``The CLAS12 Low Threshold Cherenkov Counter'', to be published in Nucl. Inst.
+and Meth. A, (2020). (see this issue)
+
+\bibitem{htcc-nim}
+Y. Sharabian {\it et al.}, ``The CLAS12 High Threshold Cherenkov Counter'', to be published in Nucl. Inst.
+and Meth. A, (2020). (see this issue)
+  
+\bibitem{rich-nim}
+M. Contalbrigo {\it et al.}, ``The CLAS12 RICH Detector'', to be published in Nucl. Inst. and
+Meth. A, (2020). (see this issue)
+
+\bibitem{ftof-nim}
+D.S. Carman {\it et al.},   ``The CLAS12 Forward Time-of-Flight System'', to be published in Nucl.
+Inst. and Meth. A, (2020). (see this issue)
+
+\bibitem{ecal-nim}
+G. Asryan {\it et al.}, ``The CLAS12 Forward Electromagnetic Calorimeter'', to be published in Nucl. Inst. and
+Meth. A, (2020). (see this issue)
+
+\bibitem{svt-nim}
+A. Antonioli {\it et al.}, ``The CLAS12 Silicon Vertex Tracker'', to be published in Nucl. Inst. and
+Meth. A, (2020). (see this issue)
+
+\bibitem{mm-nim}
+A. Acker {\it et al.}, ``The CLAS12 Micromegas Vertex Tracker'', to be published in Nucl. Inst. and
+Meth. A, (2020). (see this issue)
+
+\bibitem{ctof-nim}
+D.S. Carman {\it et al.}, ``The CLAS12 Central Time-of-Flight System'', to be published in Nucl.
+Inst. and Meth. A, (2020). (see this issue)
+
+\bibitem{cnd-nim}
+P. Chatagnon {\it et al.}, ``The CLAS12 Central Neutron Detector'', to be published in Nucl. Inst. and
+Meth. A, (2020). (see this issue)
+
+\bibitem{ft-nim}
+A. Acker {\it et al.}, ``The CLAS12 Forward Tagger'', to be published in Nucl. Inst. and
+Meth. A, (2020). (see this issue)
+
 \bibitem{clara-2011}
 V. Gyurjyan {\it et al.}, CLARA: A Contemporary Approach to Physics Data Processing, J. Phys. Conf. Ser.
 {\bf 331}, 032013 (2011).
 
 \bibitem{clara-service}
-J. Carbonneau, M. Moog,  J. Gilfoyle {\it et al.}, 2011 APS Division of Nuclear Physics Meeting Abstracts, EA.024.
+J. Carbonneau, M. Moog,  J. Gilfoyle, {\it et al.}, 2011 APS Division of Nuclear Physics Meeting Abstracts, EA.024.
 
 \bibitem{framework}
 Component Based Dataflow Processing Framework, 2015, IEEE DOI: 10.1109/BigData.2015.7363971,
@@ -139,98 +184,70 @@ ISBN: 978 1-4799-9926-2
 \bibitem{clara-2016}
 CLARA: The CLAS12 Reconstruction and Analysis framework, 2016, J. Phys. Conf. Ser. {\bf 762}, 012009 (2016).
 
-\bibitem{sim-nim}
-M. Ungaro {\it et al.},   ``The CLAS12 Geant4 Simulation'', to be published in Nucl.
-Inst. and Meth. A, (2020). (see this issue)
-
 \bibitem{gluex}
-Find a reference
+The GlueX Collaboration, The GlueX Experiment in Hall~D, Presentation to JLAB PAC36, (2010.
+http://www.gluex.org/docs/pac36\_update.pdf
+
+\bibitem{magnets-nim}
+R. Fair {\it et al.}, ``The CLAS12 Superconducting Magnets'', to be published in Nucl. Inst.
+and Meth. A, (2020). (see this issue)
 
 \bibitem{evio}
-Event IO Data Format,
-https://coda.jlab.org/drupal/content/event-io-evio
-
-\bibitem{ecal-nim}
-G. Asryan {\it et al.}, ``The CLAS12 Forward Electromagnetic Calorimeter'', to be published in Nucl.
-Inst. and Meth. A, (2020). (see this issue)
-
-\bibitem{dc-nim}
-M.D. Mestayer {\it et al.}. ``The CLAS12 Drift Chamber System'', to be published in Nucl. Inst. and
-Meth. A, (2020). (see this issue)
-
-\bibitem{ftof-nim}
-D.S. Carman {\it et al.},   ``The CLAS12 Forward Time-of-Flight System'', to be published in Nucl.
-Inst. and Meth. A, (2020). (see this issue)
-
-\bibitem{ft-nim}
-A. Acker {\it et al.}, ``The CLAS12 Forward Tagger'', to be published in Nucl. Inst. and
-Meth. A, (2020). (see this issue)
+Event IO Data Format, \\ https://coda.jlab.org/drupal/content/event-io-evio
 
 \bibitem{daq-nim}
-S. Boiarinov {\it et al.}, ``The CLAS12 Data Acquisition System'', to be published in Nucl. Inst. and
-Meth. A, (2020). (see this issue)
-
-\bibitem{ctof-nim}
-D.S. Carman {\it et al.}, ``The CLAS12 Central Time-of-Flight System'', to be published in Nucl.
-Inst. and Meth. A, (2020). (see this issue)
-
-\bibitem{svt-nim}
-A. Antonioli {\it et al.}, ``The CLAS12 Silicon Vertex Tracker'', to be published in Nucl. Inst. and
-Meth. A, (2020). (see this issue)
-
-\bibitem{mm-nim}
-A. Acker {\it et al.}, ``Micromegas Vertex Tracker for CLAS12', to be published in Nucl. Inst. and
+S. Boyarinov {\it et al.}, ``The CLAS12 Data Acquisition System'', to be published in Nucl. Inst. and
 Meth. A, (2020). (see this issue)
 
 \bibitem{spiri}
-Alexander Spiridonov, Optimized Integration of the Equations of Motion of a Particle in the HERA-B Magnet
+Alexander Spiridonov, Optimized Integration of the Equations of Motion of a Particle in the HERA-B Magnet.
 
 \bibitem{Highland-Lynch-Dahl}
-ADD REFERENCE
+V. L. Highland, Nucl. Instr. and Meth. {\bf 129}, 497 (1975); Nucl. Instr. and Meth. {\bf 161}, 171 (1979);
+G.R. Lynch and O.I. Dahl, Nucl. Instr. and Meth. {\bf B58}, 6 (1991).
 
 \bibitem{CA-HeraB}
-I.~Abt, I.~Kisel, S.~Masciocchi and D.~Emelyanov,
-``CATS: A cellular automaton for tracking in silicon for the HERA-B vertex detector,''
-Nucl.\ Instrum.\ Meth.\ A {\bf 489} (2002) 389.
-doi:10.1016/S0168-9002(02)00790-8
-%%CITATION = doi:10.1016/S0168-9002(02)00790-8;%%
-%26 citations counted in INSPIRE as of 27 Sep 2019
+I. Abt, I. Kisel, S. Masciocchi, and D. Emelyanov, ``CATS: A Cellular Automaton for Tracking in Silicon for the
+HERA-B Vertex Detector'', Nucl. Inst. and Meth. A {\bf 489}, 389 (2002).
 
 \bibitem{ILC-Tracking}
-ADD REFERENCE
-
-\bibitem{ec-nim}
-G. Asryan {\it et al.}, ``The CLAS12 Forward Electromagnetic Calorimeter', to be published in Nucl. Inst. and
-Meth. A, (2020). (see this issue)
-
-\bibitem{rich-nim}
-M. Contalbrigo {\it et al.}, ``The CLAS12 RICH Detector'', to be published in Nucl. Inst. and
-Meth. A, (2020). (see this issue)
-
-\bibitem{cnd-nim}
-P. Chatagnon {\it et al.}, ``The CLAS12 Central Neutron Detecto'', to be published in Nucl. Inst. and
-Meth. A, (2020). (see this issue)
+Rainer Mankel, Rept. Prog. Phys. {\bf 67}, 553 (2004).
 
 \bibitem{ic}
-R. Niyazov and S. Stepanyan, ``CLAS/DVCS Inner Calorimeter Calibration'', CLAS-Note 2005-021.
+R. Niyazov and S. Stepanyan, ``CLAS/DVCS Inner Calorimeter Calibration'', CLAS-Note 2005-021, (2005).
+https://misportal.jlab.org/ul/Physics/Hall-B/clas/viewFile.cfm/2005-021.pdf?documentId=213
+
+\bibitem{sim-nim}
+M. Ungaro {\it et al.},  ``The CLAS12 Geant4 Simulation'', to be published in Nucl. Inst. and Meth. A, (2020).
+(see this issue)
 
 \bibitem{clasdis}
-GET a REFERENCE FRom HARUT.
+T. Sjostrand, S. Mrenna and P. Z. Skands, ``A Brief Introduction to PYTHIA 8.1'', Comput. Phys. Commun. {\bf 178},
+852 (2008).
 
-\bibitem{recon-github}
-{CLAS12 Reconstructino Software Repository},
-https://github.com/jeffersonlab/clas12-offline-software
-\bibitem{jlab-batch-farm}
-{Jefferson Lab Batch Farm},
-https://scicomp.jlab.org/docs/ExpPhyComp
+\bibitem{Day1984}
+W. H. E. Day and H. Edelsbrunner, Journal of Classification 1-1 (1984), 7. 
 
 \bibitem{jlab-tape-silo}
-{Jefferson Lab Tape Silo},
-https://scicomp.jlab.org/docs/node/9
+Jefferson Lab Tape Silo, https://scicomp.jlab.org/docs/node/9
 
 \bibitem{jlab-lustre}
-{Jefferson Lab Lustre Filesystem},
-https://scicomp.jlab.org/docs/node/17
+Jefferson Lab Lustre Filesystem, https://scicomp.jlab.org/docs/node/17
+
+\bibitem{recon-github}
+CLAS12 Reconstruction Software Repository, https://github.com/jeffersonlab/clas12-offline-software
+
+\bibitem{jlab-batch-farm}
+Jefferson Lab Batch Farm, https://scicomp.jlab.org/docs/ExpPhyComp
+
+\bibitem{bdt}
+B. P. Roe, H-J. Yang, J. Zhu, Y. Liu, I. Stancu, G. McGregor, Nucl. Inst. and Meth. A {\bf 543}, 577 (2005).
+
+\bibitem{mp}
+K. Hornik, M. Stinchcombe, and H. White. Neural Networks {\bf 2}, 359 (1989)
+
+\bibitem{cnn}
+I. Goodfellow, Y. Bengio, and A. Courville,  Deep Learning, MIT Press, 326 (2016).
 
 \end{thebibliography}
 
