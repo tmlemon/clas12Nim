@@ -6,11 +6,19 @@ optical properties of the gas and mirrors and WCs as a function of wavelength, s
 Here we describe additional details of the mirror geometry implementation relevant to the technique
 used for the alignment.
 
-The optics of the mirrors were tuned to compromise the two different topology of angles of incidence
-(positive and negative particles) by using photons originating from the target (placed at the center of the CLAS12 coordinate system),
-see \ref{sec:mirrorAlignment}.
-This is reflected in the mirrors mathematical outline implemented in the simulation and the choice of the
-focal points of the elliptical and hyperbolic mirrors \F{mirrorMath}.
+
+As part of the re-scoping of the LTCC to detect pions (both positive and negative) instead of
+negatively charged electrons, the optics of the mirrors needed to be tuned in order to compromise
+both topologies of the particles angles of incidence relative to their charges.
+This was accomplished by aligning the mirrors using straight tracks (photons) originating from the target
+(placed at the center of the CLAS12 coordinate system), see \ref{sec:mirrorAlignment}.
+
+The mirrors mathematical outline implemented in the simulation and the choice of the
+focal points of the elliptical and hyperbolic mirrors \F{mirrorMath} follow this
+this re-scoping: the elliptical mirrors are built using ellipsoidal and hyperbolic shapes
+that implement the target as the starting point, and the faces of the PMTs as the final focal point
+for each set of mirrors.
+
 
 \begin{figure}
 	\centering
@@ -28,10 +36,6 @@ focal points of the elliptical and hyperbolic mirrors \F{mirrorMath}.
 	\label{fig:mirrorMath}
 \end{figure}
 
-The elliptical mirrors are built by a sequence boolean operation of ellipsoidal
-and cubic shaped volumes and the hyperbolic mirrors are made by Geant4 ``polycones'' (volumes with cylindrical symmetry
-with varying radius along one axis) that approximate the shape of the mirrors using a number of facets
-varying from 10 (smallest mirror) to 30 (longest mirrors). 
 
 
 \subsection{Run Period Variations}
