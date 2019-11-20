@@ -384,7 +384,7 @@ of five iterations is performed to make sure of the convergence of the filtering
 
 The momentum resolutions in the central and forward trackers as a function of momentum are shown in
 Figs.~\ref{fig:respcvt} and~\ref{fig:respdc}, respectively. The distributions are fit with a function of the form
-$\sqrt{a+b x^2+c/(1+d/x^2)}$.  The resolutions achieved are well within the design specifications and the
+$\sqrt{a+b x^2+c/(1+d/x^2)}$.  In both distributions, the increase in resolution at low momentum is due to multiple scattering effects.  The resolution increases as a function of momentum after a minimum is reached die to poorer track curvature resolution.  The resolutions achieved are well within the design specifications and the
 difference in magnitude between the central and the forward trackers is due to the intrinsic resolutions of these
 detectors. 
 
@@ -447,8 +447,7 @@ The polar angular dependence of the DC tracking efficiency obtained from sample~
 Fig.~\ref{fig:trkeffinoutb}. The (light) green histogram corresponds to outbending tracks. The efficiency is flat
 in the angular range from 10$^\circ$ to 25$^\circ$ for outbending tracks, while there is a loss of tracks below
 15$^\circ$ for the inbending tracks. As discussed above, this is due to tracks missing the outer detectors.  
-
-\begin{figure}
+\begin{figure}[t]
 \includegraphics[width=0.45\textwidth]{pics/DCTrkEffvsThetaInandOutbenders.png}
 \caption{DC tracking efficiency as a function of polar angle evaluated using  pions  simulated at $p=4\pm 1$~GeV,
   $10^\circ \leq \theta \leq 25^\circ$ and $\phi = 0 \pm 5^\circ$.}
@@ -456,10 +455,9 @@ in the angular range from 10$^\circ$ to 25$^\circ$ for outbending tracks, while 
 \end{figure}
 
 The vertex resolutions of reconstructed tracks from a sample of simulated Semi Inclusive Deep Inelastic events (SIDIS) are shown in Fig.~\ref{fig:vtxres}.  The vertex for positive and negative tracks reconstructed  in the central and forward detectors, respectively.  The vertex resolutions for the central detector (blue histogram) is about 3 mm and for the forward (red histogram), about 5 mm. 
-
-\begin{figure}
+\begin{figure}[ht]
 \includegraphics[width=0.45\textwidth]{pics/VertexResolution.png}
 \caption{The vertex resolutions of reconstructed tracks from a sample of simulated Semi Inclusive Deep Inelastic events (SIDIS).  The vertex for positive and negative tracks reconstructed  in the central and forward detectors, are represented by the red and blue histograms, respectively.}
 \label{fig:vtxres}
 \end{figure}
-
+\newpage
