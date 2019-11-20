@@ -72,7 +72,8 @@ and at the College of William and Mary (WM). The average width for the scintilla
 was measured before the scintillators were cut, and the final cut length of each strip needed to fit within the
 triangular area was chosen based on this average to avoid buildup of errors during stacking. The largest deviation
 from the design width of 45~mm was less than 0.3~mm, compared to the specified tolerance for this dimension
-of $\pm$1~mm.
+of $\pm$1~mm.  For each module the position accuracy from layer-to-layer was better than a few millimeters.  The
+largest module-to-module variation in average width was 0.12~mm.
 
 \subsection{Wavelength Shifting Fibers}
 
@@ -173,8 +174,9 @@ the position dependence $I(x)$ of the PMT current is shown fitted to a double ex
 I(x) = A_S \exp(-x/\lambda_S)+A_L \exp(-x/\lambda_L).
 \end{equation}
 
-By fixing the short and long attenuation factors at their nominal values of $\lambda_S=70$~cm and
-$\lambda_L=400$~cm and refitting, it was found that the stability of the fitted amplitudes was around $17\%$
+From fitting a large sample of scintillators it was found the attenuation parameters were clustered around the average values  
+$\lambda_S=70$~cm and $\lambda_L=400$~cm. By fixing these short and long attenuation factors at their nominal values and refitting, 
+it was found that the stability of the fitted amplitudes was around $17\%$
 for $A_S$ and $5\%$ for $A_L$ for the group of scintillators studied. 
 
 \begin{figure}[hbt]
@@ -188,8 +190,8 @@ for $A_S$ and $5\%$ for $A_L$ for the group of scintillators studied.
 
 Testing of the WLS readout fibers was performed with the same apparatus, using a test scintillator 30~cm in
 length. Five sets of four fibers each were selected at random for testing from each packaged bundle of 100.
-A single measurement of the PMT current with and without fibers inserted was made at the midpoint of the
-scintillator. In all cases, fibers whose response was below the nominal measurement by $>15\%$ were found to
+A single measurement of the PMT current with and without fibers inserted was made by placing the $^{90}$Sr source 
+at the midpoint of the scintillator. In all cases, fibers whose response was below the nominal measurement by $>15\%$ were found to
 have mechanical damage, although other fibers from the package were tested to double-check batch uniformity.
 Overall light yield stability of the fiber response was better than $7\%$.
  
@@ -197,7 +199,7 @@ Overall light yield stability of the fiber response was better than $7\%$.
 
 Each PCAL box were cleaned with isopropanol to remove any grease and debris from machining. The bottom window
 was placed on a support table and the side walls and retainers were installed. Prior to scintillator stacking, a
-50$\mu$m Teflon sheet was laid down, followed by placement of the first U layer of 84 scintillator strips, beginning
+50~$\mu$m Teflon sheet was laid down, followed by placement of the first U layer of 84 scintillator strips, beginning
 with the longest strip. Gaps between scintillators were minimized both during placement and after each layer was
 complete using shimmed triangle pieces in the corners to push the strips together. Strips were also tightly bound
 between the retainers at the fiber readout end and flat spring clips at the opposite end to accommodate thermal
@@ -260,7 +262,7 @@ cards are housed in the same mainframes used by FTOF.
 From the splitters, thin coax patch cables are routed to JLab VME-based Discriminator Scaler Module (DSC2) boards for pulse timing measurements and JLab 250~MHz 12-bit flash ADCs (FADC) for pulse amplitude measurements~\cite{nim:daq}. Ribbon cables
 connect the DSC2 with CAEN 1190A TDCs that have 100~ps LSB resolution. The FADC and DSC2/TDC modules
 are housed in separate VXS crates. The FADC/VXS crate also contains the JLab VXS Trigger Processor (VTP) in a
-special switched slot that is used to process the energy and hit data for the trigger decision making~\cite{nim:daq,nim:trig}.  
+special switched slot that is used to process the energy and hit data from the FADCs for the CLAS12 trigger decision making~\cite{nim:daq,nim:trig}.  
 
 All HV and RG-58 signal cables for PCAL were manufactured at Ohio University. The thin coax interconnection
 cables were  manufactured at Norfolk State University. Both groups also participated in cable installation
