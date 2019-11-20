@@ -7,7 +7,7 @@ The RICH mirror geometry is implemented through both of the native GEMC geometry
 The spherical mirrors are made through Geant4 boolean intersections of spheres and planes.
 Since the array of 391 PMTs is inside the CLAS12 acceptance, particular care went into implementing in the
 simulation the details of the PMT hardware and materials: the PMTs are Geant4 aluminum boxes containing the electronics components materials
-(accounting for the adapter, the  Multi Anode Read Out Chip, and FPGA boards), the window, and the photocathodes.
+(accounting for the adapter, the  Multi Anode Read Out Chip, and FPGA boards), the window, and the photo-cathodes.
 Each multi-node PMT contains 64 pixels. The identification of the pixel is done in the process identification routine.
 The aerogel radiator tiles are imported from the engineering CAD models and include the triangular, squared, pentagon, and trapezoidal shapes.
 The RICH box, mirror support structure, tiles wrapping, planar mirrors, and additional support hardware are also imported from the engineering CAD models.
@@ -27,7 +27,7 @@ The refractive index and transparency was measured for each aerogel tile, and in
 assigning a unique material to each aerogel volume with the proper optical properties.
 Similarly for the reflectivity of each of the spherical and planar mirrors.
 Theses optical properties and taken into account during the Geant4 transportation of the photons.
-The quantum efficiency associated with the PMT photocathodes is taken into account in the digitization routine.
+The quantum efficiency associated with the PMT photo-cathodes is taken into account in the digitization routine.
 
 \subsubsection{Process ID}
 At each Geant4 step, the local coordinates in the PMT volume are used to calculate the pixel number within that PMT.
@@ -53,8 +53,8 @@ The digitized output bank variables are summarized in Table \ref{tab:richBank}.
                TDCL  &                                  TDC leading edge   \\
                TDCT  &                                 TDC trailing edge   \\
                time  &                           average time of the hit   \\
-               nphe  &                  number of photoelectrons arrived   \\
-              npheD  &                 number of photoelectrons detected   \\
+               nphe  &                  number of photo-electrons arrived   \\
+              npheD  &                 number of photo-electrons detected   \\
                hitn  &                                        hit number   \\
 			\hline \hline
 		\end{tabular}
