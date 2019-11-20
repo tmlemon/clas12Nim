@@ -1,16 +1,17 @@
 \section{Performance}
+After the calibration constants are determined, the timing, position, and deposited energy of each hit are reconstructed, and clusters are formed grouping hits according to their position and timings \cite{recon-nim}.
 
 Data taken during the first CLAS12 experiments, on hydrogen and deuterium targets, and with various beam energies (7.5 and 10.6 GeV), were analyzed to verify the performance of the CND. 
 
-The timing performance for the three layers of the CND are illustrated in Fig.~\ref{fig_performance_deltat_layers}, showing the vertex time difference $v_t$ for selected negative tracks, integrated over all sectors defined as
+The timing performance for the three layers of the CND are illustrated in Fig.~\ref{fig_performance_deltat_layers}, showing the vertex time difference $v_t$ for selected negative tracks, assumed to be all pions, integrated over all sectors defined as
 \begin{equation}\label{eq_vtp_definition}
 v_t=t_{\rm{CND}}-t_{\rm{S}}-\frac{path}{c \cdot \beta} ,
 \end{equation}
 where $t_{\rm{S}}$ is the event start time determined by the FTOF, $path$ is the path length from the event vertex to the CND and
 \begin{equation}\label{eq_beta_definition}
-\beta=\frac{p}{\sqrt{p^2+m^2}} .
+  \beta=\frac{p}{\sqrt{p^2+m^2}},
 \end{equation}
-% e
+with $p$ the momentum measured by the CVT, and $m$ the pion mass. 
 The distribution of $v_t$ is centered at 0, and from its width, obtained with a Gaussian fit ($\sigma_{v_t}\simeq 243$ ps in average) one can deduce the average timing resolution for each PMT of the CND, convoluted with the CVT resolution, using the formula:
 \begin{equation}\label{eq_resolution}
 \sigma_t=\frac{\sqrt{\sigma_{v_t}^2-\sigma_{t_{S}}^2}}{\sqrt{2}}=157\, \rm{ps}, 
