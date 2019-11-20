@@ -40,11 +40,19 @@ The CLARA data-stream pipe is a data bus based on the xMsg messaging system that
 such as MPI, pub-sub, p2p, inproc, and shared memory. The CLARA orchestrator, i.e. the process level workflow
 management system, controls the overall process execution. 
 
-The framework enables execution of software applications in multi-threaded mode. This is implemented via event
-parallelization for the CLAS12 reconstruction. Figure~\ref{fig:scaling} shows the results of a scaling test on an
+The framework enables execution of software applications in multi-threaded mode. This is implemented via event-level
+parallelization for the CLAS12 reconstruction. 
+The framework is specifically designed to do thread-based event level
+parallelization optimizing the use of multicore machines, thereby allowing 
+the reconstruction of multiple events in a single node.  
+Figure~\ref{fig:scaling} shows the results of a scaling test on an
 Intel Xeon node (E5-2697A v4 @ 2.6~GHz). Comparison with Amdhal's law indicates 99.5\% parallel efficiency over
 the 32 physical cores of the machine.
-{\color{red} SHOULD ADD MORE ON EVENT PARALLELIZATION AND MULTI-HW SUPPORT.}
+
+The CLARA framework provides service interface implementations in Java, C++ and Python languages. 
+At present all the CLAS12 reconstruction services deployed using the CLARA framework are written in Java.
+
+%{\color{red} SHOULD ADD MORE ON EVENT PARALLELIZATION AND MULTI-HW SUPPORT.}
 
 \begin{figure}
 \centering

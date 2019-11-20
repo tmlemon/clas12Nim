@@ -113,10 +113,7 @@ straight-line hypothesis, and those hits with acceptable residuals are kept and 
 \includegraphics[width=0.4\textwidth]{pics/dcPattern2.png}
 \caption{Illustration of hits rejected by the pattern recognition pruning algorithm in a Monte Carlo electron
   event. The circles superimposed on top of the DC cells indicate the DOCAs computed from the fully corrected
-  times. The yellow hourglass symbols show the simulated track positions along the trajectory. The algorithm looks
-  for ``strings'' of hits, such as shown in the third column of hits in the right-most superlayer in the figure. In this
-  instance, the middle hit in this string would be rejected, leaving a set of four attached hits at the bottom part of
-  the string that would subsequently be rejected since they would no longer be attached to the main cluster.}
+  times. The yellow hourglass symbols show the simulated track positions along the trajectory. The group of hits encircled is removed by the pruning algorithm.}
 \label{fig:strings}
 \end{figure}
 
@@ -136,8 +133,9 @@ we call a ``cross''. A segment slope coincidence algorithm is used to match neig
 Fig.~\ref{fig:dcsegs}).  Selection cuts are subsequently applied on the reconstructed cross to ensure that it is
 within the detector fiducial volume within resolution.
 
-An additional pattern reconstruction algorithm matches segments within the even and odd numbered superlayers
-in a given sector, respectively, to form a track candidate where an entire superlayer can be missing. The matching
+There are instances when an entire superlayer can be missing from the list of hits available to fit a track. 
+This can happen when inbending tracks are produced at low angle and miss the last superlayer of the chamber or when a segment has fewer than four valid (not out of time) hits. Therefore, in order to compensate for tracking inefficiencies due to this, an additional pattern reconstruction algorithm was designed.  The algorithm matches segments within the even and odd numbered superlayers
+in a given sector, respectively. The matching
 algorithm returns an estimate of where the missing superlayer's hits should be and forms a ``pseudo-segment'' from
 the wire locations corresponding to these hits. Subsequently a ``pseudo-cross'' is formed using the pseudo-segment
 and the neighboring reconstructed segment in that region.
@@ -145,7 +143,7 @@ and the neighboring reconstructed segment in that region.
 \begin{figure}
 \includegraphics[width=0.45\textwidth]{pics/dcPattern14.png}
 \caption{Illustration of selected clusters (left-most selected hits with superimposed lines) using a Hough Transform.
-  Two track segments cross each other. The hits are separated into cluster candidates and fit using a local coordinate
+  Two track segments cross each other. The right-most group of hits are selected using the nominal clustering algorithm.  The hits are separated into cluster candidates and fit using a local coordinate
   system as a function of layer and wire number. The selection is done without employing timing information.}
 \label{fig:hough}
 \end{figure}
@@ -208,8 +206,8 @@ q  &=&  q_0,
 \end{eqnarray}
 
 \noindent
-where the initial values at the starting point $z = z_0$ are $x = x_0$, $y = y_0$, $t_x = t_{x0}$, $t_y = t_{y0}$,
-and $q = q_0$.
+where the initial values at the starting point $z = z_0$, corresponding to the measurement vector $z$-component at a give measurement site,  are $x = x_0$, $y = y_0$, $t_x = t_{x0}$, $t_y = t_{y0}$,
+and $q = q_0$.  The state vector is initialized at the first measurement layer. 
 
 The above equations are solved numerically using a fourth-order Runge-Kutta integration method in order to
 propagate the state vector from the DC plane at $z_0$ to the next one at $z$.  The state vector covariance
@@ -244,16 +242,24 @@ wire in a given DC plane.  In instances where there are two hits associated with
 (i.e. the track goes in between the wires), the information from both hits is included in the fit. The measurements
 used in the fit take into account the left/right position of the track with respect to the wire.
 
-Time corrections are applied after hit-based tracking to account for the event start time, cable delays,
-propagation times along the wires, event flight times to the hit location along the wires, $\beta$-dependent
-corrections, and the effect of the magnetic field on the cell isochrones that modify the drift times~\cite{dc-nim}.
+%Time corrections are applied after hit-based tracking to account for the event start time, cable delays,
+%propagation times along the wires, event flight times to the hit location along the wires, $\beta$-dependent
+%corrections, and the effect of the magnetic field on the cell isochrones that modify the drift times~\cite{dc-nim}.
 
 After the times are corrected, the drift distance is computed using tabulated distance-to-time multi-dimensional
 arrays. The drift distances are computed using a multi-dimensional interpolation method using the segment local
 angle (i.e. the entrance angle of the track in the cell), the value of the magnetic field at the location of the hit, and
-the corrected times. The Kalman fit is redone at the time-based level using the hits with corrected times and the
+the corrected times. 
+The Kalman fit is redone at the time-based level using the hits with corrected times and the
 computed drift distances. A graphical representation of tracks in {\it ced} is shown in Fig.~\ref{fig:dcTracks}. This
 is a typical event for the nominal running conditions of CLAS12. 
+
+After the Kalman fit last iteration, that propagates the state vector to the initial site, the track parameters are transformed into the lab frame and the track is swam through both the torus and the solenoid fields to the distance of closest approach to the beam line.  The track parameters defined in the lab frame ($x$, $y$, $z$, $px$, $py$, $pz$) are reported at this location.  A final track propagation from the reconstruction vertex point at the distance of closest approach to the beamline is performed to obtain the trajectory of the track as a series of points and pathlengths corresponding to its intersection with all the detector surfaces.  This is used for subsequent matching of the track to the detector responses.
+
+In order to improve the accuracy of the vertex reconstruction at the distance of closest approach to the beamline another tracking device was placed just downstream of the solenoid.  This device is the Forward
+Micromegas Tracker (FMT), that consists of 6 layers of Micromegas detectors and covers the polar angle range
+from $5^\circ$ to $35^\circ$.  Integration of this system in the reconstruction is currently ongoing. 
+The reconstruction algorithms in place consist of clustering of Micromegas hits corresponding to active adjacent strips, taking into account Lorentz angle correction and energy weighting, and of matching of the clusters to tracks found in the DC.  The challenging aspect of this reconstruction task is the combining of the track representation in two different frame for the DC (tilted sector frame) and the natural frame of the FMT which is the lab where the FMT disk are perpendicular to the beam axis. 
 
 \subsection{Central Tracking}
 \label{sec:cvt}
@@ -448,3 +454,12 @@ in the angular range from 10$^\circ$ to 25$^\circ$ for outbending tracks, while 
   $10^\circ \leq \theta \leq 25^\circ$ and $\phi = 0 \pm 5^\circ$.}
 \label{fig:trkeffinoutb}
 \end{figure}
+
+The vertex resolutions of reconstructed tracks from a sample of simulated Semi Inclusive Deep Inelastic events (SIDIS) are shown in Fig.~\ref{fig:vtxres}.  The vertex for positive and negative tracks reconstructed  in the central and forward detectors, respectively.  The vertex resolutions for the central detector (blue histogram) is about 3 mm and for the forward (red histogram), about 5 mm. 
+
+\begin{figure}
+\includegraphics[width=0.45\textwidth]{pics/VertexResolution.png}
+\caption{The vertex resolutions of reconstructed tracks from a sample of simulated Semi Inclusive Deep Inelastic events (SIDIS).  The vertex for positive and negative tracks reconstructed  in the central and forward detectors, are represented by the red and blue histograms, respectively.}
+\label{fig:vtxres}
+\end{figure}
+
