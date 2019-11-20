@@ -38,25 +38,13 @@ Alternatively (on an Apple computer with latex installed) you can use MacTex to 
 
 
 
-What to edit
+Spell Checking
 ------------
 
-These are the default files in each sub-directory. You can change this list in the main tex file (same name as the detector name, i.e. "svt.tex" inside "svt").
+You can use the command aspell to check the spelling of tex files::
 
-- `titleAndAuthors.tex`: include the titles, list of authors and their addresses
-- `abstract.tex`: paper abstract 
-- `overview.tex`: introduction and overview
-- `requirements.tex`: system requirements
-- `design.tex`: system design
-- `hardware.tex`: hardware components and construction
-- `electronics.tex`: electronics
-- `readout.tex`: signal and readout
-- `calibration.tex`: calibration software suite and results
-- `reconstruction.tex`: reconstruction algorithms and results
-- `simulation.tex`: simulation geometry, digitization, results
-- `performance.tex`: detector performance
-- `conclusionsAndAcknowledgement.tex`: paper conclusion and aknowledgements
-- `bibfile.bib`: article in the bibliography
+`aspell --mode=tex -c file.tex`
+
 
 
 Keeping the repo up-to-date
