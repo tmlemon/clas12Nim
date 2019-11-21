@@ -1,60 +1,61 @@
 \section{Performance}
 
-The response of the LTCC to electrons and pions has been studied using experimental data from the spring 2019 period,
-the first time that the LTCC sectors 3 and 5 were filled with the C$_4$F$_{10}$ gas.
-At the time of this writing the data is not yet fully calibrated.
+The response of the LTCC to electrons and pions has been studied using experimental data from the spring run
+2019 period, the first time that the LTCC sectors 3 and 5 were filled with the C$_4$F$_{10}$ gas. At the time
+of this writing the data is not yet fully calibrated.
 
-\subsection{LTCC Response to Electrons}\label{sec:elecResponse}
+\subsection{LTCC Response to Electrons}
+\label{sec:elecResponse}
 
-The electrons are selected using the reconstruction algorithms~\cite{recon-nim} that identifies electron tracks.
-The LTCC response is calculated by checking whether the electrons produced a signal in the detector or not.
-The electron momenta has been selected in the expected pion response range, between 3.5 and 8~GeV.
-The criteria for event selections are:
+The electrons are selected using the reconstruction algorithms~\cite{recon-nim} that identifies electron tracks. The
+LTCC response is calculated by checking whether the electrons produced a signal in the detector or not. The electron
+momenta has been selected in the expected pion response range, between 3.5 and 8~GeV. The criteria for event
+selection are:
 
 \begin{itemize}
-   \item  Electrons identified using the reconstruction event builder algorithm;
-    \item Electrons must be within the fiducial volume of the LTCC.
+\item  Electrons identified using the reconstruction Event Builder algorithm;
+\item Electrons must be within the geometrical fiducial volume of the LTCC.
 \end{itemize}
 
 
-The electron momentum spectrum before and after the requirement of an associated LTCC signal is shown
-in \F{electronEfficiency}, along with a 0$^{th}$-order polynomial fit. The average efficiency of electrons is
-94$\%$, below the expected efficiency of 99$\%$. This may be due to several reasons:
+The electron momentum spectrum before and after the requirement of an associated LTCC signal is shown in
+\F{electronEfficiency}, along with a 0$^{th}$-order polynomial fit. The average efficiency for detection of
+electrons in the LTCC is 94$\%$, slightly below the expected efficiency of 99$\%$. This may be due to
+several reasons:
 
 \begin{itemize}
-\item the electron selection was not refined by using the calorimeters (due to the uncalibrated detector status)
-\item possible impurities in the gas, which was not purifed by the recovery system (unavailable at that time)
-\item the data analyzed was not calibrated at the time of this writing
-\item the mirror overlaps and re-positinioning mentioned in \ref{sec:possibleInefficiency}.
+\item the electron selection was not refined by using the calorimeters (due to the uncalibrated detector status);
+\item possible impurities in the gas, which was not purified by the recovery system (unavailable at that time);
+\item the data analyzed were not fully calibrated at the time of this writing;
+\item the mirror overlaps and re-positioning issues mentioned in Section~\ref{sec:possibleInefficiency}.
 \end{itemize}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/electronMomenta.png}
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/electronEfficiency.png}
-	\caption{Top: the number of reconstructed electrons vs. momentum (GeV) before and
-          after the requirement of an associated LTCC signal. Bottom: the LTCC efficiency to electrons is the
-          ratio of the two distributions above. A 0$^{th}$-order polynomial fit gives an average of 94$\%$
-          efficiency.}
+	\caption{Top: the number of reconstructed electrons vs. momentum (GeV) before and after the requirement of
+          an associated LTCC signal. Bottom: the LTCC efficiency to electrons is the ratio of the two distributions above.
+          A 0$^{th}$-order polynomial fit gives an average of 94$\%$ efficiency.}
 	\label{fig:electronEfficiency}
 \end{figure}
 
 \subsection{LTCC Response to Pions}
 
-The calculate the response of the LTCC to pions, reconstructed positively charged pion are selected
-and a check is done on whether they produced a good signal in the LTCC detector. The positive pion selection
-considers all positively charged particles that pass a neutron missing mass cut for the reaction
-$ep \to e'\pi^+n$. The criteria for event selection are:
+The determine the response of the LTCC to pions, reconstructed positively charged pions were selected and a check
+was done on whether they produced a good signal in the LTCC detector. The positive pion selection considers all
+positively charged particles that pass a neutron missing mass cut for the reaction $ep \to e'\pi^+n$. The criteria
+for event selection are:
 
 \begin{itemize}
     \item The electron selection described in Section~\ref{sec:elecResponse};
-    \item Positive pion candidates are identified using the reconstruction event builder algorithm;
-    \item The positive pion candidates must be within the LTCC fiducial volume.
+    \item Positive pion candidates are identified using the reconstruction Event Builder algorithm;
+    \item The positive pion candidates must be within the LTCC geometrical fiducial volume;
     \item A neutron missing mass cut is applied between 0.9 and 1.05~GeV (see \F{neutronMM}).
 \end{itemize}
 
-The missing mass cut is shown in \F{neutronMM}. The positive pion candidates that satisfy the cuts are shown
-in black and those with a good LTCC cluster associated with the track are shown in red.
+The missing mass cut is shown in \F{neutronMM}. The positive pion candidates that satisfy the cuts are shown in black
+and those with a good LTCC cluster associated with the track are shown in red.
 
 \begin{figure}
 	\centering
@@ -68,23 +69,22 @@ in black and those with a good LTCC cluster associated with the track are shown 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/pionMomentum.png}
-	\caption{The pion momentum distribution before and after the requirement of an associated LTCC signal. }
+	\caption{The pion momentum distribution before and after the requirement of an associated LTCC signal.}
 	\label{fig:pionMomentum}
 \end{figure}
 
-The momentum distribution of the pions is shown in \F{pionMomentum} for the all pions and for the pions
-with an associated signal in the LTCC. The ratio, normalized by the electron efficiency of 94$\%$ found above
-to account for other system inefficiencies, defines the LTCC pion detection efficiency as a function of
-momentum. Figure~\ref{fig:pionEfficiency} shows the LTCC efficiency for pions normalized to that for electrons
-to account for detector inefficiencies unrelated to the LTCC. The LTCC response starts around 50$\%$ near
-the expected signal threshold, and rises with momentum as expected, given that the rise of the number of emitted
-photons with momentum. A plateau of 88$\%$ is reached after
-a momentum of 5~GeV. This is within range of an expectation of efficiency above 90$\%$. 
+The momentum distribution of the pions is shown in \F{pionMomentum} for all pions and for the pions with an
+associated signal in the LTCC. The ratio, normalized by the electron efficiency of 94\% found above to account for
+other system inefficiencies, defines the LTCC pion detection efficiency as a function of momentum (see
+Fig.~\ref{fig:pionEfficiency}). The LTCC response starts around 50\% near the expected signal threshold of
+$\sim$3.5~GeV, and rises with momentum as expected, given that the number of emitted photons increases with
+momentum. A plateau of 88\% is reached after a momentum of 5~GeV. This is within range of an expectation of
+the expected efficiency above 90\%. 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/pionEfficiency.png}
 	\caption{The LTCC pion efficiency as a function of momentum. This is the ratio of the curves in \F{pionMomentum}
-				normalized by the average electron efficiency of 94$\%$ shown in \F{electronEfficiency}.}
+          normalized by the average electron efficiency of 94\% shown in \F{electronEfficiency}.}
 	\label{fig:pionEfficiency}
 \end{figure}
