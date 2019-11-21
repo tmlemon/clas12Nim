@@ -97,7 +97,7 @@ were then used for the initial round of data taking with an electron beam.
 
 Optimal timing calibration in the ECAL is necessary both for neutral particle identification and background rejection.
 Identification of neutrons and photons from neutral clusters (those not matched with a charged particle track from
-the forward tracking) is based solely on time-of-flight from the target. The hodoscope design of the ECAL provides
+the forward tracking) is based solely on time-of-flight from the target. The stereo readout and modular design of ECAL provides
 considerable redundancy in the measurement of cluster timing, due to the multiplicity of PMTs that contribute to the
 total cluster energy. This allows flexibility in the choice of PMTs from which to construct the neutral event time. In
 addition, this redundancy can be crucial for rejecting accidental clusters formed from randomly overlapping
@@ -106,15 +106,7 @@ background hits at high luminosity, especially when attempting reconstruction of
 The timing calibration of each PMT is based on analysis of clusters in PCAL, ECIN, and ECOU arising from electrons,
 pions, and photons spanning a large range of position and deposited energy. A $\chi^2$ minimization is performed
 using six fitted parameters to adjust the difference between the measured time $T_{measured}$ (Eq.~\ref{eq:E4})
-and the expected readout time $T_{u,v,w}$ (see Fig.~\ref{fig:S9_2_0}). Unit conversion of the raw TDC measurements
-and determination of cable delays are absorbed into the $t_{TDC}$ term (Eq.~\ref{eq:E5}). Corrections due to the
-amplitude dependence of the discriminated PMT pulse time are parameterized in $t_{ADC}$ (Eq.~\ref{eq:E6}) using
-the integrated pulse from the FADC. Finally, the scintillator effective velocity $v_{eff}$ parameterized in $T_{u,v,w}$
-is extracted from fits to $T_{measured}$. The $t_{TDC}$ and $t_{ADC}$ fits are performed alternately and iterated
-until convergence is reached. The $t_{TDC}$ fits are initialized with $a_2$, $a_3$ and $a_4$ in $t_{ADC}$ set to zero,
-using a fixed correction of 300(100) for PCAL(EC).
-
-\begin{equation}
+and the expected readout time $T_{u,v,w}$ (see Fig.~\ref{fig:S9_2_0}). These are defined, respectively, as:\begin{equation}
 T_{measured}=t_{TDC}+t_{ADC} \label{eq:E4}
 \end{equation}
 \begin{equation}
@@ -122,7 +114,14 @@ t_{TDC}=a_0+a_1\times~TDC \label{eq:E5}
 \end{equation}
 \begin{equation}
 t_{ADC}=\frac{a_2+300(100)}{ADC^{1/2}}+a_3+\frac{a_4}{ADC^{1/4}} \label{eq:E6}
-\end{equation}
+\end{equation}where the free parameters are the five "a" coefficients and the light effective velocity $v_{eff}$.
+
+Unit conversion of the raw TDC measurements and determination of cable delays are absorbed into the $t_{TDC}$ term (Eq.~\ref{eq:E5}). Corrections due to the
+amplitude dependence of the discriminated PMT pulse time are parameterized in $t_{ADC}$ (Eq.~\ref{eq:E6}) using
+the integrated pulse from the FADC.  Finally, the scintillator effective velocity $v_{eff}$ parameterized in $T_{u,v,w}$
+is extracted from fits to $T_{measured}$. The $t_{TDC}$ and $t_{ADC}$ fits are performed alternately and iterated
+until convergence is reached. The $t_{TDC}$ fits are initialized with $a_2$, $a_3$ and $a_4$ in $t_{ADC}$ set to zero,
+using a fixed correction of 300(100) for PCAL(EC).
 
 The procedure requires knowledge of the event start time $T_{start}$, the path length $L$ from the target vertex
 to the cluster position, together with the readout distances $l_{u,v,w}$ from the cluster as indicated in

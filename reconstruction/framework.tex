@@ -1,148 +1,160 @@
-\section{Reconstruction Framework and Tools}
+\section{Software Framework and Tools}
+\label{sec:framework}
 
-Experimental physics data analysis in a collaborative environment has historically involved
-a computing model based on self-contained, monolithic software applications
-running in batch-processing mode.
-This model, if not organized properly, can result in inefficiencies in terms
-of deployment, maintenance, response to program errors, update propagation,
-scalability and fault-tolerance.
-Over time, experimental configurations have become more diverse and compute capacity
-has expanded at a rate consistent with Moore's Law. As a consequence,
-compute applications have become much more complex,
-with significant interaction between diverse program components.  This can
-lead to computing systems so complex and intertwined that the programs become
-difficult to maintain and extend. Modifying a feature
-in one class often involves changes in several other classes, thereby increasing the needed development
-time and effort. What starts small and simple, inevitably grows into a complicated scheme of interconnected
-algorithms. At some point, to prevent further growth in complexity, the software has to be shielded from
-contributors, preventing essential software evolution and optimization. The only way to bypass this highly
-guarded system is software fragmentation, making the physics data processing validation process quite
-arduous.
+%Experimental physics data analysis in a collaborative environment has historically involved a computing model based on self-contained, monolithic software applications running in batch-processing mode. This model, if not organized properly, can result in inefficiencies in terms of deployment, maintenance, response to program errors, update propagation, scalability and fault-tolerance. Over time, experimental configurations have become more diverse and compute capacity has expanded at a rate consistent with Moore's Law. As a consequence, compute applications have become much more complex, with significant interaction between diverse program components.  This can lead to computing systems so complex and intertwined that the programs become difficult to maintain and extend. Modifying a feature in one class often involves changes in several other classes, thereby increasing the needed development time and effort. What starts small and simple, inevitably grows into a complicated scheme of interconnected algorithms. At some point, to prevent further growth in complexity, the software has to be shielded from contributors, preventing essential software evolution and optimization. The only way to bypass this highly guarded system is software fragmentation, making the physics data processing validation process quite arduous.
 
-We have developed a reactive, data-stream processing framework called CLARA
-\cite{clara-2011,clara-service,framework,clara-2016} that addresses these issues by simply deploying a true
-“divide and conquer” principle to the software application, and insures continuous evolution and contribution of
-software applications. Nuclear physics data processing applications have a very long lifetime, and the ability to
-upgrade technologies is therefore essential. Hence, data processing applications must be organized in a way
-that easily permits the discarding of aged software components and the inclusion of new ones without having to
-redesign entire software packages at each change. The addition of new modules and removal of unsatisfactory
-ones is a natural process of a software application evolution over time.  Software evolution and diversification
-(e.g. using heterogeneous hardware structures, such as FPGAs, GPGPUs, etc.) is important and results in more
-efficient and robust data processing applications.
+Nuclear and particle physics data processing applications must guarantee a long lifetime, larger than the multi-year
+duration of the corresponding experiment. The ability to upgrade and adapt technologies is therefore essential, so
+these applications should be organized in a way that easily permits upgrades of aged software components and
+inclusion of new ones, without need for major redesign or structural changes.  Support for software evolution and
+diversification (e.g. compatibility with heterogeneous hardware structures, such as FPGAs and GPGPUs) is important
+to accommodate more efficient and robust data processing applications in the future.
 
-Software applications designed within the CLAS12 CLARA data processing framework differ from ones developed adopting
-a traditional approach in two major ways. First, software applications are composed of interlocking software building blocks
-(bricks) called micro-services. Micro-services are linked together by data-stream pipes.  The technology
-(e.g. high-level programming language, hardware deployment details) as well as the algorithmic solutions used to process
-data (see Fig.~\ref{clara-overview}) are encapsulated. A micro-service has inputs, processes data and produces output data.
-A micro-service reacts on a streaming data quantum in its input, processes it, and
-passes processed data quantum to the next micro-service in the data-flow path. The second and critical difference is
-that CLAS12 data processing applications execute according to the rules of data-flow instead of a more traditional
-programming approach, where sequential series of instructions (lines of code) are written to perform a required algorithm.
-In this respect CLAS12 data processing framework application design promotes a data-flow as the main concept
-behind any data processing algorithm.   The flow of data between micro-services in the application determines
-the execution order of micro-services within the application. These differences may seem minor at first, but
-the impact is revolutionary because it allows the data paths between application building blocks to be the
-application designer’s main focus. As a result, CLAS12 data processing application is more robust and agile, since
-application building blocks can be improved individually and be replaced.
+Following these principles, CLAS12 reconstruction and analysis relies on a data-stream processing framework called
+CLARA~\cite{clara-2011,clara-service,framework,clara-2016}, which provides a service-oriented architecture in which
+to build the relevant software applications.  Such applications are composed of interlocking building blocks called
+micro-services, which are linked together by data-stream pipes.  The technology (e.g. a high-level programming
+language or hardware deployment details), as well as the algorithmic solutions used to process data are encapsulated
+(see Fig.~\ref{fig:clara-overview}). The scope of a specific software application implemented in CLARA is determined
+by the micro-services that are included and by the order of their execution.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure*}
+\begin{figure*}[t]
 \centering
-\includegraphics[width=0.8\textwidth]{pics/clara-overview.pdf}
-\caption{Overview of the CLAS12 CLARA data processing framework that links the detector subsystem
-event reconstruction applications to the data processing and data quality assurance monitoring applications
-to the physics analysis applications.}
+\includegraphics[width=1.0\textwidth]{pics/clara-overview.pdf}
+\caption{Overview of the CLAS12 CLARA data processing framework.  Individual detector subsystem
+  reconstruction applications can be linked to form the full event reconstruction chain, including  data processing,
+  data quality monitoring, and physics analysis applications.}
 \label{fig:clara-overview}
 \end{figure*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A micro-service has input data, processes it, and produces output data, where the I/O is organized into ``banks''
+whose structure is configured by the specific service developer.  A micro-service reacts on an input data stream,
+processes it, and passes processed data to the next micro-service in the data-flow path.  As a result, the CLAS12
+data processing application is versatile and flexible, since the application building blocks can be improved individually
+and replaced with no need for structure changes in the framework. The CLAS12 micro-services are extensions of an
+abstract reconstruction engine, which includes common components such as initialization and event processing
+methods. This approach reduces and simplifies the development of an individual micro-service and enforces a common
+structure. 
+
+The CLARA data-stream pipe is a data bus based on the xMsg messaging system that supports various protocols
+such as MPI, pub-sub, p2p, inproc, and shared memory. The CLARA orchestrator, i.e. the process level workflow
+management system, controls the overall process execution. 
+
+The framework enables execution of software applications in multi-threaded mode. This is implemented via event-level
+parallelization for the CLAS12 reconstruction. 
+The framework is specifically designed to do thread-based event level
+parallelization optimizing the use of multicore machines, thereby allowing 
+the reconstruction of multiple events in a single node.  
+Figure~\ref{fig:scaling} shows the results of a scaling test on an
+Intel Xeon node (E5-2697A v4 @ 2.6~GHz). Comparison with Amdhal's law indicates 99.5\% parallel efficiency over
+the 32 physical cores of the machine.
+
+The CLARA framework provides service interface implementations in Java, C++ and Python languages. 
+At present all the CLAS12 reconstruction services deployed using the CLARA framework are written in Java.
+
+%{\color{red} SHOULD ADD MORE ON EVENT PARALLELIZATION AND MULTI-HW SUPPORT.}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.48\textwidth]{pics/scaling.png}
+\caption{Scaling of the CLAS12 event reconstruction application as implemented in the CLARA framework. Tests
+  were conducted on a Intel Xeon node (E5-2697A v4 @ 2.6~GHz). Comparison with Amdhal's law indicates 99.5\%
+  parallel efficiency over the 32 physical cores of the machine.}
+\label{fig:scaling}
+\end{figure}
 
 \subsection{Common Tools}
 \label{common-tools}
 
-﻿The offline software of the CLAS12 project aims at providing tools to
-the collaboration that allow design, simulation, and data analysis to proceed
-in an efficient, repeatable, and understandable way. As much as
-possible, software-engineering-related details should be hidden from
-collaborators, allowing them to concentrate on the physics.
-To facilitate code development for the detector subsystems of CLAS12, and for detector-specific reconstruction output
-analysis used for particle identification and overall event reconstruction,
-the software was designed to provide libraries that are commonly used by all the reconstruction
-packages.  These libraries, referred to as ``common tools'' provide means to avoid code replication and aid in software maintainability.
+The offline software of the CLAS12 project aims to provide tools that allow design, simulation, and data analysis
+to proceed in an efficient, repeatable, and understandable way. Most  software engineering details are hidden from
+users, allowing them to concentrate on the algorithms and physics. To facilitate code development for the detector
+subsystems of CLAS12, the software was designed to provide libraries that are commonly used by all of the
+reconstruction packages.  These libraries, referred to as ``common tools'', facilitate avoiding replication and aid
+in software maintainability.
 
 The common tools consist of various packages, each having a specific purpose and functionality. Below we discuss
 the main packages used in the reconstruction software.
 
 \subsubsection{Geometry}
 
-Due to the complexity of the geometry of CLAS12 detector subsystems, an interface was developed
-to provide classes and geometry software tools that are used to describe the geometry of all subsystem in an unified way.
+Due to the complexity of the geometry of the CLAS12 detector subsystems, an interface was developed to provide
+classes and software tools that are used to describe the geometry of all subsystems in an unified way.  A library of
+primitives provides geometrical objects needed to represent all detector subsystems (these include lines, planes,
+and various shapes such as cubes, trapezoids, etc.) and provide the necessary transformations to accommodate
+misalignments and distortions.  Furthermore, geometry tools provide methods to track particles through volumes for
+evaluation of track trajectories, such as line-to-surface intersections, ray tracing through objects, and evaluation of
+the distance of closest approach to a line or surface.
 
-A library of primitives was developed to provide geometrical objects needed to represent by all geometry detector subsystem
-and for geometrical object transformations.  These primitives include lines, planes and various shapes (e.g.
-cubes, trapezoids, etc.).  They provide the functionality needed
-to represent the detector subsystem components in the reconstruction frames, to take into account geometrical distortions
-and to translate and rotate detector components which is particularly relevant for alignment purposes.
-Further more they provide methods to track particles through volumes, and return informations used to determine
-track trajectories,
-such as line to surface intersections, ray tracing through objects, distance of closest approach to a line or surface.
+The CLAS12 geometry library is initialized from a database containing key geometry parameters and their
+variations for every detector.  This maximizes flexibility, supports time-dependent experiment geometry
+conditions, and ensures consistency between the simulation, reconstruction, and event visualization packages.
 
-The CLAS12 geometry library insures consistency between the geometry implementation used in CLAS12 simulation, reconstruction and
-event visualization packages. It is initialized through database, and provides output for GEANT4 simulations package
-(GEMC), is used in reconstruction application and in the CLAS12 Event Display (CED) .
+To facilitate development of new detector geometries, visualization capabilities are included in the geometry library.
+Figure~\ref{fig:detectorview} shows a view of part of the CLAS12 spectrometer using this functionality.
 
 \subsubsection{Databases}
 
-The Calibration Constant Data Base (CCDB) software package was developed at Jefferson Lab for the GlueX experiment
-in HallD.  The CLAS12 reconstruction packages use the CCDB application programming interface to create and access
-tables that contain detector geometry and calibration constants, as well as maps used for decoding raw data.
-CCDB provides the functionality for storing and accessing
-structured tables in MySQL-based and SQLite portable databases.
+The Calibration Constant Database (CCDB) software package was developed at Jefferson Lab for the GlueX
+experiment in Hall~D~\cite{gluex}.  CCDB provides the functionality for storing and accessing structured tables in
+MySQL-based and SQLite portable databases. The CLAS12 reconstruction packages use the CCDB application
+programming interface to create and access tables that contain detector geometry and calibration constants, as
+well as maps used for decoding raw data. At the decoding stage, the signal is converted from the hardware notation
+(crate, slot, channel) into the CLAS12 notation (sector, layer, component). 
 
-The CCDB package creates
-tables that link constants to specific runs (using timestamps) and store different variations of constants depending on run
-conditions. CLAS12 software tools employ an Application Programming Interface (API), that parses database tables and creates
-structured maps of constants stored in  memory by detector sector, layer and component. This allows fast retrieving of the
-constants.
+The CCDB package creates tables that link constants to specific runs (using time stamps) and store different
+variations of constants depending on run conditions. CLAS12 software tools employ an Application Programming
+Interface (API) that parses database tables and creates structured maps of constants stored in  memory by
+detector sector, layer, and component. This allows fast retrieval of the constants.
 
-The CLAS12 database access tools have been written to avoid bottlenecks that might result from multiple multi-threaded
-services accessing the database to retrieve constants.  An interface has been designed to fetch the constants
-on demand and cache them for further requests. In this approach each service will request the
-constants it requires on one thread and each subsequent request by a new thread will be provided by the cached values.
+The CLAS12 database access tools have been developed to avoid bottlenecks that might result from multiple
+multi-threaded services accessing the database to retrieve constants.  An interface has been designed to fetch
+the constants on demand and cache them for further requests. In this approach each service will request the
+constants it requires on one thread and each subsequent request by a new thread will be provided by the cached
+values.
 
 \subsubsection{Plotting and Analysis Tools}
 
 For ease of integration with the reconstruction software tools and packages, the plotting tools used for data
-analysis, calibration and monitoring was written in the JAVA programming language.
+calibration, monitoring, and analysis were developed in the Java programming language.
 
-The plotting software (called groot) developed at Jefferson Lab for CLAS12 is tailored to have a programming
-interface similar to ROOT
-(CERN data analysis package) and provides the functionality necessary for
-fitting using the JAVA-based MINUIT library available from the JHEP repositories.
+The plotting software, called {\it groot}, developed at Jefferson Lab for CLAS12 is tailored to have a programming
+interface similar to the CERN data analysis package, ROOT, and provides the necessary functionalities for
+histogram and graph creation, filling, and manipulation, as well as for fitting using the Java-based MINUIT library
+available from the JHEP repositories. This has been the base for the development of the detector monitoring and
+calibration suites (see Section~\ref{sec:calibration}).
 
-These same tools are used for analysis purposes. In addition, the analysis package
-contains classes for four-vector manipulations and physics quantities extractions and
-analysis methods (e.g. $Q^2, W$, boosts, etc.).
+These same tools can be used for analysis purposes. In addition, the analysis package contains classes for four-vector
+manipulations, physics quantity extractions, and analysis methods (e.g. computation of kinematic variables such as
+$Q^2$ and $W$ or performing Lorentz boosts, etc.).
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\columnwidth]{pics/detectorview.png}
+\caption{Visualization of part of the CLAS12 spectrometer via the geometry package. From left to right, the Central
+  Neutron Detector (CND) in magenta, the Drift Chambers (DC) in blue, the Forward Time of Flight (FTOF) in red,
+  and the Electromagnetic Calorimeter (ECAL) in yellow are shown.}
+\label{fig:detectorview}
+\end{figure}
 
 \subsubsection{Magnetic Field Package}
-The magnetic field package (magfield) used by the CLAS12 reconstruction creates
-binary field maps from engineering models of the CLAS12 torus and solenoid. It employs
-a common self-described binary format, with a header containing meta-data describing
-the pedigree of the field, its grid coordinate system, and the coordinate system
-used by the field values. (For example, the CLAS12 torus has a cylindrical grid
-but Cartesian field components.) The same magfield package provides the trilinear
-interpolation of the field. Given that the field is often requested at a sequence
-of points all contained within a single grid cell, magfield uses time-saving
-software “probes” to cache nearest neighbors.
+
+The magnetic field package {\it magfield} used by the CLAS12 reconstruction creates binary field maps from
+engineering models of the CLAS12 torus and solenoid~\cite{magnets-nim}. It employs a common self-described
+binary format, with a header containing meta-data describing the pedigree of the field, its grid coordinate system,
+and the coordinate system used by the field values. For example, the CLAS12 torus has a cylindrical grid but
+Cartesian field components. The same {\it magfield} package provides the trilinear interpolation of the field (a
+method of multivariate interpolation on a 3-dimensional regular grid). Given that the field is often requested at a
+sequence of points all contained within a single grid cell, {\it magfield} uses time-saving software “probes” to cache
+nearest neighbors.
 
 \subsubsection{Swimmer Package}
-The swimmer package, in conjunction with the magfield package, is used by the CLAS12
-reconstruction to integrate charged particles through the CLAS12 solenoid and torus.
-It uses a fourth order (with 5th order corrections) adaptive step-size Runge-Kutta integrator
-with single-step advancement achieved through a configurable Butcher tableau advancer.
-There are a number of convenience methods for swimming to a plane, to the closest
-point on a line, and to a specified value of a given coordinate such as z. For
-forward swimming in CLAS12, the swimmer can reduce the dimensionality of the state
-vector (and consequently run faster) by changing the independent variable from
-the pathlength to the z coordinate.
 
+The {\it swimmer} package, in conjunction with the {\it magfield} package, is used by the CLAS12 reconstruction
+to propagate charged particles through the CLAS12 solenoid and torus fields. It uses a fourth-order (with
+fifth-order corrections) adaptive step-size Runge-Kutta integrator with single-step advancement achieved through
+a configurable Butcher tableau advancer. There are a number of convenience methods for swimming to a plane, to
+the closest point on a line, and to a specified value of a given $(x,y,z)$ coordinate. For forward swimming in CLAS12,
+the swimmer can reduce the dimensionality of the track state vector, a vector containing the main track parameters
+(see definition in Section~\ref{sec-trackfitting}), (and consequently run faster) by changing the independent variable
+from the path length to the coordinate along the beamline (which defines the nominal CLAS12 $z$-axis).

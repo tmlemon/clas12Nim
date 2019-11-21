@@ -69,10 +69,11 @@ intended to allow easy insertion of two 1~mm diameter fibers.
 Scintillators from FNAL were delivered to Jefferson Laboratory (JLab) with two lengths: 420~cm (1450 strips
 used for U-views) and 450~cm (2710 strips used for V,W-views). Cutting of the strips was performed at JLab
 and at the College of William and Mary (WM). The average width for the scintillators to be used in a given layer
-was measured before the scintillators were cut, and the final cut length of the strips needed to fit within the
+was measured before the scintillators were cut, and the final cut length of each strip needed to fit within the
 triangular area was chosen based on this average to avoid buildup of errors during stacking. The largest deviation
 from the design width of 45~mm was less than 0.3~mm, compared to the specified tolerance for this dimension
-of $\pm$1~mm.
+of $\pm$1~mm.  For each module the position accuracy from layer-to-layer was better than a few millimeters.  The
+largest module-to-module variation in average width was 0.12~mm.
 
 \subsection{Wavelength Shifting Fibers}
 
@@ -102,8 +103,7 @@ procedure together with a likely more uniform light collection efficiency.
 
 \subsection{Photomultiplier Tubes}
 
-Assembly and testing of all 1200 of the Hamamatsu R6095 PMTs assigned to PCAL was performed by students
-at James Madison University (JMU). Fig.~\ref{fig:S4_PMT} shows the individual elements of each PMT assembly.
+Assembly and testing of all 1200 of the Hamamatsu R6095 PMTs assigned to PCAL was performed at James Madison University (JMU). Fig.~\ref{fig:S4_PMT} shows the individual elements of each PMT assembly.
 Each high voltage (HV) divider supplied with the PMT was tested for correct voltage at the output pins. The base
 assembly consisted of soldering HV, signal, and ground cables between the divider and connector terminals on the
 end cap. Spacers were cut and installed on either side of the spring to provide the desired compression force
@@ -124,7 +124,7 @@ shown in Fig.~\ref{fig:S4_PMT_2}.
 \centering
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S4_PMT_2.png}
 \caption{Left: Typical measurement of anode dark current vs. voltage for the Hamamatsu R6095 PMTs used in
-  PCAL. Acceptance testing was performed at 1000~V. Right: Distribution of PMT anode dark current
+  PCAL. Acceptance testing was performed at 1000~V after a 30 minute warm-up time. Right: Distribution of PMT anode dark current
   measurements from JMU and from Hamamatsu. The JMU distribution mean is 0.2~nA.}
 \label{fig:S4_PMT_2}
 \end{figure}
@@ -174,8 +174,9 @@ the position dependence $I(x)$ of the PMT current is shown fitted to a double ex
 I(x) = A_S \exp(-x/\lambda_S)+A_L \exp(-x/\lambda_L).
 \end{equation}
 
-By fixing the short and long attenuation factors at their nominal values of $\lambda_S=70$~cm and
-$\lambda_L=400$~cm and refitting, it was found that the stability of the fitted amplitudes was around $17\%$
+From fitting a large sample of scintillators it was found the attenuation parameters were clustered around the average values  
+$\lambda_S=70$~cm and $\lambda_L=400$~cm. By fixing these short and long attenuation factors at their nominal values and refitting, 
+it was found that the stability of the fitted amplitudes was around $17\%$
 for $A_S$ and $5\%$ for $A_L$ for the group of scintillators studied. 
 
 \begin{figure}[hbt]
@@ -189,8 +190,8 @@ for $A_S$ and $5\%$ for $A_L$ for the group of scintillators studied.
 
 Testing of the WLS readout fibers was performed with the same apparatus, using a test scintillator 30~cm in
 length. Five sets of four fibers each were selected at random for testing from each packaged bundle of 100.
-A single measurement of the PMT current with and without fibers inserted was made at the midpoint of the
-scintillator. In all cases, fibers whose response was below the nominal measurement by $>15\%$ were found to
+A single measurement of the PMT current with and without fibers inserted was made by placing the $^{90}$Sr source 
+at the midpoint of the scintillator. In all cases, fibers whose response was below the nominal measurement by $>15\%$ were found to
 have mechanical damage, although other fibers from the package were tested to double-check batch uniformity.
 Overall light yield stability of the fiber response was better than $7\%$.
  
@@ -198,7 +199,7 @@ Overall light yield stability of the fiber response was better than $7\%$.
 
 Each PCAL box were cleaned with isopropanol to remove any grease and debris from machining. The bottom window
 was placed on a support table and the side walls and retainers were installed. Prior to scintillator stacking, a
-50$\mu$m Teflon sheet was laid down, followed by placement of the first U layer of 84 scintillator strips, beginning
+50~$\mu$m Teflon sheet was laid down, followed by placement of the first U layer of 84 scintillator strips, beginning
 with the longest strip. Gaps between scintillators were minimized both during placement and after each layer was
 complete using shimmed triangle pieces in the corners to push the strips together. Strips were also tightly bound
 between the retainers at the fiber readout end and flat spring clips at the opposite end to accommodate thermal
@@ -230,6 +231,43 @@ lead plate. Each lead layer was divided into two half-sheets to make installatio
 Fig.~\ref{fig:S5_2}). For each PCAL module a total of 14 lead sheets and 15 scintillator/WLS layers were
 installed.
 
+\subsection{Installation in Hall B}
+
+Each PCAL module was mounted on the Forward Carriage (FC) directly in front of the existing EC module, using
+an installation tool suspended from the overhead crane consisting of a strongback and a counterweight to offset
+the 8 ton PCAL weight (see Fig.~\ref{fig:S5_1}). The PCAL nose was bolted to a central hub on the FC apex, while
+brackets on the V and W corners mounted to arms welded to the FC.   
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S5_1.png}
+\caption{Left: Installation of PCAL module onto the Forward Carriage in Hall~B at the Sector~5 position. U PMTs
+  fit into the gap between the EC modules. Right: PCAL module installed in front of the existing Sector~5 EC
+  module. The yellow lifting fixtures were later removed.}
+\label{fig:S5_1}
+\end{figure}
+
+The output signals from the PCAL PMTs are routed to the FC with a single run of RG-58 coaxial cable. The EC PMT
+signals use RG-8 cable with RG-58 patch cables at both ends for a more flexible routing geometry. Both the EC and
+PCAL rely on passive resistive splitters designed and built at the University of Virginia to distribute signals to 
+digitization electronics located in VME/VXS crates. The split ratio is 2:1 for the PCAL and 3:1 for the EC. For both calorimeters the larger signal goes to the analog-to-digital (ADC) modules. Mapping of the patch cables from the
+splitter to the electronics follows the same detector mapping used for the input to the splitters.
+
+The VME/VMX crates and HV mainframes are installed in six groups of racks on three levels of the FC that are located
+behind each of six sectors containing the PCAL/EC/FTOF/LTCC modules (and RICH in Sector~4) (see
+Ref.~\cite{nim:overview} for details). The calorimeters use both CAEN 1527LC and 4527 HV mainframes outfitted
+with negative polarity 24-channel A1535N cards that fit into slots at the rear of each mainframe. The PCAL HV
+cards are housed in the same mainframes used by FTOF.  
+
+From the splitters, thin coax patch cables are routed to JLab VME-based Discriminator Scaler Module (DSC2) boards for pulse timing measurements and JLab 250~MHz 12-bit flash ADCs (FADC) for pulse amplitude measurements~\cite{nim:daq}. Ribbon cables
+connect the DSC2 with CAEN 1190A TDCs that have 100~ps LSB resolution. The FADC and DSC2/TDC modules
+are housed in separate VXS crates. The FADC/VXS crate also contains the JLab VXS Trigger Processor (VTP) in a
+special switched slot that is used to process the energy and hit data from the FADCs for the CLAS12 trigger decision making~\cite{nim:daq,nim:trig}.  
+
+All HV and RG-58 signal cables for PCAL were manufactured at Ohio University. The thin coax interconnection
+cables were  manufactured at Norfolk State University. Both groups also participated in cable installation
+in the test setup and on the Forward Carriage in Hall~B.  
+
 \begin{figure}[hbt]
 \centering
 \includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S5_3.png}
@@ -241,36 +279,32 @@ installed.
 \end{figure}
 
 \subsection{Cosmic Tests}
+
 \label{CRT}
 
-Initial evaluation of PCAL performance was performed immediately after construction of each module using a
+Initial evaluation of the PCAL performance was performed immediately after construction of each module using a
 test data acquisition (DAQ) system adjacent to the assembly area. PMT installation and cabling was followed by
 gradual application of HV and the use of raw discriminator scaler data to identify and repair malfunctioning PMTs
 and sources of excessive noise. Repairs were dominated by breakdown noise requiring extra mylar film insulation,
 cold solder joints of ground braids within the HV dividers, and pinhole light leaks in the RTV beads used to seal
 external sheet metal housings. 
 
-Test procedures included using cosmic muon data to establish digitization parameters for the FADCs based on
-measurement of the PMT pulse waveforms and to perform initial PMT gain matching. Fig.~\ref{fig:S5_3} (top)
-shows an example PCAL waveform for a 100 sample window aperture, where each sample is 4~ns. Location of the
-pulse within the window was offset to reserve the first 15-30 samples for mean pedestal measurements needed
-to provide a baseline for setting the readout threshold. Thresholds were set at 20 counts above the mean
-pedestal for calibration runs, and at about 70 counts for production runs at high luminosity. All calibration and
-production FADC data were taken without compression or firmware integration to enable offline analysis for
-optimization of pulse integration, timing, and background suppression for initial CLAS12 data taking.
-
-Compared to the EC PMT waveform shown at the bottom of Fig.~\ref{fig:S5_3}, which has a very short duration
-and risetime of 2-3~ns, the PCAL waveform leading edge has a 6 ns rise and a substantially extended duration,
-with both prompt and delayed components. The PCAL prompt response is likely due to the convolution of both
-the slower polystyrene ($t_{1/2}=2-3$~ns) and Kuraray Y11 fiber ($t_{1/2}=7-12$~ns) response times compared
+Test procedures included using a cosmic muon trigger to establish digitization configuration parameters for the FADCs based on
+measurement of the PMT pulse waveforms.  The trigger was based on an OR of all W PMTs from the DSC2 timing discriminators.
+The FADC parameters include the timing, relative to the trigger, of the pulse capture window, the number of samples in the window, and the threshold of noise suppression.  An example of the PCAL PMT waveform for a 100 sample window aperture is shown in Fig.~\ref{fig:S5_3} (top), where each sample is 4~ns. Compared to the EC PMT waveform shown at the bottom of Fig.~\ref{fig:S5_3}, which has a very short duration and risetime of 2-3~ns, the PCAL waveform leading edge has a 6 ns rise and a substantially extended duration, with both prompt and delayed components. The PCAL prompt response is likely due to the convolution of both the slower polystyrene ($t_{1/2}=2-3$~ns) and Kuraray Y11 fiber ($t_{1/2}=7-12$~ns) response times compared
 to the much faster BC-412 ($t_{1/2}=1$~ns) scintillator used in the EC. Due to the delayed response about 35
 samples above threshold were necessary to capture 97$\%$ of the integrated PCAL waveform.  
+
+Location of the pulses within the window was offset to reserve the first 15-30 samples for mean pedestal measurements needed
+to provide a baseline for setting the readout threshold. Thresholds were set at 20 counts above the mean
+pedestal for cosmic calibration runs, and between 60 and 70 counts for CLAS12 production runs at high luminosity. Although the FADC modules contain configurable firmware to perform pulse processing, it was decided for initial CLAS12 running to take all FADC data without compression or firmware integration to enable offline analysis for
+optimization of pulse integration, timing, and background suppression.
 
 The next step was to obtain an initial set of HV settings to gain match the PMTs. After a short period of PMT
 stabilization, each assembled module was calibrated using a loose cosmic trigger requiring hits in 2 out of 3 of
 the U,V,W views. The 1.2~kHz trigger rate was reduced by a factor of 20 using a software multiplicity cut to
 select near vertical muons before writing data to disk. This ensured a uniform minimum-ionizing particle (MIP)
-energy deposition of 10~MeV for the five scintillators viewed by each of the U,V,W PMTs. Events were selected
+energy deposition of 10~MeV for the five scintillator layers viewed by each of the U,V and W PMTs (Fig.~\ref{fig:S3_2}). Events were selected
 close to the readout end to minimize light attenuation and the PMT HV settings were adjusted to normalize all
 MIP Landau distributions to the same ADC channel (see Fig.~\ref{fig:S5_4}) using a power law relation between
 voltage and the desired relative gain change $\Delta V/V = (\Delta G/G)^{1/n}$. The value of the exponent $n$
@@ -296,41 +330,4 @@ first measurements.
 \label{fig:S5_4}
 \end{figure}
 
-\subsection{Installation in Hall B}
 
-Each PCAL module was mounted on the Forward Carriage (FC) directly in front of the existing EC module, using
-an installation tool suspended from the overhead crane consisting of a strongback and a counterweight to offset
-the 8 ton PCAL weight (see Fig.~\ref{fig:S5_1}). The PCAL nose was bolted to a central hub on the FC apex, while
-brackets on the V and W corners mounted to arms welded to the FC.   
-
-\begin{figure}[hbt]
-\centering
-\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S5_1.png}
-\caption{Left: Installation of PCAL module onto the Forward Carriage in Hall~B at the Sector~5 position. U PMTs
-  fit into the gap between the EC modules. Right: PCAL module installed in front of the existing Sector~5 EC
-  module. The yellow lifting fixtures were later removed.}
-\label{fig:S5_1}
-\end{figure}
-
-The FC VME/VMX crates and HV mainframes are installed in six groups of racks on three levels that are located
-behind each of six sectors containing the PCAL/EC/FTOF/LTCC modules (and RICH in Sector~4) (see
-Ref.~\cite{nim:overview} for details). The calorimeters use both CAEN 1527LC and 4527 HV supplies outfitted
-with negative polarity 24-channel A1535N cards that fit into slots at the rear of each mainframe. The PCAL HV
-cards are housed in the same mainframes used by FTOF.  
-
-The output signals from the PCAL PMTs are routed to the FC with a single run of RG-58 coaxial cable. The EC PMT
-signals use RG-8 cable with RG-58 patch cables at both ends for a more flexible routing geometry. Both the EC and
-PCAL rely on passive resistive splitters designed and built at the University of Virginia to distribute signals to the
-TDC and ADC VME/VXS crates. The split ratio is 2:1 for the PCAL and 3:1 for the EC. For both calorimeters the
-larger signal goes to the ADC modules. Mapping of the patch cables from the splitter to the electronics follows the
-same detector mapping used for the input to the splitters.
-
-From the splitter, thin coax patch cables are routed to JLab DSC2 leading edge discriminators for pulse timing
-measurements and JLab 250~MHz 12-bit flash ADCs (FADC250) for pulse amplitude measurements. Ribbon cables
-connect the DSC2 with CAEN 1190A TDCs that have 100~ps LSB resolution. The FADC250 and DSC2/TDC modules
-are housed in separate VXS crates. The FADC250/VXS crate contains the JLab VXS Trigger Processor (VTP) in a
-special switched slot that is used to process the energy and hit data for the trigger decision making.
-
-All 2304 HV and RG-58 signal cables were manufactured by students at Ohio University. The thin coax interconnection
-cables were  manufactured by students at Norfolk State University. Both groups also participated in cable installation
-in the test setup and on the Forward Carriage in Hall~B.  

@@ -1456,7 +1456,7 @@ PMT is actually determined using the modulus of $t^{res}_{L,R}$ with the RF beam
 $T_{RF}=$1/(RF frequency) by fitting:
 
 \begin{equation}
-t'_{L,R} = mod (t^{res}_{L,R}, T_{RF})~{\rm vs.}~(ADC-PED)_{L,R}.
+t'_{L,R} = mod \left[t^{res}_{L,R}, T_{RF}\right]~{\rm vs.}~(ADC-PED)_{L,R}.
 \end{equation}
 
 Figure~\ref{twalk-plot} shows the $t'$ vs. $ADC$ distribution for a representative FTOF PMT in
@@ -1773,7 +1773,7 @@ to the average panel-1b counter rates, and the green triangles to the average pa
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Based on a detailed simulation of the full CLAS12 detector and beamline based on our GEANT-4 Monte
+Based on a detailed simulation of the full CLAS12 detector and beamline based on our Geant4 Monte
 Carlo called GEMC~\cite{sim-nim}, the response of the FTOF with an 11~GeV electron beam incident upon
 a 5-cm liquid-hydrogen target has been studied. Shown in Fig.~\ref{ftof-gemc} are the overall rates
 associated with hits above the readout threshold, including contributions from photons, neutrons, and
@@ -1814,7 +1814,7 @@ charged particle event rate $\langle R \rangle$. This current can be expressed a
 where $Q_e = 1.6 \times 10^{-19}$ C/e is the electron charge and $G$ is the PMT gain (assumed to
 be $1 \times 10^6$). Using the photoelectron statistics estimated in Section~\ref{res-sec},
 Fig.~\ref{mc-pmt-currents} shows the predictions of the PMT anode currents for all of the FTOF
-counters at nominal operating luminosity at 11~GeV from our detailed GEANT-4 Monte Carlo
+counters at nominal operating luminosity at 11~GeV from our detailed Geant4 Monte Carlo
 studies~\cite{gemc-cn2017}. These predictions show typical PMT anode currents in the panel-1a and
 panel-1b PMTs at the level of 5~$\mu$A to 10~$\mu$A increasing linearly with counter length. Direct
 in-beam measurements of the PMT anode currents (made connecting a picoammeter to the PMT anode
@@ -1957,9 +1957,11 @@ Many aspects in the development of the FTOF system benefited greatly from useful
 assistance from Sergey Boyarinov, Chris Cuevas, Haiyan Lu, Cole Smith, Elton Smith, and Veronique Ziegler. The
 panel-1b counters were built and tested at the University of South Carolina with the help of Jesse Anderson,
 Robert Steinman, Felician Stratman, Nick Tyler, and a dedicated team of graduate and undergraduate students.
-We also thank the Hall~B technical crew for their efforts during counter installation and cabling. This material is
-based upon work supported by the U.S. Department of Energy, Office of Science, Office of Nuclear Physics under
-contract DE-AC05-06OR23177 and was also supported by the National Science Foundation grant PHY-1205782.
+We also thank the Hall~B technical crew for their efforts during counter installation and cabling, as well as
+members of the Hall~B Engineering and Design Groups that contributed to the detector advancement during the
+design stage. This material is based upon work supported by the U.S. Department of Energy, Office of Science,
+Office of Nuclear Physics under contract DE-AC05-06OR23177 and was also supported by the National Science
+Foundation grant PHY-1205782.
 
 \begin{thebibliography}{99}
 
@@ -1998,7 +2000,7 @@ B. Raydo {\it et al.}, {\it ``The CLAS12 Trigger System''}, to be published in N
 E.S. Smith {\it et al.}, Nucl. Inst. and Meth. {\bf A432}, 265 (1999).
 
 \bibitem{recon-nim}
-V. Ziegler {\it et al.}, {\it ``CLAS12 Event Reconstruction''}, to be published in Nucl. Inst.
+V. Ziegler {\it et al.}, {\it ``CLAS12 Software Framework and Event Reconstruction''}, to be published in Nucl. Inst.
 and Meth. A, (2020). (see this issue)
 
 \bibitem{nim-p1b}

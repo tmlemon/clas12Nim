@@ -1,8 +1,31 @@
-\section{Physics Requirements}
+\section{Requirements}
 
-\subsection{Performance Criteria}
+The physics requirements for ECAL are similar to those outlined for the CLAS 6 GeV program~\cite{clas6nim}.  For CLAS12 the performance goals reflect operation at twice the beam energy:
 
-The design parameters of the PCAL were established using full GEANT simulations of the PCAL-EC system
+\begin{itemize}
+\item $e/\gamma$ energy resolution $\sigma/E \le 0.1/\sqrt{E(GeV)}$.  
+\item Position resolution $\delta r\approx 1$ cm for showers.
+\item $\pi/e$ rejection greater than $99\%$ at $E\ge$5~GeV.
+\item Mass resolution for $\pi^0\rightarrow 2\gamma$ decays $\delta m/m \le 0.1$
+\item Neutron detection efficiency $>50\%$ for E$_n>1~GeV$
+\item Time-of-flight resolution $\approx$ 0.5 nsec
+\end{itemize}
+
+A sampling calorimeter with high spatial resolution would normally employ a tower/matrix-like structure of independent readout modules such as used in collider experiments.  The choice of a hodoscope design for CLAS was determined by two factors: 1) reduced cost of instrumenting a large surface area (50 m$^2$) and 2) the need for uniformity of response due to the calorimeter defining the cross section normalization~\cite{1990014}.  To accomodate the hexagonal geometry of CLAS and CLAS12, both EC and PCAL use a triangular hodoscope layout.  The scintillator layers have three alternating stereo readout planes named U, V, and W which are interleaved
+with layers of lead as illustrated in Fig.~\ref{fig:S3_2}. The readout planes for are divided into scintillator strips
+of varying lengths but with a fixed cross-sectional area. In each stereo readout layer
+the strips are oriented parallel to one of the sides of the triangle. For the U-view, the
+strips are parallel to the base of the triangle, farthest from the beamline. For the W-view, the strips are parallel
+to the U photomultiplier readout side. For the V view, the strips are parallel to the last remaining side.  
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S3_2.png}
+\caption[PCAL UVW Layers]{Schematic showing interleaving of scintillator layers with lead sheets.  For PCAL there are five layers of scintillator strips that define each of the U,V and W planes. }
+\label{fig:S3_2}
+\end{figure}
+
+The design parameters of the PCAL were originally established using GEANT3 simulations of the PCAL-EC system
 (together referred to as the ECAL). These studies are described in detail in Ref.~\cite{2007001} and
 summarized below. The mechanical design depends on the number of scintillator-lead layers, on the angular
 coverage of the PCAL, and on the degree of readout segmentation. These parameters were determined by
@@ -23,7 +46,7 @@ mesons via $2\gamma$\ decay.
 Initial simulations were carried out with 15 layers of lead and scintillator (similar to the inner part of the EC),
 using 3.5~cm wide segmentation for the scintillator layers, corresponding to about 108 readout channels in each
 stereo view. For comparison the EC uses 10 cm wide strips. Events were generated using a uniform distribution
-of $\pi^{0}\rightarrow 2\gamma$ decays at the target with momenta up to 12~GeV. Showers were identified
+of $\pi^{0}\rightarrow 2\gamma$ decays at the target with meson momenta up to 12~GeV. Showers were identified
 using the standard cluster reconstruction algorithm of the EC, but applied to both PCAL and EC. As shown in
 Fig.~\ref{fig:S2_1}, the combined PCAL and EC system retains good energy resolution,
 $\sigma/E \approx 0.1 \times E^{-1/2}$, with constant efficiency for two cluster reconstruction up to the highest
@@ -42,8 +65,8 @@ segmentation needed to resolve the small $2\gamma$ opening angles of $<3^{\circ}
 \centering
 \includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S2_2.png}
 \caption{Segmentation pattern for different PCAL stereo readout planes (U, V, and W). There is always a region
-  with single strip width (4.5~cm) segmentation in one of the stereo layers. The U PMTs are read out from the
-  left side of the triangle, as seen in this view from the target, while the V and W PMTs are read out from the base.}
+  with single width (4.5~cm) readout segmentation in one of the stereo layers. The U PMTs are read out from the
+  left side of the triangle, as seen in this view from the target, while the V and W strips are read from PMTs installed along the base of the triangle.}
 \label{fig:S2_2}
 \end{figure}
 

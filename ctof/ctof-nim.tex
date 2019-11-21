@@ -299,8 +299,8 @@ counters.
 \begin{figure}[htbp]
 \vspace{1.7cm}
 \begin{picture}(50,50) 
-\put(10,115)
-{\hbox{\includegraphics[angle=-90,width=0.35\textwidth,natwidth=610,natheight=642]{pics/counter-pair.pdf}}}
+\put(10,108)
+{\hbox{\includegraphics[angle=-90,width=0.32\textwidth,natwidth=610,natheight=642]{pics/counter-pair.pdf}}}
 \end{picture} 
 \caption{A pair of neighboring CTOF counters with two slightly different designs for the upstream light
 guide and the upstream end of the scintillation bars.} 
@@ -1742,7 +1742,7 @@ After completion of each of the timing calibration steps discussed in this secti
 with a matched charged particle track can be determined. Putting all of the timing corrections together, the
 track hit time reconstructed from the readout of the upstream and downstream PMTs are given by:
 \begin{multline}
-  t_{U,D} = (CONV \cdot TDC_{U,D}) \mp \frac{C_{UD}}{2} + \\ C_{RF} + C_{p2p} - \frac{\delta t_{hpos}}{2},
+  t_{U,D} = (CONV \cdot TDC_{U,D}) \mp \frac{C_{UD}}{2} + \\ C_{RF} + C_{p2p} + \frac{\delta t_{hpos}}{2},
 \end{multline}
 
 \noindent
@@ -1803,7 +1803,7 @@ a beam current of $\sim$75~nA.}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Studies using the CLAS12 GEANT-4 Monte Carlo suite called GEMC~\cite{sim-nim} at the full nominal
+Studies using the CLAS12 Geant4 Monte Carlo suite called GEMC~\cite{sim-nim} at the full nominal
 luminosity with an 11~GeV electron beam with the solenoid at full field, indicate that the total integrated
 rates (hadronic and neutral) for particles that deposit energy greater than 1~MeV in the counters is
 $\sim$100~kHz/counter and the nominal PMT currents for all incident radiation on the counter (i.e. with
@@ -1966,11 +1966,13 @@ period from Dec. 2017 to May 2018 and from Sep. to Dec. 2018.
 
 We benefited greatly from useful discussions with and assistance from Sergey Boyarinov, Chris
 Cuevas, Ralf Gothe, Chris Keith, Eugene Pasyuk, Cole Smith, Elton Smith, Maurizio Ungaro, and
-Veronique Ziegler. We thank the Hall~B technical crew for their efforts during counter installation
-and the JLab Detector Support Group for contributing to component assembly and testing. Finally,
-we thank the students and post-docs who contributed their time and energy during the research
-and development phase of this project. This material is based upon work supported in part by the
-U.S. Department of Energy, Office of Science, Office of Nuclear Physics under contract
+Veronique Ziegler. We thank the Hall~B technical crew for their efforts during counter installation,
+the JLab Detector Support Group for contributing to component assembly and testing, and members of
+the Hall~B Engineering and Design Groups that contributed to the detector advancement during the
+design stage. This material is based upon work supported by the U.S. Department of Energy, Office of
+Science, Office of N. Finally, we thank the students and post-docs who contributed their time and energy
+during the research and development phase of this project. This material is based upon work supported in
+part by the U.S. Department of Energy, Office of Science, Office of Nuclear Physics under contract
 DE-AC05- 06OR23177.
 
 \begin{thebibliography}{99}
@@ -2075,7 +2077,7 @@ and Meth. A, (2020). (see this issue)
 JLab 250~MHz FADC Manual, https://www.jlab.org/\\ Hall-B/ftof/manuals/FADC250UsersManual.pdf
   
 \bibitem{recon-nim}
-V. Ziegler {\it et al.}, {\it ``CLAS12 Event Reconstruction''}, to be published in Nucl. Inst.
+V. Ziegler {\it et al.}, {\it ``CLAS12 Software Framework and Event Reconstruction''}, to be published in Nucl. Inst.
 and Meth. A, (2020). (see this issue)
   
 \bibitem{epics}
@@ -2111,6 +2113,3 @@ https://misportal.jlab.org/mis/physics/clas12/\\ viewFile.cfm/2018-006.pdf?docum
 \end{thebibliography}
 
 \end{document}
-  
-  
-  

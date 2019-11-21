@@ -1,59 +1,58 @@
 \section{Drift Chamber Tracking System Performance}
-In this section, we document the drift chamber system's
-efficiency at reconstructing charge particle tracks and
-its spatial resolution of such tracks.
 
-\subsection{High Luminosity}
-In order to satisfy the statistical requirements of the experimental program, 
-an important design goal for CLAS12 is the ability to make routine measurements 
-with high electron beam luminosities up to 
-1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$.  The luminosity limit in CLAS12 is 
+In this section, we describe the tracking system performance: the ability to operate at high luminosity,
+the efficiency at reconstructing charge particle tracks, and the spatial resolution of such tracks.
+
+\subsection{Operation at High Luminosity}
+
+In order to satisfy the statistical requirements of the experimental program, an important design
+goal for CLAS12 is the ability to make routine measurements with electron beam luminosities up to
+10$^{35}$~cm$^{-2}$s$^{-1}$.  The luminosity limit in CLAS12 is 
 set by the large flux of M{\o}ller electrons and low-energy photons 
 produced from the targets by the multi-GeV incident electron beam.  This 
 constraint is severe for the drift chambers since they are close to the 
 target. 
 
-Particularly for the R1 chambers, the large flux of 
-particles limits the luminosity in two ways.  First, a large number of 
-background-related hits in the chambers reduces the track reconstruction 
-efficiency.  The working assumption is that the analysis software can tolerate 
-no more that a 5$\%$ accidental chamber occupancy in order to successfully 
-reconstruct charged-particle tracks.  Second, the effects of sustained high 
+Particularly for the R1 chambers, the large flux of particles limits the luminosity in several ways.
+First, the chambers must be able to operate with an acceptably low trip rate.
+Second, the accidental occupancy in the chambers should be on the order
+of 5\% or less in order to keep the track-finding inefficiencies at a moderate 
+level.  See the accompanying article on track reconstruction (\cite{recon-nim})
+for a quantitative discussion of this effect.  Third, the effects of sustained high 
 luminosities can be unfavorable for long chamber lifetimes.  Aging correlates 
 directly with the currents generated in the chambers.
-However, our choice of an Argon CO2 gas mixture and strict control of
+However, our choice of an argon-CO$_2$ gas mixture and strict control of
 materials in contact with the gas should provide a long chamber lifetime.
 For the previous CLAS chambers, we used the same gas mixture and ran at a
 similar gain and similar currents, and the chambers lasted more than 10 years 
-with no indication
-of aging.  We expect the present
+with no indication of aging.  We expect the present
 chambers to perform well for at least 10 years.
 
+\subsection{Tracking Inefficiency: Intrinsic, Malfunction-Related, and Background-Related}
 
-\subsection{Tracking Inefficiency: Intrinsic, Malfunction-Related and Background-Related}
-The probability of reconstructing a track due to a charged particle within
-our fiducial volume is referred to as the ``tracking efficiency''.
+The probability of reconstructing a track due to a charged particle within our fiducial volume
+is referred to as the ``tracking efficiency''. The tracking inefficiency has three root causes:
 
-The tracking inefficiency has three root causes:
 \begin{enumerate}
 \item {\bf intrinsic layer inefficiency}: the failure to record
 a hit for a track crossing a layer, when all wires and electronics
-are operating properly
+are operating properly;
 \item {\bf malfunction-related inefficiency}: loss of hits and sometimes
-whole track segments because of equipment malfunctions
-\item {\bf background-related inefficiency}: out of time background
+whole track segments because of equipment malfunctions;
+\item {\bf background-related inefficiency}: out-of-time background
 can interfere with the segment-finding algorithms when a background-related
-track segment lies ``on top'' of a real, in-time, segment
+track segment lies ``on top'' of a real, in-time, segment.
 \end{enumerate}
 
 \subsubsection{Simulation of Inefficiencies}
+
 In our generation and reconstruction of simulated events, we estimate the size of
 the three types of inefficiency in the following manner:
 
 \begin{enumerate}
 \item {\bf simulation of intrinsic layer inefficiency}: this is a random process
-and, as such, it is handled at event generation time by our GEMC simulation
-program.  For each superlayer (1-6), we have defined a DOCA-dependent
+and, as such, it is handled at event generation time by our Monte Carlo simulation
+program GEMC~\cite{sim-nim}.  For each superlayer (1-6), we have defined a DOCA-dependent
 layer inefficiency function, as determined from the data.  At hit-generation
 time in GEMC a random number (between 0 and 1) is generated, and if it is
 smaller than the layer inefficiency function, the hit is not digitized.
@@ -62,21 +61,22 @@ Carlo hits are generated as if there are no malfunctions of the wires.
 During the Monte Carlo reconstruction, however, a status table for each
 hit wire is queried and if the wire is in the ``bad status'' list, that
 hit is not used in the tracking.  The malfunction-related inefficiency  is small.  
-At the time of publication,
-roughly $0.5\%$ of our wires are not operating properly.  
+At the time of publication, roughly $0.5\%$ of our wires are not operating properly.  
 \item {\bf simulation of background-related inefficiency}: rather than try
-to simulated out-of-time background due to all physics processes, we merge
-``random-trigger'' events with low-luminosity runs and calculate the
-efficiency of these merged events with un-merged low-luminosity events.
+to simulate out-of-time background due to all physics processes, we merge
+``random-trigger'' events with events from low-luminosity runs and compare the
+efficiency of these merged events with that from un-merged low-luminosity events.
+This ratio is considered to be a measure of the background-related inefficiency.
 \end{enumerate}
 
 We will not further discuss the {\bf malfunction-related inefficiency} or
 the {\bf background-related inefficiency} further in this article.  See
-our companion article on {\bf Track Reconstruction} for more details.
+our companion article on track reconstruction for more details~\cite{recon-nim}.
 
-Now we present our results on measuring the {\bf intrinsic layer  inefficiency}.
+Here we present our results on measuring the {\bf intrinsic layer inefficiency}.
 
 \subsubsection{Intrinsic Layer Inefficiency}
+
 The layer efficiency is the probability that a
 good hit is recorded in a wire layer through which the track has passed, based on 
 the evidence from all other layers in the superlayer.  This is called the 
@@ -84,101 +84,96 @@ the evidence from all other layers in the superlayer.  This is called the
 cell efficiency for the particular choice of gas mixture, high-voltage set point, and 
 discriminator level.  
 
-In the section on operations and monitoring we discussed our `high voltage plateau'.
-We took data at successively higher values of high voltage and measured the
-layer efficiency at each point.  We set the high-voltage operating points such that
-the average layer efficiency is $>$98$\%$. 
 
-The single layer inefficiency is not uniform across the drift cell.  It is higher near the sense wire and also near the outer
-edge of the cell.  A track passing close to a sense wire leave many ions in the cell, but the ion arrival times are stretched
-out from near-zero to the maximum drift time, Tmax.  The result is that the pre-amplifier's output signal has a low voltage
-amplitude but persists for a long time.  So, even though the collected charge is large the voltage put out by our trans-impedance
-pre-amplifiers may not be large enough to exceed the voltage discriminator threshold of the DCRB,
-For the case of tracks near the outer edge of the cell (so-called `corner-clippers') they simply leave a very small number
-of ions in the cell and thus have a small signal.
+The single layer inefficiency is not uniform across the drift cell.  It is higher near the sense wire and also
+near the outer edge of the cell.  A track passing close to a sense wire leaves many ions in the cell, but the
+ion arrival times are stretched out from near-zero to the maximum drift time $Tmax$.  The result is that
+the preamplifier's output signal has a low voltage amplitude but persists for a long time.  So, even though
+the collected charge is large the voltage put out by our transimpedance preamplifiers may not be large
+enough to exceed the voltage discriminator threshold of the DCRB. For the case of tracks near the outer
+edge of the cell (so-called `corner-clippers') they leave a very small number of ions in the cell and
+thus have a small signal.
 
-Fig.~\ref{hit-effcy-vs-doca} reveals that a large contribution to the $2\%$ inefficiency comes 
+Fig.~\ref{dc-inefficiency-vs-doca} shows that a large contribution to the inefficiency comes 
 from tracks that pass close to the sense wire.  These tracks give rise to signals 
 that have low pulse height and long duration, and thus may escape detection.
-We fit this observed DOCA-dependent inefficiency to a functional form which is
+We fit this observed DOCA-dependent inefficiency to a functional form that is
 used in our GEMC Monte Carlo hit digitization routine to randomly throw out
 this percentage of hits.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{5cm}
+\vspace{5.7cm}
 \begin{picture}(50,50)
-\put(-10,10)
-{\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/hit-effcy-vs-doca.png}}}
+\put(70,0)
+{\hbox{\includegraphics[width=0.6\textwidth,natwidth=610,natheight=642]{img/dc-inefficiency-vs-doca.png}}}
 \end{picture}
 \caption{\small{The observed ``layer efficiency'' as a function of DOCA.  Hits from tracks
-which pass close to or far from the wire have the hits spread out in time, and the resulting
-voltage pulse from the pre-amplifiers may fail to cross the discriminator threshold, resulting
+that pass close to or far from the sense wire have the hits spread out in time, and the resulting
+voltage pulse from the preamplifiers may fail to cross the discriminator threshold, resulting
 in a ``lost hit''.}}
-\label{hit-effcy-vs-doca}
+\label{dc-inefficiency-vs-doca}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Drift Chamber Spatial Resolution}
 
-\hskip 0.15in
-The single-wire resolution is the difference 
+The single-wire resolution is the RMS spread of the difference 
 between the fitted TRKDOCA of the track and the value of DOCA as calculated from the 
-time of the hit in the excluded layer.  The variance of this residual distribution 
-is the quadratic sum of the single-wire resolution and the track position uncertainty 
-at the excluded layer.  This variance over-estimates the single-wire resolution.
-Since there are six layers per superlayer and layer 3 is excluded from the fit,
+time of the hit.  The variance of this residual distribution 
+is the quadratic sum of the single-wire resolution and the track position uncertainty.  
+This variance over-estimates the single-wire resolution.
+Since there are six layers per superlayer,
 this amounts to a $10 - 15\%$ over-estimate.
 
-Fig.~\ref{resolution-vs-doca} shows the width of the track-hit residual distribution plotted versus DOCA for 
-each of the different chamber Regions.  The single-wire resolution worsens near the 
+Fig.~\ref{resolution-vs-doca} shows the width of the track-hit residual distribution plotted versus
+TRKDOCA for each of the different chamber regions.  The single-wire resolution worsens near the 
 wire and also at the outer edge of the cell.  This arises due to finite cluster sizes 
 due to the Poisson distribution of ion-pair production along the path of the primary ion 
 near the sense wire along with time walk effects and the divergent nature of the electric
 field lines near the field wire.  
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[hbtp]
-\vspace{15cm}
+\vspace{7.3cm}
 \begin{picture}(50,50)
-\put(30,10)
-{\hbox{\includegraphics[width=1.\textwidth,natwidth=610,natheight=642]{img/resolution-vs-doca.png}}}
+\put(50,-10)
+{\hbox{\includegraphics[width=0.85\textwidth,natwidth=610,natheight=642]{img/resolution-vs-doca.png}}}
 \end{picture}
-\caption{\small{The hit resolution plotted versus TRKDOCA for R1, R2, R3 (top, middle, bottom), respectively.}}
+\caption{\small{The hit resolution plotted versus TRKDOCA for R1, R2, and R3 (top, middle, bottom),
+    respectively.}}
 \label{resolution-vs-doca}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-A more quantitative look at the resolution as a function of doca is given in Fig.~\ref{resid-vs-doca},
+A more quantitative look at the resolution as a function of DOCA is given in Fig.~\ref{resid-vs-doca},
 for data from all six R3 drift chambers.
-The upper sub-figure is a plot the 2-d distribution of the fit residual (TRKDOCA - DOCA) vesus TRKDOCA.
-We did a Gaussian slice-fit in the x-coordinate (TRKDOCA) and plot the resulting sigma from
+The upper sub-figure is a plot the 2-D distribution of the fit residual (TRKDOCA - DOCA) vs. TRKDOCA.
+We did a Gaussian slice-fit in the x-coordinate (TRKDOCA) and plotted the resulting sigma from
 each fit versus TRKDOCA in the lower sub-figure.
-Here you can quantitatively see that the average single-wire resolution in the middle 
+The average single-wire resolution in the middle 
 portion of the cell is about 250~$\mu$m, with a whole cell resolution of about 400~$\mu$m. 
 Looking at similar fits for all of the chambers, we conclude that the whole-cell 
 average is about 400~$\mu$m for R1, R2, and R3, respectively.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{8cm}
 \begin{picture}(50,50)
-\put(30,10)
+\put(40,-5)
 {\hbox{\includegraphics[width=.8\textwidth,natwidth=610,natheight=642]{img/resid-vs-doca.png}}}
 \end{picture}
 \caption{\small{Upper figure: a plot of residual vs. TRKDOCA.  Lower figure: a plot of the Gaussian sigma of the
 upper plot (from a slice-fit) vs. TRKDOCA.}}
 \label{resid-vs-doca}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Conclusions}
 
-\hskip 0.15in
 The toroidal geometry of the CLAS spectrometer necessitated a particle-tracking 
 system of unconventional design.  Design challenges and solutions include the following:
 
-\vskip 10pt
 \noindent
 - The necessity to conceal inactive areas of the drift chambers within the
 shadow regions of the torus cryostat resulted in very thin endplates and low-profile
@@ -186,28 +181,27 @@ wire connection schemes and on-board preamplifiers.
 
 \noindent
 - The toroidal shape of the magnet and the desire to have measurements before, within, 
-and after the high-field region, resulted in the design of a `rod and ball' mounting scheme
-which minimized dead areas and facilitates maintenance.
+and after the high-field region, resulted in the design of a ``rod and ball'' mounting scheme
+that minimizes dead areas and facilitates maintenance.
 
 \noindent
 - The fabrication of chambers that support large static wire tensions, but have thin 
 endplates necessitated three endplate designs: aluminum stiffened with steel bars (R1),
-G10 stiffened with steel bars (R2) and Carbon fiber plates filled with foam and reinforce
-with Carbon-fiber posts and close-out plate (R3). 
+Stesalit an epoxy-G10 composite) stiffened with steel bars (R2), and carbon fiber plates filled with foam and reinforced
+with carbon-fiber posts on the entrance side and a carbon-foam-carbon composite plate on the exit side (R3). 
 
 \noindent
 -The need for precise tracking in a system with non-saturated drift velocity 
-(necessitated by the requirements of large drift distances, non-flammable gas mixtures 
+(necessitated by the requirements of large drift distances, non-flammable gas mixtures, 
 and low-gain operation) resulted in a semi-automated calibration and monitoring software 
 package.
 
 \vskip 10pt
-The CLAS drift chamber system has been in routine operation since Spring, 2017. 
-The system has reached its design goals of 
-high-luminosity operation (1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$) in a 
-high-flux electromagnetic reaction environment, with very good track 
-reconstruction efficiency over a large range of angles and 
-magnetic fields.  
+The CLAS12 drift chamber system has been in routine operation since spring, 2017. 
+The system has reached its design goals of high-luminosity operations in beam
+(1$\times$10$^{35}$~cm$^{-2}$s$^{-1}$) in a high-flux electromagnetic reaction
+environment, with very good track reconstruction efficiency over a large range of angles and 
+magnetic fields~\ref{recon-nim}.  
 The percentage of malfunctioning wires, due to high voltage problems, signal
 connector issues, etc., is presently ~0.5\%.
 The single-wire efficiency is greater than $98\%$ and the
@@ -224,7 +218,7 @@ in the cell center.
 The authors wish to thank the crews of wire stringers and technicians who 
 participated during the chamber construction at the Idaho State University,
 Old Dominion University, and Jefferson Laboratory, as well as the support of 
-the technicians involved with installation of the detectors into CLAS.  The
+the technicians involved with installation of the detectors into CLAS12.  The
 authors also thank Dr. Simon Taylor for his careful reading of the draft.  This
 work was supported in part by DOE contract DE-AC05-84ER40150, DOE grants 
 DE-FG02-87ER40315, DE-FG05-94ER40859, DE-FG02-96ER40960, DE-FG02-96ER40980, 

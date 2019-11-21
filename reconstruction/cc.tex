@@ -1,48 +1,51 @@
 \subsection{Threshold Cherenkov Counters}
 
-The goal of the High and Low Threshold Cherenkov Counter (HTCC, LTCC) reconstruction algorithms
-calculate the signal strength, time, and position from the
-raw ADC signals coming from the PMTS through the corresponding FADC board. The algorithm takes into account
-the properties of the HTCC and LTCC geometries, namely, the possibility for the signal from the single track to split into
-up to four mirrors.
-Hence, up to four separated signals (or hits) are produced. The final signal reconstruction is done in three
-steps: decoding, hit reconstruction, and cluster reconstruction.
+The CLAS12 Forward Detector includes two threshold Cherenkov detectors for particle identification. The
+High Threshold Cherenkov Counter (HTCC)~\cite{htcc-nim} is located upstream of the torus and is used for
+identification of the scattered electron in conjunction with the ECAL. The Low Threshold Cherenkov Counter
+(LTCC)~\cite{ltcc-nim} is positioned upstream of the FTOF and is used mainly to separate pions from kaons.
+Both the HTCC and LTCC are large gas-filled volumes (CO$_2$ for the HTCC, C$_4$F$_{10}$ for the LTCC)
+with mirrors that direct light collection to the PMTs. The goal of the HTCC and LTCC reconstruction algorithms
+is to calculate the signal strength, time, and position from the raw ADC signals (read out with flash ADC boards
+- FADCs). The algorithm takes into account the properties of the HTCC and LTCC geometries, namely, the
+possibility for the signal from the single track to split into up to four mirrors. Hence, up to four separated
+signals (or hits) are produced. The final signal reconstruction is done in three steps: decoding, hit reconstruction,
+and cluster reconstruction. For each hit, the signal strength ($nphe_{hit}$ - the number of photoelectrons) is
+determined from the pedestal-subtracted integral of the FADC pulse and the associated time ($T_{hit}$) is
+determined from a fit of the position of the FADC signal threshold crossing time.
 
-At the decoding stage, the signal is converted from the hardware notation (crate, slot, channel) into the CLAS12
-notation (sector, layer, component).  For each signal, strength ($nphe_{hi}$) and timing ($T_{hi}$) is determined
-from the position of the threshold crossing, fit to the shape of the signal and measured value of the pedestal.
-
-At the hit reconstruction stage, individual signals in terms of the ADC channels is converted into the number of
-the photoelectrons ($nphe_{hi}$) for each hit using the gain constants in the $ccdb$:
+At the hit reconstruction stage, individual signals in terms of the ADC channels are converted into the number of
+photoelectrons ($nphe_{hit}$) for each hit using gain constants derived from the detector calibration and stored
+in CCDB:
 
 \begin{equation}
-nphe_{hi} = \frac{ADC}{gain}
+nphe_{hit} = \frac{ADC}{gain}.
 \end{equation}
 
-The correspondence between the  hit coordinate in terms (sector, layer, component) and specific PMT, observing
-the mirror,  provides the information on the angular hit coordinates ($\theta_{hi}$, $\phi_{hi}$).
+\noindent
+Geometry information on the PMT location is used to associate the angular coordinates ($\theta_{hit}$, $\phi_{hit}$)
+to the hit.
 
-In order to reconstruct the real signal strength ($nphe_c$), we need to combine split signals (hits)into the single
-cluster. We start by selecting the strongest hit and use it as a starting point of the cluster. Then we look for the
-adjacent hits within a certain time window.  If such hits are found, they will be added to the growing cluster. If
-not, the cluster growth stops.
+In order to reconstruct the real signal strength ($nphe_c$), split signals (hits) have to be combined into a single
+cluster. The algorithm starts by selecting the hit with the largest $nphe_{hit}$, which is used as a seed for the
+cluster. Adjacent hits within a certain time window are then searched iteratively and, if found, added to the
+cluster. The total signal strength is determined as the sum of the individual signals, and the signal time is
+determined as the average between the individual signal times, weighted by the corresponding number of
+photoelectrons. The cluster angular coordinates are determined as the average between the individual hits forming
+the cluster. The following equations summarize the definitions of the cluster quantities:
 
-The total signal strength is determined as the sum of the individual signals, and the signal time is determined as
-the average between the individual signals, weighted by the corresponding number of the photoelectrons. The hit
-angular coordinate is determined as the average between the individual hits forming the cluster.  Hits, attributed
-to the established clusters, are removed from the further consideration, and algorithm starts to look for the next
-cluster until list of hits is exhausted.
+\begin{eqnarray}
+nphe_c &= \frac{\sum_{i=1}^N{nphe_{hit}}}{N} \nonumber \\
+T_c &= \frac{\sum_{i=1}^N{N*T_{hit}}}{\sum_{i=1}^N{nphe_{hit}}} \nonumber \\
+\theta_c &=\frac{\sum_{i=1}^N{\theta_{hit}}}{N} \nonumber \\
+\phi_c &= \frac{\sum_{i=1}^N{\phi_{hit}}}{N}.
+\end{eqnarray}
 
-\begin{eqnarray*}
-nphe_c &= \frac{\sum_{i=1}^{N}{nphe_{hi}}}{N}\\
-T_c &= \frac{\sum_{i=1}^{N}{N*T_{hi}}}{\sum_{i=1}^{N}{nphe_{hi}}}\\
-\theta_c &=\frac{\sum_{i=1}^{N}{\theta_{hi}}}{N}\\
-\phi_c &= \frac{\sum_{i=1}^{N}{\phi_{hi}}}{N}
-\end{eqnarray*}
+\noindent
+The clustering algorithm is run iteratively until the full list of $N$ hits is exhausted.
 
-Hits, attributed to the established clusters, are removed from the further consideration, and algorithm starts to
-look for the next cluster until list of hits is exhausted.
-
-In the HTCC the cluster coordinates, required for the matching of the hit with the reconstructed track in the Event Builder, is
-reconstructed by projecting  ($\theta$, $\phi$) of the cluster on the surface of the ellipsoidal mirror.     In the LTCC an estimated cluster
-position is calculated leveraging the Monte-Carlo simulation.  The track that passes the closest to the tentative true cluster position is then chosen as the true match for this cluster.
+In the HTCC, the cluster coordinates, required for the matching of the hit with the reconstructed track in the
+Event Builder, are reconstructed by projecting  ($\theta_c$, $\phi_c$) of the cluster on the surface of the
+ellipsoidal mirror of the detector. In the LTCC, an estimated cluster position is calculated based on a
+parameterization extracted from Monte Carlo simulations. The track that passes the closest to the cluster
+position is then chosen as the match for this cluster.
