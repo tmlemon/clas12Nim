@@ -104,39 +104,35 @@ of the particle that produced the hit is obtained as:
 
 \subsubsection{Hit/Track Matching}
 
-Tracks from charged particles crossing the CVT are associated with hits in the CND. This allows the position of
-each CND hit to be computed from the track extrapolated beyond the CVT to the location of the hit counter.
-This information is used in the detector calibration~\cite{cnd-nim}, as well as to veto charged particles when looking
-for neutrons in the CND. CVT tracks are extrapolated to radii corresponding to the entry point, middle point, and
-exit point of the track in the paddle. These points are defined as the intersections between the helix of the track
-and cylinders of radii corresponding to the distances between the center of the Central Detector and the three
-CND layers. A CVT track and a CND hit are matched if the hit coordinates ($x$, $y$, and $z$) and the extrapolated
-coordinates ($x_m$, $y_m$, and $z_m$) verify the relations:
-
-\begin{equation}
-\mid x-x_m \mid < \sigma_x ,
-\end{equation}
-\begin{equation}
-\mid y-y_m \mid < \sigma_y ,
-\end{equation}
-\begin{equation}
-z_m  \in [-\sigma_z,L+\sigma_z],
-\end{equation}
-
-\noindent
-where $\sigma_z=1.5$ cm, $ L$ is the length of a paddle, and $\sigma_x$ and $\sigma_y$ are given by:
-
-\begin{equation}
-\sigma_x= \sqrt{x^2\frac{\sigma_R^2}{R^2}+y^2\sigma_\phi^2},
-\end{equation}
-\begin{equation}
-\sigma_y= \sqrt{y^2\frac{\sigma_R^2}{R^2}+x^2\sigma_\phi^2},
-\end{equation}
-
-\noindent
-where $R$ is the radius of the hit, $\sigma_R$ is half the thickness of a paddle (1.5~cm), and $\sigma_{\phi}$ is
-the azimuthal resolution of each paddle ($3.75^\circ$). The path traveled by the particle in the paddle is
-approximated as the distance between the entry and exit points. The path length between the vertex and the
+Tracks from charged particles crossing the CVT are associated with hits in the CND. This allows the position of each CND hit to be computed from the track extrapolated beyond the CVT to the location of the hit counter.
+This information is used in the detector calibration~\cite{cnd-nim}. CVT tracks are extrapolated to radii corresponding to the entry point, middle point, and
+exit point of the track in the paddle. These points are defined as the intersections between the helix of the track and cylinders of radii corresponding to the distances between the center of the Central Detector and the three CND layers. A CVT track and a CND hit are matched if the hit coordinates ($x$, $y$, and $z$) and the extrapolated coordinates ($x_m$, $y_m$, and $z_m$) are within a user-selected distance. 
+%verify the relations:
+%
+%\begin{equation}
+%\mid x-x_m \mid < \sigma_x ,
+%\end{equation}
+%\begin{equation}
+%\mid y-y_m \mid < \sigma_y ,
+%\end{equation}
+%\begin{equation}
+%z_m  \in [-\sigma_z,L+\sigma_z],
+%\end{equation}
+%
+%\noindent
+%where $\sigma_z=1.5$ cm, $ L$ is the length of a paddle, and $\sigma_x$ and $\sigma_y$ are given by:
+%
+%\begin{equation}
+%\sigma_x= \sqrt{x^2\frac{\sigma_R^2}{R^2}+y^2\sigma_\phi^2},
+%\end{equation}
+%\begin{equation}
+%\sigma_y= \sqrt{y^2\frac{\sigma_R^2}{R^2}+x^2\sigma_\phi^2},
+%\end{equation}
+%
+%\noindent
+%where $R$ is the radius of the hit, $\sigma_R$ is half the thickness of a paddle (1.5~cm), and $\sigma_{\phi}$ is
+%the azimuthal resolution of each paddle ($3.75^\circ$).
+The path traveled by the particle in the paddle is approximated as the distance between the entry and exit points. The path length between the vertex and the
 hit is obtained from the helix parameters.
 
 \subsubsection{Clustering}
