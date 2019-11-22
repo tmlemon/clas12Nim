@@ -82,11 +82,11 @@
 %% \address[label2]{}
 \author{V.D. Burkert, L. Elouadrhiri, D. Anderson, S. Aune, H. Avakian, N. Baltzell, M. Battaglieri,  V. Baturin,
   S. Boiarinov, P. Bonneau, K. Bruhwel, D.S. Carman, A. Celentano, M. Contalbrigo, S. Christo, M. Defurne, G. Dodge,
-  R. De Vita, K. Giovanetti, F.X. Girod, L. Guo, R. Gothe, Y. Gotra, K. Hafidi, D. Heddle, P. Hemler, K. Hicks, D. Insley, K. Joo,
-  D. Kashy, A. Kim, W. Kim, V. Kubarovsky, S. Kuhn, M. McMullen, I. Mandjavidze, N. Markov, C. Mealer, M.D. Mestayer,
-  Z.E. Meziani, R. Miller, M. Mirazita, S. Niccolai, O. Pastor, E. Pasyuk, O. Pogorelko, B. Raue, P. Rossi, F. Sabatie,
-  Y. Sharabian, L.C. Smith, D. Sokhan, S. Stepanyan, M. Ungaro, A. Vlassov, D. Watts, L. Weinstein, C. Wiggins,
-  A. Yegneswaran, G. Young, M. Zarecky, V. Ziegler, {\bf incomplete list} ......... more coming .............}
+  R. De Vita, K. Giovanetti, F.X. Girod, L. Guo, R. Gothe, Y. Gotra, K. Hafidi, D. Heddle, P. Hemler, K. Hicks, D. Insley,
+  K. Joo, D. Kashy, A. Kim, W. Kim, V. Kubarovsky, S. Kuhn, M. McMullen, I. Mandjavidze, N. Markov, C. Mealer,
+  M.D. Mestayer, Z.E. Meziani, R. Miller, M. Mirazita, S. Niccolai, O. Pastor, E. Pasyuk, O. Pogorelko, B. Raue, P. Rossi,
+  F. Sabatie, Y. Sharabian, L.C. Smith, D. Sokhan, S. Stepanyan, M. Ungaro, A. Vlassov, D. Watts, L. Weinstein,
+  C. Wiggins, A. Yegneswaran, G. Young, M. Zarecky, V. Ziegler, {\bf incomplete list} ......... more coming .............}
 %\address{12000 Jefferson Avenue, Newport News, Virginia, 23606}
 %\author{ K. Hafidi,  .......} 
 %\address{ Argonne National Laboratory, Argonne, Illinois, 60439, USA}
@@ -446,8 +446,8 @@ solid material seen by charged particles passing through the HTCC volume is 135~
 
 The HTCC is also used to generate a fast signal to be used as a trigger for scattered electrons. The HTCC operates
 in conjunction with energy deposited in the electromagnetic calorimeters to identify electrons of specific energies.
-The $360^\circ$ mirror system of the HTCC is shown in Fig.~\ref{htcc}. Figure~\ref{HTCC-container} shows a cut view
-of the assembled HTCC detector. For details of the HTCC construction and performance, see Ref.~\cite{HTCC}.   
+The $360^\circ$ mirror system of the HTCC is shown in Fig.~\ref{htcc}. Figure~\ref{HTCC-container} shows a cut
+view of the assembled HTCC detector. For details of the HTCC construction and performance, see Ref.~\cite{HTCC}.   
 
 \subsection{Low Threshold Cherenkov Counter (LTCC)}
 
@@ -1164,12 +1164,12 @@ material. For determining the kinematics of the reaction, the electrons must be 
 determined by tracking them in the magnetic field of the torus magnet, and detecting them in the FTOF and in the
 ECAL, which covers approximately the polar angle range from $5^\circ$ to $35^\circ$. The detailed acceptance
 ranges depend also on the polarity of the magnetic field. Charged tracks that are deflected away from the beamline
-have acceptance functions that are different from charged tracks that are deflected towards the beamline. The
+have acceptance functions that are different from charged tracks that are deflected toward the beamline. The
 magnetic field of the solenoid also affects the acceptance function of charged particles. For opposite charges but
 the same momentum, the azimuthal rotation of scattered charged particles is the same in magnitude but opposite in
 sign. Figure~\ref{e-accept} shows the azimuthal acceptance at different polar angles for electrons bending away
 from the beamline. The electron acceptance of the HTCC is 360$^\circ$ in azimuth, but the acceptance for electron
-tracks is reduced due to the cryostat of the torus coils, which block electron transmission to the DC tracking system.
+tracks is reduced due to the cryostat of the torus coils, which blocks electron transmission to the DC tracking system.
 The blockage is largest at the smallest polar angle of $5^\circ$ and smallest at the largest polar angle of $35^\circ$.
 This is shown in Fig.~\ref{e-accept} at 3 polar angles.  
 
@@ -1182,13 +1182,13 @@ package was developed, based on the software package Geant4~\cite{GEMC}.
 \includegraphics[width=0.3\columnwidth]{HTCC_1.png}
 \includegraphics[width=0.3\columnwidth]{HTCC_2.png}
 \includegraphics[width=0.3\columnwidth]{HTCC_3.png}}
-\caption{Acceptance distribution for scattered electrons in azimuthal angle for different bins in polar angle.
-Left: $\theta = 5^\circ-7^\circ$, middle: $\theta = 13^\circ-15^\circ$, right: $\theta = 23^\circ-25^\circ$. For
-these polar angle ranges the azimuthal acceptances are 33\%,  66\%, and 80\%, respectively, of the full sector
-range of $\pm 30^\circ$. Azimuthal angle coverage is symmetric around the sector mid-plane. The reduced
-acceptance at small polar angles is due to the cryostat of the torus coils that are attached to a force ring at
-small angles limiting the geometrical acceptance to less than 50\% in azimuthal angle. {\bf Needs higher
-statistics graphs}}
+\caption{Acceptance distribution for scattered electrons in azimuthal angle (in deg.) for different bins in polar
+  angle. Left: $\theta = 5^\circ-7^\circ$, middle: $\theta = 13^\circ-15^\circ$, right: $\theta = 23^\circ-25^\circ$.
+  For these polar angle ranges the azimuthal acceptances are 33\%,  66\%, and 80\%, respectively, of the full
+  sector range of $\pm 30^\circ$. Azimuthal angle coverage is symmetric around the sector mid-plane. The
+  reduced acceptance at small polar angles is due to the cryostat of the torus coils that are attached to a force
+  ring at small angles that limits the geometrical acceptance to less than 50\% in azimuthal angle. {\bf Needs
+    higher statistics graphs.}}
 \label{e-accept}
 \end{figure}
 
@@ -1198,12 +1198,12 @@ CLAS12 is designed for operation at a significantly higher luminosity compared t
 operation has measurable effects on the hit occupancy in the drift chambers and on the resolution in the momentum
 reconstruction. Also, the reconstruction efficiency of charged particles can be affected. Figures ~\ref{occupancies1}
 and ~\ref{occupancies2} show the hit occupancies in the drift chambers for different beam currents and for different
-current in the solenoid magnet, respectively. These effects can be studied in simulations when the beam conditions can
+currents in the solenoid magnet, respectively. These effects can be studied in simulations when the beam conditions can
 be realistically imposed on the data. For that purpose a procedure was developed that takes randomly triggered events
 at the operating beam current and superimposes these events on the simulated events without the background. In this
 way one can study the reconstruction efficiencies as a function of luminosity of the actual experiment. With increasing
 luminosity, accidental out-of-time events can affect and alter particle tracks that come in-time. The most important
-effect is that the track quality is negatively affected leading to track losses if stringent quality requirements are
+effect is that the track quality is negatively affected, leading to track losses if stringent quality requirements are
 applied, or to a worsening of the angle and momentum resolution. This effect is demonstrated in Table~\ref{resolution}.   
 
 \begin{figure}[htbp!]
@@ -1223,7 +1223,7 @@ applied, or to a worsening of the angle and momentum resolution. This effect is 
   measurement was carried out with the FT-ON configuration. The sensitivity on the solenoid current comes from
   the fact that the primary source background is from charged particles, especially M{\o}ller electrons. The
   sensitivity is strongest for R1 of the drift chambers, which have no additional magnetic shielding from the torus
-  magnet field, while R2 and R3 chambers do.}
+  magnet field, while the R2 and R3 chambers do.}
 \label{occupancies2}
 \end{figure}
 
@@ -1274,33 +1274,33 @@ $\Delta{v_z}$~(mm) & 60~nA & 4.6 & -  \\
 
 Figure~\ref{rich-event} shows the RICH multi-anode photomultiplier array and a single Cherenkov event for a
 track with the Cherenkov light detected in the MaPMT array.  The performance in event reconstruction is
-illustrated in Fig.~\ref{rich_rec} for negatively and positively charged particles. 
+illustrated in Fig.~\ref{rich_rec} for positively charged particles. 
 
 \begin{figure}[t!]
 \centerline{\includegraphics[width=1.0\columnwidth]{rich-event.png}}
 \caption{Top: Photograph and detector response of the RICH MaPMT array during beam operation. Bottom: One
-event with the ring of Cherenkov photons (left) and overlaid with expected rings from a pion, kaon, and proton at
-the same momentum. The radius of the Cherenkov ring is consistent with that of a pion.}
+  event with the ring of Cherenkov photons (left) and overlaid with expected rings from a pion, kaon, and proton
+  at the same momentum. The radius of the Cherenkov ring is consistent with that of a pion.}
 \label{rich-event}
 %\end{figure}
 %\begin{figure}[htbp!]
 \vspace{0.3cm}\centerline{\includegraphics[width=1.0\columnwidth]{mass_PID.pdf}}
-\caption{Charged particle identification in the RICH detector. Graph shows the square of 
-masses of the $pi^+$ (bottom), the $K^+$ (middle), and protons (top). Events are from a single aerogel tile, and 
-from photons that hit the MAPMT directly, without reflection from the mirrors.  
-The pion/kaon separation in the RICH sets in where it ranges out with the time-of-flight resolution in the 
-FTOF shown in Fig.~\ref{pid}.}
+\caption{Charged particle identification in the RICH detector showing the mass squared vs. momentum for positively
+  charged particles. The data show bands for $pi^+$ (bottom), $K^+$ (middle), and protons (top). The events are
+  from a single aerogel tile, and from photons that hit the MaPMT directly, without reflection from the mirrors. The
+  pion/kaon separation in the RICH sets in where it ranges out with the time-of-flight resolution in the FTOF shown
+  in Fig.~\ref{pid}.}
 \label{rich_rec}
 \end{figure}
 
 \subsection{Central Detector Reconstruction}
 
-Figure~\ref{cvt-tracks} shows selected track events in the CVT. The left panels show the projection to the plane
-perpendicular to the beamline. In this view, positively charged particles bend clockwise in the 5~T magnetic field.
-The innermost 3 double layers mark the SVT, the outer 6 layers indicate the BMT. The panels to the right show the
-projection onto a plane along the beamline. The CTOF and CND detectors are located radially further away from
-the center and show also deposited energy where the charged tracks hit. Uncorrelated hits are from neutrals or
-out-of-time events. Other indicators of the CND performance for charged particles are shown in
+Figure~\ref{cvt-tracks} shows selected charged track events in the CVT. The left panels show the projection to
+the plane perpendicular to the beamline. In this view, positively charged particles bend clockwise in the 5~T
+magnetic field. The innermost 3 double layers mark the SVT, the outer 6 layers indicate the BMT. The panels to
+the right show the projection onto a plane along the beamline. The CTOF and CND detectors are located radially
+outward of the CVT and also show the deposited energy where the charged tracks hit. Uncorrelated hits are from
+neutrals or out-of-time events. Other indicators of the CND performance for charged particles are shown in
 Fig.~\ref{cnd-performance}.  
 
 \begin{figure}[th!]
@@ -1315,23 +1315,22 @@ Clockwise turning tracks in the solenoid magnetic field are from positively char
 
 \begin{figure}[htbp!]
 \centerline{\includegraphics[width=1.0\columnwidth]{cnd-performance.png}}
-\caption{CND response to charged particles. Upper panels show the photomultiplier timing resolution and correlation
-  in position projected from the CVT and measurement in the CND. Bottom panels show particle $\beta$ in CND vs.
-  momentum measured in the CVT, showing the $\pi^-$ band (left) and the proton and $\pi^+$ bands (right).
+\caption{CND response to charged particles. Upper panels show the PMT timing resolution and hit position correlation
+  between CVT tracks projected to the CND and from the CND reconstruction. Bottom panels show particle $\beta$ in
+  CND vs. momentum measured in the CVT, showing the $\pi^-$ band (left), and the proton and $\pi^+$ bands (right).
   ({\bf Improved quality graphs have been requested.)}}
 \label{cnd-performance}
 \end{figure}
 
 \subsubsection{Acceptance and Performance of the Central Detector} 
 
-The Central Detector system covers approximate regions in polar angles from $35^\circ$ to $125^\circ$ and the
-full $360^\circ$ in azimuth.  Figure~\ref{cvt-acceptance} shows the acceptance and reconstruction efficiency for
-charged tracks from simulations with background incorporated according to beam current. Figure~\ref{cvt-vertex} 
-shows the reconstructed vertex along the beamline ($z$-axis) for charged particle coming from an empty 
-target cell. The target cell is 5~cm long, and the cell walls are well resolved with an approximate resolution 
-of $\sigma_z<2$~mm. The final vertex resolution should significantly improve with ultimate detector alignment and 
-calibrations. Events between the cell walls are from beam interactions with the residual hydrogen gas in the target
-cell.  
+The Central Detector system covers polar angles from $35^\circ$ to $125^\circ$ and the full $360^\circ$ in azimuth.
+Figure~\ref{cvt-acceptance} shows the acceptance and reconstruction efficiency for charged tracks from
+simulations with background incorporated according to the beam current. Figure~\ref{cvt-vertex}  shows the
+reconstructed vertex along the beamline ($z$-axis) for charged particles coming from an empty target cell. The
+target cell is 5~cm long, and the cell walls are well resolved with an approximate resolution of $\sigma_z<2$~mm.
+The final vertex resolution should significantly improve with ultimate detector alignment and calibrations. Events
+between the cell walls are from beam interactions with the residual hydrogen gas in the target cell.  
 
 The limited space in the CD makes charged particle identification challenging for momenta $\gtrapprox$1~GeV.
 The current detector performance in terms of particle identification and tracking resolution is still being optimized
@@ -1373,9 +1372,9 @@ correlation in elastic electrons detected in the FD sectors and protons reconstr
 
 The CLAS12 detector systems were commissioned in the period from December 2017 through February 2018, using
 beam energies of 2.2, 6.4, and 10.6~GeV. Data were accumulated with both torus magnet polarities, i.e. electrons
-bending either toward or away from the beamline, as well as data with different magnetic field strengths settings
+bending either toward or away from the beamline, as well as data with different magnetic field strength settings
 in the torus and solenoid. Understanding of the reconstructed events focused first on the lowest beam energy of
-2.2.~GeV, for which the elastic peak became quickly visible and could be used to understand the influence of the
+2.2~GeV, for which the elastic peak became quickly visible and could be used to understand the influence of the
 magnetic field map, the overall detector geometry, and the drift chamber alignment, among other parameters. After
 this initial commissioning period, data taking commenced for Run Group~A~\cite{rg-details}, which required use of a
 liquid-hydrogen target. Use of hydrogen as target material allowed for the continuation of the commissioning period,
@@ -1390,9 +1389,9 @@ now used to study electron-induced reactions at the energy-doubled CEBAF electro
 has been commissioned in an initial period from late 2017 to early 2018, and is now routinely operated in support of
 a diverse scientific program in the exploration of the internal quark structure of nucleons and nuclei. The major
 performance criteria, most critically, the operation at  instantaneous luminosities up to $10^{35}$~cm$^{-2}$s$^{-1}$,
-have been met. These criteria are summarized in Table~\ref{clas12-performance}. Further improvements in
-operational performance are part of the experimental programs as more stringent requirements become part of the
-research program.  
+have been met. These criteria are summarized in Table~\ref{clas12-performance}. Further improvements in the
+operational performance of CLAS12 will be realized during the ongoing experimental data analysis and detector
+optimization studies.
 
 \begin{table*}[t!]
 \caption{CLAS12 performance parameters.  {\bf Need to check resolutions with results from the data analysis}}    
@@ -1614,7 +1613,7 @@ Particle ID& $\pi/\rm K ~(3\sigma)$ & $\rm p \le3~GeV$ & $\rm p \le 2.5~GeV$  \\
 \hline
 Luminosity &  &  $\rm L = 10^{35} \rm cm^{-2} s^{-1} $ & $\rm L = 10^{35} \rm cm^{-2} s^{-1} $ \\
 \hline
-Data acquisition &  Data Rate &  10~KHz,  200~MB/s  &  20~KHz,  800~MB/s \\
+Data acquisition &  Data Rate &  10~kHz,  200~MB/s  &  20~kHz,  800~MB/s \\
 \hline 
 Magnetic field & Solenoid & $\rm B_0 = 5T, B_{max} = 6.5T$& $\rm B_0 = 5T, B_{max} = 6.5T$ \\
 & Torus & 0.5 - 2.0 ~Tesla-meter& 0.5 - 2.0 ~Tesla-meter \\
