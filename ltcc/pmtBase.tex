@@ -8,7 +8,7 @@ current flowing through the base voltage divider. This board was developed in 20
 pulse shape. It also significantly improved the signal amplitude and the signal to noise ratio: the high voltage needed
 to detect the single photoelectron signal (SPE) was reduced on average by 374~V, see \F{pmtHVImprovement}.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.99\columnwidth, height=0.65\columnwidth]{img/pmtTestingSetup.png}
 	\includegraphics[width=0.99\columnwidth, keepaspectratio]{img/blank.png}
@@ -19,6 +19,9 @@ to detect the single photoelectron signal (SPE) was reduced on average by 374~V,
 	\label{fig:pmtTestingSetupAndptQEResults}
 \end{figure}
 
+The amplifier board design was adapted to use the LTCC XP4500B base and a prototype, shown in \F{pmtWithDivider}, was
+built to provide a factor of ten amplification and a split signal directly from the PMT base.
+
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/pmtHVImprovement.png}
@@ -28,10 +31,8 @@ to detect the single photoelectron signal (SPE) was reduced on average by 374~V,
 	\label{fig:pmtHVImprovement}
 \end{figure}
 
-The amplifier board design was adapted to use the LTCC XP4500B base and a prototype, shown in \F{pmtWithDivider}, was
-built to provide a factor of ten amplification and a split signal directly from the PMT base.
 
-\begin{figure*}
+\begin{figure*}[!ht]
 	\centering
 	\includegraphics[width=1.25\columnwidth, keepaspectratio]{img/dividerSchematic.png}
 	\includegraphics[width=0.75\columnwidth, height=0.95\columnwidth]{img/pmtWithDivider.png}
@@ -49,6 +50,10 @@ itself as the trigger. The corresponding SPE spectrum was analyzed. The shape of
 original signal coming from the external dedicated splitter and amplifier through the ADC electronics shown in
 \F{dividerTests} (right).
 
+180 bases were assembled at Jefferson Lab and installed on the PMT dividers. Both signals from all of the modified
+bases were tested. The response of the PMTs, amplified by a factor of 10, was verified to be identical to the original
+output.
+
 \begin{figure}
 	\centering
 	\includegraphics[width=0.47\columnwidth,height=0.75\columnwidth]{img/fadcOutput.png}
@@ -57,9 +62,5 @@ original signal coming from the external dedicated splitter and amplifier throug
           the original ADC output in the configuration of a dedicated external splitter and amplifier (right). }
 	\label{fig:dividerTests}
 \end{figure}
-
-180 bases were assembled at Jefferson Lab and installed on the PMT dividers. Both signals from all of the modified
-bases were tested. The response of the PMTs, amplified by a factor of 10, was verified to be identical to the original
-output.
 
 
