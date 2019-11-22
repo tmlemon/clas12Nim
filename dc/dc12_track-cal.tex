@@ -17,7 +17,7 @@ and modeling procedures.
 
 The drift chamber Time-to-Digital Converters (TDCs) measure time.  
 These TDC units are part of our overall DCRB boards and
-have an intrinsic resolution of 1~ns or better; too small to be relevant to
+have an intrinsic resolution of 1~ns or better, too small to be relevant to
 our overall time-to-distance calibration.
 
 First, the digitized time is corrected for a number of effects, and this corrected time is converted
@@ -157,7 +157,7 @@ must equal the saturated value, $V_0$;
 \item the function has an inflection point (a
 minimum in velocity) at the point in the cell with the lowest electric field
 strength.  From the geometry of our cells, this occurs at a distance
-of $\approx 0.64 \times Dmax$; and
+of $\approx 0.64 ~Dmax$; and
 \item the velocity equals $V_{mid}$ at the inflection point.
 \end{enumerate}
 
@@ -181,7 +181,7 @@ smaller than $Dmax$.
 Figure~\ref{xvst} provides an illustration of the local-angle dependence
 of distance versus time.  When the time is equal to $Tmax$ the distance is equal to
 the largest value for the local angle; that is, $Dmax_{\alpha}$.  Also note that by
-simple geometrical reasoning, $Dmax_{\alpha} = Dmax \times \cos(30^\circ-\alpha)$.
+simple geometrical reasoning, $Dmax_{\alpha} = Dmax ~\cos(30^\circ-\alpha)$.
 We assume that at times less than $Tmax$ and distances less than $Dmax$, the calculated
 distances still vary linearly as $\cos(30^\circ-\alpha)$.  This angle dependence is built into
 our functional form.
@@ -190,7 +190,7 @@ Figure~\ref{garfield-isochrones} shows a 0$^\circ$ track and a 30$^\circ$ track,
 distance from the sense wire. They will produce
 a signal hit with the same time $Tmax$ even though their distance-of-closest-approach 
 differs by a factor of $\cos 30^\circ$.  If $Dmax$ is the distance from sense to field wire (and the maximum
-DOCA possible for a 30$^\circ$ track), then $Dmax$ times $\cos(30^\circ-\alpha)$ is the maximum
+DOCA possible for a 30$^\circ$ track), then $Dmax ~\cos(30^\circ-\alpha)$ is the maximum
 DOCA for a track with local angle $\alpha$.  Call this distance $Dmax_{\alpha}$.  
 We derived the function for time versus distance for a particular local angle, $\alpha$, by
 assuming the same functional form as for $\alpha = 30^\circ$ but 
@@ -427,10 +427,7 @@ of each chamber's geometrical location and orientation.
 
 In addition to these alignment procedures, which treat each chamber as a rigid, fixed
 geometrical shape, we also measured and corrected two important chamber distortions:
-\begin{itemize}
-\item wire sagging due to gravity,
-\item bowing inward of the endplates in response to the collective wire tension.
-\end{itemize}
+wire sagging due to gravity, and bowing inward of the endplates in response to the collective wire tension.
 
 The wire sag can be a large as 1~mm for our 4~m long wires.  For this small
 sag, it is sufficient to describe the shape of the sag as a parabola with
