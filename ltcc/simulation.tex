@@ -2,8 +2,7 @@
 
 A realistic model of the LTCC has been developed, describing the location and material composition of the support
 box, the mirrors, PMTs, Winston cones, magnetic shields, the C$_4$F$_{10}$ gas, and the optical properties of the
-gas and mirrors and WCs as a function of wavelength, see Ref.~\cite{sim-nim}. Here we describe additional details
-of the mirror geometry implementation relevant to the technique used for the alignment.
+gas and mirrors and WCs as a function of wavelength, see Ref.~\cite{sim-nim}.
 
 As part of the re-scoping of the CLAS Cherenkov detector to detect pions (both positive and negative) instead of
 negatively charged electrons, the optics of the mirrors needed to be tuned in order to optimize the LTCC response
@@ -11,24 +10,24 @@ for the angles of incidence for both positive and negative charges. This was acc
 straight tracks (photons) originating from the target (placed at the center of the CLAS12 coordinate system), see
 Section~\ref{sec:mirrorAlignment}.
 
-The mirror outlines implemented in the simulation and the choice of the focal points of the elliptical and
-hyperbolic mirrors (see \F{mirrorMath}) follow this re-scoping: the elliptical mirrors are built using ellipsoidal and
-hyperbolic shapes that implement the target as the starting point, and the faces of the PMTs as the final focal point
-for each set of mirrors.
+The efficiency of light collection, critical for LTCC operations, is tied into precise mirror positioning.
+The simulation has all the relevant details to make decisions in the LTCC optic design, including the
+mathematical outline of the mirror shapes and the placement of the optics focal point: the target (common to all mirrors)
+and the centers of the face of the PMTs.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/mirrorMath1.png}
-	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/mirrorMath2.png}
-	\caption{The geometry of the LTCC mirrors is defined by functions describing an ellipse and a hyperbola. Top: the
-          ellipsoidal curve (solid line), with its center (square) and its focal points (circle at the origin, representing the
-          target, and the lower star). The two hyperbola curves, defined by the two focal points (stars, one coinciding
-          with the ellipse focal point and the other at the desired location of the PMT) are the dashed lines. The hyperbola
-          at the bottom is the one that defines the hyperbolic mirror. Bottom: zoomed in details of the top plot. The
-          squares represent the left and right mirror edges. These parameters are stored in databases and loaded in the
-          software modeling the LTCC mirrors in the GEMC simulation~\cite{sim-nim}.}
-	\label{fig:mirrorMath}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/mirrorMath1.png}
+%	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/mirrorMath2.png}
+%	\caption{The geometry of the LTCC mirrors is defined by functions describing an ellipse and a hyperbola. Top: the
+%          ellipsoidal curve (solid line), with its center (square) and its focal points (circle at the origin, representing the
+%          target, and the lower star). The two hyperbola curves, defined by the two focal points (stars, one coinciding
+%          with the ellipse focal point and the other at the desired location of the PMT) are the dashed lines. The hyperbola
+%          at the bottom is the one that defines the hyperbolic mirror. Bottom: zoomed in details of the top plot. The
+%          squares represent the left and right mirror edges. These parameters are stored in databases and loaded in the
+%          software modeling the LTCC mirrors in the GEMC simulation~\cite{sim-nim}.}
+%	\label{fig:mirrorMath}
+%\end{figure}
 
 \subsection{Run Period Variations}
 

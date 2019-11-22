@@ -12,7 +12,7 @@ system~\cite{daq-nim}.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/electronicScheme.png}
+	\includegraphics[width=0.99\columnwidth, height=0.6\columnwidth]{img/electronicScheme.png}
 	\caption{The electronics schematic of the LTCC. One HV and two readout signals are connected from each PMT
           base to the patch panel. The patch panels then connect the HV to the CAEN SY4527 (1501P boards), one read
           out to the FADC250 and the other to DSC2 discriminators.}
@@ -27,9 +27,9 @@ a time window of 16~ns (4 samples) before the threshold crossing time, for the d
 final integrated charge used in the reconstruction code is the signal integral minus the electronic pedestal, as
 described in \F{fadc}.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/fadc.png}
+	\includegraphics[width=0.99\columnwidth, height=0.6\columnwidth]{img/fadc.png}
 	\caption{The FADC250 digitized output as a function of sample index for one of the LTCC PMTs.
           The DAQ system saves a 400~ns time window (100 samples) if at least one of the 100 signal samples is
           above a 30-channel threshold. The integral signal is the sum of the output at the sample indexes between
