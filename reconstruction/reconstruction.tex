@@ -8,9 +8,8 @@ execute data processing algorithms.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}
 \centering
-\includegraphics[width=0.85\textwidth]{pics/ServiceComposition.png}
-\caption{CLAS12 reconstruction application service composition for the case of sub-event level parallelization.
-In this case, within the event, different detector component reconstruction services process data in parallel.{\color{red} to be updated}}
+\includegraphics[width=0.85\textwidth]{pics/ServiceComposition.pdf}
+\caption{CLAS12 reconstruction application service composition. The I/O service reads events from the input file and distributes them to the reconstruction services chain for processing. Each service reads the relevant banks, applies the reconstruction algorithm, and provides output banks that are passed to the next service in the chain. The Event Builder (EB) service is executed as last in the chain; it collects the relevant banks from all CLAS12 subsystems services and produces event, particle and detector response banks that are written to the output file.}
 \label{fig:services}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
