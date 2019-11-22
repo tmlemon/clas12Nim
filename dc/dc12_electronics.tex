@@ -7,7 +7,7 @@ the on-chamber high voltage translator boards (HVTBs), and the
 off-chamber drift chamber readout boards (DCRBs).
 
 On one endplate of each chamber is a set of HVTBs that distribute RC-filtered high voltage
-to the wires.  Because there are three types of wire, sense, field, and guard, we supply
+to the wires.  Because there are three types of wire, (sense, field, and guard), we supply
 three different voltages to each HVTB board.  
 
 On the other side of the chamber are the STBs that support an individual Single Inline Package
@@ -62,8 +62,15 @@ Section~\ref{determine-operating-parameters} for a
 description of how we determined the operating values of the high voltage.  
 Each high voltage line on the HVTB was connected to the 
 input high-voltage wire with a parallel RC circuit to absorb any AC noise on
-the lines.  The board layout is shown in Fig.~\ref{hvtb-layout}.
+the lines.  
 
+The board layout is shown in Fig.~\ref{hvtb-layout}.
+Each high voltage cable is connected to a low-pass filter to 
+eliminate any high frequency noise from the supplies.
+The filtered power is then passed to the 4-layer printed circuit
+portion for distribution to the sense, field and guard wires.
+To limit any potential high voltage breakdown, there is a 1 M$\Omega$
+resistor for each sense wire.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
 \vspace{8cm}
@@ -88,7 +95,7 @@ The connections between the sense-wire crimp pins and the plated-through holes
 of the STB boards were made using short conductive-elastomer tubes. This material 
 consists of silver-plated and/or nickel-plated glass spheres embedded in a 
 silicon-rubber matrix. These tubes pass through the plated-through hole and 
-over the end of the crimp pins, making the electrical contract between the 
+over the end of the crimp pins, making the electrical contact between the 
 wire and the circuit board.  A small plastic cap inserted into the end of the 
 tube ensures good contact with the circuit board.  This approach has the 
 advantages of reducing the space needed for connections, preventing crimp pins 
@@ -122,7 +129,7 @@ The board shown is from a R1 chamber, which had the tightest wire packing.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{8cm}
+\vspace{10cm}
 \begin{picture}(50,50)
 \put(20,5)
 {\hbox{\includegraphics[width=0.35\textwidth,natwidth=610,natheight=642]{img/stb-layout.jpg}}}
