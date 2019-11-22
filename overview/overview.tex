@@ -85,7 +85,7 @@
   D. Kashy, A. Kim, W. Kim, V. Kubarovsky, S. Kuhn, M. McMullen, I. Mandjavidze, N. Markov, C. Mealer, M.D. Mestayer,
   Z.E. Meziani, R. Miller, M. Mirazita, S. Niccolai, O. Pastor, E. Pasyuk, O. Pogorelko, B. Raue, P. Rossi, F. Sabatie,
   Y. Sharabian, L.C. Smith, D. Sokhan, S. Stepanyan, M. Ungaro, A. Vlassov, D. Watts, L. Weinstein, C. Wiggins,
-  A. Yegneswaran, G. Young, M. Zarecky, V. Ziegler, {\bf incomplete list} ......... more coming ............. }
+  A. Yegneswaran, G. Young, M. Zarecky, V. Ziegler, {\bf incomplete list} ......... more coming .............}
 %\address{12000 Jefferson Avenue, Newport News, Virginia, 23606}
 %\author{ K. Hafidi,  .......} 
 %\address{ Argonne National Laboratory, Argonne, Illinois, 60439, USA}
@@ -97,7 +97,7 @@
 %\address{Fairfield University, Fairfield, Connecticut 06824, USA}
 %\author{L. Guo, B. Raue, ...}
 %\address{Florida International University, Miami, Florida, 33199, USA} 
-%\author{S. Aune, M. Defurne, I. Mandjavidze, F. Sabatie, ....... }
+%\author{S. Aune, M. Defurne, I. Mandjavidze, F. Sabatie, .......}
 %\address{IRFU, CEA, Universit{\'e} Paris-Saclay, F-91191 Gif-sur-Yvette, France}
 %\author{M. Battaglieri, A. Celentano, R. De Vita, .....}
 %\address{INFN, Sezione di Genova, 16146 Genova, Italy}
@@ -122,7 +122,7 @@
 %\address{James Madison University, Harrisonburg, Virginia 22807, USA}
 %\author{W. Kim, .....}
 %\address{Kyungpook National University, Daegu 41566, Republic of Korea}
-%\address{ .......................................... }
+%\address{ ..........................................}
 %\vspace{-0.5cm}
 
 \begin{abstract}
@@ -712,23 +712,23 @@ Event reconstruction in the CLAS12 FD consists of the identification of charged 
 determination of their 3-momenta and reaction vertex at the distance of closest approach to the beamline.
 Charged particle reconstruction requires both forward tracking and FTOF information. 
 
-Track reconstruction in the FD is based on a hit clustering algorithm that requires at least 4 out of 6 connected drift
-chamber cells to form a track segment in a superlayer.  The tracking algorithm requires at least 5 out of 6 superlayers
-to form a track candidate. The first stage of tracking relies solely on the drift chamber wire positions to fit the tracks
-and provide matching to the outer detectors subsequently required to obtain timing information. At the second stage
-of tracking, timing information is used to determine a time-based track and the particle momentum and flight path,
-while the TOF gives the particle velocity ($\beta$) when combined with flight-path information. The momentum and
-velocity information are combined to give the particle mass: $m = p/\beta\gamma$. Electron identification additionally
-requires the track to match in time and position with both an HTCC hit and an isolated shower in the ECAL. The energy
-of the shower must be consistent with the track momentum measured by the drift chambers in the torus magnetic
-field. 
+Track reconstruction in the FD is based on a hit clustering algorithm that requires at least 4 out of 6 connected DC
+cells to form a track segment within each superlayer.  The tracking algorithm requires at least 5 out of 6 superlayers
+in a sector to form a track candidate. The first stage of tracking relies solely on the DC wire positions to fit the
+tracks and to provide matching to the outer detectors subsequently required to obtain timing information. At the
+second stage of tracking, timing information is used to determine a time-based track and the particle momentum
+and flight path, while the FTOF gives the particle velocity ($\beta$) when combined with flight-path information
+(see Ref.~\cite{Software} for details). The momentum and velocity information are combined to give the particle
+mass: $m = p/\beta\gamma$. Electron identification additionally requires the track to match in time and position
+with both an HTCC hit and an isolated shower in the ECAL. The energy of the shower must be consistent with the
+track momentum measured by the DCs in the torus magnetic field. 
 
-Charged particles are tracked in each sector separately using the 3 regions of drift chambers in each sector. Most
-tracks are confined within one sector as the magnet optics and the massive mechanical support of the torus coils
-prevent most tracks from crossing from one sector into a neighboring sector. In rare cases low momentum charged
-pions can cross from one sector into the opposite sector traversing through the beam pipe. Such tracks are not
+Charged particles are tracked in each sector separately using the 3 regions of DCs in each sector. Most tracks
+are confined within one sector as the magnet optics and the massive mechanical support of the torus coils prevent
+most tracks from crossing from one sector into a neighboring sector. In rare cases low-momentum charged pions
+can cross from one sector into the opposite sector traversing through the beam pipe. Such tracks are not
 reconstructed but they are included in the event simulation. Distributions of charged particles in azimuthal angle
-versus momentum are shown in Fig.~\ref{neg-pos}, and Fig.~\ref{vertex} shows the production vertex as
+versus momentum are shown in Fig.~\ref{neg-pos}. Figure~\ref{vertex} shows the production vertex as
 reconstructed in the FD tracking system (from data where the FMT was not installed).
 
 Neutral particles are detected in either the calorimeters or in the FTOF (or both). The reconstruction begins by
@@ -742,22 +742,22 @@ cluster at a depth in the ECAL that minimizes parallax effects associated with t
 face of the ECAL (see Ref.~\cite{ECAL} for details).
 
 For all events, precise determination of the interaction time or event start time is required. For events where the
-scattered electron is detected, the event start time is derived from arrival time of the electron at the FTOF
+scattered electron is detected, the event start time is derived from the arrival time of the electron at the FTOF
 counters, corrected for flight path and signal delays.  The average time resolution for electrons reconstructed in
-CLAS12 FD is better than 80~ps. A more accurate event start time is obtained by replacing the measured electron
-start time with the 499~MHz accelerator RF signal (or 249.5~MHz depending on the accelerator setup) that
-determines the beam bunch associated with the event. In this way, the event start time can be determined to within
-a few ps, thus eliminating a significant contribution to the time resolution for charged hadrons. This extends the
-charged particle identification capabilities of CLAS12 towards higher particle momentum.
+the CLAS12 FD is better than 80~ps. A more accurate event start time is obtained by replacing the measured
+electron start time with the 499~MHz accelerator RF signal (or 249.5~MHz depending on the accelerator setup)
+that determines the beam bunch associated with the event. In this way, the event start time can be determined
+to within a few ps, thus eliminating a significant contribution to the time resolution smearing for charged hadrons.
+This extends the charged particle identification capabilities of CLAS12 towards higher particle momentum.
 
 Track reconstruction in the CD is generally less complex as tracks are determined fully by the geometry of the 
-detection elements and the hit pattern in the CVT, i.e. by a combination of the SVT and the BMT trackers.  In contrast
-to the charged particle tracking in the FD that relies heavily on timing information for resolution, this is not the case
-for the CD. In principle that makes tracking easier in the CD. On the other hand, the redundancy of track fitting is
-much reduced in the CD there are only 12 tracking layers compared to the 36 in the FD. This makes tracking in the
-CD more susceptible to losing tracks due to accidental hits. Particle identification in the CD is limited to timing
-information in the CTOF scintillators combined with the track momentum measured in the strong solenoid magnetic
-field.
+detection elements and the hit pattern in the CVT, i.e. by a combination of the SVT and the BMT trackers.  In
+contrast to the charged particle tracking in the FD that relies heavily on timing information for resolution, this
+is not the case for the CD. In principle that makes tracking easier in the CD. On the other hand, the redundancy
+of track fitting is much reduced in the CD as there are only 12 tracking layers compared to the 36 in the FD. This
+makes tracking in the CD more susceptible to losing tracks due to accidental hits. Charged particle identification
+in the CD is given by the timing information in the CTOF (or CND) scintillators combined with the track momentum
+measured in the strong solenoid magnetic field.
 
 In the CD neutral particles are detected in the CND or in the CTOF (or both). As for the FD, neutral particle
 candidates are identified as clusters that do not match any charged particle track. See Ref.~\cite{Software} for
@@ -785,13 +785,13 @@ full details on the CLAS12 offline reconstruction software architecture and desi
 
 A critical part of operating an open large-acceptance detector system at high luminosities is the simulation not
 only of hadronic events but also, and more importantly, the simulation of the beam-related accidental hits in the
-tracking system. The source of accidentals is primarily from the beam electron elastically scattering off atomic
-electrons (M{\"o}ller electrons) and their secondary interaction with beamline components. The production rate
+tracking systems. The source of accidentals is primarily from the beam electron elastically scattering off atomic
+electrons (M{\o}ller electrons) and their secondary interaction with beamline components. The production rate
 is orders of magnitude larger than the hadronic production rate. These background sources have to be shielded
 through careful design of magnetic channeling, as well as a proper design of the beamline shielding and the vacuum
 pipe to minimize interaction of these electrons with high-$Z$ material. The availability of a realistic simulation
 package was essential for the optimal design of the CLAS12 integrated detector concept. The strong solenoid
-field is essential in channeling the scattered M{\"o}ller electrons through the beam enclosure to avoid interactions
+field is essential in channeling the scattered M{\o}ller electrons through the beam enclosure to avoid interactions
 with the beamline materials. Figure~\ref{gemc-event} shows a single electron track event at 1/30 of the full
 luminosity in a time window of 250~ns, corresponding to the readout time window in the R1 drift chambers. 
  
@@ -896,7 +896,7 @@ electrons it is limited to  $Q^2 \approx 12$GeV$^2$.
 
 \subsection{Charged Particle Detection in the FD}
  
-Charged particle acceptances in momentum and azimuthal angles are shown in Fig.~\ref{neg-pos} in the sector
+Charged particle acceptances in momentum and azimuthal angles are shown in Fig.~\ref{neg-pos} in the local sector
 frame for positively and negatively charged particles. The difference in the acceptance is due to two factors, the
 polarity of the torus magnet that bends negative particles away from the beamline and positive particles towards
 the beamline (or vice-versa for the opposite torus polarity), and the effects of the solenoid magnetic field that
@@ -915,10 +915,10 @@ causes an azimuthal motion for positive and negative particles in opposite direc
 \begin{figure}[tbp!]
 \centerline{\includegraphics[width=1.0\columnwidth]{FTOF1b_M2-vs-p.png}}
 \caption{ Reconstructed mass$^2$ vs. momentum of positively charged particles in the CLAS12 FD. The plot
-  contains a threshold on the minimum number of events to highlight the particle profiles: bottom: $\pi^+$, mid:
-  $K^+$, top: protons. The centroids of each particle distribution are independent of the momentum. Masses are
-  computed from the particle path length and from time-of-flight. Any momentum dependence would indicate
-  systematics in the timing calibration or in the path length determination.}
+  contains a threshold on the minimum and maximum number of events to highlight the particle profiles: $\pi^+$
+  (bottom), $K^+$ (middle), $p$ (top). The centroids of each particle distribution are independent of the
+  momentum. Masses are computed from the particle path length and from time-of-flight. Any momentum
+  dependence would indicate systematics in the timing calibration or in the path length determination.}
 \label{mass2-mom}
 \end{figure} 
 
@@ -939,8 +939,7 @@ used for the identification of the different charged particle species vs. moment
 Figure~\ref{spectrum} shows inclusive invariant mass $W$ spectra for $ep \to e' X$ and missing mass spectra
 for $ep \to e' \pi^+ X$ with a missing neutron at four different beam energies. Figure~\ref{elastic-peak} shows
 fits to the elastic peak and to the missing neutron mass distributions in three sectors at a beam energy of 10.6~GeV.
-Figure~\ref{pip-pim-p} shows the invariant mass of $\pi^+\pi^-$ and the missing mass $M_X$ for the reaction
-$ep \to e' \pi^+ \pi^- X$.  
+Figure~\ref{pip-pim-p} shows the invariant mass of $\pi^+\pi^-$.
 
 \begin{figure*}[t!]
 \centerline{\includegraphics[width=2.0\columnwidth]{W-spectrum.png}}
@@ -950,8 +949,7 @@ $ep \to e' \pi^+ \pi^- X$.
   and $N(1680)$, are also visible for the lower beam energies. Note that the mass ranges  are different for the
   different beam energies. Lower row: Missing mass distributions of $ep\to e' \pi^+X$ for the same energies. The
   sharp mass peak to the left is due to the undetected neutron. The second peak for the higher energies is due to
-  the $\Delta^0(1232)$. Indications of higher mass neutron excitations are also visible. The horizontal axes are in
-  units of GeV.} 
+  the $\Delta^0(1232)$. Indications of higher mass neutron excitations are also visible.} 
 \label{spectrum}
 \end{figure*} 
 
@@ -961,7 +959,7 @@ $ep \to e' \pi^+ \pi^- X$.
   The peak is close to the proton mass in all sectors reflecting the good momentum calibration of all sectors. The right
   panels show the mass distribution of the unmeasured final state $X$ in $ep \to e'\pi^+ X$. The missing mass peak
   is due to the unmeasured neutron. The mass resolution is $\sigma_X = 45$~MeV. {(\bf Updated graphs have been
-    requested.)} }
+    requested.)}}
 \label{elastic-peak}
 %\end{figure} 
 
@@ -1031,7 +1029,7 @@ CND. The neutron detection efficiency is shown in Fig.~\ref{CND-neutron-efficien
 \caption{Top panel: Distribution of $v/c$ for charged particles in the CND vs. the deposited energy for correlated
 charged tracks in the CVT. Evidence for charged pions and protons is clearly visible.  Bottom panel: The same for
 neutral particles; no charged tracks are correlated with the energy deposited in the CND scintillators. The cut at
-$v/c$ = 0.2 eliminates background events from accidental hits. ({\bf new graphs have been requested}) } 
+$v/c$ = 0.2 eliminates background events from accidental hits. ({\bf new graphs have been requested})} 
 \label{CND-neutrals}
 \end{figure} 
 
@@ -1580,7 +1578,7 @@ CLAS12 Run Groups, https://www.jlab.org/Hall-B/clas12-web/Hall\_B\_experiment\_r
 \end{document}
 
 \begin{table*}[ht!]
-\caption{Comparison of the current performance of CLAS12 with the specifications originally set for the project. }     
+\caption{Comparison of the current performance of CLAS12 with the specifications originally set for the project.}     
 \vspace{0.2cm}\label{clas12-performance}
 \small
 \begin{tabular}{|c|c|c|c|}
