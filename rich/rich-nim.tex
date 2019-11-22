@@ -4,6 +4,7 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{gensymb}
 \usepackage{soul}
 \usepackage{enumerate}
 \usepackage{graphicx}% Include figure files
@@ -17,9 +18,9 @@
 \hyphenpenalty=1500
 \exhyphenpenalty=1500
 
-\title{The CLAS12 RICH Detector 1}
-\author{ }
-\date{November 2019}
+\title{The CLAS12 RICH Detector}
+%\author{ }
+%\date{November 2019}
 
 \journal{Nuclear Instruments and Methods A}
 
@@ -31,7 +32,53 @@
 \makeindex
 \begin{document}
 
-%\begin{frontmatter}
+\begin{frontmatter}
+
+\author[a]{M.~Contalbrigo}
+\author[b]{M.~Mirazita}
+\author[f]{V.~Kubarovsky}
+\author[f,b]{P.~Rossi}
+\author[h]{E.~Aaron}
+\author[b,j]{G.~Angelini}
+\author[f]{H.~Avakian}
+\author[a]{I.~Balossino}
+\author[a]{L.~Barion}
+\author[g]{K.~Bailey}
+\author[h]{F.~Benmokhtar}
+\author[h]{M.~Benninghoff}
+\author[k]{W.~Brooks}
+\author[c]{E.~Cisbani}
+\author[f]{C.~Cuevas}
+\author[f]{C.~Dickover}
+\author[f]{G.~Jacobs}
+\author[i]{A.~Kim}
+\author[h]{J.~Goodwill}
+\author[f]{T.~Lemon}
+\author[b]{V.~Lucherini}
+\author[a]{R.~Malaguti}
+\author[f]{M.~McMullen}
+\author[a]{A.~Movsisyan}
+\author[d]{P.~Musico}
+\author[g]{T.~O'Connor}
+\author[b]{D.~Orecchini}
+\author[e]{R.~Perrino}
+\author[f]{B.~Raydo}
+\author[b]{S.~Tomassini}
+\author[a,b]{M.~Turisini}
+\author[f]{A.~Yegneswaran}
+
+
+\address[a]{INFN Sezione di Ferrara and University of Ferrara, Italy}
+\address[b]{INFN Laboratori Nazionali di Frascati, Italy}
+\address[c]{INFN Sezione di Roma1 - Gruppo Collegato Sanit\`a and Italian National Institute of Health, RM, Italy}
+\address[d]{INFN Sezione di Genova, GE, Italy}
+\address[e]{INFN Sezione di Bari, Italy}
+\address[f]{Thomas Jefferson National Accelerator Facility, VA, USA}
+\address[g]{Argonne National Laboratory, IL, USA}
+\address[h]{Duquesne University, PA, USA}
+\address[i]{University of Connecticut, CT, USA}
+\address[j]{George Washington University, DC, USA}
+\address[k]{Universidad Tecnica Federico Santa Maria, Valparaiso, Chile}
 
 \begin{abstract}
   A Ring Imaging Cherenkov detector has been installed in the CLAS12 spectrometer at Jefferson Laboratory (JLab)
@@ -44,28 +91,30 @@
 \begin{keyword}
 Ring-imaging Cherenkov detectors
 \sep
+PID detectors
+\sep
 Single-photon detection
-\sep
-Front-end electronics
-\sep
-Multi-anode PMT
-\sep
-Aerogel radiator
-\sep
-Carbon-fiber and glass-skin mirrors
 \end{keyword}
 
-\maketitle
+%\maketitle
 
-%\end{frontmatter}
+\end{frontmatter}
+
+\begin{figure}[th]
+\begin{center}
+\includegraphics[width=0.80\columnwidth]{RICH_Installed.pdf}
+\end{center}
+\caption{The first module of the CLAS12 RICH installed in sector 4 of the Hall~B Forward Carriage.}
+\label{Fig:RICHPic}
+\end{figure}
 
 %-----------------------------------------------
 \section{Overview}
 %-----------------------------------------------
 
 Particle identification (PID) of hadrons in the original baseline design of the Forward Detector of CLAS12 is obtained
-by combining the information from the High Threshold Cherenkov Counter (HTCC)~\cite{htcc-nim}, Low Threshold
-Cherenkov Counter (LTCC)~\cite{ltcc-nim}, and Forward Time-of-Flight (FTOF)~\cite{ftof-nim} systems. However,
+by combining the information from the High Threshold Cherenkov Counter (HTCC)~\cite{REF:htcc-nim}, Low Threshold
+Cherenkov Counter (LTCC)~\cite{REF:ltcc-nim}, and Forward Time-of-Flight (FTOF)~\cite{REF:ftof-nim} systems. However,
 no sufficient separation of kaons from pions and protons can be achieved by using only these detectors in the
 momentum range relevant for the approved Semi-Inclusive Deep Inelastic Scattering (SIDIS) physics program,
 i.e. between 3 and 8~GeV. Therefore, improved particle identification in this momentum range is achieved by
@@ -77,7 +126,7 @@ module will be identical to the first one.
 
 The idea of a RICH detector is based on the fact that when a fast particle crosses a radiator with a velocity $\beta$
 larger than the velocity of the light in that medium, it emits Cherenkov photons. The light is emitted in a cone with
-opening angle $\theta_C$ given by $\cos(\theta_C)=1/\beta n(\lambda)$, where $n(\lambda)$ is the refractive index
+opening angle $\theta_C$ given by $\cos(\theta_C)=[\beta n(\lambda)]^{-1}$, where $n(\lambda)$ is the refractive index
 of the radiator, which may depend on the wavelength $\lambda$. After a gap region where the cone opens up, the
 photons are detected and the ring can be reconstructed. A precision measurement of the Cherenkov angle provides
 the velocity of the particle and, together with information from the tracking system, it allows its identification. Thus,
@@ -85,19 +134,11 @@ the capability of identify particles with a known momentum and different velocit
 resolution, and it can be effectively parameterized by the separation in units of resolution $n_{\sigma}$ between the
 angle distributions for the various particles.
 
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=0.80\columnwidth]{RICH_Installed.pdf}
-\end{center}
-\caption{The first module of the CLAS12 RICH installed in sector 4 of the Hall~B Forward Carriage.}
-\label{Fig:RICHPic}
-\end{figure}
-
 %-----------------------------------------------
 \section{Detector Requirements}
 %-----------------------------------------------
 
-The CLAS12 spectrometer in Hall~B~\cite{overview-nim} is designed to operate with highly polarized beams and
+The CLAS12 spectrometer in Hall~B~\cite{REF:overview-nim} is designed to operate with highly polarized beams and
 nucleon targets at a luminosity of $10^{35}$~cm$^{-2}$s$^{-1}$. Under these conditions the production rate of protons,
 kaons, and pions studied using SIDIS Monte Carlo event-lists is such that, in most of the kinematic plane, the kaon rate
 is about one order of magnitude lower than the rate of pions and protons. Thus, successful kaon identification requires
@@ -113,14 +154,15 @@ Each sector required a projective geometry, limited depth of 1.2~m, and $\sim$4.
 Simulation studies favored a hybrid imaging Cherenkov detector design incorporating aerogel radiators, visible light
 photon detectors, and a focusing mirror system. The focusing mirror system is used to reduce the detection area
 instrumented by photon detectors to $\sim$1~m$^2$ per sector, minimizing costs and influence on the Forward
-Time-of-Flight and electromagnetic calorimeter~\cite{ecal-nim} systems. Depending upon the incident particle track
+Time-of-Flight and electromagnetic calorimeter~\cite{REF:ecal-nim} systems. Depending upon the incident particle track
 angle, Cherenkov light is either imaged directly or after one or more reflections and passes through the aerogel.
 Figure~\ref{Fig:RICHsketch} shows a schematic view of two examples of direct imaging and imaging after multiples
-reflections.
+reflections. Such peculiar hybrid-optics design is an innovative solution that has been succesfully validated with 
+a test-beam campaign~\cite{REF:RICH2013}. 
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.45\textwidth]{Radiators.pdf}
+\includegraphics[width=0.45\textwidth]{radiators.png}
 \caption{Cherenkov light opening angle as a function of the momentum for different particles using liquid, gas, or
   aerogel radiators. The angular separation between kaons and pions at the highest momenta is also indicated.}
 \label{Fig:Radiators}
@@ -129,7 +171,9 @@ reflections.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.45\textwidth]{Layout.pdf}
+%\includegraphics[width=0.50\textwidth]{Layout.pdf}
+\includegraphics[width=0.38\textwidth]{Layout_direct.png}
+\includegraphics[width=0.38\textwidth]{Layout_reflect.png}
 \caption{Examples of CLAS12 RICH imaging: direct detection of the Cherenkov cone produced in the thin aerogel layer
   (left plot); detection of the Cherenkov cone produced in the thick aerogel layer after multiple reflections and passes
   through the thin aerogel layer (right plot).}
@@ -158,9 +202,9 @@ the wall of aerogel tiles, the mirrors, the photomultiplier tubes, and the elect
 the box are: the two lateral panels made of aluminum sandwich, the top panel made of carbon fiber sandwich, and the
 two upper angular elements and the bottom element made of aluminum. Each of the lateral panels supports two planar
 mirrors, while another planar mirror is installed on the bottom of the box. The box is closed on the front face (with
-respect to the beam direction) by two panels made of a sandwich of two 1 mm thick carbon fiber skins glued on a
-Nomex honeycomb core. Two planar mirrors with a wall of 2-cm-thick aerogel tiles are installed on the lower panel, while
-a wall made of two layers of 3-cm-thick aerogel tiles is installed on the upper one. Therefore, the profile of the panels
+respect to the beam direction) by two entrance panels made of a sandwich of two 1-mm-thick carbon fiber skins glued on a
+Nomex honeycomb core. Two planar mirrors with a wall of 2-cm-thick aerogel tiles are installed on the lower entrance panel, while
+a wall made of two layers of 3-cm-thick aerogel tiles is installed on the upper one. Therefore, the profile of the entrance panels
 was specifically designed not only to ensure the best light and gas tightness, but also to include stiffening ribs for
 the installation of the mirrors and the aerogel. The same sandwich structure was used for the electronics panel, located
 on the bottom part of the backward face of the box. It is composed of a main panel where all of the front-end electronics
@@ -189,7 +233,10 @@ RICH is installed in CLAS12 never exceed a few mm.
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.45\textwidth]{RICH.pdf}
-\caption{A schematic drawing of the CLAS12 RICH with the internal components highlighted.}
+\caption{A schematic drawing of the CLAS12 RICH with the internal components highlighted. From left to right, the 
+components of the upper half are exit panel, spherical mirror support and sub-mirrors, double 3-cm-thick aerogel
+layer, entrance panel. The components of the lower half are cover, electronics panel - mounting the front-end readout
+and the \MaPMT sensors, 2-cm-thick aerogel layer, front planar mirrors, entrance panel.}
 \label{Fig:RICHexplo}
 \end{center}
 \end{figure}
@@ -211,8 +258,10 @@ optical performance. A drawing of the system is shown in Fig.~\ref{Fig:RICHmirro
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.45\textwidth]{RICHmirrors.pdf}
-\caption{Drawing of the CLAS12 RICH mirror system.}
+\includegraphics[width=0.50\textwidth]{RICHmirrors.pdf}
+\caption{Drawing of the CLAS12 RICH mirror system with their mounting joints. The 10 sub-mirrors of the spherical mirror face the
+two front planar mirrors. An array of planar mirros, two in each side and one (not visible) on the 
+bottom completes the light containment system.}
 \label{Fig:RICHmirrors}
 \end{center}
 \end{figure}
@@ -225,7 +274,7 @@ The spherical mirror system, installed inside the box in front of the exit panel
 a radius of curvature $R= 2.7$~m, and is segmented into 10 sub-mirrors. They were produced by the {\it Composite
 Mirror Applications} company~\cite{REF:CMA}, and are made of two layers of carbon fiber glued on a honeycomb
 core of small carbon fiber cylinders. The areal weight of these mirrors is $\approx$5~kg/m$^2$, with an
-improvement of about 30\% with respect to the mirrors produced by the same company for the LHCb experiment
+improvement of about 10\% with respect to the mirrors produced by the same company for the LHCb experiment
 \cite{REF:LHCbMirrors}. Each mirror is positioned on a light carbon frame by means of three special joints equipped
 with a spring and a precision screw that allowed their relative alignment. The frame is then attached to the mechanical
 structure by means of three similar joints that allow the alignment of the full mirror system with respect to the other
@@ -273,7 +322,7 @@ Lario} company~\cite{REF:MediaLario} and are made by two thin layers of glass gl
 This is a standard technique widely used in telescopes for astrophysics studies but used for the first time in nuclear
 physics experiments, and allows for the production of mirrors as light as the carbon fiber ones but at much lower costs.
 Being in the acceptance of the detector, the frontal mirrors use very thin (0.7~mm) glass layers, allowing a reduction of
-the material budget down to about 0.01 $X_0$, while for the lateral and the bottom mirrors thicker (1.6~mm), glass
+the material budget down to about 0.01 $X_0$, while for the lateral and the bottom mirrors thicker (1.6~mm) glass
 layers were used.
 
 The planarity of the mirror was measured with a Coordinate Measuring Machine (CMM). Typically, the measured
@@ -291,7 +340,7 @@ only a few percent of the total surface should exceed a local slope of 0.3~mrad.
 \end{center}
 \end{figure}
 
-Again, the characterization of the planar mirrors was completed by measuring the reflectivity in a few random spots of
+The characterization of the planar mirrors was completed by measuring the reflectivity in a few random spots of
 the surface in the wavelength range from 300 to 650~nm. The measurements showed a maximum reflectivity of
 approximately 95\% at 400~nm and a reflectivity higher than 90\% in the whole range.
 
@@ -305,14 +354,14 @@ A total of 102 tiles with nominal refractive index 1.05, cut into squares $200 \
 pentagonal, trapezoidal, and triangular shapes, were assembled in two sections. The first section, covering the region
 between the beam pipe and the polar angle of 17.5$^\circ$, was made of one layer of 2-cm-thick tiles. The second
 section, covering the polar angles between 17.5$^\circ$ and 26$^\circ$, was made of two layers of 3-cm-thick tiles, the
-thickest aerogel tiles ever used in Cherenkov radiation applications.
+thickest aerogel tiles ever used in Cherenkov radiation applications at this high value of refractive index.
 
-Each tile was tested to determine the geometric and optical parameters~\cite{RICH:RICH2016mc}. The measured
+Each tile was tested to determine the geometric and optical parameters~\cite{REF:RICH2016mc}. The measured
 geometric parameters are the side length and thickness, and the planarity of the tile surface. The measured optical
 parameters include the refractive index at the reference wavelength of 400~nm, and the light transmission as a
 function of the wavelength. The transparency parameter $A_0$, the clarity parameter $C$, and the scattering length
 $L_{scatt}$ at 400~nm are then extracted from the measured optical parameters using the Hunt parameterization
-\cite{Hunt}. Distributions of the measured values of the refractive index, $A_0$ (in percent) and $L_{scatt}$ for the
+\cite{REF:Hunt}. Distributions of the measured values of the refractive index, $A_0$ (in percent) and $L_{scatt}$ for the
 square 2~cm tiles are shown in Fig.~\ref{Fig:Aerogel_2cm}. The average values obtained over all the tiles are
 $L_{scatt} = 50.5$~mm, $A_0 = 0.975$, and $C = 0.00512$~$\mu$m$^4$/cm. From these measurements, the expected
 photon yield for $\beta=1$ particles is estimated to be about 19 photoelectrons (p.e.) in the 2~cm sector and about 25
@@ -348,7 +397,7 @@ fractions (89\%), was initially selected as a good candidate.
 %in the direct light configuration.
 %The flat panel Hamamatsu H8500 Multi-Anode PhotoMultiplier Tube (\MaPMT)~\cite{Ref:H8500} was selected to achieve the design angular resolution, thanks to the enhanced sensitivity tothe visible and near-UV light in conjunction with a matching geometrical layout of 64 pixels covering a 5x5 $\rm cm^2$ area with an excellent packing factor of 89\%.
 Despite not advertised as the optimal choice in the SPE regime, such MaPMTs showed adequate performance in several
-laboratory tests~\cite{MaPMT:test} and beam tests~\cite{RICH:CERN}.
+laboratory tests~\cite{REF:MaPMT_test} and beam tests~\cite{REF:RICH_CERN}.
 %when used in conjunction with an adapted readout electronics.
 Just after the RICH construction startup, the novel Hamamatsu H12700 became available, with the same layout as
 the H8500, but an optimized dynode structure for single photon detection~\cite{Ref:H12700}.
@@ -363,7 +412,7 @@ has an average value of $2.7 \times 10^6$, corresponding to about 400~fC generat
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.70\columnwidth]{Field.pdf}
+\includegraphics[width=0.85\columnwidth]{Field.pdf}
 \end{center}
 \caption{Calculated map of the Torus fringe field strength (in Gauss) in the RICH photodetector area.}
 \label{fig:MagFringe}
@@ -371,7 +420,7 @@ has an average value of $2.7 \times 10^6$, corresponding to about 400~fC generat
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.65\columnwidth]{Gain.pdf}
+\includegraphics[width=0.85\columnwidth]{Gain.pdf}
 \end{center}
 \caption{Distribution of the data-sheet gains of the 25000 RICH MaPMT channels.}
 \label{fig:MaPMTGain}
@@ -397,11 +446,11 @@ The front-end electronics are organized into compact units (tiles, see Fig.~\ref
 fit the MaPMT dimensions, each serving two or three MaPMTs, thus allowing the tessellation of large surfaces with
 minimum dead space and material budget. Each readout unit comprises three boards with complementary functions.
 
-A feed-through {\it adapter board} provides the electrical connectivity of the sensors with the external readout
+A feed-through adapter board provides the electrical connectivity of the sensors with the external readout
 system, while preserving the adequate light and gas tightness of the inner detector volume when mounted on the RICH
 carbon fiber supporting panel. It also distributes the sensor bias voltage (with -1000~V as nominal value).
 
-The {\it signal processing board} is based on the MAROC3 chip~\cite{MAROC3:chip}, a 64-channel microcircuit
+The signal processing board is based on the MAROC3 chip~\cite{MAROC3:chip}, a 64-channel microcircuit
 dedicated to MaPMT pulse processing. Each channel comprises a low impedance adjustable gain preamplifier followed
 by two highly configurable shaping sections with independent processing. The first section embeds a slow shaper and
 a sample and hold structure to allow linear charge measurements up to 5~pC. Requiring short trigger delays and
@@ -430,10 +479,10 @@ reasonable time frame, a fully automated test stand was built to evaluate 6 MaPM
 of a 470~nm diode laser system, 2 long travel motorized stands to drive a laser fiber in two-dimensional space for
 individual pixel illumination, and a motorized neutral density filter system. The laser light is directed through the
 fiber and attenuated to the single photon level using neutral density filters to mimic the conditions of the RICH
-detector. The motors are remotely controlled to move the focused laser beam across the entire surface of the MaPMT
+detector. The motors are remotely controlled to move the focused laser 1 mm beam spot across the entire surface of the MaPMT
 entrance window and illuminate one by one the 64 pixels individually (see Fig.~\ref{fig:beamopt1}). Alternatively, one
 can illuminate the whole surface of the MaPMT photocathode at once using an Engineered Diffuser to produce a square
-pattern with a non-Gaussian intensity distribution (see Fig.~\ref{fig:beamopt2}).  This configuration was used for the
+pattern with a non-Gaussian intensity distribution (see Fig.~\ref{fig:beamopt2}). The latter configuration was used for the
 massive characterization of the RICH MaPMTs, bringing routine workloads to a minimum. The evaluation of 6 MaPMTs
 (corresponding to 384 individual channels) at 4 different high voltages and 6 different light intensities was completed
 in 6 hours with less than 15 minutes of human intervention.
@@ -461,11 +510,10 @@ parameterized spectral shapes.
 %, reflecting the variability in the design and in the individual parameters of the detectors. The new techniques were developed in the process of building the model, such as the method of decomposition of the spectra into a series of elementary Poisson probability density functions, and the use of convolution algebra to build the multi-photoelectron amplitude distributions describing measured spectra. 
 The predictive power of the model was tested by demonstrating that the SPE spectral parameters, obtained in the
 measurements, may describe well the amplitude distributions of the same photodetector measured at different levels
-of irradiation and applied high voltage. Thus, the model allowed us to extract the characteristic parameters of the
-devices independently of the test measurement conditions.
+of illumination and applied high voltage. Thus, the model allowed us to extract the characteristic parameters of the devices independently of the test measurement conditions.
 
-The SPE spectrum is extracted by fitting with the model function the signal amplitude distribution measured by the
-MaPMT as shown in Fig.~\ref{fig:SPEH8500} for the H8500 MaPMT and in Fig.~\ref{fig:SPEH12700} for the H12700.
+The SPE spectrum is extracted by fitting with the model function the signal amplitude distribution measured 
+as shown in Fig.~\ref{fig:SPEH8500} for the H8500 MaPMT and in Fig.~\ref{fig:SPEH12700} for the H12700.
 The $x$-axis is calibrated in terms of charge measured by the MAROC3 chip.
 %The probability of an initial photon to knock out $m$ photoelectrons is distributed according to the Poissonian $P(m;\mu)=\frac{\mu^me^{-\mu}}{m!}$.
 %To approximate the performance of the first amplification cascade of the MaPMT the probability function $T(n,m;\bf{t})$ was introduced in the model as trinomial sum of three Poissoanians with different average secondary multiplicities and the corresponding three relative probabilities for every photoelectron to generate secondary electrons, here $m$ is the number of the electrons knocked out from the first dynode and $n$ is the number of electrons emitted out of the second dynode.
@@ -475,50 +523,63 @@ multiplicities and the corresponding three relative probabilities for every phot
 electrons. In the function $m$ is the number of the electrons knocked out from the first dynode, $n$ is the number
 of electrons emitted out of the second dynode, and ${\bf t}$ is the vector of the model parameters
 (see Ref.~\cite{Pavel} for more details).
+
+In each fit, the quantum efficiency parameter $\mu$ corresponds to the average number of photoelectrons created at the photocathode by
+each laser pulse, $\nu_{average}$ is the average number of secondary electrons generated at the first dynode, and $scale$ is the 
+average anode charge collected from one photoelectron. 
  
 \begin{figure}[bth]
 	\centering
 	\includegraphics[width=\linewidth]{H8500-r-W0-CA7709-w3-g064-v1000-t227-37.pdf}
-	\caption{Sample H8500 PMT single photoelectron spectrum from one of the pixels at 1000~V with a low-intensity
-          laser light source. The fit function (see details in Ref.~\cite{Pavel}) is shown as a solid line. The parameter
-          $\mu=0.0056$ corresponds to the average number of photoelectrons created at the photocathode by the
-          incident photon,  $\nu_{average}=10.18$ is  the average number of secondary electrons generated at the first
-          dynode, and $scale=323.9$~fC is the average anode charge collected from one photoelectron. This corresponds
-          to a PMT gain=$2.0 \times 10^6$.}
+	\caption{Sampled H8500 \MaPMT single photoelectron spectrum from one of the pixels at 1000~V with a low-intensity
+          laser light source. The fit function (see details in Ref.~\cite{Pavel}) is shown as a solid line. 
+          The relevant parameters (see text) are $\mu=0.0056$, $\nu_{average}=10.18$ and $scale=323.9$~fC. This corresponds
+          to a PMT gain=$2.0 \times 10^6$.
+          %The parameter
+          %$\mu=0.0056$ corresponds to the average number of photoelectrons created at the photocathode by 
+          %each laser pulse,  $\nu_{average}=10.18$ is  the average number of secondary electrons generated at the first
+          %dynode, and $scale=323.9$~fC is the average anode charge collected from one photoelectron. This corresponds
+          %to a PMT gain=$2.0 \times 10^6$.} 
+          }
 	\label{fig:SPEH8500}
 \end{figure}
 
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=\linewidth]{H12700-r-W0-GA0982-w3-g064-v1000-t227-37.pdf}
-	\caption{Sample H12700 PMT single photoelectron spectrum from one of the pixels at 1000~V with a low-intensity
-          laser light source. The fit function (see details in Ref.~\cite{Pavel}) is shown as a solid line. The parameter
-          $\mu=0.0066$ corresponds to the average number of photoelectrons created at the photocathode by the
-          incident photon, $\nu_{average}=14.2$ is the average number of secondary electrons generated at the first
-          dynode, and $scale=234.8$~fC is the average anode charge collected from one photoelectron. This corresponds
-          to a PMT gain=$1.5 \times 10^6$.}
+	\caption{Sampled H12700 \MaPMT single photoelectron spectrum from one of the pixels at 1000~V with a low-intensity
+          laser light source. The fit function (see details in Ref.~\cite{Pavel}) is shown as a solid line. 
+          The relevant parameters (see text) are $\mu=0.0066$, $\nu_{average}=14.18$ and $scale=234.8$~fC. This corresponds
+          to a PMT gain=$1.5 \times 10^6$.
+          %The parameter
+          %$\mu=0.0066$ corresponds to the average number of photoelectrons created at the photocathode by
+          %each laser pulse, $\nu_{average}=14.2$ is the average number of secondary electrons generated at the first
+          %dynode, and $scale=234.8$~fC is the average anode charge collected from one photoelectron. This corresponds
+          %to a PMT gain=$1.5 \times 10^6$.}
+          }
 	\label{fig:SPEH12700}
 \end{figure}
 
 The data showed that the H12700 has, on average, a 10\% better efficiency than the H8500, likely due to the improved
 photocathode performance and collection efficiency. An example of the results for one MaPMT is shown in
-Fig.~\ref{fig:PavelPassport}. The $scale$ parameter (left plot), characterizing the amplification (dynode) system, is
+Fig.~\ref{fig:PavelPassport}. The parameter $scale$ (top plot), characterizing the amplification (dynode) system, is
 virtually independent of the light radiation level while strongly dependent on the high voltage supply, the exact behavior
-one would expect from the characteristic internal dynode system of a MaPMT. On the contrary, the parameter $\nu$
-(center plot) that is related to the first dynode performance, is relatively independent of the bias voltage. The right
-plot shows the quantum efficiency parameter $\mu$ measured with different optical filters. Here we see that all of
+one would expect from the characteristic internal dynode system of a MaPMT. On the contrary, the parameter $\nu_{average}$
+(center plot) that is related to the first dynode performance, is relatively independent of the bias voltage. The bottom
+plot shows the quantum efficiency parameter $\mu$ measured with different optical filters. It indicates that all of
 the channels respond in the same way as the light intensity increases.
 
 \begin{figure}[h]
-	\centering
-	\includegraphics[width=\linewidth]{PavelPassport.pdf}
-%	\includegraphics[width=0.8\linewidth]{Pavel_pass1.png}
-%	\includegraphics[width=0.8\linewidth]{Pavel_pass2.png}
-%	\includegraphics[width=0.8\linewidth]{Pavel_pass3.png}
+\begin{center}
+%	\includegraphics[width=\linewidth]{PavelPassport.pdf}
+	\includegraphics[width=0.85\linewidth]{Pavel_pass1.png}
+	\includegraphics[width=0.85\linewidth]{Pavel_pass2.png}
+	\includegraphics[width=0.85\linewidth]{Pavel_pass3.png}
 	\caption{Distributions of fit parameters among the pixels of one MaPMT: the parameter $scale$ characterizing
           the dynode amplification system (left) and the first dynode performance $\nu$ (center) at 4 different high
           voltage supplies; the quantum efficiency parameter $\mu$ at 3 different light intensities (right).}
 	\label{fig:PavelPassport}
+\end{center}
 \end{figure}
 
 The results of the characterization have been stored in the CLAS calibration database and are available for use in
@@ -542,6 +603,8 @@ The plateau corresponds to the region where all of the MaPMT discharges  are dig
 depends on the quality of the photocathode. The plateau is a consequence of the saturated mode employed in the
 MAROC binary readout and allows a flexible definition of the working point, a crucial feature when dealing with a large
 number of channels in the challenging single-photon regime.
+
+\clearpage
 
 %-----------------------------------------------
 \subsection{Services}
@@ -574,10 +637,10 @@ back of the RICH module behind the spherical mirror.
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.70\columnwidth]{FPGA_heat.pdf}
+\includegraphics[width=0.90\columnwidth]{FPGA_heat.pdf}
 \end{center}
 \caption{The CLAS12 RICH readout unit as imaged by a thermocamera. The hottest spots are the FPGA chip in the
-  center and the optical transceiver on the left.}
+  center and the optical transceiver on the right.}
 \label{Fig:EleTile}
 \end{figure}
 
@@ -591,7 +654,7 @@ pivot to rotate the detector from the vertical to the horizontal position, as re
 
 %This assembly phase included also a detailed survey of the position and alignment
 %of each inner element, in particular the mirrors, with respect to the mechanical structure of the detector.
-The ten spherical sub-mirrors were mounted on a common frame attached to the RICH mechanical structure. To
+The ten spherical sub-mirrors were mounted on a common frame inside the RICH vessel. To
 minimize the material budget, the frame is composed by a net of 1.5-mm-thick carbon-fiber U-profiles. Each element
 (frame and sub-mirrors) has three mounting points designed to allow precise alignment. The relative alignment of
 the sub-mirrors was performed with the same setup used to determine their surface accuracy. The full spherical
@@ -603,8 +666,8 @@ mirror system before (left) and after (right) the alignment is shown.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.42\textwidth]{mirror_spot1.png}
-\includegraphics[width=0.42\textwidth]{mirror_spot2.png}
+\includegraphics[width=0.50\textwidth]{mirror_spot1.png}
+\includegraphics[width=0.50\textwidth]{mirror_spot2.png}
 \caption{Reflected spot by the whole spherical mirror system: before the alignment (top plot), all sub-mirrors
   image the light source in different locations; after the alignment (bottom plot), all images overlap in the same
   position. The spot brightness depends on how close the sub-mirror center is to the sensor position.}
@@ -614,21 +677,23 @@ mirror system before (left) and after (right) the alignment is shown.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.44\textwidth]{mirror_sphere.png}
-\caption{The spherical mirror before (left) and after (right) alignment. As a result of the alignment, the image
+\includegraphics[width=0.50\textwidth]{mirror_before.png}
+\includegraphics[width=0.50\textwidth]{mirror_after.png}
+\caption{The spherical mirror before (top plot) and after (bottom plot) alignment. As a result of the alignment, the image
   appears continuous along the whole mirror surface.}
 \label{fig:MirAlign}
 \end{center}
 \end{figure}
 
-The lateral and bottom planar mirrors were mounted inside the RICH trapezoidal vessel. The two frontal mirrors
-were mounted on the lower-frontal closing panel made of carbon-fiber. The relative position of the mirrors was
+The lateral and bottom planar mirrors were attached to the RICH trapezoidal vessel structure, by means of
+joints allowing a precise alignment. The two frontal mirrors
+were mounted on the lower frontal panel made of carbon-fiber. The relative position of the mirrors was
 aligned with respect to the RICH vessel at the level of about 0.5~mrad by using a faro-arm. The fully installed
 mirror system as seen from the entrance panel is shown in Fig.~\ref{fig:mirrors}.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.4\textwidth]{mirrors.pdf}
+\includegraphics[width=0.50\textwidth]{mirrors.pdf}
 \caption{The mirror system as it is seen from the RICH entrance panel. Clockwise from the top, the ten spherical
   sub-mirrors, the two right lateral mirrors, the bottom mirror, and the two left lateral mirrors are visible. At the
   center, the MaPMT array is also visible.}
@@ -637,14 +702,15 @@ mirror system as seen from the entrance panel is shown in Fig.~\ref{fig:mirrors}
 \end{figure}
 
 The RICH photon detectors and readout electronics were installed on the electronics panel using an independent
-aluminum support to enable easy access and to allow rotations during the functionality tests. The photomultipliers
-with higher gain were placed closer to the beam pipe, where better detection performance is required. The fully
-equipped electronics panel is shown in Fig.~\ref{fig:MaPMTs} from the MaPMTs side and in
+aluminum support structure to enable easy access and to allow rotations during the functionality tests. The photomultipliers
+with higher gain were placed closer to the beam pipe, where better detection performance is required. As the \MaPMT in
+one readout unit share the same HV bias, they were selected of similar gain and same type (H8500 or H12700).
+The fully equipped electronics panel is shown in Fig.~\ref{fig:MaPMTs} from the MaPMTs side and in
 Fig.~\ref{fig:electronics} from the readout electronics side.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.4\textwidth]{MaPMT.pdf}
+\includegraphics[width=0.50\textwidth]{MaPMT.pdf}
 \caption{The fully assembled plane of MaPMTs.}
 \label{fig:MaPMTs}
 \end{center}
@@ -652,9 +718,9 @@ Fig.~\ref{fig:electronics} from the readout electronics side.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.45\textwidth]{electronics.pdf}
-\caption{The fully assembled and cabled front-end electronics. Visible the gray XX AWG LV cables, the red
-  RGXXX HV cables, and the cyan MTP optical fibers.}
+\includegraphics[width=0.50\textwidth]{electronics.pdf}
+\caption{The fully assembled and cabled front-end electronics. Visible are the gray 20 AWG LV cables, the red
+  HTC-50-1-1 HV cables, and the cyan MTP optical fibers.}
 \label{fig:electronics}
 \end{center}
 \end{figure}
@@ -671,8 +737,8 @@ with the test bench results, as shown in the bottom plot of Fig.~\ref{fig:Ground
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.9\columnwidth]{pedestal_rms_before.png}
-\includegraphics[width=0.9\columnwidth]{pedestal_rms_after.png}
+\includegraphics[width=1.0\columnwidth]{pedestal_rms_before.png}
+\includegraphics[width=1.0\columnwidth]{pedestal_rms_after.png}
 \end{center}
 \caption{Map of the pedestal RMS values before (top) and after (bottom) the realization of a grounding grid
   connecting all the electronics units to the RICH chassis to provide a common ground reference for the floating
@@ -680,7 +746,7 @@ with the test bench results, as shown in the bottom plot of Fig.~\ref{fig:Ground
 \label{fig:GroundG}
 \end{figure}
 
-Several other tests were performed at various stages of the electronics assembly, using cosmic rays.
+Several tests were performed at various stages of the electronics assembly, using cosmic rays.
 %detected by a tracking system installed on a dedicated trigger station inside a large dark box. 
 %The set up used was composed of a large dark box and two plastic scintillators positioned on the top and bottom to define the cosmic ray trajectory. The Cherenkov light generated by an aerogel tile placed inside the box was detected by the electronic panel also placed Inside the box.
 In the absence of a precise measure of the cosmic particle momentum, it was not possible to perform any study of
@@ -694,7 +760,7 @@ into the mechanical structure.
 The aerogel was the last element installed, being the most sensitive to the external conditions. For this reason, before
 its assembly, a test to verify the gas-tightness of the RICH vessel, temporarily completed with all of the closing panels,
 was performed. Each aerogel tile was inspected and mounted in a pre-selected location of the supporting structure,
-namely the frontal mirrors for the 2~cm tiles and the upper-frontal closing panel for the 3~cm tiles. The location of
+namely the frontal mirrors for the 2~cm tiles and the upper frontal panel for the 3~cm tiles. The location of
 each tile was determined in order to concentrate the tiles with the higher expected photon yield at forward polar
 angles where the particle identification requirements are most demanding. In addition, tiles with close optical
 properties were coupled in the same location of the double 3~cm layer. The tiles were secured in place by a net of
@@ -713,7 +779,7 @@ minimize the exposure to the external weather conditions.
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.45\textwidth]{aerogel_bottom.pdf}
-\caption{The 20~mm thickness section of the aerogel mounted on the two RICH frontal mirrors. Visible are the
+\caption{The 2-cm-thick section of the aerogel mounted on the two RICH frontal mirrors. Visible are the
   external aluminum frame and the black foam net that optically and mechanically isolates each tile from the others.}
 \label{Fig:AeroB1}
 \end{center}
@@ -723,31 +789,6 @@ Once the detector was sealed and before the transportation to the experimental h
 tested for several weeks in the assembly room. The tests included the two gas systems serving the RICH: the nitrogen
 system that must keep the internal humidity at the few percent level to preserve the aerogel optical performance and
 the air cooling system of the readout electronics.
-
-%-----------------------------------------------
-\section{Commissioning of the Detector}
-%-----------------------------------------------
-\label{sec:Commissioning}
-
-The RICH detector was installed in the CLAS12 spectrometer at the beginning of January 2018, in time with the start
-of the data taking in Hall~B. In preparation for the data taking, a number of tests were routinely performed without
-and with beam to establish the running conditions and to verify the stability of the response.
-
-The basic tool to monitor the RICH front-end electronics is provided by the measurement of the MaPMT dark noise
-counting rate using the self-triggered scaler readout provided by the FPGAs. The number of counts above a programmed
-threshold is recorded for a time on the order of a second. A fine scan of the threshold value allows for the
-reconstruction of the full SPE spectrum for each of the 25k channels. An example of one SPE spectrum is shown in
-Fig.~\ref{fig:SPEdark}. The main features of the data are: {\it{a)}} a very narrow pedestal where the threshold equals
-the baseline,  {\it{b)}} a region close to the pedestal where the rate smoothly decreases as the threshold increases
-(corresponding to the almost linear regime of the MAROC), and  {\it{c)}} a large plateau of the saturation regime, where
-the count rate is basically insensitive to the threshold setting almost up to the edge of the SPE region. The plateau is a
-crucial feature of the front-end electronics, because it allows a flexible definition of the working point without the need
-for extreme precision in the channel equalization. The spectra allow for the channel-by-channel extraction of the 
-pedestal position and width, the dark count rate in the plateau region, and the amplitude of the SPE region. The black
-and red histograms in Fig.~\ref{fig:SPEdark}, taken in April and August 2018, respectively, demonstrate the stability
-of the readout system over several months of running. Moreover, in Fig.~\ref{fig:PedestalMean}, the relative variation
-of the mean pedestal position in the same interval of time is shown. On average, the pedestals are stable at the level of
-$10^{-3}$.
 
 \begin{figure}[t]
 \begin{center}
@@ -768,17 +809,52 @@ $10^{-3}$.
 \label{fig:PedestalMean}
 \end{figure}
 
-The pedestal level is different for each readout channel, but it is quite uniform within one MAROC chip, as can be
-seen from the map shown in Fig.~\ref{fig:PedestalMap}. This result guarantees the effectiveness of the common
-threshold.
+%-----------------------------------------------
+\section{Commissioning of the Detector}
+%-----------------------------------------------
+\label{sec:Commissioning}
+
+The RICH detector was installed in the CLAS12 spectrometer at the beginning of January 2018, in time with the start
+of the data taking in Hall~B. In preparation for the data taking, a number of tests were routinely performed without
+and with beam to establish the running conditions and to verify the stability of the response.
+
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=1.0\columnwidth]{PedestalMap.png}
+\includegraphics[width=1.0\columnwidth]{Pedestal_map.png}
 \end{center}
 \caption{Map of the mean pedestal position in DAC units (color scale).}
 \label{fig:PedestalMap}
 \end{figure}
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=1.0\columnwidth]{Darkcount_map.png}
+\end{center}
+\caption{Map of the average dark count rate in the plateau region of threshold values (color scale).}
+\label{fig:DarkCountMap}
+\end{figure}
+
+
+The basic tool to monitor the RICH front-end electronics is provided by the measurement of the MaPMT dark noise
+counting rate using the self-triggered scaler readout provided by the FPGAs. The number of counts above a programmed
+threshold is recorded for a time on the order of a second. A fine scan of the threshold value allows for the
+reconstruction of the full SPE spectrum for each of the 25k channels. An example of one SPE spectrum is shown in
+Fig.~\ref{fig:SPEdark}. The main features of the data are: {\it{a)}} a very narrow pedestal where the threshold equals
+the baseline,  {\it{b)}} a region close to the pedestal where the rate smoothly decreases as the threshold increases
+(corresponding to the almost linear regime of the MAROC), and  {\it{c)}} a large plateau of the saturation regime, where
+the count rate is basically insensitive to the threshold setting almost up to the edge of the SPE region. The plateau is a
+crucial feature of the front-end electronics, because it allows a flexible definition of the working point without the need
+for extreme precision in the channel equalization. The spectra allow for the channel-by-channel extraction of the 
+pedestal position and width, the dark count rate in the plateau region, and the amplitude of the SPE region. The black
+and red histograms in Fig.~\ref{fig:SPEdark}, taken in April and August 2018, respectively, demonstrate the stability
+of the readout system over several months of running. Moreover, in Fig.~\ref{fig:PedestalMean}, the relative variation
+of the mean pedestal position in the same interval of time is shown. On average, the pedestals are stable at the level of
+$10^{-3}$.
+
+The pedestal level is different for each readout channel, but it is quite uniform within one MAROC chip, as can be
+seen from the map shown in Fig.~\ref{fig:PedestalMap}. This result guarantees the effectiveness of the common
+threshold.
 
 The average count rate in the plateau region provides a measurement of the dark count rate of the channel, as shown
 in the map of Fig.~\ref{fig:DarkCountMap}. The typical dark count rate is a few tens of Hz, with more than 99\% of
@@ -788,10 +864,14 @@ these results are in good agreement with the values quoted in the Hamamatsu data
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=1.0\columnwidth]{DarkCountMap.png}
+\includegraphics[width=0.95\columnwidth]{Equalize_before.png}
+\includegraphics[width=0.95\columnwidth]{Equalize_after.png}
 \end{center}
-\caption{Map of the average dark count rate in the plateau region of threshold values (color scale).}
-\label{fig:DarkCountMap}
+\caption{Time-over-Threshold (ToT) distributions of the RICH channels at three typical values of threshold (25, 50,
+  and 100 DAC) without (left) and with (right) gain equalization. The saturated SPE signals generally yield ToT durations
+  greater than 40~ns. When lowering the threshold weaker cross-talk signals are also recorded with ToT durations
+  around 25~ns.}
+\label{Fig:Equali}
 \end{figure}
 
 The MAROC preamplifier equalization gains are determined using the characterization measurements described in
@@ -809,13 +889,12 @@ pedestal position, a level that corresponds to a small fraction of the average S
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=1.0\columnwidth]{Figure6.pdf}
+\includegraphics[width=0.7\columnwidth]{Scalers_BeamOff.png}
+\includegraphics[width=0.7\columnwidth]{Scalers_BeamOn.png}
 \end{center}
-\caption{Time-Over-Threshold (ToT) distributions of the RICH channels at three typical values of threshold (25, 50,
-  and 100 DAC) without (left) and with (right) gain equalization. The saturated SPE signals generally yield ToT durations
-  greater than 40~ns. When lowering the threshold weaker cross-talk signals are also recorded with ToT durations
-  around 25~ns.}
-\label{Fig:Equali}
+\caption{The average count rates (in Hz) over 64 pixels for each MaPMT during data taking. Top: without beam on
+  target, Bottom: with beam.}
+\label{fig:Online_Scalers}
 \end{figure}
 
 %------------------------------------------------
@@ -856,19 +935,9 @@ and, eventually, restore them through a recovery procedure.
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.7\columnwidth]{Scalers_BeamOff.png}
-\includegraphics[width=0.7\columnwidth]{Scalers_BeamOn.png}
-\end{center}
-\caption{The average count rates (in Hz) over 64 pixels for each MaPMT during data taking. Top: without beam on
-  target, Bottom: with beam.}
-\label{fig:Online_Scalers}
-\end{figure}
-
-\begin{figure}[t]
-\begin{center}
 \includegraphics[width=1.0\columnwidth]{TDC_BeamOn.png}
 \end{center}
-\caption{Monitor plots of the TDC occupancy with beam on. From top to bottom: channel occupancy in terms of the
+\caption{Online monitor plots of the TDC occupancy with beam on. From top to bottom: channel occupancy in terms of the
   tile vs. channel number; leading edge time distributions per MaPMT; trailing edge time distribution per MaPMT.}
 \label{fig:Online_TDC}
 \end{figure}
@@ -912,24 +981,38 @@ The cRIO system monitors the following parameters:
 \item Air tank pressure;
 \item Air and nitrogen flow. 
 \end{itemize}
-\begin{figure}
+
+\begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.8\columnwidth]{RICH_sensors_e_panel.png}
+\includegraphics[width=0.9\columnwidth]{RICH_sensors_e_panel2.png}
 \end{center}
 \caption{Location of the temperature, humidity, and gas flow meters in the electronics panel.}
 \label{Fig:RICH_sensors_e_panel}
 \end{figure}
-The locations of the temperature and humidity sensors, and the air and nitrogen flow meters inside the electronics
-panel and nitrogen volume are shown in Figs.~\ref{Fig:RICH_sensors_e_panel} and \ref{Fig:RICH_sensors_nitrogen},
-respectively.
 
-\begin{figure}
+\begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.7\columnwidth]{RICH_sensors_nitrogen.png}
+\includegraphics[width=0.8\columnwidth]{RICH_sensors_nitrogen2.png}
 \end{center}
 \caption{Location of the temperature, humidity, and gas flow meters in the nitrogen volume.}
 \label{Fig:RICH_sensors_nitrogen}
 \end{figure}
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.7\columnwidth]{FPGATempMap.png}
+\end{center}
+\caption{Slow controls display: Map of the temperatures measured on the FPGA chips.}
+\label{fig:Online_FPGATempMap}
+\end{figure}
+
+The locations of the temperature and humidity sensors, and the air and nitrogen flow meters inside the electronics
+panel and nitrogen volume are shown in Figs.~\ref{Fig:RICH_sensors_e_panel} and \ref{Fig:RICH_sensors_nitrogen},
+respectively. The inner temperature of the electronic panel ranges between $\rm 38.5^\circ$ and $\rm 44.5^\circ$
+moving from the bottom towards the top of the module, whereas the external temperature stays below $\rm 34.5^\circ$,
+in accordance with the requirement to not drive the FTOF system above $\rm 40^\circ$. The relative humdity is below
+0.5\%. In the nitrogen volume, the temperature ranges between $\rm 23^\circ$ and $\rm 27^\circ$. The relative
+humidity is below 1.3\% except in the central point close to the spherical mirror pivot, where is reaches a 3\% value.
 
 The signal levels are controlled by setting limits.  If the temperatures, air flow, or air pressure go out of limits, the
 HV and LV is powered off, i.e. interlocked. In case the humidity or the nitrogen flow are out of limits, an alarm signal
@@ -944,14 +1027,6 @@ Typical temperature values are around 65$^\circ$C on the FPGA chips and 40$^\cir
 The safety temperature limits are 85$^\circ$C for the FPGAs, 80$^\circ$C for the optical fiber cables, and 40$^\circ$C
 for the temperature on the FTOF detector, which is about 10~cm away from the RICH. Therefore, the maximum
 allowed temperature was set to 75$^\circ$C on the FPGA and to 45$^\circ$C inside the electronics panel.
-
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=0.7\columnwidth]{FPGATempMap.png}
-\end{center}
-\caption{Slow controls display: Map of the temperatures measured on the FPGA chips.}
-\label{fig:Online_FPGATempMap}
-\end{figure}
 
 %\begin{figure}[t]
 %\begin{center}
@@ -995,22 +1070,22 @@ possible cross-talk. Hits belonging to the same nonet of the local maximum are f
 readout by an electronics channel adjacent to the maximum hit in the MAROC chip are flagged as electrical
 cross-talk. Note that the readout circuit routing has been designed to connect anodes close in space to non-adjacent
 MAROC3 inputs. The above selection rejects about 87\% of the cross-talk hits, as can be seen in Fig.~\ref{Fig:Xtalk}.
-In the figure the ToT distribution of the recorded RICH hits (black histogram) is shown together with the
-distributions of the hits identified as optical (magenta dash-dotted) or electrical (green dashed) cross-talk. The
+In the figure, the ToT distribution of the recorded RICH hits (black solid line) is shown together with the
+distributions of the hits identified as optical (magenta dash-dotted line) or electrical (green dashed line) cross-talk. The
 shoulders on the right of the cross-talk peaks are likely due to signal discharges wrongly identified as cross-talk.
-The hits selected for further analysis are highlighted by the dotted blue histogram. The excess at low ToT values
+The hits selected for further analysis are highlighted by the dotted (blue) histogram. The excess at low ToT values
 indicates a residual contamination of unidentified cross-talk. The leftover cross-talk contamination, at the level of
 2.7\% of the signal, can be further reduced only with a time versus amplitude analysis, see Sec~\ref{sec:TimeCalib}.
 The cross-talk selection also removes a small (0.8\% fraction) of true Cherenkov signals. Those correspond to MaPMT
-discharges that undergo incomplete dynode multiplication, while being by chance close in space to a Cherenkov signal.
+discharges that undergo incomplete dynode multiplication, while being by chance close in space to another Cherenkov signal.
 Hits flagged as cross-talk are not considered further in the RICH reconstruction.
 
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=1.0\columnwidth]{xtalk.png}
 \end{center}
-\caption{ToT distribution of the recorded RICH hits (black histogram) together with the optical (magenta dash-dotted)
-  and electrical (green dashed) cross-talk distributions.  The hits selected for further analysis are highlighted by the
+\caption{ToT distribution of the recorded RICH hits (black solid line) together with the optical (magenta dash-dotted line)
+  and electrical (green dashed line) cross-talk distributions.  The hits selected for further analysis are highlighted by the
   blue dotted histogram. }
 \label{Fig:Xtalk}
 \end{figure}
@@ -1021,18 +1096,28 @@ The second step consists in finding the spatial match between the RICH clusters 
 that the extrapolated impact point of the track on the MaPMT plane is within 10~cm of the cluster center. The latter
 is calculated as a weighted average - with the ToT value as the weight - of the spatial coordinates of all the hits in the
 cluster. Matched clusters allow a precise study of the MaPMT detector position and orientation relative to the CLAS12
-tracking system. This is shown in Fig.~\ref{Fig:DCmatch} where the $\chi^2$ of the distance between the RICH
-clusters and the matched drift-chamber tracks~\cite{dc-nim} divided by the pixel spatial RMS, is reported. The black
+tracking system. This is shown in Fig.~\ref{Fig:DCmatch}, where the distance between the RICH clusters and the matched 
+drift-chamber tracks~\cite{REF:dc-nim} divided by the pixel spatial RMS, (a sort of $\chi^2$ distribution), is reported. The black
 distribution is before and the red one after the alignment procedure.
 
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=1.0\columnwidth]{ckmaca.png}
 \end{center}
-%\caption{Chi2 of the RICH cluster matching with drift-chamber tracks, defined as the distance on the \MaPMT plane divided by the pixel spatial rms. In black before and in red after the alignment procedure.}
-\caption{$\chi^2$ of the distance between the RICH clusters and the matched drift-chamber tracks divided by the
+\caption{RICH matching $\chi^2$, defined as the distance between the RICH clusters and the matched drift-chamber tracks divided by the
   pixel spatial RMS. The black distribution is before and the red one after the alignment procedure.}
 \label{Fig:DCmatch}
+\end{figure}
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=1.0\columnwidth]{Tracking_time.png}
+\end{center}
+%\caption{The photon detection time as measured by the RICH can be compared to the more precise time extrapolated by the CLAS12 spectrometer. The latter is defined as the event start time plus the flight-times of the hadron from the interaction point to the radiator center, and of the ray-traced photon within the RICH volume. Any systematic difference emerging as the average over several events provides a mean of calibration for the RICH time. After calibration, a time coincidence within the event can be used to validate the single photon reconstructed path and emission point.}
+\caption{The RICH photon detection time as measured by the  CLAS12 spectrometer. It is defined as the event start
+  time plus the flight-times of the hadron from the interaction point to the radiator center, and of the ray-traced
+  photon within the RICH volume.}
+\label{Fig:Traced_Time}
 \end{figure}
 
 The third step is the core of the RICH reconstruction~\cite{recon-nim}. For each hit in the MaPMT plane, an
@@ -1049,26 +1134,27 @@ angles and times.
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=1.0\columnwidth]{Tracking_time.png}
+\includegraphics[width=0.85\columnwidth]{dt_vs_anode_nocor.png}
+\includegraphics[width=0.85\columnwidth]{dt_vs_dur_nocor.png}
 \end{center}
-%\caption{The photon detection time as measured by the RICH can be compared to the more precise time extrapolated by the CLAS12 spectrometer. The latter is defined as the event start time plus the flight-times of the hadron from the interaction point to the radiator center, and of the ray-traced photon within the RICH volume. Any systematic difference emerging as the average over several events provides a mean of calibration for the RICH time. After calibration, a time coincidence within the event can be used to validate the single photon reconstructed path and emission point.}
-\caption{The RICH photon detection time as measured by the  CLAS12 spectrometer. It is defined as the event start
-  time plus the flight-times of the hadron from the interaction point to the radiator center, and of the ray-traced
-  photon within the RICH volume.}
-\label{Fig:Traced_Time}
+\caption{Top plot: distribution of the time difference $\Delta T$ between the measured RICH and calculated CLAS12
+  times as a function of the RICH readout channel. Bottom plot: cumulative distribution of the time difference
+  $\Delta T$ as a function of the hit duration time (ToT).}
+\label{fig:Time_uncorr}
 \end{figure}
-
 The time information of the RICH hits is provided by the leading edge time $T_1$ measured by the TDC implemented
 into the FPGA board with a 1~ns precision. In-time photon hits are selected by comparing their $T_1$ with the time
 $T_{calc}$ computed using the CLAS12 information (see Fig.~\ref{Fig:Traced_Time}). $T_{calc}$ comprises the event
 start time, the charged track path and flight time provided by the tracking system, and the Cherenkov photon path
-reconstructed inside the RICH as explained in Ref.~\cite{recon-nim}. 
+reconstructed inside the RICH as explained in Ref.~\cite{recon-nim}. Being based on the precise Forward Time-of-Flight
+system and the accelerator RF frequency, the CLAS computed time features a time resolution of the order of 100 ps,
+significantly better than RICH. The CLAS computed time can therefore be used as a reference for the RICH time calibration.
 %Any systematic difference emerging as the average over several events provides a mean of calibration for the RICH time. After calibration, a time coincidence within the event can be used to validate the single photon reconstructed path and emission point.
 
 With respect to the expected time resolution, significant channel-by-channel variations are found in the difference
 between the measured and the calculated times as shown in the top plot of Fig.~\ref{fig:Time_uncorr}, where the
 distributions of $\Delta T=T_1-T_{calc}$ as a function of the channel number is shown. These variations are introduced
-by the readout chain, with the biggest contribution coming from the average length of the 3 optical fiber trunks and
+by the readout chain, with the biggest contribution coming from the average length of the 3 optical DAQ fiber trunks and
 from the specific length of the various fibers in each trunk. Smaller variations among the individual channels of one
 board can also occur due to the different circuit routing and components. An additional overall time constant is
 expected from the relative calibration of the RICH with respect to the rest of the CLAS12 detectors.
@@ -1079,20 +1165,10 @@ at the SPE level, this effect is expected to be relevant for small amplitude sig
 plot of Fig.~\ref{fig:Time_uncorr}. Saturated signals have typical ToT values on the order of 60~ns, while small
 amplitude signals are expected to be discriminated up to several ns later. The vertical band at ToT $\approx$60~ns
 comprises a distribution of random-time \MaPMT dark counts and off-time beam bunches. The independent excess
-around ToT $\approx$25~ns signals a residual contamination of cross-talk pulses.
+around ToT $\approx$25~ns signals a residual contamination of cross-talk pulses anticipated in Sec.~\ref{sec:RICHReco}.
 
 %a 4 ns periodic structure corresponding to wrong beam bunches.
 
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=0.9\columnwidth]{dt_vs_anode_nocor.png}
-\includegraphics[width=0.9\columnwidth]{dt_vs_dur_nocor.png}
-\end{center}
-\caption{Top plot: distribution of the time difference $\Delta T$ between the measured RICH and calculated CLAS12
-  times as a function of the RICH readout channel. Bottom plot: cumulative distribution of the time difference
-  $\Delta T$ as a function of the hit duration time (ToT).}
-\label{fig:Time_uncorr}
-\end{figure}
 
 A two step calibration procedure was implemented in order to align the time measured by all RICH readout
 channels with the expected (calculated) one. The current version of the software uses electrons and charged pions
@@ -1110,11 +1186,22 @@ corresponding to the tiles connected to the 3 optical fiber trunks, on top of sm
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.9\columnwidth]{Toffset_ch2913.png}
-\includegraphics[width=0.9\columnwidth]{ToffsetMap.png}
+%\includegraphics[width=0.9\columnwidth]{ToffsetMap.png}
+\includegraphics[width=0.95\columnwidth]{Offset_map.png}
 \end{center}
 \caption{Top plot: $\Delta T$ distribution for one readout channel; the red line indicates the time offset value.
   Bottom plot: typical map of the time offsets.}
 \label{fig:Toffset}
+\end{figure}
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=1.0\columnwidth]{time_walk_fit.png}
+\includegraphics[width=0.9\columnwidth]{Saturation_ToT2.png}
+\end{center}
+\caption{Top plot: fit of the time-walk correction for one MaPMT. Bottom plot: distribution of the ToT saturation
+  values extracted from the time-walk correction.}
+\label{Fig:TimeWalk}
 \end{figure}
 
 Once the individual channels were corrected for the time offsets, the time-walk corrections were extracted from
@@ -1133,26 +1220,6 @@ obtained from the fit is shown. The average value is around 57~ns with small var
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=1.0\columnwidth]{time_walk_fit.png}
-\includegraphics[width=1.0\columnwidth]{timewalk_D0.png}
-\end{center}
-\caption{Top plot: fit of the time-walk correction for one MaPMT. Bottom plot: distribution of the ToT saturation
-  values extracted from the time-walk correction.}
-\label{Fig:TimeWalk}
-\end{figure}
-
-After calibration, the corrected $\Delta T$ distribution is centered at zero for all channels, see
-Fig.~\ref{Fig:DT_corr}. As a consequence, a few ns time coincidence can be applied to remove the spurious hits. As
-shown in the bottom panel of Fig.~\ref{Fig:DT_corr}, the cross-talk hits at ToT $\approx$25~ns and the 4~ns
-sub-structure of the off-time beam bunches at ToT $\approx$60~ns become clearly visible. A typical \dT
-distribution is shown for one MaPMT in Fig.~\ref{Fig:ResoTime}, where the red and black histograms show the
-$\Delta T$ values before and after the correction, respectively. The blue dashed line is a Gaussian fit of the
-corrected distribution.
-%The distribution of the $\sigma$ of the Gaussian fits of all the channels are shown in the bottom plot of the Fig. \ref{Fig:ResoTimeAll}. 
-On average, we obtained a time resolution $<\sigma> \approx$0.7~ns, well below the requirement of 1~ns.
-
-\begin{figure}[t]
-\begin{center}
 \includegraphics[width=0.9\columnwidth]{dt_vs_anode_cor.png}
 \includegraphics[width=0.9\columnwidth]{dt_vs_dur_cor.png}
 \end{center}
@@ -1161,62 +1228,15 @@ On average, we obtained a time resolution $<\sigma> \approx$0.7~ns, well below t
 \label{Fig:DT_corr}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[h]
 \begin{center}
-\includegraphics[width=1.0\columnwidth]{time_walk_reso.png}
+\includegraphics[width=0.9\columnwidth]{Calibration_allch.png}
 \end{center}
-\caption{Typical \dT distribution before (red) and after (black) the time-walk correction for all the pixels in MaPMT
-  52. The dashed blue line is a Gaussian fit of the corrected distributions.}
+\caption{Typical \dT distribution before (black) and after (blue) the time-walk correction for all the RICH pixels.
+The red line is a Gaussian fit of the corrected distribution, with a global 0.66 ns RMS.}
 \label{Fig:ResoTime}
 \end{figure}
 
-%-----------------------------------------------
-\section{RICH Hadron Separation}
-%-----------------------------------------------
-\label{sec:HadronID}
-
-The RICH has been designed to provide hadron identification in the 3 - 8~GeV momentum range. The most
-challenging separation is between kaons and pions, as their Cherenkov angles become closer and closer with the
-increase of momentum until a minimum difference of 6~mrad at 8~GeV. In addition, in this momentum range the
-pion yield is more than an order of magnitude larger than for the other hadron species.
-
-%Various event topologies are possible due to the  unconventional RICH geometry that has to fit in one of the triangular CLAS12 sectors. The hybrid optical configuration requires to work simultaneously with direct photons in proximity focusing and with reflected photons in mirror focusing geometries. In the range of interest for RICH, between 3~GeV and 8~GeV, electrons can be used as a control sample for pions as their saturated Cherenkov angles are indistinguishable. The large recorded electron statistics allows a detailed optimization of the RICH performance, still ongoing, that should take into account possible misalignments and inhomogeneities of all the optical components.
-
-Various ring imaging topologies are possible due to the  unconventional RICH geometry. These topologies are generated
-by direct photons in proximity focusing and by reflected photons in mirror focusing geometries. In the momentum
-range of interest (between 3~GeV and 8~GeV), electrons can be used for a detailed optimization of the RICH
-performance since, being in a saturated regime, their Cherenkov angles are indistinguishable from those of pions.
-The work is still ongoing to make use of the large recorded electron statistics.
-
-Examples of reconstructed RICH events are shown in Figs.~\ref{Fig:Event1} to \ref{Fig:Event4} for particles
-identified as electrons by CLAS12. In each figure, the reconstructed RICH event is displayed on the left. The
-ray-tracing approach allows, for each particle hypothesis, to anticipate the expected photon pattern and the associated
-hits on the photodetectors, indicated by the small dots in the figures.
-%In the presented cases only electrons at the measured momentum are considered (che vuoi dire con "In the presented cases only electrons at the measured momentum are considered"?). The expected photon pattern and the hits associated to the impact point of the electron track are indicated by small dots. 
-The measured RICH hits are shown as open circles, whereas the reconstructed photon hits are shown as the full
-circles. Direct and reflected photons are indicated in magenta and blue, respectively. A remarkable feature of the
-RICH detector is the low level of spurious hits from accidentals, in-time background (i.e. Rayleigh scattering), and
-dark counts. This feature is crucial for the most challenging cases: particles with high momenta close to the 8~GeV
-limit that require the best resolution in Cherenkov angle, and particles pointing towards the spherical mirror whose
-number of detected photons is limited by the double reflection and a second passage through the radiator. 
-
-For each event, the details of the time and Cherenkov angle reconstruction are shown on the right. On the top panel,
-the time coincidence $\Delta T$ between the RICH measured hit and the CLAS12 calculated time is displayed as a
-function of the photon flight time within the RICH (photon transit time). The time coincidence $\Delta T$ should be
-close to zero for any true photon path. As a consequence, a valid photon reconstruction is initially selected by
-requiring $\Delta T<3$~ns, indicated by the horizontal dashed lines. The path length is represented by the photon
-transit time inside the RICH, from the emission point within the aerogel to the detection point in the MaPMT plane
-after all possible reflections. Photons reflected by the spherical mirror and directed back to the aerogel travel
-twice the gap, with an expected significant increase of path length and a corresponding distinctive $\approx$6~ns
-longer transit time. %but with a time coincidence with CLAS12 at the precision level of direct photons
-
-In the bottom panel, the measured angles are compared to the expected distributions for different particle
-hypotheses. The width of each distribution corresponds to the expected SPE angular resolution, while the average
-value depends on the particle type and momentum. An acceptance range is defined from the smallest angle expected
-for a proton to the largest angle expected for an electron, enlarged by three times the expected angular resolution.
-For the latter, a conservative value of 6 mrad is taken for the single photon case. These limits are indicated by the
-vertical dashed lines. 
-%In the whole 3~GeV - 8~GeV momentum range relevant for RICH, the Cherenkov cone generated by an electron is saturated to the maximum aperture angle corresponding to the low mass of the particle and a $\rm n \approx 1.05$ refractive index (the exact value depending on the aerogel tile). 
 
 \onecolumn
 \begin{figure}[t]
@@ -1254,6 +1274,76 @@ vertical dashed lines.
 
 \twocolumn
 
+After calibration, the corrected $\Delta T$ distribution is centered at zero for all channels, see
+Fig.~\ref{Fig:DT_corr}. As a consequence, a few ns time coincidence can be applied to remove the spurious hits. As
+shown in the bottom panel of Fig.~\ref{Fig:DT_corr}, the cross-talk hits at ToT $\approx$25~ns and the 4~ns
+sub-structure of the off-time beam bunches at ToT $\approx$60~ns become clearly visible. A typical \dT
+distribution is shown for one MaPMT in Fig.~\ref{Fig:ResoTime}, where the red and black histograms show the
+$\Delta T$ values before and after the correction, respectively. The red curve is a Gaussian fit of the
+corrected distribution.
+%The distribution of the $\sigma$ of the Gaussian fits of all the channels are shown in the bottom plot of the Fig. \ref{Fig:ResoTimeAll}. 
+On average, we obtained a time resolution $<\sigma> \approx$0.7~ns, well below the requirement of 1~ns.
+
+%-----------------------------------------------
+\section{RICH Hadron Separation}
+%-----------------------------------------------
+\label{sec:HadronID}
+
+The RICH has been designed to provide hadron identification in the 3 - 8~GeV momentum range. The most
+challenging separation is between kaons and pions, as their Cherenkov angles become closer and closer with the
+increase of momentum until a minimum difference of 6~mrad at 8~GeV. In addition, in this momentum range the
+pion yield is more than an order of magnitude larger than for the other hadron species.
+
+%Various event topologies are possible due to the  unconventional RICH geometry that has to fit in one of the triangular CLAS12 sectors. The hybrid optical configuration requires to work simultaneously with direct photons in proximity focusing and with reflected photons in mirror focusing geometries. In the range of interest for RICH, between 3~GeV and 8~GeV, electrons can be used as a control sample for pions as their saturated Cherenkov angles are indistinguishable. The large recorded electron statistics allows a detailed optimization of the RICH performance, still ongoing, that should take into account possible misalignments and inhomogeneities of all the optical components.
+
+Various ring imaging topologies are possible due to the  unconventional RICH geometry. These topologies are generated
+by direct photons in proximity focusing and by reflected photons in mirror focusing geometries. In the momentum
+range of interest (between 3~GeV and 8~GeV), electrons can be used for a detailed optimization of the RICH
+performance since, being in a saturated regime, their Cherenkov angles are indistinguishable from those of pions.
+The work is still ongoing to make use of the large recorded electron statistics.
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=1.0\columnwidth]{Tile12_rms_plot2.png}
+\end{center}
+\caption{RICH Cherenkov resolution before (open points) and after (close points) a preliminary RICH alignment. The whole RICH
+  detector is aligned minimizing the matching distance between RICH clusters and extrapolated DC tracks. No
+  possible misalignment of the single RICH component is accounted for. The distribution is for particles passing through
+  one aerogel tile of 2 cm thickness (tile 12 in layer 1) and for direct photons.}
+\label{Fig:Align}
+\end{figure}
+
+Examples of reconstructed RICH events are shown in Figs.~\ref{Fig:Event1} to \ref{Fig:Event4} for particles
+identified as electrons by CLAS12. In each figure, the reconstructed RICH event is displayed on the left. The
+ray-tracing approach allows, for each particle hypothesis, to anticipate the expected photon pattern and the associated
+hits on the photodetectors, indicated by the small dots in the figures.
+%In the presented cases only electrons at the measured momentum are considered (che vuoi dire con "In the presented cases only electrons at the measured momentum are considered"?). The expected photon pattern and the hits associated to the impact point of the electron track are indicated by small dots. 
+The measured RICH hits are shown as open circles, whereas the reconstructed photon hits are shown as the full
+circles. Direct and reflected photons are indicated in magenta and blue, respectively. A remarkable feature of the
+RICH detector is the low level of spurious hits from accidentals, in-time background (i.e. Rayleigh scattering), and
+dark counts. This feature is crucial for the most challenging cases: particles with high momenta close to the 8~GeV
+limit that require the best resolution in Cherenkov angle, and particles pointing towards the spherical mirror whose
+number of detected photons is limited by the double reflection and a second passage through the radiator. 
+
+For each event, the details of the time and Cherenkov angle reconstruction are shown on the right. On the top panel,
+the time coincidence $\Delta T$ between the RICH measured hit and the CLAS12 calculated time is displayed as a
+function of the photon flight time within the RICH (photon transit time). The time coincidence $\Delta T$ should be
+close to zero for any true photon path. As a consequence, a valid photon reconstruction is initially selected by
+requiring $\Delta T<3$~ns, indicated by the horizontal dashed lines. The path length is represented by the photon
+transit time inside the RICH, from the emission point within the aerogel to the detection point in the MaPMT plane
+after all possible reflections. Photons reflected by the spherical mirror and directed back to the aerogel travel
+twice the gap, with an expected significant increase of path length and a corresponding distinctive $\approx$6~ns
+longer transit time. %but with a time coincidence with CLAS12 at the precision level of direct photons
+
+In the bottom panel, the measured angles are compared to the expected distributions for different particle
+hypotheses. The width of each distribution corresponds to the expected SPE angular resolution, while the average
+value depends on the particle type and momentum. An acceptance range is defined from the smallest angle expected
+for a proton to the largest angle expected for an electron, enlarged by three times the expected angular resolution.
+For the latter, a conservative value of 6 mrad is taken for the single photon case. These limits are indicated by the
+vertical dashed lines. 
+%In the whole 3~GeV - 8~GeV momentum range relevant for RICH, the Cherenkov cone generated by an electron is saturated to the maximum aperture angle corresponding to the low mass of the particle and a $\rm n \approx 1.05$ refractive index (the exact value depending on the aerogel tile). 
+
+
 For each reconstructed photon path an estimate of the corresponding Cherenkov angle is obtained and
 histogrammed on the plot. In all cases studied, both reflected and direct photon information is consistent with
 the electron hypothesis. In particular, the reconstructed reflected and direct photon paths with \dT close to
@@ -1271,26 +1361,17 @@ bending magnets, such a study requires large statistics and is still ongoing. A 
 alignment study. Also in this case, large statistics is needed due to the numerous involved components (aerogel
 layers, mirrors, and MaPMT plane) and photon path configurations. 
 
-As a general approach, the RICH performance is studied separately for each aerogel tile, see Fig.~\ref{Fig:Tile}.
+As a general approach, the RICH performance is studied separately for each aerogel tile.
+The RICH global performance estimators are then defined by averaging the results over all the
+radiator tiles. 
 Despite the fact that the above studies have not yet been finalized, and only partial corrections have been
-implemented so far, the preliminary SPE Cherenkov angle resolution yields about 6~mrad. It is expected to improve
+implemented so far, the preliminary SPE Cherenkov angle resolution yields typical values around 6~mrad. It is expected to improve
 towards the goal value of 4.5~mrad once the corrections for the detector misalignment are implemented and the
 realistic optical parameters of each aerogel tile are taken into accounted. As an example, the effect of a preliminary
-alignment of the whole RICH detector, not taking into account possible single component misalignments, is shown in
-Fig.~\ref{Fig:Align}. The RICH global performance estimators are then defined by averaging the results over all the
-radiator tiles. The preliminary 6~mrad Cherenkov angle resolution is already sufficient for an effective hadron
+alignment of the whole RICH detector is shown for one aerogel tile in Fig.~\ref{Fig:Align}. After alignment, the resolution improve towards
+the TDR projected values, that are 4.5 mrad for single photon detection and 1.5 mrad for the average over all the photons 
+associated with the hadron track. Such preliminary Cherenkov angle resolution is already sufficient for an effective hadron
 separation in the goal range of momenta, from 3 to 8~GeV, as shown by Figs.~\ref{Fig:CHele} to \ref{Fig:CHhad2}.
-
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=1.0\columnwidth]{Reso_align.png}
-\end{center}
-\caption{RICH Cherenkov resolution before (left) and after (right) a preliminary RICH alignment. The whole RICH
-  detector is aligned minimizing the matching distance between RICH clusters and extrapolated DC tracks. No
-  possible misalignment of the single RICH component is accounted for. The distribution is for particles passing through
-  one aerogel tile of 2 cm thickness (tile 12 in layer 1) and for direct photons.}
-\label{Fig:Align}
-\end{figure}
 
 \begin{figure}[t]
 \begin{center}
@@ -1326,13 +1407,51 @@ separation in the goal range of momenta, from 3 to 8~GeV, as shown by Figs.~\ref
 \section{Conclusions}
 %-------------------------------------------------------
 
-Preliminary data analysis shows that the CLAS12 RICH, equipped with Hamamatsu H8500 and H12700 MaPMTs,
-is able to match the required time and Cherenkov angle resolutions. A compact and scalable readout electronics system
-has been realized for the detector, able to work in the single-photon regime with high efficiency and stability.
-%Preliminary RICH data analysis shows that, in
-%conjunction with Hamamatsu H8500 and H12700 MaPMTs, is able to match the required time and Cherenkov angle resolution.
-It provides a reliable readout system for a variety of cutting-edge sensors, from densely packed H13700 MaPMTs
-to novel SiPM matrices.
+A RICH detector has been designed to enhance the hadron identification capability 
+at CLAS12 in the 3 to 8 GeV momentum range. It substitutes the baseline gas threshold Cherenkov detector 
+in two of the CLAS12 sectors, to create a symmetric left-right setup 
+optimized for running with polarized targets. The first module was
+installedd at the beginning of 2018, in time for the experiment data 
+taking start. The second module is under construction and expected to be ready in 
+the summer 2021, in time for the first run with polarized targets.
+
+To efficiently cover the wanted few-GeV momentum range, the RICH employs 
+innovative technological solutions. Among these, are composite 
+aeronautic light-materials to ensure the needed mechanical structure rigidity, 
+aerogel radiator of unprecendented large volume (up to $200 \times 200 \times 30$ $\rm mm^3$) 
+and high transparency ($\approx 50$ mm scattering legnht), light 
+(of the order of 1\% of radiation length) mirrors made of carbon-fiber or, for
+the first time in a nuclear experiment, glass-skin technology,
+high-segmented and high-packed Hamamatsu H8500 and H12700 multi-anode photomultipliers.
+A compact and scalable readout electronics system has been realized for 
+the detector, able to discriminate Cherenkov signals down to a as small as 1/32 fraction
+of the single photon amplitude, with excellent efficiency and stability,
+and a time resolution better than 1 ns.
+
+The peculiar geometry of the CLAS12 sector suggested a innovative 
+hybrid-optics solution to limit the active area to $\approx 1$ square meter per sector, with part of the light directly
+imaged and part of the light focalized by mirrros. This and the bending into
+the torus field of the CLAS12 Forward Detector create a variety of
+possible topologies for the particle and photons paths. 
+The RICH reconstruction exploits a ray-tracing algorithm to provide a
+Cherenkov angle estimation for each photon hit and hadron track in 
+the event. This basic experimental information allows an independent 
+development of higher-level PID algorithms with increasing sophistication.
+
+Preliminary data analysis shows that the CLAS12 RICH is able to match the 
+required time and Cherenkov angle resolutions. After calibration, each
+of the 25k channels features a time resolution of the order of 0.6 ns,
+better than the 1~ns specification. The high momentum particles
+define the most stringent requirements in performance. As the pion yield
+supersedes the other particles species by an order of magnitude, a 
+$4\sigma$ angle separation is required to contain the contamination 
+at the percent level. At 8 GeV, this implies an angle resolution of 1.5 mrad.
+Despite the detailed study of the alignment and optical performance of the various 
+components is still ongoing, the detector has already demonstrated a single-photon 
+agle resolution better than 5 mrad and an average number of 19 photons per charged particle
+in the forward high-momentum direction, in line with the TDR projections. This reflects in an angle resolution 
+per charged particle close to the design value of 1.5 mrad and an effective hadron identification 
+capability in the whole required momentum range.
 
 %-------------------------------------------------------
 \section{Acknowledgments}
@@ -1344,62 +1463,85 @@ U.S. Department of Energy, Office of Science, Office of Nuclear Physics under co
 the National Science Foundation, Award \#1615067. We thank the JLab Detector Support Group and Fast Electronics
 Group, the Hall-B technical and management staff, and the INFN technical and administrative service.
 
-\begin{thebibliography}{00}
-\bibitem{htcc-nim}
-Y. Sharabian {\it et al.}, {\it ``The CLAS12 High Threshold Cherenkov Counter''}, to be published in Nucl. Inst.
-and Meth. A, (2020). (see this issue)
-  
-\bibitem{ltcc-nim}
-M. Ungaro {\it et al.}, {\it ``The CLAS12 Low Threshold Cherenkov Counter''}, to be published in Nucl. Inst.
-and Meth. A, (2020). (see this issue)
 
-\bibitem{ftof-nim}
-D.S. Carman {\it et al.}, {\it ``The CLAS12 Forward Time-of-Flight System''}, to be published in Nucl. Inst.
-and Meth. A, (2020). (see this issue)
+%-------------------------------------------------------
+\begin{thebibliography}{00}
+%-------------------------------------------------------
+\bibitem{REF:htcc-nim}
+Y. Sharabian {\it et al.}, {\it ``The CLAS12 High Threshold Cherenkov Counter''}, 
+to be published in Nucl. Inst.  and Meth. A, (2020). (see this issue)
   
-\bibitem{overview-nim}
-V.D. Burkert {\it et al.}, {\it ``The CLAS12 Spectrometer at Jefferson Laboratory''}, to be published in Nucl. Inst.
-and Meth. A, (2020). (see this issue)
+\bibitem{REF:ltcc-nim}
+M. Ungaro {\it et al.}, {\it ``The CLAS12 Low Threshold Cherenkov Counter''}, 
+to be published in Nucl. Inst.  and Meth. A, (2020). (see this issue)
+
+\bibitem{REF:ftof-nim}
+D.S. Carman {\it et al.}, {\it ``The CLAS12 Forward Time-of-Flight System''}, 
+to be published in Nucl. Inst.  and Meth. A, (2020). (see this issue)
   
-\bibitem{ecal-nim}
-V. Ziegler {\it et al.}, {\it ``CLAS12 Event Reconstruction''}, to be published in Nucl. Inst.
-and Meth. A, (2020). (see this issue)
+\bibitem{REF:overview-nim}
+V.D. Burkert {\it et al.}, {\it ``The CLAS12 Spectrometer at Jefferson Laboratory''}, 
+to be published in Nucl. Inst.  and Meth. A, (2020). (see this issue)
   
+\bibitem{REF:ecal-nim}
+G. Asryan {\it et al.}, {\it ``The CLAS12 Forward Electromagnetic Calorimter''}, 
+to be published in Nucl. Inst.  and Meth. A, (2020). (see this issue)
+  
+\bibitem{REF:RICH2013} 
+M. Contalbrigo {\it et al.}, {\it ``The Large-area Hybrid-optics CLAS12 RICH Detector: Tests of Innovative Components''},
+Nucl. Inst. Meth. {\bf A766} (2014) 22.
+
 \bibitem{REF:CMA} \url{http://www.compositemirrors.com/}.
 
-\bibitem{REF:LHCbMirrors} {\bf LHCb mirror reference}
+\bibitem{REF:LHCbMirrors} 
+G.J. Barber {\it et al.}, {\it ``Development of lightweight carbon-fiber mirrors for the RICH 1 detector of LHCb''},
+Nucl. Inst. Meth. {\bf A593} (2008) 624.
 
 \bibitem{REF:ECI} \url{https://www.evaporatedcoatings.com/}.
 
 \bibitem{REF:MediaLario} \url{http://www.media-lario.com/}.
 
-\bibitem{RICH:RICH2016mc} M. Contalbrigo {\it et al.}, Nucl. Instrum. Meth. {\bf A876} (2017) 168.
+\bibitem{REF:RICH2016mc} 
+M. Contalbrigo {\it et al.}, {\it ``Aerogel mass production for the CLAS12 RICH: Novel characterization methods and optical performance''},
+Nucl. Inst. Meth. {\bf A876} (2017) 168.
 
-\bibitem{Hunt} E.~Aschenauer  {\it et al.}, Nucl. Instrum. Meth. {\bf A 440} (2000) 338.
+\bibitem{REF:Hunt} 
+E.~Aschenauer  {\it et al.}, {\it ``Optical characterization of n = 1.03 silica aerogel used as radiator in the RICH of HERMES''},
+Nucl. Inst. Meth. {\bf A 440} (2000) 338.
 
 \bibitem{Ref:H8500} \url{https://www.hamamatsu.com/resources/pdf/etd/H8500\_H10966\_TPMH1327E.pdf}.
   
-\bibitem{MaPMT:test} R.~A. Montgomery \etal, {\em Nucl. Instrum. Meth.} {\bf A 695} (2012) 326.
+\bibitem{REF:MaPMT_test} 
+R.~A. Montgomery {\it et al.}, {\it ``Multianode photomultiplier tube studies for imaging applications''},
+Nucl. Inst. Meth. {\bf A 695} (2012) 326.
 
-\bibitem{RICH:CERN} S.~Anefalos~Pereira \etal, {\em Eur. Phys. J. A} {\bf 52} (2016) 23.
+\bibitem{REF:RICH_CERN} 
+S.~Anefalos~Pereira {\it et al.}, {\it ``Test of the CLAS12 RICH large scale prototype in the direct proximity focusing configuration''},
+Eur. Phys. J. A {\bf 52} (2016) 23.
 
 \bibitem{Ref:H12700} \url{https://www.hamamatsu.com/resources/pdf/etd/H12700\_TPMH1348E.pdf}.
 
-\bibitem{MAROC3:chip} S. Blin \etal, {\em IEEE Nucl. Sci. Symp. Conf. Rec. 2010} (2010) 1690.
+\bibitem{MAROC3:chip} S. Blin {\it et al.}, {\it ``MAROC, a generic photomultiplier readout chip''},
+IEEE Nucl. Sci. Symp. Conf. Rec. 2010 (2010) 1690.
 
 \bibitem{daq-nim}
-S. Boyarinov {\it et al.}, {\it ``The CLAS12 Data Acquisition System''}, to be published in Nucl. Inst.
-and Meth. A, (2020). (see this issue)
+S. Boyarinov {\it et al.}, {\it ``The CLAS12 Data Acquisition System''}, 
+to be published in Nucl. Inst. and Meth. A, (2020). (see this issue)
 
-\bibitem{Pavel} Pavel Degtiarenko, Precision analysis of the photomultiplier response to ultra low signals, Nuc. Inst. \& Meth. in Phys. Res. A \textbf{872}, 1-15  (2017).
+\bibitem{Pavel} 
+Pavel Degtiarenko, {\it ``Precision analysis of the photomultiplier response to ultra low signals''}, 
+Nucl. Inst. Meth. {\bf A872}, 1-15  (2017).
 
-\bibitem{Ref:RICHElectro} M. Contalbrigo, Single photon detection with the multi-anode CLAS12 RICH detector, in press in Nuc. Inst. \& Meth. in Phys. Res. A.
+\bibitem{Ref:RICHElectro} 
+M. Contalbrigo {\it et al.}, {\it ``Single photon detection with the multi-anode CLAS12 RICH detector''}, 
+in press in Nuc. Inst. Meth. A.,
+DOI:10.1016/j.nima.2019.04.077
 
 \bibitem{Ref:EPICS} Experimental industrial physics control system, https://epics-controls.org
 
 \bibitem{Ref:cRIO} \url{https://www.jlab.org/div_dept/physics_division/dsg/notes/2016-012%20National%20Instruments%20compactRIO-based%20control,%20monitoring,%20and%20interlock%20system.pdf}
 
-\bibitem{dc-nim}
+\bibitem{REF:dc-nim}
 M.D. Mestayer {\it et al.}, {\it ``The CLAS12 Drift Chamber System''}, to be published in Nucl. Inst.
 and Meth. A, (2020). (see this issue)
 
@@ -1411,26 +1553,26 @@ and Meth. A, (2020). (see this issue)
 
 \end{document}
 
-\bibitem{CLAS12:tdr} CLAS12 Technical Design Report, version 5.1 208 (2008).
-\bibitem{CLAS12:physics} J. Dudek {\it et al.}, Eur.Phys.J. {\bf A48} (2012) 187.
-\bibitem{PSHP10} H.~Avakian \etal, {\em arXiv:1202.1910v2} {\bf [hep-ex]} (2012).
-\bibitem{RICH:first} M.~Contalbrigo \etal, {\em Nucl. Instrum. Meth.} {\bf A 639} (2011) 302.
-\bibitem{RICH:ElAlaoui} A.~El~Alaoui \etal, {\em Physics Procedia} {\bf 37} (2012) 773.
-\bibitem{REF:Tecnavan} \url{http://www.tecnavan.it/en/}.
-\bibitem{REF:Aerogel} R. De Leo {\it et al.}, Nucl. Instrum.Meth. {\bf A 595} (2008) 19; A. Yu. Barnyakov {\it et al.}, Nucl. Instrum. Meth. {\bf A 453} (2000) 326; R. Pereira {\it et al.}, Nucl. Instrum. Meth. {\bf A 639} (2011) 37; R. Forty {\it et al.}, Nucl. Instrum. Meth. {\bf A 623} (2010) 294.
-\bibitem{REF:Belle} T. Iijima {\it et al.}, Nucl. Instrum. Meth. {\bf A 598} (2009) 138.
+%\bibitem{CLAS12:tdr} CLAS12 Technical Design Report, version 5.1 208 (2008).
+%\bibitem{CLAS12:physics} J. Dudek {\it et al.}, Eur.Phys.J. {\bf A48} (2012) 187.
+%\bibitem{PSHP10} H.~Avakian \etal, {\em arXiv:1202.1910v2} {\bf [hep-ex]} (2012).
+%\bibitem{RICH:first} M.~Contalbrigo \etal, {\em Nucl. Inst. Meth.} {\bf A 639} (2011) 302.
+%\bibitem{RICH:ElAlaoui} A.~El~Alaoui \etal, {\em Physics Procedia} {\bf 37} (2012) 773.
+%\bibitem{REF:Tecnavan} \url{http://www.tecnavan.it/en/}.
+%\bibitem{REF:Aerogel} R. De Leo {\it et al.}, Nucl. Inst.Meth. {\bf A 595} (2008) 19; A. Yu. Barnyakov {\it et al.}, Nucl. Instrum. Meth. {\bf A 453} (2000) 326; R. Pereira {\it et al.}, Nucl. Instrum. Meth. {\bf A 639} (2011) 37; R. Forty {\it et al.}, Nucl. Instrum. Meth. {\bf A 623} (2010) 294.
+%\bibitem{REF:Belle} T. Iijima {\it et al.}, Nucl. Instrum. Meth. {\bf A 598} (2009) 138.
 
 %\bibitem{H8500_datasheet} \url{https://www.hamamatsu.com/resources/pdf/etd/H8500_H10966_TPMH1327E.pdf}.
 %\bibitem{H12700_datasheet} \url{https://www.hamamatsu.com/resources/pdf/etd/H12700_TPMH1348E.pdf}.
-\bibitem{Bellamy} E.H. Bellamy  \etal, Absolute calibration and monitoring of a spectrometric channel using a photomultiplier, Nuc. Inst. \& Meth. in Phys. Res. A \textbf{339}, 468-476 (1994).
+%\bibitem{Bellamy} E.H. Bellamy  \etal, Absolute calibration and monitoring of a spectrometric channel using a photomultiplier, Nuc. Inst. \& Meth. in Phys. Res. A \textbf{339}, 468-476 (1994).
 
 %\bibitem{MaPMT:laser} M.~Contalbrigo \etal, {\em Nucl. Instrum. Meth.} {\bf A 787} (2015) 224.
 %\bibitem{MaPMT:model} P.~Degtiarenko, arXiv:1608.07525.
-\bibitem{Ref:GlueX} F.~Barbosa \etal, {\em Nucl. Instrum. Meth.} {\bf A 876} (2017) 69.
-\bibitem{Ref:mRICH1} C.P.~Wong \etal, {\em Nucl. Instrum. Meth.} {\bf A 871} (2017) 13.
-\bibitem{Ref:eRD14} A.~Del~Dotto \etal, {\em Nucl. Instrum. Meth.} {\bf A 876} (2017) 237.
-\bibitem{Ref:H13700} \url{https://www.hamamatsu.com/resources/pdf/etd/H13700\_TPMH1370E.pdf}.
-\bibitem{Ref:MPPC} \url{https://www.hamamatsu.com/resources/pdf/ssd/s13361-3050\_series\_kapd1054e.pdf}.
+%\bibitem{Ref:GlueX} F.~Barbosa \etal, {\em Nucl. Instrum. Meth.} {\bf A 876} (2017) 69.
+%\bibitem{Ref:mRICH1} C.P.~Wong \etal, {\em Nucl. Instrum. Meth.} {\bf A 871} (2017) 13.
+%\bibitem{Ref:eRD14} A.~Del~Dotto \etal, {\em Nucl. Instrum. Meth.} {\bf A 876} (2017) 237.
+%\bibitem{Ref:H13700} \url{https://www.hamamatsu.com/resources/pdf/etd/H13700\_TPMH1370E.pdf}.
+%\bibitem{Ref:MPPC} \url{https://www.hamamatsu.com/resources/pdf/ssd/s13361-3050\_series\_kapd1054e.pdf}.
 
  %\bibitem{Past:rich} R. De Leo \etal, {\em Nucl. Instrum. Meth.} {\bf A 595} (2008) 19;
 %A.~Yu. Barnyakov \etal, {\em Nucl. Instrum. Meth.} {\bf A 453} (2000) 326;
