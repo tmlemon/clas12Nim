@@ -170,7 +170,25 @@ the ECAL and from the Forward Tagger.
     \end{tabular}  
     \caption{Particle identification matrix for the CLAS12 Forward Detector acceptance, based on simulated hadrons
       and photons with momentum between 1 and 2.5~GeV, and electrons up to 9~GeV. The diagonal elements are
-      correctly identified, while the off-diagonal elements are misidentified. The detector inefficiencies are included.}
+      correctly identified, while the off-diagonal elements are misidentified. Detector inefficiencies are included.}
+  \label{table:pidmatrix}
+  \end{center}
+\end{table}
+
+\begin{table}[htpb]
+  \begin{center}
+    \begin{tabular}{|c|cccc|}\hline
+          & \multicolumn{4}{c|}{Truth}\\        
+          & $\pi$ & $K$  & $p$  & $n$  \\\hline
+  $\pi$   &  0.84 & 0.14 & 0.00 &      \\ 
+  $K$     &  0.11 & 0.80 & 0.01 &      \\ 
+  $p$     &  0.03 & 0.04 & 0.95 &      \\ 
+  $n$     &       &      &      & 0.11 \\ 
+ $\gamma$ &       &      &      & 0.00 \\\hline 
+    \end{tabular}  
+    \caption{Particle identification matrix for the CLAS12 Central acceptance, based on simulated hadrons
+      with momentum between 0.3 and 1.1 ~GeV. The diagonal elements are
+      correctly identified, while the off-diagonal elements are misidentified. Detector inefficiencies are included.}
   \label{table:pidmatrix}
   \end{center}
 \end{table}
