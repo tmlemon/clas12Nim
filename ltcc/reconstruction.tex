@@ -27,17 +27,18 @@ to a single PMT, as the angle with which a particle crosses the elliptical mirro
 position, charge, and the torus magnetic field and polarity. The implies that, based solely on the LTCC hits, the
 \textit{true} cluster position cannot be uniquely constrained. This is illustrated in \F{trackmatching}.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.99\columnwidth,keepaspectratio]{img/LTCC-event-1.png}
-  \includegraphics[width=0.99\columnwidth,keepaspectratio]{img/LTCC-event-2.png}
-  \caption{Two different simulated LTCC hits for particles passing through the same elliptical mirror. Based on
-    particle kinematics, either the PMT in the same segment (top) or a neighboring segment (bottom) is hit.}
-  \label{fig:trackmatching}
-\end{figure}
-
 The track matching is performed in a stage of the reconstruction where the tracking information is available. In
 order to perform the track matching, the estimated \textit{true} cluster position is recalculated for each track,
 leveraging the Monte Carlo simulation of the LTCC to correctly associate a tentative \textit{true} cluster position
 with the measured hits. The track that passes the closest to the tentative \textit{true} cluster position is then
 chosen as the true match for this cluster.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.99\columnwidth, keepaspectratio]{img/LTCC-event-1.png}
+  \includegraphics[width=0.99\columnwidth, keepaspectratio]{img/LTCC-event-2.png}
+  \caption{Two different simulated LTCC hits for particles passing through the same elliptical mirror. Based on
+    particle kinematics, either the PMT in the same segment (top) or a neighboring segment (bottom) is hit.}
+  \label{fig:trackmatching}
+\end{figure}
+

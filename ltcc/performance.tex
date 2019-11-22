@@ -2,7 +2,8 @@
 
 The response of the LTCC to electrons and pions has been studied using experimental data from the spring run
 2019 period, the first time that the LTCC sectors 3 and 5 were filled with the C$_4$F$_{10}$ gas. At the time
-of this writing the data is not yet fully calibrated.
+of this writing the data is not yet fully calibrated. However the CLAS12 detectors are sufficiently well calibrated
+to understand several fundamentals aspects of the LTCC response.
 
 \subsection{LTCC Response to Electrons}
 \label{sec:elecResponse}
@@ -30,7 +31,7 @@ several reasons:
 \item the mirror overlaps and re-positioning issues mentioned in Section~\ref{sec:possibleInefficiency}.
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/electronMomenta.png}
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/electronEfficiency.png}
@@ -57,7 +58,7 @@ for event selection are:
 The missing mass cut is shown in \F{neutronMM}. The positive pion candidates that satisfy the cuts are shown in black
 and those with a good LTCC cluster associated with the track are shown in red.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/neutronMM.png}
 	\caption{The missing mass from the reaction $ep \to e'\pi^+X$, where the peak at the neutron mass
@@ -66,25 +67,23 @@ and those with a good LTCC cluster associated with the track are shown in red.
 	\label{fig:neutronMM}
 \end{figure}
 
-\begin{figure}
+
+
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/pionMomentum.png}
-	\caption{The pion momentum distribution before and after the requirement of an associated LTCC signal.}
+	\includegraphics[width=0.98\columnwidth, height=0.7\columnwidth]{img/pionMomentum.png}
+	\includegraphics[width=0.98\columnwidth, height=0.7\columnwidth]{img/pionEfficiency.png}
+	\caption{Top: The pion momentum distribution before and after the requirement of an associated LTCC signal.
+				Bottom: The LTCC pion efficiency as a function of momentum. This is the ratio of the curves shown on top
+			   normalized by the average electron efficiency of 94\% shown in \F{electronEfficiency}. }
 	\label{fig:pionMomentum}
 \end{figure}
 
-The momentum distribution of the pions is shown in \F{pionMomentum} for all pions and for the pions with an
+The momentum distribution of the pions is shown in \F{pionMomentum} (top) for all pions and for the pions with an
 associated signal in the LTCC. The ratio, normalized by the electron efficiency of 94\% found above to account for
 other system inefficiencies, defines the LTCC pion detection efficiency as a function of momentum (see
-Fig.~\ref{fig:pionEfficiency}). The LTCC response starts around 50\% near the expected signal threshold of
+Fig.~\ref{fig:pionMomentum} bottom). The LTCC response starts around 50\% near the expected signal threshold of
 $\sim$3.5~GeV, and rises with momentum as expected, given that the number of emitted photons increases with
 momentum. A plateau of 88\% is reached after a momentum of 5~GeV. This is within range of an expectation of
-the expected efficiency above 90\%. 
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.98\columnwidth,keepaspectratio]{img/pionEfficiency.png}
-	\caption{The LTCC pion efficiency as a function of momentum. This is the ratio of the curves in \F{pionMomentum}
-          normalized by the average electron efficiency of 94\% shown in \F{electronEfficiency}.}
-	\label{fig:pionEfficiency}
-\end{figure}
+the expected efficiency above 90\%.
