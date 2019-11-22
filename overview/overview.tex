@@ -74,7 +74,8 @@
 %% \address{Address\fnref{label3}}
 %% \fntext[label3]{}
 
-  \title{The CLAS12 Spectrometer at Jefferson Laboratory}
+\title{The CLAS12 Spectrometer at Jefferson Laboratory}
+
 %% use optional labels to link authors explicitly to addresses:
 %% \author[label1,label2]{}
 %% \address[label1]{}
@@ -408,7 +409,7 @@ details of the DC construction and performance, see Ref.~\cite{DC}.
 \subsection{Particle Identification After Tracking}
 
 Cherenkov counters, time-of-flight detectors, and electromagnetic calorimeters are located downstream of the
-tracking system to provide particle identification and energy measurements for electrons, high energy photons,
+tracking system to provide particle identification and energy measurements for electrons, high-energy photons,
 and neutrons.  Each is described in more detail in the remainder of this section.
 
 \begin{figure}[htbp!]
@@ -728,7 +729,7 @@ are confined within one sector as the magnet optics and the massive mechanical s
 most tracks from crossing from one sector into a neighboring sector. In rare cases low-momentum charged pions
 can cross from one sector into the opposite sector traversing through the beam pipe. Such tracks are not
 reconstructed but they are included in the event simulation. Distributions of charged particles in azimuthal angle
-versus momentum are shown in Fig.~\ref{neg-pos}. Figure~\ref{vertex} shows the production vertex as
+vs. momentum are shown in Fig.~\ref{neg-pos}. Figure~\ref{vertex} shows the production vertex as
 reconstructed in the FD tracking system (from data where the FMT was not installed).
 
 Neutral particles are detected in either the calorimeters or in the FTOF (or both). The reconstruction begins by
@@ -882,15 +883,15 @@ electrons it is limited to  $Q^2 \approx 12$GeV$^2$.
 \end{figure}
 
 \begin{figure}[th!]
-\includegraphics[width=0.9\columnwidth]{epX-in.jpg}
+\centerline{\includegraphics[width=0.9\columnwidth]{epX-in.jpg}}
 \vspace{0.3cm}
-\includegraphics[width=0.9\columnwidth]{epX-out.jpg}
+\centerline{\includegraphics[width=0.9\columnwidth]{epX-out.jpg}}
 \caption{Inclusive $ep \to e'X$ coverage in $Q^2$ vs. $x_B$ at a beam energy of 10.6~GeV. The full kinematics is
   measured simultaneously. The kinematic range is given by elastic scattering kinematics at $x_B = 1$, and the small
-  angle acceptance at the $Q^2$ limit for scattered electrons bending towards the beamline (in-bending) or away
-  from the beamline (out-bending). The two configurations require opposite directions of currents in the torus magnet
-  coils. Note that the minimal $Q^2$ is lower for the electron out-bending configuration, and that the maximum $Q^2$
-  reach is slightly higher for in-bending electrons.} 
+  angle acceptance at the $Q^2$ limit for scattered electrons bending towards the beamline (inbending) or away
+  from the beamline (outbending). The two configurations require opposite directions of currents in the torus magnet
+  coils. Note that the minimal $Q^2$ is lower for the electron outbending configuration, and that the maximum $Q^2$
+  reach is slightly higher for inbending electrons.} 
 \label{electron-acceptance}
 \end{figure}
 
@@ -914,7 +915,7 @@ causes an azimuthal motion for positive and negative particles in opposite direc
 
 \begin{figure}[tbp!]
 \centerline{\includegraphics[width=1.0\columnwidth]{FTOF1b_M2-vs-p.png}}
-\caption{ Reconstructed mass$^2$ vs. momentum of positively charged particles in the CLAS12 FD. The plot
+\caption{Reconstructed mass squared vs. momentum of positively charged particles in the CLAS12 FD. The plot
   contains a threshold on the minimum and maximum number of events to highlight the particle profiles: $\pi^+$
   (bottom), $K^+$ (middle), $p$ (top). The centroids of each particle distribution are independent of the
   momentum. Masses are computed from the particle path length and from time-of-flight. Any momentum
@@ -922,12 +923,13 @@ causes an azimuthal motion for positive and negative particles in opposite direc
 \label{mass2-mom}
 \end{figure} 
 
-Identification of charged particles in CLAS12 is achieved in a number of ways. Identified electrons are used to
-determine the hadron start time at the production vertex. The start time and the path length of charged
-tracks from the production vertex to the FTOF and the arrival time enable determination of the $\beta = v/c$
-of the particle, shown in Fig.~\ref{pid} versus particle momentum for positive charged tracks and the mass
-projections are shown in Fig.~\ref{mass2-mom}.  An overview of the detector subsystems in the CLAS12 FD
-used for the identification of the different charged particle species vs. momentum is shown in Fig.~\ref{pid1}. 
+Identification of charged particles in CLAS12 is achieved in a number of ways. Identified electrons are used
+to determine the hadron start time at the production vertex. The start time and the path length of charged
+tracks from the production vertex to the FTOF and the FTOF hit time, enable the determination of the
+velocity ($\beta = v/c$) of the particle, shown in Fig.~\ref{pid} vs. particle momentum for positively charged
+tracks. The computed mass squared vs. momentum for these tracks is shown in Fig.~\ref{mass2-mom}. An
+overview of the detector subsystems in the CLAS12 FD used for the identification of the different charged
+particle species vs. momentum is shown in Fig.~\ref{pid1}. 
 
 \begin{figure}[tp!]
 \centerline{\includegraphics[width=1.0\columnwidth]{CLAS12-pid.png}}
@@ -973,9 +975,9 @@ Figure~\ref{pip-pim-p} shows the invariant mass of $\pi^+\pi^-$.
 \subsection{Charged Particle Detection in the CD} 
 
 Momentum reconstruction in the CVT combined with the timing information from the CTOF allows for the separation 
-of charged pions from charged kaons and from protons in the momentum range from 0.25~GeV to 1.25~GeV. The
+of charged pions from charged kaons and from protons in the momentum range from 0.25~GeV to 1.25~GeV. This
 momentum range covers a large part of the phase space allowed by the maximum beam energy for hadron
-electroproduction on hydrogen targets. Figure~\ref{CD-PID} shows the particle velocity $\beta = v/c$ versus the
+electroproduction on hydrogen targets. Figure~\ref{CD-PID} shows the reconstructed mass squared vs. 
 particle momentum reconstructed in the CVT.
 
 \begin{figure}[t!]
@@ -991,11 +993,11 @@ particle momentum reconstructed in the CVT.
 \subsection{Neutral Particle Detection} 
 
 Direct detection of neutral particles is accomplished in the FD using the PCAL and EC calorimeters. The combined
-20 radiation length is sufficient to identify high energy photons and reconstruct masses of parent particles, such
+20 radiation lengths are sufficient to identify high-energy photons and reconstruct masses of parent particles, such
 as $\pi^0\to \gamma \gamma$  or $\eta \to \gamma \gamma$. At very forward angles the FT provides photon
 detection with significantly improved position and energy resolution in the polar angle range from 2.5$^\circ$ to
 4.5$^\circ$. Figure~\ref{gg-ecal} shows the invariant mass of the $\gamma\gamma$ system in the CLAS12 FD.
-The energy response of the FT to 2.2~GeV electrons, and the 2-gamma mass resolution are shown in
+The energy response of the FT to 2.2~GeV electrons and the $\gamma \gamma$ mass resolution are shown in
 Fig.~\ref{FT-en-gg}. 
 
 \begin{figure}[tp!]
@@ -1014,14 +1016,14 @@ Fig.~\ref{FT-en-gg}.
 \end{figure}
 
 Neutral particle detection in the CD is provided by the CND combined with the CTOF. The plastic scintillator bars
-of the two detectors have a combined 15\% nuclear interaction length resulting approximately in a 10-12\% efficiency
-for the detection of high energy neutrons. The plastic scintillators contribute about 29\% of a radiation length at
-90$^\circ$ polar angles; they are also detecting high energy photons through their conversion in $e^+e^-$ pairs. The
-discrimination of photons and neutrons in the CD is  accomplished by the timing resolution of 90~ps provided by the
+of the two detectors have a combined 15\% radiation length, resulting approximately in a 10-12\% efficiency for
+the detection of high-energy neutrons. The plastic scintillators contribute about 29\% of a radiation length at
+$\theta$=90$^\circ$; they also detect high-energy photons through their conversion into $e^+e^-$ pairs. The
+discrimination of photons and neutrons in the CD is  accomplished by the timing resolution of 80~ps provided by the
 CTOF and the 160~ps of the CND. The separation of neutral particles from charged particle hits in the CND or in
 the CTOF is efficiently achieved by using the CVT tracker to veto against false neutral hits in the CTOF and CND.
-Figure~\ref{CND-neutrals} shows the velocity versus the energy deposition of charged and neutral particles in the
-CND. The neutron detection efficiency is shown in Fig.~\ref{CND-neutron-efficiency} 
+Figure~\ref{CND-neutrals} shows the velocity vs. the energy deposition of charged and neutral particles in the
+CND. The neutron detection efficiency is shown in Fig.~\ref{CND-neutron-efficiency}.
 
 \begin{figure}[t!]
 \centerline{\includegraphics[width=0.9\columnwidth]{CND1.png}}
@@ -1035,7 +1037,7 @@ $v/c$ = 0.2 eliminates background events from accidental hits. ({\bf new graphs 
 
 \begin{figure}[htbp!]
 \centerline{\includegraphics[width=0.9\columnwidth]{cnd-neutron-efficiency.png}}
-\caption{The neutron detection efficiency in the CND versus momentum for different polar angles.}
+\caption{The neutron detection efficiency in the CND vs. momentum for different polar angles.}
 \label{CND-neutron-efficiency}
 \end{figure} 
 
@@ -1259,7 +1261,7 @@ $\Delta{v_z}$~(mm) & 60~nA & 4.6 & -  \\
 
 %\begin{figure}[htbp!]
 %\centerline{\includegraphics[width=1.0\columnwidth]{efficiencies.png}}
-%\caption{Single track reconstruction efficiency for simulated muon events versus luminosity. 
+%\caption{Single track reconstruction efficiency for simulated muon events vs. luminosity. 
 %The different colored points show the
 %tracking efficiency when certain quality constraints are imposed. About 6-7\% of the tracks are lost at 75~nA
 %beam current corresponding to a luminosity of $10^{35}$~cm$^{-2}$s$^{-1}$ with no quality cuts (black: hit-based
