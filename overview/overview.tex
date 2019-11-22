@@ -957,17 +957,17 @@ Figure~\ref{pip-pim-p} shows the invariant mass of $\pi^+\pi^-$.
 
 \begin{figure}[t!]
 \centerline{\includegraphics[width=1.0\columnwidth]{elastic_pi+n.png}}
-\caption{The left panels show the elastic peak at 10.6~GeV beam energy as measured in 3 representative sectors.
-  The peak is close to the proton mass in all sectors reflecting the good momentum calibration of all sectors. The right
-  panels show the mass distribution of the unmeasured final state $X$ in $ep \to e'\pi^+ X$. The missing mass peak
-  is due to the unmeasured neutron. The mass resolution is $\sigma_X = 45$~MeV. {(\bf Updated graphs have been
-    requested.)}}
+\caption{The left panels show the elastic peak at 10.6~GeV beam energy as measured in 3 representative FD
+  sectors. The peak is close to the proton mass in all sectors reflecting the good momentum calibration of all
+  sectors. The right panels show the mass distribution of the unmeasured final state $X$ in $ep \to e'\pi^+ X$.
+  The missing mass peak is due to the unmeasured neutron. The mass resolution is $\sigma_X = 45$~MeV.
+  {(\bf Updated graphs have been requested.)}}
 \label{elastic-peak}
 %\end{figure} 
 
 %\begin{figure}[htbp!]
 \vspace{0.3cm}\centerline{\includegraphics[width=1.0\columnwidth]{rhoMass.png}}
-\caption{Invariant mass of $\pi^+\pi^-$ at 10.6 GeV beam energy. The vertical line indicates the mass of the
+\caption{Invariant mass of $\pi^+\pi^-$ at 10.6~GeV beam energy. The vertical line indicates the mass of the
   $\rho^0(770)$ meson. The shoulder to the right is from the $f_2(1270)$ meson.}
 \label{pip-pim-p}
 \end{figure} 
@@ -983,10 +983,10 @@ particle momentum reconstructed in the CVT.
 \begin{figure}[t!]
 %\centerline{\includegraphics[width=1.0\columnwidth]{CTOF-pid-new.png}}
 \centerline{\includegraphics[width=1.\columnwidth]{ctof-pid-3.png}}
-\caption{Mass$^2$ of positively charged particles evaluated from their path length and the time-of-flight
+\caption{Mass squared of positively charged particles evaluated from their path length and the time-of-flight
   information in the CTOF vs. the particle momentum at 10.6~GeV beam energy. The band at the bottom is from
   $\pi^+$; the faint band near 0.2 is due to $K^+$, the band at the top is due to protons. The momenta are not
-  corrected for energy losses in the CVT.}
+  corrected for energy loss in the CVT.}
 \label{CD-PID}
 \end{figure} 
 
@@ -1002,15 +1002,15 @@ Fig.~\ref{FT-en-gg}.
 
 \begin{figure}[tp!]
 \centerline{\includegraphics[width=0.95\columnwidth]{ECAL-2g-mass-fit.png}}
-\caption{The invariant mass of two high-energy photons in sector 4 of the ECAL. The background beneath the
-  $\pi^0$ peak is due to multi-photon decays of higher mass mesons where one or more photons are not detected
-  in the angle range covered by the calorimeter. The width of the mass peak is 11.9~MeV. The energy calibration
-  of the calorimeter uses cosmic ray events.}
+\caption{The invariant mass of two high-energy photons in sector 4 of the ECAL from 10.6~GeV beam data. The
+  background beneath the $\pi^0$ peak is due to multi-photon decays of higher mass mesons where one or more
+  photons are not detected in the angle range covered by the calorimeter. The width of the mass peak is 11.9~MeV.
+  The energy calibration of the calorimeter uses cosmic ray events.}
 \label{gg-ecal}
 \centerline{\includegraphics[width=1.15\columnwidth]{FT-performance.png}}
 \caption{Top panel: The energy response of the FT calorimeter to elastically scattered electrons at 2.2~GeV
   beam energy. The tail at lower energies is due to radiative effects. The energy resolution is
-  $\sigma_E / E \approx 3.3\%$. Bottom panel: 2-$\gamma$ mass for photons detected in the FT lead-tungstate
+  $\sigma_E / E \approx 3.3\%$. Bottom panel: 2$\gamma$ mass for photons detected in the FT lead-tungstate
   crystal calorimeter. The $\pi^0$ mass resolution is $\sigma_{\gamma\gamma} = 4.4$~MeV.}
 \label{FT-en-gg}
 \end{figure}
@@ -1050,14 +1050,14 @@ events in the CLAS12 event display ({\it ced}) that allows immediate action by t
 issues. Monitoring histograms are also filled on a regular basis that include detector subsystem channel occupancies,
 as well as simple analysis plots and can be easily compared with results collected earlier during the data taking.  
 
-The CLAS12 data acquisition (DAQ) is designed for an average of 20~kHz level 1 (L1) trigger rate, pipelined and
-for continuous operation. The sector-based  L1 triggers support streaming, subsystem hit patterns, and energy
+The CLAS12 data acquisition (DAQ) is designed for an average of 20~kHz level 1 (L1) trigger rate, pipelined for
+continuous operation. The sector-based  L1 triggers support data streaming, subsystem hit patterns, and energy
 summing with low threshold suppression.  The scalable trigger distribution scheme uses up to 128 front-end L1
 crates. CLAS12 uses different programmable features for each detector that participates in the L1 trigger. A
 schematic diagram showing a complete overview of the DAQ system is shown in Fig.~\ref{daq}. In 2018 the DAQ
 was run at trigger rates of typically 15~kHz and data rates of up to 500~MB/s with a live time of $> 95\%$. At
 somewhat lower live time of $\sim$90\%, trigger rates of 20~kHz and data rates of up to 1~GB/s have been
-achieved. Details of the design, functionality, and performance of the CLAS12 DAQ are provided in  Ref.~\cite{DAQ}. 
+achieved. Details of the design, functionality, and performance of the CLAS12 DAQ are provided in Ref.~\cite{DAQ}. 
  
 \begin{figure}[htbp!]
 \centerline{\includegraphics[angle=90,width=1.0\columnwidth]{clas12-daq-1.pdf}}
@@ -1068,8 +1068,8 @@ achieved. Details of the design, functionality, and performance of the CLAS12 DA
 \centerline{\includegraphics[width=0.95\columnwidth]{trigger.png}}
 \caption{View of an event in CLAS12 from the {\it ced} event display. Predefined trajectories from a look-up
   table are employed to select hit patterns in the 3 DC regions that correspond with localized energy deposition
-  in the ECAL. For the two-track trigger the two sectors show DC hit patterns for tracks with opposite charges.
-  The upper track is an electron, shown by the hit in the HTCC, and bends towards the beamline, the lower one
+  in the ECAL. For the two-track trigger, the two sectors show DC hit patterns for tracks with opposite charges.
+  The upper track is an electron, shown by the hit in the HTCC that bends towards the beamline. The lower track
   has positive charge and bends away from the beamline.}
 \label{trigger}
 \end{figure}
@@ -1091,15 +1091,15 @@ achieved. Details of the design, functionality, and performance of the CLAS12 DA
 CLAS12 uses a series of fast triggers that are tailored to a specific event pattern selection. Most of the physics
 experiments require the electron scattered on the production target to be detected as it defines the mass
 ($Q^2$) and kinematics of the virtual photon as $Q^2 = -(e - e')^2$, where $e$ and $e'$ are the 4-momentum
-vectors of the beam electron and of the scattered electron, respectively. The electron kinematics also defines
+vectors of the beam electron and of the scattered electron, respectively. The electron kinematics also define
 the Bjorken scaling variable $x_B$  and the invariant mass $W$ defined as $W^2 = M^2 + 2M\nu - Q^2$, with
-$\nu = E_e - E_{e'}$, and $M$ the mass of the target particle. The scattered electron is uniquely identified with
+$\nu = E_e - E_{e'}$ and $M$ the mass of the target particle. The scattered electron is uniquely identified with
 signals in the HTCC and clustered energy deposition in the ECAL. To enhance selection of specific reactions in the
 accumulated data, additional charged particles in either the FD or the CD are selected in the trigger in addition to
 the scattered electron. The CLAS12 fast trigger system makes use of the responses of the detectors to form the
 readout triggers. At the nominal design luminosity of CLAS12, the hadronic production rate is approximately
 $5 \times 10^6$/s. However, only a small fraction of the events is of interest for the science program with
-CLAS12. In particular, most physics reaction require the detection of the scattered electrons at some finite
+CLAS12. In particular, most physics reactions require the detection of the scattered electrons at some finite
 scattering angle, for example $\theta_{e'} > 5^\circ$.  Figure~\ref{trigger} shows one example of an electron
 triggered event with one additional positive charged track.   
    
@@ -1108,7 +1108,7 @@ event patterns of one or two additional detected hadrons. Such conditions have b
 decision that reduces the number of triggers to about $2 \times 10^4$~events/s, i.e. by  a factor of 250 from the
 hadronic rate. The data rate is typically 500~MB/s under such conditions and can be handled by the CLAS12 data
 acquisition system and the available computing resources. Details of the design, functionality, and performance of
-the CLAS12 trigger are provided in Ref.~\cite{TRIG}. 
+the CLAS12 trigger system are provided in Ref.~\cite{TRIG}. 
 
 \section{Electron Beam Operation} 
 
