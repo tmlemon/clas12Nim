@@ -1,20 +1,20 @@
 \section{Reconstruction}
 
-The aim of the LTCC is to differentiate between pions and kaons. The lighter pions leave a signal in the detector, while
-the heavier kaons pass through the detector without leaving a signal. To accomplish this, it is necessary to associate the
-hits in the detector with their corresponding tracks. On average, the Cherenkov light from a charged particle will hit
-between 1 and 3 adjacent PMTs. The task of the reconstruction program is therefore to (a) cluster together the hits
-that belong to a single track and (b) provide the positional information needed to match the cluster with the correct
-reconstructed track. The reconstruction program is implemented as an engine in the CLAS12 event reconstruction
-framework~\cite{recon-nim}.
+The aim of the LTCC is to differentiate between pions and kaons. The lighter pions leave a signal in the detector,
+while the heavier kaons pass through the detector without leaving a signal. To accomplish this, it is necessary to
+associate the hits in the detector with their corresponding tracks. On average, the Cherenkov light from a charged
+particle will hit between 1 and 3 adjacent PMTs. The task of the reconstruction program is therefore to (a) cluster
+together the hits that belong to a single track and (b) provide the positional information needed to match the cluster
+with the correct reconstructed track. The reconstruction program is implemented as an engine in the CLAS12 event
+reconstruction framework~\cite{recon-nim}.
 
 \subsection{Clustering Algorithm}
 
-The Cherenkov cone associated with a charged particle is in all cases contained within a single sector of the LTCC. This
-allows for a relatively straightforward clustering algorithm:
+The Cherenkov cone associated with a charged particle is in all cases contained within a single sector of the LTCC.
+This allows for a relatively straightforward clustering algorithm:
 
 \begin{enumerate}
-	\item Scan for the highest multiplicity hits, identified as the cluster center;
+    \item Scan for the highest multiplicity hits, identified as the cluster center;
     \item Grow the cluster by adding all hits adjacent to the cluster center within this sector;
     \item Repeat the procedure until all hits have been assigned to a cluster.
 \end{enumerate}
