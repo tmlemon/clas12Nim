@@ -1157,6 +1157,21 @@ nuclei in ND$_3$. Other polarized materials, such as polarized HD (called HD-Ice
 programs that require spin-polarized targets with the polarization axis oriented transverse to the direction of the
 electron beam.        
 
+\begin{figure}[t!]
+\centerline{
+\includegraphics[width=0.3\columnwidth]{HTCC_1.png}
+\includegraphics[width=0.3\columnwidth]{HTCC_2.png}
+\includegraphics[width=0.3\columnwidth]{HTCC_3.png}}
+\caption{Acceptance distribution for scattered electrons in azimuthal angle (in deg.) for different bins in polar
+  angle. Left: $\theta = 5^\circ-7^\circ$, middle: $\theta = 13^\circ-15^\circ$, right: $\theta = 23^\circ-25^\circ$.
+  For these polar angle ranges the azimuthal acceptances are 33\%,  66\%, and 80\%, respectively, of the full
+  sector range of $\pm 30^\circ$. Azimuthal angle coverage is symmetric around the sector mid-plane. The
+  reduced acceptance at small polar angles is due to the cryostat of the torus coils that are attached to a force
+  ring at small angles that limits the geometrical acceptance to less than 50\% in azimuthal angle. {\bf Needs
+    higher statistics graphs.}}
+\label{e-accept}
+\end{figure}
+
 \subsection{Forward Detector Reconstruction} 
 
 The science program with CLAS12 in general requires the detection of electrons that are scattered off the target
@@ -1177,19 +1192,15 @@ The acceptance is a complex function of the phase space covered by the processes
 in full detail to precisely extract cross sections and other physics observables.  For this purpose a full simulation
 package was developed, based on the software package Geant4~\cite{GEMC}. 
 
-\begin{figure}[t!]
-\centerline{
-\includegraphics[width=0.3\columnwidth]{HTCC_1.png}
-\includegraphics[width=0.3\columnwidth]{HTCC_2.png}
-\includegraphics[width=0.3\columnwidth]{HTCC_3.png}}
-\caption{Acceptance distribution for scattered electrons in azimuthal angle (in deg.) for different bins in polar
-  angle. Left: $\theta = 5^\circ-7^\circ$, middle: $\theta = 13^\circ-15^\circ$, right: $\theta = 23^\circ-25^\circ$.
-  For these polar angle ranges the azimuthal acceptances are 33\%,  66\%, and 80\%, respectively, of the full
-  sector range of $\pm 30^\circ$. Azimuthal angle coverage is symmetric around the sector mid-plane. The
-  reduced acceptance at small polar angles is due to the cryostat of the torus coils that are attached to a force
-  ring at small angles that limits the geometrical acceptance to less than 50\% in azimuthal angle. {\bf Needs
-    higher statistics graphs.}}
-\label{e-accept}
+\begin{figure}[htbp!]
+\centerline{\includegraphics[width=1.0\columnwidth]{random-trigger-occupancies.png}}
+\caption{Accidental occupancies in the three DC regions vs. the beam current, with the solenoid magnet at full field.
+  The measurement was carried out with the FT in the OFF configuration (dashed lines). The dependence on the beam
+  current is linear. At 75~nA beam current the measurement was also done with the FT in the ON configuration (large
+  circles), and the accidental occupancies increase on average by $\approx$62\%. The time windows during data
+  collection were 250~ns for R1, 500~ns for R2, and 750~ns for R3, approximately corresponding to the charge
+  collection times in the DC.}
+\label{occupancies1}
 \end{figure}
 
 \subsubsection{Luminosity Limits on CLAS12 Operations}
@@ -1205,17 +1216,6 @@ way one can study the reconstruction efficiencies as a function of luminosity of
 luminosity, accidental out-of-time events can affect and alter particle tracks that come in-time. The most important
 effect is that the track quality is negatively affected, leading to track losses if stringent quality requirements are
 applied, or to a worsening of the angle and momentum resolution. This effect is demonstrated in Table~\ref{resolution}.   
-
-\begin{figure}[htbp!]
-\centerline{\includegraphics[width=1.0\columnwidth]{random-trigger-occupancies.png}}
-\caption{Accidental occupancies in the three DC regions vs. the beam current, with the solenoid magnet at full field.
-  The measurement was carried out with the FT in the OFF configuration (dashed lines). The dependence on the beam
-  current is linear. At 75~nA beam current the measurement was also done with the FT in the ON configuration (large
-  circles), and the accidental occupancies increase on average by $\approx$62\%. The time windows during data
-  collection were 250~ns for R1, 500~ns for R2, and 750~ns for R3, approximately corresponding to the charge
-  collection times in the DC.}
-\label{occupancies1}
-\end{figure}
 
 \begin{figure}[t!]
 \centerline{\includegraphics[width=1.0\columnwidth]{occupancy-solenoid.png}}
@@ -1340,8 +1340,8 @@ more in agreement with the expected performance parameters.
 The elastic scattering process $ep \to ep$ at relatively low $Q^2$ can be used to connect the FD where the electron
 is detected and the CD where most of the elastically scattered protons are detected. The strict kinematic correlation
 in azimuthal angle, given by  $\phi_p = \phi_e + 180^\circ$  can be exploited to understand potential relative alignment
-issues between the FD and CD tracking. Figures~\ref{elastic-electrons} and ~\ref{CVT-elastic-protons} illustrate the
-correlation in elastic electrons detected in the FD sectors and protons reconstructed in the CD. 
+issues between the FD and CD tracking. Figure~\ref{CVT-elastic-protons} illustrates the correlation in elastic
+electrons detected in the FD sectors and protons reconstructed in the CD. 
 
 \begin{figure}[t!]
 \centerline{\includegraphics[width=1.0\columnwidth]{cvt-acceptance.png}}
@@ -1350,6 +1350,7 @@ correlation in elastic electrons detected in the FD sectors and protons reconstr
   corresponding to a 50~nA beam current. The efficiency dips seen at 3 $\phi$ angles in the right panels are due
   to the support structure separating the 3 BMT sectors.}
 \label{cvt-acceptance}
+\vspace{0.3cm}
 \centerline{\includegraphics[width=0.8\columnwidth]{cvt-vertex.png}}
 \caption{Reconstructed $z$-vertices (coordinate along the beamline) for charged tracks in the Central Detector
   from an empty target cell. The cell walls are clearly visible. The small downstream peak is from events generated
@@ -1357,14 +1358,11 @@ correlation in elastic electrons detected in the FD sectors and protons reconstr
 \label{cvt-vertex}
 \end{figure}
 
-\begin{figure}[t!]
-\centerline{\includegraphics[width=0.9\columnwidth]{elastic-electrons.png}}
-\caption{Elastically scattered electrons off protons in all of the FD sectors.}
-\label{elastic-electrons}
+\begin{figure}[ht]
 \vspace{0.3cm}\centerline{\includegraphics[width=0.8\columnwidth]{CVT-elastic-protons.png}}
 \caption{Elastically scattered protons reconstructed in the CVT and CTOF. The proton peaks show the reflection of
-  the 6 FD sectors where electrons are detected. In addition there is a 3-fold modulations (seen in different widths
-  of 3 of the peaks) due to the 3 BMT sectors where protons are detected (vertical axes are arbitrary).}
+  the 6 FD sectors where the electrons are detected. In addition there is a 3-fold modulation (seen in the different
+  widths of 3 of the peaks) due to the 3 BMT sectors where protons are detected (vertical axes are arbitrary).}
 \label{CVT-elastic-protons}
 \end{figure}
 
@@ -1375,11 +1373,20 @@ beam energies of 2.2, 6.4, and 10.6~GeV. Data were accumulated with both torus m
 bending either toward or away from the beamline, as well as data with different magnetic field strength settings
 in the torus and solenoid. Understanding of the reconstructed events focused first on the lowest beam energy of
 2.2~GeV, for which the elastic peak became quickly visible and could be used to understand the influence of the
-magnetic field map, the overall detector geometry, and the drift chamber alignment, among other parameters. After
-this initial commissioning period, data taking commenced for Run Group~A~\cite{rg-details}, which required use of a
-liquid-hydrogen target. Use of hydrogen as target material allowed for the continuation of the commissioning period,
-while taking production data at the same time. The ability to study exclusive processes played an essential role in
-optimizing the operational performance. 
+magnetic field map, the overall detector geometry, and the drift chamber alignment, among other parameters.
+Figure~\ref{elastic-electrons} shows the elastic electrons detected in each of the six different sectors of the FD
+to illustrate that quality of the event reconstructions and detector calibrations. After this initial commissioning
+period, data taking commenced for Run Group~A~\cite{rg-details}, which required use of a liquid-hydrogen target.
+Use of hydrogen as the target material allowed for the continuation of the commissioning period, while taking
+production data at the same time. The ability to study exclusive processes played an essential role in optimizing
+the operational performance. 
+
+\begin{figure}[t!]
+\centerline{\includegraphics[width=0.9\columnwidth]{elastic-electrons.png}}
+\caption{Elastically scattered electrons off protons from 2.2~GeV data in all of the FD sectors showing the
+  reconstructed $W$ distributions.}
+\label{elastic-electrons}
+\end{figure}
 
 \section{Summary} 
 
@@ -1429,7 +1436,7 @@ Magnetic field & Solenoid & $B_0 = 5$~T\\
 \end{tabular}}
 \end{table*}
 
-\vspace{0,5cm}
+\vspace{0.5cm}
 
 \noindent{\bf Acknowledgments}
 
