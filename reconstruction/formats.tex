@@ -14,6 +14,7 @@ during reconstruction based on the content of the event, such as the number of r
 read portions of the file depending on the final states to be analyzed.  The meta-data of the file, describing detector
 and beam conditions, are common for all analyses.
 
-A C++ interface is also provided with ROOT wrappers, allowing users to read HIPO files and analyze them in the
-ROOT environment.
-
+The HiPO library has both Java and C++ implementations. On the basis of the C++
+implementation, a library was developed extending ROOT base classes
+to allow for HiPO files to be read from ROOT frameworks. Additional tools
+are available to allow users producing plots using native ROOT syntax for plotting histograms.

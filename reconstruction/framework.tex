@@ -14,18 +14,15 @@ Following these principles, CLAS12 reconstruction and analysis relies on a data-
 CLARA~\cite{clara-2011,clara-service,framework,clara-2016}, which provides a service-oriented architecture in which
 to build the relevant software applications.  Such applications are composed of interlocking building blocks called
 micro-services, which are linked together by data-stream pipes.  The technology (e.g. a high-level programming
-language or hardware deployment details), as well as the algorithmic solutions used to process data are encapsulated
-(see Fig.~\ref{fig:clara-overview}). The scope of a specific software application implemented in CLARA is determined
+language or hardware deployment details), as well as the algorithmic solutions used to process data are encapsulated. The scope of a specific software application implemented in CLARA is determined
 by the micro-services that are included and by the order of their execution.
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=1.0\textwidth]{pics/clara-overview.pdf}
-\caption{Overview of the CLAS12 CLARA data processing framework.  Individual detector subsystem
-  reconstruction applications can be linked to form the full event reconstruction chain, including  data processing,
-  data quality monitoring, and physics analysis applications.}
-\label{fig:clara-overview}
-\end{figure*}
+%\begin{figure*}[t]
+%\centering
+%\includegraphics[width=1.0\textwidth]{pics/clara-overview.pdf}
+%\caption{Overview of the CLAS12 CLARA data processing framework.  Individual detector subsystem  reconstruction applications can be linked to form the full event reconstruction chain, including  data processing, data quality monitoring, and physics analysis applications.}
+%\label{fig:clara-overview}
+%\end{figure*}
 
 A micro-service has input data, processes it, and produces output data, where the I/O is organized into ``banks''
 whose structure is configured by the specific service developer.  A micro-service reacts on an input data stream,
@@ -42,17 +39,16 @@ management system, controls the overall process execution.
 
 The framework enables execution of software applications in multi-threaded mode. This is implemented via event-level
 parallelization for the CLAS12 reconstruction. 
-The framework is specifically designed to do thread-based event level
-parallelization optimizing the use of multicore machines, thereby allowing 
-the reconstruction of multiple events in a single node.  
+The framework is specifically designed to do thread-based
+parallelization on multicore machines, thereby allowing 
+the simultaneous reconstruction of multiple events having as many active threads as the cores
+on the system.  
 Figure~\ref{fig:scaling} shows the results of a scaling test on an
 Intel Xeon node (E5-2697A v4 @ 2.6~GHz). Comparison with Amdhal's law indicates 99.5\% parallel efficiency over
 the 32 physical cores of the machine.
 
 The CLARA framework provides service interface implementations in Java, C++ and Python languages. 
 At present all the CLAS12 reconstruction services deployed using the CLARA framework are written in Java.
-
-%{\color{red} SHOULD ADD MORE ON EVENT PARALLELIZATION AND MULTI-HW SUPPORT.}
 
 \begin{figure}
 \centering
