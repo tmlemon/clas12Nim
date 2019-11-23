@@ -6,9 +6,9 @@ FT is composed of an electromagnetic calorimeter based on PbWO$_4$ crystals (FT-
 hodoscope (FT-Hodo), and a Micromegas tracker (FT-Trk) similar in design to the FMT. The FT reconstruction
 service is designed to provide efficient algorithms to determine the energy, time, and positions of the signals
 associated with the incident particle. The reconstruction matches this information to determine the type and
-3-momentum of the particle. The package consists of four services, one for each of the sub-detectors and a global
-service that builds the particle information from the output of the detector reconstruction. In the following, we
-describe each of the FT services and their algorithms.
+three-momentum of the particle. The package consists of four services, one for each of the sub-detectors and a
+global service that builds the particle information from the output of the detector reconstruction. In the following,
+we describe each of the FT services and their algorithms.
 
 \subsubsection{The FT-Cal Reconstruction Service}
 
@@ -98,7 +98,7 @@ the relative position of the calorimeter and hodoscope clusters in the $x-y$ pla
 position matching parameter is determined by the hodoscope component size, while the timing cut is set to 10~ns,
 similar to the cut value used in the lower levels of the FT reconstruction. The output of the matching is an FT
 {\it particle}, whose energy and position at the detector are determined from the calorimeter cluster parameters,
-while its charge is set by the presence of a hodoscope cluster. The particle 3-momentum at the target for charged
+while its charge is set by the presence of a hodoscope cluster. The particle three-momentum at the target for charged
 particles is then computed accounting for the bending in the solenoid field, while for neutrals it is computed assuming
 a straight path from the CLAS12 target center to the FT. When available, the tracker information will be used to
 refine the determination of the particle impact point on the FT front face and, therefore, to improve the
