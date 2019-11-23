@@ -9,21 +9,26 @@ execute data processing algorithms.
 \begin{figure*}
 \centering
 \includegraphics[width=0.85\textwidth]{pics/ServiceComposition.pdf}
-\caption{CLAS12 reconstruction application service composition. The I/O service (blue) reads events from the input file and distributes them to the reconstruction services (orange) chain for processing. Each service reads the relevant banks (green), applies the reconstruction algorithm, and provides output banks that are passed to the next service in the chain. The Event Builder (EB) service is executed as last in the chain; it collects the relevant banks from all CLAS12 subsystems services and produces event, particle and detector response banks that are written to the output file.}
+\caption{CLAS12 reconstruction application service composition. The I/O service (blue) reads events from the
+  input file and distributes them to the reconstruction services (orange) chain for processing. Each service reads
+  the relevant banks (green), applies the reconstruction algorithms, and provides output banks that are passed to
+  the next service in the chain. The Event Builder (EB) service is executed as last in the chain; it collects the relevant
+  banks from all CLAS12 subsystems services and produces event, particle, and detector response banks that are
+  written to the output file.}
 \label{fig:services}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The data reader services access the detector decoded data stored in a tabular structure, called a ``bank''.
+The data reader services access the detector decoded data stored in a tabular structure called a ``bank''.
 Each entry for the decoded detector hits is a row in a bank. A row includes detector element identifiers (sector,
-layer, component, and order), and digitized detector data, such as signal charge, amplitude, time or pedestal,
+layer, component, and order), and digitized detector data, such as signal charge, amplitude, and time or pedestal,
 depending on the specific system. Similar bank structures are created at the decoding stage for the various
 information needed for event reconstruction, such as hits, clusters, tracks, etc. The micro-services that
 implement the reconstruction algorithms pertaining to the CLAS12 subsystems fill these banks, which are
 subsequently appended and written out to a file by a data-persistency micro-service.
 
-The services running the reconstruction algorithms access the various banks (transient data) as input and produce
-output banks needed for the subsequent algorithms in the reconstruction chain. The order in which the services are
+The services running the reconstruction algorithms access the various detector banks as input and produce output
+banks needed for the subsequent algorithms in the reconstruction chain. The order in which the services are
 chained reflects the overall CLAS12 event reconstruction sequence and subsystem dependencies. First, charged
 particle tracks are reconstructed in both the Central and Forward Detector tracking systems based on the position
 of the recorded hits in the different detectors (i.e. using strip positions or wire locations). This procedure is
@@ -38,8 +43,8 @@ hit-based and time-based tracking.
 
 The improved particle tracks from time-based tracking are the input for a second pass of the Event Builder, which
 leads to the final event reconstruction. Given this sequence, some services can run in parallel, while others need the
-reconstruction output provided by the preceding steps. For instance hit-based tracking for the central tracker, called
-the Central Vertex Tracker (CVT), (CVT service) and for the Drift Chambers (DCHB service - ``HB'' is for
-hit-based) can run in parallel, while time-based tracking (DCTB service - ``TB'' is for time-based) must come after
+reconstruction output provided by the preceding steps. For instance hit-based tracking for the central tracker,
+called the Central Vertex Tracker (CVT), (CVT service) and for the Drift Chambers (DCHB service - ``HB'' for
+hit-based) can run in parallel, while time-based tracking (DCTB service - ``TB'' for time-based) must come after
 the first execution of the Event Builder service. An overview of the reconstruction application service composition,
 detailing these dependencies, is shown in Fig.~\ref{fig:services}.

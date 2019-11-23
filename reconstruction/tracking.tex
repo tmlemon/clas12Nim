@@ -5,8 +5,8 @@ reconstruction of tracks in the central tracker system (comprised of the Silicon
 \cite{svt-nim} and the Barrel Micromegas Tracker - BMT~\cite{mm-nim}; together the SVT and BMT comprise
 the Central Vertex Tracker - CVT)  and the forward tracking system (comprised of the Forward Micromegas
 Tracker - FMT~\cite{mm-nim} and the Drift Chambers - DCs~\cite{dc-nim}). The Forward Detector covers the
-polar angle range from $5^\circ$ to $40^\circ$, while the Central Detector covers the polar angle range from
-roughly $40^\circ$ to $135^\circ$. In the forward region a torus magnet bends charged particles inward toward
+polar angle range from $5^\circ$ to $35^\circ$, while the Central Detector covers the polar angle range from
+roughly $35^\circ$ to $125^\circ$. In the forward region a torus magnet bends charged particles inward toward
 the beamline or outward away from the beamline depending on their charge. At full nominal current the $\int B dl$
 varies from roughly 2~Tm at 5$^\circ$ to 0.5~Tm at 40$^\circ$. In the central region a 5~T solenoidal magnetic
 field bends charged tracks into helices. A view of the field intensities in the $(z,x)$ plane and overlap region for
@@ -18,9 +18,9 @@ an electronic signal into a location of the track's position in the detector sub
 geometric object, for example, a line segment. These objects then form the input to the pattern recognition
 algorithms. This first step involves the identification of clusters of hits and the determination of the spatial
 coordinates and corresponding uncertainties for the hits and clusters of hits. At the pattern recognition stage, hits
-that are consistent with belonging to a trajectory (i.e. track) are identified. This set of hits is then fit to the
-expected trajectory with their uncertainties, incorporating the knowledge of the detector material and the
-detailed magnetic field map.
+that are consistent with belonging to a trajectory (i.e. track) are identified. This set of hits with their uncertainties
+is then fit to the expected trajectory, incorporating the knowledge of the detector material and the detailed
+magnetic field map.
 
 \subsection{Forward Tracking}
 
@@ -38,14 +38,14 @@ the hits on the track resulting from the propagation time along the hit wire, th
 time, and the cable delays are applied to determine the corrected hit time. A distance of closest approach (DOCA)
 to the hit wire is estimated from the time. At this stage the tracking is redone using the calculated DOCAs in order
 to fit the track (see Fig.~\ref{fig:docas}). This portion of the DC reconstruction phase is called time-based tracking.
-The calibration parameters entering in the function used to convert time to distance (see Ref.~\cite{dc-nim}) are
-extracted from the distance of local fits to the DOCAs using a linear function to the wire position. 
+The calibration parameters entering in the function used to convert drift time to distance (see Ref.~\cite{dc-nim})
+are extracted from the distance of the local fits to the DOCAs using a linear function to the wire position. 
 
 \begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{pics/dcPattern10.png}
-\caption{Illustration of (purple circles) DOCA computed from the corrected time and (dark green circles) of the distance from the wire to the track
-  (TrackDOCA).}
+\caption{Illustration of DOCA computed from the corrected time (purple circles) and from the distance from the
+  wire to the track (dark green circles).}
 \label{fig:docas}
 \end{figure}
 
@@ -63,10 +63,11 @@ Fig.~\ref{fig:snr}.
 \begin{figure}
 \centering
 \includegraphics[width=0.48\textwidth]{pics/dcPattern9.png}
-\caption{Illustration of DC hits categorized by the SNR algorithm. The black hits are identified as noise and
-  discarded and the red hits are saved for further evaluation by the subsequent hit selection algorithms. The red
-  hits with the yellow frames are saved noise (false alarms) and the shaded areas correspond to possible clusters.
-  The darker shades correspond to a higher quality factor, hence a higher probability for hits on a track.}
+\caption{Illustration of DC hits categorized by the SNR algorithm. This plot of wire layer vs. wire number shows
+  three DC superlayers. The black hits are identified as noise and discarded and the red hits are saved for further
+  evaluation by the subsequent hit selection algorithms. The red hits with the yellow frames are saved noise (false
+  alarms) and the shaded areas correspond to possible clusters. The darker shades correspond to a higher quality
+  factor, hence a higher probability for hits on a track.}
 \label{fig:snr}
 \end{figure}
 
@@ -87,8 +88,8 @@ cluster shape, which is subsequently used to determine the track trajectory.
 \begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{pics/elooper.png}
-\caption{Illustration of typical noise patterns in a single six wire layer superlayer in the DC displayed as seen using
-  the CLAS12 Event Display {\it ced}. The hits shown are from a Monte Carlo electron event.}
+\caption{Illustration of typical noise patterns in a single DC superlayer displayed as seen using the CLAS12 Event
+  Display {\it ced}. The hits shown are from a Monte Carlo electron event.}
 \label{fig:eloop}
 \end{figure}
 
@@ -113,7 +114,8 @@ straight-line hypothesis, and those hits with acceptable residuals are kept and 
 \includegraphics[width=0.4\textwidth]{pics/dcPattern2.png}
 \caption{Illustration of hits rejected by the pattern recognition pruning algorithm in a Monte Carlo electron
   event. The circles superimposed on top of the DC cells indicate the DOCAs computed from the fully corrected
-  times. The yellow hourglass symbols show the simulated track positions along the trajectory. The group of hits encircled is removed by the pruning algorithm.}
+  times. The yellow hourglass symbols show the simulated track positions along the trajectory. The group of hits
+  circled in blue is removed by the pruning algorithm.}
 \label{fig:strings}
 \end{figure}
 
@@ -123,7 +125,7 @@ selected hits belonging to a cluster (orange) and the hits rejected by the noise
 \subsubsection{Pattern Recognition}
 
 Fits to the segments with a linear function are a preliminary step to estimating a track trajectory. The track
-parameters are estimated in the local coordinate system of DC from this trajectory.
+parameters are estimated in the local coordinate system of the DC from this trajectory.
 
 Using the wire direction in a given superlayer along with the line fit to a segment in that superlayer, a plane can
 be constructed. Thus pairs of segments in neighboring superlayers within one chamber (with superlayers of
@@ -133,25 +135,28 @@ we call a ``cross''. A segment slope coincidence algorithm is used to match neig
 Fig.~\ref{fig:dcsegs}).  Selection cuts are subsequently applied on the reconstructed cross to ensure that it is
 within the detector fiducial volume within resolution.
 
-There are instances when an entire superlayer can be missing from the list of hits available to fit a track. 
-This can happen when inbending tracks are produced at low angle and miss the last superlayer of the chamber or when a segment has fewer than four valid (not out of time) hits. Therefore, in order to compensate for tracking inefficiencies due to this, an additional pattern reconstruction algorithm was designed.  The algorithm matches segments within the even and odd numbered superlayers
-in a given sector, respectively. The matching
-algorithm returns an estimate of where the missing superlayer's hits should be and forms a ``pseudo-segment'' from
-the wire locations corresponding to these hits. Subsequently a ``pseudo-cross'' is formed using the pseudo-segment
-and the neighboring reconstructed segment in that region.
+There are instances when an entire superlayer can be missing from the list of hits available to fit a track. This can
+happen when inbending tracks are produced at low angle and miss the last superlayer of the chamber or when a
+segment has fewer than four valid (in time) hits. Therefore, in order to compensate for tracking inefficiencies due
+to this, an additional pattern reconstruction algorithm was designed.  The algorithm matches segments within the
+even and odd numbered superlayers in a given sector, respectively. The matching algorithm returns an estimate of
+where the missing superlayer's hits should be and forms a ``pseudo-segment'' from the wire locations corresponding
+to these hits. Subsequently a ``pseudo-cross'' is formed using the pseudo-segment and the neighboring reconstructed
+segment in that region.
 
 \begin{figure}
 \includegraphics[width=0.45\textwidth]{pics/dcPattern14.png}
 \caption{Illustration of selected clusters (left-most selected hits with superimposed lines) using a Hough Transform.
-  Two track segments cross each other. The right-most group of hits are selected using the nominal clustering algorithm.  The hits are separated into cluster candidates and fit using a local coordinate
-  system as a function of layer and wire number. The selection is done without employing timing information.}
+  Two track segments cross each other. The right-most group of hits are selected using the nominal clustering
+  algorithm. The hits are separated into cluster candidates and fit using a local coordinate system as a function of
+  layer and wire number. The selection is done without employing timing information.}
 \label{fig:hough}
 \end{figure}
 
 The first stage of pattern-recognition consists of finding a track candidate from a set of 3 crosses (one each in R1,
 R2, and R3) that are fit to a parabolic functional form to give a ``track candidate''. Using the parameters of the
 parabolic function between the first and the third cross and obtaining the magnetic field intensity at each step along
-this trajectory we obtain an estimate for $\int B dl$. From the local angles of the crosses in the $x-z$ plane for R1
+this trajectory, we obtain an estimate for $\int B dl$. From the local angles of the crosses in the $x-z$ plane for R1
 ($\theta_1$) and R3 ($\theta_3$), we estimate the track momentum ($p$) and the particle charge ($q$) as:
 
 \begin{equation}
@@ -172,12 +177,8 @@ location in the detector, and therefore to start the track fitting.
   algorithm and the circles represent the calculated DOCAs.  The superimposed lines show the local fits to the
   DOCAs. The filled circle between the superlayers of a given region (R1, R2, or R3) represents the 3-D point
   (called a ``cross'') obtained from the local fits to the DOCAs taking into account the direction along the wires. The
-  offset between the segments composing the cross comes from the projection at the $y=0$ plane. The cluster shown
-  on the right-most superlayer is an example of a ``looper'' and shows how this category of cluster has the potential
-  to bias the track. The second cluster used to form the cross yields an incorrect slope resulting from a wrong hit
-  used in the fit.  Subsequently, the ``looper'' search algorithm rejects the entire cluster and only the first cluster
-  is used to fit the track. The fitted track trajectory is represented by the orange line. The upper figure is a zoomed
-  view into the track trajectory in R1.}
+  offset between the segments composing the cross comes from the projection at the $y=0$ plane. The fit track
+  trajectory is represented by the orange line. The upper left insert is a zoomed view into the track trajectory in R1.}
 \label{fig:dcsegs}
 \end{figure}
 
@@ -189,7 +190,7 @@ measurement site to the next in the fit. The track fitting uses a Kalman Filter 
 representation ($x$, $y$, $tx$, $ty$, $q$/$p$) called the track state vector, defined in a local coordinate system
 with the $z$-axis perpendicular to the DC wire planes. Here $q$ is the track charge, $tx=p_x/p_z$, $ty=p_y/p_z$,
 and $p_x$, $p_y$, and $p_z$ represent the $(x,y,z)$ components of the track momentum in the local analysis frame.
-In the analysis frame the state vector and the measurement are defined at each layer for which there is a hit on a
+In the analysis frame, the state vector and the measurement are defined at each layer for which there is a hit on a
 track. Hence, as in Ref.~\cite{spiri}, we can express the equations of motion of the track in the torus field and the
 propagation of the state vector covariance matrix as derivatives with respect to $z$. In the DC, the magnetic field
 components are mostly along the $y$ coordinate (along the wires) in the analysis frame. The trajectory of the particle
@@ -206,8 +207,9 @@ q  &=&  q_0,
 \end{eqnarray}
 
 \noindent
-where the initial values at the starting point $z = z_0$, corresponding to the measurement vector $z$-component at a give measurement site,  are $x = x_0$, $y = y_0$, $t_x = t_{x0}$, $t_y = t_{y0}$,
-and $q = q_0$.  The state vector is initialized at the first measurement layer. 
+where the initial values at the starting point $z = z_0$, corresponding to the measurement vector $z$-component at
+a given measurement site,  are $x = x_0$, $y = y_0$, $t_x = t_{x0}$, $t_y = t_{y0}$, and $q = q_0$.  The state vector
+is initialized at the first measurement layer. 
 
 The above equations are solved numerically using a fourth-order Runge-Kutta integration method in order to
 propagate the state vector from the DC plane at $z_0$ to the next one at $z$.  The state vector covariance
@@ -237,9 +239,10 @@ as given by the Highland-Lynch-Dahl formula~\cite{Highland-Lynch-Dahl}. The radi
 as an effective radiation length corresponding to the gas mixture in the DC wire layer. Air is assumed outside of
 the DC volumes. The term $t$ represents the path length traversed by the track.
 
-At each plane the state vector is mapped onto a measurement, which corresponds to the drift distance to the
-wire in a given DC plane.  In instances where there are two hits associated with the track in a given wire layer
-(i.e. the track goes in between the wires), the information from both hits is included in the fit. The measurements
+At each plane the state vector is mapped onto a measurement, which corresponds to the drift distance to the wire
+in a given DC plane.  In instances where there are two hits associated with the track in a given wire layer (i.e. the
+track crosses two drift cells in a single wire layer), the information from both hits is included in the fit. The
+measurements
 used in the fit take into account the left/right position of the track with respect to the wire.
 
 %Time corrections are applied after hit-based tracking to account for the event start time, cable delays,
@@ -249,31 +252,42 @@ used in the fit take into account the left/right position of the track with resp
 After the times are corrected, the drift distance is computed using tabulated distance-to-time multi-dimensional
 arrays. The drift distances are computed using a multi-dimensional interpolation method using the segment local
 angle (i.e. the entrance angle of the track in the cell), the value of the magnetic field at the location of the hit, and
-the corrected times. 
-The Kalman fit is redone at the time-based level using the hits with corrected times and the
+the corrected times. The Kalman fit is redone at the time-based level using the hits with corrected times and the
 computed drift distances. A graphical representation of tracks in {\it ced} is shown in Fig.~\ref{fig:dcTracks}. This
 is a typical event for the nominal running conditions of CLAS12. 
 
-After the Kalman fit last iteration, that propagates the state vector to the initial site, the track parameters are transformed into the lab frame and the track is swam through both the torus and the solenoid fields to the distance of closest approach to the beam line.  The track parameters defined in the lab frame ($x$, $y$, $z$, $px$, $py$, $pz$) are reported at this location.  A final track propagation from the reconstruction vertex point at the distance of closest approach to the beamline is performed to obtain the trajectory of the track as a series of points and pathlengths corresponding to its intersection with all the detector surfaces.  This is used for subsequent matching of the track to the detector responses.
+After the last iteration of the Kalman fit, which propagates the state vector to the initial site, the track parameters
+are transformed into the lab frame and the track is swum through both the torus and the solenoid fields to the
+distance of closest approach to the beamline. The track parameters defined in the lab frame ($x$, $y$, $z$, $px$,
+$py$, $pz$) are reported at this location. A final track propagation from the reconstruction vertex point at the
+distance of closest approach to the beamline is performed to obtain the trajectory of the track at a series of points
+and path lengths corresponding to its intersection with all of the detector surfaces. This is used for subsequent
+matching of the track to the detector responses.
 
-In order to improve the accuracy of the vertex reconstruction at the distance of closest approach to the beamline another tracking device was placed just downstream of the solenoid.  This device is the Forward
-Micromegas Tracker (FMT), that consists of 6 layers of Micromegas detectors and covers the polar angle range
-from $5^\circ$ to $35^\circ$.  Integration of this system in the reconstruction is currently ongoing. 
-The reconstruction algorithms in place consist of clustering of Micromegas hits corresponding to active adjacent strips, taking into account Lorentz angle correction and energy weighting, and of matching of the clusters to tracks found in the DC.  The challenging aspect of this reconstruction task is the combining of the track representation in two different frame for the DC (tilted sector frame) and the natural frame of the FMT which is the lab where the FMT disk are perpendicular to the beam axis. 
+In order to improve the accuracy of the vertex reconstruction at the distance of closest approach to the beamline,
+another tracking system was placed just downstream of the solenoid. This device is the Forward Micromegas Tracker
+(FMT), that consists of 6 layers of Micromegas detectors and covers the polar angle range from $5^\circ$ to
+$35^\circ$.  Integration of this system into the reconstruction framework is currently ongoing. The reconstruction
+algorithms in place consist of the clustering of Micromegas hits corresponding to active adjacent strips, taking
+into account the Lorentz angle corrections and energy weighting, and matching the FMT clusters to the tracks found
+in the DC. The challenging aspect of this reconstruction task is combining the track representation in the two different
+coordinate frames for the DC (local ``tilted'' sector frame with the $z$-axis perpendicular to the wire planes) and
+the natural frame of the FMT, which is the nominal lab frame where the FMT disks are perpendicular to the beam
+$z$ axis. 
 
 \subsection{Central Tracking}
 \label{sec:cvt}
 
-Tracks whose polar angle is between $40^\circ$ and $135^\circ$ are reconstructed by the Central Vertex Tracker
+Tracks whose polar angle is between $35^\circ$ and $125^\circ$ are reconstructed by the Central Vertex Tracker
 (CVT). The CVT consists of twelve cylindrical layers of tracking detectors, numbered from 1 for the innermost layer
 to 12 for the outermost layer. The subset of tracking detectors forming layers 1 to 6 are silicon strip sensors within
 the CLAS12 Silicon Vertex Tracker (SVT)~\cite{svt-nim}. Layers 7 to 12 are made of Micromegas tiles within the
-Barrel Micromegas Tracker (BMT)~\cite{mm-nim}. The entire CVT surrounds the target and sits in the 5~T solenoid
-field. The SVT is made from 3 concentric rings of double-layer silicon sensors with a graded strip stereo angle from
-0$^\circ$ to 3$^\circ$ (with 0$^\circ$ along the beamline $z$-axis) and a readout pitch of 156~$\mu$m. The BMT
-consists of 3 cylindrical detectors with strips along the $z$-axis (called the BMT-Z layers) and 3 cylindrical layers
-with circular layers with circular strips perpendicular to the $z$-axis (called the BMT-C layers). Each layer is divided
-into three 120$^\circ$ sectors.
+Barrel Micromegas Tracker (BMT)~\cite{mm-nim}. The entire CVT surrounds the target and resides in the 5~T
+solenoid field. The SVT is made from 3 concentric rings of double-layer silicon sensors with a graded strip stereo
+angle from 0$^\circ$ to 3$^\circ$ (with 0$^\circ$ along the beamline $z$-axis) and a readout pitch of 156~$\mu$m.
+The BMT consists of 3 cylindrical detectors with strips along the $z$-axis (called the BMT-Z layers) and 3
+cylindrical layers with circular layers with circular strips perpendicular to the $z$-axis (called the BMT-C layers).
+Each layer is divided into three 120$^\circ$ sectors.
 
 The revolution axis of the CVT coincides with the ideal beam axis, which defines the $z$-axis of the CVT. The
 $y$-axis points upward in the laboratory frame and the $x$-axis is defined to form a right-handed coordinate
@@ -285,7 +299,7 @@ illustration of the CVT detector with {\it ced} is shown in Fig.~\ref{fig:cvt}.
 \includegraphics[width=0.4\textwidth]{pics/cvt.png}
 \caption{Event display view of the CVT detector showing the 3 inner double layers of the SVT (in red) and the
   BMT layers (in gray). The red lines in the upper left of the SVT in this view represent active SVT strips
-  corresponding to hits on a track.}
+  corresponding to hits on a track shown in blue.}
 \label{fig:cvt}
 \end{figure}
 
@@ -302,20 +316,20 @@ is currently not used.
 
 Before feeding all of the CVT clusters to a pattern recognition algorithm, spatial coordinates must be associated with
 the SVT clusters. As described in Ref.~\cite{svt-nim}, the SVT layers are mechanically paired and consequently form
-three regions. The readout strips of the inner and outer layer of each region make a $3^\circ$-stereo angle. By
+three regions. The readout strips of the inner and outer layer of each sensor make a $3^\circ$-stereo angle. By
 associating one cluster of the inner layer with one cluster of the outer layer, and by assuming that an infinite
 momentum track perpendicularly crossed the two layers, a preliminary assignment for the $(x,y,z)$ coordinates of
 the particle between the two layers is derived for this cluster pair. This pairing is performed over all clusters of the
 inner layer with all clusters of the outer layer. Pairs whose $(x,y,z)$ coordinates are outside of the physical SVT
-sensor space are automatically removed from the list of $(x,y,z)$ candidates. If one of the two layers of a region has
-no hit that can be associated with a particle, then the information of the active layer is simply ignored for the
+sensor space are automatically removed from the list of $(x,y,z)$ candidates. If one of the two layers of a region
+has no hit that can be associated with a particle, then the information of the active layer is simply ignored for the
 remainder of the reconstruction process.
 
 \subsubsection{Pattern Recognition}
 
-The trajectory of a charged particle in a solenoidal magnetic field is an helix. Because the BMT detectors offer
+The trajectory of a charged particle in a solenoidal magnetic field is a helix. Because the BMT detectors offer
 either $xy$- or $z$-coordinates but never both, the pattern recognition cannot be performed in 3 dimensions. For
-particles of large enough momentum (perpendicular momentum $p_\perp \> 0.25$~GeV for a 5~T solenoidal magnetic
+particles of large enough momentum (perpendicular momentum $p_\perp > 0.25$~GeV for a 5~T solenoidal magnetic
 field), the $xy$-projection of a helix is a circle, and the $rz$-projection is a straight line (where
 $r = \sqrt{x^2 + y^2}$). Therefore, a first pattern recognition algorithm is run in the $xy$-plane to look for circles
 and then a second pattern recognition algorithm is run in the $rz$-plane to search for straight lines.
@@ -335,17 +349,16 @@ without background, cuts on the dot product between the cell directions are appl
 Once the neighborhood of a cell is defined, the CA is evolved over an $N$-evolution stage. For evolution stage $n$,
 the state of all cells is updated according to $S_n = max(S_{n-1}^j) + 1$, where $S_{n-1}^j$ is the state of the
 $j^{th}$-neighbor of the considered cell at evolution time $n-1$. Therefore, at evolution stage $N$, the cells with
-the highest state are further outward than the cells with a smaller state. \color{red} \textbf{Caption of a figure
-  to be produced to explain CA evolution} \color{black}
+a higher state are further outward than the cells with a smaller state.
 
 Track candidates in the $(x,y)$ plane are then formed starting from the highest state cells and following the
 neighbor chain with $\Delta S = 1$. In case of multiple neighboring cells with the same state, the one that has
-the smaller dot product with the original cell is chosen.
+the smallest dot product with the original cell is chosen.
 
 Due to the poor $z$-resolution of the preliminary SVT 3-D points, the search for candidates in the $(r,z)$ plane is
 performed by only using the $z$-clusters of the BMT. The CA algorithm trivially returns the track segments of two
 or three BMT-C clusters. Due to the orthogonality of the BMT-C and BMT-Z readout, all of the $(r,z)$ segments of
-a BMT sector are combined with the $(x,y)$ candidates in the same sector. A line is fitted on the BMT-C hits and
+a BMT sector are combined with the $(x,y)$ candidates in the same sector. A line is fit on the BMT-C hits and
 its intersections with the three SVT regions are computed. If the distance between the expected intersection and
 the preliminary 3-D point in the SVT region is greater than two millimeters, then the two SVT clusters forming this
 preliminary point are removed from the track candidate.
@@ -357,8 +370,8 @@ parameters $(\varphi_0, d_0, \kappa, z_0, \tan(\theta_{dip}))$, where:
 
 \begin{itemize}
 \item $d_0$ is the $(x,y)$ distance of closest approach to the CVT revolution axis;
-\item $\varphi_0 = {\rm atan}(p_y/p_x)$ at closest approach angle to the CVT revolution axis;
-\item $\kappa=q/p_\perp$ and $q$ is the electric charge of the particle and $p_\perp=\sqrt{p_x^2+p_y^2}$ is
+\item $\varphi_0 = {\rm atan}(p_y/p_x)$ is the closest approach angle to the CVT revolution axis;
+\item $\kappa=q/p_\perp$, where $q$ is the electric charge of the particle and $p_\perp=\sqrt{p_x^2+p_y^2}$ is
   the transverse momentum;
 \item $z_0$ is the distance along the $z$ axis to the CVT center;
 \item $\theta_{dip}$ is the polar angle between the track and the $xy$-plane.
@@ -381,11 +394,12 @@ are brought back to the CVT revolution axis as they are and the transport/filter
 of five iterations is performed to make sure of the convergence of the filtering process.
 
 \subsection{Tracking Performance}
-{\color{red} Efficiency plots for CVT will be added}
 
 The momentum resolutions in the central and forward trackers as a function of momentum are shown in
 Figs.~\ref{fig:respcvt} and~\ref{fig:respdc}, respectively. The distributions are fit with a function of the form
-$\sqrt{a+b x^2+c/(1+d/x^2)}$.  In both distributions, the increase in resolution at low momentum is due to multiple scattering effects.  The resolution increases as a function of momentum after a minimum is reached die to poorer track curvature resolution.  The resolutions achieved are well within the design specifications and the
+$\sqrt{a+b x^2+c/(1+d/x^2)}$.  In both distributions, the increase in resolution at low momentum is due to multiple
+scattering effects. The resolution increases as a function of momentum after a minimum is reached due to
+worsened track curvature resolution. The resolutions achieved are well within the design specifications and the
 difference in magnitude between the central and the forward trackers is due to the intrinsic resolutions of these
 detectors. 
 
@@ -427,13 +441,14 @@ low luminosity data is described in Ref.~\cite{clas12-nim}.
 
 The tracking efficiency for inbending and outbending tracks in the torus field calculated from sample~1 is shown in
 Fig.~\ref{fig:trkeff}. Inbending tracks suffer from a loss in tracking efficiency for momenta generated below
-1.8~GeV at the time-based level due to lack of matching with the outer detectors. These tracks miss the sensitive
-volumes of the Forward Time-of-Flight (FTOF) system, which is required to extract the time-correction information
-needed for time-based tracking. The tracks do however pass the hit-based tracking requirement. The efficiency
-loss due to the aforementioned effect can be seen by comparing the (light) blue to the (dark) red distribution. In
-the momentum range from 1.8 to 7.5~GeV, the time-based tracking efficiency is 98\%, while in the range from
-1.4 to 7.5~GeV, the hit-based tracking efficiency is 99\%. For outbending tracks (see Fig.~\ref{fig:trkeff}(bottom)),
-both the hit-based and time-based tracking efficiencies are flat as a function of momentum and on the order of 99\%. 
+1.8~GeV at the time-based level due to lack of matching with the outer detectors (see Fig.~\ref{fig:trkeff}(top)).
+These tracks miss the sensitive volumes of the Forward Time-of-Flight (FTOF) system, which is required to extract
+the time-correction information needed for time-based tracking. The tracks do however pass the hit-based tracking
+requirement. The efficiency loss due to the aforementioned effect can be seen by comparing the (light) blue to the
+(dark) red distribution. In the momentum range from 1.8 to 7.5~GeV, the time-based tracking efficiency is 98\%, 
+while in the range from 1.4 to 7.5~GeV, the hit-based tracking efficiency is 99\%. For outbending tracks (see
+Fig.~\ref{fig:trkeff}(bottom)), both the hit-based and time-based tracking efficiencies are flat as a function of
+momentum and on the order of 99\%. 
 
 \begin{figure}[t]
 \includegraphics[width=0.45\textwidth]{pics/DCTrkgEffNegTrks.png}
@@ -448,6 +463,7 @@ The polar angular dependence of the DC tracking efficiency obtained from sample~
 Fig.~\ref{fig:trkeffinoutb}. The (light) green histogram corresponds to outbending tracks. The efficiency is flat
 in the angular range from 10$^\circ$ to 25$^\circ$ for outbending tracks, while there is a loss of tracks below
 15$^\circ$ for the inbending tracks. As discussed above, this is due to tracks missing the outer detectors.  
+
 \begin{figure}[t]
 \includegraphics[width=0.45\textwidth]{pics/DCTrkEffvsThetaInandOutbenders.png}
 \caption{DC tracking efficiency as a function of polar angle evaluated using  pions  simulated at $p=4\pm 1$~GeV,
@@ -455,10 +471,15 @@ in the angular range from 10$^\circ$ to 25$^\circ$ for outbending tracks, while 
 \label{fig:trkeffinoutb}
 \end{figure}
 
-The vertex resolutions of reconstructed tracks from a sample of simulated Semi Inclusive Deep Inelastic events (SIDIS) are shown in Fig.~\ref{fig:vtxres}.  The vertex for positive and negative tracks reconstructed  in the central and forward detectors, respectively.  The vertex resolutions for the central detector (blue histogram) is about 3 mm and for the forward (red histogram), about 5 mm. 
+The vertex resolutions of reconstructed tracks from a sample of simulated semi-inclusive deep inelastic events
+(SIDIS) are shown in Fig.~\ref{fig:vtxres}. The reaction vertex for positive and negative tracks reconstructed in
+the Central and Forward Detectors, respectively, is shown. The vertex resolutions for the Central Detector (blue
+histogram) is about 3~mm and for the Forward Detector (red histogram) is about 5~mm.
+
 \begin{figure}[ht]
 \includegraphics[width=0.45\textwidth]{pics/VertexResolution.png}
-\caption{The vertex resolutions of reconstructed tracks from a sample of simulated Semi Inclusive Deep Inelastic events (SIDIS).  The vertex for positive and negative tracks reconstructed  in the central and forward detectors, are represented by the red and blue histograms, respectively.}
+\caption{The event vertex for reconstructed tracks from a sample of simulated semi-inclusive deep inelastic
+  (SIDIS) events. The vertex for positive and negative tracks reconstructed  in the central and forward detectors,
+  are represented by the red and blue histograms, respectively.}
 \label{fig:vtxres}
 \end{figure}
-\newpage

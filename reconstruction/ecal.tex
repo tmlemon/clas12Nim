@@ -1,18 +1,18 @@
 \subsection{Electromagnetic Calorimeters}
 
 The Electromagnetic Calorimeters (ECAL) of the CLAS12 Forward Detector downstream of the torus and the
-FTOF are lead-scintillator strip sampling calorimeters used for detection of electrons, photons, and neutrons
-particles. A pre-shower calorimeter (PCAL) is positioned in front of the EC calorimeter, which consists of two
+FTOF are lead-scintillator strip sampling calorimeters used for the detection of electrons, photons, and
+neutrons. A pre-shower calorimeter (PCAL) is positioned in front of the EC calorimeter, which consists of two
 parts, EC-inner (ECIN) and EC-outer (ECOU)~\cite{ecal-nim}. The ECAL reconstruction service provides a fast
 and efficient algorithm for grouping scintillator {\it strips} with {\it hits} into multiple {\it peaks} and {\it clusters}
-within a single sector for each of the ECAL modules within the three submodules, PCAL, ECIN, and ECOU, while
-leaving cluster matching and particle identification to the Event Builder service. Within the ECAL service, these
-various elements exist as objects with methods, structures, and data members designed for calibration, pattern
-recognition, diagnostics, and serial output. For example the service applies run-dependent calibration corrections
-for conversion of the raw ADC and TDC digitized data to energy and time, and also provides formatted output
-banks used by external services.  Energy thresholds and cluster identification criteria can also be configured to
-optimize the reconstruction efficiency, suppress backgrounds and avoid false or duplicate clusters arising from
-fluctuations at the fringes of the electromagnetic showers.
+within the three submodules, PCAL, ECIN, and ECOU, for each of the six ECAL modules, while leaving cluster
+matching and particle identification to the Event Builder service. Within the ECAL service, these various elements
+exist as objects with methods, structures, and data members designed for calibration, pattern recognition,
+diagnostics, and serial output. For example the service applies run-dependent calibration corrections for conversion
+of the raw ADC and TDC digitized data to energy and time, and also provides formatted output banks used by
+external services.  Energy thresholds and cluster identification criteria can also be configured to optimize the
+reconstruction efficiency, suppress backgrounds, and avoid false or duplicate clusters arising from fluctuations at
+the fringes of the electromagnetic showers.
 
 The cluster finding algorithm makes use of the unique geometry and stereo readout features of the ECAL. As
 discussed in Ref.~\cite{ecal-nim}, each triangular scintillator layer in the ECAL lead:scintillator sandwich is
@@ -47,7 +47,7 @@ the cluster energy is then defined as the sum of the corrected energy from each 
 that define the cluster.
 
 More complicated scenarios arise from the triangular geometry of the ECAL hodoscope, which creates the
-possibility of a single peak in the $U$, $V$, or $W$ view that share the summed energy from two or more
+possibility of a single peak in the $U$, $V$, or $W$ view that shares the summed energy from two or more
 clusters.  For these cases the energy in each cluster that shares that peak is assumed to be proportional to the
 relative partial energies of the multiple clusters as measured in the other views.  For example, if there are two
 clusters, both of which share the same $U$ peak, the summed energy $V+W$ is determined for each of the

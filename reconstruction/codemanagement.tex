@@ -35,14 +35,14 @@ in the following cases:
 In addition to automatic builds, the software includes both basic unit tests and advanced tests for several
 packages. These are designed to verify the correctness and reproducibility of the reconstruction output for a
 specific package or for the overall event, respectively. Unit tests involve, for example, reconstructing a simulated
-track or particle hit in a specific detector and comparing the result to the true information. Advanced and extended
+track or particle hit in a specific detector and comparing the result to the truth information. Advanced and extended
 tests are run on either a Monte Carlo or beam data sample, comparing to the Monte Carlo truth information in the first
 case or to the results obtained in previous releases in the second case. A portion of the tests are run automatically
 at build time, using the TravisCI system linked to the github repository.  These automatic tests take about 30
 minutes to run and have proven invaluable in overseeing software development.
 
 In addition to unit and advanced tests, every new release is subject to extensive validation on both Monte Carlo and
-beam data. Samples of Monte Carlo and real events for different beam energies and detector configurations were
+beam data. Samples of Monte Carlo and beam events for different beam energies and detector configurations were
 chosen to test event reconstruction over the entire detector acceptance. Reconstruction of these samples is
 performed and results are compared to previous code releases. The comparison focuses on several parameters, from
 processing time, to momentum resolution, to particle reconstruction efficiency. A new release is accepted for

@@ -9,8 +9,8 @@ panel-1a (farther from the target). The different FTOF arrays can be seen in Fig
 consists of a barrel of scintillator counters located just outside of the CVT within the solenoid.
 
 The raw data from the detector PMTs read out during data acquisition include an ADC charge and hit time from a
-fitted flash ADC waveform and a TDC time. The ADC and TDC information is read out and recorded only for those
-channels that are above the $\sim$1~MeV hardware readout threshold for the flash ADCs and discriminators of
+fitted flash ADC (FADC) waveform and a TDC time. The ADC and TDC information is read out and recorded only for
+those channels that are above the $\sim$1~MeV hardware readout threshold for the FADCs and discriminators of
 both systems. 
 
 As the FTOF and CTOF counters employ double-ended PMT readout, the calibration procedures for these
@@ -19,20 +19,20 @@ times and deposited energy associated with both PMT signals above threshold. At 
 combines the PMT hit times and energies to give a hit time and energy deposition associated with the scintillation
 counter. In a second phase, hits in adjacent counters, due to particles that pass through multiple counters in the
 FTOF and CTOF systems (so-called ``corner clippers''), are combined into clusters with an associated time,
-coordinate, and deposited energy. The algorithms for the hit and cluster definition are detailed in the next sections.
+coordinate, and deposited energy. The algorithms for the hit and cluster definitions are detailed in the next sections.
 
 \subsubsection{Raw Counter Hits}
 
 Raw hits for the TOF systems are defined by matching ADC and TDC information reported for each counter. These
 are matched based on the comparison of TDC time with the time from the FADC waveform analysis. The latter is
-derived from fitting the leading edge of the FADC pulse shape. Due to the choice of fast timing PMTs for the
-detector readout and the use of 250~MHz FADCs, the number of samples on the leading edge of the PMT pulses is
-only 3 to 4, hence the FADC timing resolution is only $\sim$1~ns. The FADC and TDC times are then required to be
-within a selected window. The windows parameters, position and width, as well as all other constants used by the
-reconstruction package are loaded at run time from CCDB. Currently the window width used is 10~ns, which was
-found to be sufficient to reduce the probability of a mismatch of the ADC and TDC data for a given scintillation bar
-hit. This is especially important for the FTOF as the ADC value of the hit is used to compute the time-walk
-correction.
+derived from fitting the leading edge of the FADC pulse shape during data decoding. Due to the choice of fast timing
+PMTs for the detector readout and the use of 250~MHz FADCs, the number of samples on the leading edge of the
+PMT pulses is only 3 to 4, hence the FADC timing resolution is only $\sim$1~ns. The FADC and TDC times are then
+required to be within a selected window. The windows parameters, position, and width, as well as all other constants
+used by the reconstruction package, are loaded at run time from CCDB. Currently the window width used is 10~ns,
+which was found to be sufficient to reduce the probability of a mismatch of the ADC and TDC data for a given
+scintillation bar hit. This is especially important for the FTOF as the ADC value of the hit is used to compute the
+time-walk correction.
 
 \subsubsection{Reconstructed Counter Hits}
 \label{rec:hits}
@@ -51,7 +51,7 @@ t_{1/2} = (CONV \cdot TDC_{1/2}) - t_{1/2}^{walk} \\ \mp \frac{C_{12}}{2} + C_{R
 
 \noindent
 where $CONV$ is the TDC channel-to-time conversion factor (0.024~ns/bin), $TDC$ is the measured PMT TDC
-value relative to the trigger signal, $t^{walk}$ is the time-walk function to correct for the pulse amplitude
+value relative to the trigger signal, $t^{walk}$ is the time-walk correction that accounts for the pulse amplitude
 dependence of the crossing times of the discriminator threshold (used only for FTOF), $C_{12}$ is a time offset
 to center the PMT TDC difference distribution about 0, and $C_{RF}$ and $C_{p2p}$ are the time offsets to
 align all of the counter hit times with respect to the accelerator RF time and to each other, respectively. The
@@ -94,15 +94,15 @@ y = \frac{v_{eff}}{2} (t_1 - t_2 - C_{12}).
 \end{equation}
 
 \noindent
-It is this coordinate determination that is compared against the projected coordinate from tracking to
-determine of the time-of-flight hit matches to a projected track.
+It is this coordinate determination that is compared against the projected coordinate from tracking to determine
+if the time-of-flight hit matches to a projected track.
 
 The algorithm detailed above and currently in use requires good ADC and TDC information for the PMTs at both
 ends of the counter to be available. However, if one of the PMTs of a counter is malfunctioning, Eq.(\ref{thit-1})
 shows that the hit time recorded from the working PMT alone can be used to reconstruct the particle hit time using
 tracking information to correct for the light propagation delay along the counter. The loss of one PMT involves a
-$\sqrt{2}$ worse timing resolution. Algorithms to address these cases are already implemented in the reconstruction
-service but presently are disabled.
+$\sqrt{2}$ worse timing resolution for the counter. Algorithms to address these cases are already implemented in
+the reconstruction service but are presently disabled.
 
 The reconstructed energies from the ADC values of the PMTs (1 and 2) for a given scintillator bar are given by:
 
@@ -140,9 +140,9 @@ y_{cluster} = \sum_{i=1}^{N} y_i \cdot \Delta E_i.
 \end{equation}
 
 \noindent
-Note that in both the FTOF and CTOF systems, the maximum cluster size is limited to $N=2$. For the coordinate
-transverse to the counter length along the counter width, the coordinate is defined as the average of the
-coordinates associated with the middle of the bar.
+Note that in both the FTOF and CTOF systems, the maximum cluster size is practically limited to $N=2$. For the
+coordinate transverse to the counter length along the counter width, the coordinate is defined as the average of
+the coordinates associated with the middle of the bar.
 
 The assigned cluster energy is the sum of the deposited energies in the counters associated with the defined
 cluster,

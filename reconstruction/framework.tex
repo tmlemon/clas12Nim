@@ -1,8 +1,6 @@
 \section{Software Framework and Tools}
 \label{sec:framework}
 
-%Experimental physics data analysis in a collaborative environment has historically involved a computing model based on self-contained, monolithic software applications running in batch-processing mode. This model, if not organized properly, can result in inefficiencies in terms of deployment, maintenance, response to program errors, update propagation, scalability and fault-tolerance. Over time, experimental configurations have become more diverse and compute capacity has expanded at a rate consistent with Moore's Law. As a consequence, compute applications have become much more complex, with significant interaction between diverse program components.  This can lead to computing systems so complex and intertwined that the programs become difficult to maintain and extend. Modifying a feature in one class often involves changes in several other classes, thereby increasing the needed development time and effort. What starts small and simple, inevitably grows into a complicated scheme of interconnected algorithms. At some point, to prevent further growth in complexity, the software has to be shielded from contributors, preventing essential software evolution and optimization. The only way to bypass this highly guarded system is software fragmentation, making the physics data processing validation process quite arduous.
-
 Nuclear and particle physics data processing applications must guarantee a long lifetime, larger than the multi-year
 duration of the corresponding experiment. The ability to upgrade and adapt technologies is therefore essential, so
 these applications should be organized in a way that easily permits upgrades of aged software components and
@@ -14,21 +12,15 @@ Following these principles, CLAS12 reconstruction and analysis relies on a data-
 CLARA~\cite{clara-2011,clara-service,framework,clara-2016}, which provides a service-oriented architecture in which
 to build the relevant software applications.  Such applications are composed of interlocking building blocks called
 micro-services, which are linked together by data-stream pipes.  The technology (e.g. a high-level programming
-language or hardware deployment details), as well as the algorithmic solutions used to process data are encapsulated. The scope of a specific software application implemented in CLARA is determined
-by the micro-services that are included and by the order of their execution.
-
-%\begin{figure*}[t]
-%\centering
-%\includegraphics[width=1.0\textwidth]{pics/clara-overview.pdf}
-%\caption{Overview of the CLAS12 CLARA data processing framework.  Individual detector subsystem  reconstruction applications can be linked to form the full event reconstruction chain, including  data processing, data quality monitoring, and physics analysis applications.}
-%\label{fig:clara-overview}
-%\end{figure*}
+language or hardware deployment details), as well as the algorithmic solutions used to process data, are encapsulated.
+The scope of a specific software application implemented in CLARA is determined by the micro-services that are
+included and by the order of their execution.
 
 A micro-service has input data, processes it, and produces output data, where the I/O is organized into ``banks''
-whose structure is configured by the specific service developer.  A micro-service reacts on an input data stream,
+whose structure is configured by the specific service developer.  A micro-service reacts on an input data-stream,
 processes it, and passes processed data to the next micro-service in the data-flow path.  As a result, the CLAS12
 data processing application is versatile and flexible, since the application building blocks can be improved individually
-and replaced with no need for structure changes in the framework. The CLAS12 micro-services are extensions of an
+and replaced with no need for structural changes in the framework. The CLAS12 micro-services are extensions of an
 abstract reconstruction engine, which includes common components such as initialization and event processing
 methods. This approach reduces and simplifies the development of an individual micro-service and enforces a common
 structure. 
@@ -37,18 +29,15 @@ The CLARA data-stream pipe is a data bus based on the xMsg messaging system that
 such as MPI, pub-sub, p2p, inproc, and shared memory. The CLARA orchestrator, i.e. the process level workflow
 management system, controls the overall process execution. 
 
-The framework enables execution of software applications in multi-threaded mode. This is implemented via event-level
-parallelization for the CLAS12 reconstruction. 
-The framework is specifically designed to do thread-based
-parallelization on multicore machines, thereby allowing 
-the simultaneous reconstruction of multiple events having as many active threads as the cores
-on the system.  
-Figure~\ref{fig:scaling} shows the results of a scaling test on an
-Intel Xeon node (E5-2697A v4 @ 2.6~GHz). Comparison with Amdhal's law indicates 99.5\% parallel efficiency over
-the 32 physical cores of the machine.
+The framework enables execution of software applications in multi-threaded mode. This is implemented via
+event-level parallelization for the CLAS12 reconstruction. The framework is specifically designed to do
+thread-based parallelization on multi-core machines, thereby allowing the simultaneous reconstruction of multiple
+events having as many active threads as the cores on the system. Figure~\ref{fig:scaling} shows the results of a
+scaling test on an Intel Xeon node (E5-2697A v4 @ 2.6~GHz). Comparison with Amdhal's law indicates 99.5\%
+parallel efficiency over the 32 physical cores of the machine.
 
-The CLARA framework provides service interface implementations in Java, C++ and Python languages. 
-At present all the CLAS12 reconstruction services deployed using the CLARA framework are written in Java.
+The CLARA framework provides service interface implementations in Java, C++ and Python languages. At present all
+of the CLAS12 reconstruction services deployed using the CLARA framework are written in Java.
 
 \begin{figure}
 \centering
@@ -75,9 +64,9 @@ the main packages used in the reconstruction software.
 \subsubsection{Geometry}
 
 Due to the complexity of the geometry of the CLAS12 detector subsystems, an interface was developed to provide
-classes and software tools that are used to describe the geometry of all subsystems in an unified way.  A library of
+classes and software tools that are used to describe the geometry of all subsystems in a unified way.  A library of
 primitives provides geometrical objects needed to represent all detector subsystems (these include lines, planes,
-and various shapes such as cubes, trapezoids, etc.) and provide the necessary transformations to accommodate
+and various shapes such as cubes, trapezoids, etc.) and to provide the necessary transformations to accommodate
 misalignments and distortions.  Furthermore, geometry tools provide methods to track particles through volumes for
 evaluation of track trajectories, such as line-to-surface intersections, ray tracing through objects, and evaluation of
 the distance of closest approach to a line or surface.
@@ -95,13 +84,13 @@ The Calibration Constant Database (CCDB) software package was developed at Jeffe
 experiment in Hall~D~\cite{gluex}.  CCDB provides the functionality for storing and accessing structured tables in
 MySQL-based and SQLite portable databases. The CLAS12 reconstruction packages use the CCDB application
 programming interface to create and access tables that contain detector geometry and calibration constants, as
-well as maps used for decoding raw data. At the decoding stage, the signal is converted from the hardware notation
+well as maps used for decoding raw data. At the decoding stage, signals are converted from the hardware notation
 (crate, slot, channel) into the CLAS12 notation (sector, layer, component). 
 
 The CCDB package creates tables that link constants to specific runs (using time stamps) and store different
-variations of constants depending on run conditions. CLAS12 software tools employ an Application Programming
-Interface (API) that parses database tables and creates structured maps of constants stored in  memory by
-detector sector, layer, and component. This allows fast retrieval of the constants.
+variations of constants depending on the run conditions. The CLAS12 software tools employ an Application
+Programming Interface (API) that parses database tables and creates structured maps of constants stored in
+memory by detector sector, layer, and component. This allows fast retrieval of the constants.
 
 The CLAS12 database access tools have been developed to avoid bottlenecks that might result from multiple
 multi-threaded services accessing the database to retrieve constants.  An interface has been designed to fetch
@@ -114,15 +103,15 @@ values.
 For ease of integration with the reconstruction software tools and packages, the plotting tools used for data
 calibration, monitoring, and analysis were developed in the Java programming language.
 
-The plotting software, called {\it groot}, developed at Jefferson Lab for CLAS12 is tailored to have a programming
+The plotting software, called {\it groot}, developed at Jefferson Lab for CLAS12, is tailored to have a programming
 interface similar to the CERN data analysis package, ROOT, and provides the necessary functionalities for
 histogram and graph creation, filling, and manipulation, as well as for fitting using the Java-based MINUIT library
 available from the JHEP repositories. This has been the base for the development of the detector monitoring and
 calibration suites (see Section~\ref{sec:calibration}).
 
 These same tools can be used for analysis purposes. In addition, the analysis package contains classes for four-vector
-manipulations, physics quantity extractions, and analysis methods (e.g. computation of kinematic variables such as
-$Q^2$ and $W$ or performing Lorentz boosts, etc.).
+manipulations, physics quantity extractions, and analysis methods (e.g. computation of kinematic variables or
+performing Lorentz boosts, etc.).
 
 \begin{figure}
 \centering

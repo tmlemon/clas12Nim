@@ -8,7 +8,7 @@ Both the HTCC and LTCC are large gas-filled volumes (CO$_2$ for the HTCC, C$_4$F
 with mirrors that direct light collection to the PMTs. The goal of the HTCC and LTCC reconstruction algorithms
 is to calculate the signal strength, time, and position from the raw ADC signals (read out with flash ADC boards
 - FADCs). The algorithm takes into account the properties of the HTCC and LTCC geometries, namely, the
-possibility for the signal from the single track to split into up to four mirrors. Hence, up to four separated
+possibility for the signal from the single track to split into up to four mirrors. Hence, up to four separate
 signals (or hits) are produced. The final signal reconstruction is done in three steps: decoding, hit reconstruction,
 and cluster reconstruction. For each hit, the signal strength ($nphe_{hit}$ - the number of photoelectrons) is
 determined from the pedestal-subtracted integral of the FADC pulse and the associated time ($T_{hit}$) is
@@ -32,7 +32,7 @@ cluster. Adjacent hits within a certain time window are then searched iterativel
 cluster. The total signal strength is determined as the sum of the individual signals, and the signal time is
 determined as the average between the individual signal times, weighted by the corresponding number of
 photoelectrons. The cluster angular coordinates are determined as the average between the individual hits forming
-the cluster. The following equations summarize the definitions of the cluster quantities:
+the cluster. The cluster quantities are defined by:
 
 \begin{eqnarray}
 nphe_c &= \frac{\sum_{i=1}^N{nphe_{hit}}}{N} \nonumber \\

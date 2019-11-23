@@ -1,41 +1,38 @@
 \subsection{Central Neutron Detector}
 \label{sec_rec_cnd}
 
-The Central Neutron Detector (CND) is used to detect 0.2-1~GeV neutrons in the Central Detector~\cite{cnd-nim}.
-The CND consists of a barrel of three layers of scintillators coupled at their downstream ends with u-turn light
+The Central Neutron Detector (CND) is used to detect 0.2 to 1~GeV neutrons in the Central Detector~\cite{cnd-nim}.
+The CND consists of a barrel of three layers of scintillators coupled at their downstream ends with U-turn light
 guides and read out on their upstream ends with PMTs. The light readout from the scintillation bar in which a particle
-interacts is called ``direct'', while the light that travels through the u-turn into the neighboring bar and readout
+interacts is called ``direct'', while the light that travels through the U-turn into the neighboring bar and read out
 in the coupled counter is called ``indirect''. 
 
 The reconstruction of the CND is done in five steps:
 
 \begin{itemize}
-\item the choice of the direct and indirect paddle, by comparing two PMT times (referred to as the left and right
-  times), after correcting them for relative and absolute offsets determined in the calibration procedure and
-  accounting for light propagation times \cite{cnd-nim};
+\item the choice of the direct and indirect paddle, by comparing the two PMT times (referred to as the left and
+  right times) of a couple pair of counters, after correcting them for relative and absolute offsets determined in
+  the calibration procedure and accounting for light propagation times \cite{cnd-nim};
 \item the reconstruction of the deposited energy;
 \item the reconstruction of the time and position of the hit in the paddle;
-\item the matching of CND hits with tracks coming from the interaction vertex.
+\item the matching of CND hits with tracks coming from the interaction vertex;
 \item the clustering of multiple hits.
 \end{itemize}
 
 \subsubsection{Energy Reconstruction}
 
 For direct hits in the left paddle at a position $z$ along the paddle, the two associated ADCs can be written as:
-
-\begin{equation}
-\label{eq_rec_3}
-ADC_L = \frac{E_L}{E_0} \cdot MIP_D \cdot e^{\frac{-z}{A_L}},
-\end{equation}
-\begin{equation}
-\label{eq_rec_4}
-ADC_R = \frac{E_R}{E_0} \cdot MIP_I \cdot e^{\frac{-(L-z)}{A_L}},
-\end{equation}
+\begin{multline}
+\label{eq_adc}
+~~~~~~~~ADC_L = \frac{E_L}{E_0} \cdot MIP_D \cdot e^{\frac{-z}{A_L}},\\
+ADC_R = \frac{E_R}{E_0} \cdot MIP_I \cdot e^{\frac{-(L-z)}{A_L}}.~~~~~~~
+\end{multline}
 
 \noindent
-where $MIP_D$ is the ADC-to-energy constant for direct minimum-ionizing particles (MIPs), $MIP_I$ is the
-ADC-to-energy constant for indirect MIPs, $E_{L/R}$ is half the energy deposited by the particle in the
-left/right paddle, and $E_0$ is given by:
+Here $MIP_D$ ($MIP_I$) is the ADC-to-energy constant for direct (indirect) minimum-ionizing particles (MIPs),
+$E_{L/R}$ is half the energy deposited by the particle in the left/right paddle, $z$ is the distance along the
+left counter to the left PMT, $L$ is the overall length along the counters for the coupled-paddle assembly, and
+$A_L$ is the coupled counter pair attenuation length. $E_0$ is given by:
 
 \begin{equation}
 \label{eq_def_e0}
@@ -45,21 +42,7 @@ E_0=\frac{h\cdot 1.956}{2}~{\rm MeV},
 \noindent
 where $h$ is the thickness of each scintillator. In the case of direct hits in the right paddle, the applicable equations
 are obtained by switching the $L/R$ indices. The energy reconstruction for each coupled paddle is obtained inverting
-Eqs.~\ref{eq_rec_3} and \ref{eq_rec_4} as:
-
-\begin{equation}
-E_L = \frac{ADC_L \cdot E_0}{MIP_D} \cdot e^{\frac{z}{A_L}},
-\end{equation}
-\begin{equation}
-E_R = \frac{ADC_R \cdot E_0}{MIP_I} \cdot e^{\frac{L-z}{A_R}}.
-\end{equation}
-
-\noindent
-The total energy of the hit is then given by the sum of $E_L$ and $E_R$:
-
-\begin{equation}
-E_{dep} = E_L + E_R.
-\end{equation}
+Eq.~\ref{eq_adc}. The total energy of the hit is then given by the sum of $E_L$ and $E_R$.
 
 \subsubsection{Hit Position and Time Reconstruction}
 
@@ -69,13 +52,14 @@ of a hit in the right paddle the applicable equations are obtained by switching 
 Starting from $t_L$ and $t_R$, defined as
 \begin{multline}
 \label{eq_time_hit}
-t_{L/R} = t_{off} + t_{tof} - \frac{z}{v_{{eff}_R}} + \frac{L}{v_{{eff_L}}} + \\
-\frac{L}{v_{eff_R}} + u_t + t_S + t_{{off}_L} + TDC_j,
+t_L = t_{tof} +\frac{z}{v_{eff_L}} +t_S + t_{off} + TDC_j,\\
+t_R = t_{tof} + \frac{L-z}{v_{eff_L}} + \frac{L}{v_{eff_R}} + u_t + t_S + t_{off} + TDC_j,
 \end{multline}
 
 \noindent
-and subtracting the time offsets obtained from the calibration ($t_{off}$), the start time ($t_S$) and the time
-jitter ($TDC_j$), one can define the propagation times $t_{L_{prop}}$ and $t_{R_{prop}}$ as:
+and subtracting the time offsets obtained from the calibration ($t_{off}$), the start time ($t_S$), and the time
+jitter ($TDC_j$), one can define the propagation times $t_{L_{prop}}$ and $t_{R_{prop}}$ to the left and right
+PMTs of the couple pair as:
 
 \begin{equation}
 t_{L_{prop}} = t_{tof} + \frac{z}{v_{eff_L}},
@@ -85,9 +69,11 @@ t_{R_{prop}} = t_{tof} - \frac{z}{v_{eff_L}} + \frac{L}{v_{eff_L}} + \frac{L}{v_
 \end{equation}
 
 \noindent
-where $v_{eff_{L/R}}$ is the effective light velocity in the left (right) paddle and $u_t$ is the time spent by the light
-to travel in the u-turn. Both of these quantities are obtained from calibration. The position of the hit $z$ is then
-obtained as the difference of the propagation times:
+where $v_{eff_{L/R}}$ is the effective light velocity in the left/right paddle and $u_t$ is the propagation time of
+light to travel in the U-turn. Both of these quantities are obtained from CND calibration (see Ref.~\cite{cnd-nim}
+for details).
+
+The position of the hit $z$ is obtained from the difference of the left and right propagation times:
 \begin{multline}
   z = \frac{v_{eff_L}}{2} \left(t_{L_{prop}} - t_{R_{prop}} \right) + \\ \frac{v_{eff_L}}{2} \left( L \cdot \left(\frac{1}{v_{eff_L}}
   + \frac{1}{v_{eff_R}}\right) + u_t \right).
@@ -95,7 +81,7 @@ obtained as the difference of the propagation times:
 
 The $x$ and $y$ coordinates of the hit are obtained from the radius and the azimuthal angle of the hit, which are,
 in turn, determined by knowing the layer, sector, and component (left or right) of the hit. Finally, the time of flight
-of the particle that produced the hit is obtained as:
+of the particle that produced the hit is obtained from the sum of the left and right propagation times:
 \begin{multline}
   t_{tof} = \frac{1}{2} \left( t_{L_{prop}} + t_{R_{prop}} \right) - \\
   \frac{1}{2} \left( L \cdot \left( \frac{1}{v_{eff_L}} + \frac{1}{v_{eff_R}} \right)
@@ -104,46 +90,25 @@ of the particle that produced the hit is obtained as:
 
 \subsubsection{Hit/Track Matching}
 
-Tracks from charged particles crossing the CVT are associated with hits in the CND. This allows the position of each CND hit to be computed from the track extrapolated beyond the CVT to the location of the hit counter.
-This information is used in the detector calibration~\cite{cnd-nim}. CVT tracks are extrapolated to radii corresponding to the entry point, middle point, and
-exit point of the track in the paddle. These points are defined as the intersections between the helix of the track and cylinders of radii corresponding to the distances between the center of the Central Detector and the three CND layers. A CVT track and a CND hit are matched if the hit coordinates and the extrapolated coordinates are within a user-selected distance. 
-%verify the relations:
-%
-%\begin{equation}
-%\mid x-x_m \mid < \sigma_x ,
-%\end{equation}
-%\begin{equation}
-%\mid y-y_m \mid < \sigma_y ,
-%\end{equation}
-%\begin{equation}
-%z_m  \in [-\sigma_z,L+\sigma_z],
-%\end{equation}
-%
-%\noindent
-%where $\sigma_z=1.5$ cm, $ L$ is the length of a paddle, and $\sigma_x$ and $\sigma_y$ are given by:
-%
-%\begin{equation}
-%\sigma_x= \sqrt{x^2\frac{\sigma_R^2}{R^2}+y^2\sigma_\phi^2},
-%\end{equation}
-%\begin{equation}
-%\sigma_y= \sqrt{y^2\frac{\sigma_R^2}{R^2}+x^2\sigma_\phi^2},
-%\end{equation}
-%
-%\noindent
-%where $R$ is the radius of the hit, $\sigma_R$ is half the thickness of a paddle (1.5~cm), and $\sigma_{\phi}$ is
-%the azimuthal resolution of each paddle ($3.75^\circ$).
-The path traveled by the particle in the paddle is approximated as the distance between the entry and exit points. The path length between the vertex and the
-hit is obtained from the helix parameters.
+Tracks from charged particles crossing the CVT are associated with hits in the CND. This allows the position of
+each CND hit to be computed from the track extrapolated beyond the CVT to the location of the hit counter. This
+information is used in the detector calibration~\cite{cnd-nim}. CVT tracks are extrapolated to radii corresponding
+to the entry point, middle point, and exit point of the track in the paddle. These points are defined as the
+intersections between the helix of the track and cylinders of radii corresponding to the distances between the
+beamline and the three CND layers. A CVT track and a CND hit are matched if the hit coordinates and the
+extrapolated coordinates are within a user-selected distance. The path traveled by the particle in the paddle is
+approximated as the distance between the entry and exit points. The path length between the vertex and the hit is
+obtained from the helix parameters.
 
 \subsubsection{Clustering}
 
 The clustering of CND hits is based on the geometrical space-time distance between them. The determination of
 the maximal distance for clustering two hits together takes into account the measured resolutions for position and
-timing of the CND~\cite{cnd-nim}.
+timing of the CND counters~\cite{cnd-nim}.
 
 The algorithm uses standard hierarchical clustering~\cite{Day1984}. A scan of all hits in an event is performed and
-only hits with an energy deposit higher than 1~MeV are considered for clustering. The two closest hits are combined
-into a single hit with associated energy defined as the sum of the energies of both hits. The position and timing of
-the new hit are defined as those of the hit with the highest energy, i.e. the seed hit. The same algorithm is
-recursively run on the remaining hits. Finally, the leftover hits that are relatively far from each other are called
-clusters. The sector, component, and layer of each cluster are those of the seed hit.
+only hits with a deposited energy greater than 1~MeV are considered for clustering. The two closest hits are
+combined into a single hit with associated energy defined as the sum of the energies of both hits. The position and
+timing of the cluster hit are defined as those of the hit with the highest energy, i.e. the seed hit. The same algorithm
+is recursively run on the remaining hits. Finally, the leftover hits that are relatively far from each other are called
+clusters. The sector, layer, and component of each cluster are those of the seed hit.

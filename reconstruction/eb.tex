@@ -22,14 +22,14 @@ geometric coincidences between the detector responses and the track, with matchi
 to the resolution of a given detector. The geometric matching is based on the distance of closest approach
 between the track and the response, where an example is shown in Fig.~\ref{fig:ebmatch}.
 
-A similar procedure is followed for creating neutrals particles, except the seeding is presently with
+A similar procedure is followed for creating neutral particles, except the seeding is presently with
 unassociated ECAL (for the Forward Detector) and CND (for the Central Detector) responses instead of tracks.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth,height=0.2\textheight]{pics/pcal-doca.png}
 \caption{Example of the geometric matching criteria showing the distance of closest approach between a charged
-  track in the Forward Detector and clusters in the ECAL.}
+  track from the DC extrapolated to the ECAL and the cluster positions in the ECAL.}
   \label{fig:ebmatch}
 \end{figure}
 
@@ -44,10 +44,10 @@ forward-going positive track, it looks for a forward-going negative track (assum
 for $\pi^+$ or $\pi^-$ tracks, only the candidate with the highest momentum in each group is considered.
 
 A parallel event start time is determined from the FT to facilitate physics analyses and triggers where the
-primary scattered electron is at very forward angles in the FT. In this case, all combinations of charged
-particles in the FT and Forward Detector are considered. The particle in the FT is assumed to be an electron,
-all hadron mass hypotheses are considered for the Forward Detector tracks. The combination with the best
-time coincidence is chosen. The timing of the resulting FT electron is then used to assign the start time.
+primary scattered electron is at very forward angles in the FT. In this case, all combinations of charged particles
+in the FT and the Forward Detector are considered. The particle in the FT is assumed to be an electron, whereas
+all hadron mass hypotheses are considered for the Forward Detector tracks. The combination with the best time
+coincidence is chosen. The timing of the resulting FT electron is then used to assign the start time.
 
 A correction to the start time is then performed using the RF signal from the accelerator, combined with the
 reconstructed event vertex position. This effectively aligns the event start time to our best measure of the
@@ -55,27 +55,28 @@ beam-bunch arrival time at the target.
 
 The uncorrected, measured vertex time of a particle, $t_v$, can be written as
 \begin{equation}
-    t_v = t-\frac{L}{\beta c},
+    t_v = t-\frac{P_L}{\beta c},
 \end{equation}
 
 \noindent
-where $t$ is the measured time response (e.g. in a scintillator), $L$ is the path length between the primary
+where $t$ is the measured time response (e.g. in a scintillator), $P_L$ is the path length between the primary
 interaction vertex and that response, and $\beta c$ is the speed of the particle.  We can then construct a
 correction to align this time with the closest beam bunch time at the target:
 
 \begin{eqnarray*}
-\Delta t_{RF} &=& t_v + (z_0-z_v)/c - t_{RF} - N/2/f_{RF}, \\
-\Delta t^{\prime}_{RF} &=& mod(\Delta t_{RF},1/f^{RF})-1/2/f_{RF},
+\Delta t_{RF}\!\!\!\!&=&\!\!\!\! t_v + (z_0-z_v)/c - t_{RF} - N/(2 f_{RF}),\\
+\Delta t'_{RF}\!\!\!\!&=&\!\!\!\! mod(\Delta t_{RF},1/f^{RF})-1/(2 f_{RF}), 
 \end{eqnarray*}
 
 \noindent
 where $f_{RF}$ is the frequency of the accelerator, 250~MHz or 500~MHz, corresponding to 2~ns or 4~ns bunch
 spacings, $t_{RF}$ is the measured, calibrated RF time for the event, and $z_0$ is the target center and enters
-due to its use as a position calibration reference.
+due to its use as a position calibration reference. The resulting RF- and vertex-corrected start time for the event
+is then given as
 
-The resulting, RF- and vertex-corrected start time for the event is then given as
-\begin{equation}\label{eq:starttime}
-t^{\prime}_v = t_v - \Delta t^{\prime}_{RF}.
+\begin{equation}
+  \label{eq:starttime}
+t'_v = t_v - \Delta t'_{RF}.
 \end{equation}
 
 \subsubsection{Particle Identification}
@@ -93,11 +94,9 @@ The remaining charged particles are then assumed to be hadrons and assigned an i
 information, where the $p/K/\pi$ candidate giving the smallest time residual is assigned. This time residual is
 computed from the difference between the measured particle flight time and that computed for a given mass
 hypothesis. Figure~\ref{fig:betavsp} shows reconstructed $\beta$ vs. momentum distributions from beam data
-for forward-going positively charged hadrons using information from the FTOF and DC subsystems where the
+for forward-going positively charged hadrons using information from the FTOF and DC subsystems, where the
 electron is reconstructed either in the Forward Detector (Fig.~\ref{fig:betavsp}(top)) or in the Forward Tagger
 (Fig.~\ref{fig:betavsp}(bottom)). The computed curves for the different mass hypotheses are overlaid.
-
-\vfil
 
 \begin{figure}[t]
 \centering
@@ -125,37 +124,29 @@ showing separation of photons and neutrons.
 \label{fig:neutbeta}
 \end{figure}
 
-A particle identification quality factor in the form of a signed-$\chi^2$, is assigned based on the individual
+A particle identification quality factor in the form of a signed-$\chi^2$ is assigned based on the individual
 contributing detector subsystem responses and their resolutions. For $e^-/e^+$ identification the
-resolution-normalized distance from the expected ECAL sampling fraction is used, while for charged hadrons
-the resolution normalized time-difference is used.
-
-\subsubsection{Persistence}
-
-The resulting information is organized into standardized output bank structures for physics analysis, see
-Section~\ref{sec:dsts}. This includes the particle four-vectors, the associated detector responses, and global
-event information such as beam RF and helicity information.
+resolution-normalized distance from the expected ECAL sampling fraction is used, while for charged hadrons the
+resolution normalized time-difference is used. The resulting information is organized into standardized output
+bank structures for physics analysis, see Section~\ref{sec:dsts}. This includes the particle four-vectors, the
+associated detector responses, and global event information such as beam RF and helicity information.
 
 \subsubsection{Particle Identification Performance}
 
 The accuracy of the particle identification algorithm that is currently implemented can be estimated from
 Monte Carlo simulations where the assigned particle identification can be compared to the true one.
-Table~\ref{table:pidmatrix} and~\ref{table:pidmatrix2} show the particle identification matrix for the Forward and Central Detector acceptances, respectively.
-The values are based on simulations of electron-hadron or electron-photon pairs with hadron and photon momenta
-in the range from 1-2.5~GeV and electron momenta in the range from 1-9~GeV. The diagonal elements correspond
-to the cases where the particle is correctly identified and the off-diagonal elements to the cases where the
-particle is misidentified. It should be noted that the resulting values are strictly related to the assignment
-algorithm currently in use and on the timing resolutions implemented in the Monte Carlo simulation~\cite{sim-nim}.
-An increase of the diagonal element values and corresponding decrease of the misidentification probability is
-expected as, for example, information from the threshold Cherenkov detectors and the RICH in particular are
-integrated in the algorithm and isolated hits in the FTOF and CTOF detectors are incorporated in the neutral
-particle identification algorithm.
+Tables~\ref{table:pidmatrix} and~\ref{table:pidmatrix2} show the particle identification matrix for the Forward
+and Central Detectors, respectively. The values are based on simulations of electron-hadron or electron-photon
+pairs with hadron and photon momenta in the range from 1 to 2.5~GeV and electron momenta in the range from 1 to
+9~GeV. The diagonal elements correspond to the cases where the particle is correctly identified and the off-diagonal
+elements to the cases where the particle is misidentified. It should be noted that the resulting values are strictly
+related to the assignment algorithm currently in use and on the timing resolutions implemented in the Monte Carlo
+simulation~\cite{sim-nim}. An increase of the diagonal element values and a corresponding decrease of the
+misidentification probability is expected as, for example, information from the threshold Cherenkov detectors and
+the RICH in particular are integrated into the algorithm and isolated hits in the FTOF and CTOF detectors are
+incorporated into the neutral particle identification algorithm.
 
-Another measure of the particle identification performance for neutrals is given by the reconstruction of $\pi^0$
-decays to two photons. Figure~\ref{fig:pi0mass} shows the $\gamma \gamma$ invariant mass reconstructed from
-the ECAL and from the Forward Tagger.
-
-\begin{table}[htpb]
+\begin{table}[ht]
   \begin{center}
     \begin{tabular}{|c|cccccc|}\hline
           & \multicolumn{6}{c|}{Truth}\\        
@@ -167,14 +158,18 @@ the ECAL and from the Forward Tagger.
   $n$     &      &       &      &      & 0.66 &   0.01   \\ 
  $\gamma$ &      &       &      &      & 0.14 &   0.95   \\\hline 
     \end{tabular}  
-    \caption{Particle identification matrix for the CLAS12 Forward Detector acceptance, based on simulated hadrons
-      and photons with momentum between 1 and 2.5~GeV, and electrons up to 9~GeV. The diagonal elements are
+    \caption{Particle identification matrix for the CLAS12 Forward Detector based on simulated hadrons and
+      photons with momentum between 1 and 2.5~GeV, and electrons up to 9~GeV. The diagonal elements are
       correctly identified, while the off-diagonal elements are misidentified. Detector inefficiencies are included.}
   \label{table:pidmatrix}
   \end{center}
 \end{table}
 
-\begin{table}[htpb]
+Another measure of the particle identification performance for neutrals is given by the reconstruction of $\pi^0$
+decays to two photons. Figure~\ref{fig:pi0mass} shows the $\gamma \gamma$ invariant mass reconstructed from
+the ECAL and from the Forward Tagger.
+
+\begin{table}[ht]
   \begin{center}
     \begin{tabular}{|c|cccc|}\hline
           & \multicolumn{4}{c|}{Truth}\\        
@@ -185,9 +180,9 @@ the ECAL and from the Forward Tagger.
   $n$     &       &      &      & 0.11 \\ 
  $\gamma$ &       &      &      & 0.00 \\\hline 
     \end{tabular}  
-    \caption{Particle identification matrix for the CLAS12 Central acceptance, based on simulated hadrons
-      with momentum between 0.3 and 1.1 ~GeV. The diagonal elements are
-      correctly identified, while the off-diagonal elements are misidentified. Detector inefficiencies are included.}
+    \caption{Particle identification matrix for the CLAS12 Central based on simulated hadrons with momentum
+      between 0.3 and 1.1 ~GeV. The diagonal elements are correctly identified, while the off-diagonal elements
+      are misidentified. Detector inefficiencies are included.}
   \label{table:pidmatrix2}
   \end{center}
 \end{table}

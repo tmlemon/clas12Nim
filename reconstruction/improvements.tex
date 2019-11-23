@@ -20,18 +20,19 @@ to find the best track candidates in each event and to reduce the number of comb
 
 With increased luminosity, the number of potential DC cross candidates increases. This implies that the Kalman
 Filter fitting algorithm must be run for all possible combinations of crosses. Figure~\ref{fig:nn1} shows a typical
-example of DC data in a projective view using {\it ced}. This figure illustrates the potential of combinatorial trials
-to identify tracks. We are developing a classifier convolutional neural network that can identify which segments
-from each region of the DCs can potentially form a good track. We intend to use this network in reconstruction
-processing to reduce the number of combinatorial fits.
+example of DC data in a projective view using {\it ced}. This figure illustrates the potential of using combinatorial
+trials to identify tracks. We are developing a classifier convolutional neural network that can identify which
+segments from each region of the DCs can potentially form a good track. We intend to use this network in
+reconstruction processing to reduce the number of combinatorial fits.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.53\textwidth]{pics/nn1.png}
 \caption{Event display from {\it ced} of track segments in the DC for a typical beam event during data taking
   at the nominal CLAS12 luminosity. This display shows the six DC superlayers in each sector of the Forward
-  Detector. Each superlayer contains six layers of 112 wires. Each wire cell is represented by an square cell on the
-  display. A wire with a hit is colored in red.}
+  Detector. Each superlayer contains six layers of 112 wires. Each wire cell is represented by a square cell on the
+  display. A wire with a hit is colored in red. The middle of the rectangular grid represents the beamline with the
+  DC R1 detectors closest and the DC R3 detectors farthest away.}
 \label{fig:nn1}
 \end{figure}
 
@@ -43,7 +44,7 @@ of the network is measured using four quantities:
 \begin{itemize}
 \item The ratio of valid tracks (correctly detected) to the total number of tracks in the sample;
 \item The ratio of valid tracks and invalid tracks (incorrectly predicted as valid; i.e. false positives) to the
-  total number of tracks in the sample.;
+  total number of tracks in the sample;
 \item The ratio of valid tracks (correctly detected with the highest probability) to the total number of tracks in
   the sample;
 \item The ratio of invalid tracks (false positives) to the total number of tracks in the sample.
@@ -61,7 +62,7 @@ hit-based tracking are shown in Fig.~\ref{fig:nn2}.
 \centering
 \includegraphics[width=0.45\textwidth]{pics/nn2.png}
 \caption{Benchmark results of reconstruction speed for hit-based tracking. The (black) blue curve corresponds to
-  the (non) artificial intelligence assisted reconstruction processing time as a function of event number.}
+  the (non-)artificial intelligence assisted reconstruction processing time as a function of event number.}
 \label{fig:nn2}
 \end{figure}
 
@@ -92,7 +93,7 @@ Improvements to tracking in the CVT are currently being studied. These include:
 \item the use of SVT clusters instead of crosses in the seeding.
 \end{itemize}
 
-These updates aim at enhancing the robustness of the tracking algorithm and improving resolution and efficiency.
+These updates aim to enhance the robustness of the tracking algorithm and to improve resolution and efficiency.
 
 \subsubsection{Improvements to Time-of-Flight Reconstruction}
 
@@ -101,7 +102,7 @@ as input to the Event Builder algorithms. The use of clusters for particles that
 paddles (either in the FTOF or CTOF systems) is expected to yield improved timing resolution, as is combining
 the hit times in FTOF for tracks that go through both forward counter hodoscopes as discussed in
 Section~\ref{sec:tof-cluster}. A quantitative estimate of the timing resolution improvements and a validation of
-the clustering algorithm are currently ongoing using on Monte Carlo simulations.
+the clustering algorithm are currently ongoing using Monte Carlo simulations.
 
 \subsection{Improvements to the Event Builder}
 
@@ -109,7 +110,7 @@ The matching of tracks to detector responses, either hits or clusters, is curren
 approach between the tracks and the response coordinates. Improvements to this matching can be obtained using
 track trajectories, i.e. intersections of the track with the relevant detector planes where the responses are reported.
 The use of trajectories will reduce the uncertainty on the path length determination that relies on the response
-coordinates. The use of timing information in the matching will reduce the effect of accidentals in high rates detectors
+coordinates. The use of timing information in the matching will reduce the effect of accidentals in high-rate detectors
 such as the HTCC.
 
 
