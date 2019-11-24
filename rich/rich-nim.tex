@@ -1368,9 +1368,16 @@ Despite the fact that the above studies have not yet been finalized, and only pa
 implemented so far, the preliminary SPE Cherenkov angle resolution yields typical values around 6~mrad. It is expected to improve
 towards the goal value of 4.5~mrad once the corrections for the detector misalignment are implemented and the
 realistic optical parameters of each aerogel tile are taken into accounted. As an example, the effect of a preliminary
-alignment of the whole RICH detector is shown for one aerogel tile in Fig.~\ref{Fig:Align}. After alignment, the resolution improve towards
+alignment of the RICH as a whole is shown for one aerogel tile in Fig.~\ref{Fig:Align}. The
+resolution is calculated as the RMS of the distribution of the average Cherenkov angles extracted for 
+each single track of the electron control sample. Such averages are calculated 
+over the detected photons, whose reconstructed path satisfies the time coincidence and provides an angle within the 
+kinematic limits described above, associated with the track. The shown fit uses the function
+$$\sigma = \sqrt{\frac{\sigma_1^2}{N}+\sigma_0^2}$$ to extract the single photon resolution $\sigma_1$ in addition to
+a constant term $\sigma_0$ measuring the residual systematics due, e.g. to misalignment.
+After alignment, the resolution improve towards
 the TDR projected values, that are 4.5 mrad for single photon detection and 1.5 mrad for the average over all the photons 
-associated with the hadron track. Such preliminary Cherenkov angle resolution is already sufficient for an effective hadron
+that are associated with the control electron track. Such preliminary Cherenkov angle resolution is already sufficient for an effective hadron
 separation in the goal range of momenta, from 3 to 8~GeV, as shown by Figs.~\ref{Fig:CHele} to \ref{Fig:CHhad2}.
 
 \begin{figure}[t]
