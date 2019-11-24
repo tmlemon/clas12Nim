@@ -1,24 +1,66 @@
 \section{Data Processing}
+\label{sec:dataproc}
 
 \subsection{Workflow}
-The raw data is currently first preprocessed.  This is an I/O-heavy, single-threaded process and involves extracting hits from waveforms, translating data-acquisition/hardware nomenclature to physical detector objects, performing special analyses dependent on serial event access, and converting from the input EVIO format to the HIPO data format.  This phase includes registering beam helicity state changes and special scaler events, and populating their results into tag-1 HIPO events to facilitate downstream analysis.  The result is a factor of $\sim$5 reduction in size and a file format optimized for I/O.
 
-The second stage is a cpu-heavy reconstruction phase, including all the tracking, clustering, calorimetry, time-of-flight, and event building in the previous sections.  It runs multi-threaded in the CLARA framework and can be configured to output various data schema depending on the purpose, e.g. the DST structures of \ref{sec:dsts} during full-scale processing, or larger, special-purpose banks during preliminary calibrations phases.
+The raw data from the detector subsystems is currently first preprocessed in what is called the decoding
+stage. This is an I/O-heavy, single-threaded process and involves extracting hits from waveforms, translating
+data-acquisition/hardware nomenclature (associated with crate/slot/channel labels) into physical detector objects,
+performing special analyses dependent on serial event access, and converting from the input EVIO format to the
+HIPO data format.  This phase includes registering beam helicity state changes and special scaler events, and
+populating their results into special tagged HIPO events to facilitate later analysis.  The result is a factor of
+$\sim$5 reduction in size and a file format optimized for I/O.
 
-The final stage is I/O-heavy analysis trains that perform event skimming and accommodate corrections and common analysis plugins.  It splits the data into multiple output files based on different event selections, each optimized for a group of physics analyses.  And example schematic is shown in Figure ~\ref{fig:train}.  This stage is designed to be be run repeatedly as selection criteria and physics analyses mature.
-\begin{figure}
-    \includegraphics[width=0.45\textwidth,height=0.2\textheight]{pics/train.jpg}
-    \caption{Schematic flow of analysis trains.\label{fig:train}}
-\end{figure}
+The second data processing stage is a CPU-heavy reconstruction phase, including all of the tracking, clustering,
+calorimetry, time-of-flight, and event building in the previous sections.  It runs multi-threaded in the CLARA
+framework and can be configured to output various data schema depending on the purpose during full-scale data
+processing (see Section~\ref{sec:dsts}), or larger, special-purpose banks during preliminary calibration phases.
 
-\subsection{DSTs}\label{sec:dsts}
-The final data output is provided by the Event Builder in the form of data summary tapes (DST), a standardized selection of HIPO banks for physics analysis.  These include
+The final stage of data processing involves the running of I/O-heavy analysis trains that perform event skimming
+(e.g. filtering out specific final state event topologies),  and accommodate various corrections and common analysis
+plugins.  It splits the data into multiple output files based on different event selections, each optimized for a
+group of physics analyses. An example schematic is shown in Fig.~\ref{fig:train}. This stage is designed to be run
+repeatedly as selection criteria and physics analyses mature. The reduction factor of the input file size generated
+by the analysis trains depends directly on the applied filtering conditions for the specific output. Selecting events
+with an electron identified in the ECAL provides a scale reduction factor of $\sim$0.3, while for events with an
+electron in ECAL and a positive hadron in CLAS12, the scale reduction factor is $\sim$0.1.
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.9\textwidth]{pics/train.pdf}
+  \caption{Schematic flow of analysis trains.  The example shows a train composed by a plugin to correct the ECAL
+      sampling fraction (SF) and several analysis filters for different final states. Events from a HIPO file are read
+      by the IO service (blue) and processed through the analysis chain that applies the selected corrections and
+      labels them according to the different filters (orange). The labeled events are written to the corresponding
+      output file.}
+    \label{fig:train}
+\end{figure*}
+
+\subsection{Data Summary Tapes}
+\label{sec:dsts}
+
+The final data output is provided by the Event Builder in the form of data summary tapes (DSTs), a standardized
+selection of HIPO banks for physics analysis. These include:
+
 \begin{itemize}
-    \item global event information, e.g. run number and event timestamp, integrated beam charge, beam helicity state, event start time;
-    \item particle information, e.g. momentum four-vector and vertex position, particle type and identification quality, and status words that encode information on the sub-detectors involved in the particle formation;
-    \item high-level detector response information associated with each particle, e.g. detector identifier, response position and time, and track trajectory in each detector layer.
+\item global event information, e.g. run number and event time stamp, integrated beam charge, beam helicity state,
+  event start time;
+\item particle information, e.g. momentum four-vector and vertex position, particle type and identification quality,
+  and status words that encode information on the sub-detectors involved in the particle formation;
+\item high-level detector response information associated with each particle, e.g. detector identifier, response
+  position and time, and track trajectory in each detector layer.
 \end{itemize}
-The DST banks are organized such that the large, detector information can easily be dropped to leave only the data essential for a high-level physics analysis, without leaving dangling references or unnecessary information.
+
+\noindent
+The DST banks are organized such that the large detector information banks can easily be dropped to leave only
+the data essential for a high-level physics analysis, without leaving unassociated references or unnecessary information.
 
 \subsection{Computing Resources}
-Reconstruction of all CLAS12 data is performed on Jefferson Lab's batch computing system~\cite{jlab-batch-farm}.  It currently consists of about 400 compute nodes of various flavors, with a total of about 21,000 available jobs slots and half as many cores.  The input raw data and analyzed output data are stored on JLab's tape silo \cite{jlab-tape-silo}, which provides sufficient cold storage for all of JLab's activities.  Data for physics analysis is also stored live on JLab's Lustre filesystems \cite{jlab-lustre}, which is currently about 2 PB but being increased to almost 7 PB in the near future.  Analysis of reconstructed data is performed on the JLab batch and interactive farm nodes, and also transported to other institutions for final physics analysis.
+
+Reconstruction of all CLAS12 data is performed on Jefferson Lab's batch computing system~\cite{jlab-batch-farm}.
+It currently consists of about 400 compute nodes of various types, with a total of about 21,000 available jobs
+slots and half as many cores.  The input raw data and analyzed output data are stored on JLab's tape silo
+\cite{jlab-tape-silo}, which provides sufficient cold storage for all of JLab's activities.  Data for physics analysis is
+also stored live on JLab's Lustre filesystems~\cite{jlab-lustre}, which currently includes about 2~PB of disk, but will
+be increased to almost 7~PB in the near future. Analysis of reconstructed data is performed on the JLab batch and
+interactive farm nodes, and also exported to outside institutions for final physics analysis.

@@ -33,19 +33,19 @@ The FT-TRK digitization provides the ADC value calculated using the total energy
 There is no timing information in the FT-TRK output.
 
 For FT-CAL hits, the energy deposited is converted first to the charge produced at the end of the electronics chain composed
-by an avalanche photodiode (APD) and pre-amplifier, and then to an ADC.
+by an avalanche photo-diode (APD) and pre-amplifier, and then to an ADC.
 The first conversion is based on the measured charge for cosmic rays that deposit a known energy in the crystals,
 while the second conversion is based on the FADC conversion factor. A smearing on the final ADC values is added,
-accounting for the Poisson distribution of photo-electrons produced by the photosensor, the Gaussian noise of the
-photosensor, and of the preamplifier. All parameters, the number of photo-electrons per MeV of energy deposited,
-the RMS width of the APD noise, and of the preamplifier input noise, have been tuned to the experimental data.
+accounting for the Poisson distribution of photo-electrons produced by the photo-sensor, the Gaussian noise of the
+photo-sensor, and of the pre-amplifier. All parameters, the number of photo-electrons per MeV of energy deposited,
+the RMS width of the APD noise, and of the pre-amplifier input noise, have been tuned to the experimental data.
 
 The same approach is adopted to process FT-HODO hits, in which the deposited energy is first converted to charge and then to ADC.
 The smearing in this case accounts only for the Poisson distribution of the measured number of photo-electrons,
 which dominates over other sources because of the relatively small number of photo-electrons per MeV of energy deposition.
 
 The TDC of FT-CAL hits is computed from the time of the energy deposition, accounting for the speed of the scintillation light in
-the crystal and the distance to the photosensor, assuming a known time-to-TDC conversion factor. A Gaussian smearing on the
+the crystal and the distance to the photo-sensor, assuming a known time-to-TDC conversion factor. A Gaussian smearing on the
 resulting TDC is added based on a fixed RMS resolution derived from the experimental measurements.
 
 Similarly, the TDC of FT-HODO hits is derived from the time of a given energy deposition, adding a fixed offset before the

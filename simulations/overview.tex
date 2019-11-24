@@ -1,9 +1,10 @@
 \section{Overview}
 
-The CEBAF Large Acceptance Spectrometer for operation at 12 GeV beam energy (CLAS12) \cite{clas12-nim} in Hall B at Jefferson Laboratory was designed to study
+The CEBAF Large Acceptance Spectrometer for operation at 12 GeV beam energy (CLAS12) \cite{clas12-nim} in Hall B at
+the Thomas Jefferson National Accelerator Facility (Jefferson Lab) was designed to study
 electro-induced nuclear and hadronic reactions by providing efficient detection of charged and neutral particles over a large
 fraction of the full solid angle. The spectrometer has met the performance criteria of instantaneous luminosity up
-to \cLuminosity and momentum resolution in the forward direction using the drift chambers and in the central
+to \cLuminosity and momentum resolution $\sigma_p / p$ in the forward direction using the drift chambers and in the central
 direction using the vertex tracker of $< 1\%$ and $< 3\%$, respectively.
 
 The CLAS Collaboration has implemented a detector simulation within the GEMC software framework \cite{GEMC}.
@@ -23,7 +24,7 @@ GEMC is a c++ framework that uses Geant4 \cite{geant4} to simulate the passage o
 \begin{itemize}
 	\item an application-independent geometry description;
 	\item an easy interface to build / run experiments;
-	\item CAD/GDML imports.
+	\item CAD / GDML imports.
 \end{itemize}
 
 The simulation parameters are stored in external databases and are used to define the Geant4 objects at run time. This includes:
@@ -156,7 +157,7 @@ command line options or configuration files at run time:
 	\item minStep: minimum track distance in the magnetic field (step) before re-computing its value;
 	\item integralAlgorithm: compute the field value from the closest cell or using a linear (or bi-linear) interpolation;
 	\item interpolationMethod: interpolation algorithm used to transport tracks in magnetic fields, typically
-		  a variation (choice of order and/or precision) of Runge Kutta \cite{rungeKutta} methods.
+		  a variation (choice of order and/or precision) of Runge-Kutta \cite{rungeKutta} methods.
 \end{itemize}
 
 The implementation of the CLAS12 magnetic fields is described in Section \ref{sec:clas12FieldMaps}.

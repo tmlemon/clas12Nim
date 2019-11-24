@@ -26,7 +26,7 @@ It should be mentioned that it took a significant amount of time to implement th
 
 \subsection{CLAS12 Electromagnetic Calorimeters (ECAL)}
 
-Among all of the Trigger System elements, the most challenging for the FPGA implementation was the trigger component serving the two CLAS12 electromagnetic calorimeters. Due to their structure, these calorimeters do not provide cluster coordinates or energies without significant event reconstruction. The trigger implementation details are described in Section \ref{sec:ECAL}. Below we describe our experience with HLS using ECAL as an example.
+Among all of the Trigger System elements, the most challenging for the FPGA implementation is the trigger component serving the two CLAS12 electromagnetic calorimeters. Due to their structure, these calorimeters do not provide cluster coordinates or energies without significant event reconstruction. The trigger implementation details are described in Section \ref{sec:ECAL}. Below we describe our experience with HLS using ECAL as an example.
 
 
 \subsection{C++ vs. HLS C++}
@@ -78,7 +78,7 @@ Another reason for subdividing the project is the lack of multi-clock domain sup
 
 \subsection{HLS Versions and Cross-Project Dependences}
 
-As mentioned before, splitting the project into smaller pieces allowed us to meet the timing requirements. This worked, in particular, because we were able to eliminate combinatorial paths between the HLS projects connected by the streams. Such dependences can be clearly seen looking into the schematics for the failed timing chains, and were usually related to the large state machine control signals going between modules. Initially we used HLS version 2015, and despite all of our efforts, we could not eliminate these long combinatorial paths across modules. This was resolved after switching to HLS version 2017, where the streams could be fully registered (with pragma ``axis register both port=''). This meant that if the registered HLS streams were used between separate HLS projects, then the state machine paths were also registered between modules. With that, it was only a matter of splitting projects into smaller pieces to improve/meet the timing requirements.
+As mentioned before, splitting the project into smaller pieces allowed us to meet the timing requirements. This worked, in particular, because we were able to eliminate combinatorial paths between the HLS projects connected by the streams. Such dependences can be clearly seen looking into the schematics for the failed timing chains, and were usually related to the large state machine control signals going between modules. Initially we used HLS version 2015, but we could not eliminate these long combinatorial paths across modules. This was resolved after switching to HLS version 2017, where the streams could be fully registered (with pragma ``axis register both port=''). This meant that if the registered HLS streams were used between separate HLS projects, then the state machine paths were also registered between modules. With that, it was only a matter of splitting projects into smaller pieces to improve/meet the timing requirements.
 
 
 \subsection{HLS Settings}

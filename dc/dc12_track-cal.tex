@@ -17,7 +17,7 @@ and modeling procedures.
 
 The drift chamber Time-to-Digital Converters (TDCs) measure time.  
 These TDC units are part of our overall DCRB boards and
-have an intrinsic resolution of 1~ns or better; too small to be relevant to
+have an intrinsic resolution of 1~ns or better, too small to be relevant to
 our overall time-to-distance calibration.
 
 First, the digitized time is corrected for a number of effects, and this corrected time is converted
@@ -33,17 +33,19 @@ reached the sense wire.
 The drift time is given by the following expression:
 \begin{equation} 
 \label{tdrift}
-t_{drift} = t_{tdc} - t_{start} - t_{0} - t_{flight} - t_{prop}
+t_{drift} = t_{tdc} - t_{start} - t_{0} - t_{flight} - t_{prop} - t_{walk}
 \end{equation}
 
 \noindent
 where $t_{tdc}$ is the raw time measured by the TDC, $t_{start}$ is the event start time (the time at which
 the triggering particle left the target),  $t_0$ is the fixed-time (cable) delay for the wire, $t_{flight}$ is the 
-flight time of the particle from the interaction vertex to the wire and $t_{prop}$ 
-is the signal propagation time along the wire.
+flight time of the particle from the interaction vertex to the wire, $t_{prop}$ 
+is the signal propagation time along the wire and $t_{walk}$ is a 
+shift of the recorded hit time to larger values which depends on the
+ion density of the track (beta-dependent) and the distance of the track to the wire. 
 With a trigger based on detecting an electron in the CLAS12 detector, the event start time is 
-given by the Forward Time-of-Flight system~\cite{ftof-nim} counter time for the primary scattered
-electron corrected for the calculated flight time of this electron from the beam-target vertex.
+given by the Forward Time-of-Flight system's~\cite{ftof-nim} counter time for the scattered
+electron, corrected for the calculated flight time of this electron from the beam-target vertex.
 
 As indicated in Eq.~\ref{tdrift}, the fixed-time delays 
 for each wire must be known in order to determine the drift times.   To determine
@@ -155,7 +157,7 @@ must equal the saturated value, $V_0$;
 \item the function has an inflection point (a
 minimum in velocity) at the point in the cell with the lowest electric field
 strength.  From the geometry of our cells, this occurs at a distance
-of $\approx 0.64 \times Dmax$; and
+of $\approx 0.64 ~Dmax$; and
 \item the velocity equals $V_{mid}$ at the inflection point.
 \end{enumerate}
 
@@ -179,7 +181,7 @@ smaller than $Dmax$.
 Figure~\ref{xvst} provides an illustration of the local-angle dependence
 of distance versus time.  When the time is equal to $Tmax$ the distance is equal to
 the largest value for the local angle; that is, $Dmax_{\alpha}$.  Also note that by
-simple geometrical reasoning, $Dmax_{\alpha} = Dmax \times \cos(30^\circ-\alpha)$.
+simple geometrical reasoning, $Dmax_{\alpha} = Dmax ~\cos(30^\circ-\alpha)$.
 We assume that at times less than $Tmax$ and distances less than $Dmax$, the calculated
 distances still vary linearly as $\cos(30^\circ-\alpha)$.  This angle dependence is built into
 our functional form.
@@ -188,7 +190,7 @@ Figure~\ref{garfield-isochrones} shows a 0$^\circ$ track and a 30$^\circ$ track,
 distance from the sense wire. They will produce
 a signal hit with the same time $Tmax$ even though their distance-of-closest-approach 
 differs by a factor of $\cos 30^\circ$.  If $Dmax$ is the distance from sense to field wire (and the maximum
-DOCA possible for a 30$^\circ$ track), then $Dmax$ times $\cos(30^\circ-\alpha)$ is the maximum
+DOCA possible for a 30$^\circ$ track), then $Dmax ~\cos(30^\circ-\alpha)$ is the maximum
 DOCA for a track with local angle $\alpha$.  Call this distance $Dmax_{\alpha}$.  
 We derived the function for time versus distance for a particular local angle, $\alpha$, by
 assuming the same functional form as for $\alpha = 30^\circ$ but 
@@ -236,7 +238,7 @@ entrance angle.
 \alpha_b = \alpha_0 + \cos^{-1}(1 - b_{rot} B), 
 \end{equation}
 
-where $b_{rot}$ is a constant equal to $0.02$ deg/T and $B$ is the magnetic field strength in Tesla and angular
+where $\alpha_0$ is the actual entrance angle, $b_{rot}$ is a constant equal to $0.02$ deg/T and $B$ is the magnetic field strength in Tesla; angular
 units are degrees.
 
 %%%%%%%%% Figure : TRKDOCA vs. Drift Time -- Angle and Field Dependence %%%%%%%%%%
@@ -261,8 +263,8 @@ t(B) = t(0) + b_{mag} B^2,
 \end{equation}
 
 \noindent
-where $b_{mag}$ is a constant which is determined by calibration with a
-value of approximately $100 ns/Tesla^2$ and $B$ is the magnetic field strength in Tesla. In this expression, the
+where $b_{mag}$ is a constant that is determined by calibration with a
+value of approximately $100~ns/Tesla^2$ and $B$ is the magnetic field strength in Tesla. In this expression, the
 first term is the time calculated assuming $B$=0, and the second term is the time increase due to the $B$
 field. For the R1 and R3 functions, no magnetic field dependence is included, as the chambers are located
 outside the torus cryostats in regions where field strengths are less than 0.2 Tesla.  
@@ -279,20 +281,20 @@ We determine the optimized values of these function parameters by fitting
 a histogram of TRKDOCA vs. time, storing the fit parameters in a data-base, re-doing
 the track fitting, and iterating.
 
-To illustrate our fits, in Fig.~\ref{calcdoca-and-trkdoca-vs-time} we show a plot of
+To illustrate our fits, in Fig.~\ref{time-vs-doca} we show a plot of
 the data (time vs. TRKDOCA) and overplotted is the function (time vs. DOCA).
 The function does a fair job of following the shape of the data.
 
 %%%%%%%%% Figure : calcdoca and trkdoca plotted vs time %%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htbp]
-\vspace{6cm}
+\vspace{9cm}
 \begin{picture}(50,50)
-\put(65,-10)
-{\hbox{\includegraphics[width=1.2\textwidth,natwidth=610,natheight=642]{img/calcdoca-and-trkdoca-vs-time.png}}}
+\put(0,-10)
+{\hbox{\includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{img/time-vs-doca.png}}}
 \end{picture}
 \caption{\small{A plot of TRKDOCA vs. time from our track fits; overplotted in darker symbols
 is the calculated distance (DOCA) vs. time.}}
-\label{calcdoca-and-trkdoca-vs-time}
+\label{time-vs-doca}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -329,7 +331,7 @@ a reasonable starting point to be refined by comparisons with data.
 
 To adjust the chamber geometry parameters we analyzed
 ``straight-track'' data taken with the both magnets (torus and solenoid) turned off.  
-Tracks were found and fitted with our standard track reconstruction ~\ref{recon-nim} package.
+Tracks were found and fitted with our standard track reconstruction ~\cite{recon-nim} package.
 For various bins in the angle of the track, we measured the shifts of the
 track residual means as a function of layer number. 
 Before correcting for mis-alignment in software, the data showed significant 
@@ -425,10 +427,7 @@ of each chamber's geometrical location and orientation.
 
 In addition to these alignment procedures, which treat each chamber as a rigid, fixed
 geometrical shape, we also measured and corrected two important chamber distortions:
-\begin{itemize}
-\item wire sagging due to gravity,
-\item bowing inward of the endplates in response to the collective wire tension.
-\end{itemize}
+wire sagging due to gravity, and bowing inward of the endplates in response to the collective wire tension.
 
 The wire sag can be a large as 1~mm for our 4~m long wires.  For this small
 sag, it is sufficient to describe the shape of the sag as a parabola with

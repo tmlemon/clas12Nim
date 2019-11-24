@@ -5,14 +5,14 @@ The CLAS12 Trigger System was designed as a 3-stage pipeline-style system with t
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/CLAS12_TRIGGER_1.pdf}
-	\caption{The CLAS12 Trigger System diagram. It designed as a 3-stage pipeline-style system with total latency up to 8~$\mu$s. Input information comes from Flash ADC Boards (FADC) and Drift Chamber Readout Boards (DCRB), and 32 separate trigger decisions are reported to the Trigger Sypervisor (TS). }
+	\caption{The CLAS12 Trigger System diagram. It is designed as a 3-stage pipeline-style system with total latency up to 8~$\mu$s. Input information comes from Flash ADC Boards (FADC) and Drift Chamber Readout Boards (DCRB), and 32 separate trigger decisions are reported to the Trigger Sypervisor (TS). }
 	\label{fig:TriggerDiagram}
 \end{figure}
 
 
 \subsection{FADCs as Pre-trigger}
 
-All PMT-based detectors in CLAS12 participating in the Trigger System use JLab VXS 250~MHz flash ADCs as the starting point of the trigger logic (FADC, \cite{daq-ref}). Each channel of the FADC boards is pre-programmed with gain, pedestal, and amplitude threshold above pedestal. Every pulse above amplitude threshold is integrated and sent to the corresponding section of the Stage 1 trigger logic. The 16-channel FADC boards report 13-bit pulse integrals and 3-bit pulse time every 32~ns, which allows the following trigger logic to restore 4~ns pulse resolution, while the double pulse resolution remains 32~ns. Based on the FADC reporting schedule, the following trigger logic stages can work on a 250~MHz clock, although in that case we found it problematic to meet the Field Programmable Gate Array (FPGA) timing. Because of that, our Stage 1 algorithms run on 125~MHz or slower clocks as described below. The trigger information is provided to the following stages using VXS backplane serial lines.
+All PMT-based detectors in CLAS12 participating in the Trigger System use JLab VXS 250~MHz flash ADCs as the starting point of the trigger logic (FADC, \cite{daq-ref}). Each channel of the FADC boards is pre-programmed with gain, pedestal, and amplitude threshold above pedestal. Every pulse above amplitude threshold is integrated and sent to the corresponding section of the Stage 1 trigger logic. The 16-channel FADC boards report 13-bit pulse integrals and 3-bit pulse time every 32~ns, which allows the following trigger logic to restore 4~ns pulse resolution, while the double pulse resolution remains 32~ns. Based on the FADC reporting schedule, the following trigger logic stages can work on a 250~MHz clock. However, in that case we found it problematic to meet the Field Programmable Gate Array (FPGA) timing. Because of this, our Stage 1 algorithms run on 125~MHz or slower clocks as described below. The trigger information is provided to the following stages using VXS backplane serial lines.
 
 
 \subsection{DCRBs as Pre-trigger}

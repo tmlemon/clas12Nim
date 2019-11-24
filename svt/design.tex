@@ -2,16 +2,16 @@
 
 \subsection{Barrel Layout and Support Structure}
 
-The SVT comprises 21504 channels of wire-bonded triplets of p-on-n AC-coupled single-sided silicon micro-strip sensors in six layers (three concentric polygonal regions that have 10, 14, and 18 double-sided modules positioned at radii of 65, 93, and 120 mm). The SVT is enclosed by a Faraday cage with an inner radius of 57 mm (with 6 mm clearance to the inner shell of the target scattering chamber) and an outer radius of 133 mm. To minimize multiple scattering, a unique module design with extra long 33~cm strips has been developed to reduce the material budget to about 1.4$\%$ of a radiation length per region (two silicon planes) for normal incidence tracks, which is essential for tracking at low momenta~\cite{Vertex2016}. No module services such as cooling lines, power, readout, and slow control cables were placed in the tracking volume. The module dimensions are 41.9 cm $\times$ 4.2 cm $\times$ 0.39 cm. All of the SVT modules are identical to minimize production costs. There are no overlaps of adjacent modules and minimal clearance between them to satisfy material budget and acceptance constraints.
+The SVT comprises 21504 channels of wire-bonded triplets of p-on-n AC-coupled single-sided silicon micro-strip sensors in six layers. The SVT barrel is formed by three concentric polygonal regions of double-sided SVT modules, positioned at radii of 65, 93, and 120 mm (see Fig.~\ref{fig:barrel-faradaycage}). The innermost Region 1 contains 10 modules, encircled by Region 2 with 14 modules, and Region 3 with 18 modules. The SVT is enclosed by a Faraday cage with an inner radius of 57 mm (with 6 mm clearance to the inner shell of the target scattering chamber) and an outer radius of 133 mm. To minimize multiple scattering, a unique module design with extra long 33~cm strips has been developed to reduce the material budget to about 1.4$\%$ of a radiation length per region (two silicon planes) for normal incidence tracks, which is essential for tracking at low momenta~\cite{Vertex2016}. No module services such as cooling lines, power, readout, and slow control cables were placed in the tracking volume. The module dimensions are 41.9 cm $\times$ 4.2 cm $\times$ 0.39 cm. All of the SVT modules are identical to minimize production costs. There are no overlaps of adjacent modules and minimal clearance between them to satisfy material budget and acceptance constraints.
 
 \begin{figure}[h] 
 \centering 
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{barrel-faradaycage.png}
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{barrel-faradaycage.jpg}
 \caption{Layout of the barrel and the Faraday Cage. Copper supports are bolted directly to the cold plate.}
 \label{fig:barrel-faradaycage}
 \end{figure}
 
-The modules  are mounted between upstream and downstream rings (see Fig.~\ref{fig:barrel-faradaycage}). For each region the upstream ring is attached to the cold plate with screws. The upstream support ring provides a mounting surface for the modules on the upstream end of the detector. It also provides a conduction path for heat to be transferred from the modules to the coolant flowing through the cold plate. 
+The modules  are mounted between upstream and downstream rings. For each region the upstream ring is attached to the cold plate with screws. The upstream support ring provides a mounting surface for the modules on the upstream end of the detector. It also provides a conduction path for heat to be transferred from the modules to the coolant flowing through the cold plate. 
 
 \begin{figure}[h] 
 \centering 
@@ -33,7 +33,7 @@ The mounting surfaces of the upstream and downstream rings are machined closely 
 
 \subsection{Module Design}
 
-The SVT uses single-sided 320-$\mu$m thick microstrip sensors fabricated by Hamamatsu Photonics, mounted on each side of the module (see Fig.~\ref{fig:module}). All modules have 3 types of sensors: H (Hybrid), I (Intermediate), and F (Far). The sensors were cut from 6 inch wafers with high resistivity of 5 $\kiloohm$ to ensure low full depletion voltage and 2 sensors per wafer to maximize the yield. Surface damage is minimized by using silicon with a <100> surface orientation. All sensors have the same size, 112 mm $\times$ 42 mm. There are three daisy-chained sensors per layer (six per module) with a 110~$\mu$m gap between them. 
+The SVT uses single-sided 320-$\mu$m thick microstrip sensors fabricated by Hamamatsu Photonics, mounted on each side of the module (see Fig.~\ref{fig:module}). All modules have 3 types of sensors: H (Hybrid), I (Intermediate), and F (Far). The sensors were cut from 6 inch wafers with high resistivity of 5 $\kiloohm cm$ to ensure low full depletion voltage and 2 sensors per wafer to maximize the yield. Surface damage is minimized by using silicon with a <100> surface orientation. All sensors have the same size, 112 mm $\times$ 42 mm. There are three daisy-chained sensors per layer (six per module) with a 110~$\mu$m gap between them. 
 
 \begin{figure}[h] 
 \centering 
@@ -42,7 +42,7 @@ The SVT uses single-sided 320-$\mu$m thick microstrip sensors fabricated by Hama
 \label{fig:strip-layout}
 \end{figure}
 
-Each layer has 256 strips with linearly varying angles of 0$^\circ$--3$^\circ$ (constant $\phi$ pitch of 1/85$^\circ$) to minimize the dead sensor area. The first readout strip is parallel to the longitudinal axis of the module; the last readout strip has an angle of 3$^\circ$ with respect to this axis (see Fig.~\ref{fig:strip-layout}). Because of the constant $\phi$ pitch, the lengths of the readout strips of the modules vary from 0.5 cm to 33 cm. At the hybrid side, the intermediate strip pitch is 78 $\mu$m and the readout pitch is 156 $\mu$m. It was shown~\cite{BRAIBANTNOTE} that radiation effects increase the inter-strip capacitance and decrease the backplane capacitance. The strip-to-pitch ratio of 0.256 has been chosen for all three types of sensors, for which the two effects compensate, and the total strip capacitance remains constant with the accumulated dose. Figure~\ref{fig:sensor} shows the cross-sectional view of the sensor. The aluminum strip width is 26 $\mu$m and is AC-coupled via the SiO$_2$ layer to the 20-$\mu$m wide $p$+ implant strips, which are 1.2 $\mu$m below the aluminum strips. The total strip capacitance at 1 MHz is below 1.3 pf/cm and the coupling capacitance above 10 pF/cm. The electrical specs of the sensors are shown in Table~\ref{tab:sensor-table}~\cite{SENSORNOTE}. The implant strips are grounded via 1.5~$\megaohm$ polysilicon resistors. The unpassivated aluminum backplane (ohmic contact) is connected to the positive side of the power supply; the $n$-bulk volume of the sensor is depleted via the highly doped $n$++ layer. The guard ring is surrounds the sensitive area to reduce the surface currents from the edges of the detector. The 42-mm width of the sensor accommodates 256 readout strips and the 1 mm keep-out zones along the edge of the sensor.
+Each layer has 256 strips with linearly varying angles of 0$^\circ$--3$^\circ$ (constant $\phi$ pitch of 1/85$^\circ$) to minimize the dead sensor area. The first readout strip is parallel to the longitudinal axis of the module; the last readout strip has an angle of 3$^\circ$ with respect to this axis (see Fig.~\ref{fig:strip-layout}). Because of the constant $\phi$ pitch, the lengths of the readout strips of the modules vary from 0.5 cm to 33 cm. At the hybrid side, the intermediate strip pitch is 78 $\mu$m and the readout pitch is 156 $\mu$m. It was shown~\cite{BRAIBANTNOTE} that radiation effects increase the inter-strip capacitance and decrease the backplane capacitance. The strip-to-pitch ratio of 0.256 has been chosen for all three types of sensors, for which the two effects compensate, and the total strip capacitance remains constant with the accumulated dose. Figure~\ref{fig:sensor} shows the cross-sectional view of the sensor. The aluminum strip width is 26 $\mu$m and is AC-coupled via the SiO$_2$ layer to the 20-$\mu$m wide $p$+ implant strips, which are 1.2 $\mu$m below the aluminum strips. The total strip capacitance at 1 MHz is below 1.3 pf/cm and the coupling capacitance above 10 pF/cm. The electrical specifications of the sensors are shown in Table~\ref{tab:sensor-table}~\cite{SENSORNOTE}. The implant strips are grounded via 1.5~$\megaohm$ polysilicon resistors. The unpassivated aluminum backplane (ohmic contact) is connected to the positive side of the power supply; the $n$-bulk volume of the sensor is depleted via the highly doped $n$++ layer. The guard ring is surrounds the sensitive area to reduce the surface currents from the edges of the detector. The 42-mm width of the sensor accommodates 256 readout strips and the 1 mm keep-out zones along the edge of the sensor.
 
 \begin{table}[h]
 \begin{tabular}{ll}
@@ -57,7 +57,7 @@ Coupling capacitance        & $>$20 pF/cm                       \\
 Value of polysilicon bias resistor   & 1.5 $\pm$ 0.5 M$\Omega$     \\
 Single strip DC current & $<$2 nA\\ \hline
 \end{tabular}
-\caption{Electrical specs of the sensors.}
+\caption{Electrical specifications of the sensors.}
 \label{tab:sensor-table}
 \end{table}
 
@@ -176,7 +176,7 @@ Sensor characterization was initially carried out by the manufacturer and later 
 \label{fig:cv-sensor}
 \end{figure}
 
-The measurements of sensor full depletion voltage were done by testing the dependence of its capacitance on the reverse bias voltage. Figure~\ref{fig:cv-sensor} shows good agreement of the data obtained at different test facilities. The full depletion voltage data were found to be within the specs. 
+The measurements of sensor full depletion voltage were done by testing the dependence of its capacitance on the reverse bias voltage. Figure~\ref{fig:cv-sensor} shows good agreement of the data obtained at different test facilities. The full depletion voltage data were found to be within the specifications. 
 
 \begin{figure}[h] 
 \centering 
@@ -283,7 +283,7 @@ After installation of the HFCBs and pitch adapters, the module was placed in a c
 \label{fig:svt-carrier-box}
 \end{figure}
 
-Wire-bonding of the backing structure, sensors, pitch adapters, and the readout chips was done on the same fixture that was used for sensor placement. Functionality of the readout was performed after the wire-bonding step on each side. Figure~\ref{fig:wire-bonding} shows an SVT module being wire-bonded. Visual inspection of the wire-bonds was part of the module quality assurance procedure.
+Wire-bonding of the backing structure, sensors, pitch adapters, and the readout chips was done on the same fixture that was used for sensor placement. Functionality of the readout was tested after the wire-bonding step on each side. Figure~\ref{fig:wire-bonding} shows an SVT module being wire-bonded. Visual inspection of the wire-bonds was part of the module quality assurance procedure.
 
 \begin{figure}[h] 
 \centering 

@@ -1,21 +1,19 @@
 \section{Data Formats}
-EvIO (Event Input-Output)~\cite{evio} is a data format designed by and maintained by the
-Jefferson Laboratory Data Acquisition Group, and is the data format of the raw data.
-For data reconstruction and analysis, the CLAS12 data format was designed to provide
-a flexible data container structure,
-with features that minimize disk
-access for the most common tasks performed in data analysis.
-The High Performance Output (HiPO)
-format developed for CLAS12 was designed to provide data compression, using LZ4
-(the fastest compression algorithm currently available),
-and random access.
+\label{sec-formats}
 
-HiPO stores data in separate records (with adjustable size), with tags associated with each record. Each record is
-compressed and a pointer to the record is kept in the file's index table. This feature allows separating events during
-reconstruction based on the content of the event, such as number of reconstructed particles. Users can read portions
-of the file depending on the final states to be analyzed.  The meta-data of the file, describing detector and
-beam conditions are common for all analysis.
+EVIO (Event Input-Output)~\cite{evio} is a data format designed and maintained by the JLab Data Acquisition
+Group, and is the data format of the raw data. For event reconstruction and analysis, the CLAS12 data format
+was designed to provide a flexible data container structure, with features that minimize disk access for the
+most common tasks performed in data analysis. The High Performance Output (HIPO) format developed for
+CLAS12 was designed to provide data compression, using LZ4 (the fastest compression algorithm currently
+available), and random access.
 
-A C++ interface is also provided with ROOT wrappers, allowing users to read HiPO files and analyze them in ROOT
-environment.
+HIPO stores data in separate records (with adjustable size), with tags associated with each record. Each record
+is compressed and a pointer to the record is kept in the file's index table. This feature allows separating events
+during reconstruction based on the content of the event, such as the number of reconstructed particles. Users can
+read portions of the file depending on the final states to be analyzed.  The meta-data of the file, describing detector
+and beam conditions, are common for all analyses.
 
+The HIPO library has both Java and C++ implementations. On the basis of the C++ implementation, a library was
+developed extending ROOT base classes to allow for HIPO files to be read from ROOT frameworks. Additional
+tools are available to allow users to produce plots using native ROOT syntax.

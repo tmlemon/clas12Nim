@@ -1,41 +1,106 @@
 \subsection{Forward Tagger}
-The Forward Tagger~\cite{ft-nim} reconstruction is designed to provide efficient algorithms to determine the energy, time and positions of the signals associated to the incident particle for each of the system sub-detector, the calorimeter, the hodoscope and the tracker, and to match these information to determine the type and 3-momentum of the particle. The package consists of four services, one for each of the sub-detectors and a global service which builds the particle information from the output of the detector reconstruction. In the following, we describe the role of each of the services and the algorithms that these implement.
 
-\subsubsection{The FT-Cal reconstruction service}
-The calorimeter service has the role of reconstructing clusters associated with the incident particles from the detector raw information. These include the charge and time recorded by the fADC boards that readout the scintillator crystal signals. A cluster is defined as a contiguous ensemble of crystals within the calorimeter, in which a signal above a minimum energy threshold (10 MeV) is found within a selected time window (10 ns) from each other.
+The Forward Tagger (FT) is placed between the HTCC and the torus magnet along the beamline~\cite{ft-nim}
+and is designed to detect electrons and photons in the polar angular range from 2$^\circ$ to 5$^\circ$. The
+FT is composed of an electromagnetic calorimeter based on PbWO$_4$ crystals (FT-Cal), a two-layer scintillator
+hodoscope (FT-Hodo), and a Micromegas tracker (FT-Trk) similar in design to the FMT. The FT reconstruction
+service is designed to provide efficient algorithms to determine the energy, time, and positions of the signals
+associated with the incident particle. The reconstruction matches this information to determine the type and
+three-momentum of the particle. The package consists of four services, one for each of the sub-detectors and a
+global service that builds the particle information from the output of the detector reconstruction. In the following,
+we describe each of the FT services and their algorithms.
 
-The first step to build a cluster is to reconstruct the energy and time of the individual crystal hits from the raw fADC information. For this purpose, charge and raw time of the recorded pulse are converted to energy and time using calibration constants derived from data. As discussed in Ref.~\cite{ft-nim}, a linear relationship between energy and charge is assumed. The hit time is defined from the raw time applying a offset and a charge-dependent correction that accounts for the so-called time walk effect.
+\subsubsection{The FT-Cal Reconstruction Service}
 
-Reconstructed hits are then ordered by energy and, starting from the maximum energy hit, the subsequent crystals are associated to it based on their position and relative time difference. Once all hits are associated to a cluster, the overall cluster energy, time and positions are computed as follows. The cluster energy, $E_{tot}$ is calculated as the sum of the individual hits energy, $E_{rec}$, plus a global correction to account for the hit thresholds and for shower leakages due to the finite length of the crystal and of the overall calorimeter size. This correction is parameterized as a function of the measured cluster energy based on full GEANT4 simulations of the detector response~\cite{ft-nim}. The cluster time is computed as the energy-weighted average of individual hits time. Finally, the cluster position in the x-y plane is computed as the logarithmic energy-weighted of the hits coordinates $(x_i,y_i)$, i.e. the crystal position with the following functional form~\cite{ic}:
+The calorimeter service has the role of reconstructing clusters associated with the incident particles from the
+detector raw information. These include the charge and time recorded by the FADC boards that read out the
+crystal signals. A cluster is defined as a contiguous ensemble of crystals within the calorimeter, in which a signal
+above a minimum energy threshold (10~MeV) is found within a selected time window (10~ns) from each other.
+
+The first step to build a cluster is to reconstruct the energy and time of the individual crystal hits from the raw
+FADC information. For this purpose, the charge and raw time of the recorded pulse are converted to energy and
+time using calibration constants derived from data. As discussed in Ref.~\cite{ft-nim}, a linear relationship between
+energy and charge is assumed. The hit time is defined from the raw time by applying an offset and a charge-dependent
+correction that accounts for time-walk effects.
+
+Reconstructed hits are then ordered by energy and, starting from the maximum energy hit, subsequent crystals
+are associated to it based on their relative positions and time differences. Once all hits are associated with a
+cluster, the overall cluster energy, time, and positions are computed. The cluster energy $E_{tot}$ is calculated as
+the sum of the individual hit energies, $E_{rec}$, plus a global correction to account for the hit thresholds and for
+shower leakages due to the finite length of the crystal and the overall calorimeter size. This correction is
+parameterized as a function of the measured cluster energy based on full Geant4 simulations of the detector
+response~\cite{ft-nim}. The cluster time is computed as the energy-weighted average of the individual hit times.
+Finally, the cluster position in the $x-y$ plane (transverse to the beam $z$-axis) is computed as the logarithmic
+energy-weighted hit coordinates $(x_i,y_i)$, i.e. the crystal position with the following functional form~\cite{ic}:
 \begin{eqnarray*}
 x_{cluster} = \frac{\sum_{i=1}^N w_i x_i}{\sum_{i=1}^N w_i},\\
 y_{cluster} = \frac{\sum_{i=1}^N w_i y_i}{\sum_{i=1}^N w_i},
 \end{eqnarray*}
+
+\noindent
 where the index $i$ runs over the $N$ crystals in the cluster and the weighting factors $w_i$ are defined as:
 \begin{equation}
 w_i=max(0,w_0+ln(E_i/E_{rec}).
 \end{equation}
-The parameter $w_0$ was fixed to 3.45 after optimization based on GEANT4 simulations. The $z$ coordinate of the cluster is set to a constant depth from the crystal upstream faced that was optimized on Monte Carlo studies
+\noindent
+The parameter $w_0$ was fixed to 3.45 after optimization based on Geant4 simulations. The $z$ coordinate of
+the cluster is set to a constant depth from the crystal upstream face that was optimized based on Monte Carlo
+studies.
 
-The resulting cluster are finally selected applying cuts to exclude instances with total and seed energy less then a threshold or with a small number of crystals. All these selection parameters as well as the other constants used in the cluster reconstruction are set at run time reading the CLAS12 calibration constants database, CCDB.
+The resulting clusters are finally selected by applying cuts to exclude instances where the total and seed energies
+are less than a defined threshold or where the number of crystals in the cluster is below a defined limit. All of these
+selection parameters, as well as the other constants used in the cluster reconstruction, are set at run time by
+reading the CLAS12 calibration constants database, CCDB.
 
-The final list of clusters is saved to an output HIPO bank that is passed to the global FT service for the particle reconstruction. The intermediate hits information is also saved to a HIPO bank for debugging purposes.
+The final list of clusters is saved to an output HIPO bank that is passed to the global FT service for the particle
+reconstruction. The intermediate hit information is also saved to a HIPO bank for debugging purposes.
 
-\subsubsection{The FT-Hodo reconstruction service}
-Similarly to the calorimeter, the hodoscope service has the role of reconstructing hits and to associate matching hits in the two layers of the detector to form clusters. 
+\subsubsection{The FT-Hodo Reconstruction Service}
 
-Hits are defined from the raw fADC information as energy and time of the signals associated to the incident particles. These are computed assuming a linear relation for the charge-to-energy conversion and an additive offset between the raw and reconstructed time. The constants necessary for these conversions are derived for each individual detector component based on beam-data calibrations as discussed in~\cite{ft-nim} and set at run time reading the values from CCDB. The reconstructed hits are then selected applying a minimum energy threshold that was optimized based on data analysis.
+The FT-Hodo is used to discriminate photons and electrons. The system consists of two layers of plastic scintillator
+tiles read out with silicon photomultipliers. The FT-Hodo reconstruction service, which is similar to that for the
+FT-Cal, has the role of reconstructing hits and associating matching hits in the two layers of the detector to form
+clusters. 
 
-The selected hits are then matched to form clusters consisting of scintillator tiles in the two detector layers, matched in space and time. The position matching distance is defined by the largest tile size, i.e. 3 cm, while the time matching parameter was optimized based on GEANT4 simulations and is set conservatively to 8 ns. The resulting clusters parameters, namely the cluster size, position, total energy and time, are then computed as follows. The cluster energy is calculated as the sum of the individual hit energy while both position in the x-y  plane and time are calculated as the energy-weighted average of the corresponding hit parameters. The resulting information is saved to a HIPO bank that is passed to the global FT service. As for the calorimeter, the intermediate hit information is also saved to a HIPO bank for debugging purposes.
+Hits are defined from the raw FADC information as the energy and time of the signals associated with the incident
+particles. These are computed assuming a linear relation for the charge-to-energy conversion and an additive
+offset between the raw and reconstructed time. The constants necessary for these conversions are derived
+for each individual detector component based on beam-data calibrations as discussed in Ref.~\cite{ft-nim} and set
+at run time by reading the values from CCDB. The reconstructed hits are then selected by applying a minimum energy
+threshold that was optimized based on data analysis.
 
+The selected hits are then matched to form clusters consisting of scintillator tiles in the two detector layers,
+matched in space and time. The position matching distance is defined by the largest tile size, i.e. 3~cm, while the
+time matching parameter was optimized based on Geant4 simulations and is set conservatively to 8~ns. The
+resulting cluster parameters are the cluster size, position, total energy, and time. The cluster energy is calculated
+as the sum of the individual hit energies, while both the position in the $x-y$ plane and time are calculated as the
+energy-weighted average of the corresponding hit parameters. The resulting information is saved to a HIPO bank
+that is passed to the global FT service. As for the calorimeter, the intermediate hit information is also saved to a
+HIPO bank for debugging purposes.
 
-\subsubsection{The FT-Tracker reconstruction service}
-The FT-Tracker reconstruction service is currently in the development stage and will be described in details in a future publication while here we discuss only the general principles.
-Algorithms for the conversion of the detector raw information to hits and for matching hits to form clusters follows the ones developed for the CLAS12 MVT that are discussed in Sec.\ref{sec:cvt}. All combinations of clusters identified in the x-y layers of each of the two sub-detectors are then built to form crosses. Finally crosses found in the two sub-detectors are matched based on their position and saved as input for the global FT service.
+\subsubsection{The FT-Trk Reconstruction Service}
 
-\subsection{The FT global service}
+The FT-Trk is used to measure the angle of the scattered electron. It consists of two double-layers of
+Micromegas and is positioned upstream of the FT-Hodo. The FT-Trk reconstruction service is currently in the
+development stage and will be described in detail in a future publication, while here we discuss only the general
+principles. Algorithms for the conversion of the raw Micromegas detector information to hits and for matching
+hits to form clusters follows those developed for the CLAS12 BMT that are discussed in Section~\ref{sec:cvt}.
+All combinations of clusters identified in the $x-y$ layers of each of the two sub-detectors are then built to form
+crosses. Finally, the  crosses found in the two sub-detectors are matched based on their position and saved as input
+for the global FT service.
+
+\subsection{The FT Global Service}
+
 The final step of the FT reconstruction is the matching of the information resulting from the three sub-detectors.
-
-Specifically, hodoscope and calorimeter clusters are matched to distinguish charge particles having a cluster in the hodoscope from neutrals that have a low probability of releasing a signal in that detector. The matching is based on the relative position of the calorimeter and hodoscope clusters in the x-y plane and on their time difference. The position matching parameter is determined by the hodoscope component size while the timing cut is set to 10 ns, similarly to the ones used in the lower levels of the FT reconstruction. The output of the matching is a FT {\it particle}, whose energy and position at the detector are determined from the calorimeter cluster parameters while its charge is set by the presence of a hodoscope cluster. The particle 3-momentum at the target for charged particles is then computed accounting for the bent in the solenoid field while for neutrals is computed assuming a straight path from the CLAS12 target center to the FT. When available, the tracker information will be used to refine the determination of the particle impact point on the FT front face and therefore improve the reconstruction of the angles at the vertex.
-
-The resulting particle information is saved to a HIPO bank for use of the CLAS12 Event Builder service.
+Specifically, hodoscope and calorimeter clusters are matched to distinguish charged particles having a cluster in the
+hodoscope from neutrals that have a low probability of creating a signal in that detector. The matching is based on
+the relative position of the calorimeter and hodoscope clusters in the $x-y$ plane and on their time difference. The
+position matching parameter is determined by the hodoscope component size, while the timing cut is set to 10~ns,
+similar to the cut value used in the lower levels of the FT reconstruction. The output of the matching is an FT
+{\it particle}, whose energy and position at the detector are determined from the calorimeter cluster parameters,
+while its charge is set by the presence of a hodoscope cluster. The particle three-momentum at the target for charged
+particles is then computed accounting for the bending in the solenoid field, while for neutrals it is computed assuming
+a straight path from the CLAS12 target center to the FT. When available, the tracker information will be used to
+refine the determination of the particle impact point on the FT front face and, therefore, to improve the
+reconstruction of the angles at the vertex. The resulting particle information is saved to a HIPO bank for use of
+the CLAS12 Event Builder service.

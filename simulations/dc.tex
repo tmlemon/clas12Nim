@@ -18,12 +18,12 @@ The hit wire identification is performed in the Process ID routine.
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcGeometry.png}
 %	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcDetail.png}
-	\caption{The GEMC implementation of the DC geometry (longitudinal cutview).
+	\caption{The GEMC implementation of the DC geometry (longitudinal cut-view).
 	         Beam is incident from the left. The solenoid volume, CTOF, CND, and HTCC are also visible.
              Geant4 trapezoids are the mother volumes corresponding to DC regions 1, 2, and 3. The track is a negative pion,
 			 hitting the various layers inside each region. The hit are indicated by the white markers. Due to the high DC
              efficiency, most tracks produce at least one hit in each layer (12 hits / region).
-             The wire hit inefficencies are incorporated in the simulation parameters to match the experimental data.}
+             The wire hit inefficiencies are incorporated in the simulation parameters to match the experimental data.}
 	\label{fig:dcGeometry}
 \end{figure}
 
@@ -31,7 +31,7 @@ The hit wire identification is performed in the Process ID routine.
 \subsubsection{Process ID}
 The wire number is calculated using the formula $n_i = y / \delta y$, where $y$ is the local vertical position in the DC layer volume
 and $\delta Y$ is the distance between each wire.
-The wire sagging due to gravity and mechanical deflections of the wire endplates due to the tension load are not taken into account.
+The wire sagging due to gravity and mechanical deflections of the wire end-plates due to the tension load are not taken into account.
 
 \subsubsection{Digitization}
 
@@ -112,7 +112,7 @@ is R=4.7 $\times$ 10$^{11}$ Hz. This corresponds to around 124,000 electrons in 
 
 Various analyses \cite{targetStudy, clas12Beamline, clas12Background}, were performed using 124,000 electrons / event
 to study the DC occupancy response to variations of hardware position and beamline configurations. The rates were scaled in region 2 and 3 to take into account the
-difference between the real and simulted time window.
+difference between the real and simulated time window.
 The results are summarized in \F{dcOccupancy}. The highest DC occupancy are in region 1. The source is mostly electromagnetic background from the target
 and beamline elements. Regions 2 and 3 are shielded against this background by the torus magnetic field. Region 3 is exposed to radiation coming from
 the interactions of the size-increasing beam (due to interactions in the target) with the torus components (especially the most downstream elements).
@@ -123,7 +123,7 @@ is considered an optimal compromise between luminosity and reconstruction effici
 	\centering
 	\includegraphics[width=0.99\columnwidth,keepaspectratio]{img/dcOccupancy.png}
 	\caption{Results for DC rates for electrons out-bending in the torus field.
-		     Top: the occupancies are below $3\%$ for region 1 and below $1.2\%$ for region 3. Bottom: layer
+		     Top: the occupancy is below $3\%$ for region 1 and below $1.2\%$ for region 3. Bottom: layer
 		     versus wire hit distribution. Results for the electron in-bending polarity shows very similar distributions.}
 	\label{fig:dcOccupancy}
 \end{figure}
