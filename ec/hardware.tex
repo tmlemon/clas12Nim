@@ -309,6 +309,18 @@ and sources of excessive noise. Repairs were dominated by breakdown noise requir
 cold solder joints of ground braids within the HV dividers, and pinhole light leaks in the RTV beads used to seal
 external sheet metal housings. 
 
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S5_4.png}
+\caption{Top: Schematic shows method used to perform PMT gain matching. The U strip PMTs use crossing W
+  strips as a proxy for light readout distance, while a multiplicity cut $N_u=N_v=N_w=1$ vetoes non-vertical muons.
+  The left plot shows the attenuation of readout light in a U PMT from cosmic hits when plotted versus W PMT strip
+  number. All U PMT gains are adjusted to center the minimum-ionizing particle (MIP) ADC peak at channel 200,
+  using W strip 61 to fix the readout distance at minimum attenuation. Bottom: Summary of MIP calibration for all
+  U strips. Edge strips U1 and U68 show contributions from non-vertical muon trajectories that cannot be vetoed.}
+\label{fig:S5_4}
+\end{figure}
+
 Test procedures included using a cosmic muon trigger to establish digitization configuration parameters for the FADCs based on
 measurement of the PMT pulse waveforms.  The trigger was based on an OR of all W PMTs from the DSC2 timing discriminators.
 The FADC parameters include the timing, relative to the trigger, of the pulse capture window, the number of samples in the window, and the threshold of noise suppression.  An example of the PCAL PMT waveform for a 100 sample window aperture is shown in Fig.~\ref{fig:S5_3} (top), where each sample is 4~ns. Compared to the EC PMT waveform shown at the bottom of Fig.~\ref{fig:S5_3}, which has a very short duration and risetime of 2-3~ns, the PCAL waveform leading edge has a 6 ns rise and a substantially extended duration, with both prompt and delayed components. The PCAL prompt response is likely due to the convolution of both the slower polystyrene ($t_{1/2}=2-3$~ns) and Kuraray Y11 fiber ($t_{1/2}=7-12$~ns) response times compared
@@ -338,16 +350,5 @@ the response to muons with PCAL in a horizontal test position compared to the ve
 Carriage. Finally, studies of long term changes in light attenuation of the WLS fibers in PCAL will include these
 first measurements.
 
-\begin{figure}[hbt]
-\centering
-\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S5_4.png}
-\caption{Top: Schematic shows method used to perform PMT gain matching. The U strip PMTs use crossing W
-  strips as a proxy for light readout distance, while a multiplicity cut $N_u=N_v=N_w=1$ vetoes non-vertical muons.
-  The left plot shows the attenuation of readout light in a U PMT from cosmic hits when plotted versus W PMT strip
-  number. All U PMT gains are adjusted to center the minimum-ionizing particle (MIP) ADC peak at channel 200,
-  using W strip 61 to fix the readout distance at minimum attenuation. Bottom: Summary of MIP calibration for all
-  U strips. Edge strips U1 and U68 show contributions from non-vertical muon trajectories that cannot be vetoed.}
-\label{fig:S5_4}
-\end{figure}
 
 

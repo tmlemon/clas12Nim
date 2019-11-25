@@ -6,15 +6,6 @@ This run period used beam energies of 10.6, 7.5, and 6.5~GeV with the CLAS12 tor
 inbending and outbending electrons. The data presented here used the standard ECAL FPGA-based electron
 trigger~\cite{nim:trig} with a 15~kHz trigger rate and beam currents of 40~nA on a 5~cm LH$_2$ target.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.8\columnwidth,keepaspectratio]{img/S10_1_000.png}
-\caption[]{Reconstructed shower energy in the PCAL and EC modules in response to electrons with a momentum
-  range of 1-10~GeV and a polar scattering angle range of 6$^\circ$-34$^\circ$. The energy is not corrected for
-  sampling fraction. The diagonal lines show the limits for the total reconstructed energy PCAL+EC.}
-\label{fig:S10_1_000}
-\end{figure}
-
 \subsection{Electron Response}
 
 The response of the PCAL and EC components of a single ECAL module to high energy electrons is shown in
@@ -34,6 +25,15 @@ Fig.~\ref{fig:S10_1_0} as a function of the electron track momentum determined b
 drift chambers.  The measurement is compared to GEMC simulations of electrons impacting the central portion of the ECAL,
 which show a dependence on the measured energy ranging from 0.22 to 0.255 over the expected range of electron
 momentum. The comparison shows there are a few percent systematic deviations due possibly to residual calibration errors.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\columnwidth,keepaspectratio]{img/S10_1_000.png}
+\caption[]{Reconstructed shower energy in the PCAL and EC modules in response to electrons with a momentum
+  range of 1-10~GeV and a polar scattering angle range of 6$^\circ$-34$^\circ$. The energy is not corrected for
+  sampling fraction. The diagonal lines show the limits for the total reconstructed energy PCAL+EC.}
+\label{fig:S10_1_000}
+\end{figure}
 
 \begin{figure}[t]
 \centering
@@ -114,20 +114,21 @@ optimize the track matching cuts used for electron identification and background
 
 \subsection{Reconstruction of $\pi^0\rightarrow \gamma \gamma$ Decays}
 
-Detection of the neutral $\pi$ meson requires reconstruction of the invariant mass of the
+Detection of the neutral $\pi$ meson requires reconstruction of the invariant mass $M$ of the
 $\pi^0 \rightarrow \gamma \gamma$ decay, using:
 \begin{equation}
-m^2 = 2 E_1 E_2 (1-\cos \theta_{12}),
+M^2 = 2 E_1 E_2 (1-\cos \theta_{12}),
 \label{eq:ivm}
 \end{equation}
 where $E_1$ and $E_2$ are the energies of the two photon showers in the ECAL and $\theta_{12}$ is their opening
-angle. The meson energy can be determined from these same measurements in
+angle. The $\pi^0$ energy can be determined from these same measurements in
 terms of the photon energy asymmetry $X$:
 \begin{equation}
 E^2_{\pi} = \frac{m^2_{\pi}}{(1-\cos \theta_{12})(1-X^2)}  \\
 X=\frac{E_1-E_2}{E_1+E_2}.
 \label{eq:epi}
 \end{equation}
+Here $m_\pi$ corresponds to the physical $\pi^0$ mass of 134.98 MeV.
 The reaction kinematics following from Eqs.~\ref{eq:ivm} and \ref{eq:epi} are shown in Fig.~\ref{fig:opa}. Clearly
 both the invariant mass and energy reconstruction are dominated by the ECAL angular resolution and accuracy
 at the highest energies, while at lower energies both the energy and angle resolutions contribute. Therefore this
@@ -182,8 +183,8 @@ analysis uses the GEMC result.
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/fx-study-summary.png}
 \caption[]{Summary of fits to distributions of invariant mass from $\pi^0 \rightarrow \gamma \gamma$ symmetric
   decays showing the mass resolution $\sigma_m$ vs. $\pi^0$ energy. A model of the mass resolution using
-  Eq.~\ref{eq:sigma2} was fitted to the energy dependence of $\sigma_m$ to extract estimates of the photon
-  energy and opening angle resolution, as well as the overall calibration uncertainty.}
+  Eq.~\ref{eq:sigma2} (black line) was fitted to the energy dependence of $\sigma_m$ to extract estimates of the photon
+  energy (blue) and opening angle (green) resolution, as well as the overall calibration uncertainty (red).}
 \label{fig:fx-study-summary}
 \end{figure}
 

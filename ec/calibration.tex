@@ -15,50 +15,6 @@ thresholds for both electron and MIP triggers in each calorimeter layer (PCAL, E
 $\bullet$ Introduction of WLS fibers in the PCAL readout required more accurate time-walk corrections to
 compensate for the slower scintillator risetimes in the PMT pulse.
 
-\subsection{Energy Calibration}
-
-The longitudinal and transverse segmentation of the ECAL modules together with the requirement for pattern
-recognition in the hodoscope design, means that cluster reconstruction from the full detector involves a minimum
-of 9 and up to 25 PMTs. The total detected energy $E_{det}$ results from the summation:
-
-\begin{equation}
- E_{det} = \sum_{s}^{3} \sum_{v}^{3} \sum_{n}^{N} E_{n}^{sv},\label{eq:E1}
-\end{equation}
-\begin{equation}
- E_{n}^{sv} = k(A_{sig}-A_{ped})/(a+c e^{-xb}),   \label{eq:E2}
-\end{equation}
-\begin{equation}
- E_{tot} = E_{det}/f_{s},                 \label{eq:E3}
-\end{equation}
-where $E_{n}^{sv}$ is the measured energy in the ${\it n^{th}}$ PMT contributing to the peak in view ${\it v}$ and
-stack ${\it s}$, and ${\it k}$ is a conversion from FADC units to MeV. The summation occurs over the $N$ PMTs
-in each peak, over the 3 U,V,W views for each stack, and over the PCAL, ECIN, and ECOU stacks. The measured
-quantities are ${\it A_{sig}}$, the integrated digitized PMT pulse from the FADC and ${\it A_{ped}}$, the FADC
-pedestal. The unknown quantities are the constants $a,b,c$ for the parameterization of the light attenuation as a
-function of the distance ${\it x}$ from the cluster to the readout end of scintillator strip. For EM showers, the
-detected energy must be corrected by the sampling fraction $f_{s}$, to obtain the total deposited energy $E_{tot}$.  
-
-Since the energy of an electron incident on the ECAL is known from forward tracking, the energy calibration of the
-ECAL is in principle possible by adjusting the $a,b,c$ parameters and the sampling fraction $f_{s}$ until the
-reconstructed energy matches the known energy. However, compared to conventional readout geometries, the
-relationship in the ECAL between the total deposited energy $E_{tot}$ and the partial energies $E_{n}^{sv}$ is
-non-trivial for EM showers. A global optimization would require fitting hundreds of parameters per sector and might
-be very slow to converge.
-
-A simpler approach used successfully in CLAS with the EC and demonstrated with the PCAL post-construction testing
-described in Section \ref{CRT}, is to proceed iteratively, using minimum-ionizing particles such as cosmic muons to
-simplify the energy deposition profile and allow an independent determination of the $a,b,c$ parameters for each
-PMT, then adjust the PMT HV to produce a uniform overall response. Later, beam data taken with electrons and
-pions is used to estimate ${\it f_s}$ and to cross-check the MIP calibration. With the addition of PCAL to CLAS12
-and the introduction of cluster reconstruction in the trigger, pre-calibration with cosmics is critical for evaluating
-the trigger performance of the ECAL.
-
-Cosmic runs are performed using a special FPGA trigger that accepts only events where a single pixel has been
-activated. A pixel is the simplest possible cluster, and is the smallest unit of $x-y$ position resolution in the ECAL
-calorimeters, defined by the overlap of 3 scintillator stacks, one from each of the U, V, and W views.  Requiring the
-muon to pass through a single pixel places the most restrictive cut possible on the particle track path length,
-thereby minimizing the spread in the MIP energy deposition.
-
 \begin{figure}[hbt]
 \centering
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S9_1_1.png}
@@ -69,13 +25,37 @@ thereby minimizing the spread in the MIP energy deposition.
 \label{fig:S9_1_1}
 \end{figure}
 
-A pixel map of the ECAL response to cosmic pixel triggers is shown in Fig.~\ref{fig:S9_1_1} for the W view strips in
-the PCAL (left) and ECIN (right). The color gradient in both plots clearly shows the attenuation of light as a function
-of readout distance from the pixel, as well as the overall variations in PMT gain near the readout end, such as the
-substantially brighter strip in ECIN W19. Also evident is the finer granularity of pixels in the PCAL compared to
-ECIN. Note also that unlike the ECIN and ECOU calorimeters, which have a constant pixel size, the PCAL pixels have
-a variable size and shape due to the mixture of single and double readout strip widths and the different number of
-readout strips in U compared to V and W. 
+\subsection{Energy Calibration}
+
+The longitudinal and transverse segmentation of the ECAL modules together with the requirement for pattern
+recognition in the hodoscope design, means that cluster reconstruction from the full detector involves a minimum
+of 9 and up to 25 PMTs. The total detected energy $E_{det}$ results from the summation:
+
+\begin{equation}
+ E_{det} = \sum_{m}^{3} \sum_{v}^{3} \sum_{n}^{N} E_{n}^{mv},\label{eq:E1}
+\end{equation}
+\begin{equation}
+ E_{n}^{mv} = k(A_{sig}-A_{ped})/(a+c e^{-xb}),   \label{eq:E2}
+\end{equation}
+\begin{equation}
+ E_{tot} = E_{det}/f_{s},                 \label{eq:E3}
+\end{equation}
+where $E_{n}^{mv}$ is the measured energy in the ${\it n^{th}}$ PMT contributing to the peak in view ${\it v}$ and
+module ${\it m}$, and ${\it k}$ is a conversion from FADC units to MeV. The summation occurs over the $N$ PMTs
+in each peak, over the 3 U,V,W views for each module, and over the PCAL, ECIN, and ECOU modules. Here the terms $\it{view}$ and $\it{strip}$ always refers to 
+the vertical grouping of scintillator strips whose light output is optically summed and measured by a single PMT.  The measured
+quantities are ${\it A_{sig}}$, the integrated digitized PMT pulse from the FADC and ${\it A_{ped}}$, the FADC
+pedestal. The unknown quantities are the constants $a,b,c$ for the parameterization of the light attenuation as a
+function of the distance ${\it x}$ from the cluster to the readout end of the scintillator strip. For EM showers, the
+detected energy must be corrected by the sampling fraction $f_{s}$, to obtain the total deposited energy $E_{tot}$.  
+
+Since the energy of an electron incident on the ECAL is known from forward tracking, the energy calibration of the
+ECAL is in principle possible by adjusting the $a,b,c$ parameters and the sampling fraction $f_{s}$ until the
+reconstructed energy matches the known energy. However, compared to conventional readout geometries, the
+relationship in the ECAL between the total deposited energy $E_{tot}$ and the partial energies $E_{n}^{mv}$ is
+non-trivial for EM showers. A global optimization would require fitting hundreds of parameters per sector and might
+be very slow to converge.
+
 \begin{figure}[hbt]
 \centering
 \includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S9_1_2.png}
@@ -83,6 +63,28 @@ readout strips in U compared to V and W.
   the strip. The inset shows the energy loss distribution in FADC units for the pixel highlighted by the arrow at top.}
 \label{fig:S9_1_2}
 \end{figure}
+
+A simpler approach used successfully in CLAS with the EC and demonstrated with the PCAL in post-construction testing
+described in Section \ref{CRT}, is to proceed iteratively, using minimum-ionizing particles such as cosmic muons to
+simplify the energy deposition profile and allow an independent determination of the $a,b,c$ parameters for each
+PMT, then adjust the PMT HV to produce a uniform overall response. Later, beam data taken with electrons and
+pions is used to estimate ${\it f_s}$ and to cross-check the MIP calibration. With the addition of PCAL to CLAS12
+and the introduction of cluster reconstruction in the trigger, pre-calibration with cosmics is critical for evaluating
+the trigger performance of the ECAL.
+
+Cosmic runs are performed using a special FPGA trigger that accepts only events where a single pixel has been
+activated. A pixel is the simplest possible cluster, and is the smallest unit of $x-y$ position resolution in the ECAL
+calorimeters, defined by the overlap of 3 scintillator strips, one from each of the U, V, and W views.  Therefore a pixel must be visualized as a three-dimensional object.  Requiring the
+muon to pass through a single pixel places the most restrictive cut possible on the particle track path length,
+thereby minimizing the spread in the MIP energy deposition.
+
+A pixel map of the ECAL response to cosmic pixel triggers is shown in Fig.~\ref{fig:S9_1_1} for the W view strips in
+the PCAL (left) and ECIN (right). The color gradient in both plots clearly shows the attenuation of light as a function
+of readout distance from the pixel, as well as the overall variations in PMT gain near the readout end, such as the
+substantially brighter strip in ECIN W19. Also evident is the finer granularity of pixels in the PCAL compared to
+ECIN. Note that unlike the ECIN and ECOU modules, which have a constant pixel size, the PCAL pixels have
+a variable size and shape due to the mixture of single and double readout strip widths and the different number of
+readout strips in U compared to V and W. 
 
 A typical attenuation response plot for a single PCAL PMT (W57) is shown in Fig.~\ref{fig:S9_1_2} from a cosmic
 run using a PCAL pixel trigger. The inset shows the energy loss distribution from a single pixel near the readout
@@ -92,6 +94,15 @@ the muon MIP peak extrapolated to $x=0$ is ${\it a+c}$. The desired FADC calibra
 to 10~MeV deposited energy in the 5~cm thick scintillator stack (assuming $dE/dX(MIP)=2$~MeV/cm). PMT high
 voltages were iteratively adjusted until the peaks were matched within 5\% of the desired calibration. These gains
 were then used for the initial round of data taking with an electron beam.
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S9_2_0.png}
+\caption[]{Cluster readout times $T_{u,v,w}$ at the edges of the calorimeter active area depend on the start time
+  $T_{start}$, track path length $L$, and readout distances $l_{u,v,w}$. Particles with velocity $\beta\approx 1$ are
+  chosen for calibration, while $v_{eff}$ is extracted from the fits to $T_{measured}$.}
+\label{fig:S9_2_0}
+\end{figure}
 
 \subsection{Timing Calibration}
 
@@ -128,15 +139,6 @@ to the cluster position, together with the readout distances $l_{u,v,w}$ from th
 Fig.~\ref{fig:S9_2_0}. These quantities are supplied by the various reconstruction services. Note that $T_{start}$
 is synchronized to the RF pulse containing the incident electron and also compensates for the extended target
 vertex position.
-
-\begin{figure}[hbt]
-\centering
-\includegraphics[width=1.0\columnwidth,keepaspectratio]{img/S9_2_0.png}
-\caption[]{Cluster readout times $T_{u,v,w}$ at the edges of the calorimeter active area depend on the start time
-  $T_{start}$, track path length $L$, and readout distances $l_{u,v,w}$. Particles with velocity $\beta\approx 1$ are
-  chosen for calibration, while $v_{eff}$ is extracted from the fits to $T_{measured}$.}
-\label{fig:S9_2_0}
-\end{figure}
 
 For calibration purposes the cluster time is defined by the single PMT having the largest ADC value, in order to
 minimize the time-slew correction and maximize photon statistics. Typical uncertainties in the calibrated cluster
