@@ -1,13 +1,13 @@
 \section{Event Reconstruction}
 
-Reconstruction of the FT sub-detectors information and matching between the detectors to determine the type and
-3-momentum of the incident particles is implemented in the CLAS12 Java reconstruction framework. Details on
+Reconstruction of the FT sub-detector information and the matching between the detectors to determine the type and
+three-momentum of the incident particles is implemented in the CLAS12 Java reconstruction framework. Details on
 the algorithms and implementation are provided in Ref.~\cite{reconstruction}. In the following we briefly summarize
 the main steps and final outputs.
 
 FT-Cal hits are reconstructed from the analysis of the recorded FADC information to extract energy and time;
 hits are then associated based on position and time to form clusters whose energy and centroid position are used
-as an initial seed to define the 3-momentum of the incident particles. Similarly, FT-Hodo hits are reconstructed
+as an initial seed to define the three-momentum of the incident particles. Similarly, FT-Hodo hits are reconstructed
 from the FADC raw information and matched based on position and timing to form clusters of matching tiles in the
 two layers of the detector. These are matched to clusters in the calorimeter based on position and time to distinguish
 charged particles from neutrals. Finally, FT-Trk hits are also reconstructed from the raw data and geometrically
