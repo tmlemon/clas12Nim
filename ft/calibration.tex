@@ -19,8 +19,8 @@ or malfunctioning channels. For each crystal, several parameters were studied, s
 event-by-event pedestal RMS, and the noise defined as the sample-by-sample pedestal RMS. The analysis was
 performed online, connecting to the data acquisition Event Transfer (ET) ring~\cite{daq}, or from a recorded
 EVIO file using the FT Java calibration suite~\cite{reconstruction}. Figure~\ref{fig:ftcal_pulserrun} shows a
-view of a typical pulser run analysis as displayed by the calibration suite. Among the most useful information
-available from this analysis is the average channel noise that is indicative of its functionality: a noise level below
+view of a typical pulser run analysis. One the most useful information
+obtained from this analysis is the average channel noise that is indicative of its functionality: a noise level below
 the typical range is indicative of a malfunctioning preamplifier or a disconnected cable, while a noise level above the
 typical range can indicate a high-voltage issue since the noise introduced by the LAAPDs is higher when the biased
 voltage is not applied. 
@@ -36,8 +36,8 @@ voltage is not applied.
 \label{fig:ftcal_pulserrun}
 \end{figure}
 
-Once the initial debugging of the system is completed based on pulser runs, a second checkout is performed based
-on LED runs. In this case, the FT-Cal LMS is used to input light into each of the calorimeter crystals and the
+Once the initial debugging of the system based on pulser runs is completed, a second checkout based
+on LED runs is performed. In this case, the FT-Cal LMS is used to input light into each of the calorimeter crystals and the
 corresponding signals are recorded to check the pulse amplitude and shape, and assess the correct functioning of
 the LAAPDs, preamplifiers, and front-end electronics. Using the EPICS slow controls interface of the LMS, the LEDs
 are switched on in groups of 6, one per driver, in a predefined sequence and pulsed at a rate of 62.5~Hz for a time
@@ -92,13 +92,13 @@ compared with the expected average energy deposition determined from Geant4 Mont
 
 Figure~\ref{fig:ftcal_cosmic} shows an example of a cosmic ray event as displayed by the calibration suite and an
 example of the charge distribution for a selected crystal obtained by integrating over the selected events. The
-typical values of the Landau means were found to be in the range of 4-7~pC at the calorimeter operating temperature
+typical values of the Landau peak were found to be in the range of 4-7~pC at the calorimeter operating temperature
 of $0^\circ$C and the corresponding conversion factors in the range of 2.2-3.8~MeV/pC. These values were used as
 the calibration constants for the initial reconstruction of beam data, although it was found that these constants
 usually led to an overestimate of 20\% of the actual energy deposited in the energy range of interest for the
 calorimeter of 0.5-4.5~GeV. While this discrepancy is significant, it is not unexpected given the uncertainties in
-extracting the cosmic ray signal from the background and the two order of magnitudes between the cosmic ray
-calibration point and the energy range for beam-induced signals.
+extracting the cosmic ray signal from the background and the 
+large difference in the two calibration points, since cosmic rays deposit an energy in the range of tens MeV while the energy range  for beam-induced signals is two orders of magnitude larger.
 
 \subsubsection{FT-Hodo Pre-beam Calibration}
 
@@ -110,9 +110,9 @@ or offline reading from file. The parameters that were monitored are the pedesta
 electronic noise. The extracted SPE values were compared to the typical ones to identify problematic channels and
 disconnected cables. For each channel, the waveforms that exceeded a minimum threshold above the baselines were
 analyzed to extract the SPE signal. For this purpose, the waveforms were integrated in a fixed time range and pedestal
-subtracted. The distribution of the extracted charge for a selected channel is shown in Fig.~\ref{fig:fthodo_spe}.
+subtracted. The distribution of the extracted charge for a selected channel is shown in Fig.~\ref{fig:fthodo_spe}, where the top and bottom plots are for the same tile in the two detector layers and the left and right plots show the results obtained using the waveform maximum and integral, respectively.
 Clear peaks corresponding to one, two, and three photoelectrons are visible; the difference between two peaks was used
-to determine the gain of the channel, resulting in typical values on the order of 20~pC.
+to determine the gain of the channel, resulting in typical values on the order of 20~pC. The consistency of the results obtained using the pulse maximum and integral confirms the reliability of the waveform analysis.
 
 \begin{figure}
 \includegraphics[width=1.0\columnwidth]{fig/fthodo_spe_2.pdf}
@@ -128,7 +128,7 @@ The signal charge is extracted integrating the waveform in a fixed time window a
 resulting charge distributions are inspected to ensure a sizable signal for all tiles. In this case no attempt is made to
 extract the charge-to-energy conversion factor from these distributions because of the unfavorable orientation of
 the hodoscope in the installation position for the measurement of cosmic rays that can cross the scintillation tiles with
-a very large angular spread, and therefore of path lengths, within the active volume.
+a very large angular and energy deposition spread.
 
 \subsubsection{FT-Trk Pre-beam Calibration}
 
@@ -140,7 +140,7 @@ the results for two of the four detector layers, indicating a good uniformity of
 \begin{figure}[htb]
  \includegraphics[width=0.9\columnwidth,keepaspectratio]{fig/fttrk_cosmic.png}
  \caption{2D efficiency map for the two layers of one of the FT tracker detectors as measured in the cosmic-ray
-   setup at CEA-Saclay.}
+   setup at CEA-Saclay. The black circles indicate the limits of the detector active area.}
  \label{fig:ftt_cosmic}
 \end{figure}
 
@@ -150,7 +150,7 @@ we refer to Ref.~\cite{mm} for further details.
 
 \subsection{In-beam Calibration and Commissioning}
 
-While pre-beam calibrations were essential to ensure all detector components are fully operational, the final
+While pre-beam calibrations were essential to ensure all detector components were fully operational, the final
 calibrations to extract the parameters needed for the FT reconstruction are based on analysis of beam data.
 Here we report specifically on the procedures developed for the calibration of the calorimeter and hodoscope,
 since no specific calibrations are needed for the tracker.
@@ -164,7 +164,7 @@ Fig.~\ref{fig:fthodo_gainmatch}), determining two constants from which gain matc
 
 \begin{figure}
 \includegraphics[width=1.0\columnwidth]{fig/fthodo_gainmatch.pdf}
-\caption{Gain-matching constant determination for a single hodoscope SiPM.}
+\caption{Dependence of the MIPS mean position on the SIPM bias voltage for a single hodoscope tile. The dependence is fitted to a linear function that is used to select the operating voltage that would give an average MIP signal close to the chosen value.}
 \label{fig:fthodo_gainmatch}
 \end{figure}
 
@@ -172,7 +172,7 @@ The energy calibration for the FT-Cal is achieved by analyzing electron elastic 
 the $\pi^0\to\gamma\gamma$ decay where both photons are detected in the calorimeter. 
 
 \begin{figure}
-\includegraphics[height=1.0\columnwidth]{fig/dummy.png}
+\includegraphics[width=0.9\columnwidth]{fig/ftcal_elastic_seed.png}
 \caption{Example of the seed energy distribution and the cluster energy distribution for a selected crystal for
   elastic events at 2.2~GeV beam energy.}
 \label{fig:ftcal_elasticcal}
@@ -190,9 +190,10 @@ and the cluster energy distribution for a selected crystal. Using these constant
 2.2~GeV beam energy was determined by fitting the reconstructed elastic peak (see Fig.~\ref{fig:ftcal_elasticres}).
 With the same calibration constants, the $\pi^0\to\gamma\gamma$ decay was reconstructed at 10.6~GeV beam
 energy selecting events with both photons detected in the FT-Cal, finding the width of the $\pi^0$ peak to be
-$\sim$4.4~MeV.
+$\sim$4.4~MeV, i.e. $\sim 3.2\%$.
 
-\begin{figure}
+\begin{figure}[t]
+\centering
 \includegraphics[height=1.0\columnwidth]{fig/ftcal_elasticres.pdf}
 \caption{Top: electron energy spectrum reconstructed at 2.2~GeV beam energy in the FT-Cal; the peak corresponds
   to elastic scattering; after calibrations based on elastic events, an overall energy resolution of 3.3\% at 2.2~GeV is
@@ -212,7 +213,7 @@ photons are detected in the calorimeter were selected and filtered applying the 
     \item the opening angle between the two clusters is larger than $2^\circ$.
 \end{itemize}
 
-The last cuts are useful to reduce background resulting from split clusters.  For each crystal, events in which the
+The last cuts are useful to reduce background resulting from split clusters, i.e. events in which a secondary particle originating from the electromagnetic shower create a second cluster at close distance from the primary one.  For each crystal, events in which the
 crystal is the seed of one of the two clusters are accumulated and the ratio between the measured cluster energy
 for the given crystal and the energy calculated from the nominal $\pi^0$ mass and the other cluster energy is
 computed. The distribution of such ratios is fitted with a Gaussian function to derive a correction factor for the
@@ -243,12 +244,12 @@ of 4-5~MeV integrated over the entire calorimeter as  shown by the right panel o
 \label{fig:ftcal_pi0res}
 \end{figure}
 
-The energy calibration of the FT-Hodo is performed by studying the energy deposition of minimum ionizing particles
-(MIPs). Figure~\ref{fig:fthodo_mips} shows the charge from MIP signals in the thin and thick tiles. For the FT-Hodo,
-charged particle signals are selected by requiring the geometrical matching of tiles in the two layers. The
+{\color{green} The energy calibration of the FT-Hodo is performed by studying the energy deposition of minimum ionizing particles
+(MIPs), since these are the typical signals expected charged particles impinging on the detector. Figure~\ref{fig:fthodo_mips} shows the charge from MIP signals in the thin and thick tiles. For the FT-Hodo,
+charged particle signals are selected by requiring the geometrical matching of tiles in the two layers. No other requirement or matching with other detectors is requested to minimize the dependency on other systems calibration. The
 distributions are fit with a Landau plus an exponential function to determine the average MIP charge. The
 charge-to-energy conversion factors are determined by comparing the resulting values to the ones estimated from
-Geant4 Monte Carlo simulations.
+Geant4 Monte Carlo simulations. The constant values were found to be very stable with time, requiring the calibration to be performed only at the beginning of a new data taking period or after a change of the detector operating conditions as for example a change of the HV settings.}
 
 \begin{figure}
 \includegraphics[width=1.0\columnwidth]{fig/fthodo_mips.pdf}
@@ -258,8 +259,8 @@ Geant4 Monte Carlo simulations.
 \end{figure}
 
 The timing calibrations of both the FT-Cal and FT-Hodo are obtained by studying the time correlation of the signals
-detected in the two detectors and the CLAS12 Forward Time-Flight (FTOF) detector~\cite{ftof}. Events with a
-scattered electron in the CLAS12 forward detectors and a second particle detected in the FT are selected. In
+detected in the two detectors and the CLAS12 Forward Time-Flight (FTOF) detector~\cite{ftof}. The procedure makes use of events with a
+scattered electron in the CLAS12 forward detectors and a second particle detected in the FT. In
 such events, the start time $t_0$, i.e. the time of interaction of the beam electron in the target, can be computed
 from the electron FTOF time projected back to the event vertex. The start time can then be used as a reference
 for the calibration of the FT detectors. 
@@ -286,7 +287,7 @@ plots  of the same figure are fitted to a simple Gaussian function to determine 
 plot shows the final distribution with all corrections, showing a clear  coincidence peak at 0 surrounded by the
 accidental peaks at multiple of $\pm$4.008~ns  due to the RF beam structure. The time offset constant term is
 extracted for each crystal separately, while the time walk constants are fitted for all crystals together since no
-significant difference between crystals was found. 
+significant difference between crystals was found. The resolution achieved with this procedure are reported in Section~\ref{sec:performance}
 
 \begin{figure}
 \includegraphics[height=0.42\columnwidth]{fig/ftcal_twbefore.png}
