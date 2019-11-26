@@ -617,7 +617,7 @@ number of channels in the challenging single-photon regime.
 The CLAS12 RICH requires various services, namely power, cooling, and gas purge whose number of lines has to be
 minimized and installed outside of the CLAS12 acceptance. A continuous nitrogen flow, supplied by the Hall~B gas
 distribution system, is provided in order to keep the relative humidity inside the RICH vessel at the few percent
-level. The flow is set to about 60~l/m to ensure a complete inner volume exchange in a few hours. 
+level. The flow is set to about 40~l/m to ensure a complete inner volume exchange in a few hours. 
 %The nitrogen is supplied by the Hall-B distribution system based on a large dewar filled of liquid nitrogen. 
 A backup system has been realized by a stack of nitrogen bottles to allow for up to 3 days of gas flow in case of
 failure of the primary distribution system.
@@ -1010,7 +1010,7 @@ The cRIO system monitors the following parameters:
 \label{fig:Online_FPGATempMap}
 \end{figure}
 
-The locations of the temperature and humidity sensors, and the air and nitrogen flow meters inside the electronics
+The locations of the temperature and humidity sensors, and the air and nitrogen inlet paths inside the electronics
 panel and nitrogen volume are shown in Figs.~\ref{Fig:RICH_sensors_e_panel} and \ref{Fig:RICH_sensors_nitrogen},
 respectively. The inner temperature of the electronics panel ranges between $\rm 38.5^\circ$C and $\rm 44.5^\circ$C
 moving from the bottom towards the top of the module, whereas the external temperature stays below $\rm 34.5^\circ$C,
@@ -1040,8 +1040,8 @@ allowed temperature was set to 75$^\circ$C on the FPGA and to 45$^\circ$C inside
 %\label{fig:Online_EPanelTempStrip}
 %\end{figure}
 
-The nitrogen flow and the RICH internal relative humidity are measured by several probes installed inside the
-detector.
+The RICH internal relative humidity is measured by several probes installed inside the detector and nitrogen flow is
+measured by external flow meters at the RICH nitrogen supply gas panel.
 %A strip chart of the reported humidity spanning a time interval of several days is shown in Fig.\ref{fig:Online_Humidity}.
 An alarm is sent out in case the humidity exceeds 5\% or in case the nitrogen flow drops below the normal value. 
 In the latter case, the backup system starts working to restore the normal flow level and to ensure safe humidity
