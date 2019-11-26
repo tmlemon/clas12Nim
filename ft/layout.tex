@@ -5,7 +5,7 @@
 The FT-Cal has to fulfill demanding requirements in terms of: radiation hardness, light yield, shower containment
 (small radiation length and Moliere radius), fast recovery time, and good energy and time resolution.
 
-The electron energy resolution is a crucial factor to determine precisely the photon energy and ensure the
+The electron energy resolution is a crucial factor to determine precisely the photon energy and to ensure the
 exclusivity of the measured reaction via the missing mass technique. However, since we are interested in low-energy
 electrons and high-energy photons, the energy resolution on the latter is significantly better than the resolution on
 the electron\footnote {For example, an electron energy resolution of 2\% (at 1~GeV) would result in an energy
@@ -15,7 +15,7 @@ high rates with small pile-up effects and to provide the scattered electron inte
 ($<$1~ns) in order to reject background and to identify the relevant signals via coincidence with CLAS12. Due to the
 expected high rate from electromagnetic background, the calorimeter should be highly segmented in the transverse
 direction. The size of each detection element should be comparable with the characteristic transverse size of the
-electromagnetic shower (Moliere radius) to contain the shower produced by incident electrons to few readout cells,
+electromagnetic shower (Moliere radius) to contain the shower produced by incident electrons to a few readout cells,
 thus minimizing rates and pile-up. Finally, the photodetectors for the light read out should work  in a sizable magnetic
 field and fit within the available space. Thus, standard photomultipliers (PMTs) cannot be used while photodetectors
 based on semiconductors, e.g. avalanche photodiodes (APDs), have been shown to meet the required criteria. 
@@ -25,8 +25,8 @@ Large-Area APDs (LAAPDs) as the readout sensors. A similar  combination was used
 CLAS-IC~\cite{CLAS-IC}, and PANDA-EMC~\cite{PANDA-ECal} calorimeters. Lead tungstate has a fast scintillation
 decay time (6.5~ns), a small radiation length (0.9~cm), and small Moliere radius (2.1~cm). The drawback of limited
 light emission (about 0.3\% of NaI(Tl)) has been mitigated by using cooled PbWO$_4$ Type-II crystals (as for the
-PANDA-EMC), matched to large-area photosensors to obtain a factor of four more light per MeV of deposited energy than the original
-CMS-ECal crystals.
+PANDA-EMC), matched to large-area photosensors to obtain a factor of four more light per MeV of deposited energy
+than the original CMS-ECal crystals.
 
 With this design an energy resolution of the order of ($2\% /\sqrt{E\textrm{(GeV)}} \oplus 1\%$) is expected.
 Other crystals, such as LSO/LYSO or the very recent LaBr, share almost all of the good specifications of
@@ -36,8 +36,8 @@ alternative.
 
 \begin{figure}[th!]
 \centering 
-\includegraphics[width=0.85\columnwidth]{fig/dummy.png} 
-\caption{FT-Cal} 
+\includegraphics[width=0.85\columnwidth]{fig/section.png} 
+\caption{CAD drawing of the FT-Cal showing a cross section of the detector. The crystals, in purple, are enclosed in the copper thermal shield, in orange, surrounded by the insulation, in light gray. On the downstream end of the crystals (right side of the figure), the preamplifiers are shown in green. The weight of the crystals is supported by the tungsten pipe, in dark gray, which is an integral part of the beamline.}
 \label{fig:ft-cal-geometry} 
 \end{figure}
 
@@ -46,12 +46,12 @@ alternative.
 The FT-Cal is made from 332 $15\times 15\times 200$~cm$^3$ parallelepiped PbWO$_4$ Type-II crystals
 arranged around the beamline with full azimuthal angular coverage ($0^\circ < \phi < 360^\circ$)  and small
 forward angles acceptance ($2^\circ < \theta < 5^\circ$). The crystals are placed with their long side parallel to
-the beamline to form a ring. Figure~\ref{fig:ft-cal-geometry} shows the crystal assembly. 
+the beamline to form a ring. Figure~\ref{fig:ft-cal-geometry} shows the a CAD rendering of the calorimeter. 
 
 \subsubsection{PbWO$_4$ Crystals}
 
 The FT-Cal PbWO$_4$ Type-II crystals were produced by the Shanghai Institute of Ceramics, Chinese Academy
-(SICCAS). Since the light yield ($LY$) increases while lowering the temperature $T$ according to the law
+(SICCAS). Since the light yield ($LY$) increases when lowering the temperature $T$ according to 
 $dLY/dT \sim 3\%/^\circ$C, the calorimeter is stabilized in temperature and operated at
 $T \sim 0^\circ$C. Lower temperatures were not considered due to significant complications in the
 mechanical/thermal design, the reduced resistance to radiation,  and the decay time degradation of the cooled
@@ -79,14 +79,14 @@ exponential form was used to fit the data.
 \begin{figure}[th!]
 \centering 
 \includegraphics[width=0.85\columnwidth]{./fig/dk.jpeg} 
-\caption{Histogram of the radiation induced absorption coefficient, $dk$, for all SICCAS FT-Cal PbWO$_4$ crystals.}
+\caption{Histogram of the radiation-induced absorption coefficient, $dk$, for all SICCAS FT-Cal PbWO$_4$ crystals.}
 \label{fig:dk} 
 \end{figure}
 
 The radiation hardness of the crystals was measured by irradiating them with a dose of 30~Gy of low-energy photons
 using a $^{60}$Co source at the Strahlenzentrum of Giessen University~\cite{radhard}. The longitudinal transmission
 was measured before and after the irradiation, calculating the variation as a function of the wavelength. The radiation
-hardness of the crystals was quantified by the radiation induced absorption coefficient defined as:
+hardness of the crystals was quantified by the radiation-induced absorption coefficient defined as:
 
 \begin{equation}
 dk = \frac{1}{L}\frac{T_{bef}}{T_{irr},}
@@ -94,9 +94,9 @@ dk = \frac{1}{L}\frac{T_{bef}}{T_{irr},}
 
 \noindent
 where $T_{bef}$ is the light transmission at 420~nm, the peak of the PbWO$_4$ emission spectrum, measured before
-irradiation, $T_{irr}$ the light transmission at the same wavelength after irradiation for crystals of a given length $L$. 
-Crystals exhibiting greater levels of radiation damage to light transmission have higher values of $dk$. All 332
-crystals assembled in the FT-Cal were individually characterized: on average we found 
+irradiation, and $T_{irr}$ is the light transmission at the same wavelength after irradiation for crystals of a given
+length $L$. Crystals exhibiting greater levels of radiation damage to light transmission have higher values of $dk$.
+All 332 crystals assembled in the FT-Cal were individually characterized: on average we found 
 $T_{bef}$(420~nm) = $61.5 \pm 0.2$ ($\sigma=3.2$) and $T_{irr}$(420~nm) = $50.8 \pm 0.5$ ($\sigma=4.9$). 
 The resulting $dk$ distribution is shown in Fig.~\ref{fig:dk}. These measurements were used to optimize the position
 of each crystal in the calorimeter, placing the crystals with the highest radiation resistance, and therefore lowest
@@ -112,28 +112,27 @@ $dk$, in the areas where the highest radiation dose is expected.
 \subsubsection{Light Readout and Electronics}
 \label{sec:ftcalread}
 
-The FT-Cal uses $10 \times 10$~mm$^2$ (model Hamamatsu S8664-1010) LAAPDs to read out the PbWO$_4$ scintillation
-light. APDs are very compact devices (only a few mm thick), have a large quantum efficiency at the PbWO$_4$
-light peak emission (420~nm), and  are insensitive to magnetic fields. The main disadvantage is that, due to the
-low intrinsic gain ($\sim$50-200), the output signal is too small to be directly acquired, and needs to be amplified
-by a suitable circuit. APDs also need to be operated at a controlled temperature to avoid variations in gain and noise,
-but this does not represent a major complication since the crystals also are required to be stabilized in temperature.
-Each sensor used in the FT-Cal has been characterized by measuring the gain as a function of the applied bias voltage
-at a given temperature using an automated  custom facility (see Ref.~\cite{celeAPD} for more details). The typical
-behavior $G(V_{Bias},T)$ is shown in Fig.~\ref{fig:G-V-T}. The working point (bias voltage) was chosen in order to
-have the chosen gain ($G=150$) in a reasonably stable region for small variation of the biasing. Silicon photomultiplier
-(SiPM) readout was not considered due to their limited dynamical range, which is not suitable for spectroscopic
-applications, and the limited experience (in term of reliability, radiation hardness, stability in time, etc.) in their use
-in large experiments at this time.
+The FT-Cal uses $10 \times 10$~mm$^2$ (model Hamamatsu S8664-1010) LAAPDs to read out the PbWO$_4$
+scintillation light. APDs are very compact devices (only a few mm thick), have a large quantum efficiency at the
+PbWO$_4$ light peak emission (420~nm), and  are insensitive to magnetic fields. The main disadvantage is that,
+due to their low intrinsic gain ($\sim$50-200), the output signal is too small to be directly acquired, and needs to
+be amplified by a suitable circuit. APDs also need to be operated at a controlled temperature to avoid variations in
+gain and noise, but this does not represent a major complication since the crystals also are required to be stabilized
+in temperature. Each sensor used in the FT-Cal has been characterized by measuring its gain as a function of the
+applied bias voltage at a given temperature using an automated  custom facility (see Ref.~\cite{celeAPD} for more
+details). The typical gain behavior $G(V_{Bias},T)$ is shown in Fig.~\ref{fig:G-V-T}. The working point (bias voltage)
+was chosen in order to have the chosen gain ($G=150$) in a reasonably stable region for small variation of the biasing.
+Silicon photomultiplier (SiPM) readout was not considered due to their limited dynamic range, which is not suitable for
+spectroscopic applications, and the limited experience (in term of reliability, radiation hardness, stability in time, etc.)
+in their use in large experiments at this time.
 
 The APD current signal is converted to a voltage pulse that is transmitted to the subsequent electronics chain via a
 trans-impedance amplifier (i.e. an amplifier that converts an input current pulse into an output voltage pulse, without
-performing any time integration). This amplifier has been developed in collaboration with the Service d’Electronique
-Physique (SEP) of the Institut de Physique Nucleaire (IPN) in Orsay. The amplifier ENC\footnote{The ENC,
+performing any time integration). This amplifier has been developed in collaboration with the Service Electronique
+pour la Physique (SEP) of the Institut de Physique Nucl{\'e}aire (IPN) in Orsay. The amplifier ENC \footnote{The ENC,
   equivalent noise charge, is defined as the charge transported by an input signal giving, at the output of the amplifier,
   a signal whose amplitude is equal to the RMS of the output noise.} was measured at the operating temperature of
-T=0$^\circ$C,  with ENC=8200$\pm$100 $e^-$ (RMS) for the nominal gain of $G=1800$ {\color{red} (CORRECT
-  TO ACCOUNT THE FINAL GAIN WAS SET TO 600)}. The amplified signal is read out using the custom JLab flash
+T=0$^\circ$C,  with ENC$\sim10400$ $e^-$ (RMS) for the nominal gain of $G=600$.  This corresponds to about 3 MeV (RMS) on the measured energy. The amplified signal is read out using the custom JLab flash
 ADC VME board (a 16-channel, 12-bit, 250~MHz digitizer; referred to as the FADC250). The measurement
 of the full waveform allows for the derivation of both the charge and time of the hit with the required  accuracy.
 
@@ -149,9 +148,9 @@ APD, read-out electronics. Among the different possible options (radioactive sou
 LED-based Light Monitoring System (LMS). In spite of the need for thermal control, LEDs offer considerable
 advantages: matching with crystals is simpler than for lasers, since each crystal can have a LED in front of it and
 the arrangement of power lines and electrical connections is less critical than for optical fibers. The main
-disadvantage is related to the complexity of the electric circuitry: to cover a large light range while maintaining a
-good timing, each LED needs a separate driver, which leads for a calorimeter of significant size, to a large number
-of electronic circuits.
+disadvantage is related to the complexity of the electronic circuitry: to cover a large light intensity range while
+maintaining a good timing, each LED needs a separate driver, which leads for a calorimeter of significant size, to
+a large number of electronic circuits.
 
 With LEDs it is possible to obtain a shape and a duration of the monitoring-light flash that is similar to the features
 of the crystal scintillation light. In fact, the emission spectrum of the monitoring light can be chosen to be similar to
@@ -159,7 +158,7 @@ the radio-luminescence spectrum of PbWO$_4$, the effective optical path length f
 can be matched to the average path length of the scintillation light produced by an electromagnetic shower, and the
 pulse length can be tuned to reproduce the PbWO$_4$ scintillation decay time. We chose a blue light LED with
 wavelength close to the 430~nm emission peak of the PbWO$_4$ crystal, where radiation damage may have the
-maximum effect. Each crystal is equipped with a separate LED, located on the upstream face, at the
+maximum effect. Each crystal is equipped with a separate LED, located on its upstream face, at the
 opposite end with respect to the light sensors and electronics. The intensity can be varied in the range from 500 to
 100,000 photons, pulsed at a variable rate from 62~Hz to 8~kHz, with a pulse rise time of $\sim$1~ns and a time
 jitter of less than 200~ps. The system has been designed to work in the temperature range from -25$^\circ$C
@@ -250,15 +249,15 @@ mounted on the upstream end. This reflects onto the mechanical design of the sin
 self-supporting element made of the crystal itself, the APD, the reflective wrapping, and the crystal support
 structure. To avoid dead volume in the detector, the mechanical support for each crystal is provided only by the
 wrapping. We chose 3M Vikuiti reflective film. This material is non-conductive, has a reflectivity higher than
-aluminized Mylar and, if properly hot-formed, can hold the weight of a crystal. The reflective film is glued on the
-sides of a pair of front/back PEEK custom-machines blocks that hold the LAAPD and the LED, respectively.
-Figure~\ref{fig:crystalassembly} shows a CAD rendering of the single crystal assembly from the frontal PEEK
+aluminized Mylar and, if properly heat-formed, can hold the weight of a crystal. The reflective film is glued on the
+sides of a pair of front/back PEEK custom-machined blocks that hold the LAAPD and the LED, respectively.
+Figure~\ref{fig:crystalassembly} shows a CAD rendering of the single crystal assembly from the front PEEK
 support to the preamplifier.
 
 \begin{figure}[th!]
 \centering 
 \includegraphics[width=1.0\columnwidth]{./fig/raff.jpeg}
-\caption{The copper thermal/grounding shield for the FT-Cal with the cooling pipes shown.}
+\caption{The copper thermal/grounding shield for the FT-Cal. The right figure shows the ensemble of the copper shield with the cooling pipes shown in blue. These are located on the back plate, on the outer cylinder and on the inner shield.  The left figure shows the cooling pipe circuit inside the inner shield. FIGURE WILL BE REPLACED WITH NEW ONE AND THE CAPTION UPDATED}
 \label{fig:piping} 
 \end{figure}
 
@@ -269,25 +268,15 @@ motherboard, which is designed to provide power distribution and signal collecti
 structure allows for the replacement of individual preamplifiers if needed. The front and back copper plates are
 connected by a copper cylinder on the outside and by an inner copper shield to form a closed vessel that surrounds
 the crystal matrix to provide proper grounding and the required thermal stability and uniformity. Cooling is provided
-by 5-mm diameter copper pipes installed on the outside of the vessel as shown in Fig.~\ref{fig:piping}. A CAD section
-view of the complete calorimeter is shown in Fig.~\ref{fig:calsec}.
+by 5-mm diameter copper pipes installed on the outside of the vessel as shown in Fig.~\ref{fig:piping}. 
 
-\begin{figure}[th!]
-\centering 
-\includegraphics[width=1.0\columnwidth]{./fig/section.png}
-\caption{Cross section of the FT calorimeter: in purple, the crystals, upstream the PEEK forward blocks and the
-  forward copper plate, downstream the rear copper plate, the preamplifiers (in green), and the readout
-  motherboard (in white), {\color{red} in light gray and yellow, part of the insulation.}}
-\label{fig:calsec} 
-\end{figure}
-
-The FT calorimeter has been designed to operate between 0$^\circ$C to room temperature. The FT-Cal cooling is
+The FT calorimeter has been designed to operate between 0$^\circ$C and room temperature. The FT-Cal cooling is
 achieved via circulation of coolant in the circuit attached to the rear copper plate and on the inner and outer copper
 vessels. The cooling system was designed to compensate the heat load in the region surrounding the FT, taking into
 account 20~mm of insulating foam (polyisocianurate thermal conductivity 0.024~W/mK) and from the amplifiers, which
 dissipate $\sim$50~W. The insulation is less effective between the calorimeter and the inner tungsten pipe that
-holds the entire FT (see Section~\ref{sec:integration}), because of the limited space for the insulation and the
-presence of support structures that bring the overall thermal conductance in that region to 0.056~W/mK.
+holds the entire FT (see Section~\ref{sec:integration}) because of the limited space for the insulation and the
+presence of the support structures that bring the overall thermal conductance in that region to 0.056~W/mK.
 
 During the design phase, Finite Element Analysis calculations were performed to optimize the cooling circuit and the
 insulation parameters in order to reach the design temperature and uniformity. These studies indicated that the
@@ -298,30 +287,30 @@ just above the dew point. Measurements performed after the calorimeter assembly 
 
 The primary aim of the FT-Hodo is to discriminate between photons and electrons that produce the electromagnetic
 shower in the calorimeter. Specifically, electrons are identified by hits in the hodoscope array that are correlated
-in both position and time with a cluster observed in the calorimeter. The FT-Hodo comprises an array of 232 plastic
+in both position and time with a cluster observed in the calorimeter. The FT-Hodo is comprised by an array of 232 plastic
 scintillator (Eljen-204) tiles segmented in two layers to suppress contributions from the splash-back of the
 electromagnetic shower created by events depositing energy in the FT-Cal. The scintillators provide fast timing and
 sufficient resistance to radiation damage for use in the high-rate and high-dose environment of the FT. The geometry
 and readout of the hodoscope are constrained by the surrounding apparatus. Specifically, the device is positioned
 upstream of the FT-Cal, fitting into a circular disk of diameter 330~mm and 42~mm depth. The readout is achieved
 using $3 \times 3$~mm$^2$ Hamamatsu S13360-3075PE SiPMs (50\% photon detection efficiency for 450~nm
-photons) coupled to 5~m long clear optical fibers (Kuraray clear-PSM with attenuation length $>10$~m), which are
-fusion spliced to $\sim 30~$cm long wavelength shifting (WLS) Kuraray Y11 fibers (attenuation length of $> 3.5$~m),
+photons) coupled to 5-m-long clear optical fibers (Kuraray clear-PSM with attenuation length $>10$~m), which are
+fusion spliced to $\sim$30~cm long wavelength shifting (WLS) Kuraray Y11 fibers (attenuation length of $> 3.5$~m),
 embedded in the scintillator tiles. The splicing induces a photon loss of less than 2\%, where the use of optical fibers
 allows the captured light to be transported with a light loss of less than $\sim$40\% over the 5~m path to the SiPM.
 This readout design of the FT-Hodo addresses the need to minimize material in the detector acceptance, to operate
 in regions of high magnetic fields produced by the CLAS12 solenoid and torus magnets, and to tolerate the high
 background radiation environment. 
 
-Each layer of the FT-Hodo comprises of 44 15~mm$\times$15~mm (P15) and 72 30~mm$\times$30~mm (P30)
+Each layer of the FT-Hodo is comprised of 44 15~mm$\times$15~mm (P15) and 72 30~mm$\times$30~mm (P30)
 scintillators arranged as shown in Fig.~\ref{Fig:FTHodoLayout}. The upstream and downstream layers utilize 7-mm
 and 15-mm thick scintillator tiles, respectively. The upstream (thin) layer is employed to reduce photon conversion in
 the FT-Hodo, while the thicker layer provides the signal with the most accurate timing information for the event. To
 increase the number of scintillation photons collected from each tile, four WLS fibers were embedded in the P30
 tiles and 2 in the P15 tiles. In addition, the WLS fibers were glued with Bicron BC-600 glue (CHECK Epotek 301-2)
-inside diagonal holes that maximize the path length in the scintillator and allows for the tiles to be arranged without
+inside diagonal holes to maximize the path length in the scintillator and to allow for the tiles to be arranged without
 any dead space between the elements. Each tile was polished and painted with two layers of Bicron BC-620 reflective
-paint for the sides and 3 layers for the scintillator faces and secured in position on the surface of a 2-mm thick
+paint for the sides and 3 layers for the scintillator faces and secured in position on the surface of a 2-mm-thick
 plastic support board. There is a 9~mm clearance for each layer for routing the optical fibers to the readout
 electronics through a $\Delta$-shaped sheathing on the bottom end of the FT-Hodo. The front and back faces are
 covered by light-proof carbon fiber material that is screwed onto supporting structures made out of hexagonal
@@ -341,25 +330,25 @@ of the plastic supports for the light-proofing structure, and the plastic strip.
 \begin{figure}[th!]
 \centering 
 \includegraphics[width=0.85\columnwidth]{./fig/CADFT-Hodo.pdf} 
-\caption{CAD drawing of the FT-Hodo showing half of layer 1, the location of the plastic spacers, and the plastic
-  strip that traces the outer contour. WILL BE REPLACED WITH BETTER RESOLUTION FIGURE} 
+\caption{CAD drawing of the FT-Hodo showing one layer, the location of the plastic spacers, and the plastic
+  strip that traces the outer contour. } 
 \label{Fig:CADFT-Hodo} 
 \end{figure}
 
-With the typical maximum doses determined through Geant4 simulations with realistic beam and target parameters
-and without the shielding effects of the M{\o}ller cone (see Section~\ref{sec:integration}, the FT-Hodo will
-experience a light loss of 20\% in the WLS fiber~\cite{ft-tdr} after 3.5 years, whereas the plastic scintillators will
+With the typical maximum radiation doses determined through Geant4 simulations with realistic beam and target
+parameters, and without the shielding effects of the M{\o}ller cone (see Section~\ref{sec:integration}), the
+FT-Hodo will experience a light loss of 20\% in the WLS fibers after 3.5 years, whereas the plastic scintillators will
 experience a light loss of 20\% after 300~years~\cite{ft-tdr}. Both scintillators and fibers also show natural
 annealing processes, which can effectively compensate for the radiation damage~\cite{ft-tdr}.  
 
 The analog signal from the SiPM is fed directly to a custom-designed preamplifier board designed by the
-INFN-Genova electronics group. The boards host 8 independent channels each coupled to a SiPM and are mounted
+INFN-Genova Electronics Group. The boards host 8 independent channels each coupled to a SiPM and are mounted
 in pairs in the slots of a custom crate, mechanically compatible with the VME standard. The 16 SiPMs connected to
 each pair of boards are mounted on a mezzanine printed circuit board, which distributes the bias HV to each SiPM
 and collects their signals for the amplifier inputs. The schematic of one channel of the SiPM amplifier board,
 excluding the HV bias network is shown in Fig.~\ref{Fig:FTHODOAmpBoard}. The first stage is based on a bipolar
 junction NPN transistor in a common base configuration, while the second is composed by a OPA694 operational
-amplifier in a non-inverting configuration. The two BRF92 transistors have been chosen since they are low noise
+amplifier in a non-inverting configuration. The two BRF92 transistors have been chosen since they are low-noise
 transistors with a high cut-off frequency and good stability. The two stages are coupled together with a 100~nF
 capacitor to remove the DC component of the signal from the second transistor. The amplifier is coupled to the
 output connector through a 100~nF capacitor and a 50~$\Omega$ resistor to remove any DC component from the
@@ -367,8 +356,8 @@ last stage and to match the impedance of the output cable.
 
 \begin{figure}[th!]
 \centering 
-\includegraphics[width=0.95\columnwidth]{./fig/FTHODOAmpBoard.pdf} 
-\caption{Schematic of a single channel of the amplifier board for SiPM.} 
+\includegraphics[width=1.0\columnwidth]{./fig/FTHODOAmpBoard.pdf} 
+\caption{Schematic of a single channel of the amplifier board for the SiPM.} 
 \label{Fig:FTHODOAmpBoard} 
 \end{figure}
 
@@ -376,43 +365,45 @@ The signal from each SiPM after amplification is continuously digitized by the J
 trigger condition is satisfied, samples are stored for further analysis. The data acquisition and slow controls system
 for the FT-Hodo are similar to the FT-Cal (see Section~\ref{sec:ftcalread} for more details). The SiPMs operate
 with a bias voltage of 50-55.5~V, which is provided by three CAEN A1737P HV boards. 30 independent HV channels
-are used to operate each SiPM board hosting 8 sensors. These groups of 8 SiPMs were selected according to their
-gain.{\color{green} The HV distribution to the groups of 8 SIPM is implemented on the mezzanine boards that also host a compensation circuit that allows for the independent regulation of each SIPM bias voltage up to a maximum of 0.4 V.} The low voltage system used for the FT-Hodo is the same as the one used for FT-Cal. Controls of both the HV
-and LV for the detector are provided by the CLAS12 EPICS slow control system~\cite{daq}. Similarly to the FT-Cal,
+are used to operate each SiPM board that hosts 8 sensors. These groups of 8 SiPMs were selected according to their
+gain. The HV distribution to the groups of 8 SiPMs is implemented on the mezzanine boards that also hosts a
+compensation circuit to allow for the independent regulation of each SiPM bias voltage up to a maximum of 0.4~V. The
+low voltage system used for the FT-Hodo is the same as the one used for FT-Cal. Controls of both the HV
+and LV for the detector are provided by the CLAS12 EPICS slow controls system~\cite{daq}. Similarly to the FT-Cal,
 the status of the critical components, in this case the temperature of the preamplifier crate, is incorporated into
 the interlock system that is programmed to disable the HV and LV crates if abnormal conditions are detected.
 
 \subsection{The Micromegas Tracker (FT-Trk)}
 
 For a precise determination of the scattered electron angle, a tracker complements the FT-Cal and FT-Hodo
-detectors. The FT-Trk uses the same technology adopted by the CLAS12 central and forward Micromegas
-detectors. We refer to Ref.~\cite{mm} for a detailed description of  these devices. In this section we just
-describe the specific design of the FT-Trk.
+detectors. The FT-Trk uses the same technology adopted by the CLAS12 central and forward Micromegas detectors.
+We refer to Ref.~\cite{mm} for a detailed description of  these devices. In this section we describe the specific
+design of the FT-Trk.
 
 \begin{figure}[th!]
 \centering 
 \includegraphics[width=1.0\columnwidth]{./fig/fttrk_layout.png}
-\caption{3D view of the upstream face of the Micromegas tracker equipped with front-end electronics.}
+\caption{3D view of the upstream face of the FT-Trk Micromegas tracker equipped with front-end electronics.}
 \label{fig:ft-trck} 
 \end{figure}
 
 Two double-layers of Micromegas detectors are located in front of the hodoscope, in the space between the FT
 and the High Threshold Cherenkov Counter (HTCC)~\cite{htcc}. The two detectors are indeed a good compromise
 to achieve an efficient background rejection and track reconstruction with a low material budget. Each layer is
-composed by a double-faced Micromegas disk built on a common printed circuit board (PCB). Each side of the PCB
-displays strips, the downstream ones being perpendicularly oriented to the upstream strips. This particular geometry
+composed of a double-faced Micromegas disk built on a common printed circuit board (PCB). Each side of the PCB
+displays strips, the downstream strips being perpendicularly oriented to the upstream strips. This particular geometry
 enables the determination of the $(x,y)$ coordinates (perpendicular to the beam $z$-axis) of a track. To limit the
-number of electronic channels, the pitch chosen was 500~$\mu$m, which leads to a resolution better than
+number of electronics channels, the pitch chosen was 500~$\mu$m, which leads to a resolution better than
 $500/\sqrt{12} \sim 150$~$\mu$m. A drift space of 5~mm, together with an amplification gap of 128~$\mu$m,
 provides good efficiency. The two double-layers, centered on the beam axis, cover polar angles from 2.5$^\circ$ to
-4.5$^\circ$ with an active area defined between 70~mm inner radius and a 143~mm outer radius. The total number of
+4.5$^\circ$ with an active area defined between a 70~mm inner radius and a 143~mm outer radius. The total number of
 channels is 3072. Figure~\ref{fig:ft-trck} shows the CAD implementation of the detector. The FT-Trk readout uses
-the same DAQ scheme adopted for the CLAS12 Barrel Micromegas Tracker (BMT)~\cite{mm}, which consists of
+the same data acquisition scheme adopted for the CLAS12 Barrel Micromegas Tracker (BMT)~\cite{mm}, which consists of
 a Front-End Unit (FEU) and a Back-End Unit (BEU). 
 
 The front-end electronics are responsible for signal preamplification, shaping, buffering during the trigger generation
 process, data digitization, and compression. Due to the limited space available, the front-end electronics are designed
-to be placed off-detector. The micro-coaxial cable assemblies connect the detectors and the front-end boards. The
+to be placed off-detector. Micro-coaxial cable assemblies connect the detectors and the front-end boards. The
 non-amplified analog signals transit via the cable assemblies from the chambers to the front-end electronics. The
 512-channel FEUs are housed in 4U crates attached to the FT-Cal mechanical supports and  located in the shadow of
 the CLAS12 torus coils. The back-end electronics are responsible for data concentration, providing the interface to
@@ -423,5 +414,5 @@ front-end power supply is located 12~m away from the crates. The 15~W power prod
 compressed air. An interlock system between the cooling infrastructure and the low voltage power supply prevents
 powering the front-end crates when cooling is off. 
 
-The gas used is a mixture of argon, isobutane (up to 10\%), and CF$_4$ (up to 5\%). The use of CF$_4$ ensures a
+The gas used is a mixture of argon, isobutane (up to 10\%), and CF$_4$ (up to 5\%). The use of CF$_4$ ensures 
 good time resolution (around 10-15~ns). The gas distribution system is the same one used by the BMT.
