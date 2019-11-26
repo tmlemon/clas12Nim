@@ -33,10 +33,10 @@ set is held together by a stainless steel `L' frame welded around the perimeter.
 are bolted to three aluminum sidewalls, which complete the structural members of the box (see
 Fig.~\ref{fig:S4_0}). All lead and scintillator layers inside the box are held in position by a retaining assembly
 attached to two of the sidewalls. These retainers also create a space between the sidewall and the end of the
-scintillator strips. This space, together with machined slots and channels, route the light readout fibers out of
-the box to the PMT housings (see Fig.~\ref{fig:S3_6}).  At the PMT readout end, the fibers pass through the
-three holes of the black PVC adapters to which the PMT is mounted.  There the fibers are glued into the adapter,
-then milled, polished, and coupled to the PMTs with optical grease (see Fig.~\ref{fig:S3_5}). The opposite ends
+scintillator strips which is used, together with machined slots and channels, to route the light readout fibers out of
+the box to the PMT housings (Fig.~\ref{fig:S3_6}).  At the PMT readout end, the fibers pass through the
+three holes of the black PVC adapters to which the PMT is mounted (Fig.~\ref{fig:S3_5}).  There the fibers are glued into the adapter,
+then milled, polished (Sect.~\ref{WLS cutting}), and coupled to the PMTs with optical grease. The opposite ends
 of the fibers extend from the far end of the strips by $\sim 1$~mm and are spot glued to the scintillator.   
 
 \begin{figure}[hbt]
@@ -232,23 +232,17 @@ Fig.~\ref{fig:S5_2}). For each PCAL module a total of 14 lead sheets and 15 scin
 installed.
 
 \subsection{WLS Fiber Cutting and Polishing}
+\label{WLS cutting}
 
-The milling and polishing operation was performed with a fiber bundle cutting machine designed and built at YERPHI and
+The milling and polishing operation was performed with a fiber bundle cutting device designed and built at YERPHI and
 previously used for the ATLAS tile calorimeter~\cite{ATLAS1997}.  The machine was brought to Jlab and re-commissioned to mount directly onto the PCAL 
-U and V,W PMT sidewalls with a precisely aligned cutting-polishing head moving along a polished steel guide track.  The cutting tool was designed to move in a continuous motion, making several rough cut passes and ending with a polishing pass.  The cutting head could be operated both manually or driven by computer (see Figs.~\ref{fig:S3_5d}, \ref{fig:S3_5c}.) 
+U and V,W PMT sidewalls, using a precisely aligned cutting-polishing head moving along a polished steel guide track.  The cutting head had two sets of tungsten alloy knives for rough and fine cutting, with a round cut edge design in order to obtain a smooth surface during overlapping knife passes. The tool operated in a continuous motion, making several rough cut and milling passes (Fig.~\ref{fig:S3_5d}) and ending with a single polishing pass.  The cutting head could be operated either manually or automatically. 
 
 \begin{figure}[hbt]
 \centering
 \includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S3_5d.png}
 \caption[Cutter 2]{Fly cutter of fiber cutting machine making an initial milling pass of PCAL WLS fiber bundles.}
 \label{fig:S3_5d}
-\end{figure}
-
-\begin{figure}[hbt]
-\centering
-\includegraphics[width=0.95\columnwidth,keepaspectratio]{img/S3_5c.png}
-\caption[Cutter 1]{Left: Surveying adjustments for the cutting head of the fiber cutter. Right: Making final polishing run on the VW fiber bundles.}
-\label{fig:S3_5c}
 \end{figure}
 
 \subsection{Installation in Hall B}
@@ -271,7 +265,7 @@ The output signals from the PCAL PMTs are routed to the FC with a single run of 
 signals use RG-8 cable with RG-58 patch cables at both ends for a more flexible routing geometry. Both the EC and
 PCAL rely on passive resistive splitters designed and built at the University of Virginia to distribute signals to 
 digitization electronics located in VME/VXS crates. The split ratio is 2:1 for the PCAL and 3:1 for the EC. For both calorimeters the larger signal goes to the analog-to-digital (ADC) modules. Mapping of the patch cables from the
-splitter to the electronics follows the same detector mapping used for the input to the splitters.
+splitter to the electronics follows the same sequential detector mapping used for the input to the splitters.
 
 The VME/VMX crates and HV mainframes are installed in six groups of racks on three levels of the FC that are located
 behind each of six sectors containing the PCAL/EC/FTOF/LTCC modules (and RICH in Sector~4) (see
