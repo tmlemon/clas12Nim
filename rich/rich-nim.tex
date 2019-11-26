@@ -35,8 +35,8 @@
 \begin{frontmatter}
 
 \author[a]{M.~Contalbrigo}
-\author[b]{M.~Mirazita}
 \author[f]{V.~Kubarovsky}
+\author[b]{M.~Mirazita}
 \author[f,b]{P.~Rossi}
 \author[h]{E.~Aaron}
 \author[b,j]{G.~Angelini}
@@ -49,10 +49,12 @@
 \author[k]{W.~Brooks}
 \author[c]{E.~Cisbani}
 \author[f]{C.~Cuevas}
+\author[f]{P.~Degtiarenko}
 \author[f]{C.~Dickover}
-\author[f]{G.~Jacobs}
-\author[i]{A.~Kim}
 \author[h]{J.~Goodwill}
+\author[f]{G.~Jacobs}
+\author[i]{K.~Joo}
+\author[i]{A.~Kim}
 \author[f]{T.~Lemon}
 \author[b]{V.~Lucherini}
 \author[a]{R.~Malaguti}
@@ -510,9 +512,9 @@ functions of both the H8500 and H12700 MaPMTs was developed. Important features 
 to approximate the true SPE spectra from different PMTs with a variety of
 parameterized spectral shapes.
 %, reflecting the variability in the design and in the individual parameters of the detectors. The new techniques were developed in the process of building the model, such as the method of decomposition of the spectra into a series of elementary Poisson probability density functions, and the use of convolution algebra to build the multi-photoelectron amplitude distributions describing measured spectra. 
-The predictive power of the model was tested by demonstrating that the SPE spectral parameters obtained in the
-measurements may describe well the amplitude distributions of the same photodetector measured at different levels
-of illumination and applied high voltage. Thus, the model allowed us to extract the characteristic parameters of the devices independently of the test measurement conditions.
+The predictive power of the model was tested by demonstrating that the SPE spectral parameters, obtained in the
+measurements, may describe well the amplitude distributions of the same photodetector measured at different levels
+of illumination. Thus, the model allowed us to extract the characteristic parameters of the devices independently of the test measurement conditions.
 
 The SPE spectrum is extracted by fitting with the model function the signal amplitude distribution measured 
 as shown in Fig.~\ref{fig:SPEH8500} for the H8500 MaPMT and in Fig.~\ref{fig:SPEH12700} for the H12700.
@@ -526,7 +528,7 @@ electrons. In the function, $m$ is the number of the electrons knocked out from 
 of electrons emitted out of the second dynode, and ${\bf t}$ is the vector of the model parameters
 (see Ref.~\cite{Pavel} for more details).
 
-In each fit, the quantum efficiency parameter $\mu$ corresponds to the average number of photoelectrons created at the photocathode by
+In each fit, the parameter $\mu$ corresponds to the average number of photoelectrons created at the photocathode by
 each laser pulse, $\nu_{average}$ is the average number of secondary electrons generated at the first dynode, and $scale$ is the 
 average anode charge collected from one photoelectron. 
  
@@ -568,7 +570,7 @@ Fig.~\ref{fig:PavelPassport}. The parameter $scale$ (top plot), characterizing t
 virtually independent of the light radiation level, while strongly dependent on the high voltage supply, the exact behavior
 one would expect from the characteristic internal dynode system of a MaPMT. On the contrary, the parameter $\nu_{average}$
 (center plot) that is related to the first dynode performance, is relatively independent of the bias voltage. The bottom
-plot shows the quantum efficiency parameter $\mu$ measured with different optical filters. It indicates that all of
+plot shows the average number of photoelectrons $\mu$ measured with different optical filters. It indicates that all of
 the channels respond in the same way as the light intensity increases.
 
 \begin{figure}[h]
@@ -577,9 +579,9 @@ the channels respond in the same way as the light intensity increases.
 	\includegraphics[width=0.85\linewidth]{Pavel_pass1.png}
 	\includegraphics[width=0.85\linewidth]{Pavel_pass2.png}
 	\includegraphics[width=0.85\linewidth]{Pavel_pass3.png}
-	\caption{Distributions of fit parameters among the pixels of one MaPMT: the parameter $scale$ characterizing
-          the dynode amplification system (top) and the first dynode performance $\nu$ (center) at 4 different high
-          voltage supplies; the quantum efficiency parameter $\mu$ at 3 different light intensities (bottom).}
+	\caption{Distributions of fit parameters measured at 4 different high
+          voltage supplies  and 3 different  light intensities among the pixels of one MaPMT: the parameter $scale$ characterizing
+          the dynode amplification system (top), the first dynode performance $\nu$ (center) and the average number of photoelectrons $\mu$ (bottom).}
 	\label{fig:PavelPassport}
 \end{center}
 \end{figure}
