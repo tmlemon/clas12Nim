@@ -18,8 +18,8 @@ The cluster finding algorithm makes use of the unique geometry and stereo readou
 discussed in Ref.~\cite{ecal-nim}, each triangular scintillator layer in the ECAL lead:scintillator sandwich is
 transversely divided into strips, with the shortest strip at the corners. The slice direction rotates by 120$^\circ$
 for each successive layer, providing three {\it views} labeled $U$, $V$, and $W$.  For each strip within a view,
-layers are optically ganged together into a stack.  Individual photomultiplier tube (PMT) readout of each PCAL, ECIN,
-and ECOU stack provides a pulse proportional to the summed energy deposited in the stack.
+layers are optically ganged together into a stack.  Individual photomultiplier tube (PMT) readout of each PCAL,
+ECIN, and ECOU stack provides a pulse proportional to the summed energy deposited in the stack.
 
 The algorithm begins by finding collections of contiguous strips having signals above a user-defined threshold for
 each of the three views. These groupings are called {\it peaks} and their member strips are referred to as
@@ -34,10 +34,15 @@ The criterion for defining a cluster requires the spatial intersection of three 
 $V$, and $W$ views. Candidate peaks for a cluster search are based on a user-defined threshold for the
 summed peak raw energy. Each peak is represented geometrically as a directed line segment determined by the
 energy-weighted average of the mid-lines of each member strip. The degree of intersection of each $U$, $V$,
-$W$ peak triplet is determined by calculating the line of closest distance between a $U$ and $V$ peakline,
+and $W$ peak triplet is determined by calculating the line of closest distance between a $U$ and $V$ peakline,
 followed by the line of closest distance between the midpoint of the $UV$ line and the $W$ peakline. A
 user-defined cut on this final $UV$-$W$ distance identifies the cluster, and the midpoint of the $UV$-$W$
-line defines the $(x,y,z)$ coordinates of the cluster.
+line defines the transverse $(x',y')$ coordinates of the cluster in the local coordinate frame (with the $z'$
+axis perpendicular to the ECAL planes. The longitudinal coordinate $z'$ is set to coincide with the layer of
+maximum energy deposition to minimize parallax effects for tracks that are not normal to the detector surface
+\cite{ecal-nim}. As the cluster reconstruction is performed before the matching with the other CLAS12
+detectors that can provide particle identification, the same algorithm is applied to clusters originating from
+charged or neutral particles.
 
 \subsubsection {Cluster Energy}
 
